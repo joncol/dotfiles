@@ -1,0 +1,119 @@
+set hidden
+set nocompatible
+set modelines=0
+
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+set encoding=utf-8
+"set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set wildmenu
+
+"set wildmode=list:longest
+"set visualbell
+set cursorline
+set ttyfast
+"set ruler
+"set backspace=indent, eol, start
+"set laststatus=2
+set number
+"set relativenumber
+"set undofile
+
+nnoremap / /\v
+vnoremap / /\v
+
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+
+set nowrap
+"set textwidth=79
+"set formatoptions=qrn1
+"set colorcolumn=85
+set history=1000
+set scrolloff=3
+"set backupdir=~/.vimtmp,~/tmp,~/tmp,/var/tmp,/tmp
+"set directory=~/.vmptmp,~/tmp,~/tmp,/var/tmp,/tmp
+
+"let mapleader=","
+
+syntax enable
+set hlsearch
+nnoremap <esc> :noh<CR><esc>
+set background=light
+let g:solarized_bold=0
+colorscheme solarized
+filetype on
+filetype plugin on
+filetype indent on
+
+if &term =~ '^xterm'
+  " solid underscore
+  let &t_SI .= "\<Esc>[4 q"
+  " solid block
+  let &t_EI .= "\<Esc>[2 q"
+  " 1 or 0 -> blinking block
+  " 3 -> blinking underscore
+endif
+
+" Easier switching between modes
+nnoremap <C-space> i
+imap <C-space> <Esc>
+nnoremap <C-[> i
+imap <C-[> <Esc>
+
+" Easier adding of newlines
+map <S-Enter> O<Esc>
+map <CR> o<Esc>
+
+autocmd FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab background=dark
+autocmd FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4 background=dark
+
+" Simplify navigation of the results of quickfix commands such as :helpgrep
+:nnoremap <S-F1>  :cc<CR>
+:nnoremap <F2>    :cnext<CR>
+:nnoremap <S-F2>  :cprev<CR>
+:nnoremap <F3>    :cnfile<CR>
+:nnoremap <S-F3>  :cpfile<CR>
+:nnoremap <F4>    :cfirst<CR>
+:nnoremap <S-F4>  :clast<CR>
+
+map <F8> <Esc>:1,$!xmllint --noout --format -<CR>
+map <S-F8> <Esc>:1,$!xmllint --noout --valid -<CR>
+
+map <A-o> :A<CR> 
+imap <A-o> <Esc>:A<CR> 
+
+let g:showmarks_include="abcdefzxABJio"
+"
+" Windows-specific stuff
+
+if has("gui_running")             " 'guifont' doesn't work in the console
+  if has("gui_gtk2")              " GTK+2 but not GTK+1
+    set guifont=Droid\ Sans\ Mono\ 10
+  elseif has("gui_kde")           " the obsolete kvim (6.2 or earlier)
+    set guifont=Droid\ Sans\ Mono\ 10-1/5/50/0/0/1/0
+  elseif has("gui_photon")        " QNX Photon
+    set guifont=Droid\ Sans\ Mono:s10
+  elseif has("x11")               " other X11 GUIs, including GTK+1
+    set guifont=*-courier-medium-r-normal-*-*-100-*-*-m-*-*
+  else                            " non-X11 GUIs (Windows, Carbon, ...)
+    set guifont=Droid_Sans_Mono:h10
+  endif
+endif
+
+set guioptions-=m " No menu
+set guioptions-=T " No toolbar
+
+set lines=50
+set columns=110
+
