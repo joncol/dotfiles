@@ -44,7 +44,7 @@ set scrolloff=3
 "set backupdir=~/.vimtmp,~/tmp,~/tmp,/var/tmp,/tmp
 "set directory=~/.vmptmp,~/tmp,~/tmp,/var/tmp,/tmp
 
-"let mapleader=","
+let mapleader=","
 
 syntax enable
 set hlsearch
