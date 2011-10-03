@@ -5,14 +5,19 @@ set modelines=0
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set autoindent smartindent
 set expandtab
+set smarttab
 
 set encoding=utf-8
 "set scrolloff=3
-set autoindent
 set showmode
 set showcmd
 set wildmenu
+
+set titlestring=%f title
+
+set rulerformat=%l:%c ruler
 
 "set wildmode=list:longest
 "set visualbell
@@ -28,7 +33,7 @@ set number
 nnoremap / /\v
 vnoremap / /\v
 
-set ignorecase
+set ignorecase " Make searches case-insensitive, unless they contain upper-case letters
 set smartcase
 set gdefault
 set incsearch
@@ -56,6 +61,8 @@ filetype on
 filetype plugin on
 filetype indent on
 
+let g:showmarks_include="abcdefzxABJio"
+
 if &term =~ '^xterm'
   " solid underscore
   let &t_SI .= "\<Esc>[4 q"
@@ -65,33 +72,66 @@ if &term =~ '^xterm'
   " 3 -> blinking underscore
 endif
 
-" Easier switching between modes
-nnoremap <C-space> i
-imap <C-space> <Esc>
-nnoremap <C-[> i
-imap <C-[> <Esc>
+" --------------------------------------------------
+" Keyboard mappings
+" --------------------------------------------------
 
-" Easier adding of newlines
-map <S-Enter> O<Esc>
-map <CR> o<Esc>
+nnoremap <C-space> i
+inoremap <C-space> <Esc>
+
+nnoremap <S-Enter> O<Esc>
+nnoremap <CR> o<Esc>
+
+" Simplify navigation of the results of quickfix commands such as :helpgrep
+nnoremap <S-F1>  :cc<CR>
+nnoremap <F2>    :cnext<CR>
+nnoremap <S-F2>  :cprev<CR>
+nnoremap <F3>    :cnfile<CR>
+nnoremap <S-F3>  :cpfile<CR>
+nnoremap <F4>    :cfirst<CR>
+nnoremap <S-F4>  :clast<CR>
+
+nnoremap <F8> <Esc>:1,$!xmllint --noout --format -<CR>
+nnoremap <S-F8> <Esc>:1,$!xmllint --noout --valid -<CR>
+
+nnoremap <A-o> :A<CR> 
+inoremap <A-o> <Esc>:A<CR> 
+
+nnoremap <Leader>f :FufFile<CR>
+nnoremap <Leader>m :MRU<CR>
+
+nnoremap <Leader>o :only<CR>
+
+" --------------------------------------------------
+" File-specific stuff
+" --------------------------------------------------
 
 autocmd FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab background=dark
 autocmd FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4 background=dark
 
-" Simplify navigation of the results of quickfix commands such as :helpgrep
-:nnoremap <S-F1>  :cc<CR>
-:nnoremap <F2>    :cnext<CR>
-:nnoremap <S-F2>  :cprev<CR>
-:nnoremap <F3>    :cnfile<CR>
-:nnoremap <S-F3>  :cpfile<CR>
-:nnoremap <F4>    :cfirst<CR>
-:nnoremap <S-F4>  :clast<CR>
+" --------------------------------------------------
+" Spelling
+" --------------------------------------------------
 
-map <F8> <Esc>:1,$!xmllint --noout --format -<CR>
-map <S-F8> <Esc>:1,$!xmllint --noout --valid -<CR>
+if v:version >= 700
+  setlocal spell spelllang=en
+  nmap <Leader>ll :set spell!<cr>
+  nmap <Leader>le :set spelllang=en<cr>
+  nmap <Leader>ls :set spelllang=sv<cr>
+endif
 
-map <A-o> :A<CR> 
-imap <A-o> <Esc>:A<CR> 
+ia teh      the
+ia htis     this
+ia tihs     this
+ia funciton function
+ia fucntion function
+ia funtion  function
+ia retunr   return
+ia reutrn   return
+ia sefl     self
+ia eslf     self
+
+set nospell
 
 let g:showmarks_include="abcdefzxABJio"
 
