@@ -9,7 +9,8 @@ set autoindent smartindent
 set expandtab
 set smarttab
 
-set encoding=utf-8
+"set encoding=utf-8
+set encoding=latin1
 "set scrolloff=3
 set showmode
 set showcmd
@@ -54,7 +55,7 @@ let mapleader=","
 syntax enable
 set hlsearch
 nnoremap <esc> :noh<CR><esc>
-set background=light
+set background=dark
 let g:solarized_bold=0
 colorscheme solarized
 filetype on
@@ -101,6 +102,8 @@ nnoremap <Leader>f :FufFile<CR>
 nnoremap <Leader>m :MRU<CR>
 
 nnoremap <Leader>o :only<CR>
+
+nnoremap <Leader>n :noh<CR>
 
 " --------------------------------------------------
 " File-specific stuff
@@ -200,5 +203,5 @@ set guioptions-=m " No menu
 set guioptions-=T " No toolbar
 
 set lines=50
-set columns=110
+set columns=140
 
