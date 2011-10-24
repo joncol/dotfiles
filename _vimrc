@@ -77,11 +77,15 @@ endif
 " Keyboard mappings
 " --------------------------------------------------
 
+"nnoremap <Space> @q
+
 nnoremap <C-space> i
 inoremap <C-space> <Esc>
 
 nnoremap <S-Enter> O<Esc>
 nnoremap <CR> o<Esc>
+
+inoremap <S-Tab> <C-d>
 
 " Simplify navigation of the results of quickfix commands such as :helpgrep
 nnoremap <S-F1>  :cc<CR>
@@ -100,10 +104,9 @@ inoremap <A-o> <Esc>:A<CR>
 
 nnoremap <Leader>f :FufFile<CR>
 nnoremap <Leader>m :MRU<CR>
-
 nnoremap <Leader>o :only<CR>
-
 nnoremap <Leader>n :noh<CR>
+nnoremap <Leader>d :DiffSaved<CR>
 
 " --------------------------------------------------
 " File-specific stuff
@@ -182,6 +185,21 @@ endfunction
 nnoremap <C-H> :Hexmode<CR>
 inoremap <C-H> <Esc>:Hexmode<CR>
 vnoremap <C-H> :<C-U>Hexmode<CR>
+
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable automatic comment insertion
+
+
+" Function to diff current buffer with saved file
+
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
+
 
 " Windows-specific stuff
 
