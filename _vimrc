@@ -2,10 +2,6 @@ set hidden
 set nocompatible
 set modelines=0
 
-" --------------------------------------------------
-" Tabs
-" --------------------------------------------------
-
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -13,7 +9,8 @@ set autoindent smartindent
 set expandtab
 set smarttab
 
-set encoding=utf-8
+"set encoding=utf-8
+set encoding=latin1
 "set scrolloff=3
 set showmode
 set showcmd
@@ -58,7 +55,7 @@ let mapleader=","
 syntax enable
 set hlsearch
 nnoremap <esc> :noh<CR><esc>
-set background=light
+set background=dark
 let g:solarized_bold=0
 colorscheme solarized
 filetype on
@@ -80,11 +77,15 @@ endif
 " Keyboard mappings
 " --------------------------------------------------
 
+"nnoremap <Space> @q
+
 nnoremap <C-space> i
 inoremap <C-space> <Esc>
 
 nnoremap <S-Enter> O<Esc>
 nnoremap <CR> o<Esc>
+
+inoremap <S-Tab> <C-d>
 
 " Simplify navigation of the results of quickfix commands such as :helpgrep
 nnoremap <S-F1>  :cc<CR>
@@ -103,8 +104,9 @@ inoremap <A-o> <Esc>:A<CR>
 
 nnoremap <Leader>f :FufFile<CR>
 nnoremap <Leader>m :MRU<CR>
-
 nnoremap <Leader>o :only<CR>
+nnoremap <Leader>n :noh<CR>
+nnoremap <Leader>d :DiffSaved<CR>
 
 " --------------------------------------------------
 " File-specific stuff
@@ -137,9 +139,69 @@ ia eslf     self
 
 set nospell
 
-" --------------------------------------------------
+let g:showmarks_include="abcdefzxABJio"
+
+" ex command for toggling hex mode - define mapping if desired
+command -bar Hexmode call ToggleHex()
+
+" Helper function to toggle hex mode
+function ToggleHex()
+  " hex mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    let &ft="xxd"
+    " set status
+    let b:editHex=1
+    " switch to hex editor
+    %!xxd
+  else
+    " restore old options
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    " set status
+    let b:editHex=0
+    " return to normal editing
+    %!xxd -r
+  endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
+ 
+nnoremap <C-H> :Hexmode<CR>
+inoremap <C-H> <Esc>:Hexmode<CR>
+vnoremap <C-H> :<C-U>Hexmode<CR>
+
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable automatic comment insertion
+
+
+" Function to diff current buffer with saved file
+
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
+
+
 " Windows-specific stuff
-" --------------------------------------------------
 
 if has("gui_running")             " 'guifont' doesn't work in the console
   if has("gui_gtk2")              " GTK+2 but not GTK+1
@@ -159,5 +221,6 @@ set guioptions-=m " No menu
 set guioptions-=T " No toolbar
 
 set lines=50
-set columns=110
+set columns=140
+
 
