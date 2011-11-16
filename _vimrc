@@ -2,6 +2,10 @@ set hidden
 set nocompatible
 set modelines=0
 
+" --------------------------------------------------
+" Tabs
+" --------------------------------------------------
+
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -133,7 +137,9 @@ ia eslf     self
 
 set nospell
 
+" --------------------------------------------------
 " Windows-specific stuff
+" --------------------------------------------------
 
 if has("gui_running")             " 'guifont' doesn't work in the console
   if has("gui_gtk2")              " GTK+2 but not GTK+1
