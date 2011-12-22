@@ -11,6 +11,7 @@ set smarttab
 
 "set encoding=utf-8
 set encoding=latin1
+set fileformats=dos
 "set scrolloff=3
 set showmode
 set showcmd
@@ -54,10 +55,10 @@ let mapleader=","
 
 syntax enable
 set hlsearch
-nnoremap <esc> :noh<CR><esc>
-set background=dark
-let g:solarized_bold=0
-colorscheme solarized
+"let g:solarized_bold=0
+colorscheme jellybeans
+"set background=light
+"jellybeans
 filetype on
 filetype plugin on
 filetype indent on
@@ -78,6 +79,8 @@ endif
 " --------------------------------------------------
 
 "nnoremap <Space> @q
+
+nnoremap <esc> :noh<CR><esc>
 
 nnoremap <C-space> i
 inoremap <C-space> <Esc>
@@ -104,7 +107,7 @@ inoremap <A-o> <Esc>:A<CR>
 
 nnoremap <Leader>f :FufFile<CR>
 nnoremap <Leader>m :MRU<CR>
-nnoremap <Leader>o :only<CR>
+"nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>d :DiffSaved<CR>
 
@@ -112,8 +115,13 @@ nnoremap <Leader>d :DiffSaved<CR>
 " File-specific stuff
 " --------------------------------------------------
 
-autocmd FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab background=dark
-autocmd FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4 background=dark
+au FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab background=dark
+au FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4 "background=dark
+au FileType log :setlocal nonumber
+"autocmd FileType cpp :colorscheme jellybeans
+"autocmd FileType cs  :colorscheme jellybeans
+"autocmd FileType cif :colorscheme jellybeans
+
 
 " --------------------------------------------------
 " Spelling
@@ -222,4 +230,4 @@ set guioptions-=T " No toolbar
 
 set lines=50
 set columns=140
-
+set synmaxcol=140
