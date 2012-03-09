@@ -11,7 +11,7 @@ set smarttab
 
 "set encoding=utf-8
 set encoding=latin1
-set fileformats=dos
+"set fileformats=dos
 "set scrolloff=3
 set showmode
 set showcmd
