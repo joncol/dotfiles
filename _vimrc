@@ -111,6 +111,9 @@ nnoremap <Leader>m :MRU<CR>
 nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>d :DiffSaved<CR>
 
+inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
+inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
+
 " --------------------------------------------------
 " File-specific stuff
 " --------------------------------------------------
