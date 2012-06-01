@@ -8,6 +8,7 @@ set softtabstop=2
 set autoindent smartindent
 set expandtab
 set smarttab
+set cino=:0,g0
 
 "set encoding=utf-8
 set encoding=latin1
@@ -113,6 +114,18 @@ nnoremap <Leader>d :DiffSaved<CR>
 
 inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
+
+" Make tab work as indent in the beginning of lines, autocomplete otherwise
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 " --------------------------------------------------
 " File-specific stuff
@@ -231,6 +244,6 @@ endif
 set guioptions-=m " No menu
 set guioptions-=T " No toolbar
 
-set lines=50
-set columns=140
+set lines=40
+set columns=100
 set synmaxcol=140
