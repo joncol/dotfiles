@@ -10,8 +10,8 @@ set expandtab
 set smarttab
 set cino=:0,g0
 
-"set encoding=utf-8
-set encoding=latin1
+set encoding=utf-8
+"set encoding=latin1
 "set fileformats=dos
 "set scrolloff=3
 set showmode
@@ -54,10 +54,11 @@ set scrolloff=3
 
 let mapleader=","
 
+"set t_Co=256
 syntax enable
 set hlsearch
 "let g:solarized_bold=0
-colorscheme jellybeans
+colorscheme xoria256 "jellybeans
 "set background=light
 "jellybeans
 filetype on
@@ -66,22 +67,22 @@ filetype indent on
 
 let g:showmarks_include="abcdefzxABJio"
 
-if &term =~ '^xterm'
-  " solid underscore
-  let &t_SI .= "\<Esc>[4 q"
-  " solid block
-  let &t_EI .= "\<Esc>[2 q"
-  " 1 or 0 -> blinking block
-  " 3 -> blinking underscore
-endif
+"if &term =~ '^xterm'
+  "" solid underscore
+  "let &t_SI .= "\<Esc>[4 q"
+  "" solid block
+  "let &t_EI .= "\<Esc>[2 q"
+  "" 1 or 0 -> blinking block
+  "" 3 -> blinking underscore
+"endif
 
-" --------------------------------------------------
-" Keyboard mappings
-" --------------------------------------------------
+"" --------------------------------------------------
+"" Keyboard mappings
+"" --------------------------------------------------
 
-"nnoremap <Space> @q
+nnoremap <Space> @q
 
-nnoremap <esc> :noh<CR><esc>
+"nnoremap <esc> :noh<CR><esc>
 
 nnoremap <C-space> i
 inoremap <C-space> <Esc>
