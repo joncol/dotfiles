@@ -10,8 +10,8 @@ set expandtab
 set smarttab
 set cino=:0,g0
 
-set encoding=utf-8
-"set encoding=latin1
+"set encoding=utf-8
+set encoding=latin1
 "set fileformats=dos
 "set scrolloff=3
 set showmode
@@ -58,14 +58,14 @@ let mapleader=","
 syntax enable
 set hlsearch
 "let g:solarized_bold=0
-colorscheme xoria256 "jellybeans
+colorscheme jellybeans
 "set background=light
 "jellybeans
 filetype on
 filetype plugin on
 filetype indent on
 
-let g:showmarks_include="abcdefzxABJio"
+"let g:showmarks_include="abcdefzxABJio"
 
 "if &term =~ '^xterm'
   "" solid underscore
@@ -87,19 +87,19 @@ nnoremap <Space> @q
 nnoremap <C-space> i
 inoremap <C-space> <Esc>
 
-nnoremap <S-Enter> O<Esc>
+nnoremap <S-enter> O<Esc>
 nnoremap <CR> o<Esc>
 
 inoremap <S-Tab> <C-d>
 
 " Simplify navigation of the results of quickfix commands such as :helpgrep
 nnoremap <S-F1>  :cc<CR>
-nnoremap <F2>    :cnext<CR>
-nnoremap <S-F2>  :cprev<CR>
-nnoremap <F3>    :cnfile<CR>
-nnoremap <S-F3>  :cpfile<CR>
-nnoremap <F4>    :cfirst<CR>
-nnoremap <S-F4>  :clast<CR>
+"nnoremap <F2>    :cnext<CR>
+"nnoremap <S-F2>  :cprev<CR>
+"nnoremap <F3>    :cnfile<CR>
+"nnoremap <S-F3>  :cpfile<CR>
+nnoremap <F4>    :cnext<CR>
+nnoremap <S-F4>  :cprev<CR>
 
 nnoremap <F8> <Esc>:1,$!xmllint --noout --format -<CR>
 nnoremap <S-F8> <Esc>:1,$!xmllint --noout --valid -<CR>
