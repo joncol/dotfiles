@@ -10,8 +10,8 @@ set expandtab
 set smarttab
 set cino=:0,g0
 
-"set encoding=utf-8
-set encoding=latin1
+set encoding=utf-8
+"set encoding=latin1
 "set fileformats=dos
 "set scrolloff=3
 set showmode
@@ -21,9 +21,10 @@ set wildmenu
 set titlestring=%f title
 
 set rulerformat=%l:%c ruler
+"set formatprg=par
 
 "set wildmode=list:longest
-"set visualbell
+set visualbell
 set cursorline
 set ttyfast
 "set ruler
@@ -135,6 +136,8 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 au FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab background=dark
 au FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4 "background=dark
 au FileType log :setlocal nonumber
+au FileType markdown :setlocal textwidth=79 formatoptions+=t nonumber
+au FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 "autocmd FileType cpp :colorscheme jellybeans
 "autocmd FileType cs  :colorscheme jellybeans
 "autocmd FileType cif :colorscheme jellybeans
@@ -240,11 +243,12 @@ if has("gui_running")             " 'guifont' doesn't work in the console
   else                            " non-X11 GUIs (Windows, Carbon, ...)
     set guifont=Droid_Sans_Mono:h10
   endif
+
+  set columns=100
+  set lines=50
 endif
 
 set guioptions-=m " No menu
 set guioptions-=T " No toolbar
 
-set lines=40
-set columns=100
-set synmaxcol=140
+"set synmaxcol=140
