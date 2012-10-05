@@ -39,7 +39,7 @@ vnoremap / /\v
 
 set ignorecase " Make searches case-insensitive, unless they contain upper-case letters
 set smartcase
-set gdefault
+"set gdefault
 set incsearch
 set showmatch
 set hlsearch
@@ -59,7 +59,7 @@ let mapleader=","
 syntax enable
 set hlsearch
 "let g:solarized_bold=0
-colorscheme jellybeans
+colorscheme molokai
 "set background=light
 "jellybeans
 filetype on
@@ -138,10 +138,12 @@ au FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4 "background=dark
 au FileType log :setlocal nonumber
 au FileType markdown :setlocal textwidth=79 formatoptions+=t nonumber
 au FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+au FileType python :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 "autocmd FileType cpp :colorscheme jellybeans
 "autocmd FileType cs  :colorscheme jellybeans
 "autocmd FileType cif :colorscheme jellybeans
 
+au BufRead,BufNewFile *.md set filetype=markdown
 
 " --------------------------------------------------
 " Spelling
@@ -233,18 +235,30 @@ com! DiffSaved call s:DiffWithSaved()
 
 if has("gui_running")             " 'guifont' doesn't work in the console
   if has("gui_gtk2")              " GTK+2 but not GTK+1
-    set guifont=Droid\ Sans\ Mono\ 10
+    set guifont=Inconsolata\ 12
   elseif has("gui_kde")           " the obsolete kvim (6.2 or earlier)
-    set guifont=Droid\ Sans\ Mono\ 10-1/5/50/0/0/1/0
+    set guifont=Inconsolata\ 12-1/5/50/0/0/1/0
   elseif has("gui_photon")        " QNX Photon
-    set guifont=Droid\ Sans\ Mono:s10
+    set guifont=Inconsolata:s12
   elseif has("x11")               " other X11 GUIs, including GTK+1
     set guifont=*-courier-medium-r-normal-*-*-100-*-*-m-*-*
   else                            " non-X11 GUIs (Windows, Carbon, ...)
-    set guifont=Droid_Sans_Mono:h10
+    set guifont=Inconsolata:h12
   endif
 
-  set columns=100
+  "if has("gui_gtk2")              " GTK+2 but not GTK+1
+    "set guifont=Droid\ Sans\ Mono\ 10
+  "elseif has("gui_kde")           " the obsolete kvim (6.2 or earlier)
+    "set guifont=Droid\ Sans\ Mono\ 10-1/5/50/0/0/1/0
+  "elseif has("gui_photon")        " QNX Photon
+    "set guifont=Droid\ Sans\ Mono:s10
+  "elseif has("x11")               " other X11 GUIs, including GTK+1
+    "set guifont=*-courier-medium-r-normal-*-*-100-*-*-m-*-*
+  "else                            " non-X11 GUIs (Windows, Carbon, ...)
+    "set guifont=Droid_Sans_Mono:h10
+  "endif
+
+  set columns=140
   set lines=50
 endif
 
