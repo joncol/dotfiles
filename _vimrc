@@ -2,9 +2,9 @@ set hidden
 set nocompatible
 set modelines=0
 
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set autoindent smartindent
 set expandtab
 set smarttab
@@ -139,6 +139,9 @@ au FileType log :setlocal nonumber
 au FileType markdown :setlocal textwidth=79 formatoptions+=t nonumber
 au FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au FileType python :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+au FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+au FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
 "autocmd FileType cpp :colorscheme jellybeans
 "autocmd FileType cs  :colorscheme jellybeans
 "autocmd FileType cif :colorscheme jellybeans
@@ -260,6 +263,10 @@ if has("gui_running")             " 'guifont' doesn't work in the console
 
   set columns=140
   set lines=50
+
+  if has('title')
+    set title titlestring=%F%y%m%r
+  endif
 endif
 
 set guioptions-=m " No menu
