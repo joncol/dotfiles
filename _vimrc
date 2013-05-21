@@ -9,6 +9,7 @@ set autoindent smartindent
 set expandtab
 set smarttab
 set cino=:0,g0
+set foldmethod=syntax
 
 set encoding=utf-8
 "set encoding=latin1
@@ -33,6 +34,7 @@ set ttyfast
 set number
 "set relativenumber
 "set undofile
+set colorcolumn=79
 
 nnoremap / /\v
 vnoremap / /\v
@@ -141,6 +143,8 @@ au FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au FileType python :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+au FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
 
 "autocmd FileType cpp :colorscheme jellybeans
 "autocmd FileType cs  :colorscheme jellybeans
