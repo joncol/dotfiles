@@ -5,11 +5,13 @@ set modelines=0
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set autoindent smartindent
+set autoindent
+set smartindent
 set expandtab
 set smarttab
 set cino=:0,g0
 set foldmethod=syntax
+set foldlevelstart=20
 
 set encoding=utf-8
 "set encoding=latin1
@@ -79,6 +81,10 @@ filetype indent on
   "" 3 -> blinking underscore
 "endif
 
+if has("win32") || has("win16")
+  set grepprg=grep\ -n
+endif
+
 "" --------------------------------------------------
 "" Keyboard mappings
 "" --------------------------------------------------
@@ -145,12 +151,18 @@ au FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 au FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+au FileType ruby :nnoremap <Leader>s :RSpecTest<CR>
+au FileType ruby :nnoremap <Leader>S :RSpecFile<CR>
 
 "autocmd FileType cpp :colorscheme jellybeans
 "autocmd FileType cs  :colorscheme jellybeans
 "autocmd FileType cif :colorscheme jellybeans
 
 au BufRead,BufNewFile *.md set filetype=markdown
+
+au Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=syntax
+au Syntax cs setlocal foldmethod=indent
+au Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
 
 " --------------------------------------------------
 " Spelling
@@ -236,6 +248,32 @@ function! s:DiffWithSaved()
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 com! DiffSaved call s:DiffWithSaved()
+
+
+" TortoiseHg functions
+
+command TortoiseHgLog call ShowTortoiseHgLog()
+
+fun ShowTortoiseHgLog()
+  execute '!start thg log %'
+endfun
+
+nnoremap <Leader>l :TortoiseHgLog<CR>
+
+" Functions to run RSpec
+
+command RSpecTest call RunRSpecTest()
+command RSpecFile call RunRSpecFile()
+
+fun RunRSpecTest()
+  "call system('spec %:' . line('.'))
+  execute '!spec ' . expand('%') . ':' . line('.')
+endfun
+
+fun RunRSpecFile()
+  "call system('spec %')
+  execute '!spec ' . expand('%')
+endfun
 
 
 " Windows-specific stuff
