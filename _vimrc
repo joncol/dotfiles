@@ -63,7 +63,8 @@ let mapleader=","
 syntax enable
 set hlsearch
 "let g:solarized_bold=0
-colorscheme molokai
+"colorscheme molokai
+colorscheme ir_black
 "set background=light
 "jellybeans
 filetype on
@@ -154,8 +155,8 @@ au FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 au FileType ruby :nnoremap <Leader>s :RSpecTest<CR>
 au FileType ruby :nnoremap <Leader>S :RSpecFile<CR>
 
-autocmd FileType cpp :colorscheme autumnleaf
-autocmd FileType cs  :colorscheme autumnleaf
+"autocmd FileType cpp :colorscheme autumnleaf
+"autocmd FileType cs  :colorscheme autumnleaf
 "autocmd FileType cif :colorscheme jellybeans
 
 au BufRead,BufNewFile *.md set filetype=markdown
