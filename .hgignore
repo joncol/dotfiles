@@ -2,3 +2,4 @@ vim72
 vim73
 \.bak
 \.swp
+\.netrwhist$
