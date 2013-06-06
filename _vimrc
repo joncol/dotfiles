@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 set hidden
 set nocompatible
 set modelines=0
@@ -277,19 +279,37 @@ fun RunRSpecFile()
 endfun
 
 
-" Windows-specific stuff
+" GUI stuff
 
 if has("gui_running")             " 'guifont' doesn't work in the console
-  if has("gui_gtk2")              " GTK+2 but not GTK+1
-    set guifont=Inconsolata\ 12
-  elseif has("gui_kde")           " the obsolete kvim (6.2 or earlier)
-    set guifont=Inconsolata\ 12-1/5/50/0/0/1/0
-  elseif has("gui_photon")        " QNX Photon
-    set guifont=Inconsolata:s12
-  elseif has("x11")               " other X11 GUIs, including GTK+1
-    set guifont=*-courier-medium-r-normal-*-*-100-*-*-m-*-*
-  else                            " non-X11 GUIs (Windows, Carbon, ...)
-    set guifont=Inconsolata:h12
+
+  if has("unix")
+    let s:uname = system("uname")
+    if s:uname == "Darwin"
+      if has("gui_gtk2")              " GTK+2 but not GTK+1
+        set guifont=Inconsolata\ 14
+      elseif has("gui_kde")           " the obsolete kvim (6.2 or earlier)
+        set guifont=Inconsolata\ 14-1/5/50/0/0/1/0
+      elseif has("gui_photon")        " QNX Photon
+        set guifont=Inconsolata:s14
+      elseif has("x11")               " other X11 GUIs, including GTK+1
+        set guifont=*-courier-medium-r-normal-*-*-100-*-*-m-*-*
+      else                            " non-X11 GUIs (Windows, Carbon, ...)
+        set guifont=Inconsolata:h14
+      endif
+    endif
+  else
+    if has("gui_gtk2")              " GTK+2 but not GTK+1
+      set guifont=Inconsolata\ 12
+    elseif has("gui_kde")           " the obsolete kvim (6.2 or earlier)
+      set guifont=Inconsolata\ 12-1/5/50/0/0/1/0
+    elseif has("gui_photon")        " QNX Photon
+      set guifont=Inconsolata:s12
+    elseif has("x11")               " other X11 GUIs, including GTK+1
+      set guifont=*-courier-medium-r-normal-*-*-100-*-*-m-*-*
+    else                            " non-X11 GUIs (Windows, Carbon, ...)
+      set guifont=Inconsolata:h12
+    endif
   endif
 
   "if has("gui_gtk2")              " GTK+2 but not GTK+1
