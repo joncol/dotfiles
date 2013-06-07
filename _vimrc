@@ -121,9 +121,9 @@ nnoremap <S-F8> <Esc>:1,$!xmllint --noout --valid -<CR>
 nnoremap <A-o> :A<CR> 
 inoremap <A-o> <Esc>:A<CR> 
 
-nnoremap <Leader>f :FufFile<CR>
-nnoremap <Leader>m :MRU<CR>
-"nnoremap <Leader>o :only<CR>
+" nnoremap <Leader>f :FufFile<CR>
+" nnoremap <Leader>m :MRU<CR>
+" nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>d :DiffSaved<CR>
 
