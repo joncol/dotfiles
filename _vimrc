@@ -1,4 +1,5 @@
 execute pathogen#infect()
+Helptags
 
 set hidden
 set nocompatible
@@ -65,13 +66,14 @@ let mapleader=","
 syntax enable
 set hlsearch
 "let g:solarized_bold=0
-"colorscheme molokai
-colorscheme ir_black
+colorscheme molokai
 "set background=light
 "jellybeans
 filetype on
 filetype plugin on
 filetype indent on
+
+"let g:Powerline_symbols='fancy'
 
 "let g:showmarks_include="abcdefzxABJio"
 
@@ -269,12 +271,10 @@ command RSpecTest call RunRSpecTest()
 command RSpecFile call RunRSpecFile()
 
 fun RunRSpecTest()
-  "call system('spec %:' . line('.'))
   execute '!spec ' . expand('%') . ':' . line('.')
 endfun
 
 fun RunRSpecFile()
-  "call system('spec %')
   execute '!spec ' . expand('%')
 endfun
 
@@ -282,47 +282,16 @@ endfun
 " GUI stuff
 
 if has("gui_running")             " 'guifont' doesn't work in the console
-
-  if has("unix")
-    let s:uname = system("uname")
-    if s:uname == "Darwin"
-      if has("gui_gtk2")              " GTK+2 but not GTK+1
-        set guifont=Inconsolata\ 14
-      elseif has("gui_kde")           " the obsolete kvim (6.2 or earlier)
-        set guifont=Inconsolata\ 14-1/5/50/0/0/1/0
-      elseif has("gui_photon")        " QNX Photon
-        set guifont=Inconsolata:s14
-      elseif has("x11")               " other X11 GUIs, including GTK+1
-        set guifont=*-courier-medium-r-normal-*-*-100-*-*-m-*-*
-      else                            " non-X11 GUIs (Windows, Carbon, ...)
-        set guifont=Inconsolata:h14
-      endif
-    endif
+  if has("gui_macvim")
+    set guifont=Inconsolata:h14
+    set transparency=5
   else
     if has("gui_gtk2")              " GTK+2 but not GTK+1
       set guifont=Inconsolata\ 12
-    elseif has("gui_kde")           " the obsolete kvim (6.2 or earlier)
-      set guifont=Inconsolata\ 12-1/5/50/0/0/1/0
-    elseif has("gui_photon")        " QNX Photon
-      set guifont=Inconsolata:s12
-    elseif has("x11")               " other X11 GUIs, including GTK+1
-      set guifont=*-courier-medium-r-normal-*-*-100-*-*-m-*-*
     else                            " non-X11 GUIs (Windows, Carbon, ...)
       set guifont=Inconsolata:h12
     endif
   endif
-
-  "if has("gui_gtk2")              " GTK+2 but not GTK+1
-    "set guifont=Droid\ Sans\ Mono\ 10
-  "elseif has("gui_kde")           " the obsolete kvim (6.2 or earlier)
-    "set guifont=Droid\ Sans\ Mono\ 10-1/5/50/0/0/1/0
-  "elseif has("gui_photon")        " QNX Photon
-    "set guifont=Droid\ Sans\ Mono:s10
-  "elseif has("x11")               " other X11 GUIs, including GTK+1
-    "set guifont=*-courier-medium-r-normal-*-*-100-*-*-m-*-*
-  "else                            " non-X11 GUIs (Windows, Carbon, ...)
-    "set guifont=Droid_Sans_Mono:h10
-  "endif
 
   set columns=140
   set lines=50
