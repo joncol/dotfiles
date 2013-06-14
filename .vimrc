@@ -74,10 +74,10 @@ filetype on
 filetype plugin on
 filetype indent on
 
-set guioptions-=m " No menu
-set guioptions-=T " No toolbar
-set guioptions-=r
-set guioptions-=L
+set guioptions-=m " no menu
+set guioptions-=T " no toolbar
+set guioptions-=r " no right scrollbar
+set guioptions-=L " no left scrollbar
 
 "set synmaxcol=140
 
@@ -308,3 +308,5 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     set title titlestring=%F%y%m%r
   endif
 endif
+
+autocmd GUIEnter * simalt ~X
