@@ -19,6 +19,7 @@ set foldlevelstart=20
 set encoding=utf-8
 "set encoding=latin1
 "set fileformats=dos
+"set scrolloff=3
 set showmode
 set showcmd
 set wildmenu
@@ -39,23 +40,11 @@ set number
 "set relativenumber
 "set undofile
 set colorcolumn=79
-set scrolloff=0
-
-let mapleader=","
-
-"set t_Co=256
-syntax enable
-set hlsearch
-"let g:solarized_bold=0
-colorscheme molokai
-filetype on
-filetype plugin on
-filetype indent on
 
 nnoremap / /\v
 vnoremap / /\v
 
-set ignorecase
+set ignorecase " Make searches case-insensitive, unless they contain upper-case letters
 set smartcase
 "set gdefault
 set incsearch
@@ -67,12 +56,30 @@ set nowrap
 "set formatoptions=qrn1
 "set colorcolumn=85
 set history=1000
+set scrolloff=3
 "set backupdir=~/.vimtmp,~/tmp,~/tmp,/var/tmp,/tmp
 "set directory=~/.vmptmp,~/tmp,~/tmp,/var/tmp,/tmp
 
-let g:buffergator_autoexpand_on_split = 0
-set guioptions-=L " remove left scrollbars
-set guioptions-=r " remove right scrollbars
+let g:buffergator_autoexpand_on_split=0
+let mapleader=","
+
+"set t_Co=256
+syntax enable
+set hlsearch
+"let g:solarized_bold=0
+colorscheme molokai
+"set background=light
+"jellybeans
+filetype on
+filetype plugin on
+filetype indent on
+
+set guioptions-=m " No menu
+set guioptions-=T " No toolbar
+set guioptions-=r
+set guioptions-=L
+
+"set synmaxcol=140
 
 "let g:Powerline_symbols='fancy'
 
@@ -122,7 +129,9 @@ nnoremap <S-F8> <Esc>:1,$!xmllint --noout --valid -<CR>
 nnoremap <A-o> :A<CR> 
 inoremap <A-o> <Esc>:A<CR> 
 
-" nnoremap <Leader>o :only<CR>
+nnoremap <Leader>f :FufFile<CR>
+nnoremap <Leader>m :MRU<CR>
+"nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>d :DiffSaved<CR>
 
@@ -270,11 +279,11 @@ command RSpecTest call RunRSpecTest()
 command RSpecFile call RunRSpecFile()
 
 fun RunRSpecTest()
-  execute '!rspec -fd ' . expand('%') . ':' . line('.')
+  execute '!spec ' . expand('%') . ':' . line('.')
 endfun
 
 fun RunRSpecFile()
-  execute '!rspec -fd ' . expand('%')
+  execute '!spec ' . expand('%')
 endfun
 
 
@@ -299,8 +308,3 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     set title titlestring=%F%y%m%r
   endif
 endif
-
-set guioptions-=m " No menu
-set guioptions-=T " No toolbar
-
-"set synmaxcol=140
