@@ -104,13 +104,11 @@ endif
 
 nnoremap <Space> @q
 
-"nnoremap <esc> :noh<CR><esc>
-
 nnoremap <C-space> i
 inoremap <C-space> <Esc>
 
-nnoremap <S-enter> O<Esc>
-nnoremap <CR> o<Esc>
+" nnoremap <S-enter> O<Esc>
+" nnoremap <CR> o<Esc>
 
 inoremap <S-Tab> <C-d>
 
@@ -129,8 +127,6 @@ nnoremap <S-F8> <Esc>:1,$!xmllint --noout --valid -<CR>
 nnoremap <A-o> :A<CR> 
 inoremap <A-o> <Esc>:A<CR> 
 
-nnoremap <Leader>f :FufFile<CR>
-nnoremap <Leader>m :MRU<CR>
 "nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>d :DiffSaved<CR>
@@ -293,20 +289,19 @@ if has("gui_running")             " 'guifont' doesn't work in the console
   if has("gui_macvim")
     set guifont=Inconsolata:h14
     set transparency=5
+    set columns=140
+    set lines=50
   else
     if has("gui_gtk2")              " GTK+2 but not GTK+1
       set guifont=Inconsolata\ 12
     else                            " non-X11 GUIs (Windows, Carbon, ...)
       set guifont=Inconsolata:h12
     endif
-  endif
 
-  set columns=140
-  set lines=50
+    autocmd GUIEnter * simalt ~X
+  endif
 
   if has('title')
     set title titlestring=%F%y%m%r
   endif
 endif
-
-autocmd GUIEnter * simalt ~X
