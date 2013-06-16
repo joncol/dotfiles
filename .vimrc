@@ -160,6 +160,7 @@ au FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 au FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+au FileType ruby :nnoremap <Leader>r :Ruby<CR>
 au FileType ruby :nnoremap <Leader>s :RSpecTest<CR>
 au FileType ruby :nnoremap <Leader>S :RSpecFile<CR>
 
@@ -271,15 +272,20 @@ nnoremap <Leader>l :TortoiseHgLog<CR>
 
 " Functions to run RSpec
 
+command Ruby call RunRuby()
 command RSpecTest call RunRSpecTest()
 command RSpecFile call RunRSpecFile()
 
+fun RunRuby()
+  execute '!ruby ' . expand('%')
+endfun
+
 fun RunRSpecTest()
-  execute '!spec ' . expand('%') . ':' . line('.')
+  execute '!rspec -fd ' . expand('%') . ':' . line('.')
 endfun
 
 fun RunRSpecFile()
-  execute '!spec ' . expand('%')
+  execute '!rspec -fd ' . expand('%')
 endfun
 
 
