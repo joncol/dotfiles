@@ -12,7 +12,7 @@ set autoindent
 set smartindent
 set expandtab
 set smarttab
-set cino=:0,g0
+set cino=:0,g0,(0
 set foldmethod=syntax
 set foldlevelstart=20
 
