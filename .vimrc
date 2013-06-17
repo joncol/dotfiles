@@ -174,6 +174,12 @@ au Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=
 au Syntax cs setlocal foldmethod=indent
 au Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
 
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set number
+    autocmd WinLeave * set nonumber
+augroup END
+
 " --------------------------------------------------
 " Spelling
 " --------------------------------------------------
