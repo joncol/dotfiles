@@ -39,7 +39,7 @@ set ttyfast
 set number
 "set relativenumber
 "set undofile
-set colorcolumn=79
+set colorcolumn=80
 
 nnoremap / /\v
 vnoremap / /\v
