@@ -157,8 +157,11 @@ au FileType markdown :setlocal textwidth=79 formatoptions+=t nonumber
 au FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au FileType python :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+au FileType html :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 au FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 au FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+au FileType cpp :nnoremap <Leader>c :MakeCheck<CR>
 
 au FileType ruby :nnoremap <Leader>r :Ruby<CR>
 au FileType ruby :nnoremap <Leader>s :RSpecTest<CR>
@@ -276,11 +279,15 @@ endfun
 
 nnoremap <Leader>l :TortoiseHgLog<CR>
 
-" Functions to run RSpec
+command MakeCheck call RunMakeCheck()
 
 command Ruby call RunRuby()
 command RSpecTest call RunRSpecTest()
 command RSpecFile call RunRSpecFile()
+
+fun RunMakeCheck()
+  execute '!make check'
+endfun
 
 fun RunRuby()
   execute '!ruby ' . expand('%')
@@ -301,7 +308,7 @@ if has("gui_running")             " 'guifont' doesn't work in the console
   if has("gui_macvim")
     set guifont=Inconsolata:h14
     set transparency=5
-    set columns=140
+    set columns=168
     set lines=50
   else
     if has("gui_gtk2")              " GTK+2 but not GTK+1
