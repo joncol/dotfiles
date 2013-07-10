@@ -23,6 +23,7 @@ set encoding=utf-8
 set showmode
 set showcmd
 set wildmenu
+set t_vb=
 
 set titlestring=%f title
 
@@ -294,11 +295,13 @@ fun RunRuby()
 endfun
 
 fun RunRSpecTest()
-  execute '!rspec -fd ' . expand('%') . ':' . line('.')
+  execute '!spec ' . expand('%') . ':' . line('.')
+  " execute '!rspec -fd ' . expand('%') . ':' . line('.')
 endfun
 
 fun RunRSpecFile()
-  execute '!rspec -fd ' . expand('%')
+  execute '!spec ' . expand('%')
+  " execute '!rspec -fd ' . expand('%')
 endfun
 
 
