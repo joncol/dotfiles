@@ -31,8 +31,8 @@ set rulerformat=%l:%c ruler
 "set formatprg=par
 
 "set wildmode=list:longest
-set visualbell
-set cursorline
+" set visualbell
+" set cursorline
 set ttyfast
 "set ruler
 "set backspace=indent, eol, start
@@ -40,7 +40,7 @@ set ttyfast
 set number
 "set relativenumber
 "set undofile
-set colorcolumn=80
+set colorcolumn=81
 
 nnoremap / /\v
 vnoremap / /\v
@@ -83,6 +83,8 @@ set guioptions-=L " no left scrollbar
 "set synmaxcol=140
 
 "let g:Powerline_symbols='fancy'
+let g:Powerline_symbols='unicode'
+set laststatus=2 " always show status line
 
 "let g:showmarks_include="abcdefzxABJio"
 
@@ -171,6 +173,8 @@ au FileType ruby :nnoremap <Leader>S :RSpecFile<CR>
 "autocmd FileType cpp :colorscheme autumnleaf
 "autocmd FileType cs  :colorscheme autumnleaf
 "autocmd FileType cif :colorscheme jellybeans
+autocmd FileType log :colorscheme jellybeans
+autocmd FileType xml :colorscheme codeschool
 
 au BufRead,BufNewFile *.md set filetype=markdown
 

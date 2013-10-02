@@ -4,3 +4,4 @@ vim73
 \.swp
 \.netrwhist$
 Powerline_default_default_compatible\.cache$
+Powerline_default_default_unicode\.cache$
