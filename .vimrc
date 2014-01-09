@@ -8,6 +8,7 @@ set modelines=0
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set shiftround
 set autoindent
 set smartindent
 set expandtab
@@ -16,6 +17,7 @@ set cino=:0,g0,(0
 set foldmethod=syntax
 set foldlevelstart=20
 
+scriptencoding utf-8
 set encoding=utf-8
 "set encoding=latin1
 "set fileformats=dos
@@ -133,6 +135,7 @@ inoremap <A-o> <Esc>:A<CR>
 "nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>d :DiffSaved<CR>
+noremap <Leader>N :NarrowRegion<CR>
 
 inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
@@ -153,7 +156,7 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " File-specific stuff
 " --------------------------------------------------
 
-au FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab background=dark
+au FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab "background=dark
 au FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4 "background=dark
 au FileType log :setlocal nonumber
 au FileType markdown :setlocal textwidth=79 formatoptions+=t nonumber
@@ -173,13 +176,14 @@ au FileType ruby :nnoremap <Leader>S :RSpecFile<CR>
 "autocmd FileType cpp :colorscheme autumnleaf
 "autocmd FileType cs  :colorscheme autumnleaf
 "autocmd FileType cif :colorscheme jellybeans
-autocmd FileType log :colorscheme jellybeans
-autocmd FileType xml :colorscheme codeschool
+" autocmd FileType log :colorscheme jellybeans
+" autocmd FileType xml :colorscheme codeschool
 
 au BufRead,BufNewFile *.md set filetype=markdown
 
 au Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=syntax
-au Syntax cs setlocal foldmethod=indent
+" au Syntax cs setlocal foldmethod=indent
+au Syntax cs setlocal foldmethod=syntax
 au Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
 
 augroup BgHighlight
