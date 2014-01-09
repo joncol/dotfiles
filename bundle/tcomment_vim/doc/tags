@@ -4,11 +4,12 @@
 :TCommentInline	tcomment.txt	/*:TCommentInline*
 :TCommentMaybeInline	tcomment.txt	/*:TCommentMaybeInline*
 :TCommentRight	tcomment.txt	/*:TCommentRight*
+g:tcomment#blank_lines	tcomment.txt	/*g:tcomment#blank_lines*
 g:tcomment#ignore_char_type	tcomment.txt	/*g:tcomment#ignore_char_type*
 g:tcomment#replacements_c	tcomment.txt	/*g:tcomment#replacements_c*
+g:tcomment#replacements_xml	tcomment.txt	/*g:tcomment#replacements_xml*
+g:tcomment#rstrip_on_uncomment	tcomment.txt	/*g:tcomment#rstrip_on_uncomment*
 g:tcomment#syntax_substitute	tcomment.txt	/*g:tcomment#syntax_substitute*
-g:tcommentBlankLines	tcomment.txt	/*g:tcommentBlankLines*
-g:tcommentBlockC	tcomment.txt	/*g:tcommentBlockC*
 g:tcommentBlockC2	tcomment.txt	/*g:tcommentBlockC2*
 g:tcommentBlockXML	tcomment.txt	/*g:tcommentBlockXML*
 g:tcommentGuessFileType	tcomment.txt	/*g:tcommentGuessFileType*
@@ -27,10 +28,12 @@ g:tcommentMapLeader1	tcomment.txt	/*g:tcommentMapLeader1*
 g:tcommentMapLeader2	tcomment.txt	/*g:tcommentMapLeader2*
 g:tcommentMapLeaderOp1	tcomment.txt	/*g:tcommentMapLeaderOp1*
 g:tcommentMapLeaderOp2	tcomment.txt	/*g:tcommentMapLeaderOp2*
+g:tcommentMaps	tcomment.txt	/*g:tcommentMaps*
 g:tcommentModeExtra	tcomment.txt	/*g:tcommentModeExtra*
 g:tcommentOpModeExtra	tcomment.txt	/*g:tcommentOpModeExtra*
 g:tcommentOptions	tcomment.txt	/*g:tcommentOptions*
 g:tcommentSyntaxMap	tcomment.txt	/*g:tcommentSyntaxMap*
+g:tcommentTextObjectInlineComment	tcomment.txt	/*g:tcommentTextObjectInlineComment*
 g:tcomment_types	tcomment.txt	/*g:tcomment_types*
 tcomment#Comment()	tcomment.txt	/*tcomment#Comment()*
 tcomment#CommentAs()	tcomment.txt	/*tcomment#CommentAs()*
@@ -41,6 +44,7 @@ tcomment#OperatorAnyway()	tcomment.txt	/*tcomment#OperatorAnyway()*
 tcomment#OperatorLine()	tcomment.txt	/*tcomment#OperatorLine()*
 tcomment#OperatorLineAnyway()	tcomment.txt	/*tcomment#OperatorLineAnyway()*
 tcomment#SetOption()	tcomment.txt	/*tcomment#SetOption()*
+tcomment#TextObjectInlineComment()	tcomment.txt	/*tcomment#TextObjectInlineComment()*
 tcomment-maps	tcomment.txt	/*tcomment-maps*
 tcomment-operator	tcomment.txt	/*tcomment-operator*
 tcomment.txt	tcomment.txt	/*tcomment.txt*
