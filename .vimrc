@@ -64,7 +64,6 @@ set scrolloff=3
 "set directory=~/.vmptmp,~/tmp,~/tmp,/var/tmp,/tmp
 
 let g:buffergator_autoexpand_on_split=0
-let mapleader=","
 
 "set t_Co=256
 syntax enable
@@ -107,6 +106,10 @@ endif
 "" Keyboard mappings
 "" --------------------------------------------------
 
+let mapleader=","
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <Space> @q
 
 nnoremap <C-space> i
@@ -119,8 +122,6 @@ inoremap <S-Tab> <C-d>
 
 " Simplify navigation of the results of quickfix commands such as :helpgrep
 nnoremap <S-F1>  :cc<CR>
-"nnoremap <F2>    :cnext<CR>
-"nnoremap <S-F2>  :cprev<CR>
 "nnoremap <F3>    :cnfile<CR>
 "nnoremap <S-F3>  :cpfile<CR>
 nnoremap <F4>    :cnext<CR>
@@ -132,22 +133,21 @@ nnoremap <S-F8> <Esc>:1,$!xmllint --noout --valid -<CR>
 nnoremap <A-o> :A<CR> 
 inoremap <A-o> <Esc>:A<CR> 
 
-"nnoremap <Leader>o :only<CR>
-nnoremap <Leader>n :noh<CR>
-nnoremap <Leader>d :DiffSaved<CR>
-noremap <Leader>N :NarrowRegion<CR>
+nnoremap <leader>n :noh<CR>
+nnoremap <leader>d :DiffSaved<CR>
+noremap <leader>N :NarrowRegion<CR>
 
 inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
 " Make tab work as indent in the beginning of lines, autocomplete otherwise
 function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
 endfunction
 
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
@@ -167,11 +167,11 @@ au FileType html :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 au FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 au FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
-au FileType cpp :nnoremap <Leader>c :MakeCheck<CR>
+au FileType cpp :nnoremap <leader>c :MakeCheck<CR>
 
-au FileType ruby :nnoremap <Leader>r :Ruby<CR>
-au FileType ruby :nnoremap <Leader>s :RSpecTest<CR>
-au FileType ruby :nnoremap <Leader>S :RSpecFile<CR>
+au FileType ruby :nnoremap <leader>r :Ruby<CR>
+au FileType ruby :nnoremap <leader>s :RSpecTest<CR>
+au FileType ruby :nnoremap <leader>S :RSpecFile<CR>
 
 "autocmd FileType cpp :colorscheme autumnleaf
 "autocmd FileType cs  :colorscheme autumnleaf
@@ -197,10 +197,10 @@ augroup END
 " --------------------------------------------------
 
 if v:version >= 700
-  setlocal spell spelllang=en
-  nnoremap <Leader>ll :set spell!<cr>
-  nnoremap <Leader>le :set spelllang=en<cr>
-  nnoremap <Leader>ls :set spelllang=sv<cr>
+    setlocal spell spelllang=en
+    nnoremap <leader>ll :set spell!<cr>
+    nnoremap <leader>le :set spelllang=en<cr>
+    nnoremap <leader>ls :set spelllang=sv<cr>
 endif
 
 ia teh      the
@@ -219,46 +219,50 @@ set nospell
 let g:showmarks_include="abcdefzxABJio"
 
 " ex command for toggling hex mode - define mapping if desired
-command -bar Hexmode call ToggleHex()
+if !exists(":Hexmode")
+    command -bar Hexmode call ToggleHex()
+endif
 
-" Helper function to toggle hex mode
-function ToggleHex()
-  " hex mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary " make sure it overrides any textwidth, etc.
-    let &ft="xxd"
-    " set status
-    let b:editHex=1
-    " switch to hex editor
-    %!xxd
-  else
-    " restore old options
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editHex=0
-    " return to normal editing
-    %!xxd -r
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
- 
+if !exists("*ToggleHex")
+    " Helper function to toggle hex mode
+    function ToggleHex()
+        " hex mode should be considered a read-only operation
+        " save values for modified and read-only for restoration later,
+        " and clear the read-only flag for now
+        let l:modified=&mod
+        let l:oldreadonly=&readonly
+        let &readonly=0
+        let l:oldmodifiable=&modifiable
+        let &modifiable=1
+        if !exists("b:editHex") || !b:editHex
+            " save old options
+            let b:oldft=&ft
+            let b:oldbin=&bin
+            " set new options
+            setlocal binary " make sure it overrides any textwidth, etc.
+            let &ft="xxd"
+            " set status
+            let b:editHex=1
+            " switch to hex editor
+            %!xxd
+        else
+            " restore old options
+            let &ft=b:oldft
+            if !b:oldbin
+                setlocal nobinary
+            endif
+            " set status
+            let b:editHex=0
+            " return to normal editing
+            %!xxd -r
+        endif
+        " restore values for modified and read only state
+        let &mod=l:modified
+        let &readonly=l:oldreadonly
+        let &modifiable=l:oldmodifiable
+    endfunction
+end
+
 nnoremap <C-H> :Hexmode<CR>
 " inoremap <C-H> <Esc>:Hexmode<CR>
 " vnoremap <C-H> :<C-U>Hexmode<CR>
@@ -280,38 +284,58 @@ com! DiffSaved call s:DiffWithSaved()
 
 " TortoiseHg functions
 
-command TortoiseHgLog call ShowTortoiseHgLog()
+if !exists(":TortoiseHg")
+    command TortoiseHgLog call ShowTortoiseHgLog()
+endif
 
-fun ShowTortoiseHgLog()
-  execute '!start thg log %'
-endfun
+if !exists("*ShowTortoiseHgLog")
+    fun ShowTortoiseHgLog()
+        execute '!start thg log %'
+    endfun
+endif
 
-nnoremap <Leader>l :TortoiseHgLog<CR>
+nnoremap <leader>l :TortoiseHgLog<CR>
 
-command MakeCheck call RunMakeCheck()
+if !exists(":MakeCheck")
+    command MakeCheck call RunMakeCheck()
+endif
 
-command Ruby call RunRuby()
-command RSpecTest call RunRSpecTest()
-command RSpecFile call RunRSpecFile()
+if !exists(":Ruby")
+    command Ruby call RunRuby()
+endif
 
-fun RunMakeCheck()
-  execute '!make check'
-endfun
+if !exists(":RSpecTest")
+    command RSpecTest call RunRSpecTest()
+endif
 
-fun RunRuby()
-  execute '!ruby ' . expand('%')
-endfun
+if !exists(":RSpecFile")
+    command RSpecFile call RunRSpecFile()
+endif
 
-fun RunRSpecTest()
-  execute '!spec ' . expand('%') . ':' . line('.')
-  " execute '!rspec -fd ' . expand('%') . ':' . line('.')
-endfun
 
-fun RunRSpecFile()
-  execute '!spec ' . expand('%')
-  " execute '!rspec -fd ' . expand('%')
-endfun
+if !exists("*RunMakeCheck")
+    fun RunMakeCheck()
+        execute '!make check'
+    endfun
+endif
 
+if !exists("*RunRuby")
+    fun RunRuby()
+        execute '!ruby ' . expand('%')
+    endfun
+endif
+
+if !exists("*RunRSpecTest")
+    fun RunRSpecTest()
+        execute '!spec ' . expand('%') . ':' . line('.')
+    endfun
+endif
+
+if !exists("*RunRSpecFile")
+    fun RunRSpecFile()
+        execute '!spec ' . expand('%')
+    endfun
+endif
 
 " GUI stuff
 
