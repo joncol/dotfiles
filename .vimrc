@@ -13,7 +13,6 @@ nnoremap <space> @q
 
 nnoremap <c-space> i
 inoremap <c-space> <esc>
-inoremap jk <esc>
 
 " nnoremap <s-enter> O<esc>
 " nnoremap <cr> o<esc>
@@ -52,8 +51,13 @@ endfunction
 
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
-set hidden
+" let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 set nocompatible
+
+set hidden
 set modelines=0
 
 set tabstop=4
