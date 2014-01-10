@@ -198,9 +198,9 @@ augroup END
 
 if v:version >= 700
   setlocal spell spelllang=en
-  nmap <Leader>ll :set spell!<cr>
-  nmap <Leader>le :set spelllang=en<cr>
-  nmap <Leader>ls :set spelllang=sv<cr>
+  nnoremap <Leader>ll :set spell!<cr>
+  nnoremap <Leader>le :set spelllang=en<cr>
+  nnoremap <Leader>ls :set spelllang=sv<cr>
 endif
 
 ia teh      the
@@ -260,8 +260,8 @@ function ToggleHex()
 endfunction
  
 nnoremap <C-H> :Hexmode<CR>
-inoremap <C-H> <Esc>:Hexmode<CR>
-vnoremap <C-H> :<C-U>Hexmode<CR>
+" inoremap <C-H> <Esc>:Hexmode<CR>
+" vnoremap <C-H> :<C-U>Hexmode<CR>
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable automatic comment insertion
 
