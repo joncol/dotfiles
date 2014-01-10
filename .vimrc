@@ -1,6 +1,57 @@
 execute pathogen#infect()
 Helptags
 
+"" --------------------------------------------------
+"" Keyboard mappings
+"" --------------------------------------------------
+
+let mapleader=","
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <space> @q
+
+nnoremap <c-space> i
+inoremap <c-space> <esc>
+inoremap jk <esc>
+
+" nnoremap <s-enter> O<esc>
+" nnoremap <cr> o<esc>
+
+inoremap <s-tab> <c-d>
+
+" Simplify navigation of the results of quickfix commands such as :helpgrep
+nnoremap <s-f1> :cc<cr>
+"nnoremap <f3> :cnfile<cr>
+"nnoremap <s-f3> :cpfile<cr>
+nnoremap <f4> :cnext<cr>
+nnoremap <s-f4> :cprev<cr>
+
+nnoremap <f8> <esc>:1,$!xmllint --noout --format -<cr>
+nnoremap <s-f8> <esc>:1,$!xmllint --noout --valid -<cr>
+
+nnoremap <a-o> :A<cr> 
+inoremap <a-o> <esc>:A<cr> 
+
+nnoremap <leader>n :noh<cr>
+nnoremap <leader>d :DiffSaved<cr>
+noremap <leader>N :NarrowRegion<cr>
+
+inoremap <expr> j ((pumvisible())?("\<c-n>"):("j"))
+inoremap <expr> k ((pumvisible())?("\<c-p>"):("k"))
+
+" Make tab work as indent in the beginning of lines, autocomplete otherwise
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
 set hidden
 set nocompatible
 set modelines=0
@@ -101,56 +152,6 @@ set laststatus=2 " always show status line
 if has("win32") || has("win16")
   set grepprg=grep\ -n
 endif
-
-"" --------------------------------------------------
-"" Keyboard mappings
-"" --------------------------------------------------
-
-let mapleader=","
-
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <Space> @q
-
-nnoremap <C-space> i
-inoremap <C-space> <Esc>
-
-" nnoremap <S-enter> O<Esc>
-" nnoremap <CR> o<Esc>
-
-inoremap <S-Tab> <C-d>
-
-" Simplify navigation of the results of quickfix commands such as :helpgrep
-nnoremap <S-F1>  :cc<CR>
-"nnoremap <F3>    :cnfile<CR>
-"nnoremap <S-F3>  :cpfile<CR>
-nnoremap <F4>    :cnext<CR>
-nnoremap <S-F4>  :cprev<CR>
-
-nnoremap <F8> <Esc>:1,$!xmllint --noout --format -<CR>
-nnoremap <S-F8> <Esc>:1,$!xmllint --noout --valid -<CR>
-
-nnoremap <A-o> :A<CR> 
-inoremap <A-o> <Esc>:A<CR> 
-
-nnoremap <leader>n :noh<CR>
-nnoremap <leader>d :DiffSaved<CR>
-noremap <leader>N :NarrowRegion<CR>
-
-inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
-inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
-
-" Make tab work as indent in the beginning of lines, autocomplete otherwise
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 " --------------------------------------------------
 " File-specific stuff
