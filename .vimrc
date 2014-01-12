@@ -7,8 +7,8 @@ Helptags
 
 let mapleader=","
 
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $VIM/vimfiles/.vimrc<cr>
+nnoremap <leader>sv :source $VIM/vimfiles/.vimrc<cr>
 nnoremap <space> @q
 
 nnoremap <c-space> i
