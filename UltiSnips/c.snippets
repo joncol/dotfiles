@@ -1,0 +1,17 @@
+clearsnippets wh for
+
+# ${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+
+snippet for "for loop (for)"
+for (${2:i} = 0; $2 < ${1:count}; ${3:++$2})
+{
+${VISUAL:	}${0}
+}
+endsnippet
+
+snippet "wh(ile)?" "while loop" r
+while ($1)
+{
+${VISUAL:	}${0}
+}
+endsnippet

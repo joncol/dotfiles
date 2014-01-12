@@ -82,8 +82,8 @@ snippet td "Typedef"
 typedef ${1:int} ${2:MyCustomType};
 endsnippet
 
-snippet "wh(ile)?" "while loop" r
-while (${1:/* condition */}) {
+snippet wh "while loop"
+while(${1:/* condition */}) {
 	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
 }
 endsnippet
