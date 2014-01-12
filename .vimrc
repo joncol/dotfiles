@@ -9,6 +9,9 @@ let mapleader=","
 
 nnoremap <leader>ev :vsplit $VIM/vimfiles/.vimrc<cr>
 nnoremap <leader>sv :source $VIM/vimfiles/.vimrc<cr>
+
+nnoremap <leader>es :UltiSnipsEdit<cr>
+
 nnoremap <space> @q
 
 nnoremap <c-space> i
@@ -50,10 +53,6 @@ function! InsertTabWrapper()
 endfunction
 
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-
-" let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 set nocompatible
 
@@ -119,6 +118,8 @@ set scrolloff=3
 "set directory=~/.vmptmp,~/tmp,~/tmp,/var/tmp,/tmp
 
 let g:buffergator_autoexpand_on_split=0
+
+let g:UltiSnipsSnippetsDir="$VIM/vimfiles/UltiSnips"
 
 "set t_Co=256
 syntax enable
