@@ -162,8 +162,9 @@ endif
 " File-specific stuff
 " --------------------------------------------------
 
-au FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab "background=dark
-au FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4 "background=dark
+au FileType c :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+au FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+au FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au FileType log :setlocal nonumber
 au FileType markdown :setlocal textwidth=79 formatoptions+=t nonumber
 au FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
