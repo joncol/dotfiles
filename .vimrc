@@ -81,7 +81,7 @@ set showcmd
 set wildmenu
 set t_vb=
 
-nnoremap <a-s-l> :NERDTreeTabsToggle<cr>
+nnoremap <a-s-l> :NERDTreeToggle<cr>
 
 set titlestring=%f title
 
@@ -117,7 +117,6 @@ set nowrap
 set history=1000
 set scrolloff=3
 
-let g:nerdtree_tabs_open_on_gui_startup=0
 let g:buffergator_autoexpand_on_split=0
 let g:UltiSnipsSnippetsDir="$VIM/vimfiles/UltiSnips"
 
