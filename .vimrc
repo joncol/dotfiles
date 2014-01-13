@@ -81,6 +81,8 @@ set showcmd
 set wildmenu
 set t_vb=
 
+nnoremap <a-s-l> :NERDTreeTabsToggle<cr>
+
 set titlestring=%f title
 
 set rulerformat=%l:%c ruler
@@ -101,7 +103,7 @@ set colorcolumn=81
 nnoremap / /\v
 vnoremap / /\v
 
-set ignorecase " Make searches case-insensitive, unless they contain upper-case letters
+set ignorecase
 set smartcase
 "set gdefault
 set incsearch
@@ -114,11 +116,9 @@ set nowrap
 "set colorcolumn=85
 set history=1000
 set scrolloff=3
-"set backupdir=~/.vimtmp,~/tmp,~/tmp,/var/tmp,/tmp
-"set directory=~/.vmptmp,~/tmp,~/tmp,/var/tmp,/tmp
 
+let g:nerdtree_tabs_open_on_gui_startup=0
 let g:buffergator_autoexpand_on_split=0
-
 let g:UltiSnipsSnippetsDir="$VIM/vimfiles/UltiSnips"
 
 "set t_Co=256
@@ -366,3 +366,4 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     set title titlestring=%F%y%m%r
   endif
 endif
+
