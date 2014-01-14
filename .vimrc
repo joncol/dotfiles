@@ -80,6 +80,8 @@ set showmode
 set showcmd
 set wildmenu
 set t_vb=
+set list
+set listchars=trail:·,precedes:«,extends:»,tab:»·
 
 nnoremap <a-s-l> :NERDTreeToggle<cr>
 
