@@ -32,9 +32,6 @@ nnoremap <s-f4> :cprev<cr>
 nnoremap <f8> <esc>:1,$!xmllint --noout --format -<cr>
 nnoremap <s-f8> <esc>:1,$!xmllint --noout --valid -<cr>
 
-nnoremap <a-o> :A<cr> 
-inoremap <a-o> <esc>:A<cr> 
-
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :DiffSaved<cr>
 noremap <leader>N :NarrowRegion<cr>
@@ -84,6 +81,8 @@ set list
 set listchars=trail:·,precedes:«,extends:»,tab:»·
 
 nnoremap <a-s-l> :NERDTreeToggle<cr>
+nnoremap <a-o> :A<cr> 
+inoremap <a-o> <esc>:A<cr> 
 
 set titlestring=%f title
 
@@ -292,7 +291,7 @@ com! DiffSaved call s:DiffWithSaved()
 
 " TortoiseHg functions
 
-if !exists(":TortoiseHg")
+if !exists(":TortoiseHgLog")
     command TortoiseHgLog call ShowTortoiseHgLog()
 endif
 
@@ -302,7 +301,19 @@ if !exists("*ShowTortoiseHgLog")
     endfun
 endif
 
-nnoremap <leader>l :TortoiseHgLog<CR>
+nnoremap <leader>l :TortoiseHgLog<cr>
+
+if !exists(":TortoiseHgVDiff")
+    command TortoiseHgVDiff call ShowTortoiseHgVDiff()
+endif
+
+if !exists("*ShowTortoiseHgVDiff")
+    fun ShowTortoiseHgVDiff()
+        execute '!start thg vdiff %'
+    endfun
+endif
+
+nnoremap <leader>vd :TortoiseHgVDiff<cr>
 
 if !exists(":MakeCheck")
     command MakeCheck call RunMakeCheck()
