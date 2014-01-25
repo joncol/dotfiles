@@ -180,6 +180,7 @@ au FileType ruby :nnoremap <leader>r :Ruby<CR>
 au FileType ruby :nnoremap <leader>s :RSpecTest<CR>
 au FileType ruby :nnoremap <leader>S :RSpecFile<CR>
 
+autocmd FileType java set cino=j1,(0
 "autocmd FileType cpp :colorscheme autumnleaf
 "autocmd FileType cs  :colorscheme autumnleaf
 "autocmd FileType cif :colorscheme jellybeans
