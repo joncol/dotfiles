@@ -1,0 +1,94 @@
+snippet xml "XML declaration" b
+<?xml version="1.0" encoding="UTF-8"?>
+
+endsnippet
+
+snippet t "Simple tag" b
+<${1:tag}>
+	${2}
+</${1/([\w:._-]+).*/$1/}>
+endsnippet
+
+snippet ti "Inline tag" b
+<${1:tag}>${2}</${1/([\w:._-]+).*/$1/}>
+endsnippet
+
+snippet "pr(oj)?" "Project tag" !br
+<project name="${1:Project name}" default="run" basedir=".">
+    <property name="build.dir" value="build" />
+    <property name="src.dir" value="src" />
+    <property name="tests.src.dir" value="tests" />
+    <property name="reports.dir" value="reports" />
+    <property name="dist.dir" value="dist" />
+
+    <path id="build.class.path">
+        <pathelement location="${build.dir}/classes" />
+        <pathelement location="${build.dir}/.." />
+    </path>
+
+    <target description="Creates temporary directories" name="init">
+        <mkdir dir="${build.dir}/classes" />
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${reports.dir}" />
+    </target>
+
+    <target name="clean" depends="init" description="Removes temporary directories">
+        <delete dir="${build.dir}" />
+        <delete dir="bin" failonerror="false" />
+        <delete dir="${dist.dir}" failonerror="false" />
+        <delete dir="${reports.dir}" failonerror="false" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac debug="true" deprecation="true" includeantruntime="false"
+               srcdir="${src.dir}" destdir="${build.dir}/classes">
+            <classpath>
+                <fileset dir="../lib/">
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile.tests" depends="init">
+        <javac debug="true" deprecation="true" includeantruntime="false"
+               srcdir="${tests.src.dir}" destdir="${build.dir}/classes">
+            <classpath>
+                <fileset dir="../lib/">
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="run" depends="compile" description="Run the program">
+        <java classname="${2:ClassToRun}" failonerror="true" fork="true"
+              classpathref="build.class.path">
+            <arg value="${arg0}" />
+            <arg value="${arg1}" />
+            <arg value="${arg2}" />
+        </java>
+    </target>
+
+    <target name="test" depends="compile,compile.tests">
+        <junit haltonfailure="yes">
+            <classpath>
+                <pathelement location="${build.dir}/classes" />
+
+                <fileset dir="../lib/">
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+
+            <formatter type="plain" usefile="false" />
+            <formatter type="plain" />
+
+            <batchtest fork="yes" todir="${reports.dir}">
+                <fileset dir="${tests.src.dir}">
+                    <include name="**/*Test*.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+</project>
+endsnippet
