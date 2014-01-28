@@ -161,6 +161,10 @@ set laststatus=2 " always show status line
   "" 3 -> blinking underscore
 "endif
 
+call tcomment#DefineType('ant', g:tcommentInlineXML)
+call tcomment#DefineType('ant_block', g:tcommentBlockXML)
+call tcomment#DefineType('ant_inline', g:tcommentInlineXML)
+
 if has("win32") || has("win16")
   set grepprg=grep\ -n
 endif
@@ -185,6 +189,7 @@ au FileType ruby :nnoremap <leader>r :Ruby<cr>
 au FileType ruby :nnoremap <leader>s :RSpecTest<cr>
 au FileType ruby :nnoremap <leader>S :RSpecFile<cr>
 
+autocmd FileType java set cino=j1,(0
 "autocmd FileType cpp :colorscheme autumnleaf
 "autocmd FileType cs  :colorscheme autumnleaf
 "autocmd FileType cif :colorscheme jellybeans
@@ -383,4 +388,3 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     set title titlestring=%F%y%m%r
   endif
 endif
-
