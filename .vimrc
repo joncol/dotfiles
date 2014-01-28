@@ -388,3 +388,4 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     set title titlestring=%F%y%m%r
   endif
 endif
+
