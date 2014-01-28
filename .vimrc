@@ -36,6 +36,13 @@ nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :DiffSaved<cr>
 noremap <leader>N :NarrowRegion<cr>
 
+nnoremap <leader>c :SyntasticCheck<cr>
+let g:syntastic_always_populate_loc_list=1
+
+nnoremap <leader>ln :lnext<cr>
+nnoremap <leader>lp :lprevious<cr>
+nnoremap <leader>lN :lprevious<cr>
+
 inoremap <expr> j ((pumvisible())?("\<c-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<c-p>"):("k"))
 
@@ -174,11 +181,9 @@ au FileType html :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 au FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 au FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
-au FileType cpp :nnoremap <leader>c :MakeCheck<CR>
-
-au FileType ruby :nnoremap <leader>r :Ruby<CR>
-au FileType ruby :nnoremap <leader>s :RSpecTest<CR>
-au FileType ruby :nnoremap <leader>S :RSpecFile<CR>
+au FileType ruby :nnoremap <leader>r :Ruby<cr>
+au FileType ruby :nnoremap <leader>s :RSpecTest<cr>
+au FileType ruby :nnoremap <leader>S :RSpecFile<cr>
 
 "autocmd FileType cpp :colorscheme autumnleaf
 "autocmd FileType cs  :colorscheme autumnleaf
@@ -270,9 +275,9 @@ if !exists("*ToggleHex")
     endfunction
 end
 
-nnoremap <C-H> :Hexmode<CR>
-" inoremap <C-H> <Esc>:Hexmode<CR>
-" vnoremap <C-H> :<C-U>Hexmode<CR>
+nnoremap <C-H> :Hexmode<cr>
+" inoremap <C-H> <Esc>:Hexmode<cr>
+" vnoremap <C-H> :<C-U>Hexmode<cr>
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable automatic comment insertion
 
@@ -301,7 +306,7 @@ if !exists("*ShowTortoiseHgLog")
     endfun
 endif
 
-nnoremap <leader>l :TortoiseHgLog<cr>
+nnoremap <leader>tl :TortoiseHgLog<cr>
 
 if !exists(":TortoiseHgVDiff")
     command TortoiseHgVDiff call ShowTortoiseHgVDiff()
@@ -313,7 +318,7 @@ if !exists("*ShowTortoiseHgVDiff")
     endfun
 endif
 
-nnoremap <leader>vd :TortoiseHgVDiff<cr>
+nnoremap <leader>td :TortoiseHgVDiff<cr>
 
 if !exists(":MakeCheck")
     command MakeCheck call RunMakeCheck()
