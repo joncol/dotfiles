@@ -29,8 +29,9 @@ nnoremap <s-f1> :cc<cr>
 nnoremap <f4> :cnext<cr>
 nnoremap <s-f4> :cprev<cr>
 
-nnoremap <f8> <esc>:1,$!xmllint --noout --format -<cr>
-nnoremap <s-f8> <esc>:1,$!xmllint --noout --valid -<cr>
+let $XMLLINT_INDENT="    "
+nnoremap <leader>lf <esc>:1,$!xmllint --format -<cr>
+nnoremap <leader>lv <esc>:%w !xmllint --noout --valid -<cr>
 
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :DiffSaved<cr>
