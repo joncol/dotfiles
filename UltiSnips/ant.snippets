@@ -38,6 +38,8 @@ snippet "pr(oj)?" "Project tag" !br
         </fileset>
     </path>
 
+    <pathconvert property="expanded.run.class.path" refid="run.class.path" />
+
     <target description="Creates temporary directories" name="init">
         <mkdir dir="${build.dir}/classes" />
         <mkdir dir="${dist.dir}" />
@@ -87,6 +89,10 @@ snippet "pr(oj)?" "Project tag" !br
                 </fileset>
             </batchtest>
         </junit>
+    </target>
+
+    <target description="Helper target for Vim Syntastic plugin" name="path">
+        <echo message="${expanded.run.class.path}" />
     </target>
 </project>
 endsnippet

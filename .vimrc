@@ -38,7 +38,10 @@ nnoremap <leader>d :DiffSaved<cr>
 noremap <leader>N :NarrowRegion<cr>
 
 nnoremap <leader>c :SyntasticCheck<cr>
-let g:syntastic_always_populate_loc_list=1
+let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_java_javac_config_file_enabled = 1
+let g:syntastic_java_javac_custom_classpath_command =
+    \ "ant -q path | grep echo | cut -f2- -d] | tr -d ' '"
 
 nnoremap <leader>ln :lnext<cr>
 nnoremap <leader>lp :lprevious<cr>
