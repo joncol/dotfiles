@@ -20,10 +20,22 @@ snippet "pr(oj)?" "Project tag" !br
     <property name="tests.src.dir" value="tests" />
     <property name="reports.dir" value="reports" />
     <property name="dist.dir" value="dist" />
+    <property name="libs.dir" value="../lib" />
 
     <path id="build.class.path">
+        <fileset dir="${libs.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <path id="run.class.path">
         <pathelement location="${build.dir}/classes" />
         <pathelement location="${build.dir}/.." />
+        <pathelement location="." />
+
+        <fileset dir="${libs.dir}">
+            <include name="**/*.jar" />
+        </fileset>
     </path>
 
     <target description="Creates temporary directories" name="init">
@@ -41,29 +53,19 @@ snippet "pr(oj)?" "Project tag" !br
 
     <target name="compile" depends="init">
         <javac debug="true" deprecation="true" includeantruntime="false"
-               srcdir="${src.dir}" destdir="${build.dir}/classes">
-            <classpath>
-                <fileset dir="../lib/">
-                    <include name="**/*.jar" />
-                </fileset>
-            </classpath>
-        </javac>
+               srcdir="${src.dir}" destdir="${build.dir}/classes"
+               classpathref="build.class.path" />
     </target>
 
     <target name="compile.tests" depends="init">
         <javac debug="true" deprecation="true" includeantruntime="false"
-               srcdir="${tests.src.dir}" destdir="${build.dir}/classes">
-            <classpath>
-                <fileset dir="../lib/">
-                    <include name="**/*.jar" />
-                </fileset>
-            </classpath>
-        </javac>
+               srcdir="${tests.src.dir}" destdir="${build.dir}/classes"
+               classpathref="build.class.path" />
     </target>
 
     <target name="run" depends="compile" description="Run the program">
-        <java classname="${2:ClassToRun}" failonerror="true" fork="true"
-              classpathref="build.class.path">
+        <java classname="${2:Program}" failonerror="true" fork="true"
+              classpathref="run.class.path">
             <arg value="${arg0}" />
             <arg value="${arg1}" />
             <arg value="${arg2}" />
@@ -73,11 +75,7 @@ snippet "pr(oj)?" "Project tag" !br
     <target name="test" depends="compile,compile.tests">
         <junit haltonfailure="yes">
             <classpath>
-                <pathelement location="${build.dir}/classes" />
-
-                <fileset dir="../lib/">
-                    <include name="**/*.jar" />
-                </fileset>
+                <path refid="${run.class.path}" />
             </classpath>
 
             <formatter type="plain" usefile="false" />
