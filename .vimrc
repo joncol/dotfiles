@@ -38,9 +38,9 @@ nnoremap <leader>d :DiffSaved<cr>
 noremap <leader>N :NarrowRegion<cr>
 
 nnoremap <leader>c :SyntasticCheck<cr>
-let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_java_javac_config_file_enabled = 1
-let g:syntastic_java_javac_custom_classpath_command =
+let g:syntastic_always_populate_loc_list=1
+" let g:syntastic_java_javac_config_file_enabled=1
+let g:syntastic_java_javac_custom_classpath_command=
     \ "ant -q path | grep echo | cut -f2- -d] | tr -d ' '"
 
 nnoremap <leader>ln :lnext<cr>
@@ -52,7 +52,7 @@ inoremap <expr> k ((pumvisible())?("\<c-p>"):("k"))
 
 " Make tab work as indent in the beginning of lines, autocomplete otherwise
 function! InsertTabWrapper()
-    let col = col('.') - 1
+    let col=col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
         return "\<tab>"
     else
@@ -91,7 +91,7 @@ set t_vb=
 set list
 set listchars=trail:·,precedes:«,extends:»,tab:»·
 
-nnoremap <a-s-l> :NERDTreeToggle<cr>
+nnoremap <a-s-l> :NERDTree<cr>
 nnoremap <a-o> :A<cr> 
 inoremap <a-o> <esc>:A<cr> 
 
@@ -130,6 +130,7 @@ set history=1000
 set scrolloff=3
 
 let g:buffergator_autoexpand_on_split=0
+let g:buffergator_viewport_split_policy="R"
 let g:UltiSnipsSnippetsDir="$VIM/vimfiles/UltiSnips"
 
 "set t_Co=256
@@ -200,12 +201,13 @@ autocmd FileType java set cino=j1,(0
 " autocmd FileType log :colorscheme jellybeans
 " autocmd FileType xml :colorscheme codeschool
 
-au BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufWritePost *.java silent! !start /B ctags -R .
 
-au Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=syntax
+autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=syntax
 " au Syntax cs setlocal foldmethod=indent
-au Syntax cs setlocal foldmethod=syntax
-au Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
+autocmd Syntax cs setlocal foldmethod=syntax
+autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
 
 augroup BgHighlight
     autocmd!
@@ -392,4 +394,6 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     set title titlestring=%F%y%m%r
   endif
 endif
+
+nnoremap <a-g> <c-]>
 

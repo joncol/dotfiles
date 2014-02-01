@@ -15,6 +15,7 @@ endsnippet
 
 snippet "pr(oj)?" "Project tag" !br
 <project name="${1:Project name}" default="run" basedir=".">
+    <property name="main.class" value="${2:Program}" />
     <property name="build.dir" value="build" />
     <property name="src.dir" value="src" />
     <property name="tests.src.dir" value="tests" />
@@ -66,7 +67,7 @@ snippet "pr(oj)?" "Project tag" !br
     </target>
 
     <target name="run" depends="compile" description="Run the program">
-        <java classname="${2:Program}" failonerror="true" fork="true"
+        <java classname="${main.class}" failonerror="true" fork="true"
               classpathref="run.class.path">
             <arg value="${arg0}" />
             <arg value="${arg1}" />
@@ -77,7 +78,7 @@ snippet "pr(oj)?" "Project tag" !br
     <target name="test" depends="compile,compile.tests">
         <junit haltonfailure="yes">
             <classpath>
-                <path refid="${run.class.path}" />
+                <path refid="run.class.path" />
             </classpath>
 
             <formatter type="plain" usefile="false" />
