@@ -3,16 +3,52 @@
 set nocompatible
 filetype off
 
-let s:vimfiles_dir=fnamemodify($MYVIMRC, ':h')
-execute "set rtp+=".s:vimfiles_dir.'/bundle/vundle/'
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
+
+" My bundles here:
+"
+" original repos on GitHub
+Bundle '29decibel/codeschool-vim-theme'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'SirVer/ultisnips'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'chrisbra/NrrwRgn'
+Bundle 'elzr/vim-json'
+Bundle 'ervandew/supertab'
+Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'junegunn/vim-easy-align'
+Bundle 'kien/ctrlp.vim'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'othree/html5.vim'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tomasr/molokai'
+Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'w0ng/vim-hybrid'
+
+" vim-scripts repos
+Bundle 'CSApprox'
+Bundle 'ZoomWin'
+Bundle 'a.vim'
+Bundle 'ruby-matchit'
+Bundle 'tComment'
 
 filetype plugin indent on     " required!
+
+if has("unix")
+  let s:uname = system("uname -s")
+endif
 
 "" --------------------------------------------------
 "" Keyboard mappings
@@ -20,8 +56,8 @@ filetype plugin indent on     " required!
 
 let mapleader=","
 
-nnoremap <leader>ev :vsplit $VIM/vimfiles/.vimrc<cr>
-nnoremap <leader>sv :source $VIM/vimfiles/.vimrc<cr>
+nnoremap <leader>ev :vsplit ~/.vim/vimrc<cr>
+nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 nnoremap <leader>es :UltiSnipsEdit<cr>
 
@@ -102,9 +138,11 @@ set t_vb=
 set list
 set listchars=trail:·,precedes:«,extends:»,tab:»·
 
-nnoremap <a-s-l> :NERDTree<cr>
-nnoremap <a-o> :A<cr> 
-inoremap <a-o> <esc>:A<cr> 
+if s:uname != "Darwin"
+  nnoremap <a-s-l> :NERDTree<cr>
+  nnoremap <a-o> :A<cr> 
+  inoremap <a-o> <esc>:A<cr> 
+endif
 
 set titlestring=%f title
 

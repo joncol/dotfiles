@@ -8,3 +8,5 @@ Powerline_default_default_unicode\.cache$
 /__pycache__/
 ^plugin/eclim\.vim
 ^eclim/
+
+bundle/
