@@ -245,11 +245,7 @@ au FileType ruby :nnoremap <leader>s :RSpecTest<cr>
 au FileType ruby :nnoremap <leader>S :RSpecFile<cr>
 
 autocmd FileType java set cino=j1,(0
-"autocmd FileType cpp :colorscheme autumnleaf
-"autocmd FileType cs  :colorscheme autumnleaf
-"autocmd FileType cif :colorscheme jellybeans
-" autocmd FileType log :colorscheme jellybeans
-" autocmd FileType xml :colorscheme codeschool
+autocmd FileType java :nnoremap <leader>T :!ant test<cr>
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufWritePost *.java silent! !start /B ctags -R .
