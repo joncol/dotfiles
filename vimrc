@@ -47,9 +47,9 @@ Bundle 'tComment'
 filetype plugin indent on     " required!
 
 if has("unix")
-  let s:uname = system("uname -s")
+  let s:uname=system("uname -s")
 else
-  let s:uname = "Windows"
+  let s:uname="Windows"
 endif
 
 "" --------------------------------------------------
@@ -90,9 +90,8 @@ noremap <leader>N :NarrowRegion<cr>
 
 nnoremap <leader>c :SyntasticCheck<cr>
 let g:syntastic_always_populate_loc_list=1
-" let g:syntastic_java_javac_config_file_enabled=1
 let g:syntastic_java_javac_custom_classpath_command=
-    \ "ant -q path | grep echo | cut -f2- -d] | tr -d ' '"
+      \ "ant -q path | grep echo | cut -f2- -d] | tr -d ' ' | tr -d '\033' | sed -e s/[[]m$//"
 
 nnoremap <leader>ln :lnext<cr>
 nnoremap <leader>lp :lprevious<cr>
@@ -207,7 +206,7 @@ set laststatus=2 " always show status line
 
 "let g:showmarks_include="abcdefzxABJio"
 
-"if &term =~ '^xterm'
+"if &term=~'^xterm'
   "" solid underscore
   "let &t_SI .= "\<Esc>[4 q"
   "" solid block
@@ -248,7 +247,12 @@ autocmd FileType java set cino=j1,(0
 autocmd FileType java :nnoremap <leader>T :!ant test<cr>
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufWritePost *.java silent! !start /B ctags -R .
+
+if s:uname=="Windows"
+  autocmd BufWritePost *.java silent! !start /B ctags -R .
+elseif has("unix")
+  autocmd BufWritePost *.java silent! ctags -R . &
+endif
 
 autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=syntax
 " au Syntax cs setlocal foldmethod=indent
