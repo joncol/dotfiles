@@ -48,6 +48,8 @@ filetype plugin indent on     " required!
 
 if has("unix")
   let s:uname = system("uname -s")
+else
+  let s:uname = "Windows"
 endif
 
 "" --------------------------------------------------
