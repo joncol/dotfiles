@@ -3,7 +3,8 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+let s:vimfiles_dir=fnamemodify($MYVIMRC, ':h')
+execute "set rtp+=".s:vimfiles_dir.'/bundle/vundle/'
 call vundle#rc()
 
 " let Vundle manage Vundle
