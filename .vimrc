@@ -178,21 +178,23 @@ endif
 " File-specific stuff
 " --------------------------------------------------
 
-au FileType c :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-au FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-au FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-au FileType log :setlocal nonumber
-au FileType markdown :setlocal textwidth=79 formatoptions+=t nonumber
-au FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-au FileType python :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-au FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-au FileType html :setlocal tabstop=2 shiftwidth=2 softtabstop=2
-au FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
-au FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType c :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+autocmd FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+autocmd FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType log :setlocal nonumber
+autocmd FileType markdown :setlocal textwidth=79 formatoptions+=t nonumber
+autocmd FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType python :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType html :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
-au FileType ruby :nnoremap <leader>r :Ruby<cr>
-au FileType ruby :nnoremap <leader>s :RSpecTest<cr>
-au FileType ruby :nnoremap <leader>S :RSpecFile<cr>
+autocmd FileType ruby :nnoremap <leader>r :Ruby<cr>
+autocmd FileType ruby :nnoremap <leader>s :RSpecTest<cr>
+autocmd FileType ruby :nnoremap <leader>S :RSpecFile<cr>
+
+autocmd FileType java :nnoremap <leader>T :!ant test<cr>
 
 autocmd FileType java set cino=j1,(0
 "autocmd FileType cpp :colorscheme autumnleaf

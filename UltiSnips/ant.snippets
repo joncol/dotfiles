@@ -18,7 +18,7 @@ snippet "pr(oj)?" "Project tag" !br
     <property name="main.class" value="${2:Program}" />
     <property name="build.dir" value="build" />
     <property name="src.dir" value="src" />
-    <property name="tests.src.dir" value="tests" />
+    <property name="test.src.dir" value="${src.dir}/test" />
     <property name="reports.dir" value="reports" />
     <property name="dist.dir" value="dist" />
     <property name="libs.dir" value="../lib" />
@@ -62,7 +62,7 @@ snippet "pr(oj)?" "Project tag" !br
 
     <target name="compile.tests" depends="init">
         <javac debug="true" deprecation="true" includeantruntime="false"
-               srcdir="${tests.src.dir}" destdir="${build.dir}/classes"
+               srcdir="${test.src.dir}" destdir="${build.dir}/classes"
                classpathref="build.class.path" />
     </target>
 
@@ -85,7 +85,7 @@ snippet "pr(oj)?" "Project tag" !br
             <formatter type="plain" />
 
             <batchtest fork="yes" todir="${reports.dir}">
-                <fileset dir="${tests.src.dir}">
+                <fileset dir="${test.src.dir}">
                     <include name="**/*Test*.java" />
                 </fileset>
             </batchtest>
