@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " My bundles here:
@@ -43,8 +43,7 @@ Bundle 'ZoomWin'
 Bundle 'a.vim'
 Bundle 'ruby-matchit'
 Bundle 'tComment'
-
-filetype plugin indent on     " required!
+Bundle 'visualrepeat'
 
 if has("unix")
   let s:uname=system("uname -s")
@@ -99,6 +98,12 @@ nnoremap <leader>lN :lprevious<cr>
 
 inoremap <expr> j ((pumvisible())?("\<c-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<c-p>"):("k"))
+
+" Start interactive EasyAlign in visual mode
+vmap <Leader>a <Plug>(EasyAlign)
+
+" Start interactive EasyAlign with a Vim movement
+nmap <Leader>a <Plug>(EasyAlign)
 
 " Make tab work as indent in the beginning of lines, autocomplete otherwise
 function! InsertTabWrapper()
@@ -184,14 +189,11 @@ let g:buffergator_viewport_split_policy="R"
 let g:UltiSnipsSnippetsDir="$VIM/vimfiles/UltiSnips"
 
 "set t_Co=256
-syntax enable
 set hlsearch
 "let g:solarized_bold=0
 colorscheme molokai
 "set background=light
 "jellybeans
-filetype plugin on
-filetype indent on
 
 set guioptions-=m " no menu
 set guioptions-=T " no toolbar
@@ -258,6 +260,10 @@ autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldme
 " au Syntax cs setlocal foldmethod=indent
 autocmd Syntax cs setlocal foldmethod=syntax
 autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
+
+autocmd BufRead,BufNewFile *.cif,*.cif.txt setfiletype cif
+autocmd BufRead,BufNewFile *.log setfiletype log
+autocmd BufRead,BufNewFile *.xaml,*.msbuild setfiletype xml
 
 augroup BgHighlight
     autocmd!
@@ -446,4 +452,8 @@ if has("gui_running")             " 'guifont' doesn't work in the console
 endif
 
 nnoremap <a-g> <c-]>
+
+filetype off
+filetype plugin indent on
+syntax on
 
