@@ -91,6 +91,7 @@ nnoremap <leader>c :SyntasticCheck<cr>
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_java_javac_custom_classpath_command=
       \ "ant -q path | grep echo | cut -f2- -d] | tr -d ' ' | tr -d '\033' | sed -e s/[[]m$//"
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
 nnoremap <leader>ln :lnext<cr>
 nnoremap <leader>lp :lprevious<cr>
@@ -186,7 +187,7 @@ set scrolloff=3
 
 let g:buffergator_autoexpand_on_split=0
 let g:buffergator_viewport_split_policy="R"
-let g:UltiSnipsSnippetsDir="$VIM/vimfiles/UltiSnips"
+" let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 
 "set t_Co=256
 set hlsearch
