@@ -19,11 +19,11 @@ syn region logDetails matchgroup=Comment start=/ / end=/\v\|/ contained nextgrou
 syn match logEntryCrc /\v\s+[0-9]+$/ contained
 
 hi link logEntryId Comment
-hi link logBalance Keyword
+hi link logBalance Operator
 hi link logEntryTime Structure
 hi link logEntryStatus Comment
 hi link logEntryType Comment
-hi link logMsg Constant
+hi link logMsg Identifier
 hi link logDetails String
 hi link logEntryCrc Comment
 
