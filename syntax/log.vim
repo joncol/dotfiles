@@ -9,14 +9,14 @@ if exists("b:current_syntax")
 endif
 
 " EGM log
-syn match logEntryId /\v^[0-9]+/ nextgroup=logEntryTime
+syn match logEntryId /\v^\d+/ nextgroup=logEntryTime
 syn region logEntryTime matchgroup=Comment start=/\v \| / end=/\v \|/ contained nextgroup=logBalance
-syn match logBalance /\v (\$[0-9]+\.[0-9]+)?/ contained nextgroup=logEntryStatus
-syn match logEntryStatus /\v \|\s+[0-9]+/ contained nextgroup=logEntryType
-syn match logEntryType /\v \|\s+[0-9]+/ contained nextgroup=logMsg
+syn match logBalance /\v (\$\d+(\,\d+)?(\.\d+)?)?/ contained nextgroup=logEntryStatus
+syn match logEntryStatus /\v \|\s+\d+/ contained nextgroup=logEntryType
+syn match logEntryType /\v \|\s+\d+/ contained nextgroup=logMsg
 syn region logMsg matchgroup=Comment start=/\v \|/ end=/\v\|/ contained nextgroup=logDetails
 syn region logDetails matchgroup=Comment start=/ / end=/\v\|/ contained nextgroup=logEntryCrc
-syn match logEntryCrc /\v\s+[0-9]+$/ contained
+syn match logEntryCrc /\v\s+\d+$/ contained
 
 hi link logEntryId Comment
 hi link logBalance Operator
@@ -29,7 +29,7 @@ hi link logEntryCrc Comment
 
 " ApplicationRuntime log
 syn region appRuntimeLog_timestamp matchgroup=Comment start=/\v^\[/ end=/\v\]/ contains=appRuntimeLog_date,appRuntimeLog_time nextgroup=appRuntimeLog_type
-syn match appRuntimeLog_date :\v([0-9]{2}/){2}([0-9]{4}) : contained nextgroup=appRunTimeLog_time
+syn match appRuntimeLog_date :\v(\d{2}/){2}([0-9]{4}) : contained nextgroup=appRunTimeLog_time
 syn match appRuntimeLog_time /\v\d{2}(:\d{2}){2} (a|p)\.m\./ contained
 syn match appRuntimeLog_type /\v\s*(Trace|Debug|Info|Warning|Error)\s+/ contained nextgroup=appRuntimeLog_separator1
 syn match appRuntimeLog_separator1 /- / contained nextgroup=appRuntimeLog_class
