@@ -25,4 +25,4 @@ hi link cifHeader Macro
 hi link keyName Identifier
 "hi def cifNumber guifg=darkgreen
 hi link cifNumber Special
-hi def cifString guifg=darkgreen
+hi link cifString String

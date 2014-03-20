@@ -263,6 +263,8 @@ autocmd Syntax cs setlocal foldmethod=syntax
 autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
 
 autocmd BufRead,BufNewFile *.cif,*.cif.txt setfiletype cif
+autocmd BufRead,BufNewFile managed_*.log setfiletype managed_log
+autocmd BufRead,BufNewFile *-xgsos.*.log setfiletype xgsos_log
 autocmd BufRead,BufNewFile *.log setfiletype log
 autocmd BufRead,BufNewFile *.xaml,*.msbuild setfiletype xml
 
