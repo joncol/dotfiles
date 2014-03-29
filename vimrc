@@ -88,6 +88,7 @@ nnoremap <leader>d :DiffSaved<cr>
 noremap <leader>N :NarrowRegion<cr>
 
 nnoremap <leader>c :SyntasticCheck<cr>
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_java_javac_custom_classpath_command=
       \ "ant -q path | grep echo | cut -f2- -d] | tr -d ' ' | tr -d '\033' | sed -e s/[[]m$//"
@@ -108,12 +109,12 @@ nmap <Leader>a <Plug>(EasyAlign)
 
 " Make tab work as indent in the beginning of lines, autocomplete otherwise
 function! InsertTabWrapper()
-    let col=col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
+  let col=col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
 endfunction
 
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
@@ -129,7 +130,7 @@ set autoindent
 set smartindent
 set expandtab
 set smarttab
-set cino=:0,g0,(0
+set cino=:0,g0,(0,N-s
 set foldmethod=syntax
 set foldlevelstart=20
 
@@ -201,6 +202,9 @@ set guioptions-=T " no toolbar
 set guioptions-=r " no right scrollbar
 set guioptions-=L " no left scrollbar
 
+set columns=115
+set lines=80
+
 "set synmaxcol=140
 
 "let g:Powerline_symbols='fancy'
@@ -246,7 +250,6 @@ au FileType ruby :nnoremap <leader>r :Ruby<cr>
 au FileType ruby :nnoremap <leader>s :RSpecTest<cr>
 au FileType ruby :nnoremap <leader>S :RSpecFile<cr>
 
-autocmd FileType java set cino=j1,(0
 autocmd FileType java :nnoremap <leader>T :!ant test<cr>
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -269,9 +272,9 @@ autocmd BufRead,BufNewFile *.log setfiletype log
 autocmd BufRead,BufNewFile *.xaml,*.msbuild setfiletype xml
 
 augroup BgHighlight
-    autocmd!
-    autocmd WinEnter * set number
-    autocmd WinLeave * set nonumber
+  autocmd!
+  autocmd WinEnter * set number
+  autocmd WinLeave * set nonumber
 augroup END
 
 " --------------------------------------------------
@@ -279,10 +282,10 @@ augroup END
 " --------------------------------------------------
 
 if v:version >= 700
-    setlocal spell spelllang=en
-    nnoremap <leader>ll :set spell!<cr>
-    nnoremap <leader>le :set spelllang=en<cr>
-    nnoremap <leader>ls :set spelllang=sv<cr>
+  setlocal spell spelllang=en
+  nnoremap <leader>ll :set spell!<cr>
+  nnoremap <leader>le :set spelllang=en<cr>
+  nnoremap <leader>ls :set spelllang=sv<cr>
 endif
 
 ia teh      the
@@ -306,43 +309,43 @@ if !exists(":Hexmode")
 endif
 
 if !exists("*ToggleHex")
-    " Helper function to toggle hex mode
-    function ToggleHex()
-        " hex mode should be considered a read-only operation
-        " save values for modified and read-only for restoration later,
-        " and clear the read-only flag for now
-        let l:modified=&mod
-        let l:oldreadonly=&readonly
-        let &readonly=0
-        let l:oldmodifiable=&modifiable
-        let &modifiable=1
-        if !exists("b:editHex") || !b:editHex
-            " save old options
-            let b:oldft=&ft
-            let b:oldbin=&bin
-            " set new options
-            setlocal binary " make sure it overrides any textwidth, etc.
-            let &ft="xxd"
-            " set status
-            let b:editHex=1
-            " switch to hex editor
-            %!xxd
-        else
-            " restore old options
-            let &ft=b:oldft
-            if !b:oldbin
-                setlocal nobinary
-            endif
-            " set status
-            let b:editHex=0
-            " return to normal editing
-            %!xxd -r
-        endif
-        " restore values for modified and read only state
-        let &mod=l:modified
-        let &readonly=l:oldreadonly
-        let &modifiable=l:oldmodifiable
-    endfunction
+  " Helper function to toggle hex mode
+  function ToggleHex()
+    " hex mode should be considered a read-only operation
+    " save values for modified and read-only for restoration later,
+    " and clear the read-only flag for now
+    let l:modified=&mod
+    let l:oldreadonly=&readonly
+    let &readonly=0
+    let l:oldmodifiable=&modifiable
+    let &modifiable=1
+    if !exists("b:editHex") || !b:editHex
+      " save old options
+      let b:oldft=&ft
+      let b:oldbin=&bin
+      " set new options
+      setlocal binary " make sure it overrides any textwidth, etc.
+      let &ft="xxd"
+      " set status
+      let b:editHex=1
+      " switch to hex editor
+      %!xxd
+    else
+      " restore old options
+      let &ft=b:oldft
+      if !b:oldbin
+        setlocal nobinary
+      endif
+      " set status
+      let b:editHex=0
+      " return to normal editing
+      %!xxd -r
+    endif
+    " restore values for modified and read only state
+    let &mod=l:modified
+    let &readonly=l:oldreadonly
+    let &modifiable=l:oldmodifiable
+  endfunction
 end
 
 nnoremap <C-H> :Hexmode<cr>
@@ -367,78 +370,83 @@ com! DiffSaved call s:DiffWithSaved()
 " TortoiseHg functions
 
 if !exists(":TortoiseHgLog")
-    command TortoiseHgLog call ShowTortoiseHgLog()
+  command TortoiseHgLog call ShowTortoiseHgLog()
 endif
 
 if !exists("*ShowTortoiseHgLog")
-    fun ShowTortoiseHgLog()
-        execute '!start thg log %'
-    endfun
+  fun ShowTortoiseHgLog()
+    execute '!start thg log %'
+  endfun
 endif
 
 nnoremap <leader>tl :TortoiseHgLog<cr>
 
 if !exists(":TortoiseHgVDiff")
-    command TortoiseHgVDiff call ShowTortoiseHgVDiff()
+  command TortoiseHgVDiff call ShowTortoiseHgVDiff()
 endif
 
 if !exists("*ShowTortoiseHgVDiff")
-    fun ShowTortoiseHgVDiff()
-        execute '!start thg vdiff %'
-    endfun
+  fun ShowTortoiseHgVDiff()
+    execute '!start thg vdiff %'
+  endfun
 endif
 
 nnoremap <leader>td :TortoiseHgVDiff<cr>
 
 if !exists(":MakeCheck")
-    command MakeCheck call RunMakeCheck()
+  command MakeCheck call RunMakeCheck()
 endif
 
 if !exists(":Ruby")
-    command Ruby call RunRuby()
+  command Ruby call RunRuby()
 endif
 
 if !exists(":RSpecTest")
-    command RSpecTest call RunRSpecTest()
+  command RSpecTest call RunRSpecTest()
 endif
 
 if !exists(":RSpecFile")
-    command RSpecFile call RunRSpecFile()
+  command RSpecFile call RunRSpecFile()
 endif
 
 
 if !exists("*RunMakeCheck")
-    fun RunMakeCheck()
-        execute '!make check'
-    endfun
+  fun RunMakeCheck()
+    execute '!make check'
+  endfun
 endif
 
 if !exists("*RunRuby")
-    fun RunRuby()
-        execute '!ruby ' . expand('%')
-    endfun
+  fun RunRuby()
+    execute '!ruby ' . expand('%')
+  endfun
 endif
 
 if !exists("*RunRSpecTest")
-    fun RunRSpecTest()
-        execute '!spec ' . expand('%') . ':' . line('.')
-    endfun
+  fun RunRSpecTest()
+    execute '!spec ' . expand('%') . ':' . line('.')
+  endfun
 endif
 
 if !exists("*RunRSpecFile")
-    fun RunRSpecFile()
-        execute '!spec ' . expand('%')
-    endfun
+  fun RunRSpecFile()
+    execute '!spec ' . expand('%')
+  endfun
 endif
 
 " GUI stuff
 
 if has("gui_running")             " 'guifont' doesn't work in the console
   if has("gui_macvim")
-    set guifont=Inconsolata:h14
-    set transparency=5
-    set columns=168
-    set lines=50
+    set transparency=10
+
+    if system("osascript -e 'tell application \"Finder\" to get bounds of window of desktop' | cut -d ' ' -f 4") > 900
+      set columns=210
+      set lines=78
+      set guifont=Inconsolata:h16
+    else
+      set guifont=Inconsolata:h14
+    endif
   else
     if has("gui_gtk2")              " GTK+2 but not GTK+1
       set guifont=Inconsolata\ 12
@@ -459,4 +467,6 @@ nnoremap <a-g> <c-]>
 filetype off
 filetype plugin indent on
 syntax on
+
+autocmd FileType java set cino=j1,(0
 
