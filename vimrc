@@ -3,12 +3,12 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 " My bundles here:
 "
@@ -202,9 +202,6 @@ set guioptions-=T " no toolbar
 set guioptions-=r " no right scrollbar
 set guioptions-=L " no left scrollbar
 
-set columns=115
-set lines=80
-
 "set synmaxcol=140
 
 "let g:Powerline_symbols='fancy'
@@ -214,12 +211,12 @@ set laststatus=2 " always show status line
 "let g:showmarks_include="abcdefzxABJio"
 
 "if &term=~'^xterm'
-  "" solid underscore
-  "let &t_SI .= "\<Esc>[4 q"
-  "" solid block
-  "let &t_EI .= "\<Esc>[2 q"
-  "" 1 or 0 -> blinking block
-  "" 3 -> blinking underscore
+"" solid underscore
+"let &t_SI .= "\<Esc>[4 q"
+"" solid block
+"let &t_EI .= "\<Esc>[2 q"
+"" 1 or 0 -> blinking block
+"" 3 -> blinking underscore
 "endif
 
 call tcomment#DefineType('ant', g:tcommentInlineXML)
@@ -305,7 +302,7 @@ let g:showmarks_include="abcdefzxABJio"
 
 " ex command for toggling hex mode - define mapping if desired
 if !exists(":Hexmode")
-    command -bar Hexmode call ToggleHex()
+  command -bar Hexmode call ToggleHex()
 endif
 
 if !exists("*ToggleHex")
@@ -438,16 +435,21 @@ endif
 
 if has("gui_running")             " 'guifont' doesn't work in the console
   if has("gui_macvim")
-    set transparency=10
+    set transparency=5
+    set guifont=Inconsolata:h14
 
-    if system("osascript -e 'tell application \"Finder\" to get bounds of window of desktop' | cut -d ' ' -f 4") > 900
+    let b:screen_height = system("osascript -e 'tell application \"Finder\" to get bounds of window of desktop' | cut -d ' ' -f 4")
+    if b:screen_height > 900
       set columns=210
       set lines=78
-      set guifont=Inconsolata:h16
     else
-      set guifont=Inconsolata:h14
+      set columns=115
+      set lines=50
     endif
   else
+    set columns=115
+    set lines=80
+
     if has("gui_gtk2")              " GTK+2 but not GTK+1
       set guifont=Inconsolata\ 12
     else                            " non-X11 GUIs (Windows, Carbon, ...)
