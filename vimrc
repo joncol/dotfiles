@@ -16,11 +16,12 @@ Bundle 'gmarik/Vundle.vim'
 Bundle '29decibel/codeschool-vim-theme'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'ervandew/supertab'
 Bundle 'SirVer/ultisnips'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chrisbra/NrrwRgn'
 Bundle 'elzr/vim-json'
-Bundle 'ervandew/supertab'
+Bundle 'honza/vim-snippets'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'kien/ctrlp.vim'
@@ -34,13 +35,13 @@ Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'tsaleh/vim-matchit'
 Bundle 'w0ng/vim-hybrid'
 
 " vim-scripts repos
 Bundle 'CSApprox'
 Bundle 'ZoomWin'
 Bundle 'a.vim'
+Bundle 'matchit.zip'
 Bundle 'ruby-matchit'
 Bundle 'tComment'
 Bundle 'visualrepeat'
@@ -189,6 +190,7 @@ set scrolloff=3
 let g:buffergator_autoexpand_on_split=0
 let g:buffergator_viewport_split_policy="R"
 " let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+let g:UltiSnipsExpandTrigger="<tab>"
 
 "set t_Co=256
 set hlsearch
@@ -231,6 +233,7 @@ endif
 " File-specific stuff
 " --------------------------------------------------
 
+filetype on
 au FileType c :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 au FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 au FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4
@@ -247,7 +250,8 @@ au FileType ruby :nnoremap <leader>r :Ruby<cr>
 au FileType ruby :nnoremap <leader>s :RSpecTest<cr>
 au FileType ruby :nnoremap <leader>S :RSpecFile<cr>
 
-autocmd FileType java :nnoremap <leader>T :!ant test<cr>
+" autocmd FileType java set cino=j1,(0
+" autocmd FileType java :nnoremap <leader>T :!ant test<cr>
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
@@ -435,7 +439,7 @@ endif
 
 if has("gui_running")             " 'guifont' doesn't work in the console
   if has("gui_macvim")
-    set transparency=5
+    set transparency=0
     set guifont=Inconsolata:h14
 
     let b:screen_height = system("osascript -e 'tell application \"Finder\" to get bounds of window of desktop' | cut -d ' ' -f 4")
@@ -470,5 +474,13 @@ filetype off
 filetype plugin indent on
 syntax on
 
-autocmd FileType java set cino=j1,(0
+autocmd FileType java call SetJavaOptions()
+
+if !exists("*SetJavaOptions")
+  function SetJavaOptions()
+    set cino=j1,(0
+    nnoremap <leader>T :!ant test<cr>
+  endfun
+endif
+
 
