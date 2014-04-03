@@ -10,7 +10,7 @@ endif
 
 syn region appRuntimeLog_timestamp matchgroup=Comment start=/\v^\[/ end=/\v\]/ contains=appRuntimeLog_date,appRuntimeLog_time nextgroup=appRuntimeLog_type
 syn match appRuntimeLog_date :\v(\d{2}/){2}(\d{4}) : contained nextgroup=appRunTimeLog_time
-syn match appRuntimeLog_time /\v\d{2}(:\d{2}){2} (a|p)\.m\./ contained
+syn match appRuntimeLog_time /\v\d{2}(:\d{2}){2}( (a|p)\.m\.)?/ contained
 syn match appRuntimeLog_type /\v\s*(Trace|Debug|Info(rmation)?|Warning|Error)\s+/ contained nextgroup=appRuntimeLog_separator1
 syn match appRuntimeLog_separator1 /- / contained nextgroup=appRuntimeLog_class
 syn match appRuntimeLog_class /\v[^:]*/ contained nextgroup=appRuntimeLog_separator2

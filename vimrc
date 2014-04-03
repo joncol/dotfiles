@@ -189,7 +189,7 @@ set scrolloff=3
 
 let g:buffergator_autoexpand_on_split=0
 let g:buffergator_viewport_split_policy="R"
-" let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsExpandTrigger="<tab>"
 
 "set t_Co=256
@@ -267,8 +267,9 @@ autocmd Syntax cs setlocal foldmethod=syntax
 autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
 
 autocmd BufRead,BufNewFile *.cif,*.cif.txt setfiletype cif
-autocmd BufRead,BufNewFile managed_*.log setfiletype managed_log
-autocmd BufRead,BufNewFile *-xgsos.*.log setfiletype xgsos_log
+autocmd BufRead,BufNewFile managed_*.log,global_*.log setfiletype managed_log
+autocmd BufRead,BufNewFile *-xgsos.*.log,horizon_*.log setfiletype xgsos_log
+autocmd BufRead,BufNewFile exceptions*.log setfiletype exceptions_log
 autocmd BufRead,BufNewFile *.log setfiletype log
 autocmd BufRead,BufNewFile *.xaml,*.msbuild setfiletype xml
 
