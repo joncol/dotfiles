@@ -224,6 +224,7 @@ set laststatus=2 " always show status line
 call tcomment#DefineType('ant', g:tcommentInlineXML)
 call tcomment#DefineType('ant_block', g:tcommentBlockXML)
 call tcomment#DefineType('ant_inline', g:tcommentInlineXML)
+call tcomment#DefineType('java', '// %s')
 
 if has("win32") || has("win16")
   set grepprg=grep\ -n
@@ -484,4 +485,5 @@ if !exists("*SetJavaOptions")
   endfun
 endif
 
+autocmd FileType cmake set indentexpr=
 
