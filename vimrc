@@ -497,7 +497,6 @@ if !exists("*SetJavaOptions")
 endif
 
 autocmd FileType cmake set indentexpr=
-"
- " Disable automatic comment insertion
+" Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
