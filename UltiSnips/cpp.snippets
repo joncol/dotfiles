@@ -11,3 +11,14 @@ endsnippet
 snippet pf "printf .. (printf)"
 printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet
+
+snippet cl "class .. (class)" !
+class ${1:`!p snip.rv = snip.basename or "name"`} {
+public:
+	${1/(\w+).*/$1/}(${2});
+	~${1/(\w+).*/$1/}();
+
+private:
+	${0}
+};
+endsnippet

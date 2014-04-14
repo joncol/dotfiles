@@ -170,8 +170,21 @@ set number
 "set undofile
 set colorcolumn=81
 
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
+
+" nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
+map / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+" map n <Plug>(easymotion-next)
+" map N <Plug>(easymotion-prev)
+let g:EasyMotion_smartcase = 1
+map <Leader>h <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>l <Plug>(easymotion-linebackward)
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 set ignorecase
 set smartcase
@@ -355,8 +368,6 @@ nnoremap <C-H> :Hexmode<cr>
 " inoremap <C-H> <Esc>:Hexmode<cr>
 " vnoremap <C-H> :<C-U>Hexmode<cr>
 
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable automatic comment insertion
-
 
 " Function to diff current buffer with saved file
 
@@ -486,4 +497,7 @@ if !exists("*SetJavaOptions")
 endif
 
 autocmd FileType cmake set indentexpr=
+"
+ " Disable automatic comment insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
