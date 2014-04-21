@@ -389,7 +389,11 @@ endif
 
 if !exists("*ShowTortoiseHgLog")
   fun ShowTortoiseHgLog()
-    execute '!start thg log %'
+    if has("unix")
+      execute '!thg log %'
+    else
+      execute '!start thg log %'
+    endif
   endfun
 endif
 
@@ -401,7 +405,11 @@ endif
 
 if !exists("*ShowTortoiseHgVDiff")
   fun ShowTortoiseHgVDiff()
-    execute '!start thg vdiff %'
+    if has("unix")
+      execute '!thg vdiff %'
+    else
+      execute '!start thg vdiff %'
+    endif
   endfun
 endif
 
@@ -460,11 +468,11 @@ if has("gui_running")             " 'guifont' doesn't work in the console
       set columns=210
       set lines=78
     else
-      set columns=115
-      set lines=50
+      set columns=140
+      set lines=56
     endif
   else
-    set columns=115
+    set columns=140
     set lines=80
 
     if has("gui_gtk2")              " GTK+2 but not GTK+1

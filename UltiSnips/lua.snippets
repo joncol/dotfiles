@@ -1,0 +1,61 @@
+snippet !fun(ction)?! "New function" !br
+function ${1:name}(${2})
+	$0
+end
+endsnippet
+
+snippet forp "pair for loop" b
+for ${1:k}, ${2:v} in pairs(${3:table_name}) do
+	$0
+end
+endsnippet
+
+snippet fori "ipair for foop" !b
+for ${1:k}, ${2:v} in ipairs(${3:table_name}) do
+	$0
+end
+endsnippet
+
+snippet for "numeric for loop" !b
+for ${1:i}=${2:first}, ${3:last}${4/^..*/(?0:,:)/}${4:step} do
+	$0
+end
+endsnippet
+
+snippet /comp(onent)?/ "ECS component" !r
+local class = require("class")
+
+local ${1}_component = class()
+
+function $1_component:_init()
+	self.id = "$1"
+end
+
+return $1_component
+endsnippet
+
+snippet /sys(tem?)/ "ECS system" !r
+class = require("class")
+
+local ${1}_system = class()
+
+function $1_system:_init(engine)
+	self.id = "$1"
+	self.engine = engine
+end
+
+function $1_system:required_components()
+	return {"position", "velocity"}
+end
+
+function $1_system:update(dt)
+	nodes = self.engine.system_nodes[self.id]
+	if nodes then
+		for _, node in ipairs(nodes) do
+			pos, vel = unpack(node)
+		end
+	end
+end
+
+return $1_system
+endsnippet
