@@ -49,10 +49,10 @@ function $1_system:required_components()
 end
 
 function $1_system:update(dt)
-	nodes = self.engine.system_nodes[self.id]
+	local nodes = self.engine.system_nodes[self.id]
 	if nodes then
 		for _, node in ipairs(nodes) do
-			pos, vel = unpack(node)
+			local pos, vel = unpack(node)
 		end
 	end
 end
