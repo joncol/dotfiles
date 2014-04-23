@@ -23,10 +23,10 @@ for ${1:i}=${2:first}, ${3:last}${4/^..*/(?0:,:)/}${4:step} do
 end
 endsnippet
 
-snippet /comp(onent)?/ "ECS component" !r
+snippet /comp(onent)?/ "ECS component" !br
 local class = require("class")
 
-local ${1}_component = class()
+local ${1:`!p snip.rv = snip.basename.replace("_component", "", 1)`}_component = class()
 
 function $1_component:_init()
 	self.id = "$1"
@@ -35,25 +35,30 @@ end
 return $1_component
 endsnippet
 
-snippet /sys(tem?)/ "ECS system" !r
-class = require("class")
+snippet /sys(tem?)/ "ECS system" !br
+local class = require("class")
 
-local ${1}_system = class()
+local ${1:`!p snip.rv = snip.basename.replace("_system", "", 1)`}_system = class()
 
 function $1_system:_init(engine)
 	self.id = "$1"
 	self.engine = engine
+
+	-- values for current update
+	self.$2 = nil
+	self.$3 = nil
 end
 
 function $1_system:required_components()
-	return {"position", "velocity"}
+	return {"${2}", "${3}"}
 end
 
 function $1_system:update(dt)
 	local nodes = self.engine.system_nodes[self.id]
 	if nodes then
-		for _, node in ipairs(nodes) do
-			local pos, vel = unpack(node)
+		for entity_id, node in pairs(nodes) do
+			local $2, $3 = unpack(node)
+			${0}
 		end
 	end
 end
