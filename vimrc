@@ -364,7 +364,7 @@ if !exists("*ToggleHex")
   endfunction
 end
 
-nnoremap <C-H> :Hexmode<cr>
+" nnoremap <C-H> :Hexmode<cr>
 " inoremap <C-H> <Esc>:Hexmode<cr>
 " vnoremap <C-H> :<C-U>Hexmode<cr>
 

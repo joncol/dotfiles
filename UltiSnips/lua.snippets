@@ -24,7 +24,7 @@ end
 endsnippet
 
 snippet /comp(onent)?/ "ECS component" !br
-local class = require("class")
+local class = require("utils/class")
 
 local ${1:`!p snip.rv = snip.basename.replace("_component", "", 1)`}_component = class()
 
@@ -36,17 +36,13 @@ return $1_component
 endsnippet
 
 snippet /sys(tem?)/ "ECS system" !br
-local class = require("class")
+local class = require("utils/class")
 
 local ${1:`!p snip.rv = snip.basename.replace("_system", "", 1)`}_system = class()
 
 function $1_system:_init(engine)
 	self.id = "$1"
 	self.engine = engine
-
-	-- values for current update
-	self.$2 = nil
-	self.$3 = nil
 end
 
 function $1_system:required_components()
@@ -57,7 +53,7 @@ function $1_system:update(dt)
 	local nodes = self.engine.system_nodes[self.id]
 	if nodes then
 		for entity_id, node in pairs(nodes) do
-			local $2, $3 = unpack(node)
+			self.$2, self.$3 = unpack(node)
 			${0}
 		end
 	end
