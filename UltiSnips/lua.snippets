@@ -1,6 +1,6 @@
 snippet !fun(ction)?! "New function" !br
 function ${1:name}(${2})
-	$0
+	${VISUAL}
 end
 
 endsnippet
@@ -18,13 +18,13 @@ end
 endsnippet
 
 snippet for "numeric for loop" !b
-for ${1:i}=${2:first}, ${3:last}${4/^..*/(?0:,:)/}${4:step} do
+for ${1:i} = ${2:first}, ${3:last}${4/^..*/(?0:, :)/}${4:step} do
 	$0
 end
 endsnippet
 
 snippet /comp(onent)?/ "ECS component" !br
-local class = require("utils/class")
+local class = require("common/class")
 
 local ${1:`!p snip.rv = snip.basename.replace("_component", "", 1)`}_component = class()
 
@@ -36,7 +36,7 @@ return $1_component
 endsnippet
 
 snippet /sys(tem?)/ "ECS system" !br
-local class = require("utils/class")
+local class = require("common/class")
 
 local ${1:`!p snip.rv = snip.basename.replace("_system", "", 1)`}_system = class()
 
