@@ -38,7 +38,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'w0ng/vim-hybrid'
 
 " vim-scripts repos
-Bundle 'CSApprox'
+" Bundle 'CSApprox'
 Bundle 'ZoomWin'
 Bundle 'a.vim'
 Bundle 'matchit.zip'
@@ -205,10 +205,12 @@ let g:buffergator_viewport_split_policy="R"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsExpandTrigger="<tab>"
 
-"set t_Co=256
+" set t_Co=256
 set hlsearch
 "let g:solarized_bold=0
-colorscheme molokai
+if has("gui_running")
+  colorscheme molokai
+endif
 "set background=light
 "jellybeans
 
