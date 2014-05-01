@@ -11,7 +11,7 @@ endif
 " EGM log
 syn match logEntryId /\v^\d+/ nextgroup=logEntryTime
 syn region logEntryTime matchgroup=Comment start=/\v \| / end=/\v \|/ contained nextgroup=logBalance
-syn match logBalance /\v ((\$|THB)\d+(\,\d+)?(\.\d+)?)?/ contained nextgroup=logEntryStatus
+syn match logBalance /\v ((\$|Bs\.|THB)\d+(\,\d+)?(\.\d+)?)?/ contained nextgroup=logEntryStatus
 syn match logEntryStatus /\v \|\s+\d+/ contained nextgroup=logEntryType
 syn match logEntryType /\v \|\s+\d+/ contained nextgroup=logMsg
 syn region logMsg matchgroup=Comment start=/\v \|/ end=/\v\|/ contained nextgroup=logDetails
