@@ -108,17 +108,23 @@ vmap <Leader>a <Plug>(EasyAlign)
 " Start interactive EasyAlign with a Vim movement
 nmap <Leader>a <Plug>(EasyAlign)
 
-" Make tab work as indent in the beginning of lines, autocomplete otherwise
-function! InsertTabWrapper()
-  let col=col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v(release|debug)$'
+  \ }
 
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+if !exists("*InsertTabWrapper")
+  " Make tab work as indent in the beginning of lines, autocomplete otherwise
+  function InsertTabWrapper()
+    let col=col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+      return "\<tab>"
+    else
+      return "\<c-p>"
+    endif
+  endfunction
+
+  inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+end
 
 set hidden
 set modelines=0
@@ -250,47 +256,56 @@ endif
 " --------------------------------------------------
 
 filetype on
-au FileType c :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-au FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-au FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-au FileType log :setlocal nonumber
-au FileType markdown :setlocal textwidth=79 formatoptions+=t nonumber
-au FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-au FileType python :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-au FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-au FileType html :setlocal tabstop=2 shiftwidth=2 softtabstop=2
-au FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
-au FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
-au FileType ruby :nnoremap <leader>r :Ruby<cr>
-au FileType ruby :nnoremap <leader>s :RSpecTest<cr>
-au FileType ruby :nnoremap <leader>S :RSpecFile<cr>
-
-" autocmd FileType java set cino=j1,(0
-" autocmd FileType java :nnoremap <leader>T :!ant test<cr>
-
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-
-if s:uname=="Windows"
-  autocmd BufWritePost *.java silent! !start /B ctags -R .
-elseif has("unix")
-  autocmd BufWritePost *.java silent! ctags -R . &
-endif
-
-autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=syntax
-" au Syntax cs setlocal foldmethod=indent
-autocmd Syntax cs setlocal foldmethod=syntax
-autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
-
-autocmd BufRead,BufNewFile *.cif,*.cif.txt setfiletype cif
-autocmd BufRead,BufNewFile managed_*.log,global_*.log setfiletype managed_log
-autocmd BufRead,BufNewFile *-xgsos.*.log,horizon_*.log setfiletype xgsos_log
-autocmd BufRead,BufNewFile exceptions*.log setfiletype exceptions_log
-autocmd BufRead,BufNewFile *.log setfiletype log
-autocmd BufRead,BufNewFile *.xaml,*.msbuild setfiletype xml
-
-augroup BgHighlight
+augroup autocommands
   autocmd!
+
+  autocmd FileType c :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+  autocmd FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+  autocmd FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType log :setlocal nonumber
+  autocmd FileType markdown :setlocal textwidth=79 formatoptions+=t
+  autocmd FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType python :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType html :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+  autocmd FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType ruby :nnoremap <leader>r :Ruby<cr>
+  autocmd FileType ruby :nnoremap <leader>s :RSpecTest<cr>
+  autocmd FileType ruby :nnoremap <leader>S :RSpecFile<cr>
+
+"   This needs to be at the end of the file for some reason
+"
+"   autocmd FileType java set cino=j1,(0
+"   autocmd FileType java :nnoremap <leader>T :!ant test<cr>
+"
+"   set cino=j1,(0
+"   nnoremap <leader>T :!ant test<cr>
+"
+"   autocmd FileType cmake set indentexpr=
+"   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+  if s:uname=="Windows"
+    autocmd BufWritePost *.java silent! !start /B ctags -R .
+  elseif has("unix")
+    autocmd BufWritePost *.java silent! ctags -R . &
+  endif
+
+  autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=syntax
+  " au Syntax cs setlocal foldmethod=indent
+  autocmd Syntax cs setlocal foldmethod=syntax
+  autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
+
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.cif,*.cif.txt setfiletype cif
+  autocmd BufRead,BufNewFile managed_*.log,global_*.log setfiletype managed_log
+  autocmd BufRead,BufNewFile *-xgsos.*.log,horizon_*.log setfiletype xgsos_log
+  autocmd BufRead,BufNewFile exceptions*.log setfiletype exceptions_log
+  autocmd BufRead,BufNewFile *.log setfiletype log
+  autocmd BufRead,BufNewFile *.xaml,*.msbuild setfiletype xml
+
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
 augroup END
@@ -483,7 +498,10 @@ if has("gui_running")             " 'guifont' doesn't work in the console
       set guifont=Inconsolata:h12
     endif
 
-    autocmd GUIEnter * simalt ~X
+    augroup gui_au
+      autocmd!
+      autocmd GUIEnter * simalt ~X
+    augroup END
   endif
 
   if has('title')
@@ -497,16 +515,25 @@ filetype off
 filetype plugin indent on
 syntax on
 
-autocmd FileType java call SetJavaOptions()
+" For some reason, this needs to be put here to have effect
+augroup more_au
+  autocmd!
 
-if !exists("*SetJavaOptions")
-  function SetJavaOptions()
-    set cino=j1,(0
-    nnoremap <leader>T :!ant test<cr>
-  endfun
-endif
+  autocmd FileType java set cino=j1,(0
+  autocmd FileType java nnoremap <leader>T :!ant test<cr>
 
-autocmd FileType cmake set indentexpr=
-" Disable automatic comment insertion
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+"   autocmd FileType java call SetJavaOptions()
+"
+"   if !exists("*SetJavaOptions")
+"     function SetJavaOptions()
+"       set cino=j1,(0
+"       nnoremap <leader>T :!ant test<cr>
+"     endfun
+"   endif
+
+  autocmd FileType cmake set indentexpr=
+
+  " Disable automatic comment insertion
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
 
