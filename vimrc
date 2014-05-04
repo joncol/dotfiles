@@ -308,6 +308,9 @@ augroup autocommands
 
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
+  autocmd BufWinEnter * set number
+  autocmd BufWinEnter * set foldlevel=999
+  autocmd BufWinLeave * set nonumber
 augroup END
 
 " --------------------------------------------------
