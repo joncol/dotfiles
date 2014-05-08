@@ -109,7 +109,7 @@ vmap <Leader>a <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v(release|debug)$'
+  \ 'dir': '\v(release|debug|data)$'
   \ }
 
 if !exists("*InsertTabWrapper")
