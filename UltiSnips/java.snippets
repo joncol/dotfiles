@@ -41,3 +41,37 @@ snippet spf "StdOut.printf" b
 StdOut.printf("$1\n");$0
 endsnippet
 
+snippet testfile "jUnit test" b
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import java.util.Iterator;
+
+/**
+ * Tests for ${1}.
+ *
+ * @author jonas.collberg@gmail.com (Jonas Collberg)
+ */
+public class Test$1 {
+	@BeforeClass
+	public static void fixtureSetUp() {
+	}
+
+	@Before
+	public void setUp() {
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void ${2:testName}() {
+		assertThat(true, is(true));
+		assertThat(null, is(nullValue()));
+	}
+}
+endsnippet
+
+snippet /elap(s(e(d)?)?)?/ "get elapsed time" br
+Stopwatch stopwatch = new Stopwatch();
+StdOut.printf("Elapsed time: %f (s)\n", stopwatch.elapsedTime());
+endsnippet
+

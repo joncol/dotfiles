@@ -108,6 +108,17 @@ vmap <Leader>a <Plug>(EasyAlign)
 " Start interactive EasyAlign with a Vim movement
 nmap <Leader>a <Plug>(EasyAlign)
 
+" if !exists(":bb")
+"   command -bar Hexmode call ToggleHex()
+" endif
+
+if !exists("*AltBufferAndDeleteCurrent")
+  function AltBufferAndDeleteCurrent()
+    b#
+    bd#
+  endfunction
+end
+
 let g:ctrlp_custom_ignore = {
   \ 'dir': '\v(release|debug)$'
   \ }
@@ -135,8 +146,10 @@ set softtabstop=4
 set shiftround
 set autoindent
 set smartindent
-set expandtab
-set smarttab
+if !exists("g:vim_initialized")
+  set expandtab
+  set smarttab
+end
 set cino=:0,g0,(0,N-s
 set foldmethod=syntax
 set foldlevelstart=20
@@ -154,6 +167,9 @@ set list
 set listchars=trail:·,precedes:«,extends:»,tab:»·
 
 if s:uname != "Darwin"
+  " Navigate help
+  noremap <c-¨> <c-]>
+
   nnoremap <a-s-l> :NERDTree<cr>
   nnoremap <a-o> :A<cr> 
   inoremap <a-o> <esc>:A<cr> 
@@ -257,25 +273,27 @@ endif
 
 filetype on
 
+augroup filetypes
+  autocmd!
+  autocmd FileType c setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+  autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+  autocmd FileType cs setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType log setlocal nonumber
+  autocmd FileType markdown setlocal textwidth=79 formatoptions+=t
+  autocmd FileType objc setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType xml setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType vim setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+  autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType ruby nnoremap <leader>r :Ruby<cr>
+  autocmd FileType ruby nnoremap <leader>s :RSpecTest<cr>
+  autocmd FileType ruby nnoremap <leader>S :RSpecFile<cr>
+augroup END
+
 augroup autocommands
   autocmd!
-
-  autocmd FileType c :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-  autocmd FileType cpp :setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-  autocmd FileType cs :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType log :setlocal nonumber
-  autocmd FileType markdown :setlocal textwidth=79 formatoptions+=t
-  autocmd FileType objc :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType python :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType xml :setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType html :setlocal tabstop=2 shiftwidth=2 softtabstop=2
-  autocmd FileType vim :setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
-  autocmd FileType ruby :setlocal tabstop=2 shiftwidth=2 softtabstop=2
-  autocmd FileType ruby :nnoremap <leader>r :Ruby<cr>
-  autocmd FileType ruby :nnoremap <leader>s :RSpecTest<cr>
-  autocmd FileType ruby :nnoremap <leader>S :RSpecFile<cr>
-
 "   This needs to be at the end of the file for some reason
 "
 "   autocmd FileType java set cino=j1,(0
@@ -309,8 +327,8 @@ augroup autocommands
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
   autocmd BufWinEnter * set number
-  autocmd BufWinEnter * set foldlevel=999
   autocmd BufWinLeave * set nonumber
+  autocmd BufWinEnter * set foldlevel=999
 augroup END
 
 " --------------------------------------------------
@@ -419,21 +437,21 @@ endif
 
 nnoremap <leader>tl :TortoiseHgLog<cr>
 
-if !exists(":TortoiseHgVDiff")
-  command TortoiseHgVDiff call ShowTortoiseHgVDiff()
+if !exists(":HgOpenDiffCommand")
+  command HgOpenDiffCommand call HgOpenDiff()
 endif
 
-if !exists("*ShowTortoiseHgVDiff")
-  fun ShowTortoiseHgVDiff()
+if !exists("*HgOpenDiff")
+  fun HgOpenDiff()
     if has("unix")
-      execute '!thg vdiff %'
+      execute '!hg opendiff %'
     else
-      execute '!start thg vdiff %'
+      execute '!start hg opendiff %'
     endif
   endfun
 endif
 
-nnoremap <leader>td :TortoiseHgVDiff<cr>
+nnoremap <leader>td :HgOpenDiffCommand<cr>
 
 if !exists(":MakeCheck")
   command MakeCheck call RunMakeCheck()
@@ -540,3 +558,4 @@ augroup more_au
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 
+let g:vim_initialized = 1
