@@ -322,7 +322,7 @@ augroup autocommands
   autocmd BufRead,BufNewFile *-xgsos.*.log,horizon_*.log setfiletype xgsos_log
   autocmd BufRead,BufNewFile exceptions*.log setfiletype exceptions_log
   autocmd BufRead,BufNewFile *.log setfiletype log
-  autocmd BufRead,BufNewFile *.xaml,*.msbuild setfiletype xml
+  autocmd BufRead,BufNewFile *.xaml,*.msbuild,*.targets setfiletype xml
 
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
