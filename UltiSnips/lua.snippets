@@ -61,3 +61,10 @@ end
 
 return $1_system
 endsnippet
+
+snippet /ev(e(n(t)?)?)?/ "ECS event handler" !br
+function ${1:`!p snip.rv = snip.basename`}:event(entity_id, name, ...)
+	${0}
+end
+
+endsnippet
