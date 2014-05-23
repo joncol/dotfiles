@@ -112,6 +112,9 @@ nmap <Leader>a <Plug>(EasyAlign)
 "   command -bar Hexmode call ToggleHex()
 " endif
 
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
 if !exists("*AltBufferAndDeleteCurrent")
   function AltBufferAndDeleteCurrent()
     b#
