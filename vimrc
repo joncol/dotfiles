@@ -293,6 +293,8 @@ augroup filetypes
   autocmd FileType ruby nnoremap <leader>r :Ruby<cr>
   autocmd FileType ruby nnoremap <leader>s :RSpecTest<cr>
   autocmd FileType ruby nnoremap <leader>S :RSpecFile<cr>
+
+  autocmd FileType lua nnoremap <leader>s :BustedFile<cr>
 augroup END
 
 augroup autocommands
@@ -460,23 +462,14 @@ if !exists(":MakeCheck")
   command MakeCheck call RunMakeCheck()
 endif
 
-if !exists(":Ruby")
-  command Ruby call RunRuby()
-endif
-
-if !exists(":RSpecTest")
-  command RSpecTest call RunRSpecTest()
-endif
-
-if !exists(":RSpecFile")
-  command RSpecFile call RunRSpecFile()
-endif
-
-
 if !exists("*RunMakeCheck")
   fun RunMakeCheck()
     execute '!make check'
   endfun
+endif
+
+if !exists(":Ruby")
+  command Ruby call RunRuby()
 endif
 
 if !exists("*RunRuby")
@@ -485,15 +478,33 @@ if !exists("*RunRuby")
   endfun
 endif
 
+if !exists(":RSpecTest")
+  command RSpecTest call RunRSpecTest()
+endif
+
 if !exists("*RunRSpecTest")
   fun RunRSpecTest()
     execute '!spec ' . expand('%') . ':' . line('.')
   endfun
 endif
 
+if !exists(":RSpecFile")
+  command RSpecFile call RunRSpecFile()
+endif
+
 if !exists("*RunRSpecFile")
   fun RunRSpecFile()
     execute '!spec ' . expand('%')
+  endfun
+endif
+
+if !exists(":BustedFile")
+  command BustedFile call RunBustedFile()
+endif
+
+if !exists("*RunBustedFile")
+  fun RunBustedFile()
+    execute '!busted ' . expand('%')
   endfun
 endif
 
