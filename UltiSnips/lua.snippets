@@ -23,7 +23,7 @@ for ${1:i} = ${2:first}, ${3:last}${4/^..*/(?0:, :)/}${4:step} do
 end
 endsnippet
 
-snippet /comp(onent)?/ "ECS component" !br
+snippet comp "ECS component" !b
 local class = require("common/class")
 
 local ${1:`!p snip.rv = snip.basename.replace("_component", "", 1)`}_component = class()
@@ -62,17 +62,18 @@ end
 return $1_system
 endsnippet
 
-snippet /ev(e(n(t)?)?)?/ "ECS event handler" !br
+snippet ev "ECS event handler" !b
 function ${1:`!p snip.rv = snip.basename`}:event(entity_id, name, ...)
 	${0}
 end
 
 endsnippet
 
-snippet /desc(r(i(be?)?)?)?/ "Busted spec description" !br
+snippet desc "Busted spec description" !b
 describe("${1:`!p snip.rv = snip.basename.replace("_spec", "", 1)`}", function()
 
 	it("${2}", function()
+		$0
 	end)
 
 end)
@@ -80,7 +81,21 @@ end)
 endsnippet
 
 snippet it "Busted spec" !b
-	it("${1}", function()
-	end)
+it("${1}", function()
+	$0
+end)
 
 endsnippet
+
+snippet be "Busted before_each" !b
+before_each(function()
+	$0
+end)
+endsnippet
+
+snippet ae "Busted after_each" !b
+after_each(function()
+	$0
+end)
+endsnippet
+
