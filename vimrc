@@ -123,7 +123,7 @@ if !exists("*AltBufferAndDeleteCurrent")
 end
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v(release|debug|data)$'
+  \ 'dir': '\v(release|debug|data|assets)$'
   \ }
 
 if !exists("*InsertTabWrapper")
@@ -449,7 +449,7 @@ if !exists("*HgOpenDiff")
     if has("unix")
       execute '!hg opendiff %'
     else
-      execute '!start hg opendiff %'
+      execute '!start thg vdiff %'
     endif
   endfun
 endif

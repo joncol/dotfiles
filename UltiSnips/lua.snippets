@@ -68,3 +68,19 @@ function ${1:`!p snip.rv = snip.basename`}:event(entity_id, name, ...)
 end
 
 endsnippet
+
+snippet /desc(r(i(be?)?)?)?/ "Busted spec description" !br
+describe("${1:`!p snip.rv = snip.basename.replace("_spec", "", 1)`}", function()
+
+	it("${2}", function()
+	end)
+
+end)
+
+endsnippet
+
+snippet it "Busted spec" !b
+	it("${1}", function()
+	end)
+
+endsnippet
