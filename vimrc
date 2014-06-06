@@ -41,6 +41,7 @@ Bundle 'w0ng/vim-hybrid'
 " Bundle 'CSApprox'
 Bundle 'ZoomWin'
 Bundle 'a.vim'
+Bundle 'glsl.vim'
 Bundle 'matchit.zip'
 Bundle 'ruby-matchit'
 Bundle 'tComment'
@@ -327,7 +328,8 @@ augroup autocommands
   autocmd BufRead,BufNewFile *-xgsos.*.log,horizon_*.log setfiletype xgsos_log
   autocmd BufRead,BufNewFile exceptions*.log setfiletype exceptions_log
   autocmd BufRead,BufNewFile *.log setfiletype log
-  autocmd BufRead,BufNewFile *.xaml,*.msbuild,*.targets setfiletype xml
+  autocmd BufRead,BufNewFile *.xaml,*.msbuild,*.targets,*.plist setfiletype xml
+  autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setfiletype glsl
 
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
