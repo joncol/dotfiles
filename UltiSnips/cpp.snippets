@@ -55,3 +55,50 @@ endsnippet
 snippet cov "std::cout variable"
 std::cout << "${1}: " << $1 << "\n";
 endsnippet
+
+snippet wrap "Lua wrapper file"
+#include <lua/luax.h>
+
+#include <lua.hpp>
+#include <lauxlib.h>
+#include <lualib.h>
+
+#include <boost/algorithm/string.hpp>
+#include <boost/filesystem.hpp>
+
+#include <cassert>
+#include <iostream>
+#include <memory>
+
+namespace ${1:`!p snip.rv = snip.basename.replace("wrap_", "", 1) or "name"`} {
+
+$1* instance = nullptr;
+
+namespace fs = boost::filesystem;
+
+int w_${2}(lua_State* l);
+
+int event_instance_gc(lua_State* l);
+
+static const luaL_Reg functions[] =
+{
+	{ "$2", w_$2 },
+	{ nullptr, nullptr }
+};
+
+extern "C" int luaopen_app_$1(lua_State* l)
+{
+	instance = &$1::get_instance();
+
+	luaL_register(l, "app.$1", functions); // Lua 5.1
+	// luaL_newlib(l, functions); // Lua 5.2
+	return 1;
+}
+
+int w_$2(lua_State* l)
+{
+	return 0;
+}
+
+}
+endsnippet

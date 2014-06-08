@@ -210,7 +210,7 @@ map <Leader>h <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>l <Plug>(easymotion-linebackward)
-let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 
 set ignorecase
 set smartcase
@@ -266,6 +266,7 @@ call tcomment#DefineType('ant', g:tcommentInlineXML)
 call tcomment#DefineType('ant_block', g:tcommentBlockXML)
 call tcomment#DefineType('ant_inline', g:tcommentInlineXML)
 call tcomment#DefineType('java', '// %s')
+call tcomment#DefineType('glsl', '// %s')
 
 if has("win32") || has("win16")
   set grepprg=grep\ -n
