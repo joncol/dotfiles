@@ -41,6 +41,7 @@ Bundle 'w0ng/vim-hybrid'
 " Bundle 'CSApprox'
 Bundle 'ZoomWin'
 Bundle 'a.vim'
+Bundle 'actionscript.vim'
 Bundle 'glsl.vim'
 Bundle 'matchit.zip'
 Bundle 'ruby-matchit'
@@ -331,6 +332,7 @@ augroup autocommands
   autocmd BufRead,BufNewFile *.log setfiletype log
   autocmd BufRead,BufNewFile *.xaml,*.msbuild,*.targets,*.plist setfiletype xml
   autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setfiletype glsl
+  autocmd BufRead,BufNewFile *.as set filetype=actionscript
 
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
