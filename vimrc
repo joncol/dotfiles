@@ -44,7 +44,7 @@ Bundle 'a.vim'
 Bundle 'actionscript.vim'
 Bundle 'glsl.vim'
 Bundle 'matchit.zip'
-Bundle 'ruby-matchit'
+" Bundle 'ruby-matchit'
 Bundle 'tComment'
 Bundle 'visualrepeat'
 
@@ -114,7 +114,9 @@ nmap <Leader>a <Plug>(EasyAlign)
 "   command -bar Hexmode call ToggleHex()
 " endif
 
-autocmd VimEnter * NERDTree
+if has("gui_running")
+  autocmd VimEnter * NERDTree
+endif
 autocmd VimEnter * wincmd p
 
 if !exists("*AltBufferAndDeleteCurrent")
