@@ -254,6 +254,8 @@ set guioptions-=L " no left scrollbar
 let g:Powerline_symbols='unicode'
 set laststatus=2 " always show status line
 
+set nojoinspaces
+
 "let g:showmarks_include="abcdefzxABJio"
 
 "if &term=~'^xterm'
