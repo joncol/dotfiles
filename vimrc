@@ -81,6 +81,7 @@ nnoremap <s-f1> :cc<cr>
 "nnoremap <s-f3> :cpfile<cr>
 nnoremap <f4> :cnext<cr>
 nnoremap <s-f4> :cprev<cr>
+nnoremap <f5> :let @+=fnamemodify(@%, ":p")<cr>
 
 let $XMLLINT_INDENT="    "
 nnoremap <leader>lf <esc>:1,$!xmllint --format -<cr>
@@ -238,7 +239,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 set hlsearch
 "let g:solarized_bold=0
 if has("gui_running")
-  colorscheme molokai
+  colorscheme solarized
 endif
 "set background=light
 "jellybeans
