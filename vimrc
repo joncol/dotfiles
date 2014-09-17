@@ -82,6 +82,7 @@ nnoremap <s-f1> :cc<cr>
 nnoremap <f4> :cnext<cr>
 nnoremap <s-f4> :cprev<cr>
 nnoremap <f5> :let @+=fnamemodify(@%, ":p")<cr>
+nnoremap <f12> "zyiw :exe "vimgrep /" . @z . "/ **/*." . fnamemodify(@%, ":e") . "" <cr> :cope <cr>
 
 let $XMLLINT_INDENT="    "
 nnoremap <leader>lf <esc>:1,$!xmllint --format -<cr>
@@ -173,6 +174,9 @@ set wildmenu
 set t_vb=
 set list
 set listchars=trail:·,precedes:«,extends:»,tab:»·
+
+set splitright
+set splitbelow
 
 if s:uname != "Darwin"
   " Navigate help
