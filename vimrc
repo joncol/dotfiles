@@ -16,14 +16,16 @@ Bundle 'gmarik/Vundle.vim'
 Bundle '29decibel/codeschool-vim-theme'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'ervandew/supertab'
 Bundle 'SirVer/ultisnips'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chrisbra/NrrwRgn'
+Bundle 'digitaltoad/vim-jade'
 Bundle 'elzr/vim-json'
+Bundle 'ervandew/supertab'
 Bundle 'honza/vim-snippets'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'junegunn/vim-easy-align'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'othree/html5.vim'
@@ -36,6 +38,7 @@ Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'wavded/vim-stylus'
 
 " vim-scripts repos
 " Bundle 'CSApprox'
@@ -84,6 +87,12 @@ nnoremap <s-f4> :cprev<cr>
 nnoremap <f5> :let @+=fnamemodify(@%, ":p")<cr>
 nnoremap <f12> "zyiw :exe "vimgrep /" . @z . "/ **/*." . fnamemodify(@%, ":e") . "" <cr> :cope <cr>
 
+nnoremap <f5> "=strftime("%Y-%m-%d")<cr>P
+inoremap <f5> <c-r>=strftime("%Y-%m-%d")<cr>
+
+nnoremap <s-f5> "=strftime("%H:%M:%S")<cr>P
+inoremap <s-f5> <c-r>=strftime("%H:%M:%S")<cr>
+
 let $XMLLINT_INDENT="    "
 nnoremap <leader>lf <esc>:1,$!xmllint --format -<cr>
 nnoremap <leader>lv <esc>:%w !xmllint --noout --valid -<cr>
@@ -119,6 +128,7 @@ nmap <Leader>a <Plug>(EasyAlign)
 if has("gui_running")
   autocmd VimEnter * NERDTree
 endif
+
 autocmd VimEnter * wincmd p
 
 if !exists("*AltBufferAndDeleteCurrent")
@@ -129,7 +139,7 @@ if !exists("*AltBufferAndDeleteCurrent")
 end
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v(release|debug|data|assets)$'
+  \ 'dir': '\v(release|debug|data|assets|node_modules)$'
   \ }
 
 if !exists("*InsertTabWrapper")
@@ -277,6 +287,7 @@ call tcomment#DefineType('ant_block', g:tcommentBlockXML)
 call tcomment#DefineType('ant_inline', g:tcommentInlineXML)
 call tcomment#DefineType('java', '// %s')
 call tcomment#DefineType('glsl', '// %s')
+call tcomment#DefineType('coffeescript_block', '###%s###')
 
 if has("win32") || has("win16")
   set grepprg=grep\ -n
@@ -300,6 +311,9 @@ augroup filetypes
   autocmd FileType xml setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
   autocmd FileType vim setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType jade setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType stylus setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
   autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
   autocmd FileType ruby nnoremap <leader>r :Ruby<cr>
@@ -307,6 +321,8 @@ augroup filetypes
   autocmd FileType ruby nnoremap <leader>S :RSpecFile<cr>
 
   autocmd FileType lua nnoremap <leader>s :BustedFile<cr>
+
+  autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
 augroup END
 
 augroup autocommands
