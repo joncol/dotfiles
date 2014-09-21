@@ -27,6 +27,7 @@ Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'ntpeters/vim-better-whitespace'
 Bundle 'othree/html5.vim'
@@ -189,6 +190,8 @@ set listchars=trail:·,precedes:«,extends:»,tab:»·
 set splitright
 set splitbelow
 
+set wildignore+=node_modules/**
+
 if s:uname != "Darwin"
   " Navigate help
   noremap <c-¨> <c-]>
@@ -322,6 +325,8 @@ augroup filetypes
   autocmd FileType ruby nnoremap <leader>S :RSpecFile<cr>
 
   autocmd FileType lua nnoremap <leader>s :BustedFile<cr>
+
+  autocmd FileType javascript nnoremap <leader>l :!jslint %<cr>
 
   autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
 augroup END
