@@ -29,7 +29,6 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'nanotech/jellybeans.vim'
-Bundle 'ntpeters/vim-better-whitespace'
 Bundle 'othree/html5.vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'scrooloose/nerdtree'
@@ -198,8 +197,8 @@ if s:uname != "Darwin"
   noremap <c-¨> <c-]>
 
   nnoremap <a-s-l> :NERDTree<cr>
-  nnoremap <a-o> :A<cr> 
-  inoremap <a-o> <esc>:A<cr> 
+  nnoremap <a-o> :A<cr>
+  inoremap <a-o> <esc>:A<cr>
 endif
 
 set titlestring=%f title
@@ -253,6 +252,12 @@ let g:buffergator_autoexpand_on_split=0
 let g:buffergator_viewport_split_policy="R"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsExpandTrigger="<tab>"
+
+syn match extraWhitespace /\s\+$/
+autocmd ColorScheme * highlight extraWhitespace ctermbg=red guibg=red
+" match trailing whitespace, except when typing at the end of a line
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
 " set t_Co=256
 set hlsearch
