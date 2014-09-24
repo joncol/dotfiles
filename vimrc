@@ -16,6 +16,7 @@ Bundle 'gmarik/Vundle.vim'
 Bundle '29decibel/codeschool-vim-theme'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'Raimondi/delimitMate'
 Bundle 'SirVer/ultisnips'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chrisbra/NrrwRgn'
@@ -109,6 +110,8 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_java_javac_custom_classpath_command=
       \ "ant -q path | grep echo | cut -f2- -d] | tr -d ' ' | tr -d '\033' | sed -e s/[[]m$//"
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
+let g:ack_default_options = " -H --nocolor --nogroup --column"
 
 nnoremap <leader>ln :lnext<cr>
 nnoremap <leader>lp :lprevious<cr>
