@@ -503,6 +503,22 @@ endif
 
 nnoremap <leader>td :HgOpenDiffCommand<cr>
 
+if !exists(":TortoiseHgAnnotate")
+  command TortoiseHgAnnotate call ShowTortoiseHgAnnotate()
+endif
+
+if !exists("*ShowTortoiseHgAnnotate")
+  fun ShowTortoiseHgAnnotate()
+    if has("unix")
+      execute '!thg annotate %'
+    else
+      execute '!start thg annotate %'
+    endif
+  endfun
+endif
+
+nnoremap <leader>ta :TortoiseHgAnnotate<cr>
+
 if !exists(":MakeCheck")
   command MakeCheck call RunMakeCheck()
 endif
