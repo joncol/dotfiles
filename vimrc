@@ -19,19 +19,23 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'chilicuil/vim-sml-coursera'
 Plugin 'chrisbra/NrrwRgn'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'elzr/vim-json'
 Plugin 'ervandew/supertab'
 Plugin 'honza/vim-snippets'
 Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mileszs/ack.vim'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -147,7 +151,7 @@ if !exists("*AltBufferAndDeleteCurrent")
 end
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v(release|debug|data|assets|node_modules)$'
+  \ 'dir': '\v(release|debug|data|assets|node_modules|dist)$'
   \ }
 
 if !exists("*InsertTabWrapper")
