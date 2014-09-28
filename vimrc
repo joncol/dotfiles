@@ -237,12 +237,12 @@ set colorcolumn=81
 " omap / <Plug>(easymotion-tn)
 " map n <Plug>(easymotion-next)
 " map N <Plug>(easymotion-prev)
-let g:EasyMotion_smartcase = 1
+let g:EasyMotion_smartcase=1
 map <Leader>h <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>l <Plug>(easymotion-linebackward)
-let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+let g:EasyMotion_startofline=0 " keep cursor column when JK motion
 
 set ignorecase
 set smartcase
