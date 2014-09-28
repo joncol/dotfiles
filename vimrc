@@ -118,7 +118,7 @@ let g:syntastic_java_javac_custom_classpath_command=
       \ "ant -q path | grep echo | cut -f2- -d] | tr -d ' ' | tr -d '\033' | sed -e s/[[]m$//"
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
-let g:ack_default_options = " -H --nocolor --nogroup --column"
+let g:ack_default_options = " -H --nocolor --nogroup --column --ignore-dir={node_modules,bower_components,dist}"
 
 nnoremap <leader>ln :lnext<cr>
 nnoremap <leader>lp :lprevious<cr>
@@ -151,7 +151,7 @@ if !exists("*AltBufferAndDeleteCurrent")
 end
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v(release|debug|data|assets|node_modules|dist)$'
+  \ 'dir': '\v(release|debug|data|assets|node_modules|bower_components|dist)$'
   \ }
 
 if !exists("*InsertTabWrapper")
