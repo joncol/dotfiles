@@ -274,7 +274,7 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 set hlsearch
 "let g:solarized_bold=0
 if has("gui_running")
-  colorscheme mustang
+  colorscheme solarized
 endif
 "set background=light
 "jellybeans
