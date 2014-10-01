@@ -21,6 +21,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'chilicuil/vim-sml-coursera'
 Plugin 'chrisbra/NrrwRgn'
+Plugin 'croaker/mustang-vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'elzr/vim-json'
 Plugin 'ervandew/supertab'
@@ -273,7 +274,7 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 set hlsearch
 "let g:solarized_bold=0
 if has("gui_running")
-  colorscheme solarized
+  colorscheme mustang
 endif
 "set background=light
 "jellybeans
