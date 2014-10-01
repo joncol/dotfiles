@@ -95,7 +95,7 @@ nnoremap <f4> :cnext<cr>
 nnoremap <s-f4> :cprev<cr>
 nnoremap <f5> :let @+=fnamemodify(@%, ":p")<cr>
 " nnoremap <f12> "zyiw :exe "vimgrep /" . @z . "/ **/*." . fnamemodify(@%, ":e") . "" <cr> :cope <cr>
-nnoremap <f12> "zyiw :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"" . @z . "\"" <cr> :cope <cr>
+nnoremap <f12> "zyiw :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"\\b" . @z . "\\b\"" <cr> :cope <cr>
 
 nnoremap <f5> "=strftime("%Y-%m-%d")<cr>P
 inoremap <f5> <c-r>=strftime("%Y-%m-%d")<cr>
