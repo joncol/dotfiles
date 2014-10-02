@@ -32,6 +32,7 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ludovicchabant/vim-lawrencium'
+Plugin 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -48,6 +49,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'wavded/vim-stylus'
 
@@ -142,6 +144,9 @@ nmap <Leader>a <Plug>(EasyAlign)
 " if !exists(":bb")
 "   command -bar Hexmode call ToggleHex()
 " endif
+
+nnoremap <leader>. :CtrlPTag<cr>
+nmap <f8> :TagbarToggle<cr>
 
 if has("gui_running")
   autocmd VimEnter * NERDTree
