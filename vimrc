@@ -122,6 +122,10 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 
 let g:ack_default_options = " -H --nocolor --nogroup --column --ignore-dir={node_modules,bower_components,dist}"
 
+let g:yankring_replace_n_pkey = "<c-k>"
+let g:yankring_replace_n_nkey = "<c-j>"
+nnoremap <silent> <leader>y :YRShow<cr>
+
 nnoremap <leader>ln :lnext<cr>
 nnoremap <leader>lp :lprevious<cr>
 nnoremap <leader>lN :lprevious<cr>
@@ -554,7 +558,7 @@ endif
 
 if !exists("*RunRSpecTest")
   fun RunRSpecTest()
-    execute '!spec ' . expand('%') . ':' . line('.')
+    execute 'vsp new | silent r !spec ' . expand('%') . ':' . line('.')
   endfun
 endif
 
@@ -564,7 +568,7 @@ endif
 
 if !exists("*RunRSpecFile")
   fun RunRSpecFile()
-    execute '!spec ' . expand('%')
+    execute 'vsp new | silent r !spec ' . expand('%')
   endfun
 endif
 
