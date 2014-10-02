@@ -558,7 +558,7 @@ endif
 
 if !exists("*RunRSpecTest")
   fun RunRSpecTest()
-    execute 'vsp new | silent r !spec ' . expand('%') . ':' . line('.')
+    execute '!spec ' . expand('%') . ':' . line('.')
   endfun
 endif
 
@@ -568,7 +568,7 @@ endif
 
 if !exists("*RunRSpecFile")
   fun RunRSpecFile()
-    execute 'vsp new | silent r !spec ' . expand('%')
+    execute '!spec ' . expand('%')
   endfun
 endif
 
