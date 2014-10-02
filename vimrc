@@ -48,6 +48,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'vim-scripts/YankRing.vim'
 Plugin 'wavded/vim-stylus'
 
 " vim-scripts repos
