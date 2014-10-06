@@ -21,6 +21,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'chilicuil/vim-sml-coursera'
 Plugin 'chrisbra/NrrwRgn'
+Plugin 'ciaranm/inkpot'
 Plugin 'croaker/mustang-vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'elzr/vim-json'
@@ -34,6 +35,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'othree/html5.vim'
@@ -41,6 +43,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'sickill/vim-monokai'
 Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-eunuch'
@@ -48,9 +51,12 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'w0ng/vim-hybrid'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/BusyBee'
 Plugin 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/phd'
+Plugin 'vim-scripts/summerfruit256.vim'
+Plugin 'w0ng/vim-hybrid'
 Plugin 'wavded/vim-stylus'
 
 " vim-scripts repos
@@ -373,8 +379,10 @@ augroup autocommands
 
   if s:uname=="Windows"
     autocmd BufWritePost *.java silent! !start /B ctags -R .
+    autocmd BufWritePost *.rb silent! !start /B ctags -a %
   elseif has("unix")
     autocmd BufWritePost *.java silent! ctags -R . &
+    autocmd BufWritePost *.rb silent! ctags -a % &
   endif
 
   autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=syntax
