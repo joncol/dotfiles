@@ -29,6 +29,7 @@ Plugin 'ervandew/supertab'
 Plugin 'honza/vim-snippets'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'jonathanfilip/vim-lucius'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
@@ -44,6 +45,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sickill/vim-monokai'
+Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-eunuch'
@@ -54,6 +56,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/BusyBee'
 Plugin 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/darktango.vim'
 Plugin 'vim-scripts/phd'
 Plugin 'vim-scripts/summerfruit256.vim'
 Plugin 'w0ng/vim-hybrid'
@@ -290,7 +293,7 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 set hlsearch
 "let g:solarized_bold=0
 if has("gui_running")
-  colorscheme solarized
+  colorscheme gruvbox
 endif
 "set background=light
 "jellybeans
