@@ -92,8 +92,8 @@ nnoremap <leader>es :UltiSnipsEdit<cr>
 
 nnoremap <space> @q
 
-nnoremap <c-space> i
-inoremap <c-space> <esc>
+" nnoremap <c-space> i
+" inoremap <c-space> <esc>
 
 " nnoremap <s-enter> O<esc>
 " nnoremap <cr> o<esc>
@@ -143,6 +143,8 @@ nnoremap <leader>lN :lprevious<cr>
 
 inoremap <expr> j ((pumvisible())?("\<c-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<c-p>"):("k"))
+
+imap <c-space> <Plug>delimitMateS-Tab
 
 " Start interactive EasyAlign in visual mode
 vmap <Leader>a <Plug>(EasyAlign)
