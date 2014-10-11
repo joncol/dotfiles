@@ -90,7 +90,7 @@ nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 nnoremap <leader>es :UltiSnipsEdit<cr>
 
-nnoremap <space> @q
+inoremap <s-space> <space>
 
 " nnoremap <c-space> i
 " inoremap <c-space> <esc>
