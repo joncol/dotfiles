@@ -365,6 +365,8 @@ augroup filetypes
   autocmd FileType javascript nnoremap <leader>l :!jslint %<cr>
 
   autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+  autocmd FileType sml nnoremap <leader>s :call SmlFile()<cr>
 augroup END
 
 augroup autocommands
@@ -498,8 +500,6 @@ endfunction
 com! DiffSaved call s:DiffWithSaved()
 
 
-" TortoiseHg functions
-
 if !exists(":TortoiseHgLog")
   command TortoiseHgLog call ShowTortoiseHgLog()
 endif
@@ -595,6 +595,12 @@ endif
 if !exists("*RunBustedFile")
   fun RunBustedFile()
     execute '!busted ' . expand('%')
+  endfun
+endif
+
+if !exists('*SmlFile')
+  fun SmlFile()
+    execute '!sml ' . expand('%')
   endfun
 endif
 
