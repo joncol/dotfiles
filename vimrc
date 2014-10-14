@@ -91,10 +91,10 @@ nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 nnoremap <leader>es :UltiSnipsEdit<cr>
 
-nnoremap <space> @q
+inoremap <s-space> <space>
 
-nnoremap <c-space> i
-inoremap <c-space> <esc>
+" nnoremap <c-space> i
+" inoremap <c-space> <esc>
 
 " nnoremap <s-enter> O<esc>
 " nnoremap <cr> o<esc>
@@ -145,6 +145,8 @@ nnoremap <leader>lN :lprevious<cr>
 
 inoremap <expr> j ((pumvisible())?("\<c-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<c-p>"):("k"))
+
+imap <c-space> <Plug>delimitMateS-Tab
 
 " Start interactive EasyAlign in visual mode
 vmap <Leader>a <Plug>(EasyAlign)
@@ -367,6 +369,8 @@ augroup filetypes
   autocmd FileType javascript nnoremap <leader>l :!jslint %<cr>
 
   autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+  autocmd FileType sml nnoremap <leader>s :call SmlFile()<cr>
 augroup END
 
 augroup autocommands
@@ -490,8 +494,6 @@ endfunction
 com! DiffSaved call s:DiffWithSaved()
 
 
-" TortoiseHg functions
-
 if !exists(":TortoiseHgLog")
   command TortoiseHgLog call ShowTortoiseHgLog()
 endif
@@ -587,6 +589,12 @@ endif
 if !exists("*RunBustedFile")
   fun RunBustedFile()
     execute '!busted ' . expand('%')
+  endfun
+endif
+
+if !exists('*SmlFile')
+  fun SmlFile()
+    execute '!sml ' . expand('%')
   endfun
 endif
 
