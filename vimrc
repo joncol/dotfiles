@@ -39,6 +39,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'nosami/Omnisharp.git'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'plasticboy/vim-markdown'
@@ -109,6 +110,7 @@ nnoremap <s-f4> :cprev<cr>
 nnoremap <f5> :let @+=fnamemodify(@%, ":p")<cr>
 " nnoremap <f12> "zyiw :exe "vimgrep /" . @z . "/ **/*." . fnamemodify(@%, ":e") . "" <cr> :cope <cr>
 nnoremap <f12> "zyiw :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"\\b" . @z . "\\b\"" <cr> :cope <cr>
+vnoremap <f12> "zy :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"" . @z . "\"" <cr> :cope <cr>
 
 nnoremap <f5> "=strftime("%Y-%m-%d")<cr>P
 inoremap <f5> <c-r>=strftime("%Y-%m-%d")<cr>
@@ -369,17 +371,6 @@ augroup END
 
 augroup autocommands
   autocmd!
-"   This needs to be at the end of the file for some reason
-"
-"   autocmd FileType java set cino=j1,(0
-"   autocmd FileType java :nnoremap <leader>T :!ant test<cr>
-"
-"   set cino=j1,(0
-"   nnoremap <leader>T :!ant test<cr>
-"
-"   autocmd FileType cmake set indentexpr=
-"   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
   if s:uname=="Windows"
     autocmd BufWritePost *.java silent! !start /B ctags -R .
     autocmd BufWritePost *.rb silent! !start /B ctags -a %
@@ -402,6 +393,7 @@ augroup autocommands
   autocmd BufRead,BufNewFile *.xaml,*.msbuild,*.targets,*.plist setfiletype xml
   autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setfiletype glsl
   autocmd BufRead,BufNewFile *.as set filetype=actionscript
+  autocmd BufRead,BufNewFile *.xml colorscheme darkblue
 
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
@@ -646,15 +638,6 @@ augroup more_au
 
   autocmd FileType java set cino=j1,(0
   autocmd FileType java nnoremap <leader>T :!ant test<cr>
-
-"   autocmd FileType java call SetJavaOptions()
-"
-"   if !exists("*SetJavaOptions")
-"     function SetJavaOptions()
-"       set cino=j1,(0
-"       nnoremap <leader>T :!ant test<cr>
-"     endfun
-"   endif
 
   autocmd FileType cmake set indentexpr=
 
