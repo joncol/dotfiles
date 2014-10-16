@@ -13,7 +13,6 @@ Plugin 'gmarik/Vundle.vim'
 " My bundles here:
 "
 " original repos on GitHub
-" Plugin 'nosami/Omnisharp.git'
 Plugin '29decibel/codeschool-vim-theme'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Lokaltog/vim-powerline'
@@ -374,6 +373,8 @@ augroup filetypes
   autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
   autocmd FileType sml nnoremap <leader>s :call SmlFile()<cr>
+
+  autocmd FileType haskell nnoremap <leader>r :call RunGhc()<cr>
 augroup END
 
 augroup autocommands
@@ -598,6 +599,12 @@ endif
 if !exists('*SmlFile')
   fun SmlFile()
     execute '!sml ' . expand('%')
+  endfun
+endif
+
+if !exists("*RunGhc")
+  fun RunGhc()
+    execute '!runghc ' . expand('%')
   endfun
 endif
 
