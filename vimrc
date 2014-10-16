@@ -13,9 +13,11 @@ Plugin 'gmarik/Vundle.vim'
 " My bundles here:
 "
 " original repos on GitHub
+" Plugin 'nosami/Omnisharp.git'
 Plugin '29decibel/codeschool-vim-theme'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'OrangeT/vim-csharp'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 Plugin 'altercation/vim-colors-solarized'
@@ -39,7 +41,6 @@ Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'nosami/Omnisharp.git'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'plasticboy/vim-markdown'
@@ -252,6 +253,8 @@ set number
 "set undofile
 set colorcolumn=81
 
+set tags=./tags;
+
 " nnoremap / /\v
 " vnoremap / /\v
 
@@ -397,7 +400,7 @@ augroup autocommands
   autocmd BufRead,BufNewFile *.xaml,*.msbuild,*.targets,*.plist setfiletype xml
   autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setfiletype glsl
   autocmd BufRead,BufNewFile *.as set filetype=actionscript
-  autocmd BufRead,BufNewFile *.xml colorscheme darkblue
+  autocmd BufRead,BufNewFile *.xml,*.xsd colorscheme darkblue
 
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
