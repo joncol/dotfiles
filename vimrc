@@ -18,13 +18,16 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'OrangeT/vim-csharp'
 Plugin 'Raimondi/delimitMate'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'chilicuil/vim-sml-coursera'
 Plugin 'chrisbra/NrrwRgn'
 Plugin 'ciaranm/inkpot'
 Plugin 'croaker/mustang-vim'
+Plugin 'dag/vim2hs'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'eagletmt/ghcmod-vim'
 Plugin 'elzr/vim-json'
 Plugin 'ervandew/supertab'
 Plugin 'honza/vim-snippets'
@@ -43,6 +46,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sickill/vim-monokai'
@@ -64,7 +68,7 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'wavded/vim-stylus'
 
 " vim-scripts repos
-" Bundle 'CSApprox'
+Plugin 'CSApprox'
 Plugin 'ZoomWin'
 Plugin 'a.vim'
 Plugin 'actionscript.vim'
@@ -289,7 +293,8 @@ let g:buffergator_viewport_split_policy="R"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsExpandTrigger="<tab>"
 
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+syn match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " match trailing whitespace, except when typing at the end of a line
 " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -298,9 +303,9 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " set t_Co=256
 set hlsearch
 "let g:solarized_bold=0
-if has("gui_running")
+" if has("gui_running")
   colorscheme gruvbox
-endif
+" endif
 "set background=light
 "jellybeans
 
@@ -339,6 +344,13 @@ if has("win32") || has("win16")
   set grepprg=grep\ -n
 endif
 
+if has("win32") || has("win16")
+  let g:haddock_browser = "C:/Program Files/Opera/Opera.exe"
+elseif has("unix")
+  let g:haddock_browser = "elinks"
+end
+
+
 " --------------------------------------------------
 " File-specific stuff
 " --------------------------------------------------
@@ -347,21 +359,22 @@ filetype on
 
 augroup filetypes
   autocmd!
-  autocmd FileType c setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-  autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-  autocmd FileType cs setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType c setlocal tabstop=4 shiftwidth=4 noexpandtab
+  autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 noexpandtab
+  autocmd FileType cs setlocal tabstop=4 shiftwidth=4
   autocmd FileType log setlocal nonumber
   autocmd FileType markdown setlocal textwidth=79 formatoptions+=t
-  autocmd FileType objc setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType xml setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
-  autocmd FileType vim setlocal tabstop=2 shiftwidth=2 softtabstop=2
-  autocmd FileType jade setlocal tabstop=2 shiftwidth=2 softtabstop=2
-  autocmd FileType stylus setlocal tabstop=2 shiftwidth=2 softtabstop=2
-  autocmd FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType objc setlocal tabstop=4 shiftwidth=4
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4
+  autocmd FileType xml setlocal tabstop=4 shiftwidth=4
+  autocmd FileType html setlocal tabstop=2 shiftwidth=2
+  autocmd FileType vim setlocal tabstop=2 shiftwidth=2
+  autocmd FileType jade setlocal tabstop=2 shiftwidth=2
+  autocmd FileType stylus setlocal tabstop=2 shiftwidth=2
+  autocmd FileType scss setlocal tabstop=2 shiftwidth=2
+  autocmd FileType haskell setlocal tabstop=8 shiftwidth=2
 
-  autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
   autocmd FileType ruby nnoremap <leader>r :Ruby<cr>
   autocmd FileType ruby nnoremap <leader>s :RSpecTest<cr>
   autocmd FileType ruby nnoremap <leader>S :RSpecFile<cr>
@@ -375,6 +388,7 @@ augroup filetypes
   autocmd FileType sml nnoremap <leader>s :call SmlFile()<cr>
 
   autocmd FileType haskell nnoremap <leader>r :call RunGhc()<cr>
+  autocmd FileType haskell nnoremap <leader>g :call RunGhci()<cr>
 augroup END
 
 augroup autocommands
@@ -605,6 +619,12 @@ endif
 if !exists("*RunGhc")
   fun RunGhc()
     execute '!runghc ' . expand('%')
+  endfun
+endif
+
+if !exists("*RunGhci")
+  fun RunGhci()
+    execute '!ghci ' . expand('%')
   endfun
 endif
 
