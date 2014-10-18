@@ -33,6 +33,7 @@ Plugin 'ervandew/supertab'
 Plugin 'honza/vim-snippets'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'jpalardy/vim-slime'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'kchmck/vim-coffee-script'
@@ -300,6 +301,8 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
+set term=screen-256color
+
 " set t_Co=256
 set hlsearch
 "let g:solarized_bold=0
@@ -324,14 +327,21 @@ set nojoinspaces
 
 "let g:showmarks_include="abcdefzxABJio"
 
-"if &term=~'^xterm'
-"" solid underscore
-"let &t_SI .= "\<Esc>[4 q"
-"" solid block
-"let &t_EI .= "\<Esc>[2 q"
-"" 1 or 0 -> blinking block
-"" 3 -> blinking underscore
-"endif
+" if &term=~'^xterm'
+" " solid underscore
+"   let &t_SI .= "\<Esc>[4 q"
+" " solid block
+"   let &t_EI .= "\<Esc>[2 q"
+" " 1 or 0 -> blinking block
+" " 3 -> blinking underscore
+" endif
+
+if !has("gui_running") && has("unix")
+  " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  " let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+endif
 
 call tcomment#DefineType('ant', g:tcommentInlineXML)
 call tcomment#DefineType('ant_block', g:tcommentBlockXML)
@@ -350,6 +360,8 @@ elseif has("unix")
   let g:haddock_browser = "elinks"
 end
 
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
 
 " --------------------------------------------------
 " File-specific stuff
@@ -389,6 +401,8 @@ augroup filetypes
 
   autocmd FileType haskell nnoremap <leader>r :call RunGhc()<cr>
   autocmd FileType haskell nnoremap <leader>g :call RunGhci()<cr>
+  autocmd FileType haskell map <silent> tu :call GHC_BrowseAll()<CR>
+  autocmd FileType haskell map <silent> tw :call GHC_ShowType(1)<CR>
 augroup END
 
 augroup autocommands
