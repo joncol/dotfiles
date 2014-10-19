@@ -110,7 +110,6 @@ nnoremap <s-f1> :cc<cr>
 nnoremap <f4> :cnext<cr>
 nnoremap <s-f4> :cprev<cr>
 nnoremap <f5> :let @+=fnamemodify(@%, ":p")<cr>
-" nnoremap <f12> "zyiw :exe "vimgrep /" . @z . "/ **/*." . fnamemodify(@%, ":e") . "" <cr> :cope <cr>
 nnoremap <f12> "zyiw :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"\\b" . @z . "\\b\"" <cr> :cope <cr>
 vnoremap <f12> "zy :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"" . @z . "\"" <cr> :cope <cr>
 
@@ -308,7 +307,7 @@ set hlsearch
 if has("gui_running")
   colorscheme gruvbox
 else
-  colorscheme mustang
+  colorscheme summerfruit256
 endif
 
 "set background=light
@@ -365,8 +364,18 @@ elseif has("unix")
   let g:haddock_browser = "links"
 end
 
-let g:slime_target = "tmux"
-let g:slime_paste_file = tempname()
+if !exists("*SmlModeStuff")
+  function SmlModeStuff()
+    let g:slime_no_mappings = 1
+    let g:slime_target = "tmux"
+    let g:slime_paste_file = tempname()
+    nmap <c-c><c-c> "zyip \| :exe "SlimeSend1 " . @z . ";"<cr>
+    xmap <c-c><c-c> "zy \| :exe "SlimeSend1 " . @z . ";"<cr>
+    nmap <c-c>v :SlimeConfig<cr>
+
+    nnoremap <leader>r :call SmlFile()<cr>
+  endfunction
+end
 
 " --------------------------------------------------
 " File-specific stuff
@@ -402,7 +411,7 @@ augroup filetypes
 
   autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
-  autocmd FileType sml nnoremap <leader>r :call SmlFile()<cr>
+  autocmd FileType sml :call SmlModeStuff()
 
   autocmd FileType haskell nnoremap <leader>r :call RunGhc()<cr>
   autocmd FileType haskell nnoremap <leader>g :call RunGhci()<cr>
