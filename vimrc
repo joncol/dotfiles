@@ -369,11 +369,18 @@ if !exists("*SmlModeStuff")
     let g:slime_no_mappings = 1
     let g:slime_target = "tmux"
     let g:slime_paste_file = tempname()
-    nmap <c-c><c-c> "zyip \| :exe "SlimeSend1 " . @z . ";"<cr>
-    xmap <c-c><c-c> "zy \| :exe "SlimeSend1 " . @z . ";"<cr>
+    nmap <c-c><c-c> "zyip \| :call SmlSlimeSend(@z)<cr>
+    xmap <c-c><c-c> "zy \| :call SmlSlimeSend(@z)<cr>
     nmap <c-c>v :SlimeConfig<cr>
 
     nnoremap <leader>r :call SmlFile()<cr>
+  endfunction
+end
+
+if !exists("*SmlSlimeSend")
+  function SmlSlimeSend(data)
+    let l:d = substitute(a:data, "\\n\\+$", "", "") " remove trailing newlines
+    exe "SlimeSend1 " . l:d . ";"
   endfunction
 end
 
