@@ -98,9 +98,6 @@ nnoremap <leader>es :UltiSnipsEdit<cr>
 
 inoremap <s-space> <space>
 
-" nnoremap <c-space> i
-" inoremap <c-space> <esc>
-
 " nnoremap <s-enter> O<esc>
 " nnoremap <cr> o<esc>
 
@@ -138,6 +135,8 @@ let g:syntastic_java_javac_custom_classpath_command=
       \ "ant -q path | grep echo | cut -f2- -d] | tr -d ' ' | tr -d '\033' | sed -e s/[[]m$//"
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag'
 let g:ack_default_options = " -H --nocolor --nogroup --column --ignore-dir={node_modules,bower_components,dist}"
 
 let g:yankring_replace_n_pkey = "<c-k>"
@@ -306,9 +305,12 @@ set term=screen-256color
 " set t_Co=256
 set hlsearch
 "let g:solarized_bold=0
-" if has("gui_running")
+if has("gui_running")
   colorscheme gruvbox
-" endif
+else
+  colorscheme mustang
+endif
+
 "set background=light
 "jellybeans
 
@@ -337,10 +339,13 @@ set nojoinspaces
 " endif
 
 if !has("gui_running") && has("unix")
-  " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  " let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  if $TMUX != ''
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
 endif
 
 call tcomment#DefineType('ant', g:tcommentInlineXML)
@@ -357,7 +362,7 @@ endif
 if has("win32") || has("win16")
   let g:haddock_browser = "C:/Program Files/Opera/Opera.exe"
 elseif has("unix")
-  let g:haddock_browser = "elinks"
+  let g:haddock_browser = "links"
 end
 
 let g:slime_target = "tmux"
@@ -397,7 +402,7 @@ augroup filetypes
 
   autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
-  autocmd FileType sml nnoremap <leader>s :call SmlFile()<cr>
+  autocmd FileType sml nnoremap <leader>r :call SmlFile()<cr>
 
   autocmd FileType haskell nnoremap <leader>r :call RunGhc()<cr>
   autocmd FileType haskell nnoremap <leader>g :call RunGhci()<cr>
