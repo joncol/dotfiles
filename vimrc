@@ -53,6 +53,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'sickill/vim-monokai'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
+Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
@@ -164,9 +165,9 @@ nmap <Leader>a <Plug>(EasyAlign)
 nnoremap <leader>. :CtrlPTag<cr>
 nmap <f8> :TagbarToggle<cr>
 
-if has("gui_running")
-  autocmd VimEnter * NERDTree
-endif
+" if has("gui_running")
+"   autocmd VimEnter * NERDTree
+" endif
 
 autocmd VimEnter * wincmd p
 
@@ -408,9 +409,11 @@ augroup filetypes
   autocmd FileType haskell setlocal tabstop=8 shiftwidth=2
 
   autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
-  autocmd FileType ruby nnoremap <leader>r :Ruby<cr>
+  autocmd FileType ruby nnoremap <leader>r :call RunRuby()<cr>
   autocmd FileType ruby nnoremap <leader>s :RSpecTest<cr>
   autocmd FileType ruby nnoremap <leader>S :RSpecFile<cr>
+
+  autocmd FileType python nnoremap <leader>r :call RunPython()<cr>
 
   autocmd FileType lua nnoremap <leader>s :BustedFile<cr>
 
@@ -605,10 +608,6 @@ if !exists("*RunMakeCheck")
   endfun
 endif
 
-if !exists(":Ruby")
-  command Ruby call RunRuby()
-endif
-
 if !exists("*RunRuby")
   fun RunRuby()
     execute '!ruby ' . expand('%')
@@ -632,6 +631,12 @@ endif
 if !exists("*RunRSpecFile")
   fun RunRSpecFile()
     execute '!spec ' . expand('%')
+  endfun
+endif
+
+if !exists("*RunPython")
+  fun RunPython()
+    execute '!python ' . expand('%')
   endfun
 endif
 
