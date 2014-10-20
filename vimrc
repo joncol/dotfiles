@@ -293,14 +293,19 @@ let g:buffergator_viewport_split_policy="R"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsExpandTrigger="<tab>"
 
-syn match ExtraWhitespace /\s\+$/
-" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" syn match ExtraWhitespace /\s\+$/
+if has("gui_running")
+  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+end
+
 " match trailing whitespace, except when typing at the end of a line
 " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
-set term=screen-256color
+if s:uname != "Windows"
+  set term=screen-256color
+endif
 
 " set t_Co=256
 set hlsearch
