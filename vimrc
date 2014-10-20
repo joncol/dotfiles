@@ -110,15 +110,19 @@ nnoremap <s-f1> :cc<cr>
 "nnoremap <s-f3> :cpfile<cr>
 nnoremap <f4> :cnext<cr>
 nnoremap <s-f4> :cprev<cr>
-nnoremap <f5> :let @+=fnamemodify(@%, ":p")<cr>
-nnoremap <f12> "zyiw :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"\\b" . @z . "\\b\"" <cr> :cope <cr>
-vnoremap <f12> "zy :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"" . @z . "\"" <cr> :cope <cr>
+
+" nnoremap <f12> "zyiw :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"\\b" . @z . "\\b\"" <cr> :cope <cr>
+" xnoremap <f12> "zy :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"" . @z . "\"" <cr> :cope <cr>
+nnoremap <f12> "zyiw :exe "Ack \"\\b" . @z . "\\b\"" <cr> :cope <cr>
+xnoremap <f12> "zy :exe "Ack \"" . @z . "\"" <cr> :cope <cr>
 
 nnoremap <f5> "=strftime("%Y-%m-%d")<cr>P
 inoremap <f5> <c-r>=strftime("%Y-%m-%d")<cr>
 
 nnoremap <s-f5> "=strftime("%H:%M:%S")<cr>P
 inoremap <s-f5> <c-r>=strftime("%H:%M:%S")<cr>
+
+nnoremap <f6> :let @+=fnamemodify(@%, ":p")<cr>
 
 let $XMLLINT_INDENT="    "
 nnoremap <leader>lf <esc>:1,$!xmllint --format -<cr>
@@ -458,7 +462,6 @@ augroup autocommands
   autocmd BufRead,BufNewFile *.xaml,*.msbuild,*.targets,*.plist setfiletype xml
   autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setfiletype glsl
   autocmd BufRead,BufNewFile *.as set filetype=actionscript
-  autocmd BufRead,BufNewFile *.xml,*.xsd colorscheme darkblue
 
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
