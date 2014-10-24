@@ -111,10 +111,13 @@ nnoremap <s-f1> :cc<cr>
 nnoremap <f4> :cnext<cr>
 nnoremap <s-f4> :cprev<cr>
 
-" nnoremap <f12> "zyiw :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"\\b" . @z . "\\b\"" <cr> :cope <cr>
-" xnoremap <f12> "zy :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"" . @z . "\"" <cr> :cope <cr>
-nnoremap <f12> "zyiw :exe "Ack \"\\b" . @z . "\\b\"" <cr> :cope <cr>
-xnoremap <f12> "zy :exe "Ack \"" . @z . "\"" <cr> :cope <cr>
+" Ack
+nnoremap <f12> "zyiw :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"\\b" . @z . "\\b\"" <cr> :cope <cr>
+vnoremap <f12> "zy :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"" . @z . "\"" <cr> :cope <cr>
+
+" Ag
+" nnoremap <f12> "zyiw :exe "Ack \"\\b" . @z . "\\b\"" <cr> :cope <cr>
+" xnoremap <f12> "zy :exe "Ack \"" . @z . "\"" <cr> :cope <cr>
 
 nnoremap <f5> "=strftime("%Y-%m-%d")<cr>P
 inoremap <f5> <c-r>=strftime("%Y-%m-%d")<cr>
@@ -140,7 +143,6 @@ let g:syntastic_java_javac_custom_classpath_command=
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
 " let g:ackprg = 'ag --nogroup --nocolor --column'
-let g:ackprg = 'ag'
 let g:ack_default_options = " -H --nocolor --nogroup --column --ignore-dir={node_modules,bower_components,dist}"
 
 let g:yankring_replace_n_pkey = "<c-k>"
