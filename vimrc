@@ -99,6 +99,8 @@ nnoremap <leader>es :UltiSnipsEdit<cr>
 
 inoremap <s-space> <space>
 
+inoremap kj <c-c>
+
 " nnoremap <s-enter> O<esc>
 " nnoremap <cr> o<esc>
 
