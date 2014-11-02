@@ -13,6 +13,7 @@
 (global-set-key (kbd "\C-c\ \C-f") 'toggle-frame-fullscreen)
 (electric-pair-mode 1)
 (global-linum-mode t)
+(setq-default tab-width 4)
 
 ;;; color theme
 (require 'color-theme)
@@ -47,6 +48,7 @@
 ;;; autocomplete
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
+(company-mode 1)
 
 (when (eq system-type 'darwin)
   (setq mac-right-option-modifier 'none))
@@ -102,9 +104,6 @@
 
 (global-ethan-wspace-mode 1)
 
-(add-hook 'c-mode-common-hook
-          (lambda () (setq indent-tabs-mode t)))
-
 (defun makefile-tabs-are-less-evil ()
   (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors))
 (add-hook 'makefile-mode-hook 'makefile-tabs-are-less-evil))
@@ -113,7 +112,6 @@
           (lambda ()
             (setq require-final-newline nil)
             (setq mode-require-final-newline nil)))
-
 
 (global-whitespace-mode 1)
 (setq-default whitespace-style '(face tabs trailing
@@ -128,3 +126,18 @@
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 (yas-global-mode 1)
+
+;; mode hooks
+(defun my-c-mode-hook ()
+;;  (setq indent-tabs-mode nil)
+  (setq tab-width 4)
+  (setq-default indent-tabs-mode nil)
+  (c-set-offset 'substatement-open 0))
+
+(add-hook 'c-mode-common-hook 'my-c-mode-hook t)
+
+(defun my-csharp-mode-hook ()
+  (electric-pair-mode 0)
+  (c-set-style "c#"))
+
+(add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
