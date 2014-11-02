@@ -12,6 +12,7 @@
 (tool-bar-mode -1)
 (global-set-key (kbd "\C-c\ \C-f") 'toggle-frame-fullscreen)
 (electric-pair-mode 1)
+(global-linum-mode t)
 
 ;;; color theme
 (require 'color-theme)
@@ -27,10 +28,10 @@
        ;; If there is more than one, they won't work right.
        '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight normal :height 120 :width normal)))))
       (set-frame-position (selected-frame) 0 0)
-      (set-frame-size (selected-frame) 160 60)
+      (set-frame-size (selected-frame) 180 60)
       (color-theme-solarized 'dark))
   (progn
-    (when (display-graphic-p) (set-frame-size (selected-frame) 160 80))
+    (when (display-graphic-p) (set-frame-size (selected-frame) 180 80))
     (color-theme-solarized 'light)))
 
 (require 'fill-column-indicator)
@@ -87,6 +88,13 @@
 (setq c-default-style "linux")
 (setq-default c-basic-offset 4)
 
+(defun delete-trailing-whitespace-then-newline ()
+  (interactive)
+  (delete-trailing-whitespace (line-beginning-position) (line-end-position))
+  (newline-and-indent))
+
+(global-set-key (kbd "RET") 'delete-trailing-whitespace-then-newline)
+
 ;;; ethan-wspace
 (setq require-final-newline nil)
 (setq mode-require-final-newline nil)
@@ -120,11 +128,3 @@
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 (yas-global-mode 1)
-
-(defun delete-trailing-whitespace-then-newline ()
-  (interactive)
-  (delete-trailing-whitespace (line-beginning-position) (line-end-position))
-  (evil-ret)
-  ;; (insert "\n"))
-
-(local-set-key (kbd "RET") 'delete-trailing-whitespace-then-newline)
