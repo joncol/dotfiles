@@ -10,13 +10,28 @@
 (show-paren-mode 1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(global-set-key (kbd "\C-c\ \C-f") 'toggle-frame-fullscreen)
+(electric-pair-mode 1)
 
 ;;; color theme
 (require 'color-theme)
 (setq color-theme-is-global t)
 (color-theme-initialize)
-(color-theme-solarized 'dark)
-;;(color-theme-molokai)
+
+(if (eq system-type 'windows-nt)
+    (progn
+      (custom-set-faces
+       ;; custom-set-faces was added by Custom.
+       ;; If you edit it by hand, you could mess it up, so be careful.
+       ;; Your init file should contain only one such instance.
+       ;; If there is more than one, they won't work right.
+       '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight normal :height 120 :width normal)))))
+      (set-frame-position (selected-frame) 0 0)
+      (set-frame-size (selected-frame) 160 60)
+      (color-theme-solarized 'dark))
+  (progn
+    (when (display-graphic-p) (set-frame-size (selected-frame) 160 80))
+    (color-theme-solarized 'light)))
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
@@ -25,6 +40,8 @@
 (add-hook 'after-change-major-mode-hook 'fci-mode)
 
 (evil-mode 1)
+(require 'evil-surround)
+(global-evil-surround-mode 1)
 
 ;;; autocomplete
 (setq tab-always-indent 'complete)
@@ -104,14 +121,10 @@
 
 (yas-global-mode 1)
 
-(if (eq system-type 'windows-nt)
-    (progn
-      (custom-set-faces
-       ;; custom-set-faces was added by Custom.
-       ;; If you edit it by hand, you could mess it up, so be careful.
-       ;; Your init file should contain only one such instance.
-       ;; If there is more than one, they won't work right.
-       '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight normal :height 120 :width normal)))))
-      (set-frame-position (selected-frame) 0 0)
-      (set-frame-size (selected-frame) 160 60))
-  (when (display-graphic-p) (set-frame-size (selected-frame) 160 80)))
+(defun delete-trailing-whitespace-then-newline ()
+  (interactive)
+  (delete-trailing-whitespace (line-beginning-position) (line-end-position))
+  (evil-ret)
+  ;; (insert "\n"))
+
+(local-set-key (kbd "RET") 'delete-trailing-whitespace-then-newline)
