@@ -16,7 +16,6 @@
 (setq-default tab-width 4)
 (global-set-key [f8] 'neotree-toggle)
 (ido-mode)
-(powerline-default-theme)
 
 ;;; color theme
 (require 'color-theme)
