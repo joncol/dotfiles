@@ -1,9 +1,12 @@
 ;;; omnisharp-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+
 
-;;;### (autoloads nil "omnisharp" "omnisharp.el" (21590 41519 0 0))
+;;;### (autoloads (omnisharp-fix-code-issue-at-point omnisharp-check-ready-status
+;;;;;;  omnisharp-check-alive-status omnisharp-start-omnisharp-server
+;;;;;;  omnisharp-mode) "omnisharp" "omnisharp.el" (21591 30191 0
+;;;;;;  0))
 ;;; Generated autoloads from omnisharp.el
 
 (autoload 'omnisharp-mode "omnisharp" "\
@@ -41,9 +44,16 @@ finished loading the solution.
 
 ;;;***
 
+;;;### (autoloads nil nil ("omnisharp-pkg.el") (21591 30191 810000
+;;;;;;  0))
+
+;;;***
+
+(provide 'omnisharp-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
+;; coding: utf-8
 ;; End:
 ;;; omnisharp-autoloads.el ends here

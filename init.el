@@ -14,6 +14,8 @@
 (electric-pair-mode 1)
 (global-linum-mode t)
 (setq-default tab-width 4)
+(global-set-key [f8] 'neotree-toggle)
+(ido-mode)
 
 ;;; color theme
 (require 'color-theme)
@@ -23,12 +25,9 @@
 (if (eq system-type 'windows-nt)
     (progn
       (custom-set-faces
-       ;; custom-set-faces was added by Custom.
-       ;; If you edit it by hand, you could mess it up, so be careful.
-       ;; Your init file should contain only one such instance.
-       ;; If there is more than one, they won't work right.
-       '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight normal :height 120 :width normal)))))
-      (set-frame-position (selected-frame) 0 0)
+       '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
+       :weight normal :height 120 :width normal)))))
+      (set-frame-position (selected-frame) 1920 0)
       (set-frame-size (selected-frame) 180 60)
       (color-theme-solarized 'dark))
   (progn
@@ -38,8 +37,8 @@
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
 (setq fci-rule-width 1)
-;;(setq fci-rule-color "#ff0000")
-(add-hook 'after-change-major-mode-hook 'fci-mode)
+(setq fci-rule-color "#ff0000")
+;; (add-hook 'after-change-major-mode-hook 'fci-mode)
 
 (evil-mode 1)
 (require 'evil-surround)
@@ -48,7 +47,7 @@
 ;;; autocomplete
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
-(company-mode 1)
+(auto-complete-mode)
 
 (when (eq system-type 'darwin)
   (setq mac-right-option-modifier 'none))
@@ -98,8 +97,12 @@
 (global-set-key (kbd "RET") 'delete-trailing-whitespace-then-newline)
 
 ;;; ethan-wspace
-(setq require-final-newline nil)
-(setq mode-require-final-newline nil)
+(defun no-final-newline ()
+  (setq require-final-newline nil)
+  (setq mode-require-final-newline nil))
+
+(no-final-newline)
+
 (require 'ethan-wspace)
 
 (global-ethan-wspace-mode 1)
@@ -108,10 +111,8 @@
   (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors))
 (add-hook 'makefile-mode-hook 'makefile-tabs-are-less-evil))
 
-(add-hook 'sml-mode-hook
-          (lambda ()
-            (setq require-final-newline nil)
-            (setq mode-require-final-newline nil)))
+(add-hook 'sml-mode-hook 'no-final-newline t)
+(add-hook 'fsharp-mode-hook 'no-final-newline t)
 
 (global-whitespace-mode 1)
 (setq-default whitespace-style '(face tabs trailing
@@ -125,19 +126,49 @@
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
-(yas-global-mode 1)
-
 ;; mode hooks
+
+;; (add-hook 'text-mode-hook 'fci-mode t)
+
 (defun my-c-mode-hook ()
-;;  (setq indent-tabs-mode nil)
   (setq tab-width 4)
   (setq-default indent-tabs-mode nil)
-  (c-set-offset 'substatement-open 0))
+  (c-set-offset 'substatement-open 0)
+  (company-mode)
+  (local-set-key (kbd "<tab>") 'company-complete-common)
+  ;; (yas-minor-mode 1)
+  (fci-mode))
+
 
 (add-hook 'c-mode-common-hook 'my-c-mode-hook t)
 
 (defun my-csharp-mode-hook ()
   (electric-pair-mode 0)
-  (c-set-style "c#"))
+  (add-to-list 'company-backends 'company-omnisharp)
+  (c-set-style "c#")
+  (omnisharp-mode)
+  (flycheck-mode)
+  (local-set-key "\M-g" 'omnisharp-go-to-definition))
 
 (add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
+
+(defun my-fsharp-mode-hook ()
+  (omnisharp-mode))
+
+(add-hook 'fsharp-mode-hook 'my-fsharp-mode-hook t)
+
+(defun my-org-mode-hook ()
+  (setq org-src-fontify-natively t))
+
+(add-hook 'org-mode-hook 'my-org-mode-hook t)
+
+(require 'omnisharp)
+(setq omnisharp-company-do-template-completion t)
+(evil-define-key 'normal omnisharp-mode-map (kbd "\M-g") 'omnisharp-go-to-definition)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(defun my-global-company-mode-hook ()
+  (define-key company-active-map (kbd "j") 'company-select-next-or-abort)
+  (define-key company-active-map (kbd "k") 'company-select-previous-or-abort))
+
+(add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
