@@ -16,6 +16,7 @@
 (setq-default tab-width 4)
 (global-set-key [f8] 'neotree-toggle)
 (ido-mode)
+(powerline-default-theme)
 
 ;;; color theme
 (require 'color-theme)
@@ -128,7 +129,10 @@
 
 ;; mode hooks
 
-;; (add-hook 'text-mode-hook 'fci-mode t)
+(defun my-racket-mode-hook()
+  (fci-mode))
+
+(add-hook 'racket-mode-hook 'my-racket-mode-hook t)
 
 (defun my-c-mode-hook ()
   (setq tab-width 4)
@@ -138,7 +142,6 @@
   (local-set-key (kbd "<tab>") 'company-complete-common)
   ;; (yas-minor-mode 1)
   (fci-mode))
-
 
 (add-hook 'c-mode-common-hook 'my-c-mode-hook t)
 

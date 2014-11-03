@@ -8,6 +8,8 @@ reports/
 places
 recentf
 
+\.\#.*$
+\#.*\#$
 ~$
 \.swp$
 \.swo$
