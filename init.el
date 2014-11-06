@@ -55,7 +55,7 @@
 ;; (add-hook 'after-change-major-mode-hook 'fci-mode)
 
 (evil-mode 1)
-(require 'evil-surround)
+(global-evil-matchit-mode 1)
 (global-evil-surround-mode 1)
 
 ;;; autocomplete
@@ -220,6 +220,16 @@
 
 ;;; mode hooks
 
+(add-hook 'org-mode-hook 'my-org-mode-hook t)
+(defun my-org-mode-hook ()
+  (setq org-src-fontify-natively t))
+
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
+(defun my-global-company-mode-hook ()
+  (define-key company-active-map (kbd "j") 'company-select-next-or-abort)
+  (define-key company-active-map (kbd "k") 'company-select-previous-or-abort))
+
 (add-hook 'racket-mode-hook 'my-racket-mode-hook t)
 (defun my-racket-mode-hook()
   (fci-mode))
@@ -247,12 +257,6 @@
 (defun my-fsharp-mode-hook ()
   (omnisharp-mode))
 
-(add-hook 'org-mode-hook 'my-org-mode-hook t)
-(defun my-org-mode-hook ()
-  (setq org-src-fontify-natively t))
-
-(add-hook 'after-init-hook 'global-company-mode)
-(add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
-(defun my-global-company-mode-hook ()
-  (define-key company-active-map (kbd "j") 'company-select-next-or-abort)
-  (define-key company-active-map (kbd "k") 'company-select-previous-or-abort))
+;; (add-hook 'ruby-mode-hook 'my-ruby-mode-hook t)
+;; (defun my-ruby-mode-hook ()
+;;   )
