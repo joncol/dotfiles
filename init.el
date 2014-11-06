@@ -29,6 +29,7 @@
 (setq inhibit-startup-message t)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir))
 (yas-global-mode 1)
+(setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
 
 ;;; color theme
 (require 'color-theme)
@@ -211,7 +212,6 @@
           '(lambda ()
              (local-set-key "\C-xw" confluence-prefix-map)))
 
-
 ;;; mode hooks
 
 (add-hook 'racket-mode-hook 'my-racket-mode-hook t)
@@ -250,5 +250,3 @@
 (defun my-global-company-mode-hook ()
   (define-key company-active-map (kbd "j") 'company-select-next-or-abort)
   (define-key company-active-map (kbd "k") 'company-select-previous-or-abort))
-
-;; (add-hook 'confluence-xml-edit-mode-hook '(lambda () (yas-minor-mode 1)))
