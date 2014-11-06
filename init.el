@@ -290,6 +290,7 @@
   (add-to-list 'company-backends 'company-ghc)
   (custom-set-variables '(company-ghc-show-info t))
   (rainbow-delimiters-mode 1)
+  (fci-mode)
 )
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
