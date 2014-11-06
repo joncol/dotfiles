@@ -30,6 +30,7 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir))
 (yas-global-mode 1)
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
+(global-set-key (kbd "C-x a r") 'align-regexp)
 
 ;;; color theme
 (require 'color-theme)
@@ -281,7 +282,7 @@
   (interactive-haskell-mode)
   ;; (setq tab-stop-list '(1 3 5))
   (turn-on-hi2)
-  (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+  (let ((my-cabal-path (expand-file-name "~/Library/Haskell/bin")))
     (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
     (add-to-list 'exec-path my-cabal-path))
   (custom-set-variables '(haskell-tags-on-save t))
@@ -312,7 +313,7 @@
                                    (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
                                    (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
-(custom-set-variables '(haskell-process-type 'cabal-repl))
+;; (custom-set-variables '(haskell-process-type 'cabal-repl))
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
