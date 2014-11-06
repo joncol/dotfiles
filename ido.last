@@ -1,0 +1,51 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/jco/" . ".emacs.d/")
+ ("/Users/jco/code/mooc/itfp/" . "lab2/")
+ ("/Users/jco/code/mooc/" . "itfp/")
+ ("/Users/jco/code/" . "mooc/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/jco/code/mooc/itfp/lab2/"
+ "/Users/jco/.emacs.d/"
+ "/Users/jco/code/mooc/itfp/lab2/test/"
+ "/Users/jco/code/mooc/itfp/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "lab2.cabal"
+ "Lab2.hs"
+ "init.el"
+ "Main.hs"
+ "lab2.hs"
+ "hw5.hs"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/jco/.emacs.d/" (21595 62760 0 0) "snippets/" "SessionDesktop.el" "recentf~" "recentf" "places" "init.el~" "init.el" "ido.last~" "ido.last" "elpa/" "auto-save-list/" "ac-comphist.dat" ".hgignore~" ".hgignore" ".hg/" "../" "./")
+
+ ("/Users/jco/code/mooc/itfp/lab2/test/" (21595 63228 0 0) "Lab2Spec.hs~" "Lab2Spec.hs" "../" "./")
+
+ ("/Users/jco/code/mooc/itfp/lab2/" (21595 62927 0 0) "test/" "Setup.hs" "Lab2.hs" "lab2.cabal" "dist/" "../" "./")
+
+ ("/Users/jco/" (21595 60388 0 0) "yankring_history_v2.txt" "vim_tmux.mkd" "tortoisehg-path.sh" "test.c~" "test.cs~" "test.cs" "test.c" "samples/" "ruby1.9.3-with-tk/" "repos/" "Public/" "pl.sh" "Pictures/" "pelican/" "org/" "Music/" "Movies/" "Library/" "lib/" "itfp.sh" "iTerm2-Color-Schemes/" "github/" "elisp/" "Dropbox/" "Downloads/" "Documents/" "doc/" "Desktop/" "colortest" "code/" "blog/" "bin/" "AT.postflight.61225" "Applications/" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zlogin" ".zcompdump" ".xdvirc" ".Xauthority" ".vimrc" ".viminfo" ".vim_tmux.mkd.swp" ".vim/" ".Trash/" ".tmux.conf" ".subversion/" ".ssh/" ".sml_history-" ".sml_history" ".slime_paste" ".rvm/" ".rnd" ".racket_history" ".pry_history" ".profile" ".pip/" ".oh-my-zsh/" ".npmrc" ".npm/" ".node-gyp/" ".netrc" ".NERDTreeBookmarks" ".mongorc.js" ".local/" ".links/" ".lesshst" ".irssi/" ".irb-history" ".hgrc" ".groovy/" ".gitconfig" ".ghc/" ".gem/" ".forever/" ".fontconfig/" ".erc/" ".emacs.d/" ".elinks/" ".DS_Store" ".dropbox/" ".distlib/" ".dbshell" ".config/" ".CFUserTextEncoding" ".cache/" ".cabal/" ".bzr.log" ".byebug_hist" ".bundler/" ".bashrc" ".bash_profile" ".bash_history" "../" "./")
+
+ ("/Users/jco/code/mooc/itfp/" (21595 57487 0 0) "qsort/" "lab2/" "encode.hs~" "encode.hs" ".hgignore" ".hg/" "#encode.hs#" "../" "./")
+
+ ("/Users/jco/org/" (21595 57304 0 0) "test.org" "plan.org~" "plan.org" "notes.org" ".hgignore" ".hg/" "../" "./")
+
+ ("/Users/jco/code/mooc/" (21571 51752 0 0) "submissions/" "proglang/" "itfp/" "algs4/" "algorithms1_2/" "_hamcrest/" ".DS_Store" "../" "./")
+
+ ("/Users/jco/code/" (21585 10132 0 0) "web_haskell/" "topcoder/" "tile_game/" "test_app/" "sudoku/" "spoj/" "sound_test/" "sfml_opengl/" "sdl_system_bare/" "sdl_gl/" "ruby/" "rubiks_cube/" "raymarching/" "project_euler_haskell/" "platform_demo/" "perlin_noise/" "omberg3.se.bak/" "omberg3.se/" "office_game/" "objc/" "obj_loader/" "o3.se/" "mooc/" "lyn/" "lua_test/" "lib/" "js-test/" "java/" "haskell_test/" "fsharp/" "cs/" "codechef/" "cc/" "c/" "bomberman/" "asteroids/" "angular-phonecat/" "amazon_code_ninjas/" ".DS_Store" "../" "./")
+
+ ("/Users/" (21472 63984 0 0) "Shared/" "jco/" ".localized" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

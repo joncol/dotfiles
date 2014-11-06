@@ -5,7 +5,7 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(yasnippet angular-snippets clojure-snippets color-theme color-theme-solarized company confluence ethan-wspace evil evil-matchit evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc))
+(setq package-list '(yasnippet angular-snippets clojure-snippets color-theme color-theme-solarized company confluence ethan-wspace evil evil-matchit evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode hi2 java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode rainbow-delimiters sml-mode undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -20,7 +20,7 @@
 (electric-pair-mode 1)
 (global-linum-mode t)
 (setq-default tab-width 4)
-(global-set-key [f8] 'neotree-toggle)
+(global-set-key [f2] 'neotree-toggle)
 (ido-mode)
 (require 'jira)
 (setq jira-url "http://jira.combination.se:8080/rpc/xmlrpc")
@@ -231,6 +231,11 @@
   (define-key company-active-map (kbd "j") 'company-select-next-or-abort)
   (define-key company-active-map (kbd "k") 'company-select-previous-or-abort))
 
+(add-hook 'lisp-mode-hook 'my-lisp-mode-hook t)
+(defun my-lisp-mode-hook ()
+  (rainbow-delimiters-mode 1)
+  )
+
 (add-hook 'racket-mode-hook 'my-racket-mode-hook t)
 (defun my-racket-mode-hook()
   (fci-mode))
@@ -243,7 +248,9 @@
   (company-mode)
   (local-set-key (kbd "<tab>") 'company-complete-common)
   ;; (yas-minor-mode 1)
-  (fci-mode))
+  (fci-mode)
+  (rainbow-delimiters-mode 1)
+  )
 
 (add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
 (defun my-csharp-mode-hook ()
@@ -252,11 +259,14 @@
   (c-set-style "c#")
   (omnisharp-mode)
   (flycheck-mode)
-  (local-set-key "\M-g" 'omnisharp-go-to-definition))
+  (local-set-key "\M-g" 'omnisharp-go-to-definition)
+  )
 
 (add-hook 'fsharp-mode-hook 'my-fsharp-mode-hook t)
 (defun my-fsharp-mode-hook ()
-  (omnisharp-mode))
+  (omnisharp-mode)
+  (rainbow-delimiters-mode 1)
+  )
 
 ;; (add-hook 'ruby-mode-hook 'my-ruby-mode-hook t)
 ;; (defun my-ruby-mode-hook ()
@@ -269,6 +279,42 @@
   ;; (turn-on-haskell-simple-indent)
 
   (interactive-haskell-mode)
-  )
+  ;; (setq tab-stop-list '(1 3 5))
+  (turn-on-hi2)
+  (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+    (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
+    (add-to-list 'exec-path my-cabal-path))
+  (custom-set-variables '(haskell-tags-on-save t))
+
+  (add-to-list 'company-backends 'company-ghc)
+  (custom-set-variables '(company-ghc-show-info t))
+  (rainbow-delimiters-mode 1)
+)
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
+(eval-after-load 'haskell-mode
+  '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
+(custom-set-variables
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t))
+(eval-after-load 'haskell-mode '(progn
+                                  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+                                  (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+                                  (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
+                                  (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+                                  (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
+                                  (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
+                                  (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+(eval-after-load 'haskell-cabal '(progn
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+
+(custom-set-variables '(haskell-process-type 'cabal-repl))
+
+(eval-after-load 'haskell-mode
+  '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
+(eval-after-load 'haskell-cabal
+  '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
