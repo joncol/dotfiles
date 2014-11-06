@@ -212,6 +212,7 @@
 
 ;; open confluence page
 (global-set-key "\C-xwf" 'confluence-get-page)
+(global-set-key "\C-xwb" 'confluence-browse-page)
 
 ;; setup confluence mode
 (add-hook 'confluence-mode-hook
