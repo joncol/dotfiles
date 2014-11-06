@@ -275,8 +275,8 @@
 
 (defun my-haskell-mode-hook ()
   (turn-on-haskell-doc-mode)
-  (turn-on-haskell-indentation)
-  ;; (turn-on-haskell-indent)
+  ;; (turn-on-haskell-indentation)
+  (turn-on-haskell-indent)
   ;; (turn-on-haskell-simple-indent)
 
   (interactive-haskell-mode)
@@ -290,7 +290,7 @@
   (add-to-list 'company-backends 'company-ghc)
   (custom-set-variables '(company-ghc-show-info t))
   (rainbow-delimiters-mode 1)
-  (fci-mode)
+  ;; (fci-mode)
 )
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)

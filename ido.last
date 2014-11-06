@@ -2,6 +2,7 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("/Users/jco/code/mooc/itfp/lab2/" . "test/")
  ("/Users/jco/" . ".emacs.d/")
  ("/Users/jco/code/mooc/itfp/" . "lab2/")
  ("/Users/jco/code/mooc/" . "itfp/")
@@ -10,17 +11,17 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "/Users/jco/code/mooc/itfp/lab2/test/"
  "/Users/jco/code/mooc/itfp/lab2/"
  "/Users/jco/.emacs.d/"
- "/Users/jco/code/mooc/itfp/lab2/test/"
  "/Users/jco/code/mooc/itfp/"
 )
 
 ;; ----- ido-work-file-list -----
 (
+ "Lab2Spec.hs"
  "lab2.cabal"
  "Lab2.hs"
- "Lab2Spec.hs"
  "init.el"
  "Main.hs"
  "lab2.hs"
@@ -29,11 +30,11 @@
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/Users/jco/code/mooc/itfp/lab2/" (21596 317 0 0) "Setup.hs" "Lab2Spec.hs~" "Lab2Spec.hs" "Lab2.hs~" "Lab2.hs" "lab2.cabal~" "lab2.cabal" "dist/" "#Lab2.hs#" "../" "./")
+ ("/Users/jco/code/mooc/itfp/lab2/test/" (21596 573 0 0) "Lab2Spec.hs" "../" "./")
+
+ ("/Users/jco/code/mooc/itfp/lab2/" (21596 672 0 0) "test/" "Setup.hs" "Lab2.hs~" "Lab2.hs" "lab2.cabal~" "lab2.cabal" "dist/" "#Lab2.hs#" "../" "./")
 
  ("/Users/jco/.emacs.d/" (21595 63399 0 0) "snippets/" "SessionDesktop.el" "recentf~" "recentf" "places" "init.el~" "init.el" "ido.last~" "ido.last" "elpa/" "auto-save-list/" "ac-comphist.dat" ".hgignore~" ".hgignore" ".hg/" "../" "./")
-
- ("/Users/jco/code/mooc/itfp/lab2/test/" (21595 63228 0 0) "Lab2Spec.hs~" "Lab2Spec.hs" "../" "./")
 
  ("/Users/jco/" (21595 60388 0 0) "yankring_history_v2.txt" "vim_tmux.mkd" "tortoisehg-path.sh" "test.c~" "test.cs~" "test.cs" "test.c" "samples/" "ruby1.9.3-with-tk/" "repos/" "Public/" "pl.sh" "Pictures/" "pelican/" "org/" "Music/" "Movies/" "Library/" "lib/" "itfp.sh" "iTerm2-Color-Schemes/" "github/" "elisp/" "Dropbox/" "Downloads/" "Documents/" "doc/" "Desktop/" "colortest" "code/" "blog/" "bin/" "AT.postflight.61225" "Applications/" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zlogin" ".zcompdump" ".xdvirc" ".Xauthority" ".vimrc" ".viminfo" ".vim_tmux.mkd.swp" ".vim/" ".Trash/" ".tmux.conf" ".subversion/" ".ssh/" ".sml_history-" ".sml_history" ".slime_paste" ".rvm/" ".rnd" ".racket_history" ".pry_history" ".profile" ".pip/" ".oh-my-zsh/" ".npmrc" ".npm/" ".node-gyp/" ".netrc" ".NERDTreeBookmarks" ".mongorc.js" ".local/" ".links/" ".lesshst" ".irssi/" ".irb-history" ".hgrc" ".groovy/" ".gitconfig" ".ghc/" ".gem/" ".forever/" ".fontconfig/" ".erc/" ".emacs.d/" ".elinks/" ".DS_Store" ".dropbox/" ".distlib/" ".dbshell" ".config/" ".CFUserTextEncoding" ".cache/" ".cabal/" ".bzr.log" ".byebug_hist" ".bundler/" ".bashrc" ".bash_profile" ".bash_history" "../" "./")
 
