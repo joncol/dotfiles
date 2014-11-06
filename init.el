@@ -5,7 +5,7 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(angular-snippets clojure-snippets color-theme color-theme-solarized company confluence ethan-wspace evil evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc yasnippet))
+(setq package-list '(angular-snippets clojure-snippets color-theme color-theme-solarized company confluence ethan-wspace evil evil-matchit evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc yasnippet))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -127,6 +127,12 @@
 
 (add-hook 'sml-mode-hook 'no-final-newline t)
 (add-hook 'fsharp-mode-hook 'no-final-newline t)
+
+(defadvice ruby-mode-variables (after reset-final-newline)
+  "Reset final-newline that ruby-mode enforces but conflicts with ethan-wspace."
+  (setq require-final-newline nil)
+  (setq mode-require-final-newline nil))
+(ad-activate 'ruby-mode-variables)
 
 (global-whitespace-mode 1)
 (setq-default whitespace-style '(face tabs trailing
