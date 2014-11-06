@@ -3,7 +3,12 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
-(add-to-list 'load-path "~/elisp")
+
+(setq package-list '(angular-snippets clojure-snippets color-theme-molokai color-theme-monokai color-theme-sanityinc-solarized color-theme-solarized color-theme company ethan-wspace evil evil-surround fill-column-indicator fsharp-mode go-snippets goto-chg goto-last-change java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc yasnippet))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 (setq ring-bell-function 'ignore)
 (global-font-lock-mode 1)
@@ -16,6 +21,10 @@
 (setq-default tab-width 4)
 (global-set-key [f8] 'neotree-toggle)
 (ido-mode)
+(require 'jira)
+(setq jira-url "http://jira.combination.se:8080/rpc/xmlrpc")
+(setq scroll-step           1
+      scroll-conservatively 10000)
 
 ;;; color theme
 (require 'color-theme)
