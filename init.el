@@ -1,10 +1,11 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(angular-snippets clojure-snippets color-theme color-theme-solarized company ethan-wspace evil evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc yasnippet))
+(setq package-list '(angular-snippets clojure-snippets color-theme color-theme-solarized company confluence ethan-wspace evil evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc yasnippet))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -26,6 +27,8 @@
 (setq scroll-step           1
       scroll-conservatively 10000)
 (setq inhibit-startup-message t)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir))
+(yas-global-mode 1)
 
 ;;; color theme
 (require 'color-theme)
@@ -136,13 +139,86 @@
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
-;; mode hooks
+(require 'omnisharp)
+(setq omnisharp-company-do-template-completion t)
+(evil-define-key 'normal omnisharp-mode-map (kbd "\M-g") 'omnisharp-go-to-definition)
 
+;;; Confluence
+
+(setq confluence-url "http://wiki.combination.se/rpc/xmlrpc")
+(setq confluence-default-space-alist (list (cons confluence-url "Company")
+                                           (cons confluence-url "Alchemy")
+                                           (cons confluence-url "Development")
+                                           (cons confluence-url "Testing")
+                                           (cons confluence-url "Operations")
+                                           (cons confluence-url "Projects")))
+(setq confluence-save-credentials t)
+
+(autoload 'confluence-get-page "confluence" nil t)
+
+(eval-after-load "confluence"
+  '(progn
+     (require 'longlines)
+     (progn
+       (add-hook 'confluence-mode-hook 'longlines-mode)
+       (add-hook 'confluence-before-save-hook 'longlines-before-revert-hook)
+       (add-hook 'confluence-before-revert-hook 'longlines-before-revert-hook)
+       (add-hook 'confluence-mode-hook '(lambda () (local-set-key "\C-j" 'confluence-newline-and-indent))))))
+
+;; LongLines mode: http://www.emacswiki.org/emacs-en/LongLines
+(autoload 'longlines-mode "longlines" "LongLines Mode." t)
+
+(eval-after-load "longlines"
+  '(progn
+     (defvar longlines-mode-was-active nil)
+     (make-variable-buffer-local 'longlines-mode-was-active)
+
+     (defun longlines-suspend ()
+       (if longlines-mode
+           (progn
+             (setq longlines-mode-was-active t)
+             (longlines-mode 0))))
+
+     (defun longlines-restore ()
+       (if longlines-mode-was-active
+           (progn
+             (setq longlines-mode-was-active nil)
+             (longlines-mode 1))))
+
+     ;; longlines doesn't play well with ediff, so suspend it during diffs
+     (defadvice ediff-make-temp-file (before make-temp-file-suspend-ll
+                                             activate compile preactivate)
+       "Suspend longlines when running ediff."
+       (with-current-buffer (ad-get-arg 0)
+         (longlines-suspend)))
+
+     (add-hook 'ediff-cleanup-hook
+               '(lambda ()
+                  (dolist (tmp-buf (list ediff-buffer-A
+                                         ediff-buffer-B
+                                         ediff-buffer-C))
+                    (if (buffer-live-p tmp-buf)
+                        (with-current-buffer tmp-buf
+                          (longlines-restore))))))))
+
+;; keybindings (change to suit)
+
+;; open confluence page
+(global-set-key "\C-xwf" 'confluence-get-page)
+
+;; setup confluence mode
+(add-hook 'confluence-mode-hook
+          '(lambda ()
+             (local-set-key "\C-xw" confluence-prefix-map)))
+
+
+;;; mode hooks
+
+(add-hook 'racket-mode-hook 'my-racket-mode-hook t)
 (defun my-racket-mode-hook()
   (fci-mode))
 
-(add-hook 'racket-mode-hook 'my-racket-mode-hook t)
-
+(add-hook 'c-mode-common-hook 'my-c-mode-hook t)
 (defun my-c-mode-hook ()
   (setq tab-width 4)
   (setq-default indent-tabs-mode nil)
@@ -152,8 +228,7 @@
   ;; (yas-minor-mode 1)
   (fci-mode))
 
-(add-hook 'c-mode-common-hook 'my-c-mode-hook t)
-
+(add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
 (defun my-csharp-mode-hook ()
   (electric-pair-mode 0)
   (add-to-list 'company-backends 'company-omnisharp)
@@ -162,25 +237,18 @@
   (flycheck-mode)
   (local-set-key "\M-g" 'omnisharp-go-to-definition))
 
-(add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
-
+(add-hook 'fsharp-mode-hook 'my-fsharp-mode-hook t)
 (defun my-fsharp-mode-hook ()
   (omnisharp-mode))
 
-(add-hook 'fsharp-mode-hook 'my-fsharp-mode-hook t)
-
+(add-hook 'org-mode-hook 'my-org-mode-hook t)
 (defun my-org-mode-hook ()
   (setq org-src-fontify-natively t))
 
-(add-hook 'org-mode-hook 'my-org-mode-hook t)
-
-(require 'omnisharp)
-(setq omnisharp-company-do-template-completion t)
-(evil-define-key 'normal omnisharp-mode-map (kbd "\M-g") 'omnisharp-go-to-definition)
 (add-hook 'after-init-hook 'global-company-mode)
-
+(add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
 (defun my-global-company-mode-hook ()
   (define-key company-active-map (kbd "j") 'company-select-next-or-abort)
   (define-key company-active-map (kbd "k") 'company-select-previous-or-abort))
 
-(add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
+;; (add-hook 'confluence-xml-edit-mode-hook '(lambda () (yas-minor-mode 1)))
