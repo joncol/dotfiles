@@ -5,7 +5,7 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(angular-snippets clojure-snippets color-theme color-theme-solarized company confluence ethan-wspace evil evil-matchit evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc yasnippet))
+(setq package-list '(yasnippet angular-snippets clojure-snippets color-theme color-theme-solarized company confluence ethan-wspace evil evil-matchit evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -261,3 +261,14 @@
 ;; (add-hook 'ruby-mode-hook 'my-ruby-mode-hook t)
 ;; (defun my-ruby-mode-hook ()
 ;;   )
+
+(defun my-haskell-mode-hook ()
+  (turn-on-haskell-doc-mode)
+  (turn-on-haskell-indentation)
+  ;; (turn-on-haskell-indent)
+  ;; (turn-on-haskell-simple-indent)
+
+  (interactive-haskell-mode)
+  )
+
+(add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
