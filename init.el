@@ -1,10 +1,10 @@
 (require 'package)
-(package-initialize)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
+(package-initialize)
 
-(setq package-list '(angular-snippets clojure-snippets color-theme-molokai color-theme-monokai color-theme-sanityinc-solarized color-theme-solarized color-theme company ethan-wspace evil evil-surround fill-column-indicator fsharp-mode go-snippets goto-chg goto-last-change java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc yasnippet))
+(setq package-list '(angular-snippets clojure-snippets color-theme color-theme-solarized company ethan-wspace evil evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode s sml-mode undo-tree xml-rpc yasnippet))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -25,6 +25,7 @@
 (setq jira-url "http://jira.combination.se:8080/rpc/xmlrpc")
 (setq scroll-step           1
       scroll-conservatively 10000)
+(setq inhibit-startup-message t)
 
 ;;; color theme
 (require 'color-theme)

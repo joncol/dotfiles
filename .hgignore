@@ -4,6 +4,7 @@ bin/
 build/
 ipch/
 obj/
+elpa/
 reports/
 places
 recentf
