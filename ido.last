@@ -2,45 +2,55 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("/Users/jco/code/mooc/proglang/" . "hw5/")
  ("/Users/jco/code/mooc/itfp/lab2/" . "test/")
  ("/Users/jco/" . ".emacs.d/")
  ("/Users/jco/code/mooc/itfp/" . "lab2/")
- ("/Users/jco/code/mooc/" . "itfp/")
+ ("/Users/jco/code/mooc/" . "proglang/")
  ("/Users/jco/code/" . "mooc/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
- "/Users/jco/code/mooc/itfp/lab2/test/"
- "/Users/jco/code/mooc/itfp/lab2/"
- "/Users/jco/.emacs.d/"
+ "/Users/jco/org/"
+ "/Users/jco/code/mooc/proglang/hw5/"
  "/Users/jco/code/mooc/itfp/"
+ "/Users/jco/code/mooc/itfp/lab2/"
+ "/Users/jco/code/mooc/itfp/lab2/test/"
+ "/Users/jco/.emacs.d/"
 )
 
 ;; ----- ido-work-file-list -----
 (
+ "plan.org"
+ "hw5test.rkt"
+ "hw5.rkt"
+ ".hgignore"
+ "Lab2.hs"
  "Lab2Spec.hs"
  "lab2.cabal"
- "Lab2.hs"
  "init.el"
  "Main.hs"
  "lab2.hs"
- "hw5.hs"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/Users/jco/code/mooc/itfp/lab2/test/" (21596 573 0 0) "Lab2Spec.hs" "../" "./")
+ ("/Users/jco/org/" (21599 13721 0 0) "test.org" "plan.org~" "plan.org" "notes.org" ".hgignore" ".hg/" "../" "./")
 
- ("/Users/jco/code/mooc/itfp/lab2/" (21596 672 0 0) "test/" "Setup.hs" "Lab2.hs~" "Lab2.hs" "lab2.cabal~" "lab2.cabal" "dist/" "#Lab2.hs#" "../" "./")
+ ("/Users/jco/code/mooc/proglang/hw5/" (21599 17049 0 0) "hw5test.rkt~" "hw5test.rkt" "hw5.rkt~" "hw5.rkt" "../" "./")
+
+ ("/Users/jco/code/mooc/proglang/" (21598 36221 0 0) "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh.log" "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh" "play/" "hw5/" "hw4/" "hw3/" "hw2/" "hw1/" "hw0/" ".hgignore" ".hg/" ".DS_Store" "../" "./")
+
+ ("/Users/jco/" (21598 36454 0 0) "yankring_history_v2.txt" "vim_tmux.mkd" "tortoisehg-path.sh" "test.c~" "test.cs~" "test.cs" "test.c" "samples/" "ruby1.9.3-with-tk/" "repos/" "Public/" "pl.sh" "Pictures/" "pelican/" "org/" "Music/" "Movies/" "Library/" "lib/" "itfp.sh" "iTerm2-Color-Schemes/" "github/" "elisp/" "Dropbox/" "Downloads/" "Documents/" "doc/" "Desktop/" "colortest" "code/" "blog/" "bin/" "AT.postflight.61225" "Applications/" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zlogin" ".zcompdump" ".xdvirc" ".Xauthority" ".vimrc" ".viminfo" ".vim_tmux.mkd.swp" ".vim/" ".Trash/" ".tmux.conf" ".subversion/" ".ssh/" ".sml_history-" ".sml_history" ".slime_paste" ".rvm/" ".rnd" ".racket_history" ".pry_history" ".profile" ".pip/" ".oh-my-zsh/" ".npmrc" ".npm/" ".node-gyp/" ".netrc" ".NERDTreeBookmarks" ".mongorc.js" ".local/" ".links/" ".lesshst" ".irssi/" ".irb-history" ".hgrc" ".groovy/" ".gitconfig" ".ghc/" ".gem/" ".forever/" ".fontconfig/" ".erc/" ".emacs.d/" ".elinks/" ".DS_Store" ".dropbox/" ".distlib/" ".dbshell" ".config/" ".CFUserTextEncoding" ".cache/" ".cabal/" ".bzr.log" ".byebug_hist" ".bundler/" ".bashrc" ".bash_profile" ".bash_history" "../" "./")
+
+ ("/Users/jco/code/mooc/itfp/" (21596 2644 0 0) "qsort/" "lab2/" "encode.hs~" "encode.hs" ".hgignore" ".hg/" "#encode.hs#" "../" "./")
+
+ ("/Users/jco/code/mooc/itfp/lab2/" (21596 2611 0 0) "test/" "TAGS" "Setup.hs" "Lab2.hs~" "Lab2.hs" "lab2.cabal~" "lab2.cabal" "dist/" "../" "./")
+
+ ("/Users/jco/code/mooc/itfp/lab2/test/" (21596 1910 0 0) "Lab2Spec.hs~" "Lab2Spec.hs" "../" "./")
 
  ("/Users/jco/.emacs.d/" (21595 63399 0 0) "snippets/" "SessionDesktop.el" "recentf~" "recentf" "places" "init.el~" "init.el" "ido.last~" "ido.last" "elpa/" "auto-save-list/" "ac-comphist.dat" ".hgignore~" ".hgignore" ".hg/" "../" "./")
-
- ("/Users/jco/" (21595 60388 0 0) "yankring_history_v2.txt" "vim_tmux.mkd" "tortoisehg-path.sh" "test.c~" "test.cs~" "test.cs" "test.c" "samples/" "ruby1.9.3-with-tk/" "repos/" "Public/" "pl.sh" "Pictures/" "pelican/" "org/" "Music/" "Movies/" "Library/" "lib/" "itfp.sh" "iTerm2-Color-Schemes/" "github/" "elisp/" "Dropbox/" "Downloads/" "Documents/" "doc/" "Desktop/" "colortest" "code/" "blog/" "bin/" "AT.postflight.61225" "Applications/" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zlogin" ".zcompdump" ".xdvirc" ".Xauthority" ".vimrc" ".viminfo" ".vim_tmux.mkd.swp" ".vim/" ".Trash/" ".tmux.conf" ".subversion/" ".ssh/" ".sml_history-" ".sml_history" ".slime_paste" ".rvm/" ".rnd" ".racket_history" ".pry_history" ".profile" ".pip/" ".oh-my-zsh/" ".npmrc" ".npm/" ".node-gyp/" ".netrc" ".NERDTreeBookmarks" ".mongorc.js" ".local/" ".links/" ".lesshst" ".irssi/" ".irb-history" ".hgrc" ".groovy/" ".gitconfig" ".ghc/" ".gem/" ".forever/" ".fontconfig/" ".erc/" ".emacs.d/" ".elinks/" ".DS_Store" ".dropbox/" ".distlib/" ".dbshell" ".config/" ".CFUserTextEncoding" ".cache/" ".cabal/" ".bzr.log" ".byebug_hist" ".bundler/" ".bashrc" ".bash_profile" ".bash_history" "../" "./")
-
- ("/Users/jco/code/mooc/itfp/" (21595 57487 0 0) "qsort/" "lab2/" "encode.hs~" "encode.hs" ".hgignore" ".hg/" "#encode.hs#" "../" "./")
-
- ("/Users/jco/org/" (21595 57304 0 0) "test.org" "plan.org~" "plan.org" "notes.org" ".hgignore" ".hg/" "../" "./")
 
  ("/Users/jco/code/mooc/" (21571 51752 0 0) "submissions/" "proglang/" "itfp/" "algs4/" "algorithms1_2/" "_hamcrest/" ".DS_Store" "../" "./")
 

@@ -14,9 +14,8 @@
 (setq ring-bell-function 'ignore)
 (global-font-lock-mode 1)
 (show-paren-mode 1)
-(menu-bar-mode -1)
 (tool-bar-mode -1)
-(global-set-key (kbd "\C-c\ \C-f") 'toggle-frame-fullscreen)
+(global-set-key (kbd "C-c C-c C-f") 'toggle-frame-fullscreen)
 (electric-pair-mode 1)
 (global-linum-mode t)
 (setq-default tab-width 4)
@@ -31,6 +30,8 @@
 (yas-global-mode 1)
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
 (global-set-key (kbd "C-x a r") 'align-regexp)
+(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
+(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 
 ;;; color theme
 (require 'color-theme)
@@ -47,7 +48,7 @@
       (color-theme-solarized 'dark))
   (progn
     (when (display-graphic-p) (set-frame-size (selected-frame) 180 80))
-    (color-theme-solarized 'light)))
+    (color-theme-solarized 'dark)))
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
@@ -58,6 +59,7 @@
 (evil-mode 1)
 (global-evil-matchit-mode 1)
 (global-evil-surround-mode 1)
+(setq evil-insert-state-cursor '("green" bar))
 
 ;;; autocomplete
 (setq tab-always-indent 'complete)
@@ -239,6 +241,7 @@
 
 (add-hook 'racket-mode-hook 'my-racket-mode-hook t)
 (defun my-racket-mode-hook()
+  (rainbow-delimiters-mode 1)
   (fci-mode))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-hook t)
@@ -297,22 +300,29 @@
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
 (custom-set-variables
- '(haskell-process-suggest-remove-import-lines t)
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t))
-(eval-after-load 'haskell-mode '(progn
-                                  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-                                  (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-                                  (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
-                                  (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-                                  (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-                                  (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
-                                  (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
-(eval-after-load 'haskell-cabal '(progn
-                                   (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-                                   (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-                                   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-                                   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(scheme-mit-dialect nil))
+(eval-after-load 'haskell-mode
+  '(progn
+     (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+     (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+     (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
+     (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+     (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
+     (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
+     (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+(eval-after-load 'haskell-cabal
+  '(progn
+     (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+     (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+     (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+     (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
 ;; (custom-set-variables '(haskell-process-type 'cabal-repl))
 
@@ -320,3 +330,13 @@
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
 (eval-after-load 'haskell-cabal
   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
+
+(eval-after-load 'racket-mode
+  '(progn
+     (define-key racket-mode-map (kbd "C-c C-l") 'racket-run)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
