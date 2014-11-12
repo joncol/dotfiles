@@ -59,6 +59,7 @@
 (evil-mode 1)
 (global-evil-matchit-mode 1)
 (global-evil-surround-mode 1)
+(setq evil-normal-state-cursor '("green" box))
 (setq evil-insert-state-cursor '("green" bar))
 
 ;;; autocomplete
