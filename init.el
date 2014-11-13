@@ -5,7 +5,15 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(yasnippet angular-snippets clojure-snippets color-theme color-theme-solarized company confluence ethan-wspace evil evil-matchit evil-surround fill-column-indicator fsharp-mode ghc go-snippets goto-chg goto-last-change haskell-mode hi2 java-snippets jira neotree omnisharp csharp-mode flycheck auto-complete dash org pkg-info epl popup pos-tip racket-mode rainbow-delimiters sml-mode undo-tree xml-rpc))
+(setq package-list '(yasnippet angular-snippets clojure-snippets color-theme
+                               color-theme-solarized company confluence
+                               ethan-wspace evil evil-matchit evil-surround
+                               fill-column-indicator fsharp-mode ghc go-snippets
+                               goto-chg goto-last-change haskell-mode hi2
+                               java-snippets jira markdown-mode neotree
+                               omnisharp csharp-mode flycheck auto-complete dash
+                               org pkg-info epl popup pos-tip racket-mode
+                               rainbow-delimiters sml-mode undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -15,7 +23,7 @@
 (global-font-lock-mode 1)
 (show-paren-mode 1)
 (tool-bar-mode -1)
-(global-set-key (kbd "C-c C-c C-f") 'toggle-frame-fullscreen)
+(global-set-key (kbd "C-c t f") 'toggle-frame-fullscreen)
 (electric-pair-mode 1)
 (global-linum-mode t)
 (setq-default tab-width 4)
@@ -223,6 +231,8 @@
           '(lambda ()
              (local-set-key "\C-xw" confluence-prefix-map)))
 
+(global-set-key "\t" 'company-complete-common)
+
 ;;; mode hooks
 
 (add-hook 'org-mode-hook 'my-org-mode-hook t)
@@ -277,6 +287,7 @@
 ;; (defun my-ruby-mode-hook ()
 ;;   )
 
+(add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
   (turn-on-haskell-doc-mode)
   ;; (turn-on-haskell-indentation)
@@ -297,7 +308,6 @@
   ;; (fci-mode)
 )
 
-(add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
 (custom-set-variables
@@ -335,9 +345,9 @@
 (eval-after-load 'racket-mode
   '(progn
      (define-key racket-mode-map (kbd "C-c C-l") 'racket-run)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
+(defun my-scheme-mode-hook ()
+  (fci-mode 1))
+
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
