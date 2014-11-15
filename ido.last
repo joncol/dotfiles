@@ -2,18 +2,26 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("/Users/jco/Documents/" . "cv_old/")
+ ("/Users/jco/code/sicp/" . "exercises/")
  ("/Users/jco/Dropbox/omberg3_share/" . "jonas/")
  ("/Users/jco/Dropbox/" . "omberg3_share/")
- ("/Users/jco/code/mooc/proglang/" . "hw5/")
+ ("/Users/jco/code/mooc/proglang/" . "hw6/")
  ("/Users/jco/code/mooc/itfp/lab2/" . "test/")
- ("/Users/jco/" . "Dropbox/")
+ ("/Users/jco/" . "Documents/")
  ("/Users/jco/code/mooc/itfp/" . "lab2/")
  ("/Users/jco/code/mooc/" . "proglang/")
- ("/Users/jco/code/" . "sicp/")
+ ("/Users/jco/code/" . "mooc/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
+ "/Users/jco/Documents/cv/"
+ "/Users/jco/Documents/cv_old/"
+ "/Users/jco/code/mooc/proglang/"
+ "/Users/jco/code/mooc/proglang/hw6/"
+ "/Users/jco/.emacs.d/snippets/enh-ruby-mode/"
+ "/Users/jco/code/sicp/exercises/"
  "/Users/jco/code/sicp/"
  "/Users/jco/Dropbox/omberg3_share/jonas/"
  "/Users/jco/Documents/"
@@ -27,21 +35,43 @@
 
 ;; ----- ido-work-file-list -----
 (
- "hanoi.scm"
- "spolning_termo_kuvert.md"
- "spolning_termo.md"
- "README.md"
- "test.scm"
- "plan.org"
- "hw5test.rkt"
- "hw5.rkt"
  ".hgignore"
- "Lab2.hs"
+ "cv.tex"
+ "cv_10.tex"
+ "hw6runner.rb"
+ "puv"
+ "hw6graphics.rb"
+ "hw6assignment.rb"
+ "hw6provided.rb"
+ "ex.scm"
+ "ex1.scm"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/Users/jco/.emacs.d/" (21603 59527 0 0) "snippets/" "SessionDesktop.el" "recentf~" "recentf" "places" "init.el~" "init.el" "ido.last~" "ido.last" "elpa/" "auto-save-list/" "ac-comphist.dat" ".hgignore~" ".hgignore" ".hg/" "../" "./")
+ ("/Users/jco/Documents/cv/" (21607 46487 0 0) "Readme.md" "friggeri-cv.cls" "cv.tex~" "cv.tex" "cv.run.xml" "cv.pdf" "cv.out" "cv.log" "cv.bcf" "cv.aux" "bibliography.bib" ".hgignore" ".hg/" "../" "./")
+
+ ("/Users/jco/Documents/cv_old/" (21607 35036 0 0) "texput.log" "missfont.log" "cv.tex~" "cv.tex" "cv.pdf" "cv.out" "cv.log" "cv.dvi" "cv.aux" ".hgignore" ".hg/" ".#cv.tex" "#cv.tex#" "../" "./")
+
+ ("/Users/jco/Documents/" (21607 35702 0 0) "thg-mac-app/" "spolning_termo.md~" "screenshot.png" "RealWorldHaskell.pdf" "my_music/" "lo_brottas.m4v" "livets_mening/" "Learn You a Haskell for Great Good.pdf" "HelloWorld/" "Haskell/" "cv_old/" "cv/" "Calculator/" "asteroids1.mov" "About Stacks.lpdf/" ".localized" ".DS_Store" "../" "./")
+
+ ("/Users/jco/" (21607 29558 0 0) "yankring_history_v2.txt" "vim_tmux.mkd" "tortoisehg-path.sh" "test.c~" "test.cs~" "test.cs" "test.c" "samples/" "ruby1.9.3-with-tk/" "repos/" "Public/" "pl.sh" "Pictures/" "pelican/" "org/" "Music/" "Movies/" "Library/" "lib/" "itfp.sh" "iTerm2-Color-Schemes/" "github/" "elisp/" "Dropbox/" "Downloads/" "Documents/" "doc/" "Desktop/" "colortest" "code/" "blog/" "bin/" "AT.postflight.61225" "Applications/" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zlogin" ".zcompdump" ".xdvirc" ".Xauthority" ".vimrc" ".viminfo" ".vim_tmux.mkd.swp" ".vim/" ".Trash/" ".tmux.conf" ".subversion/" ".ssh/" ".sml_history-" ".sml_history" ".slime_paste" ".scheme_history" ".rvm/" ".rnd" ".racket_history" ".pry_history" ".profile" ".pip/" ".oh-my-zsh/" ".npmrc" ".npm/" ".node-gyp/" ".netrc" ".NERDTreeBookmarks" ".mongorc.js" ".local/" ".links/" ".lesshst" ".irssi/" ".irb-history" ".hgrc" ".groovy/" ".gitconfig" ".ghc/" ".gem/" ".geiser_history.racket" ".forever/" ".fontconfig/" ".erc/" ".emacs.d/" ".elinks/" ".DS_Store" ".dropbox/" ".distlib/" ".dbshell" ".config/" ".CFUserTextEncoding" ".cache/" ".cabal/" ".bzr.log" ".byebug_hist" ".bundler/" ".bashrc" ".bash_profile" ".bash_history" "../" "./")
+
+ ("/Users/jco/org/" (21607 29351 0 0) "test.org" "plan.org~" "plan.org" "notes.org" ".hgignore" ".hg/" "../" "./")
+
+ ("/Users/jco/code/mooc/proglang/" (21607 29224 0 0) "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh.log" "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh" "play/" "hw6/" "hw5/" "hw4/" "hw3/" "hw2/" "hw1/" "hw0/" ".hgignore" ".hg/" ".DS_Store" "../" "./")
+
+ ("/Users/jco/code/mooc/proglang/hw6/" (21607 29091 0 0) "hw6runner.rb" "hw6provided.rb~" "hw6provided.rb" "hw6graphics.rb~" "hw6graphics.rb" "hw6assignment.rb~" "hw6assignment.rb" "hw6.pdf" "../" "./")
+
+ ("/Users/jco/.emacs.d/snippets/enh-ruby-mode/" (21607 17202 0 0) "zip" "y" "while" "when" "w" "upt" "until" "tu" "to_" "tim" "test class" "str" "select" "rw" "req" "rel" "reject" "rb" "r" "mm" "inject" "init" "ife" "if" "GLOB" "formula" "forin" "for" "eawi" "eav" "eai" "eac" "ea" "dow" "det" "deli" "def" "dee" "Comp" "collect" "cls" "cla" "case" "bm" "bench" "attribute" "app" "any" "am" "all" "=b" "#" "../" "./")
+
+ ("/Users/jco/.emacs.d/snippets/" (21607 17202 0 0) "enh-ruby-mode/" "csharp-mode/" "confluence-xml-edit-mode/" "../" "./")
+
+ ("/Users/jco/.emacs.d/" (21607 21165 0 0) "snippets/" "SessionDesktop.el" "recentf~" "recentf" "project-explorer-cache/" "places" "init.el~" "init.el" "ido.last~" "ido.last" "elpa/" "auto-save-list/" "ac-comphist.dat" ".hgignore~" ".hgignore" ".hg/" "../" "./")
+
+ ("/Users/jco/code/sicp/exercises/" (21605 10407 0 0) "ex1.scm" ".#ex1.scm" "#ex1.scm#" "../" "./")
+
+ ("/Users/jco/code/sicp/" (21605 2776 0 0) "README.md" "play/" "exercises/" ".gitignore" ".git/" "../" "./")
 
  ("/Users/jco/code/mooc/itfp/lab2/test/" (21596 2124 0 0) "Lab2Spec.hs~" "Lab2Spec.hs" "../" "./")
 
@@ -49,13 +79,7 @@
 
  ("/Users/jco/code/mooc/itfp/" (21596 2676 0 0) "qsort/" "lab2/" "encode.hs~" "encode.hs" ".hgignore~" ".hgignore" ".hg/" "#encode.hs#" "../" "./")
 
- ("/Users/jco/org/" (21601 245 0 0) "test.org" "plan.org~" "plan.org" "notes.org" ".hgignore" ".hg/" "../" "./")
-
- ("/Users/jco/Documents/" (21603 51682 0 0) "thg-mac-app/" "spolning_termo.md~" "screenshot.png" "RealWorldHaskell.pdf" "my_music/" "lo_brottas.m4v" "livets_mening/" "Learn You a Haskell for Great Good.pdf" "HelloWorld/" "Haskell/" "cv/" "Calculator/" "asteroids1.mov" "About Stacks.lpdf/" ".localized" ".DS_Store" "../" "./")
-
  ("/Users/jco/Dropbox/omberg3_share/jonas/" (21604 64812 0 0) "utdelade_nycklar.xlsx" "spolning_termo_kuvert.md" "spolning_termo.md" "spolning_och_termostat_kuvert.pdf" "spolning_och_termostat.pdf" "old/" "Nyckelbeställning mall.doc" "Namnlistor trappuppgångar_2014-09-09.docx" "kräftskiva.docx" ".DS_Store" "../" "./")
-
- ("/Users/jco/code/sicp/" (21604 65390 0 0) "README.md" "ex1.scm~" "ex1.scm" ".gitignore" ".git/" "../" "./")
 
  ("/Users/jco/Dropbox/omberg3_share/" (21603 41111 0 0) "Skadedjur/" "Protokoll/" "Mikael/" "Matilda/" "Martin/" "jonas/" "INFORMATION FRÅN STYRELSEN.docx" "Icon
 " "Fredrik/" "David/" "Arbetsuppgifter styrelsen.xlsx" ".DS_Store" ".dropbox" "../" "./")
@@ -63,13 +87,9 @@
  ("/Users/jco/Dropbox/" (21603 41107 0 0) "YNAB/" "The Cure - Secrets Everyone Should Know to Become Immediatly Successful with Women (1).pdf" "Screenshots/" "Relationship Roulette.pdf" "Public/" "prog/" "Power to the People! Russian Strength Training Secrets for Every American/" "Photos/" "photo.jpg" "omberg3_share/" "OldCode/" "MyMusic.zip" "Maxwell Maltz- Psycho-Cybernetics.pdf" "loop3.mp3" "loop2.mp3" "Joseph Murphy - The Power of Your Subconscious Mind.pdf" "Jed McKenna - Book 3 - Spiritual Warfare.pdf" "Jed McKenna - Book 2 - Spiritually Incorrect Enlightenment.pdf" "Icon
 " "Green screen test.wmv" "CrossFit_HSPUVariations.wmv" "Convict Conditioning - Paul Wade.pdf" "ComputerCraft/" "chord_prog_different_beat.mp3" "Building the Gymnastic Body (7Summits).pdf" "Born_Rich_Book.pdf" "another_one.mp3" "[mafutrct] Go Igo Baduk Weiqi eBook collection [2010.02]/" ".ynabSettings.yroot" ".ynabSettings (mbp's conflicted copy 2014-01-05).yroot" ".ynabSettings (JCO-Desk1W7's conflicted copy 2014-01-07).yroot" ".DS_Store" ".dropbox.cache/" ".dropbox" "(Ebook) Fitness - Pavel Tsatsouline - Naked Warrior - 218Pgs.pdf" "../" "./")
 
- ("/Users/jco/" (21603 47056 0 0) "yankring_history_v2.txt" "vim_tmux.mkd" "tortoisehg-path.sh" "test.c~" "test.cs~" "test.cs" "test.c" "samples/" "ruby1.9.3-with-tk/" "repos/" "Public/" "pl.sh" "Pictures/" "pelican/" "org/" "Music/" "Movies/" "Library/" "lib/" "itfp.sh" "iTerm2-Color-Schemes/" "github/" "elisp/" "Dropbox/" "Downloads/" "Documents/" "doc/" "Desktop/" "colortest" "code/" "blog/" "bin/" "AT.postflight.61225" "Applications/" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zlogin" ".zcompdump" ".xdvirc" ".Xauthority" ".vimrc" ".viminfo" ".vim_tmux.mkd.swp" ".vim/" ".Trash/" ".tmux.conf" ".subversion/" ".ssh/" ".sml_history-" ".sml_history" ".slime_paste" ".rvm/" ".rnd" ".racket_history" ".pry_history" ".profile" ".pip/" ".oh-my-zsh/" ".npmrc" ".npm/" ".node-gyp/" ".netrc" ".NERDTreeBookmarks" ".mongorc.js" ".local/" ".links/" ".lesshst" ".irssi/" ".irb-history" ".hgrc" ".groovy/" ".gitconfig" ".ghc/" ".gem/" ".geiser_history.racket" ".forever/" ".fontconfig/" ".erc/" ".emacs.d/" ".elinks/" ".DS_Store" ".dropbox/" ".distlib/" ".dbshell" ".config/" ".CFUserTextEncoding" ".cache/" ".cabal/" ".bzr.log" ".byebug_hist" ".bundler/" ".bashrc" ".bash_profile" ".bash_history" "../" "./")
-
  ("/Users/jco/code/mooc/proglang/hw5/" (21600 45937 0 0) "hw5test.rkt~" "hw5test.rkt" "hw5.rkt~" "hw5.rkt" "../" "./")
 
  ("/Users/jco/code/" (21602 26647 0 0) "web_haskell/" "topcoder/" "tile_game/" "test_app/" "sudoku/" "spoj/" "sound_test/" "sicp/" "sfml_opengl/" "sdl_system_bare/" "sdl_gl/" "ruby/" "rubiks_cube/" "raymarching/" "project_euler_haskell/" "platform_demo/" "perlin_noise/" "omberg3.se.bak/" "omberg3.se/" "office_game/" "objc/" "obj_loader/" "o3.se/" "mooc/" "lyn/" "lua_test/" "lib/" "js-test/" "java/" "haskell_test/" "fsharp/" "cs/" "codechef/" "cc/" "c/" "bomberman/" "asteroids/" "angular-phonecat/" "amazon_code_ninjas/" ".DS_Store" "../" "./")
-
- ("/Users/jco/code/mooc/proglang/" (21598 36221 0 0) "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh.log" "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh" "play/" "hw5/" "hw4/" "hw3/" "hw2/" "hw1/" "hw0/" ".hgignore" ".hg/" ".DS_Store" "../" "./")
 
  ("/Users/jco/code/mooc/" (21571 51752 0 0) "submissions/" "proglang/" "itfp/" "algs4/" "algorithms1_2/" "_hamcrest/" ".DS_Store" "../" "./")
 

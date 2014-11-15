@@ -6,14 +6,16 @@
 (package-initialize)
 
 (setq package-list '(yasnippet angular-snippets clojure-snippets color-theme
-                               color-theme-solarized company confluence
-                               ethan-wspace evil evil-matchit evil-surround
-                               fill-column-indicator fsharp-mode ghc go-snippets
-                               goto-chg goto-last-change haskell-mode hi2
-                               java-snippets jira markdown-mode neotree
-                               omnisharp csharp-mode flycheck auto-complete dash
-                               org pkg-info epl popup pos-tip racket-mode
-                               rainbow-delimiters sml-mode undo-tree xml-rpc))
+                               color-theme-solarized company confluence dirtree
+                               enh-ruby-mode ethan-wspace evil evil-matchit
+                               evil-surround fill-column-indicator fsharp-mode
+                               ghc go-snippets goto-chg goto-last-change
+                               haskell-mode hi2 java-snippets jira markdown-mode
+                               neotree omnisharp csharp-mode flycheck
+                               auto-complete dash org pkg-info epl popup pos-tip
+                               project-explorer racket-mode rvm
+                               rainbow-delimiters rainbow-mode robe sml-mode
+                               undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -40,6 +42,7 @@
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
+(rainbow-mode 1)
 
 ;;; color theme
 (require 'color-theme)
@@ -56,7 +59,7 @@
       (color-theme-solarized 'dark))
   (progn
     (when (display-graphic-p) (set-frame-size (selected-frame) 180 80))
-    (color-theme-solarized 'dark)))
+    (color-theme-solarized 'light)))
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
@@ -139,6 +142,7 @@
 
 (add-hook 'sml-mode-hook 'no-final-newline t)
 (add-hook 'fsharp-mode-hook 'no-final-newline t)
+(add-hook 'enh-ruby-mode-hook 'no-final-newline t)
 
 (defadvice ruby-mode-variables (after reset-final-newline)
   "Reset final-newline that ruby-mode enforces but conflicts with ethan-wspace."
@@ -283,9 +287,14 @@
   (rainbow-delimiters-mode 1)
   )
 
-;; (add-hook 'ruby-mode-hook 'my-ruby-mode-hook t)
-;; (defun my-ruby-mode-hook ()
-;;   )
+(add-hook 'ruby-mode-hook 'my-ruby-mode-hook t)
+(defun my-ruby-mode-hook ()
+  (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
+  (add-to-list 'company-backends 'company-robe)
+  (fci-mode 1)
+  (enh-ruby-mode 1))
+
+(add-hook 'enh-ruby-mode-hook 'robe-mode)
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
