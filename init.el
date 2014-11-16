@@ -7,13 +7,13 @@
 
 (setq package-list '(yasnippet angular-snippets clojure-snippets color-theme
                                color-theme-solarized company confluence dirtree
-                               enh-ruby-mode ethan-wspace evil evil-matchit
-                               evil-surround fill-column-indicator fsharp-mode
-                               ghc go-snippets goto-chg goto-last-change
-                               haskell-mode hi2 java-snippets jira markdown-mode
-                               neotree omnisharp csharp-mode flycheck
-                               auto-complete dash org pkg-info epl popup pos-tip
-                               project-explorer racket-mode rvm
+                               enh-ruby-mode ethan-wspace evil evil-numbers
+                               evil-matchit evil-surround fill-column-indicator
+                               fsharp-mode ghc go-snippets goto-chg
+                               goto-last-change haskell-mode hi2 java-snippets
+                               jira markdown-mode neotree omnisharp csharp-mode
+                               flycheck auto-complete dash org pkg-info epl
+                               popup pos-tip project-explorer racket-mode rvm
                                rainbow-delimiters rainbow-mode robe sml-mode
                                undo-tree xml-rpc))
 
@@ -43,6 +43,7 @@
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 (rainbow-mode 1)
+(setq system-time-locale "C")
 (setq display-time-string-forms '(24-hours ":" minutes))
 (display-time-mode 1)
 
@@ -56,7 +57,7 @@
       (custom-set-faces
        '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
        :weight normal :height 120 :width normal)))))
-      (set-frame-position (selected-frame) 1920 0)
+      (set-frame-position (selected-frame) 0 0)
       (set-frame-size (selected-frame) 180 60)
       (color-theme-solarized 'dark))
   (progn
