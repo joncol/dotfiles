@@ -8,20 +8,20 @@
  ("/Users/jco/Dropbox/" . "omberg3_share/")
  ("/Users/jco/code/mooc/proglang/" . "hw6/")
  ("/Users/jco/code/mooc/itfp/lab2/" . "test/")
- ("/Users/jco/" . "Documents/")
+ ("/Users/jco/" . "code/")
  ("/Users/jco/code/mooc/itfp/" . "lab2/")
  ("/Users/jco/code/mooc/" . "proglang/")
- ("/Users/jco/code/" . "mooc/")
+ ("/Users/jco/code/" . "sicp/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
+ "/Users/jco/code/sicp/exercises/"
  "/Users/jco/Documents/cv/"
  "/Users/jco/Documents/cv_old/"
  "/Users/jco/code/mooc/proglang/"
  "/Users/jco/code/mooc/proglang/hw6/"
  "/Users/jco/.emacs.d/snippets/enh-ruby-mode/"
- "/Users/jco/code/sicp/exercises/"
  "/Users/jco/code/sicp/"
  "/Users/jco/Dropbox/omberg3_share/jonas/"
  "/Users/jco/Documents/"
@@ -35,6 +35,7 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "ex1.scm"
  ".hgignore"
  "cv.tex"
  "cv_10.tex"
@@ -44,11 +45,12 @@
  "hw6assignment.rb"
  "hw6provided.rb"
  "ex.scm"
- "ex1.scm"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("/Users/jco/code/sicp/exercises/" (21608 35163 0 0) "ex1.scm" "../" "./")
+
  ("/Users/jco/Documents/cv/" (21607 46487 0 0) "Readme.md" "friggeri-cv.cls" "cv.tex~" "cv.tex" "cv.run.xml" "cv.pdf" "cv.out" "cv.log" "cv.bcf" "cv.aux" "bibliography.bib" ".hgignore" ".hg/" "../" "./")
 
  ("/Users/jco/Documents/cv_old/" (21607 35036 0 0) "texput.log" "missfont.log" "cv.tex~" "cv.tex" "cv.pdf" "cv.out" "cv.log" "cv.dvi" "cv.aux" ".hgignore" ".hg/" ".#cv.tex" "#cv.tex#" "../" "./")
@@ -68,8 +70,6 @@
  ("/Users/jco/.emacs.d/snippets/" (21607 17202 0 0) "enh-ruby-mode/" "csharp-mode/" "confluence-xml-edit-mode/" "../" "./")
 
  ("/Users/jco/.emacs.d/" (21607 21165 0 0) "snippets/" "SessionDesktop.el" "recentf~" "recentf" "project-explorer-cache/" "places" "init.el~" "init.el" "ido.last~" "ido.last" "elpa/" "auto-save-list/" "ac-comphist.dat" ".hgignore~" ".hgignore" ".hg/" "../" "./")
-
- ("/Users/jco/code/sicp/exercises/" (21605 10407 0 0) "ex1.scm" ".#ex1.scm" "#ex1.scm#" "../" "./")
 
  ("/Users/jco/code/sicp/" (21605 2776 0 0) "README.md" "play/" "exercises/" ".gitignore" ".git/" "../" "./")
 

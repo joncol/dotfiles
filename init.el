@@ -43,6 +43,8 @@
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 (rainbow-mode 1)
+(setq display-time-string-forms '(24-hours ":" minutes))
+(display-time-mode 1)
 
 ;;; color theme
 (require 'color-theme)
