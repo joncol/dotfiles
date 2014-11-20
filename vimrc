@@ -71,6 +71,7 @@ Plugin 'wlangstroth/vim-racket'
 
 " vim-scripts repos
 Plugin 'CSApprox'
+Plugin 'Toggle'
 Plugin 'ZoomWin'
 Plugin 'a.vim'
 Plugin 'actionscript.vim'
@@ -99,7 +100,9 @@ nnoremap <leader>es :UltiSnipsEdit<cr>
 
 inoremap <s-space> <space>
 
+" inoremap <expr> kj (pumvisible())?("kj") : ("\<c-c>")
 inoremap kj <c-c>
+inoremap <c-g> <esc>
 
 " nnoremap <s-enter> O<esc>
 " nnoremap <cr> o<esc>
@@ -632,7 +635,7 @@ endif
 
 if !exists("*RunRSpecTest")
   fun RunRSpecTest()
-    execute '!spec ' . expand('%') . ':' . line('.')
+    execute '!rspec ' . expand('%') . ':' . line('.')
   endfun
 endif
 
@@ -642,7 +645,7 @@ endif
 
 if !exists("*RunRSpecFile")
   fun RunRSpecFile()
-    execute '!spec ' . expand('%')
+    execute '!rspec ' . expand('%')
   endfun
 endif
 
