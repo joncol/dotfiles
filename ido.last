@@ -6,16 +6,19 @@
  ("/Users/jco/code/sicp/" . "exercises/")
  ("/Users/jco/Dropbox/omberg3_share/" . "jonas/")
  ("/Users/jco/Dropbox/" . "omberg3_share/")
- ("/Users/jco/code/mooc/proglang/" . "hw6/")
+ ("/Users/jco/code/mooc/proglang/" . "hw7/")
  ("/Users/jco/code/mooc/itfp/lab2/" . "test/")
  ("/Users/jco/" . "code/")
- ("/Users/jco/code/mooc/itfp/" . "lab2/")
+ ("/Users/jco/code/mooc/itfp/" . "lab3/")
  ("/Users/jco/code/mooc/" . "proglang/")
- ("/Users/jco/code/" . "sicp/")
+ ("/Users/jco/code/" . "mooc/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
+ "/Users/jco/code/mooc/proglang/hw3/"
+ "/Users/jco/code/mooc/proglang/hw7/"
+ "/Users/jco/code/mooc/itfp/lab3/"
  "/Users/jco/code/sicp/exercises/"
  "/Users/jco/Documents/cv/"
  "/Users/jco/Documents/cv_old/"
@@ -35,20 +38,32 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "hw3.sml"
+ "hw7testsprovided.sml"
+ "hw7.sml"
+ "lab3.hs"
  "ex1.scm"
  ".hgignore"
  "cv.tex"
  "cv_10.tex"
  "hw6runner.rb"
  "puv"
- "hw6graphics.rb"
- "hw6assignment.rb"
- "hw6provided.rb"
- "ex.scm"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("/Users/jco/code/mooc/proglang/hw3/" (21590 36358 0 0) "hw3test.sml" "hw3.sml" "hw3.pdf" "../" "./")
+
+ ("/Users/jco/code/mooc/proglang/hw7/" (21616 27376 0 0) "hw7testsprovided.sml~" "hw7testsprovided.sml" "hw7testsprovided.rb" "hw7.sml~" "hw7.sml" "hw7.rb" "hw7.pdf" "#hw7testsprovided.sml#" "../" "./")
+
+ ("/Users/jco/code/mooc/proglang/" (21616 24778 0 0) "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh.log" "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh" "play/" "hw7/" "hw6/" "hw5/" "hw4/" "hw3/" "hw2/" "hw1/" "hw0/" ".hgignore~" ".hgignore" ".hg/" ".DS_Store" "../" "./")
+
+ ("/Users/jco/org/" (21616 25734 0 0) "test.org" "plan.org~" "plan.org" "notes.org" ".hgignore" ".hg/" "../" "./")
+
+ ("/Users/jco/code/mooc/itfp/lab3/" (21611 41330 0 0) "lab3.hs" "../" "./")
+
+ ("/Users/jco/code/mooc/itfp/" (21611 41323 0 0) "qsort/" "lab3/" "lab2/" "encode.hs~" "encode.hs" ".hgignore~" ".hgignore" ".hg/" "#encode.hs#" "../" "./")
+
  ("/Users/jco/code/sicp/exercises/" (21608 35163 0 0) "ex1.scm" "../" "./")
 
  ("/Users/jco/Documents/cv/" (21607 46487 0 0) "Readme.md" "friggeri-cv.cls" "cv.tex~" "cv.tex" "cv.run.xml" "cv.pdf" "cv.out" "cv.log" "cv.bcf" "cv.aux" "bibliography.bib" ".hgignore" ".hg/" "../" "./")
@@ -58,10 +73,6 @@
  ("/Users/jco/Documents/" (21607 35702 0 0) "thg-mac-app/" "spolning_termo.md~" "screenshot.png" "RealWorldHaskell.pdf" "my_music/" "lo_brottas.m4v" "livets_mening/" "Learn You a Haskell for Great Good.pdf" "HelloWorld/" "Haskell/" "cv_old/" "cv/" "Calculator/" "asteroids1.mov" "About Stacks.lpdf/" ".localized" ".DS_Store" "../" "./")
 
  ("/Users/jco/" (21607 29558 0 0) "yankring_history_v2.txt" "vim_tmux.mkd" "tortoisehg-path.sh" "test.c~" "test.cs~" "test.cs" "test.c" "samples/" "ruby1.9.3-with-tk/" "repos/" "Public/" "pl.sh" "Pictures/" "pelican/" "org/" "Music/" "Movies/" "Library/" "lib/" "itfp.sh" "iTerm2-Color-Schemes/" "github/" "elisp/" "Dropbox/" "Downloads/" "Documents/" "doc/" "Desktop/" "colortest" "code/" "blog/" "bin/" "AT.postflight.61225" "Applications/" ".zshrc" ".zsh_history" ".zsh-update" ".zprofile" ".zlogin" ".zcompdump" ".xdvirc" ".Xauthority" ".vimrc" ".viminfo" ".vim_tmux.mkd.swp" ".vim/" ".Trash/" ".tmux.conf" ".subversion/" ".ssh/" ".sml_history-" ".sml_history" ".slime_paste" ".scheme_history" ".rvm/" ".rnd" ".racket_history" ".pry_history" ".profile" ".pip/" ".oh-my-zsh/" ".npmrc" ".npm/" ".node-gyp/" ".netrc" ".NERDTreeBookmarks" ".mongorc.js" ".local/" ".links/" ".lesshst" ".irssi/" ".irb-history" ".hgrc" ".groovy/" ".gitconfig" ".ghc/" ".gem/" ".geiser_history.racket" ".forever/" ".fontconfig/" ".erc/" ".emacs.d/" ".elinks/" ".DS_Store" ".dropbox/" ".distlib/" ".dbshell" ".config/" ".CFUserTextEncoding" ".cache/" ".cabal/" ".bzr.log" ".byebug_hist" ".bundler/" ".bashrc" ".bash_profile" ".bash_history" "../" "./")
-
- ("/Users/jco/org/" (21607 29351 0 0) "test.org" "plan.org~" "plan.org" "notes.org" ".hgignore" ".hg/" "../" "./")
-
- ("/Users/jco/code/mooc/proglang/" (21607 29224 0 0) "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh.log" "proglang-proglang-002-software_installation-install-ruby1.9.3-with-tk.sh" "play/" "hw6/" "hw5/" "hw4/" "hw3/" "hw2/" "hw1/" "hw0/" ".hgignore" ".hg/" ".DS_Store" "../" "./")
 
  ("/Users/jco/code/mooc/proglang/hw6/" (21607 29091 0 0) "hw6runner.rb" "hw6provided.rb~" "hw6provided.rb" "hw6graphics.rb~" "hw6graphics.rb" "hw6assignment.rb~" "hw6assignment.rb" "hw6.pdf" "../" "./")
 
@@ -76,8 +87,6 @@
  ("/Users/jco/code/mooc/itfp/lab2/test/" (21596 2124 0 0) "Lab2Spec.hs~" "Lab2Spec.hs" "../" "./")
 
  ("/Users/jco/code/mooc/itfp/lab2/" (21603 42539 0 0) "test/" "TAGS" "Setup.hs" "Lab2.hs~" "Lab2.hs" "lab2.cabal~" "lab2.cabal" "dist/" "../" "./")
-
- ("/Users/jco/code/mooc/itfp/" (21596 2676 0 0) "qsort/" "lab2/" "encode.hs~" "encode.hs" ".hgignore~" ".hgignore" ".hg/" "#encode.hs#" "../" "./")
 
  ("/Users/jco/Dropbox/omberg3_share/jonas/" (21604 64812 0 0) "utdelade_nycklar.xlsx" "spolning_termo_kuvert.md" "spolning_termo.md" "spolning_och_termostat_kuvert.pdf" "spolning_och_termostat.pdf" "old/" "Nyckelbeställning mall.doc" "Namnlistor trappuppgångar_2014-09-09.docx" "kräftskiva.docx" ".DS_Store" "../" "./")
 

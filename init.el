@@ -308,7 +308,7 @@
 
   (interactive-haskell-mode)
   ;; (setq tab-stop-list '(1 3 5))
-  (turn-on-hi2)
+  ;; (turn-on-hi2)
   (let ((my-cabal-path (expand-file-name "~/Library/Haskell/bin")))
     (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
     (add-to-list 'exec-path my-cabal-path))
@@ -317,7 +317,7 @@
   (add-to-list 'company-backends 'company-ghc)
   (custom-set-variables '(company-ghc-show-info t))
   (rainbow-delimiters-mode 1)
-  ;; (fci-mode)
+  (fci-mode)
 )
 
 (eval-after-load 'haskell-mode
@@ -361,5 +361,12 @@
 (add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
 (defun my-scheme-mode-hook ()
   (fci-mode 1))
+
+(add-hook 'sml-mode-hook 'my-sml-mode-hook t)
+(defun my-sml-mode-hook ()
+  (setq sml-indent-level 2)
+  (setq evil-shift-width 2)
+  (fci-mode 1)
+  (setq sml-program-name "/usr/local/bin/sml"))
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
