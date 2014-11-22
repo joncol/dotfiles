@@ -290,12 +290,13 @@
   (rainbow-delimiters-mode 1)
   )
 
-(add-hook 'ruby-mode-hook 'my-ruby-mode-hook t)
-(defun my-ruby-mode-hook ()
+(add-hook 'ruby-mode-hook 'enh-ruby-mode)
+(add-hook 'enh-ruby-mode-hook 'my-enh-ruby-mode-hook t)
+(defun my-enh-ruby-mode-hook ()
+  (setq evil-shift-width 2)
   (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
   (add-to-list 'company-backends 'company-robe)
-  (fci-mode 1)
-  (enh-ruby-mode 1))
+  (fci-mode 1))
 
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
 
