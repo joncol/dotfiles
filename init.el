@@ -14,8 +14,8 @@
                                jira markdown-mode neotree omnisharp csharp-mode
                                flycheck auto-complete dash org pkg-info epl
                                popup pos-tip project-explorer racket-mode rvm
-                               rainbow-delimiters rainbow-mode robe sml-mode
-                               undo-tree xml-rpc))
+                               rainbow-delimiters rainbow-mode robe rspec-mode
+                               ruby-end sml-mode undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -146,6 +146,7 @@
 (add-hook 'sml-mode-hook 'no-final-newline t)
 (add-hook 'fsharp-mode-hook 'no-final-newline t)
 (add-hook 'enh-ruby-mode-hook 'no-final-newline t)
+(add-hook 'ruby-mode-hook 'no-final-newline t)
 
 (defadvice ruby-mode-variables (after reset-final-newline)
   "Reset final-newline that ruby-mode enforces but conflicts with ethan-wspace."
@@ -296,9 +297,28 @@
   (setq evil-shift-width 2)
   (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
   (add-to-list 'company-backends 'company-robe)
+  (ruby-end-mode 1)
   (fci-mode 1))
 
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
+
+(evil-define-motion evil-ruby-jump-item (count)
+  :jump t
+  :type inclusive
+  (cond ((or (string-match ruby-block-beg-re (current-word))
+             (string-match "describe" (current-word))
+             (string-match "context" (current-word))
+             (string-match "it" (current-word)))
+         (ruby-end-of-block count))
+        ((string-match ruby-block-end-re (current-word))
+         (ruby-beginning-of-block count))
+        (t
+         (evil-jump-item count))))
+
+(add-hook 'enh-ruby-mode-hook
+          (lambda ()
+            (define-key evil-normal-state-local-map "%" 'evil-ruby-jump-item)
+            (define-key evil-motion-state-local-map "%" 'evil-ruby-jump-item)))
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
