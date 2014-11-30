@@ -12,11 +12,12 @@
                                fill-column-indicator fsharp-mode ggtags ghc
                                go-snippets goto-chg goto-last-change
                                haskell-mode hi2 helm helm-gtags java-snippets
-                               jira markdown-mode neotree omnisharp csharp-mode
-                               flycheck auto-complete dash org pkg-info epl
-                               popup pos-tip project-explorer racket-mode rvm
-                               rainbow-delimiters rainbow-mode robe rspec-mode
-                               ruby-end sml-mode undo-tree xml-rpc))
+                               jira lua-mode markdown-mode neotree omnisharp
+                               csharp-mode flycheck auto-complete dash org
+                               pkg-info epl popup pos-tip project-explorer
+                               racket-mode rvm rainbow-delimiters rainbow-mode
+                               robe rspec-mode ruby-end sml-mode undo-tree
+                               xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -47,6 +48,7 @@
 (setq system-time-locale "C")
 (setq display-time-string-forms '(24-hours ":" minutes))
 (display-time-mode 1)
+(fci-mode 1)
 
 (defun helm-setup ()
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
@@ -117,7 +119,6 @@
 (setq-default fill-column 80)
 (setq fci-rule-width 1)
 (setq fci-rule-color "#ff0000")
-;; (add-hook 'after-change-major-mode-hook 'fci-mode)
 
 (evil-mode 1)
 (global-evil-matchit-mode 1)
@@ -309,8 +310,7 @@
 
 (add-hook 'racket-mode-hook 'my-racket-mode-hook t)
 (defun my-racket-mode-hook()
-  (rainbow-delimiters-mode 1)
-  (fci-mode))
+  (rainbow-delimiters-mode 1))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-hook t)
 (defun my-c-mode-hook ()
@@ -320,10 +320,10 @@
   (company-mode)
   (local-set-key (kbd "<tab>") 'company-complete-common)
   ;; (yas-minor-mode 1)
-  (fci-mode)
   (rainbow-delimiters-mode 1)
   (define-key evil-normal-state-map (kbd "M-.") nil)
   (global-set-key "\M-." 'ggtags-find-tag-dwim)
+  (fci-mode 1)
   (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
     (ggtags-mode 1)
     (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
@@ -358,8 +358,7 @@
   (setq evil-shift-width 2)
   (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
   (add-to-list 'company-backends 'company-robe)
-  (ruby-end-mode 1)
-  (fci-mode 1))
+  (ruby-end-mode 1))
 
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
 
@@ -399,7 +398,6 @@
   (add-to-list 'company-backends 'company-ghc)
   (custom-set-variables '(company-ghc-show-info t))
   (rainbow-delimiters-mode 1)
-  (fci-mode)
 )
 
 (eval-after-load 'haskell-mode
@@ -442,13 +440,12 @@
 
 (add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
 (defun my-scheme-mode-hook ()
-  (fci-mode 1))
+  )
 
 (add-hook 'sml-mode-hook 'my-sml-mode-hook t)
 (defun my-sml-mode-hook ()
   (setq sml-indent-level 2)
   (setq evil-shift-width 2)
-  (fci-mode 1)
   (setq sml-program-name "/usr/local/bin/sml"))
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
