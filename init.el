@@ -8,9 +8,10 @@
 (setq package-list '(yasnippet angular-snippets clojure-snippets color-theme
                                color-theme-solarized company confluence dirtree
                                enh-ruby-mode ethan-wspace evil evil-numbers
-                               evil-matchit evil-surround fill-column-indicator
-                               fsharp-mode ghc go-snippets goto-chg
-                               goto-last-change haskell-mode hi2 java-snippets
+                               ecb evil-matchit evil-surround
+                               fill-column-indicator fsharp-mode ggtags ghc
+                               go-snippets goto-chg goto-last-change
+                               haskell-mode hi2 helm helm-gtags java-snippets
                                jira markdown-mode neotree omnisharp csharp-mode
                                flycheck auto-complete dash org pkg-info epl
                                popup pos-tip project-explorer racket-mode rvm
@@ -46,6 +47,54 @@
 (setq system-time-locale "C")
 (setq display-time-string-forms '(24-hours ":" minutes))
 (display-time-mode 1)
+
+(defun helm-setup ()
+  ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+  ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+  ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-unset-key (kbd "C-x c"))
+
+  (define-key helm-command-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+  (define-key helm-command-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+  (define-key helm-command-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+  (when (executable-find "curl")
+    (setq helm-google-suggest-use-curl-p t))
+
+  (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+        helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil
+        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+        helm-ff-file-name-history-use-recentf t)
+
+  (setq
+   helm-gtags-ignore-case t
+   helm-gtags-auto-update t
+   helm-gtags-use-input-at-cursor t
+   helm-gtags-pulse-at-cursor t
+   helm-gtags-prefix-key "\C-cg"
+   helm-gtags-suggested-key-mapping t
+   )
+
+  ;; enable helm-gtags-mode
+  (add-hook 'dired-mode-hook 'helm-gtags-mode)
+  (add-hook 'eshell-mode-hook 'helm-gtags-mode)
+  (add-hook 'c-mode-hook 'helm-gtags-mode)
+  (add-hook 'c++-mode-hook 'helm-gtags-mode)
+  (add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+  (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+  (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
+  (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+  (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+  (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+  (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+
+  (helm-mode 1))
+
+;; (helm-setup)
 
 ;;; color theme
 (require 'color-theme)
@@ -239,7 +288,7 @@
           '(lambda ()
              (local-set-key "\C-xw" confluence-prefix-map)))
 
-(global-set-key "\t" 'company-complete-common)
+;; (global-set-key "\t" 'company-complete-common)
 
 ;;; mode hooks
 
@@ -266,13 +315,25 @@
 (add-hook 'c-mode-common-hook 'my-c-mode-hook t)
 (defun my-c-mode-hook ()
   (setq tab-width 4)
-  (setq-default indent-tabs-mode nil)
+  (setq indent-tabs-mode t)
   (c-set-offset 'substatement-open 0)
   (company-mode)
   (local-set-key (kbd "<tab>") 'company-complete-common)
   ;; (yas-minor-mode 1)
   (fci-mode)
   (rainbow-delimiters-mode 1)
+  (define-key evil-normal-state-map (kbd "M-.") nil)
+  (global-set-key "\M-." 'ggtags-find-tag-dwim)
+  (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+    (ggtags-mode 1)
+    (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
+    (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
+    (define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+    (define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+    (define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+    (define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+
+    (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark))
   )
 
 (add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
