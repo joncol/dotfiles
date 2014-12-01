@@ -7,17 +7,17 @@
 
 (setq package-list '(yasnippet angular-snippets clojure-snippets color-theme
                                color-theme-solarized company confluence dirtree
-                               enh-ruby-mode ethan-wspace evil evil-numbers
-                               ecb evil-matchit evil-surround
-                               fill-column-indicator fsharp-mode ggtags ghc
-                               go-snippets goto-chg goto-last-change
+                               ecb enh-ruby-mode ethan-wspace evil evil-numbers
+                               evil-matchit evil-surround exec-path-from-shell
+                               fill-column-indicator flx-ido fsharp-mode ggtags
+                               ghc go-snippets goto-chg goto-last-change
                                haskell-mode hi2 helm helm-gtags java-snippets
                                jira lua-mode markdown-mode neotree omnisharp
                                csharp-mode flycheck auto-complete dash org
                                pkg-info epl popup pos-tip project-explorer
-                               racket-mode rvm rainbow-delimiters rainbow-mode
-                               robe rspec-mode ruby-end sml-mode undo-tree
-                               xml-rpc))
+                               projectile racket-mode rvm rainbow-delimiters
+                               rainbow-mode robe rspec-mode ruby-end sml-mode
+                               undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -33,6 +33,8 @@
 (setq-default tab-width 4)
 (global-set-key [f2] 'neotree-toggle)
 (ido-mode)
+(setq ido-enable-flex-matching t)
+(setq projectile-completion-system 'ido)
 (require 'jira)
 (setq jira-url "http://jira.combination.se:8080/rpc/xmlrpc")
 (setq scroll-step           1
@@ -49,6 +51,9 @@
 (setq display-time-string-forms '(24-hours ":" minutes))
 (display-time-mode 1)
 (fci-mode 1)
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (defun helm-setup ()
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
@@ -324,6 +329,8 @@
   (define-key evil-normal-state-map (kbd "M-.") nil)
   (global-set-key "\M-." 'ggtags-find-tag-dwim)
   (fci-mode 1)
+  (local-set-key  (kbd "C-c o") 'ff-find-other-file)
+  (projectile-mode 1)
   (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
     (ggtags-mode 1)
     (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
@@ -358,7 +365,9 @@
   (setq evil-shift-width 2)
   (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
   (add-to-list 'company-backends 'company-robe)
-  (ruby-end-mode 1))
+  (ruby-end-mode 1)
+  (projectile-mode 1)
+  )
 
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
 
@@ -398,6 +407,7 @@
   (add-to-list 'company-backends 'company-ghc)
   (custom-set-variables '(company-ghc-show-info t))
   (rainbow-delimiters-mode 1)
+  (projectile-mode 1)
 )
 
 (eval-after-load 'haskell-mode
