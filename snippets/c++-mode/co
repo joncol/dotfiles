@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: co
+# key: co
+# binding: direct-keybinding
+# --
+std::cout << "$0\n";

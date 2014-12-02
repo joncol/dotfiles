@@ -5,10 +5,11 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(yasnippet angular-snippets clojure-snippets color-theme
-                               color-theme-solarized company confluence dirtree
-                               ecb enh-ruby-mode ethan-wspace evil evil-numbers
-                               evil-matchit evil-surround exec-path-from-shell
+(setq package-list '(yasnippet angular-snippets clojure-snippets ;cmake-font-lock
+                               cmake-mode color-theme color-theme-solarized
+                               company confluence dirtree ecb enh-ruby-mode
+                               ethan-wspace evil evil-numbers evil-matchit
+                               evil-surround exec-path-from-shell
                                fill-column-indicator flx-ido fsharp-mode ggtags
                                ghc go-snippets goto-chg goto-last-change
                                haskell-mode hi2 helm helm-gtags java-snippets
@@ -23,6 +24,7 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(global-auto-revert-mode t)
 (setq ring-bell-function 'ignore)
 (global-font-lock-mode 1)
 (show-paren-mode 1)
@@ -187,8 +189,6 @@
 ;;; whitespace / tabs
 (electric-indent-mode 1)
 (setq-default indent-tabs-mode nil)
-(setq c-default-style "linux")
-(setq-default c-basic-offset 4)
 
 (defun delete-trailing-whitespace-then-newline ()
   (interactive)
@@ -208,9 +208,11 @@
 
 (global-ethan-wspace-mode 1)
 
-(defun makefile-tabs-are-less-evil ()
-  (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors))
-(add-hook 'makefile-mode-hook 'makefile-tabs-are-less-evil))
+(defun tabs-are-ok ()
+  (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
+(add-hook 'makefile-mode-hook 'tabs-are-ok)
+(add-hook 'c-mode-hook 'tabs-are-ok)
+(add-hook 'c++-mode-hook 'tabs-are-ok)
 
 (add-hook 'sml-mode-hook 'no-final-newline t)
 (add-hook 'fsharp-mode-hook 'no-final-newline t)
@@ -333,6 +335,17 @@
 
 (add-hook 'c-mode-common-hook 'my-c-mode-hook t)
 (defun my-c-mode-hook ()
+  (setq-default backward-delete-function nil)
+  (c-add-style "my-c-style"
+               '((c-basic-offset . 4)
+                 (c-offsets-alist (label . +))
+                 ))
+  (c-set-style "my-c-style")
+  (c-set-offset 'substatement-open '0)
+  (c-set-offset 'inline-open '0)
+  ;; (c-set-offset 'block-open '+)
+  ;; (c-set-offset 'brace-list-open '+)
+  ;; (c-set-offset 'case-label '+)
   (setq tab-width 4)
   (setq indent-tabs-mode t)
   (c-set-offset 'substatement-open 0)
@@ -343,7 +356,7 @@
   (define-key evil-normal-state-map (kbd "M-.") nil)
   (global-set-key "\M-." 'ggtags-find-tag-dwim)
   (fci-mode 1)
-  (local-set-key  (kbd "C-c o") 'ff-find-other-file)
+  (local-set-key  (kbd "C-x o") 'ff-find-other-file)
   (projectile-mode 1)
   (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
     (ggtags-mode 1)
@@ -473,3 +486,10 @@
   (setq sml-program-name "/usr/local/bin/sml"))
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
+
+(add-hook 'cmake-mode-hook 'my-cmake-mode-hook t)
+(defun my-cmake-mode-hook ()
+  ;; (cmake-font-lock-activate)
+  (fci-mode 1))
