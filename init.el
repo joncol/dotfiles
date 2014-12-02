@@ -56,6 +56,19 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+(defun date (arg)
+  (insert (if arg
+              (format-time-string "%d.%m.%Y")
+            (format-time-string "%Y-%m-%d"))))
+(defun timestamp (arg)
+  (insert (if arg
+              (format-time-string "%Y-%m-%dT%H:%M:%S")
+            (format-time-string "%H:%M:%S"))))
+
+(global-set-key (kbd "C-c i d") (lambda () (interactive) (date nil)))
+(global-set-key (kbd "C-c i T") (lambda () (interactive) (timestamp t)))
+(global-set-key (kbd "C-c i t") (lambda () (interactive) (timestamp nil)))
+
 (defun helm-setup ()
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
   ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
