@@ -134,7 +134,7 @@
       (color-theme-solarized 'dark))
   (progn
     (when (display-graphic-p) (set-frame-size (selected-frame) 180 80))
-    (color-theme-solarized 'light)))
+    (color-theme-solarized 'dark)))
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
@@ -348,6 +348,7 @@
   ;; (c-set-offset 'case-label '+)
   (setq tab-width 4)
   (setq indent-tabs-mode t)
+  (setq align-to-tab-stop nil)
   (c-set-offset 'substatement-open 0)
   (company-mode)
   (local-set-key (kbd "<tab>") 'company-complete-common)
