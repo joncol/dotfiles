@@ -3,4 +3,4 @@
 # key: cov
 # binding: direct-keybinding
 # --
-std::cout << "${1:var}: " + $1 + "\n";
+std::cout << "${1:var}: " << $1 << "\n";

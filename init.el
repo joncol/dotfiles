@@ -5,20 +5,22 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(yasnippet angular-snippets clojure-snippets ;cmake-font-lock
-                               cmake-mode color-theme color-theme-solarized
+(setq package-list '(yasnippet angular-snippets better-defaults cider
+                               clojure-mode clojure-snippets cmake-mode
+                               color-theme color-theme-molokai
+                               color-theme-monokai color-theme-solarized
                                company confluence dirtree ecb enh-ruby-mode
                                ethan-wspace evil evil-numbers evil-matchit
                                evil-surround exec-path-from-shell
                                fill-column-indicator flx-ido fsharp-mode ggtags
                                ghc go-snippets goto-chg goto-last-change
-                               haskell-mode hi2 helm helm-gtags java-snippets
-                               jira lua-mode markdown-mode neotree omnisharp
-                               csharp-mode flycheck auto-complete dash org
-                               pkg-info epl popup pos-tip project-explorer
-                               projectile racket-mode rvm rainbow-delimiters
-                               rainbow-mode robe rspec-mode ruby-end sml-mode
-                               undo-tree xml-rpc))
+                               gruvbox-theme haskell-mode hi2 helm helm-gtags
+                               java-snippets jira lua-mode markdown-mode
+                               neotree omnisharp csharp-mode flycheck
+                               auto-complete dash org pkg-info epl popup
+                               pos-tip project-explorer projectile racket-mode
+                               rvm rainbow-delimiters rainbow-mode robe
+                               rspec-mode ruby-end sml-mode undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -78,9 +80,9 @@
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
   (global-unset-key (kbd "C-x c"))
 
-  (define-key helm-command-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-  (define-key helm-command-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-  (define-key helm-command-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+  ;; (define-key helm-command-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+  ;; (define-key helm-command-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+  ;; (define-key helm-command-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
 
   (when (executable-find "curl")
     (setq helm-google-suggest-use-curl-p t))
@@ -108,21 +110,22 @@
   (add-hook 'c++-mode-hook 'helm-gtags-mode)
   (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
-  (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
-  (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
-  (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
-  (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
-  (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-  (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+  ; (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+  ; (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
+  ; (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+  ; (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+  ; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+  ; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
 
   (helm-mode 1))
 
-;; (helm-setup)
+(helm-setup)
 
 ;;; color theme
-(require 'color-theme)
 (setq color-theme-is-global t)
 (color-theme-initialize)
+
+;; (load-theme 'gruvbox t)
 
 (if (eq system-type 'windows-nt)
     (progn
@@ -131,10 +134,12 @@
        :weight normal :height 120 :width normal)))))
       (set-frame-position (selected-frame) 0 0)
       (set-frame-size (selected-frame) 180 60)
-      (color-theme-solarized 'dark))
+      (color-theme-solarized 'light)
+      )
   (progn
     (when (display-graphic-p) (set-frame-size (selected-frame) 180 80))
-    (color-theme-solarized 'dark)))
+    (color-theme-solarized 'light)
+    ))
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
@@ -142,6 +147,20 @@
 (setq fci-rule-color "#ff0000")
 
 (evil-mode 1)
+(eval-after-load "evil"
+            ;; modes to map to different default state
+            (dolist (mode-map '((ag-mode . emacs)
+                                (cider-repl-mode . emacs)
+                                (comint-mode . emacs)
+                                (eshell-mode . emacs)
+                                (fundamental-mode . emacs)
+                                (git-commit-mode . insert)
+                                (git-rebase-mode . emacs)
+                                (help-mode . emacs)
+                                (paradox-menu-mode . emacs)
+                                (term-mode . emacs)))
+              (evil-set-initial-state `,(car mode-map) `,(cdr mode-map))))
+
 (global-evil-matchit-mode 1)
 (global-evil-surround-mode 1)
 (setq evil-normal-state-cursor '("green" box))
@@ -314,8 +333,25 @@
 
 ;;; mode hooks
 
+(defun common-prog ()
+  (modify-syntax-entry ?_ "w")
+  (fci-mode 1)
+  (rainbow-delimiters-mode 1)
+  )
+
+(add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
+(defun my-clojure-mode-hook ()
+  (common-prog)
+  (projectile-mode 1)
+  )
+
+(add-hook 'lua-mode-hook 'my-lua-mode-hook t)
+(defun my-lua-mode-hook ()
+  (common-prog))
+
 (add-hook 'org-mode-hook 'my-org-mode-hook t)
 (defun my-org-mode-hook ()
+  (common-prog)
   (setq org-src-fontify-natively t))
 
 (add-hook 'after-init-hook 'global-company-mode)
@@ -326,15 +362,15 @@
 
 (add-hook 'lisp-mode-hook 'my-lisp-mode-hook t)
 (defun my-lisp-mode-hook ()
-  (rainbow-delimiters-mode 1)
-  )
+  (common-prog))
 
 (add-hook 'racket-mode-hook 'my-racket-mode-hook t)
 (defun my-racket-mode-hook()
-  (rainbow-delimiters-mode 1))
+  (common-prog))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-hook t)
 (defun my-c-mode-hook ()
+  (common-prog)
   (setq-default backward-delete-function nil)
   (c-add-style "my-c-style"
                '((c-basic-offset . 4)
@@ -356,7 +392,6 @@
   (rainbow-delimiters-mode 1)
   (define-key evil-normal-state-map (kbd "M-.") nil)
   (global-set-key "\M-." 'ggtags-find-tag-dwim)
-  (fci-mode 1)
   (local-set-key  (kbd "C-x o") 'ff-find-other-file)
   (projectile-mode 1)
   (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
@@ -371,8 +406,14 @@
     (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark))
   )
 
+(add-hook 'c++-mode-hook 'my-c++-mode-hook t)
+(defun my-c++-mode-hook ()
+  (c-set-offset 'innamespace '0)
+  )
+
 (add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
 (defun my-csharp-mode-hook ()
+  (common-prog)
   (electric-pair-mode 0)
   (add-to-list 'company-backends 'company-omnisharp)
   (c-set-style "c#")
@@ -383,13 +424,14 @@
 
 (add-hook 'fsharp-mode-hook 'my-fsharp-mode-hook t)
 (defun my-fsharp-mode-hook ()
+  (common-prog)
   (omnisharp-mode)
-  (rainbow-delimiters-mode 1)
   )
 
 (add-hook 'ruby-mode-hook 'enh-ruby-mode)
 (add-hook 'enh-ruby-mode-hook 'my-enh-ruby-mode-hook t)
 (defun my-enh-ruby-mode-hook ()
+  (common-prog)
   (setq evil-shift-width 2)
   (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
   (add-to-list 'company-backends 'company-robe)
@@ -419,6 +461,7 @@
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
+  (common-prog)
   (turn-on-haskell-doc-mode)
   ;; (turn-on-haskell-indentation)
   (turn-on-haskell-indent)
@@ -434,9 +477,8 @@
 
   (add-to-list 'company-backends 'company-ghc)
   (custom-set-variables '(company-ghc-show-info t))
-  (rainbow-delimiters-mode 1)
   (projectile-mode 1)
-)
+  )
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
@@ -445,6 +487,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("806d8c827b214f5f60348114bd27c6dcb5d19047f7ac482ad61e8077a6c5ea60" default)))
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
@@ -478,10 +523,12 @@
 
 (add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
 (defun my-scheme-mode-hook ()
+  (common-prog)
   )
 
 (add-hook 'sml-mode-hook 'my-sml-mode-hook t)
 (defun my-sml-mode-hook ()
+  (common-prog)
   (setq sml-indent-level 2)
   (setq evil-shift-width 2)
   (setq sml-program-name "/usr/local/bin/sml"))
@@ -492,5 +539,6 @@
 
 (add-hook 'cmake-mode-hook 'my-cmake-mode-hook t)
 (defun my-cmake-mode-hook ()
+  (common-prog)
   ;; (cmake-font-lock-activate)
-  (fci-mode 1))
+  )
