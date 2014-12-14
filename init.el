@@ -420,7 +420,7 @@
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook t)
 (defun my-c++-mode-hook ()
-  (setq compile-command (concat "cd " (projectile-project-root) "../debug && make -j4"))
+  (setq compile-command (concat "cd " (projectile-project-root) "../debug && make -j4 && ctest"))
   (global-set-key (kbd "<f6>") 'compile)
   (c-set-offset 'innamespace '0)
   )
