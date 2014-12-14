@@ -5,22 +5,21 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(yasnippet angular-snippets better-defaults cider
-                               clojure-mode clojure-snippets cmake-mode
-                               color-theme color-theme-molokai
-                               color-theme-monokai color-theme-solarized
-                               company confluence dirtree ecb enh-ruby-mode
-                               ethan-wspace evil evil-numbers evil-matchit
-                               evil-surround exec-path-from-shell
-                               fill-column-indicator flx-ido fsharp-mode ggtags
-                               ghc go-snippets goto-chg goto-last-change
-                               gruvbox-theme haskell-mode hi2 helm helm-gtags
-                               java-snippets jira lua-mode markdown-mode
-                               neotree omnisharp csharp-mode flycheck
-                               auto-complete dash org pkg-info epl popup
-                               pos-tip project-explorer projectile racket-mode
-                               rvm rainbow-delimiters rainbow-mode robe
-                               rspec-mode ruby-end sml-mode undo-tree xml-rpc))
+(setq package-list '(yasnippet ack-and-a-half angular-snippets better-defaults
+                               cider clojure-mode clojure-snippets cmake-mode
+                               color-theme color-theme-solarized company
+                               confluence dirtree ecb enh-ruby-mode ethan-wspace
+                               evil evil-numbers evil-matchit evil-surround
+                               exec-path-from-shell fill-column-indicator
+                               flx-ido fsharp-mode ggtags ghc go-snippets
+                               goto-chg goto-last-change gruvbox-theme
+                               haskell-mode hi2 helm helm-gtags java-snippets
+                               jira lua-mode markdown-mode neotree omnisharp
+                               csharp-mode flycheck auto-complete dash org
+                               pkg-info epl popup pos-tip project-explorer
+                               projectile racket-mode rvm rainbow-delimiters
+                               rainbow-mode robe rspec-mode ruby-end sml-mode
+                               undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -56,6 +55,8 @@
 (setq display-time-string-forms '(24-hours ":" minutes))
 (display-time-mode 1)
 (fci-mode 1)
+(setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed nil)
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
@@ -134,7 +135,7 @@
        :weight normal :height 120 :width normal)))))
       (set-frame-position (selected-frame) 0 0)
       (set-frame-size (selected-frame) 180 60)
-      (color-theme-solarized 'light)
+      (color-theme-solarized 'dark)
       )
   (progn
     (when (display-graphic-p) (set-frame-size (selected-frame) 180 80))
@@ -156,7 +157,7 @@
                                 (fundamental-mode . emacs)
                                 (git-commit-mode . insert)
                                 (git-rebase-mode . emacs)
-                                (help-mode . emacs)
+                                ;; (help-mode . emacs)
                                 (paradox-menu-mode . emacs)
                                 (term-mode . emacs)))
               (evil-set-initial-state `,(car mode-map) `,(cdr mode-map))))
@@ -347,7 +348,9 @@
 
 (add-hook 'lua-mode-hook 'my-lua-mode-hook t)
 (defun my-lua-mode-hook ()
-  (common-prog))
+  (common-prog)
+  (projectile-mode 1)
+  )
 
 (add-hook 'org-mode-hook 'my-org-mode-hook t)
 (defun my-org-mode-hook ()

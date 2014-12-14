@@ -1,6 +1,7 @@
 ^ido\.last$
 ^ac-comphist\.dat$
 ^projectile-bookmarks\.eld$
+^projectile\.cache$
 tags$
 
 bin/
