@@ -47,7 +47,15 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir))
 (yas-global-mode 1)
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
+
 (global-set-key (kbd "C-x a r") 'align-regexp)
+;; align with spaces only
+(defadvice align-regexp (around align-regexp-with-spaces)
+  "Never use tabs for alignment."
+  (let ((indent-tabs-mode nil))
+    ad-do-it))
+(ad-activate 'align-regexp)
+
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 (rainbow-mode 1)
@@ -371,8 +379,8 @@
 (defun my-racket-mode-hook()
   (common-prog))
 
-(add-hook 'c-mode-common-hook 'my-c-mode-hook t)
-(defun my-c-mode-hook ()
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook t)
+(defun my-c-mode-common-hook ()
   (common-prog)
   (setq-default backward-delete-function nil)
   (c-add-style "my-c-style"
@@ -411,6 +419,7 @@
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook t)
 (defun my-c++-mode-hook ()
+  (setq compile-command (concat "cd " (projectile-project-root) "../debug && make -j4"))
   (c-set-offset 'innamespace '0)
   )
 
