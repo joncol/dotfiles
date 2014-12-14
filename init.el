@@ -358,6 +358,7 @@
 (defun my-lua-mode-hook ()
   (common-prog)
   (projectile-mode 1)
+  (setq lua-indent-level 4)
   )
 
 (add-hook 'org-mode-hook 'my-org-mode-hook t)
@@ -420,6 +421,7 @@
 (add-hook 'c++-mode-hook 'my-c++-mode-hook t)
 (defun my-c++-mode-hook ()
   (setq compile-command (concat "cd " (projectile-project-root) "../debug && make -j4"))
+  (global-set-key (kbd "<f6>") 'compile)
   (c-set-offset 'innamespace '0)
   )
 
