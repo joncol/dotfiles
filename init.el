@@ -147,7 +147,7 @@
       )
   (progn
     (when (display-graphic-p) (set-frame-size (selected-frame) 180 80))
-    (color-theme-solarized 'light)
+    (color-theme-solarized 'dark)
     ))
 
 (require 'fill-column-indicator)
@@ -420,7 +420,7 @@
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook t)
 (defun my-c++-mode-hook ()
-  (setq compile-command (concat "cd " (projectile-project-root) "../debug && make -j4 && ctest"))
+  (setq compile-command (concat "cd " (projectile-project-root) "debug && make -j4 && ctest"))
   (global-set-key (kbd "<f6>") 'compile)
   (c-set-offset 'innamespace '0)
   )
