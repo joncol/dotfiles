@@ -708,10 +708,12 @@ if has("gui_running")             " 'guifont' doesn't work in the console
       set guifont=Inconsolata:h12
     endif
 
-    augroup gui_au
-      autocmd!
-      autocmd GUIEnter * simalt ~X
-    augroup END
+    if s:uname == "Windows"
+      augroup gui_au
+        autocmd!
+        autocmd GUIEnter * simalt ~X
+      augroup END
+    endif
   endif
 
   if has('title')
