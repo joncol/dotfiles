@@ -187,10 +187,10 @@
   (define-key evil-insert-state-map "\C-u" 'neotree-toggle)
   (define-key evil-visual-state-map "\C-u" 'neotree-toggle)
 
-  (define-key neotree-mode-map [return] 'neotree-enter)
-  (define-key neotree-mode-map (kbd "\C-g") 'neotree-refresh)
-  (define-key neotree-mode-map (kbd "C-<return>") 'neotree-change-root)
-  (define-key neotree-mode-map (kbd "s-i") 'neotree-hidden-file-toggle)
+  (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+  (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+  (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+  (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
 )
 
 ;;; autocomplete
@@ -358,6 +358,7 @@
 
 ;; (global-set-key "\t" 'company-complete-common)
 
+(make-variable-buffer-local 'line-move-visual)
 (defadvice previous-line (around avoid-jumpy-fci activate)
   (if (and (symbol-value 'fci-mode) (> (count-lines 1 (point)) 0))
       (prog (fci-mode -1) ad-do-it (fci-mode 1))
