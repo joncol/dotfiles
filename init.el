@@ -358,6 +358,11 @@
 
 ;; (global-set-key "\t" 'company-complete-common)
 
+(defadvice previous-line (around avoid-jumpy-fci activate)
+  (if (symbol-value 'fci-mode)
+      (prog (fci-mode -1) ad-do-it (fci-mode 1))
+    ad-do-it))
+
 ;;; mode hooks
 
 (defun common-prog ()
