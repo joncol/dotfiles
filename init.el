@@ -13,10 +13,10 @@
                                exec-path-from-shell fill-column-indicator
                                flx-ido fsharp-mode ggtags ghc go-snippets
                                goto-chg goto-last-change gruvbox-theme
-                               haskell-mode hi2 helm helm-gtags java-snippets
-                               jira lua-mode markdown-mode neotree omnisharp
-                               csharp-mode flycheck auto-complete dash org
-                               pkg-info epl popup pos-tip project-explorer
+                               haskell-mode hi2 helm helm-gtags
+                               java-snippets jira lua-mode markdown-mode neotree
+                               omnisharp csharp-mode flycheck auto-complete dash
+                               org pkg-info epl popup pos-tip project-explorer
                                projectile racket-mode rvm rainbow-delimiters
                                rainbow-mode robe rspec-mode ruby-end sml-mode
                                undo-tree xml-rpc))
@@ -34,7 +34,6 @@
 (electric-pair-mode 1)
 (global-linum-mode t)
 (setq-default tab-width 4)
-(global-set-key [f2] 'neotree-toggle)
 (ido-mode)
 (flx-ido-mode)
 ;; (setq ido-enable-flex-matching t)
@@ -47,6 +46,7 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir))
 (yas-global-mode 1)
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
+(load-library "iso-transl")
 
 (global-set-key (kbd "C-x a r") 'align-regexp)
 ;; align with spaces only
@@ -174,6 +174,24 @@
 (global-evil-surround-mode 1)
 (setq evil-normal-state-cursor '("green" box))
 (setq evil-insert-state-cursor '("green" bar))
+
+;;; Neo Tree stuff
+(global-set-key [f2] 'neotree-toggle)
+(setq neo-show-header nil)
+
+(add-hook 'neotree-mode-hook 'neotree-mode-hook t)
+
+(defun neotree-mode-hook ()
+  (hl-line-mode 1)
+  (define-key evil-normal-state-map "\C-u" 'neotree-toggle)
+  (define-key evil-insert-state-map "\C-u" 'neotree-toggle)
+  (define-key evil-visual-state-map "\C-u" 'neotree-toggle)
+
+  (define-key neotree-mode-map [return] 'neotree-enter)
+  (define-key neotree-mode-map (kbd "\C-g") 'neotree-refresh)
+  (define-key neotree-mode-map (kbd "C-<return>") 'neotree-change-root)
+  (define-key neotree-mode-map (kbd "s-i") 'neotree-hidden-file-toggle)
+)
 
 ;;; autocomplete
 (setq tab-always-indent 'complete)

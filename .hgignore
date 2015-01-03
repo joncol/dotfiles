@@ -23,3 +23,4 @@ recentf
 \.DS_Store$
 \.dep$
 \.zo$
+^session\.[0-9a-f]+$
