@@ -359,7 +359,7 @@
 ;; (global-set-key "\t" 'company-complete-common)
 
 (defadvice previous-line (around avoid-jumpy-fci activate)
-  (if (symbol-value 'fci-mode)
+  (if (and (symbol-value 'fci-mode) (> (count-lines 1 (point)) 0))
       (prog (fci-mode -1) ad-do-it (fci-mode 1))
     ad-do-it))
 
