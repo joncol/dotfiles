@@ -189,6 +189,7 @@
 
   (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
   (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+  (define-key evil-normal-state-local-map (kbd "g") 'neotree-refresh)
   (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
   (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
 )
@@ -580,3 +581,15 @@
   (common-prog)
   ;; (cmake-font-lock-activate)
   )
+
+(defun my-compilation-mode-hook ()
+  (when (not (get-buffer-window "*compilation*"))
+    (save-selected-window
+      (save-excursion
+        (let* ((w (split-window-vertically))
+               (h (window-height w)))
+          (select-window w)
+          (switch-to-buffer "*compilation*")
+          (shrink-window (- h 10)))))))
+
+(add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
