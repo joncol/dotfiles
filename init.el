@@ -62,7 +62,6 @@
 (setq system-time-locale "C")
 (setq display-time-string-forms '(24-hours ":" minutes))
 (display-time-mode 1)
-(fci-mode 1)
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
@@ -142,11 +141,11 @@
        '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
        :weight normal :height 120 :width normal)))))
       (set-frame-position (selected-frame) 0 0)
-      (set-frame-size (selected-frame) 180 60)
+      (set-frame-size (selected-frame) 1800 60)
       (color-theme-solarized 'dark)
       )
   (progn
-    (when (display-graphic-p) (set-frame-size (selected-frame) 180 80))
+    (when (display-graphic-p) (set-frame-size (selected-frame) 93 80))
     (color-theme-solarized 'dark)
     ))
 
@@ -189,8 +188,11 @@
 
   (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
   (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+  (define-key evil-normal-state-local-map (kbd "c") 'neotree-change-root)
   (define-key evil-normal-state-local-map (kbd "g") 'neotree-refresh)
   (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+  (define-key evil-normal-state-local-map (kbd "v") 'neotree-enter-vertical-split)
+  (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-horizontal-split)
   (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
 )
 
@@ -365,12 +367,108 @@
       (prog (fci-mode -1) ad-do-it (fci-mode 1))
     ad-do-it))
 
+
+;; rotate text
+
+(defvar rotate-text-rotations
+  '(("true" "false")
+    ("yes" "no"))
+  "List of text rotation sets.")
+
+(defun rotate-region (beg end)
+  "Rotate all matches in `rotate-text-rotations' between point and mark."
+  (interactive "r")
+  (let ((regexp (rotate-convert-rotations-to-regexp
+                 rotate-text-rotations))
+        (end-mark (copy-marker end)))
+    (save-excursion
+      (goto-char beg)
+      (while (re-search-forward regexp (marker-position end-mark) t)
+        (let* ((found (match-string 0))
+               (replace (rotate-next found)))
+          (replace-match replace))))))
+
+(defun rotate-string (string &optional rotations)
+  "Rotate all matches in STRING using associations in ROTATIONS.
+If ROTATIONS are not given it defaults to `rotate-text-rotations'."
+  (let ((regexp (rotate-convert-rotations-to-regexp
+                 (or rotations rotate-text-rotations)))
+        (start 0))
+    (while (string-match regexp string start)
+      (let* ((found (match-string 0 string))
+             (replace (rotate-next
+                       found
+                       (or rotations rotate-text-rotations))))
+        (setq start (+ (match-end 0)
+                       (- (length replace) (length found))))
+        (setq string (replace-match replace nil t string))))
+    string))
+
+(defun rotate-next (string &optional rotations)
+  "Return the next element after STRING in ROTATIONS."
+  (let ((rots (rotate-get-rotations-for
+               string
+               (or rotations rotate-text-rotations))))
+    (if (> (length rots) 1)
+        (error (format "Ambiguous rotation for %s" string))
+      (if (< (length rots) 1)
+          ;; If we get this far, this should not occur:
+          (error (format "Unknown rotation for %s" string))
+        (let ((occurs-in-rots (member string (car rots))))
+          (if (null occurs-in-rots)
+              ;; If we get this far, this should *never* occur:
+              (error (format "Unknown rotation for %s" string))
+            (if (null (cdr occurs-in-rots))
+                (caar rots)
+              (cadr occurs-in-rots))))))))
+
+(defun rotate-get-rotations-for (string &optional rotations)
+  "Return the string rotations for STRING in ROTATIONS."
+  (remq nil (mapcar (lambda (rot) (if (member string rot) rot))
+                    (or rotations rotate-text-rotations))))
+
+(defun rotate-convert-rotations-to-regexp (rotations)
+  (regexp-opt (rotate-flatten-list rotations)))
+
+(defun rotate-flatten-list (list-of-lists)
+  "Flatten LIST-OF-LISTS to a single list.
+Example:
+  (rotate-flatten-list '((a b c) (1 ((2 3)))))
+    => (a b c 1 2 3)"
+  (if (null list-of-lists)
+      list-of-lists
+    (if (listp list-of-lists)
+        (append (rotate-flatten-list (car list-of-lists))
+                (rotate-flatten-list (cdr list-of-lists)))
+      (list list-of-lists))))
+
+(defun rotate-word-at-point ()
+  "Rotate word at point based on sets in `rotate-text-rotations'."
+  (interactive)
+  (let ((bounds (bounds-of-thing-at-point 'word))
+        (opoint (point)))
+    (when (consp bounds)
+      (let ((beg (car bounds))
+            (end (copy-marker (cdr bounds))))
+        (rotate-region beg end)
+        (goto-char (if (> opoint end) end opoint))))))
+
+(define-key evil-normal-state-map "+" 'rotate-word-at-point)
+
+(defun indent-or-rotate ()
+  "If point is at end of a word, then else indent the line."
+  (interactive)
+  (if (looking-at "\\>")
+      (rotate-region (save-excursion (forward-word -1) (point))
+                     (point))
+    (indent-for-tab-command)))
+
 ;;; mode hooks
 
 (defun common-prog ()
   (modify-syntax-entry ?_ "w")
-  (fci-mode 1)
   (rainbow-delimiters-mode 1)
+  (fci-mode 1)
   )
 
 (add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
@@ -447,8 +545,10 @@
 (defun my-c++-mode-hook ()
   (setq compile-command (concat "cd " (projectile-project-root) "debug && make -j4 && ctest"))
   (global-set-key (kbd "<f6>") 'compile)
-  (c-set-offset 'innamespace '0)
+  ;; (c-set-offset 'innamespace '0)
   )
+
+(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
 (add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
 (defun my-csharp-mode-hook ()
@@ -579,6 +679,7 @@
 (add-hook 'cmake-mode-hook 'my-cmake-mode-hook t)
 (defun my-cmake-mode-hook ()
   (common-prog)
+  (projectile-mode 1)
   ;; (cmake-font-lock-activate)
   )
 

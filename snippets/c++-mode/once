@@ -1,0 +1,9 @@
+#name : once
+# key: once
+# --
+#ifndef ${2:`(upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`_H}
+#define $2
+
+$1
+
+#endif
