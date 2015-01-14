@@ -314,7 +314,7 @@ end
 " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
-if s:uname != "Windows"
+if s:uname != "Windows" && !has("gui_running")
   set term=screen-256color
 endif
 
@@ -323,6 +323,7 @@ set hlsearch
 "let g:solarized_bold=0
 if has("gui_running")
   colorscheme gruvbox
+  set background=dark
 else
   colorscheme summerfruit256
 endif
