@@ -1,7 +1,9 @@
+^ede-projects\.el$
 ^ido\.last$
 ^ac-comphist\.dat$
 ^projectile-bookmarks\.eld$
 ^projectile\.cache$
+^helm-adaptive-history$
 tags$
 
 bin/
@@ -10,6 +12,7 @@ ipch/
 obj/
 elpa/
 reports/
+semanticdb/
 places
 recentf
 

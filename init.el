@@ -13,7 +13,7 @@
                                exec-path-from-shell fill-column-indicator
                                flx-ido fsharp-mode ggtags ghc go-snippets
                                goto-chg goto-last-change gruvbox-theme
-                               haskell-mode hi2 helm helm-gtags
+                               haskell-mode hi2 helm helm-company helm-gtags
                                java-snippets jira lua-mode markdown-mode neotree
                                omnisharp csharp-mode flycheck auto-complete dash
                                org pkg-info epl popup pos-tip project-explorer
@@ -24,6 +24,9 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+(require 'semantic)
+(require 'semantic/bovine/gcc)
 
 (global-auto-revert-mode t)
 (setq ring-bell-function 'ignore)
@@ -125,7 +128,8 @@
   ; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
   ; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
 
-  (helm-mode 1))
+  (helm-mode 1)
+  )
 
 (helm-setup)
 
@@ -492,6 +496,18 @@ Example:
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
 (defun my-global-company-mode-hook ()
+  ; bigger popup window
+  (setq company-tooltip-limit 20)
+
+  ; decrease delay before autocompletion popup shows
+  (setq company-idle-delay .3)
+
+  ; remove blinking
+  (setq company-echo-delay 0)
+
+  ; start autocompletion only after typing
+  (setq company-begin-commands '(self-insert-command))
+
   (define-key company-active-map (kbd "j") 'company-select-next-or-abort)
   (define-key company-active-map (kbd "k") 'company-select-previous-or-abort))
 
@@ -539,16 +555,69 @@ Example:
     (define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
 
     (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark))
+
+  (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
+  (semantic-mode 1)
+  (global-ede-mode t)
+  (ede-enable-generic-projects)
   )
+
+;;; C++
+
+(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook t)
 (defun my-c++-mode-hook ()
   (setq compile-command (concat "cd " (projectile-project-root) "debug && make -j4 && ctest"))
   (global-set-key (kbd "<f6>") 'compile)
   ;; (c-set-offset 'innamespace '0)
+
+  (defadvice c-lineup-arglist (around my activate)
+    "Improve indentation of continued C++11 lambda function opened as argument."
+    (setq ad-return-value
+          (if (and (equal major-mode 'c++-mode)
+                   (ignore-errors
+                     (save-excursion
+                       (goto-char (c-langelem-pos langelem))
+                       ;; Detect "[...](" or "[...]{". preceded by "," or "(",
+                       ;;   and with unclosed brace.
+                       ;; (looking-at ".*[(,][ \t]*\\[[^]]*\\][ \t]*[({][^}]*$"))))
+                       (looking-at ".*[(,][ \t]*\\[[^]]*\\][ \t]*[({][^}]*$"))))
+              0                           ; no additional indent
+            ad-do-it)))                   ; default behavior
   )
 
-(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+(defun inside-class-enum-p (pos)
+  "Checks if POS is within the braces of a C++ \"enum class\"."
+  (ignore-errors
+    (save-excursion
+      (goto-char pos)
+      (up-list -1)
+      (backward-sexp 1)
+      (looking-back "enum[ \t]+class[ \t]+[^}]+"))))
+
+(defun align-enum-class (langelem)
+  (if (inside-class-enum-p (c-langelem-pos langelem))
+      0
+    (c-lineup-topmost-intro-cont langelem)))
+
+(defun align-enum-class-closing-brace (langelem)
+  (if (inside-class-enum-p (c-langelem-pos langelem))
+      '-
+    '+))
+
+(defun fix-enum-class ()
+  "Setup `c++-mode' to better handle \"class enum\"."
+  (add-to-list 'c-offsets-alist '(topmost-intro-cont . align-enum-class))
+  (add-to-list 'c-offsets-alist
+               '(statement-cont . align-enum-class-closing-brace)))
+
+(add-hook 'c++-mode-hook 'fix-enum-class)
+
+;;; C#
 
 (add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
 (defun my-csharp-mode-hook ()
