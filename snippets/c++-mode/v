@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: v
+# key: v
+# binding: direct-keybinding
+# --
+#include <vector>
