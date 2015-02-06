@@ -11,15 +11,16 @@
                                confluence dirtree ecb enh-ruby-mode ethan-wspace
                                evil evil-numbers evil-matchit evil-surround
                                exec-path-from-shell fill-column-indicator
-                               flx-ido fsharp-mode ggtags ghc go-snippets
-                               goto-chg goto-last-change gruvbox-theme
-                               haskell-mode hi2 helm helm-company helm-gtags
-                               java-snippets jira lua-mode markdown-mode neotree
-                               omnisharp csharp-mode flycheck auto-complete dash
-                               org pkg-info epl popup pos-tip project-explorer
-                               projectile racket-mode rvm rainbow-delimiters
-                               rainbow-mode robe rspec-mode ruby-end sml-mode
-                               undo-tree xml-rpc))
+                               flx-ido fsharp-mode ggtags ghc glsl-mode
+                               go-snippets goto-chg goto-last-change
+                               gruvbox-theme haskell-mode hi2 helm helm-company
+                               helm-gtags java-snippets jira lua-mode
+                               markdown-mode neotree omnisharp csharp-mode
+                               flycheck auto-complete dash org pkg-info epl
+                               popup pos-tip project-explorer projectile
+                               racket-mode rvm rainbow-delimiters rainbow-mode
+                               robe rspec-mode ruby-end sml-mode undo-tree
+                               xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -145,7 +146,7 @@
        '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
        :weight normal :height 120 :width normal)))))
       (set-frame-position (selected-frame) 0 0)
-      (set-frame-size (selected-frame) 1800 60)
+      (set-frame-size (selected-frame) 180 60)
       (color-theme-solarized 'dark)
       )
   (progn
@@ -365,11 +366,11 @@
 
 ;; (global-set-key "\t" 'company-complete-common)
 
-(make-variable-buffer-local 'line-move-visual)
-(defadvice previous-line (around avoid-jumpy-fci activate)
-  (if (and (symbol-value 'fci-mode) (> (count-lines 1 (point)) 0))
-      (prog (fci-mode -1) ad-do-it (fci-mode 1))
-    ad-do-it))
+; (make-variable-buffer-local 'line-move-visual)
+; (defadvice previous-line (around avoid-jumpy-fci activate)
+;   (if (and (symbol-value 'fci-mode) (> (count-lines 1 (point)) 0))
+;       (prog (fci-mode -1) ad-do-it (fci-mode 1))
+;     ad-do-it))
 
 
 ;; rotate text
