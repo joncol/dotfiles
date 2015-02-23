@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: v
-# key: v
+# name: ca
+# key: ca
 # --
-#include <vector>
+#include <cassert>
