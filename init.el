@@ -668,16 +668,33 @@ Example:
             (define-key evil-normal-state-local-map "%" 'evil-ruby-jump-item)
             (define-key evil-motion-state-local-map "%" 'evil-ruby-jump-item)))
 
+(defun newline-and-indent-relative ()
+  (interactive)
+  (newline)
+  (indent-to-column (save-excursion
+                      (forward-line -1)
+                      (back-to-indentation)
+                      (current-column))))
+
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
   (common-prog)
   (turn-on-haskell-doc-mode)
   ;; (turn-on-haskell-indentation)
-  (turn-on-haskell-indent)
+  ;; (turn-on-haskell-indent)
   ;; (turn-on-haskell-simple-indent)
 
+  (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
+  ;; just use tab-stop indentation, 4-space tabs
+
+  (turn-on-haskell-simple-indent)
+  (setq indent-line-function 'tab-to-tab-stop)
+  (setq tab-stop-list
+        (loop for i from 4 upto 120 by 4 collect i))
+  (local-set-key (kbd "RET") 'newline-and-indent-relative)
+
   (interactive-haskell-mode)
-  ;; (setq tab-stop-list '(1 3 5))
   ;; (turn-on-hi2)
   (let ((my-cabal-path (expand-file-name "~/Library/Haskell/bin")))
     (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
