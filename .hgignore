@@ -22,6 +22,7 @@ recentf
 \.swp$
 \.swo$
 \.sdf$
+\.orig$
 \.opensdf$
 \.DS_Store$
 \.dep$
