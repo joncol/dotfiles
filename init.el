@@ -700,15 +700,18 @@ Example:
 
   (interactive-haskell-mode)
   ;; (turn-on-hi2)
-  (let ((my-cabal-path (expand-file-name "~/Library/Haskell/bin")))
-    (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
-    (add-to-list 'exec-path my-cabal-path))
-  (custom-set-variables '(haskell-tags-on-save t))
 
   (add-to-list 'company-backends 'company-ghc)
   (custom-set-variables '(company-ghc-show-info t))
   (projectile-mode 1)
-  )
+
+  (define-key evil-normal-state-map (kbd "M-.") nil)
+
+  (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+    (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
+    (add-to-list 'exec-path my-cabal-path))
+  (custom-set-variables '(haskell-tags-on-save t))
+)
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
@@ -740,7 +743,8 @@ Example:
      (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
      (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
-;; (custom-set-variables '(haskell-process-type 'cabal-repl))
+(custom-set-variables '(haskell-process-type 'cabal-repl)
+                      '(haskell-interactive-popup-errors nil))
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
