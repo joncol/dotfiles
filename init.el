@@ -1,26 +1,26 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("melpa" . "http://melpa-stable.milkbox.net/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
 (setq package-list '(yasnippet ack-and-a-half angular-snippets better-defaults
                                cider clojure-mode clojure-snippets cmake-mode
                                color-theme color-theme-solarized company
-                               confluence dirtree ecb enh-ruby-mode ethan-wspace
-                               evil evil-numbers evil-matchit evil-surround
-                               exec-path-from-shell fill-column-indicator
-                               flx-ido fsharp-mode ggtags ghc glsl-mode
-                               go-snippets goto-chg goto-last-change
-                               gruvbox-theme haskell-mode hi2 helm helm-company
-                               helm-gtags java-snippets jira lua-mode
-                               markdown-mode neotree omnisharp csharp-mode
-                               flycheck auto-complete dash org pkg-info epl
-                               popup pos-tip project-explorer projectile
-                               racket-mode rvm rainbow-delimiters rainbow-mode
-                               robe rspec-mode ruby-end sml-mode undo-tree
-                               xml-rpc))
+                               company-ghc confluence dirtree ecb enh-ruby-mode
+                               ethan-wspace evil evil-numbers evil-matchit
+                               evil-surround exec-path-from-shell
+                               fill-column-indicator flx-ido fsharp-mode ggtags
+                               ghc ghci-completion glsl-mode go-snippets
+                               goto-chg goto-last-change gruvbox-theme
+                               haskell-mode helm helm-company helm-gtags
+                               java-snippets jira lua-mode markdown-mode neotree
+                               omnisharp csharp-mode flycheck auto-complete dash
+                               org pkg-info epl popup pos-tip project-explorer
+                               projectile racket-mode rvm rainbow-delimiters
+                               rainbow-mode robe rspec-mode ruby-end sml-mode
+                               undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -139,6 +139,9 @@
 (color-theme-initialize)
 
 ;; (load-theme 'gruvbox t)
+
+(if (eq system-type 'gnu/linux)
+    (set-face-attribute 'default nil :height 110))
 
 (if (eq system-type 'windows-nt)
     (progn
@@ -679,6 +682,7 @@ Example:
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
   (common-prog)
+  ;; (inf-haskell-mode)
   (turn-on-haskell-doc-mode)
   ;; (turn-on-haskell-indentation)
   ;; (turn-on-haskell-indent)
@@ -691,7 +695,7 @@ Example:
   (turn-on-haskell-simple-indent)
   (setq indent-line-function 'tab-to-tab-stop)
   (setq tab-stop-list
-        (loop for i from 4 upto 120 by 4 collect i))
+        (loop for i from 2 upto 120 by 2 collect i))
   (local-set-key (kbd "RET") 'newline-and-indent-relative)
 
   (interactive-haskell-mode)
