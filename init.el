@@ -8,7 +8,7 @@
 (setq package-list '(yasnippet ack-and-a-half angular-snippets better-defaults
                                cider clojure-mode clojure-snippets cmake-mode
                                color-theme color-theme-solarized company
-                               company-ghc confluence dirtree ecb enh-ruby-mode
+                               company-cabal confluence dirtree ecb enh-ruby-mode
                                ethan-wspace evil evil-numbers evil-matchit
                                evil-surround exec-path-from-shell
                                fill-column-indicator flx-ido fsharp-mode ggtags
@@ -682,15 +682,11 @@ Example:
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
   (common-prog)
-  ;; (inf-haskell-mode)
   (turn-on-haskell-doc-mode)
-  ;; (turn-on-haskell-indentation)
-  ;; (turn-on-haskell-indent)
-  ;; (turn-on-haskell-simple-indent)
 
   (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
-  ;; just use tab-stop indentation, 4-space tabs
+  ;; just use tab-stop indentation
 
   (turn-on-haskell-simple-indent)
   (setq indent-line-function 'tab-to-tab-stop)
@@ -698,12 +694,9 @@ Example:
         (loop for i from 2 upto 120 by 2 collect i))
   (local-set-key (kbd "RET") 'newline-and-indent-relative)
 
-  (interactive-haskell-mode)
-  ;; (turn-on-hi2)
-
-  (add-to-list 'company-backends 'company-ghc)
-  (custom-set-variables '(company-ghc-show-info t))
-  (projectile-mode 1)
+  (add-to-list 'company-backends 'company-cabal)
+  ;; (custom-set-variables '(company-ghc-show-info t))
+  ;; (projectile-mode 1)
 
   (define-key evil-normal-state-map (kbd "M-.") nil)
 
@@ -715,6 +708,7 @@ Example:
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
