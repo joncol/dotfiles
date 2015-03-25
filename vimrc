@@ -462,14 +462,15 @@ augroup autocommands
   autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
 
   autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufRead,BufNewFile *.cif,*.cif.txt setfiletype cif
-  autocmd BufRead,BufNewFile managed_*.log,global_*.log setfiletype managed_log
-  autocmd BufRead,BufNewFile *-xgsos.*.log,horizon_*.log setfiletype xgsos_log
-  autocmd BufRead,BufNewFile exceptions*.log setfiletype exceptions_log
-  autocmd BufRead,BufNewFile *.log setfiletype log
+  autocmd BufRead,BufNewFile *.cif,*.cif.txt setfiletype cmb_cif
+  autocmd BufRead,BufNewFile managed_*.log,global_*.log setfiletype cmb_managed_log
+  autocmd BufRead,BufNewFile *-xgsos.*.log,horizon_*.log setfiletype cmb_xgsos_log
+  autocmd BufRead,BufNewFile exceptions*.log setfiletype cmb_exceptions_log
+  autocmd BufRead,BufNewFile *.log setfiletype cmb_log
   autocmd BufRead,BufNewFile *.xaml,*.msbuild,*.targets,*.plist setfiletype xml
   autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setfiletype glsl
   autocmd BufRead,BufNewFile *.as set filetype=actionscript
+  autocmd BufRead,BufNewFile *_log.txt setfiletype orz_log
 
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
