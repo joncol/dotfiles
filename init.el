@@ -1,8 +1,8 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")
-                         ("melpa" . "http://melpa-stable.milkbox.net/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")))
 (package-initialize)
 
 (setq package-list '(yasnippet ack-and-a-half angular-snippets better-defaults
@@ -38,6 +38,8 @@
 (electric-pair-mode 1)
 (global-linum-mode t)
 (setq-default tab-width 4)
+(global-hl-line-mode 1)
+
 (ido-mode)
 (flx-ido-mode)
 ;; (setq ido-enable-flex-matching t)
@@ -149,12 +151,12 @@
        '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
        :weight normal :height 120 :width normal)))))
       (set-frame-position (selected-frame) 0 0)
-      (set-frame-size (selected-frame) 180 60)
-      (color-theme-solarized 'dark)
+      (set-frame-size (selected-frame) 100 60)
+      (color-theme-solarized)
       )
   (progn
     (when (display-graphic-p) (set-frame-size (selected-frame) 93 80))
-    (color-theme-solarized 'dark)
+    (color-theme-solarized)
     ))
 
 (require 'fill-column-indicator)
