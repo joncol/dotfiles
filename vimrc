@@ -235,6 +235,7 @@ set wildmenu
 set t_vb=
 set list
 set listchars=trail:·,precedes:«,extends:»,tab:»·
+set cursorline
 
 set splitright
 set splitbelow
@@ -253,31 +254,13 @@ endif
 set titlestring=%f title
 
 set rulerformat=%l:%c ruler
-"set formatprg=par
 
-"set wildmode=list:longest
-" set visualbell
-" set cursorline
 set ttyfast
-"set ruler
-"set backspace=indent, eol, start
-"set laststatus=2
 set number
-"set relativenumber
-"set undofile
 set colorcolumn=81
 
 set tags=./tags;
 
-" nnoremap / /\v
-" vnoremap / /\v
-
-" nmap s <Plug>(easymotion-s2)
-" nmap t <Plug>(easymotion-t2)
-" map / <Plug>(easymotion-sn)
-" omap / <Plug>(easymotion-tn)
-" map n <Plug>(easymotion-next)
-" map N <Plug>(easymotion-prev)
 let g:EasyMotion_smartcase=1
 map <Leader>h <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
@@ -287,15 +270,11 @@ let g:EasyMotion_startofline=0 " keep cursor column when JK motion
 
 set ignorecase
 set smartcase
-"set gdefault
 set incsearch
 set showmatch
 set hlsearch
 
 set nowrap
-"set textwidth=79
-"set formatoptions=qrn1
-"set colorcolumn=85
 set history=1000
 set scrolloff=3
 
@@ -304,56 +283,33 @@ let g:buffergator_viewport_split_policy="R"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsExpandTrigger="<tab>"
 
-" syn match ExtraWhitespace /\s\+$/
 if has("gui_running")
   autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 end
 
-" match trailing whitespace, except when typing at the end of a line
-" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-
 if s:uname != "Windows" && !has("gui_running")
   set term=screen-256color
 endif
 
-" set t_Co=256
 set hlsearch
 "let g:solarized_bold=0
 if has("gui_running")
-  colorscheme gruvbox
+  colorscheme solarized
   set background=dark
 else
   colorscheme summerfruit256
 endif
-
-"set background=light
-"jellybeans
 
 set guioptions-=m " no menu
 set guioptions-=T " no toolbar
 set guioptions-=r " no right scrollbar
 set guioptions-=L " no left scrollbar
 
-"set synmaxcol=140
-
-"let g:Powerline_symbols='fancy'
 let g:Powerline_symbols='unicode'
 set laststatus=2 " always show status line
 
 set nojoinspaces
-
-"let g:showmarks_include="abcdefzxABJio"
-
-" if &term=~'^xterm'
-" " solid underscore
-"   let &t_SI .= "\<Esc>[4 q"
-" " solid block
-"   let &t_EI .= "\<Esc>[2 q"
-" " 1 or 0 -> blinking block
-" " 3 -> blinking underscore
-" endif
 
 if !has("gui_running") && has("unix")
   if $TMUX != ''
@@ -410,8 +366,8 @@ filetype on
 
 augroup filetypes
   autocmd!
-  autocmd FileType c setlocal tabstop=4 shiftwidth=4 noexpandtab
-  autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 noexpandtab
+  autocmd FileType c setlocal tabstop=4 shiftwidth=4 "noexpandtab
+  autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 "noexpandtab
   autocmd FileType cs setlocal tabstop=4 shiftwidth=4
   autocmd FileType log setlocal nonumber
   autocmd FileType markdown setlocal textwidth=79 formatoptions+=t
@@ -710,12 +666,13 @@ if has("gui_running")             " 'guifont' doesn't work in the console
       set guifont=Inconsolata:h12
     endif
 
-    if s:uname == "Windows"
-      augroup gui_au
-        autocmd!
-        autocmd GUIEnter * simalt ~X
-      augroup END
-    endif
+    " if s:uname == "Windows"
+    "   " fullscreen mode
+    "   augroup gui_au
+    "     autocmd!
+    "     autocmd GUIEnter * simalt ~X
+    "   augroup END
+    " endif
   endif
 
   if has('title')
