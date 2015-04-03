@@ -155,8 +155,8 @@
       (color-theme-solarized)
       )
   (progn
-    (when (display-graphic-p) (set-frame-size (selected-frame) 93 80))
-    (color-theme-solarized)
+    (when (display-graphic-p) (progn (set-frame-size (selected-frame) 93 80)
+                                     (color-theme-solarized)))
     ))
 
 (require 'fill-column-indicator)
