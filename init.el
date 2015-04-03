@@ -38,7 +38,7 @@
 (electric-pair-mode 1)
 (global-linum-mode t)
 (setq-default tab-width 4)
-(global-hl-line-mode 1)
+(when (display-graphic-p) (global-hl-line-mode 1))
 
 (ido-mode)
 (flx-ido-mode)
