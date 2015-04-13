@@ -134,8 +134,8 @@ inoremap <s-f5> <c-r>=strftime("%H:%M:%S")<cr>
 nnoremap <f6> :let @+=fnamemodify(@%, ":p")<cr>
 
 " underline
-nnoremap <f7> yyp<c-v>$r-
-nnoremap <s-f7> yyp<c-v>$r=
+nnoremap <f7> kyyp<c-v>$r-
+nnoremap <s-f7> kyyp<c-v>$r=
 
 let $XMLLINT_INDENT="    "
 nnoremap <leader>lf <esc>:1,$!xmllint --format -<cr>
