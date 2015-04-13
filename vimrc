@@ -132,6 +132,10 @@ inoremap <s-f5> <c-r>=strftime("%H:%M:%S")<cr>
 
 nnoremap <f6> :let @+=fnamemodify(@%, ":p")<cr>
 
+" underline
+nnoremap <f7> yyp<c-v>$r-
+nnoremap <s-f7> yyp<c-v>$r=
+
 let $XMLLINT_INDENT="    "
 nnoremap <leader>lf <esc>:1,$!xmllint --format -<cr>
 nnoremap <leader>lv <esc>:%w !xmllint --noout --valid -<cr>
@@ -235,7 +239,6 @@ set wildmenu
 set t_vb=
 set list
 set listchars=trail:·,precedes:«,extends:»,tab:»·
-set cursorline
 
 set splitright
 set splitbelow
@@ -297,6 +300,7 @@ set hlsearch
 if has("gui_running")
   colorscheme solarized
   set background=dark
+  set cursorline
 else
   colorscheme summerfruit256
 endif
