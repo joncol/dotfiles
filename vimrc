@@ -137,6 +137,9 @@ nnoremap <f6> :let @+=fnamemodify(@%, ":p")<cr>
 nnoremap <f7> kyyp<c-v>$r-
 nnoremap <s-f7> kyyp<c-v>$r=
 
+inoremap <f7> <esc>kyyp<c-v>$r-A
+inoremap <s-f7> <esc>kyyp<c-v>$r=A
+
 let $XMLLINT_INDENT="    "
 nnoremap <leader>lf <esc>:1,$!xmllint --format -<cr>
 nnoremap <leader>lv <esc>:%w !xmllint --noout --valid -<cr>
