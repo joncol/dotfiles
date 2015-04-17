@@ -268,7 +268,7 @@ set ttyfast
 set number
 set colorcolumn=81
 
-set tags=./tags;
+set tags=./TAGS
 
 let g:EasyMotion_smartcase=1
 map <Leader>h <Plug>(easymotion-lineforward)
@@ -415,11 +415,11 @@ augroup END
 augroup autocommands
   autocmd!
   if s:uname=="Windows"
-    autocmd BufWritePost *.java silent! !start /B ctags -R .
-    autocmd BufWritePost *.rb silent! !start /B ctags -a %
+    autocmd BufWritePost *.java silent! !start /B ctags -f TAGS -R .
+    autocmd BufWritePost *.rb silent! !start /B ctags -f TAGS -a %
   elseif has("unix")
-    autocmd BufWritePost *.java silent! ctags -R . &
-    autocmd BufWritePost *.rb silent! ctags -a % &
+    autocmd BufWritePost *.java silent! ctags -f TAGS -R . &
+    autocmd BufWritePost *.rb silent! ctags -f TAGS -a % &
   endif
 
   autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc setlocal foldmethod=syntax
