@@ -48,6 +48,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'pbrisbin/vim-syntax-shakespeare'
+Plugin 'peterhoeg/vim-qml'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -470,6 +471,18 @@ ia eslf     self
 set nospell
 
 let g:showmarks_include="abcdefzxABJio"
+
+fun! s:remove_trailing_whitespace()
+  call inputsave()
+  let ans = input('Do you want to remove all trailing whitespace?')
+  call inputrestore()
+  if ans == 'y' || ans == 'Y'
+    %s/\v\s+$//
+  end
+endfun
+
+command! RemoveTrailingWhiteSpace call s:remove_trailing_whitespace()
+nnoremap <c-bs> :RemoveTrailingWhiteSpace<cr>
 
 " ex command for toggling hex mode - define mapping if desired
 if !exists(":Hexmode")
