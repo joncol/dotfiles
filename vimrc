@@ -294,8 +294,8 @@ let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsExpandTrigger="<tab>"
 
 if has("gui_running")
-  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+  autocmd BufWinEnter * match TrailingWhitespace /\s\+$/
+  autocmd ColorScheme * highlight TrailingWhitespace ctermbg=red guibg=red
 end
 
 if s:uname != "Windows" && !has("gui_running")
@@ -474,7 +474,7 @@ let g:showmarks_include="abcdefzxABJio"
 
 fun! s:remove_trailing_whitespace()
   call inputsave()
-  let ans = input('Do you want to remove all trailing whitespace?')
+  let ans = input('Do you want to remove all trailing whitespace (y/n)? ')
   call inputrestore()
   if ans == 'y' || ans == 'Y'
     %s/\v\s+$//
