@@ -30,6 +30,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'elzr/vim-json'
 Plugin 'ervandew/supertab'
+Plugin 'fatih/vim-go'
 Plugin 'honza/vim-snippets'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'jeetsukumaran/vim-buffergator'
@@ -90,6 +91,8 @@ if has("unix")
 else
   let s:uname="Windows"
 endif
+
+let g:go_fmt_autosave = 0
 
 "" --------------------------------------------------
 "" Keyboard mappings
