@@ -156,7 +156,7 @@
       )
   (progn
     (when (display-graphic-p) (progn (set-frame-size (selected-frame) 93 80)
-                                     (color-theme-solarized 'dark)))
+                                     (color-theme-solarized)))
     ))
 
 (require 'fill-column-indicator)
@@ -696,7 +696,7 @@ Example:
         (loop for i from 2 upto 120 by 2 collect i))
   (local-set-key (kbd "RET") 'newline-and-indent-relative)
 
-  (setq-default tab-width 2)
+  (setq evil-shift-width 2)
 
   (add-to-list 'company-backends 'company-cabal)
   ;; (custom-set-variables '(company-ghc-show-info t))
