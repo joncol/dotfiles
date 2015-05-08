@@ -341,6 +341,7 @@ call tcomment#DefineType('ant_inline', g:tcommentInlineXML)
 call tcomment#DefineType('java', '// %s')
 call tcomment#DefineType('glsl', '// %s')
 call tcomment#DefineType('coffeescript_block', '###%s###')
+call tcomment#DefineType('cpp_block', '/*%s*/')
 
 if has("win32") || has("win16")
   set grepprg=grep\ -n
