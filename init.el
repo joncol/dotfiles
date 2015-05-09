@@ -159,11 +159,11 @@
       )
   (progn
     (when (display-graphic-p)
-      (progn (set-frame-size (selected-frame) 93 80)
-             (color-theme-solarized)
+      (progn (color-theme-solarized)
              (custom-set-faces
               '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
-                                     :weight normal :height 120 :width normal)))))))
+                                     :weight normal :height 117 :width normal)))))
+             (set-frame-size (selected-frame) 93 80)))
     ))
 
 (require 'fill-column-indicator)
@@ -718,7 +718,10 @@ Example:
 )
 
 (eval-after-load 'haskell-mode
-  '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
+  '(progn
+     (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
+     (define-key haskell-mode-map (kbd "S-<f8>") 'haskell-sort-imports)
+     ))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
