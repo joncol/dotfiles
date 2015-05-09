@@ -71,6 +71,9 @@
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
+(global-set-key (kbd "<f9>") (lambda() (interactive) (find-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "S-<f9>") (lambda() (interactive) (load-file "~/.emacs.d/init.el")))
+
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
@@ -155,8 +158,12 @@
       (color-theme-solarized)
       )
   (progn
-    (when (display-graphic-p) (progn (set-frame-size (selected-frame) 93 80)
-                                     (color-theme-solarized)))
+    (when (display-graphic-p)
+      (progn (set-frame-size (selected-frame) 93 80)
+             (color-theme-solarized)
+             (custom-set-faces
+              '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
+                                     :weight normal :height 120 :width normal)))))))
     ))
 
 (require 'fill-column-indicator)
