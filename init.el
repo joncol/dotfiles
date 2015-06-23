@@ -18,9 +18,9 @@
                                java-snippets jira lua-mode markdown-mode neotree
                                omnisharp csharp-mode flycheck auto-complete dash
                                org pkg-info epl popup pos-tip project-explorer
-                               projectile racket-mode rvm rainbow-delimiters
-                               rainbow-mode robe rspec-mode ruby-end sml-mode
-                               undo-tree xml-rpc))
+                               projectile qml-mode racket-mode rvm
+                               rainbow-delimiters rainbow-mode robe rspec-mode
+                               ruby-end sml-mode undo-tree xml-rpc))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -217,6 +217,11 @@
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
 (auto-complete-mode)
+(setq ac-ignore-case 'smart)
+;; (setq helm-gtags-ignore-case nil)
+(setq company-dabbrev-ignore-case 'keep-prefix)
+;; (setq company-dabbrev-code-ignore-case nil)
+(setq company-dabbrev-downcase nil)
 
 (when (eq system-type 'darwin)
   (setq mac-right-option-modifier 'none))
@@ -528,9 +533,17 @@ Example:
 (defun my-lisp-mode-hook ()
   (common-prog))
 
+;;; Racket
+
 (add-hook 'racket-mode-hook 'my-racket-mode-hook t)
 (defun my-racket-mode-hook()
   (common-prog))
+
+(eval-after-load 'racket-mode
+  '(progn
+     (define-key racket-mode-map (kbd "C-c C-l") 'racket-run)))
+
+;;; C
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook t)
 (defun my-c-mode-common-hook ()
@@ -547,7 +560,7 @@ Example:
   ;; (c-set-offset 'brace-list-open '+)
   ;; (c-set-offset 'case-label '+)
   (setq tab-width 4)
-  (setq indent-tabs-mode t)
+  ;; (setq indent-tabs-mode t)
   (setq align-to-tab-stop nil)
   (c-set-offset 'substatement-open 0)
   (company-mode)
@@ -557,6 +570,7 @@ Example:
   (define-key evil-normal-state-map (kbd "M-.") nil)
   (global-set-key "\M-." 'ggtags-find-tag-dwim)
   (local-set-key  (kbd "C-x o") 'ff-find-other-file)
+  (local-set-key  (kbd "C-x C-o") 'ff-find-other-file)
   (projectile-mode 1)
   (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
     (ggtags-mode 1)
@@ -643,11 +657,15 @@ Example:
   (local-set-key "\M-g" 'omnisharp-go-to-definition)
   )
 
+;;; F#
+
 (add-hook 'fsharp-mode-hook 'my-fsharp-mode-hook t)
 (defun my-fsharp-mode-hook ()
   (common-prog)
   (omnisharp-mode)
   )
+
+;;; Ruby
 
 (add-hook 'ruby-mode-hook 'enh-ruby-mode)
 (add-hook 'enh-ruby-mode-hook 'my-enh-ruby-mode-hook t)
@@ -687,6 +705,8 @@ Example:
                       (forward-line -1)
                       (back-to-indentation)
                       (current-column))))
+
+;;; Haskell
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
@@ -759,14 +779,14 @@ Example:
 (eval-after-load 'haskell-cabal
   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
 
-(eval-after-load 'racket-mode
-  '(progn
-     (define-key racket-mode-map (kbd "C-c C-l") 'racket-run)))
+;;; Scheme
 
 (add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
 (defun my-scheme-mode-hook ()
   (common-prog)
   )
+
+;;; SML
 
 (add-hook 'sml-mode-hook 'my-sml-mode-hook t)
 (defun my-sml-mode-hook ()
@@ -774,6 +794,14 @@ Example:
   (setq sml-indent-level 2)
   (setq evil-shift-width 2)
   (setq sml-program-name "/usr/local/bin/sml"))
+
+(add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
+(add-hook 'qml-mode-hook 'my-qml-mode-hook t)
+(defun my-qml-mode-hook ()
+  (common-prog)
+  (projectile-mode 1)
+  )
+
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
