@@ -220,7 +220,7 @@
 (setq ac-ignore-case 'smart)
 ;; (setq helm-gtags-ignore-case nil)
 (setq company-dabbrev-ignore-case 'keep-prefix)
-;; (setq company-dabbrev-code-ignore-case nil)
+(setq company-dabbrev-code-ignore-case nil)
 (setq company-dabbrev-downcase nil)
 
 (when (eq system-type 'darwin)
