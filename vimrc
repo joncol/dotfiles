@@ -63,6 +63,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
+Plugin 'vim-jp/vim-cpp'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/BusyBee'
 Plugin 'vim-scripts/YankRing.vim'
@@ -140,11 +141,14 @@ inoremap <s-f5> <c-r>=strftime("%H:%M:%S")<cr>
 nnoremap <f6> :let @+=fnamemodify(@%, ":p")<cr>
 
 " underline
-nnoremap <f7> kyyp<c-v>$r-
-nnoremap <s-f7> kyyp<c-v>$r=
+nnoremap <f7> yyp<c-v>$r-
+nnoremap <s-f7> yyp<c-v>$r=
+nnoremap <f8> yyp<c-v>$r=
 
-inoremap <f7> <esc>kyyp<c-v>$r-A
-inoremap <s-f7> <esc>kyyp<c-v>$r=A
+inoremap <f7> <esc>yyp<c-v>$r-A
+inoremap <f7> <esc>yyp<c-v>$r-A
+inoremap <s-f7> <esc>yyp<c-v>$r=A
+inoremap <f8> <esc>yyp<c-v>$r=A
 
 let $XMLLINT_INDENT="    "
 nnoremap <leader>lf <esc>:1,$!xmllint --format -<cr>
@@ -188,13 +192,15 @@ nmap <Leader>a <Plug>(EasyAlign)
 " endif
 
 nnoremap <leader>. :CtrlPTag<cr>
-nmap <f8> :TagbarToggle<cr>
+nmap <f9> :TagbarToggle<cr>
 
 " if has("gui_running")
 "   autocmd VimEnter * NERDTree
 " endif
 
 autocmd VimEnter * wincmd p
+
+let g:vim_json_syntax_conceal = 0
 
 if !exists("*AltBufferAndDeleteCurrent")
   function AltBufferAndDeleteCurrent()
@@ -342,6 +348,7 @@ call tcomment#DefineType('java', '// %s')
 call tcomment#DefineType('glsl', '// %s')
 call tcomment#DefineType('coffeescript_block', '###%s###')
 call tcomment#DefineType('cpp_block', '/*%s*/')
+call tcomment#DefineType('qml_block', '/*%s*/')
 
 if has("win32") || has("win16")
   set grepprg=grep\ -n
@@ -478,7 +485,9 @@ let g:showmarks_include="abcdefzxABJio"
 
 fun! s:remove_trailing_whitespace()
   call inputsave()
+  echohl ModeMsg
   let ans = input('Do you want to remove all trailing whitespace (y/n)? ')
+  echohl None
   call inputrestore()
   if ans == 'y' || ans == 'Y'
     %s/\v\s+$//
@@ -487,6 +496,25 @@ endfun
 
 command! RemoveTrailingWhiteSpace call s:remove_trailing_whitespace()
 nnoremap <c-bs> :RemoveTrailingWhiteSpace<cr>
+
+" QVariant findPackageMarker() const;
+
+fun! s:cpp_declaration_to_definition()
+  call inputsave()
+  echohl ModeMsg
+  let class_name = input('Class name: ')
+  echohl None
+  call inputrestore()
+  s/\v^\s*//
+  if class_name != ""
+    execute "normal! W\"=class_name\<c-m>Pa::\<esc>f;s\<c-m>{\<c-m>}\<c-m>"
+  else
+    execute "normal! f;s\<c-m>{\<c-m>}\<c-m>"
+  endif
+endfun
+
+command! CppDeclToDef call s:cpp_declaration_to_definition()
+nnoremap <leader>ci :CppDeclToDef<cr>
 
 " ex command for toggling hex mode - define mapping if desired
 if !exists(":Hexmode")
@@ -684,7 +712,7 @@ if has("gui_running")             " 'guifont' doesn't work in the console
       set lines=56
     endif
   else
-    set columns=140
+    set columns=100
     set lines=80
 
     if has("gui_gtk2")              " GTK+2 but not GTK+1
