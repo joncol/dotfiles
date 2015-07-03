@@ -201,6 +201,8 @@ nmap <f9> :TagbarToggle<cr>
 autocmd VimEnter * wincmd p
 
 let g:vim_json_syntax_conceal = 0
+let g:haskell_conceal = 0
+let g:haskell_conceal_enumerations = 0
 
 if !exists("*AltBufferAndDeleteCurrent")
   function AltBufferAndDeleteCurrent()
@@ -299,7 +301,9 @@ set scrolloff=3
 
 let g:buffergator_autoexpand_on_split=0
 let g:buffergator_viewport_split_policy="R"
-let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+let g:UltiSnipsSnippetsDir="~/.vim/MySnippets"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/MySnippets']
+
 let g:UltiSnipsExpandTrigger="<tab>"
 
 if has("gui_running")
