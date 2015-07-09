@@ -720,10 +720,10 @@ Example:
   (turn-on-haskell-simple-indent)
   (setq indent-line-function 'tab-to-tab-stop)
   (setq tab-stop-list
-        (loop for i from 0 upto 120 by 4 collect i))
+        (loop for i from 0 upto 120 by 2 collect i))
   (local-set-key (kbd "RET") 'newline-and-indent-relative)
 
-  (setq evil-shift-width 4)
+  (setq evil-shift-width 2)
 
   (add-to-list 'company-backends 'company-cabal)
   ;; (custom-set-variables '(company-ghc-show-info t))
