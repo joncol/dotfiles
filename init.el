@@ -8,9 +8,9 @@
 (setq package-list '(yasnippet ack-and-a-half angular-snippets better-defaults
                                cider clojure-mode clojure-snippets cmake-mode
                                color-theme color-theme-solarized company
-                               company-cabal confluence dirtree ecb enh-ruby-mode
-                               ethan-wspace evil evil-numbers evil-matchit
-                               evil-surround exec-path-from-shell
+                               company-cabal confluence csv-mode dirtree ecb
+                               enh-ruby-mode ethan-wspace evil evil-numbers
+                               evil-matchit evil-surround exec-path-from-shell
                                fill-column-indicator flx-ido fsharp-mode ggtags
                                ghc ghci-completion glsl-mode go-snippets
                                goto-chg goto-last-change gruvbox-theme
