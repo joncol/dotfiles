@@ -8,19 +8,24 @@
 (setq package-list '(yasnippet ack-and-a-half angular-snippets better-defaults
                                cider clojure-mode clojure-snippets cmake-mode
                                color-theme color-theme-solarized company
-                               company-cabal confluence csv-mode dirtree ecb
+                               company-cabal company-ghc confluence csv-mode dirtree ecb
                                enh-ruby-mode ethan-wspace evil evil-numbers
                                evil-matchit evil-surround exec-path-from-shell
                                fill-column-indicator flx-ido fsharp-mode ggtags
-                               ghc ghci-completion glsl-mode go-snippets
-                               goto-chg goto-last-change gruvbox-theme
-                               haskell-mode helm helm-company helm-gtags
-                               java-snippets jira lua-mode markdown-mode neotree
-                               omnisharp csharp-mode flycheck auto-complete dash
-                               org pkg-info epl popup pos-tip project-explorer
+                               ghci-completion glsl-mode go-snippets goto-chg
+                               goto-last-change gruvbox-theme haskell-mode helm
+                               helm-company helm-gtags java-snippets jira
+                               lua-mode markdown-mode neotree omnisharp
+                               csharp-mode flycheck auto-complete dash org
+                               pkg-info epl popup pos-tip project-explorer
                                projectile qml-mode racket-mode rvm
                                rainbow-delimiters rainbow-mode robe rspec-mode
                                ruby-end sml-mode undo-tree xml-rpc))
+
+(add-to-list 'load-path "~/repos/ghc-mod/elisp")
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -70,6 +75,8 @@
 (display-time-mode 1)
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
+
+(global-set-key (kbd "C-c C-b") 'help-go-back)
 
 (global-set-key (kbd "<f9>") (lambda() (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "S-<f9>") (lambda() (interactive) (load-file "~/.emacs.d/init.el")))
@@ -282,8 +289,8 @@
 (defun tabs-are-ok ()
   (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
 (add-hook 'makefile-mode-hook 'tabs-are-ok)
-(add-hook 'c-mode-hook 'tabs-are-ok)
-(add-hook 'c++-mode-hook 'tabs-are-ok)
+;; (add-hook 'c-mode-hook 'tabs-are-ok)
+;; (add-hook 'c++-mode-hook 'tabs-are-ok)
 
 (add-hook 'sml-mode-hook 'no-final-newline t)
 (add-hook 'fsharp-mode-hook 'no-final-newline t)
@@ -563,7 +570,7 @@ Example:
   ;; (setq indent-tabs-mode t)
   (setq align-to-tab-stop nil)
   (c-set-offset 'substatement-open 0)
-  (company-mode)
+  ;; (company-mode)
   (local-set-key (kbd "<tab>") 'company-complete-common)
   ;; (yas-minor-mode 1)
   (rainbow-delimiters-mode 1)
@@ -639,8 +646,7 @@ Example:
 (defun fix-enum-class ()
   "Setup `c++-mode' to better handle \"class enum\"."
   (add-to-list 'c-offsets-alist '(topmost-intro-cont . align-enum-class))
-  (add-to-list 'c-offsets-alist
-               '(statement-cont . align-enum-class-closing-brace)))
+  (add-to-list 'c-offsets-alist '(statement-cont . align-enum-class-closing-brace)))
 
 (add-hook 'c++-mode-hook 'fix-enum-class)
 
@@ -712,11 +718,9 @@ Example:
 (defun my-haskell-mode-hook ()
   (common-prog)
   (turn-on-haskell-doc-mode)
-
   (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
   ;; just use tab-stop indentation
-
   (turn-on-haskell-simple-indent)
   (setq indent-line-function 'tab-to-tab-stop)
   (setq tab-stop-list
@@ -725,9 +729,11 @@ Example:
 
   (setq evil-shift-width 2)
 
+  (local-set-key (kbd "<tab>") 'company-complete-common)
   (add-to-list 'company-backends 'company-cabal)
-  ;; (custom-set-variables '(company-ghc-show-info t))
-  ;; (projectile-mode 1)
+  (add-to-list 'company-backends 'company-ghc)
+  (custom-set-variables '(company-ghc-show-info t))
+  (projectile-mode 1)
 
   (define-key evil-normal-state-map (kbd "M-.") nil)
 
