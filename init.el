@@ -97,6 +97,30 @@
 (global-set-key (kbd "C-c i T") (lambda () (interactive) (timestamp t)))
 (global-set-key (kbd "C-c i t") (lambda () (interactive) (timestamp nil)))
 
+(defun check-expansion ()
+  (save-excursion
+    (if (looking-at "\\_>") t
+      (backward-char 1)
+      (if (looking-at "\\.") t
+        (backward-char 1)
+        (if (looking-at "->") t nil)))))
+
+(defun do-yas-expand ()
+  (let ((yas/fallback-behavior 'return-nil))
+    (yas/expand)))
+
+(defun tab-indent-or-complete ()
+  (interactive)
+  (if (minibufferp)
+      (minibuffer-complete)
+    (if (or (not yas/minor-mode)
+            (null (do-yas-expand)))
+        (if (check-expansion)
+            (company-complete-common)
+          (indent-for-tab-command)))))
+
+(global-set-key [tab] 'tab-indent-or-complete)
+
 (defun helm-setup ()
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
   ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
@@ -225,7 +249,6 @@
 (add-to-list 'completion-styles 'initials t)
 (auto-complete-mode)
 (setq ac-ignore-case 'smart)
-;; (setq helm-gtags-ignore-case nil)
 (setq company-dabbrev-ignore-case 'keep-prefix)
 (setq company-dabbrev-code-ignore-case nil)
 (setq company-dabbrev-downcase nil)
@@ -570,7 +593,7 @@ Example:
   ;; (setq indent-tabs-mode t)
   (setq align-to-tab-stop nil)
   (c-set-offset 'substatement-open 0)
-  ;; (company-mode)
+  (company-mode)
   (local-set-key (kbd "<tab>") 'company-complete-common)
   ;; (yas-minor-mode 1)
   (rainbow-delimiters-mode 1)
@@ -717,37 +740,50 @@ Example:
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
   (common-prog)
-  (turn-on-haskell-doc-mode)
+  ;; (turn-on-haskell-doc-mode)
   (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
   ;; just use tab-stop indentation
-  (turn-on-haskell-simple-indent)
-  (setq indent-line-function 'tab-to-tab-stop)
+  ;; (turn-on-haskell-simple-indent)
+  ;; (setq indent-line-function 'tab-to-tab-stop)
+
+  (turn-on-haskell-indentation)
+  (haskell-indentation-disable-show-indentations)
+
   (setq tab-stop-list
         (loop for i from 0 upto 120 by 2 collect i))
-  (local-set-key (kbd "RET") 'newline-and-indent-relative)
+
+  (define-key global-map (kbd "RET") 'newline-and-indent-relative)
+  ;; (local-set-key (kbd "RET") 'shm/newline-indent)
+
+  ;; (structured-haskell-mode)
+  ;; (set-face-background 'shm-current-face "#05303b")
+  ;; (set-face-background 'shm-quarantine-face "#05303b")
 
   (setq evil-shift-width 2)
 
-  (local-set-key (kbd "<tab>") 'company-complete-common)
+  ;; (local-set-key (kbd "<tab>") 'indent-or-complete)
+  (company-mode)
   (add-to-list 'company-backends 'company-cabal)
   (add-to-list 'company-backends 'company-ghc)
-  (custom-set-variables '(company-ghc-show-info t))
+  (setq company-ghc-show-info t)
   (projectile-mode 1)
 
+  (define-key haskell-indentation-mode-map (kbd "RET") nil)
+  (define-key evil-motion-state-map (kbd "RET") nil)
   (define-key evil-normal-state-map (kbd "M-.") nil)
 
   (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
     (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
     (add-to-list 'exec-path my-cabal-path))
-  (custom-set-variables '(haskell-tags-on-save t))
+
+  (setq haskell-tags-on-save t)
 )
 
 (eval-after-load 'haskell-mode
   '(progn
      (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
-     (define-key haskell-mode-map (kbd "S-<f8>") 'haskell-sort-imports)
-     ))
+     (define-key haskell-mode-map (kbd "S-<f8>") 'haskell-sort-imports)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
