@@ -740,7 +740,7 @@ Example:
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
   (common-prog)
-  ;; (turn-on-haskell-doc-mode)
+  (turn-on-haskell-doc-mode)
   (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
   ;; just use tab-stop indentation
@@ -754,7 +754,6 @@ Example:
         (loop for i from 0 upto 120 by 2 collect i))
 
   (define-key global-map (kbd "RET") 'newline-and-indent-relative)
-  ;; (local-set-key (kbd "RET") 'shm/newline-indent)
 
   ;; (structured-haskell-mode)
   ;; (set-face-background 'shm-current-face "#05303b")
@@ -762,13 +761,14 @@ Example:
 
   (setq evil-shift-width 2)
 
-  ;; (local-set-key (kbd "<tab>") 'indent-or-complete)
   (company-mode)
   (add-to-list 'company-backends 'company-cabal)
   (add-to-list 'company-backends 'company-ghc)
   (setq company-ghc-show-info t)
   (projectile-mode 1)
 
+  (define-key yas-minor-mode-map [(tab)] nil)
+  (define-key yas-minor-mode-map (kbd "TAB") nil)
   (define-key haskell-indentation-mode-map (kbd "RET") nil)
   (define-key evil-motion-state-map (kbd "RET") nil)
   (define-key evil-normal-state-map (kbd "M-.") nil)
