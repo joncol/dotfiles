@@ -8,19 +8,20 @@
 (setq package-list '(yasnippet ack-and-a-half angular-snippets better-defaults
                                cider clojure-mode clojure-snippets cmake-mode
                                color-theme color-theme-solarized company
-                               company-cabal company-ghc confluence csv-mode dirtree ecb
-                               enh-ruby-mode ethan-wspace evil evil-numbers
-                               evil-matchit evil-surround exec-path-from-shell
-                               fill-column-indicator flx-ido fsharp-mode ggtags
-                               ghci-completion glsl-mode go-snippets goto-chg
-                               goto-last-change gruvbox-theme haskell-mode helm
-                               helm-company helm-gtags java-snippets jira
-                               lua-mode markdown-mode neotree omnisharp
-                               csharp-mode flycheck auto-complete dash org
-                               pkg-info epl popup pos-tip project-explorer
-                               projectile qml-mode racket-mode rvm
-                               rainbow-delimiters rainbow-mode robe rspec-mode
-                               ruby-end sml-mode undo-tree xml-rpc))
+                               company-cabal company-ghc confluence csv-mode
+                               dirtree ecb enh-ruby-mode ethan-wspace evil
+                               evil-numbers evil-matchit evil-surround
+                               exec-path-from-shell fill-column-indicator
+                               flx-ido fsharp-mode ggtags ghci-completion
+                               glsl-mode go-snippets goto-chg goto-last-change
+                               gruvbox-theme haskell-mode helm helm-company
+                               helm-gtags java-snippets jira lua-mode
+                               markdown-mode neotree omnisharp csharp-mode
+                               flycheck auto-complete dash org pkg-info epl
+                               popup pos-tip powerline powerline-evil
+                               project-explorer projectile qml-mode racket-mode
+                               rvm rainbow-delimiters rainbow-mode robe
+                               rspec-mode ruby-end sml-mode undo-tree xml-rpc))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -44,7 +45,6 @@
 (global-linum-mode t)
 (setq-default tab-width 4)
 (when (display-graphic-p) (global-hl-line-mode 1))
-
 (ido-mode)
 (flx-ido-mode)
 ;; (setq ido-enable-flex-matching t)
@@ -790,12 +790,10 @@ Example:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("806d8c827b214f5f60348114bd27c6dcb5d19047f7ac482ad61e8077a6c5ea60" default)))
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
  '(scheme-mit-dialect nil))
 (eval-after-load 'haskell-mode
   '(progn
@@ -813,8 +811,7 @@ Example:
      (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
      (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
-(custom-set-variables '(haskell-process-type 'cabal-repl)
-                      '(haskell-interactive-popup-errors nil))
+
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
@@ -867,3 +864,15 @@ Example:
           (shrink-window (- h 10)))))))
 
 (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight normal :height 117 :width normal)))))
+
+(powerline-default-theme)
+(set-face-attribute 'mode-line nil
+                    :foreground "DarkOrange"
+                    :background "Black"
+                    :box nil)
