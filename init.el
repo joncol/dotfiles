@@ -766,6 +766,7 @@ Example:
   (add-to-list 'company-backends 'company-ghc)
   (setq company-ghc-show-info t)
   (projectile-mode 1)
+  (setq haskell-interactive-popup-errors nil)
 
   (define-key yas-minor-mode-map [(tab)] nil)
   (define-key yas-minor-mode-map (kbd "TAB") nil)
