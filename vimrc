@@ -332,7 +332,10 @@ set guioptions-=T " no toolbar
 set guioptions-=r " no right scrollbar
 set guioptions-=L " no left scrollbar
 
-let g:Powerline_symbols='unicode'
+if s:uname != "Windows" || has("gui_running")
+  let g:Powerline_symbols='unicode'
+endif
+
 set laststatus=2 " always show status line
 
 set nojoinspaces
