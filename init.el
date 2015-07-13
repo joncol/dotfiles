@@ -634,7 +634,7 @@ Example:
 (defun my-c++-mode-hook ()
   (setq compile-command (concat "cd " (projectile-project-root) "debug && make -j4 && ctest"))
   (global-set-key (kbd "<f6>") 'compile)
-  ;; (c-set-offset 'innamespace '0)
+  (c-set-offset 'innamespace '0)
 
   (defadvice c-lineup-arglist (around my activate)
     "Improve indentation of continued C++11 lambda function opened as argument."
