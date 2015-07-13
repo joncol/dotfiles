@@ -1,6 +1,6 @@
 extends c
 
-snippet once "Include header once only guard" !
+snippet once "include header once only guard" !
 #ifndef ${1:`!p
 if not snip.c:
 	import random, string
@@ -20,6 +20,11 @@ private:
 };
 
 #endif
+
+endsnippet
+
+snippet cpp "include corresponding header file"
+#include "`!p snip.rv = snip.basename + ".h"`"
 
 endsnippet
 

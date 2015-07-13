@@ -489,6 +489,12 @@ set nospell
 
 let g:showmarks_include="abcdefzxABJio"
 
+fun! s:json_lint()
+  :%!python -m json.tool
+endfun
+
+command! JsonLint call s:json_lint()
+
 fun! s:remove_trailing_whitespace()
   call inputsave()
   echohl ModeMsg
