@@ -5,23 +5,24 @@
                          ("marmalade" . "https://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(yasnippet ack-and-a-half angular-snippets better-defaults
-                               cider clojure-mode clojure-snippets cmake-mode
-                               color-theme color-theme-solarized company
-                               company-cabal company-ghc confluence csv-mode
-                               dirtree ecb enh-ruby-mode ethan-wspace evil
-                               evil-numbers evil-matchit evil-surround
-                               exec-path-from-shell fill-column-indicator
-                               flx-ido fsharp-mode ggtags ghci-completion
-                               glsl-mode go-snippets goto-chg goto-last-change
-                               gruvbox-theme haskell-mode helm helm-company
-                               helm-gtags java-snippets jira lua-mode
-                               markdown-mode neotree omnisharp csharp-mode
-                               flycheck auto-complete dash org pkg-info epl
-                               popup pos-tip powerline powerline-evil
-                               project-explorer projectile qml-mode racket-mode
-                               rvm rainbow-delimiters rainbow-mode robe
-                               rspec-mode ruby-end sml-mode undo-tree xml-rpc))
+(setq package-list '(yasnippet ack-and-a-half angular-snippets ag
+                               better-defaults cider clojure-mode
+                               clojure-snippets cmake-mode color-theme
+                               color-theme-solarized company company-cabal
+                               company-ghc confluence csv-mode dirtree ecb
+                               enh-ruby-mode ethan-wspace evil evil-numbers
+                               evil-matchit evil-surround exec-path-from-shell
+                               fill-column-indicator flx-ido fsharp-mode ggtags
+                               ghci-completion glsl-mode go-snippets goto-chg
+                               goto-last-change gruvbox-theme haskell-mode helm
+                               helm-company helm-gtags java-snippets jira
+                               lua-mode markdown-mode neotree omnisharp
+                               csharp-mode flycheck auto-complete dash org
+                               pkg-info epl popup pos-tip powerline
+                               powerline-evil project-explorer projectile
+                               qml-mode racket-mode rvm rainbow-delimiters
+                               rainbow-mode robe rspec-mode ruby-end sml-mode
+                               undo-tree xml-rpc))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
