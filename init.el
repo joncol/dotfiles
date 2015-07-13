@@ -110,17 +110,20 @@
   (let ((yas/fallback-behavior 'return-nil))
     (yas/expand)))
 
-(defun tab-indent-or-complete ()
+(defun tab-indent-or-complete (use-ghc-complete)
   (interactive)
   (if (minibufferp)
       (minibuffer-complete)
     (if (or (not yas/minor-mode)
             (null (do-yas-expand)))
         (if (check-expansion)
-            (company-complete-common)
+            (progn
+              (company-complete-common)
+              (when use-ghc-complete
+                (ghc-complete)))
           (indent-for-tab-command)))))
 
-(global-set-key [tab] 'tab-indent-or-complete)
+(global-set-key [tab] (lambda () (interactive) (tab-indent-or-complete nil)))
 
 (defun helm-setup ()
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
@@ -758,6 +761,9 @@ Example:
         (loop for i from 0 upto 120 by 2 collect i))
 
   (define-key global-map (kbd "RET") 'newline-and-indent-relative)
+  (global-unset-key [tab])
+  (local-set-key [tab] (lambda () (interactive) (tab-indent-or-complete 1)))
+
 
   ;; (structured-haskell-mode)
   ;; (set-face-background 'shm-current-face "#05303b")
