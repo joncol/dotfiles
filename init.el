@@ -426,7 +426,8 @@
 
 (defvar rotate-text-rotations
   '(("true" "false")
-    ("yes" "no"))
+    ("yes" "no")
+    ("YES" "NO"))
   "List of text rotation sets.")
 
 (defun rotate-region (beg end)
