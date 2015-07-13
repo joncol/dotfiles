@@ -15,8 +15,8 @@
                                fill-column-indicator flx-ido fsharp-mode ggtags
                                ghci-completion glsl-mode go-snippets goto-chg
                                goto-last-change gruvbox-theme haskell-mode helm
-                               helm-company helm-gtags java-snippets jira
-                               lua-mode markdown-mode neotree omnisharp
+                               helm-ag helm-company helm-gtags java-snippets
+                               jira lua-mode markdown-mode neotree omnisharp
                                csharp-mode flycheck auto-complete dash org
                                pkg-info epl popup pos-tip powerline
                                powerline-evil project-explorer projectile
@@ -523,6 +523,7 @@ Example:
   (modify-syntax-entry ?_ "w")
   (rainbow-delimiters-mode 1)
   (fci-mode 1)
+  (local-set-key (kbd "C-C p s a") 'helm-ag-project-root)
   )
 
 (add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
@@ -793,6 +794,8 @@ Example:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-ag-base-command "ag --nocolor --nogroup --line-numbers --ignore-case")
+ '(helm-ag-insert-at-point (quote word))
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
