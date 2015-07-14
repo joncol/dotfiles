@@ -570,6 +570,12 @@ Example:
 (defun my-lisp-mode-hook ()
   (common-prog))
 
+(add-hook 'python-mode-hook 'my-python-mode-hook t)
+(defun my-python-mode-hook ()
+  (common-prog)
+  (projectile-mode 1)
+  )
+
 ;;; Racket
 
 (add-hook 'racket-mode-hook 'my-racket-mode-hook t)
