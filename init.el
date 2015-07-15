@@ -207,47 +207,11 @@
 (setq fci-rule-width 1)
 (setq fci-rule-color "#ff0000")
 
-(evil-mode 1)
-(eval-after-load "evil"
-            ;; modes to map to different default state
-            (dolist (mode-map '((ag-mode . emacs)
-                                (cider-repl-mode . emacs)
-                                (comint-mode . emacs)
-                                (eshell-mode . emacs)
-                                (fundamental-mode . emacs)
-                                (git-commit-mode . insert)
-                                (git-rebase-mode . emacs)
-                                ;; (help-mode . emacs)
-                                (paradox-menu-mode . emacs)
-                                (term-mode . emacs)))
-              (evil-set-initial-state `,(car mode-map) `,(cdr mode-map))))
-
-(global-evil-matchit-mode 1)
-(global-evil-surround-mode 1)
-(setq evil-normal-state-cursor '("green" box))
-(setq evil-insert-state-cursor '("green" bar))
-
 ;;; Neo Tree stuff
 (global-set-key [f2] 'neotree-toggle)
 (setq neo-show-header nil)
 
 (add-hook 'neotree-mode-hook 'neotree-mode-hook t)
-
-(defun neotree-mode-hook ()
-  (hl-line-mode 1)
-  (define-key evil-normal-state-map "\C-u" 'neotree-toggle)
-  (define-key evil-insert-state-map "\C-u" 'neotree-toggle)
-  (define-key evil-visual-state-map "\C-u" 'neotree-toggle)
-
-  (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-  (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-  (define-key evil-normal-state-local-map (kbd "c") 'neotree-change-root)
-  (define-key evil-normal-state-local-map (kbd "g") 'neotree-refresh)
-  (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-  (define-key evil-normal-state-local-map (kbd "v") 'neotree-enter-vertical-split)
-  (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-horizontal-split)
-  (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
-)
 
 ;;; autocomplete
 (setq tab-always-indent 'complete)
@@ -260,24 +224,6 @@
 
 (when (eq system-type 'darwin)
   (setq mac-right-option-modifier 'none))
-
-; make "kj" exit out of insert mode
-(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
-(evil-define-command cofi/maybe-exit ()
-  :repeat change
-  (interactive)
-  (let ((modified (buffer-modified-p)))
-    (insert "k")
-    (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-                           nil 0.5)))
-      (cond
-       ((null evt) (message ""))
-       ((and (integerp evt) (char-equal evt ?j))
-        (delete-char -1)
-        (set-buffer-modified-p modified)
-        (push 'escape unread-command-events))
-       (t (setq unread-command-events (append unread-command-events
-                                              (list evt))))))))
 
 ;;; Racket mode
 (setq racket-program "/usr/local/bin/racket")
@@ -345,7 +291,6 @@
 
 (require 'omnisharp)
 (setq omnisharp-company-do-template-completion t)
-(evil-define-key 'normal omnisharp-mode-map (kbd "\M-g") 'omnisharp-go-to-definition)
 
 ;;; Confluence
 
@@ -499,19 +444,6 @@ Example:
         (append (rotate-flatten-list (car list-of-lists))
                 (rotate-flatten-list (cdr list-of-lists)))
       (list list-of-lists))))
-
-(defun rotate-word-at-point ()
-  "Rotate word at point based on sets in `rotate-text-rotations'."
-  (interactive)
-  (let ((bounds (bounds-of-thing-at-point 'word))
-        (opoint (point)))
-    (when (consp bounds)
-      (let ((beg (car bounds))
-            (end (copy-marker (cdr bounds))))
-        (rotate-region beg end)
-        (goto-char (if (> opoint end) end opoint))))))
-
-(define-key evil-normal-state-map "+" 'rotate-word-at-point)
 
 (defun indent-or-rotate ()
   "If point is at end of a word, then else indent the line."
@@ -722,24 +654,6 @@ Example:
 
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
 
-(evil-define-motion evil-ruby-jump-item (count)
-  :jump t
-  :type inclusive
-  (cond ((or (string-match ruby-block-beg-re (current-word))
-             (string-match "describe" (current-word))
-             (string-match "context" (current-word))
-             (string-match "it" (current-word)))
-         (ruby-end-of-block count))
-        ((string-match ruby-block-end-re (current-word))
-         (ruby-beginning-of-block count))
-        (t
-         (evil-jump-item count))))
-
-(add-hook 'enh-ruby-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map "%" 'evil-ruby-jump-item)
-            (define-key evil-motion-state-local-map "%" 'evil-ruby-jump-item)))
-
 (defun newline-and-indent-relative ()
   (interactive)
   (newline)
@@ -895,3 +809,102 @@ Example:
                     :foreground "DarkOrange"
                     :background "Black"
                     :box nil)
+
+(evil-mode 1)
+
+(eval-after-load "evil"
+            ;; modes to map to different default state
+            (dolist (mode-map '((ag-mode . emacs)
+                                (cider-repl-mode . emacs)
+                                (comint-mode . emacs)
+                                (eshell-mode . emacs)
+                                (fundamental-mode . emacs)
+                                (git-commit-mode . insert)
+                                (git-rebase-mode . emacs)
+                                ;; (help-mode . emacs)
+                                (paradox-menu-mode . emacs)
+                                (term-mode . emacs)))
+              (evil-set-initial-state `,(car mode-map) `,(cdr mode-map))))
+
+(global-evil-matchit-mode 1)
+(global-evil-surround-mode 1)
+(setq evil-normal-state-cursor '("green" box))
+(setq evil-insert-state-cursor '("green" bar))
+
+;; (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
+;; (setq evil-emacs-state-modes nil)
+
+(defun my-move-key (keymap-from keymap-to key)
+  "Moves key binding from one keymap to another, deleting from the old location. "
+  (define-key keymap-to key (lookup-key keymap-from key))
+  (define-key keymap-from key nil))
+
+(my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
+(my-move-key evil-motion-state-map evil-normal-state-map " ")
+
+(defun neotree-mode-hook ()
+  (hl-line-mode 1)
+  (define-key evil-normal-state-map "\C-u" 'neotree-toggle)
+  (define-key evil-insert-state-map "\C-u" 'neotree-toggle)
+  (define-key evil-visual-state-map "\C-u" 'neotree-toggle)
+
+  (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+  (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+  (define-key evil-normal-state-local-map (kbd "c") 'neotree-change-root)
+  (define-key evil-normal-state-local-map (kbd "g") 'neotree-refresh)
+  (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+  (define-key evil-normal-state-local-map (kbd "v") 'neotree-enter-vertical-split)
+  (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-horizontal-split)
+  (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
+)
+
+; make "kj" exit out of insert mode
+(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
+(evil-define-command cofi/maybe-exit ()
+  :repeat change
+  (interactive)
+  (let ((modified (buffer-modified-p)))
+    (insert "k")
+    (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
+                           nil 0.5)))
+      (cond
+       ((null evt) (message ""))
+       ((and (integerp evt) (char-equal evt ?j))
+        (delete-char -1)
+        (set-buffer-modified-p modified)
+        (push 'escape unread-command-events))
+       (t (setq unread-command-events (append unread-command-events
+                                              (list evt))))))))
+
+(evil-define-key 'normal omnisharp-mode-map (kbd "\M-g") 'omnisharp-go-to-definition)
+
+(evil-define-motion evil-ruby-jump-item (count)
+  :jump t
+  :type inclusive
+  (cond ((or (string-match ruby-block-beg-re (current-word))
+             (string-match "describe" (current-word))
+             (string-match "context" (current-word))
+             (string-match "it" (current-word)))
+         (ruby-end-of-block count))
+        ((string-match ruby-block-end-re (current-word))
+         (ruby-beginning-of-block count))
+        (t
+         (evil-jump-item count))))
+
+(add-hook 'enh-ruby-mode-hook
+          (lambda ()
+            (define-key evil-normal-state-local-map "%" 'evil-ruby-jump-item)
+            (define-key evil-motion-state-local-map "%" 'evil-ruby-jump-item)))
+
+(defun rotate-word-at-point ()
+  "Rotate word at point based on sets in `rotate-text-rotations'."
+  (interactive)
+  (let ((bounds (bounds-of-thing-at-point 'word))
+        (opoint (point)))
+    (when (consp bounds)
+      (let ((beg (car bounds))
+            (end (copy-marker (cdr bounds))))
+        (rotate-region beg end)
+        (goto-char (if (> opoint end) end opoint))))))
+
+(define-key evil-normal-state-map "+" 'rotate-word-at-point)
