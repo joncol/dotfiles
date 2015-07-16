@@ -908,3 +908,7 @@ Example:
         (goto-char (if (> opoint end) end opoint))))))
 
 (define-key evil-normal-state-map "+" 'rotate-word-at-point)
+(define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
+(define-key evil-normal-state-map (kbd "C-w C-j") 'evil-window-down)
+(define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-up)
+(define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right)
