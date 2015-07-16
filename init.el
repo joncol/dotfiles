@@ -375,6 +375,7 @@
 
 (defvar rotate-text-rotations
   '(("true" "false")
+    ("True" "False")
     ("yes" "no")
     ("YES" "NO"))
   "List of text rotation sets.")
