@@ -10,15 +10,16 @@
                                clojure-snippets cmake-mode color-theme
                                color-theme-solarized company company-cabal
                                company-ghc confluence csv-mode dirtree ecb
-                               enh-ruby-mode ethan-wspace evil evil-numbers
-                               evil-matchit evil-surround exec-path-from-shell
-                               fill-column-indicator flx-ido fsharp-mode ggtags
-                               ghci-completion glsl-mode go-snippets goto-chg
-                               goto-last-change gruvbox-theme haskell-mode helm
-                               helm-ag helm-company helm-gtags java-snippets
-                               jira lua-mode markdown-mode neotree omnisharp
+                               enh-ruby-mode epl ethan-wspace evil evil-numbers
+                               evil-matchit evil-paredit evil-surround
+                               exec-path-from-shell fill-column-indicator
+                               flx-ido fsharp-mode ggtags ghci-completion
+                               glsl-mode go-snippets goto-chg goto-last-change
+                               gruvbox-theme haskell-mode helm helm-ag
+                               helm-company helm-gtags java-snippets jira
+                               lua-mode markdown-mode neotree omnisharp
                                csharp-mode flycheck auto-complete dash org
-                               pkg-info epl popup pos-tip powerline
+                               paredit pkg-info popup pos-tip powerline
                                powerline-evil project-explorer projectile
                                qml-mode racket-mode rvm rainbow-delimiters
                                rainbow-mode robe rspec-mode ruby-end sml-mode
@@ -498,15 +499,23 @@ Example:
   (define-key company-active-map (kbd "j") 'company-select-next-or-abort)
   (define-key company-active-map (kbd "k") 'company-select-previous-or-abort))
 
+(defun all-lisp-modes ()
+  (common-prog)
+  (paredit-mode)
+  (evil-paredit-mode))
+
 (add-hook 'lisp-mode-hook 'my-lisp-mode-hook t)
 (defun my-lisp-mode-hook ()
-  (common-prog))
+  (all-lisp-modes))
+
+(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook t)
+(defun my-emacs-lisp-mode-hook ()
+  (all-lisp-modes))
 
 (add-hook 'python-mode-hook 'my-python-mode-hook t)
 (defun my-python-mode-hook ()
   (common-prog)
-  (projectile-mode 1)
-  )
+  (projectile-mode 1))
 
 ;;; Racket
 
@@ -755,8 +764,7 @@ Example:
 
 (add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
 (defun my-scheme-mode-hook ()
-  (common-prog)
-  )
+  (all-lisp-modes))
 
 ;;; SML
 
@@ -857,6 +865,16 @@ Example:
   (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-horizontal-split)
   (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
 )
+
+;; Stop SLIME's REPL from grabbing DEL,
+;; which is annoying when backspacing over a '('
+(defun override-slime-repl-bindings-with-paredit ()
+  (define-key slime-repl-mode-map
+    (read-kbd-macro paredit-backward-delete-key) nil))
+
+(add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
+
+;;; Evil mode stuff
 
 ; make "kj" exit out of insert mode
 (define-key evil-insert-state-map "k" #'cofi/maybe-exit)
