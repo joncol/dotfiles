@@ -22,7 +22,7 @@
                                powerline-evil project-explorer projectile
                                qml-mode racket-mode rvm rainbow-delimiters
                                rainbow-mode robe rspec-mode ruby-end sml-mode
-                               undo-tree xml-rpc))
+                               solarized-theme undo-tree xml-rpc))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -175,8 +175,6 @@
 
 (helm-setup)
 
-(load-theme 'solarized-dark t)
-
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
   (progn (set-frame-font "Inconsolata-12")
@@ -191,6 +189,8 @@
   (progn (setq mac-right-option-modifier 'none)
          (when (display-graphic-p) (set-frame-size (selected-frame) 93 60))))
  )
+
+(load-theme 'solarized-dark t)
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
