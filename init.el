@@ -197,9 +197,10 @@
   (progn
     (when (display-graphic-p)
       (progn (color-theme-solarized)
-             (custom-set-faces
-              '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
-                                     :weight normal :height 117 :width normal)))))
+             (when (eq system-type 'gnu/linux)
+               (custom-set-faces
+                '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
+                                       :weight normal :height 117 :width normal))))))
              (set-frame-size (selected-frame) 93 80)))
     ))
 
@@ -806,12 +807,6 @@ Example:
           (shrink-window (- h 10)))))))
 
 (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight normal :height 117 :width normal)))))
 
 (powerline-default-theme)
 (set-face-attribute 'mode-line nil
