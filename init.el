@@ -179,30 +179,28 @@
 ;;; color theme
 (setq color-theme-is-global t)
 (color-theme-initialize)
+(color-theme-solarized)
 
-;; (load-theme 'gruvbox t)
-
-(if (eq system-type 'gnu/linux)
-    (set-face-attribute 'default nil :height 110))
-
-(if (eq system-type 'windows-nt)
-    (progn
-      (custom-set-faces
-       '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
-       :weight normal :height 120 :width normal)))))
-      (set-frame-position (selected-frame) 0 0)
-      (set-frame-size (selected-frame) 100 60)
-      (color-theme-solarized)
-      )
+(cond
+ ((and (eq system-type 'windows-nt) (display-graphic-p))
   (progn
-    (when (display-graphic-p)
-      (progn (color-theme-solarized)
-             (when (eq system-type 'gnu/linux)
-               (custom-set-faces
-                '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
-                                       :weight normal :height 117 :width normal))))))
-             (set-frame-size (selected-frame) 93 80)))
-    ))
+    (custom-set-faces
+     '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
+                            :weight normal :height 120 :width normal)))))
+    (set-frame-position (selected-frame) 0 0)
+    (set-frame-size (selected-frame) 100 60)))
+
+ ((and (eq system-type 'gnu/linux) (display-graphic-p))
+  (progn (custom-set-faces
+          '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
+                                 :weight normal :height 117 :width normal)))))
+         (set-face-attribute 'default nil :height 110)
+         (set-frame-size (selected-frame) 93 80)))
+
+ ((eq system-type 'darwin)
+  (progn (setq mac-right-option-modifier 'none)
+         (when (display-graphic-p) (set-frame-size (selected-frame) 93 60))))
+ )
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
@@ -223,9 +221,6 @@
 (setq company-dabbrev-ignore-case 'keep-prefix)
 (setq company-dabbrev-code-ignore-case nil)
 (setq company-dabbrev-downcase nil)
-
-(when (eq system-type 'darwin)
-  (setq mac-right-option-modifier 'none))
 
 ;;; Racket mode
 (setq racket-program "/usr/local/bin/racket")
