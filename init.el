@@ -5,10 +5,9 @@
                          ("marmalade" . "https://marmalade-repo.org/packages/")))
 (package-initialize)
 
-(setq package-list '(yasnippet ack-and-a-half angular-snippets ag
+(setq package-list '(yasnippet ack-and-a-half angular-snippets airline-themes ag
                                better-defaults cider clojure-mode
-                               clojure-snippets cmake-mode color-theme
-                               color-theme-solarized company company-cabal
+                               clojure-snippets cmake-mode company company-cabal
                                company-ghc confluence csv-mode dirtree ecb
                                enh-ruby-mode epl ethan-wspace evil evil-numbers
                                evil-matchit evil-paredit evil-surround
@@ -148,14 +147,14 @@
         helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
         helm-ff-file-name-history-use-recentf t)
 
-  (setq
-   helm-gtags-ignore-case t
-   helm-gtags-auto-update t
-   helm-gtags-use-input-at-cursor t
-   helm-gtags-pulse-at-cursor t
-   helm-gtags-prefix-key "\C-cg"
-   helm-gtags-suggested-key-mapping t
-   )
+  (setq helm-gtags-ignore-case t
+        helm-gtags-auto-update t
+        helm-gtags-use-input-at-cursor t
+        helm-gtags-pulse-at-cursor t
+        helm-gtags-prefix-key "\C-cg"
+        helm-gtags-suggested-key-mapping t
+        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --ignore-case"
+        helm-ag-insert-at-point 'word)
 
   ;; enable helm-gtags-mode
   (add-hook 'dired-mode-hook 'helm-gtags-mode)
@@ -176,26 +175,17 @@
 
 (helm-setup)
 
-;;; color theme
-(setq color-theme-is-global t)
-(color-theme-initialize)
-(color-theme-solarized)
+(load-theme 'solarized-dark t)
 
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
-  (progn
-    (custom-set-faces
-     '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
-                            :weight normal :height 120 :width normal)))))
-    (set-frame-position (selected-frame) 0 0)
-    (set-frame-size (selected-frame) 100 60)))
+  (progn (set-frame-font "Inconsolata-12")
+         (set-frame-position (selected-frame) 0 0)
+         (set-frame-size (selected-frame) 100 60)))
 
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
-  (progn (custom-set-faces
-          '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal
-                                 :weight normal :height 117 :width normal)))))
-         (set-face-attribute 'default nil :height 110)
-         (set-frame-size (selected-frame) 93 80)))
+  (progn (set-frame-font "Inconsolata-12")
+         (set-frame-size (selected-frame) 93 64)))
 
  ((eq system-type 'darwin)
   (progn (setq mac-right-option-modifier 'none)
@@ -714,6 +704,11 @@ Example:
     (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
     (add-to-list 'exec-path my-cabal-path))
 
+  (setq haskell-process-auto-import-loaded-modules t)
+  (setq haskell-process-log t)
+  (setq haskell-process-suggest-remove-import-lines t)
+  (setq haskell-process-type 'cabal-repl)
+
   (setq haskell-tags-on-save t)
 )
 
@@ -722,18 +717,6 @@ Example:
      (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
      (define-key haskell-mode-map (kbd "S-<f8>") 'haskell-sort-imports)))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(helm-ag-base-command "ag --nocolor --nogroup --line-numbers --ignore-case")
- '(helm-ag-insert-at-point (quote word))
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote cabal-repl))
- '(scheme-mit-dialect nil))
 (eval-after-load 'haskell-mode
   '(progn
      (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
@@ -743,14 +726,13 @@ Example:
      (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
      (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
      (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+
 (eval-after-load 'haskell-cabal
   '(progn
      (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
      (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
      (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
      (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
-
-
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
@@ -761,7 +743,8 @@ Example:
 
 (add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
 (defun my-scheme-mode-hook ()
-  (all-lisp-modes))
+  (all-lisp-modes)
+  (setq scheme-mit-dialect nil))
 
 ;;; SML
 
@@ -788,7 +771,6 @@ Example:
 (defun my-cmake-mode-hook ()
   (common-prog)
   (projectile-mode 1)
-  ;; (cmake-font-lock-activate)
   )
 
 (defun my-compilation-mode-hook ()
@@ -803,11 +785,8 @@ Example:
 
 (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
 
-(powerline-default-theme)
-(set-face-attribute 'mode-line nil
-                    :foreground "DarkOrange"
-                    :background "Black"
-                    :box nil)
+(load-theme 'airline-powerlineish t)
+;; (load-theme 'airline-light t)
 
 (evil-mode 1)
 
