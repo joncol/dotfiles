@@ -153,7 +153,7 @@
         helm-gtags-pulse-at-cursor t
         helm-gtags-prefix-key "\C-cg"
         helm-gtags-suggested-key-mapping t
-        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --ignore-case"
+        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --case-sensitive"
         helm-ag-insert-at-point 'word)
 
   ;; enable helm-gtags-mode
