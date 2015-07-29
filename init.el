@@ -125,6 +125,17 @@
 
 (global-set-key [tab] (lambda () (interactive) (tab-indent-or-complete nil)))
 
+(defun rotate-word-at-point ()
+  "Rotate word at point based on sets in `rotate-text-rotations'."
+  (interactive)
+  (let ((bounds (bounds-of-thing-at-point 'word))
+        (opoint (point)))
+    (when (consp bounds)
+      (let ((beg (car bounds))
+            (end (copy-marker (cdr bounds))))
+        (rotate-region beg end)
+        (goto-char (if (> opoint end) end opoint))))))
+
 (defun helm-setup ()
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
   ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
@@ -884,19 +895,9 @@ Example:
             (define-key evil-normal-state-local-map "%" 'evil-ruby-jump-item)
             (define-key evil-motion-state-local-map "%" 'evil-ruby-jump-item)))
 
-(defun rotate-word-at-point ()
-  "Rotate word at point based on sets in `rotate-text-rotations'."
-  (interactive)
-  (let ((bounds (bounds-of-thing-at-point 'word))
-        (opoint (point)))
-    (when (consp bounds)
-      (let ((beg (car bounds))
-            (end (copy-marker (cdr bounds))))
-        (rotate-region beg end)
-        (goto-char (if (> opoint end) end opoint))))))
-
 (define-key evil-normal-state-map "+" 'rotate-word-at-point)
 (define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-w C-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right)
+(setq evil-flash-delay 3600)
