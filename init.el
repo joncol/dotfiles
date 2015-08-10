@@ -773,6 +773,9 @@ Example:
   (projectile-mode 1)
   )
 
+(add-hook 'nxml-mode-hook 'my-xml-mode-hook t)
+(defun my-xml-mode-hook ()
+  (common-prog))
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
