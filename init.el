@@ -787,15 +787,15 @@ Example:
   (projectile-mode 1)
   )
 
-(defun my-compilation-mode-hook ()
-  (when (not (get-buffer-window "*compilation*"))
-    (save-selected-window
-      (save-excursion
-        (let* ((w (split-window-vertically))
-               (h (window-height w)))
-          (select-window w)
-          (switch-to-buffer "*compilation*")
-          (shrink-window (- h 10)))))))
+;; (defun my-compilation-mode-hook ()
+;;   (when (not (get-buffer-window "*compilation*"))
+;;     (save-selected-window
+;;       (save-excursion
+;;         (let* ((w (split-window-vertically))
+;;                (h (window-height w)))
+;;           (select-window w)
+;;           (switch-to-buffer "*compilation*")
+;;           (shrink-window (- h 10)))))))
 
 (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
 
