@@ -411,8 +411,6 @@ augroup filetypes
   autocmd FileType stylus setlocal tabstop=2 shiftwidth=2
   autocmd FileType scss setlocal tabstop=2 shiftwidth=2
   autocmd FileType haskell setlocal tabstop=8 shiftwidth=2
-  autocmd FileType plaintex setlocal tabstop=2 shiftwidth=2
-  autocmd FileType tex setlocal tabstop=2 shiftwidth=2
 
   autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
   autocmd FileType ruby nnoremap <leader>r :call RunRuby()<cr>
