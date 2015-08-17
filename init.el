@@ -193,7 +193,8 @@
          (set-frame-size (selected-frame) 100 60)))
 
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
-  (progn (set-frame-font "Inconsolata-12")
+  (progn (set-frame-font "Bitstream Vera Sans Mono")
+         (set-face-attribute 'default nil :height 105)
          (set-frame-size (selected-frame) 93 64)))
 
  ((eq system-type 'darwin)
@@ -778,6 +779,12 @@ Example:
   (common-prog))
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
+(defun my-markdown-mode-hook ()
+  (common-prog)
+  (setq evil-shift-width 2)
+  )
 
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
 
