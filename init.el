@@ -22,7 +22,7 @@
                                powerline-evil project-explorer projectile
                                qml-mode racket-mode rvm rainbow-delimiters
                                rainbow-mode robe rspec-mode ruby-end sml-mode
-                               solarized-theme undo-tree xml-rpc))
+                               solarized-theme undo-tree xml-rpc yaml-mode))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -782,6 +782,18 @@ Example:
 
 (add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
 (defun my-markdown-mode-hook ()
+  (common-prog)
+  (setq evil-shift-width 2)
+  )
+
+(add-hook 'latex-mode-hook 'my-latex-mode-hook t)
+(defun my-latex-mode-hook ()
+  (common-prog)
+  (setq evil-shift-width 2)
+  )
+
+(add-hook 'yaml-mode-hook 'my-yaml-mode-hook t)
+(defun my-yaml-mode-hook ()
   (common-prog)
   (setq evil-shift-width 2)
   )
