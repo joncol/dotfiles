@@ -164,7 +164,7 @@
         helm-gtags-pulse-at-cursor t
         helm-gtags-prefix-key "\C-cg"
         helm-gtags-suggested-key-mapping t
-        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --case-sensitive"
+        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case"
         helm-ag-insert-at-point 'word)
 
   ;; enable helm-gtags-mode
@@ -578,6 +578,7 @@ Example:
 ;;; C++
 
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook t)
 (defun my-c++-mode-hook ()
@@ -804,6 +805,12 @@ Example:
 (defun my-cmake-mode-hook ()
   (common-prog)
   (projectile-mode 1)
+  )
+
+(add-hook 'tex-mode-hook 'my-tex-mode-hook t)
+(defun my-tex-mode-hook ()
+  (common-prog)
+  (setq evil-shift-width 2)
   )
 
 ;; (defun my-compilation-mode-hook ()
