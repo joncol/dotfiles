@@ -823,7 +823,7 @@ Example:
 ;;           (switch-to-buffer "*compilation*")
 ;;           (shrink-window (- h 10)))))))
 
-(add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
+;; (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
 
 (load-theme 'airline-powerlineish t)
 ;; (load-theme 'airline-light t)
