@@ -793,7 +793,7 @@ Example:
 (add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
 (defun my-markdown-mode-hook ()
   (common-prog)
-  (setq evil-shift-width 2)
+  (setq evil-shift-width 4)
   )
 
 (add-hook 'latex-mode-hook 'my-latex-mode-hook t)
