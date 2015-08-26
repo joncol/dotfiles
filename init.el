@@ -61,6 +61,14 @@
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
 (load-library "iso-transl")
 
+(global-set-key (kbd "<f4>")
+                (lambda ()
+                  (interactive)
+                  (start-process "gvim" nil
+                                 "gvim"
+                                 (format "+%d" (line-number-at-pos))
+                                 (buffer-file-name))))
+
 (global-set-key (kbd "C-x a r") 'align-regexp)
 ;; align with spaces only
 (defadvice align-regexp (around align-regexp-with-spaces)
@@ -80,8 +88,8 @@
 
 (global-set-key (kbd "C-c C-b") 'help-go-back)
 
-(global-set-key (kbd "<f9>") (lambda() (interactive) (find-file "~/.emacs.d/init.el")))
-(global-set-key (kbd "S-<f9>") (lambda() (interactive) (load-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "<f9>") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "S-<f9>") (lambda () (interactive) (load-file "~/.emacs.d/init.el")))
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
