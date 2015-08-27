@@ -6,18 +6,18 @@
 (package-initialize)
 
 (setq package-list '(yasnippet ack-and-a-half angular-snippets airline-themes ag
-                               better-defaults cider clojure-mode
+                               auto-complete better-defaults cider clojure-mode
                                clojure-snippets cmake-mode company company-cabal
-                               company-ghc confluence csv-mode dirtree ecb
-                               enh-ruby-mode epl ethan-wspace evil evil-leader
-                               evil-numbers evil-matchit evil-paredit
-                               evil-surround exec-path-from-shell
-                               fill-column-indicator flx-ido fsharp-mode ggtags
-                               ghci-completion glsl-mode go-snippets goto-chg
-                               goto-last-change gruvbox-theme haskell-mode helm
-                               helm-ag helm-company helm-gtags java-snippets
-                               jira lua-mode markdown-mode neotree omnisharp
-                               csharp-mode flycheck auto-complete dash org
+                               company-ghc confluence csharp-mode csv-mode dash
+                               dirtree ecb enh-ruby-mode epl ethan-wspace evil
+                               evil-jumper evil-leader evil-numbers evil-matchit
+                               evil-paredit evil-surround exec-path-from-shell
+                               fill-column-indicator flx-ido flycheck
+                               fsharp-mode ggtags ghci-completion glsl-mode
+                               go-snippets goto-chg goto-last-change
+                               gruvbox-theme haskell-mode helm helm-ag
+                               helm-company helm-gtags java-snippets jira
+                               lua-mode markdown-mode neotree omnisharp org
                                paredit pkg-info popup pos-tip powerline
                                powerline-evil project-explorer projectile
                                qml-mode racket-mode rvm rainbow-delimiters
@@ -173,7 +173,7 @@
         helm-gtags-pulse-at-cursor t
         helm-gtags-prefix-key "\C-cg"
         helm-gtags-suggested-key-mapping t
-        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore TAGS"
+        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore TAGS;*.json;*.pdf"
         helm-ag-insert-at-point 'word)
 
   ;; enable helm-gtags-mode
@@ -271,8 +271,6 @@
 (defun tabs-are-ok ()
   (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
 (add-hook 'makefile-mode-hook 'tabs-are-ok)
-;; (add-hook 'c-mode-hook 'tabs-are-ok)
-;; (add-hook 'c++-mode-hook 'tabs-are-ok)
 
 (add-hook 'sml-mode-hook 'no-final-newline t)
 (add-hook 'fsharp-mode-hook 'no-final-newline t)
@@ -846,9 +844,10 @@ Example:
 (load-theme 'airline-powerlineish t)
 ;; (load-theme 'airline-light t)
 
-(global-evil-leader-mode)
+(global-evil-leader-mode 1)
 (evil-leader/set-leader ",")
 (evil-mode 1)
+(evil-jumper-mode 1)
 
 (eval-after-load "evil"
             ;; modes to map to different default state
