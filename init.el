@@ -9,14 +9,14 @@
                                better-defaults cider clojure-mode
                                clojure-snippets cmake-mode company company-cabal
                                company-ghc confluence csv-mode dirtree ecb
-                               enh-ruby-mode epl ethan-wspace evil evil-numbers
-                               evil-matchit evil-paredit evil-surround
-                               exec-path-from-shell fill-column-indicator
-                               flx-ido fsharp-mode ggtags ghci-completion
-                               glsl-mode go-snippets goto-chg goto-last-change
-                               gruvbox-theme haskell-mode helm helm-ag
-                               helm-company helm-gtags java-snippets jira
-                               lua-mode markdown-mode neotree omnisharp
+                               enh-ruby-mode epl ethan-wspace evil evil-leader
+                               evil-numbers evil-matchit evil-paredit
+                               evil-surround exec-path-from-shell
+                               fill-column-indicator flx-ido fsharp-mode ggtags
+                               ghci-completion glsl-mode go-snippets goto-chg
+                               goto-last-change gruvbox-theme haskell-mode helm
+                               helm-ag helm-company helm-gtags java-snippets
+                               jira lua-mode markdown-mode neotree omnisharp
                                csharp-mode flycheck auto-complete dash org
                                paredit pkg-info popup pos-tip powerline
                                powerline-evil project-explorer projectile
@@ -173,7 +173,7 @@
         helm-gtags-pulse-at-cursor t
         helm-gtags-prefix-key "\C-cg"
         helm-gtags-suggested-key-mapping t
-        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case"
+        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore TAGS"
         helm-ag-insert-at-point 'word)
 
   ;; enable helm-gtags-mode
@@ -582,6 +582,7 @@ Example:
   (semantic-mode 1)
   (global-ede-mode t)
   (ede-enable-generic-projects)
+  (evil-leader/set-key "a" 'projectile-find-other-file)
   )
 
 ;;; C++
@@ -845,6 +846,8 @@ Example:
 (load-theme 'airline-powerlineish t)
 ;; (load-theme 'airline-light t)
 
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
 (evil-mode 1)
 
 (eval-after-load "evil"
