@@ -11,7 +11,8 @@
                                company-ghc confluence csharp-mode csv-mode dash
                                dirtree ecb enh-ruby-mode epl ethan-wspace evil
                                evil-jumper evil-leader evil-numbers evil-matchit
-                               evil-paredit evil-surround exec-path-from-shell
+                               evil-paredit evil-search-highlight-persist
+                               evil-surround exec-path-from-shell
                                fill-column-indicator flx-ido flycheck
                                fsharp-mode ggtags ghci-completion glsl-mode
                                go-snippets goto-chg goto-last-change
@@ -848,6 +849,7 @@ Example:
 (evil-leader/set-leader ",")
 (evil-mode 1)
 (evil-jumper-mode 1)
+(global-evil-search-highlight-persist t)
 
 (eval-after-load "evil"
             ;; modes to map to different default state
