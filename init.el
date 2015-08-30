@@ -213,6 +213,9 @@
          (when (display-graphic-p) (set-frame-size (selected-frame) 93 60))))
  )
 
+(when (not (eq system-type 'windows-nt))
+    (setq projectile-indexing-method 'native))
+
 (load-theme 'solarized-dark t)
 
 (require 'fill-column-indicator)
