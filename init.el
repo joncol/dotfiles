@@ -174,8 +174,8 @@
         helm-gtags-pulse-at-cursor t
         helm-gtags-prefix-key "\C-cg"
         helm-gtags-suggested-key-mapping t
-        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore TAGS;*.json;*.pdf"
-        helm-ag-ignore-patterns '("TAGS")
+        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore TAGS;*.json;*.pdf;#*#"
+        helm-ag-ignore-patterns '("TAGS" "#*#")
         helm-ag-insert-at-point 'word)
 
   ;; enable helm-gtags-mode
@@ -955,3 +955,15 @@ Example:
 (define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right)
 (setq evil-flash-delay 3600)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ecb-options-version "2.40"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
