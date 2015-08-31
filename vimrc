@@ -43,6 +43,7 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ludovicchabant/vim-lawrencium'
+Plugin 'luochen1990/rainbow'
 Plugin 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
@@ -207,6 +208,8 @@ autocmd VimEnter * wincmd p
 let g:vim_json_syntax_conceal = 0
 let g:haskell_conceal = 0
 let g:haskell_conceal_enumerations = 0
+
+let g:rainbow_active = 1
 
 if !exists("*AltBufferAndDeleteCurrent")
   function AltBufferAndDeleteCurrent()
@@ -740,13 +743,13 @@ if has("gui_running")             " 'guifont' doesn't work in the console
       set guifont=Inconsolata:h12
     endif
 
-    " if s:uname == "Windows"
-    "   " fullscreen mode
-    "   augroup gui_au
-    "     autocmd!
-    "     autocmd GUIEnter * simalt ~X
-    "   augroup END
-    " endif
+    if s:uname == "Windows"
+      " fullscreen mode
+      augroup gui_au
+        autocmd!
+        autocmd GUIEnter * simalt ~X
+      augroup END
+    endif
   endif
 
   if has('title')
