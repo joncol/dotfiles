@@ -175,8 +175,10 @@
         helm-gtags-prefix-key "\C-cg"
         helm-gtags-suggested-key-mapping t
         helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore TAGS;*.json;*.map;*.pdf;#*#"
-        helm-ag-ignore-patterns '("TAGS" "#*#" "*.map")
         helm-ag-insert-at-point 'word)
+
+ (when (not (eq system-type 'windows-nt))
+    (setq helm-ag-ignore-patterns '("TAGS" "#*#" "*.map")))
 
   ;; enable helm-gtags-mode
   (add-hook 'dired-mode-hook 'helm-gtags-mode)
