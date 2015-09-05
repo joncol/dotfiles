@@ -221,7 +221,8 @@
 (when (not (eq system-type 'windows-nt))
     (setq projectile-indexing-method 'native))
 
-(load-theme 'solarized-dark t)
+(when (display-graphic-p)
+  (load-theme 'solarized-dark t))
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
