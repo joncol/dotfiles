@@ -477,6 +477,12 @@ Example:
   (local-set-key (kbd "C-C p s a") 'helm-ag-project-root)
   )
 
+(add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
+(defun my-markdown-mode-hook ()
+  (common-prog)
+  (projectile-mode 1)
+  )
+
 (add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
 (defun my-clojure-mode-hook ()
   (common-prog)
