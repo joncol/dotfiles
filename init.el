@@ -526,6 +526,10 @@ Example:
 (defun my-emacs-lisp-mode-hook ()
   (all-lisp-modes))
 
+(add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
+(defun my-clojure-mode-hook ()
+  (all-lisp-modes))
+
 (add-hook 'python-mode-hook 'my-python-mode-hook t)
 (defun my-python-mode-hook ()
   (common-prog)
