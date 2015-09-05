@@ -109,7 +109,7 @@
 (global-set-key (kbd "C-c i T") (lambda () (interactive) (timestamp t)))
 (global-set-key (kbd "C-c i t") (lambda () (interactive) (timestamp nil)))
 
-(setq cider-show-error-buffer 'except-in-repl)
+(setq cider-show-error-buffer 'nil)
 
 (defun check-expansion ()
   (save-excursion
