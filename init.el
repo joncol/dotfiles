@@ -865,7 +865,7 @@ Example:
 (eval-after-load "evil"
             ;; modes to map to different default state
             (dolist (mode-map '((ag-mode . emacs)
-                                (cider-repl-mode . emacs)
+                                ;; (cider-repl-mode . emacs)
                                 (comint-mode . emacs)
                                 (eshell-mode . emacs)
                                 (fundamental-mode . emacs)
