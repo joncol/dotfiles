@@ -23,8 +23,8 @@
                                powerline-evil project-explorer projectile
                                qml-mode racket-mode rvm rainbow-delimiters
                                rainbow-mode robe rspec-mode ruby-end rust-mode
-                               sml-mode solarized-theme toml-mode undo-tree
-                               xml-rpc yaml-mode))
+                               slime sml-mode solarized-theme toml-mode
+                               undo-tree xml-rpc yaml-mode))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -177,11 +177,12 @@
         helm-gtags-pulse-at-cursor t
         helm-gtags-prefix-key "\C-cg"
         helm-gtags-suggested-key-mapping t
-        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore #*#;TAGS;*.json;*.map;*.opensdf;*.pdf;*.sdf"
+        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore #*#;TAGS;*.html;*.json;*.map;*.opensdf;*.pdf;*.sdf"
         helm-ag-insert-at-point 'word)
 
  (when (not (eq system-type 'windows-nt))
-    (setq helm-ag-ignore-patterns '("#*#" "TAGS" "*.json" "*.map" "*.opensdf" "*.pdf" "*.sdf")))
+   (setq helm-ag-ignore-patterns
+         '("#*#" "TAGS" "*.html" "*.json" "*.map" "*.opensdf" "*.pdf" "*.sdf")))
 
   ;; enable helm-gtags-mode
   (add-hook 'dired-mode-hook 'helm-gtags-mode)
