@@ -2,7 +2,9 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")))
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")))
+
 (package-initialize)
 
 (setq package-list '(yasnippet ack-and-a-half angular-snippets airline-themes ag
@@ -17,14 +19,14 @@
                                fsharp-mode ggtags ghci-completion glsl-mode
                                go-snippets goto-chg goto-last-change
                                gruvbox-theme haskell-mode helm helm-ag
-                               helm-company helm-gtags java-snippets jira
-                               lua-mode markdown-mode neotree omnisharp org
-                               paredit pkg-info popup pos-tip powerline
-                               powerline-evil project-explorer projectile
-                               qml-mode racket-mode rvm rainbow-delimiters
-                               rainbow-mode robe rspec-mode ruby-end rust-mode
-                               slime sml-mode solarized-theme toml-mode
-                               undo-tree xml-rpc yaml-mode))
+                               helm-company helm-gtags htmlize java-snippets
+                               jira lua-mode markdown-mode neotree omnisharp
+                               org-plus-contrib ox-reveal paredit pkg-info popup
+                               pos-tip powerline powerline-evil project-explorer
+                               projectile qml-mode racket-mode rvm
+                               rainbow-delimiters rainbow-mode robe rspec-mode
+                               ruby-end rust-mode slime sml-mode solarized-theme
+                               toml-mode undo-tree xml-rpc yaml-mode))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -205,18 +207,18 @@
 
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
-  (progn (set-frame-font "Inconsolata-12")
-         (set-frame-position (selected-frame) 0 0)
-         (set-frame-size (selected-frame) 100 60)))
+  (set-frame-font "Inconsolata-12")
+  (set-frame-position (selected-frame) 0 0)
+  (set-frame-size (selected-frame) 100 60))
 
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
-  (progn (set-frame-font "Bitstream Vera Sans Mono")
-         (set-face-attribute 'default nil :height 105)
-         (set-frame-size (selected-frame) 93 64)))
+  (set-frame-font "Bitstream Vera Sans Mono")
+  (set-face-attribute 'default nil :height 105)
+  (set-frame-size (selected-frame) 93 64))
 
  ((eq system-type 'darwin)
-  (progn (setq mac-right-option-modifier 'none)
-         (when (display-graphic-p) (set-frame-size (selected-frame) 93 60))))
+  (setq mac-right-option-modifier 'none)
+  (when (display-graphic-p) (set-frame-size (selected-frame) 93 60)))
  )
 
 (when (not (eq system-type 'windows-nt))
@@ -225,10 +227,43 @@
 (when (display-graphic-p)
   (load-theme 'solarized-dark t))
 
+(setq org-reveal-hlevel 2)
+
+(when (eq system-type 'windows-nt)
+  (setq org-reveal-root "file:///c:/tools/reveal.js-3.1.0"))
+
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
 (setq fci-rule-width 1)
 (setq fci-rule-color "#ff0000")
+
+
+;;; Fix for htmlize producing garbage newlines when using fci-mode.
+
+(defvar modi/htmlize-initial-fci-state nil
+  "Variable to store the state of `fci-mode' when `htmlize-buffer' is called.")
+(defvar modi/htmlize-initial-flyspell-state nil
+  "Variable to store the state of `flyspell-mode' when `htmlize-buffer' is called.")
+
+(defun modi/htmlize-before-hook-fn ()
+  (when (fboundp 'fci-mode)
+    (setq modi/htmlize-initial-fci-state fci-mode)
+    (when fci-mode
+      (fci-mode -1)))
+  (when (fboundp 'flyspell-mode)
+    (setq modi/htmlize-initial-flyspell-state flyspell-mode)
+    (when flyspell-mode
+      (flyspell-mode -1))))
+(add-hook 'htmlize-before-hook #'modi/htmlize-before-hook-fn)
+
+(defun modi/htmlize-after-hook-fn ()
+  (when (fboundp 'fci-mode)
+    (when modi/htmlize-initial-fci-state
+      (fci-mode 1)))
+  (when (fboundp 'flyspell-mode)
+    (when modi/htmlize-initial-flyspell-state
+      (flyspell-mode 1))))
+(add-hook 'htmlize-after-hook #'modi/htmlize-after-hook-fn)
 
 ;;; Neo Tree stuff
 (global-set-key [f2] 'neotree-toggle)
@@ -503,7 +538,8 @@ Example:
 (add-hook 'org-mode-hook 'my-org-mode-hook t)
 (defun my-org-mode-hook ()
   (common-prog)
-  (setq org-src-fontify-natively t))
+  (setq org-src-fontify-natively t)
+  (load-library "ox-reveal"))
 
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
