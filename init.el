@@ -237,8 +237,9 @@
 (when (not (eq system-type 'windows-nt))
     (setq projectile-indexing-method 'native))
 
-(when (display-graphic-p)
-  (load-theme 'solarized-dark t))
+(if (display-graphic-p)
+    (load-theme 'solarized-dark t)
+  (load-theme 'molokai t))
 
 (setq org-reveal-hlevel 2)
 
