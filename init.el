@@ -47,9 +47,10 @@
 (setq user-full-name "Jonas Collberg")
 (setq user-mail-address
       (concat (s-replace " " "." (downcase user-full-name)) "@"
-        (if (compare-strings (system-name) nil nil "orz-lap01" nil nil)
-           "orzone.com"
-         "gmail.com")))
+              (if (eq t (compare-strings (system-name) nil nil
+                                         "orz-lap01" nil nil))
+                  "orzone.com"
+                "gmail.com")))
 
 
 (global-auto-revert-mode t)
@@ -241,8 +242,11 @@
 
 (setq org-reveal-hlevel 2)
 
-(when (eq system-type 'windows-nt)
-  (setq org-reveal-root "file:///c:/tools/reveal.js-3.1.0"))
+(if (eq system-type 'windows-nt)
+    (setq org-reveal-root "file:///c:/tools/reveal.js-3.1.0")
+  (setq org-reveal-root (concat "file://" (getenv "HOME")
+                                "/repos/reveal.js-3.1.0")))
+
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
