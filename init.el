@@ -20,9 +20,10 @@
                                go-snippets goto-chg goto-last-change
                                gruvbox-theme haskell-mode helm helm-ag
                                helm-company helm-gtags htmlize java-snippets
-                               jira lua-mode markdown-mode neotree omnisharp
-                               org-plus-contrib ox-reveal paredit pkg-info popup
-                               pos-tip powerline powerline-evil project-explorer
+                               jira lua-mode markdown-mode molokai-theme
+                               monokai-theme neotree omnisharp org-plus-contrib
+                               ox-reveal paredit pkg-info popup pos-tip
+                               powerline powerline-evil project-explorer
                                projectile qml-mode racket-mode rvm
                                rainbow-delimiters rainbow-mode robe rspec-mode
                                ruby-end rust-mode slime sml-mode solarized-theme
@@ -39,6 +40,17 @@
 
 (require 'semantic)
 (require 'semantic/bovine/gcc)
+
+;;; Set name and email
+
+(require 's)
+(setq user-full-name "Jonas Collberg")
+(setq user-mail-address
+      (concat (s-replace " " "." (downcase user-full-name)) "@"
+        (if (compare-strings (system-name) nil nil "orz-lap01" nil nil)
+           "orzone.com"
+         "gmail.com")))
+
 
 (global-auto-revert-mode t)
 (setq ring-bell-function 'ignore)
