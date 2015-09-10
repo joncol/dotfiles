@@ -243,12 +243,6 @@
 
 (setq org-reveal-hlevel 2)
 
-(if (eq system-type 'windows-nt)
-    (setq org-reveal-root "file:///c:/tools/reveal.js-3.1.0")
-  (setq org-reveal-root (concat "file://" (getenv "HOME")
-                                "/repos/reveal.js-3.1.0")))
-
-
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
 (setq fci-rule-width 1)
