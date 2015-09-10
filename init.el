@@ -244,8 +244,7 @@
 (setq org-reveal-hlevel 2)
 
 (if (eq system-type 'windows-nt)
-    (progn (setq python-shell-interpreter "c:\Python27\python.exe")
-           (setq org-reveal-root "file:///c:/tools/reveal.js-3.1.0"))
+    (setq org-reveal-root "file:///c:/tools/reveal.js-3.1.0")
   (setq org-reveal-root (concat "file://" (getenv "HOME")
                                 "/repos/reveal.js-3.1.0")))
 
