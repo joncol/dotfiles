@@ -550,7 +550,50 @@ Example:
 (defun my-org-mode-hook ()
   (common-prog)
   (setq org-src-fontify-natively t)
-  (load-library "ox-reveal"))
+  (load-library "ox-reveal")
+
+;;; Embedding youtube links in org-mode
+
+  (defvar yt-iframe-format
+    (concat "<iframe width=\"560\""
+            " height=\"315\""
+            " src=\"https://www.youtube.com/embed/%s?rel=0\""
+            " frameborder=\"0\""
+            " allowfullscreen>%s</iframe>"))
+
+ (defvar ytnc-iframe-format
+    (concat "<iframe width=\"560\""
+            " height=\"315\""
+            " src=\"https://www.youtube.com/embed/%s?rel=0&controls=0\""
+            " frameborder=\"0\""
+            " allowfullscreen>%s</iframe>"))
+
+(org-add-link-type
+   "yt"
+   (lambda (handle)
+     (browse-url
+      (concat "https://www.youtube.com/embed/"
+              handle)))
+   (lambda (path desc backend)
+     (cl-case backend
+       (html (format yt-iframe-format
+                     path (or desc "")))
+       (latex (format "\href{%s}{%s}"
+                      path (or desc "video"))))))
+
+  (org-add-link-type
+   "ytnc"
+   (lambda (handle)
+     (browse-url
+      (concat "https://www.youtube.com/embed/"
+              handle)))
+   (lambda (path desc backend)
+     (cl-case backend
+       (html (format ytnc-iframe-format
+                     path (or desc "")))
+       (latex (format "\href{%s}{%s}"
+                      path (or desc "video"))))))
+  )
 
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
