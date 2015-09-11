@@ -48,7 +48,7 @@
 (setq user-mail-address
       (concat (s-replace " " "." (downcase user-full-name)) "@"
               (if (eq t (compare-strings (system-name) nil nil
-                                         "orz-lap01" nil nil))
+                                         "orz-lap01" nil nil t))
                   "orzone.com"
                 "gmail.com")))
 
