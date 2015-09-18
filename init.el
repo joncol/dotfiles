@@ -1062,15 +1062,18 @@ Example:
 (define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right)
 (setq evil-flash-delay 3600)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ecb-options-version "2.40"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(evil-leader/set-key "t l"
+  (lambda ()
+    (interactive)
+    (start-process "thg" nil "thg" "log"
+                   (buffer-file-name))))
+
+(evil-leader/set-key "t d"
+  (lambda ()
+    (interactive)
+    (if (eq system-type 'windows-nt)
+        (start-process "thg" nil "thg" "vdiff"
+                       (buffer-file-name))
+      (start-process "thg" nil "hg" "opendiff"
+                     (buffer-file-name)))))
