@@ -16,8 +16,8 @@
                                evil-paredit evil-search-highlight-persist
                                evil-surround exec-path-from-shell
                                fill-column-indicator flx-ido flycheck
-                               fsharp-mode geiser ggtags ghci-completion
-                               glsl-mode go-snippets goto-chg goto-last-change
+                               fsharp-mode ggtags ghci-completion glsl-mode
+                               go-snippets goto-chg goto-last-change
                                gruvbox-theme haskell-mode helm helm-ag
                                helm-company helm-gtags htmlize java-snippets
                                jira lua-mode magit markdown-mode molokai-theme
