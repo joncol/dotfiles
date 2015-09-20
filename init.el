@@ -20,7 +20,7 @@
                                glsl-mode go-snippets goto-chg goto-last-change
                                gruvbox-theme haskell-mode helm helm-ag
                                helm-company helm-gtags htmlize java-snippets
-                               jira lua-mode markdown-mode molokai-theme
+                               jira lua-mode magit markdown-mode molokai-theme
                                monokai-theme neotree omnisharp org-plus-contrib
                                ox-reveal paredit pkg-info popup pos-tip
                                powerline powerline-evil project-explorer
@@ -125,6 +125,8 @@
 (global-set-key (kbd "C-c i t") (lambda () (interactive) (timestamp nil)))
 
 (setq cider-show-error-buffer 'nil)
+
+(global-set-key (kbd "C-c g") 'magit-status)
 
 (defun check-expansion ()
   (save-excursion
