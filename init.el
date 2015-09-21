@@ -21,9 +21,9 @@
                                gruvbox-theme haskell-mode helm helm-ag
                                helm-company helm-gtags htmlize java-snippets
                                jira lua-mode magit markdown-mode molokai-theme
-                               monokai-theme neotree omnisharp org-plus-contrib
-                               ox-reveal paredit pkg-info popup pos-tip
-                               powerline powerline-evil project-explorer
+                               monky monokai-theme neotree omnisharp
+                               org-plus-contrib ox-reveal paredit pkg-info popup
+                               pos-tip powerline powerline-evil project-explorer
                                projectile qml-mode racket-mode rvm
                                rainbow-delimiters rainbow-mode robe rspec-mode
                                ruby-end rust-mode slime sml-mode solarized-theme
@@ -102,6 +102,7 @@
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 (setq ecb-tip-of-the-day nil)
+(setq ecb-options-version "2.40")
 
 (global-set-key (kbd "C-c C-b") 'help-go-back)
 
@@ -127,6 +128,7 @@
 (setq cider-show-error-buffer 'nil)
 
 (global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "C-c m") 'monky-status)
 
 (defun check-expansion ()
   (save-excursion
