@@ -102,7 +102,6 @@
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 (setq ecb-tip-of-the-day nil)
-(setq ecb-options-version "2.40")
 
 (global-set-key (kbd "C-c C-b") 'help-go-back)
 
@@ -971,6 +970,7 @@ Example:
             (dolist (mode-map '((ag-mode . emacs)
                                 ;; (cider-repl-mode . emacs)
                                 (comint-mode . emacs)
+                                (diff-mode . emacs)
                                 (eshell-mode . emacs)
                                 (fundamental-mode . emacs)
                                 (git-commit-mode . insert)
@@ -1081,3 +1081,9 @@ Example:
                        (buffer-file-name))
       (start-process "thg" nil "hg" "opendiff"
                      (buffer-file-name)))))
+
+(evil-leader/set-key "m a" 'monky-blame-current-file)
+(evil-leader/set-key "d" 'vc-diff)
+
+(custom-set-variables
+ '(ecb-options-version "2.40"))
