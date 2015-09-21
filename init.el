@@ -1067,20 +1067,26 @@ Example:
 (define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right)
 (setq evil-flash-delay 3600)
 
+(defun run-on-current-buffer (program &rest args)
+  (let ((all-args (-snoc args (buffer-file-name))))
+    (apply (-partial 'start-process program nil program) all-args)))
+
+(evil-leader/set-key "t a"
+  (lambda ()
+    (interactive)
+    (run-on-current-buffer "thg" "annotate")))
+
 (evil-leader/set-key "t l"
   (lambda ()
     (interactive)
-    (start-process "thg" nil "thg" "log"
-                   (buffer-file-name))))
+    (run-on-current-buffer "thg" "log")))
 
 (evil-leader/set-key "t d"
   (lambda ()
     (interactive)
     (if (eq system-type 'windows-nt)
-        (start-process "thg" nil "thg" "vdiff"
-                       (buffer-file-name))
-      (start-process "thg" nil "hg" "opendiff"
-                     (buffer-file-name)))))
+        (run-on-current-buffer "thg" "vdiff")
+      (run-on-current-buffer "hg" "opendiff"))))
 
 (evil-leader/set-key "m a" 'monky-blame-current-file)
 (evil-leader/set-key "d" 'vc-diff)
