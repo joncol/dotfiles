@@ -129,6 +129,9 @@
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c m") 'monky-status)
 
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "sbcl")
+
 (defun check-expansion ()
   (save-excursion
     (if (looking-at "\\_>") t
