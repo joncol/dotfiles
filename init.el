@@ -626,7 +626,9 @@ Example:
 
 (add-hook 'lisp-mode-hook 'my-lisp-mode-hook t)
 (defun my-lisp-mode-hook ()
-  (all-lisp-modes))
+  (all-lisp-modes)
+  (define-key evil-normal-state-map (kbd "M-.") nil)
+  (global-set-key "\M-." 'slime-edit-definition))
 
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook t)
 (defun my-emacs-lisp-mode-hook ()
@@ -635,6 +637,13 @@ Example:
 (add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
 (defun my-clojure-mode-hook ()
   (all-lisp-modes))
+
+(add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
+(defun my-scheme-mode-hook ()
+  (all-lisp-modes)
+  (setq scheme-mit-dialect nil))
+
+;;; Python
 
 (add-hook 'python-mode-hook 'my-python-mode-hook t)
 (defun my-python-mode-hook ()
@@ -877,13 +886,6 @@ Example:
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
 (eval-after-load 'haskell-cabal
   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
-
-;;; Scheme
-
-(add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
-(defun my-scheme-mode-hook ()
-  (all-lisp-modes)
-  (setq scheme-mit-dialect nil))
 
 ;;; SML
 
