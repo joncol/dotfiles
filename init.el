@@ -11,23 +11,24 @@
                                auto-complete better-defaults cider clojure-mode
                                clojure-snippets cmake-mode company company-cabal
                                company-ghc confluence csharp-mode csv-mode dash
-                               dirtree ecb enh-ruby-mode epl ethan-wspace evil
-                               evil-jumper evil-leader evil-numbers evil-matchit
-                               evil-paredit evil-search-highlight-persist
-                               evil-surround exec-path-from-shell
-                               fill-column-indicator flx-ido flycheck
-                               fsharp-mode ggtags ghci-completion glsl-mode
-                               go-snippets goto-chg goto-last-change
-                               gruvbox-theme haskell-mode helm helm-ag
-                               helm-company helm-gtags htmlize java-snippets
-                               jira lua-mode magit markdown-mode molokai-theme
-                               monky monokai-theme neotree omnisharp
-                               org-plus-contrib ox-reveal paredit pkg-info popup
-                               pos-tip powerline powerline-evil project-explorer
-                               projectile qml-mode racket-mode rvm
-                               rainbow-delimiters rainbow-mode robe rspec-mode
-                               ruby-end rust-mode slime sml-mode solarized-theme
-                               toml-mode undo-tree xml-rpc yaml-mode))
+                               dirtree ecb edit-server enh-ruby-mode epl
+                               ethan-wspace evil evil-jumper evil-leader
+                               evil-numbers evil-matchit evil-paredit
+                               evil-search-highlight-persist evil-surround
+                               exec-path-from-shell fill-column-indicator
+                               flx-ido flycheck fsharp-mode ggtags
+                               ghci-completion glsl-mode go-snippets goto-chg
+                               goto-last-change gruvbox-theme haskell-mode helm
+                               helm-ag helm-company helm-gtags htmlize
+                               java-snippets jira lua-mode magit markdown-mode
+                               molokai-theme monky monokai-theme neotree
+                               omnisharp org-plus-contrib org-present ox-reveal
+                               paredit pkg-info popup pos-tip powerline
+                               powerline-evil project-explorer projectile
+                               qml-mode racket-mode rvm rainbow-delimiters
+                               rainbow-mode robe rspec-mode ruby-end rust-mode
+                               slime sml-mode solarized-theme toml-mode
+                               undo-tree xml-rpc yaml-mode))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -53,6 +54,7 @@
                 "gmail.com")))
 
 
+(edit-server-start)
 (global-auto-revert-mode t)
 (setq ring-bell-function 'ignore)
 (global-font-lock-mode 1)
@@ -128,9 +130,6 @@
 
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c m") 'monky-status)
-
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "sbcl")
 
 (defun check-expansion ()
   (save-excursion
@@ -627,6 +626,8 @@ Example:
 (add-hook 'lisp-mode-hook 'my-lisp-mode-hook t)
 (defun my-lisp-mode-hook ()
   (all-lisp-modes)
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
+  (setq inferior-lisp-program "sbcl")
   (define-key evil-normal-state-map (kbd "M-.") nil)
   (global-set-key "\M-." 'slime-edit-definition))
 
