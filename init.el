@@ -1094,6 +1094,11 @@ Example:
         (run-on-current-buffer "thg" "vdiff")
       (run-on-current-buffer "hg" "opendiff"))))
 
+(evil-leader/set-key "t s"
+  (lambda ()
+    (interactive)
+    (run-on-current-buffer "thg" "shelve")))
+
 (evil-leader/set-key "m a" 'monky-blame-current-file)
 (evil-leader/set-key "d" 'vc-diff)
 
