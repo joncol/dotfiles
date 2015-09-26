@@ -23,11 +23,12 @@
                                java-snippets jira lua-mode magit markdown-mode
                                molokai-theme monky monokai-theme neotree
                                omnisharp org-plus-contrib org-present ox-reveal
-                               paredit pkg-info popup pos-tip project-explorer
-                               projectile qml-mode racket-mode rvm
-                               rainbow-delimiters rainbow-mode robe rspec-mode
-                               ruby-end rust-mode slime sml-mode solarized-theme
-                               toml-mode undo-tree xml-rpc yaml-mode))
+                               paredit pkg-info popup pos-tip powerline
+                               project-explorer projectile qml-mode racket-mode
+                               rvm rainbow-delimiters rainbow-mode robe
+                               rspec-mode ruby-end rust-mode slime sml-mode
+                               solarized-theme toml-mode undo-tree xml-rpc
+                               yaml-mode))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
