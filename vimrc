@@ -3,6 +3,10 @@
 set nocompatible
 filetype off
 
+if $SHELL =~ 'bin/fish'
+set shell=/bin/sh
+endif
+
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
