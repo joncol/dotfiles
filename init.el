@@ -381,7 +381,9 @@
        (add-hook 'confluence-mode-hook 'longlines-mode)
        (add-hook 'confluence-before-save-hook 'longlines-before-revert-hook)
        (add-hook 'confluence-before-revert-hook 'longlines-before-revert-hook)
-       (add-hook 'confluence-mode-hook '(lambda () (local-set-key "\C-j" 'confluence-newline-and-indent))))))
+       (add-hook 'confluence-mode-hook
+                 '(lambda ()
+                    (local-set-key "\C-j" 'confluence-newline-and-indent))))))
 
 ;; LongLines mode: http://www.emacswiki.org/emacs-en/LongLines
 (autoload 'longlines-mode "longlines" "LongLines Mode." t)
@@ -573,32 +575,32 @@ Example:
             " frameborder=\"0\""
             " allowfullscreen>%s</iframe>"))
 
-(org-add-link-type
-   "yt"
-   (lambda (handle)
-     (browse-url
-      (concat "https://www.youtube.com/embed/"
-              handle)))
-   (lambda (path desc backend)
-     (cl-case backend
-       (html (format yt-iframe-format
-                     path (or desc "")))
-       (latex (format "\href{%s}{%s}"
-                      path (or desc "video"))))))
+ (org-add-link-type
+  "yt"
+  (lambda (handle)
+    (browse-url
+     (concat "https://www.youtube.com/embed/"
+             handle)))
+  (lambda (path desc backend)
+    (cl-case backend
+      (html (format yt-iframe-format
+                    path (or desc "")))
+      (latex (format "\href{%s}{%s}"
+                     path (or desc "video"))))))
 
-  (org-add-link-type
-   "ytnc"
-   (lambda (handle)
-     (browse-url
-      (concat "https://www.youtube.com/embed/"
-              handle)))
-   (lambda (path desc backend)
-     (cl-case backend
-       (html (format ytnc-iframe-format
-                     path (or desc "")))
-       (latex (format "\href{%s}{%s}"
-                      path (or desc "video"))))))
-  )
+ (org-add-link-type
+  "ytnc"
+  (lambda (handle)
+    (browse-url
+     (concat "https://www.youtube.com/embed/"
+             handle)))
+  (lambda (path desc backend)
+    (cl-case backend
+      (html (format ytnc-iframe-format
+                    path (or desc "")))
+      (latex (format "\href{%s}{%s}"
+                     path (or desc "video"))))))
+ )
 
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
@@ -972,7 +974,7 @@ Example:
 (global-evil-search-highlight-persist t)
 
 (eval-after-load "evil"
-            ;; modes to map to different default state
+            ;; disable evil for the following modes
             (dolist (mode-map '((ag-mode . emacs)
                                 ;; (cider-repl-mode . emacs)
                                 (comint-mode . emacs)
@@ -1046,7 +1048,8 @@ Example:
        (t (setq unread-command-events (append unread-command-events
                                               (list evt))))))))
 
-(evil-define-key 'normal omnisharp-mode-map (kbd "\M-g") 'omnisharp-go-to-definition)
+(evil-define-key
+  'normal omnisharp-mode-map (kbd "\M-g") 'omnisharp-go-to-definition)
 
 (evil-define-motion evil-ruby-jump-item (count)
   :jump t
