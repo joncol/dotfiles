@@ -35,6 +35,9 @@
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
+(unless (package-installed-p 'yasnippet)
+  (package-refresh-contents))
+
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
