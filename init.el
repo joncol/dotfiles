@@ -986,6 +986,7 @@ Example:
                                 (comint-mode . emacs)
                                 (diff-mode . emacs)
                                 (eshell-mode . emacs)
+                                (eww-mode . emacs)
                                 (fundamental-mode . emacs)
                                 (git-commit-mode . insert)
                                 (git-rebase-mode . emacs)
