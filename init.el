@@ -541,6 +541,7 @@ Example:
 (defun my-markdown-mode-hook ()
   (common-prog)
   (projectile-mode 1)
+  (auto-fill-mode)
   )
 
 (add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
@@ -561,6 +562,7 @@ Example:
   (common-prog)
   (setq org-src-fontify-natively t)
   (load-library "ox-reveal")
+  (auto-fill-mode)
 
 ;;; Embedding youtube links in org-mode
 
