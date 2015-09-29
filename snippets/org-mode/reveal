@@ -1,0 +1,32 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: reveal.js template
+# key: reveal
+# binding: direct-keybinding
+# --
+#+REVEAL_THEME: night
+#+REVEAL_TRANS: slide
+#+REVEAL_SPEED: fast
+#+REVEAL_EXTRA_CSS: ./css/extra.css
+#+REVEAL_HLEVEL: 3
+#+OPTIONS: toc:nil
+#+OPTIONS: H:3 num:0
+
+#+TITLE: ${Title}
+
+* Sample List
+
+Items appearing one by one:
+
+#+ATTR_REVEAL: :frag (appear)
+- apples
+- oranges
+- bananas
+
+#+REVEAL: split
+
+Another list, items appearing all at once:
+
+#+ATTR_REVEAL: :frag appear
+- cars
+- planes
+- bikes

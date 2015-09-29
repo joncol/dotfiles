@@ -79,6 +79,7 @@
 (setq inhibit-startup-message t)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir))
 (yas-global-mode 1)
+(setq yas-indent-line 'none)
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
 (load-library "iso-transl")
 
