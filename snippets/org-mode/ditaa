@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ditaa diagram
+# key: ditaa
+# binding: direct-keybinding
+# --
+#+BEGIN_SRC ditaa :file ./diagram.png :cmdline -r
++--------------+
+|              |
+| hello, world |
+|              |
++--------------+
+#+END_SRC

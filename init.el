@@ -250,14 +250,6 @@
     (load-theme 'solarized-dark t)
   (load-theme 'molokai t))
 
-(setq org-reveal-hlevel 2)
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((dot . t)))
-
-(setq org-confirm-babel-evaluate nil)
-
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
 (setq fci-rule-width 1)
@@ -318,6 +310,16 @@
 (setq org-directory "~/org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (define-key global-map "\C-cc" 'org-capture)
+(setq org-reveal-hlevel 2)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ditaa . t)
+   (dot . t)))
+
+(setq org-confirm-babel-evaluate nil)
+(if (eq system-type 'windows-nt)
+    (setq org-ditaa-jar-path "c:tools/misc/ditaa.jar"))
 
 ;;; whitespace / tabs
 (electric-indent-mode 1)
