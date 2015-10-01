@@ -18,15 +18,15 @@
                                exec-path-from-shell fill-column-indicator
                                flx-ido flycheck fsharp-mode ggtags
                                ghci-completion glsl-mode go-snippets goto-chg
-                               goto-last-change gruvbox-theme haskell-mode helm
-                               helm-ag helm-company helm-gtags htmlize
-                               java-snippets jira lua-mode magit markdown-mode
-                               molokai-theme monky monokai-theme neotree
-                               omnisharp org-plus-contrib org-present ox-reveal
-                               paredit pkg-info popup pos-tip powerline
-                               project-explorer projectile qml-mode racket-mode
-                               rvm rainbow-delimiters rainbow-mode robe
-                               rspec-mode ruby-end rust-mode slime sml-mode
+                               goto-last-change graphviz-dot-mode gruvbox-theme
+                               haskell-mode helm helm-ag helm-company helm-gtags
+                               htmlize java-snippets jira lua-mode magit
+                               markdown-mode molokai-theme monky monokai-theme
+                               neotree omnisharp org-plus-contrib org-present
+                               ox-reveal paredit pkg-info popup pos-tip
+                               powerline project-explorer projectile qml-mode
+                               racket-mode rvm rainbow-delimiters rainbow-mode
+                               robe rspec-mode ruby-end rust-mode slime sml-mode
                                solarized-theme toml-mode undo-tree xml-rpc
                                yaml-mode))
 
@@ -251,6 +251,12 @@
   (load-theme 'molokai t))
 
 (setq org-reveal-hlevel 2)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)))
+
+(setq org-confirm-babel-evaluate nil)
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)

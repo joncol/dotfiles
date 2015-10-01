@@ -1,0 +1,23 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Graphviz graph
+# key: dot
+# binding: direct-keybinding
+# --
+#+BEGIN_SRC dot :file ./images/graph.png :cmdline -Kdot -Tpng
+digraph {
+    labelloc = "t";
+    label = "Diagram Label";
+    rankdir = LR;
+    splines = true;
+    node [shape = box]
+
+    node1 [label = "First node"]
+    node2 [label = "Second node"]
+    node3 [label = "Third node"]
+
+    node1 -> node2
+    node2 -> node3
+    node3 -> "Finished" [style = dotted]
+    $0
+}
+#+END_SRC
