@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: PlantUML diagram
+# key: plant
+# binding: direct-keybinding
+# --
+#+BEGIN_SRC plantuml :file images/diagram.png
+#+END_SRC

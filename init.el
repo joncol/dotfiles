@@ -23,12 +23,12 @@
                                htmlize java-snippets jira lua-mode magit
                                markdown-mode molokai-theme monky monokai-theme
                                neotree omnisharp org-plus-contrib org-present
-                               ox-reveal paredit pkg-info popup pos-tip
-                               powerline project-explorer projectile qml-mode
-                               racket-mode rvm rainbow-delimiters rainbow-mode
-                               robe rspec-mode ruby-end rust-mode slime sml-mode
-                               solarized-theme toml-mode undo-tree xml-rpc
-                               yaml-mode))
+                               ox-reveal paredit pkg-info plantuml-mode popup
+                               pos-tip powerline project-explorer projectile
+                               qml-mode racket-mode rvm rainbow-delimiters
+                               rainbow-mode robe rspec-mode ruby-end rust-mode
+                               slime sml-mode solarized-theme toml-mode
+                               undo-tree xml-rpc yaml-mode))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -315,11 +315,13 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ditaa . t)
-   (dot . t)))
+   (dot . t)
+   (plantuml . t)))
 
 (setq org-confirm-babel-evaluate nil)
-(if (eq system-type 'windows-nt)
-    (setq org-ditaa-jar-path "c:tools/misc/ditaa.jar"))
+(when (eq system-type 'windows-nt)
+  (setq org-ditaa-jar-path "c:tools/misc/ditaa.jar"
+        org-plantuml-jar-path "c:tools/misc/plantuml.jar"))
 
 ;;; whitespace / tabs
 (electric-indent-mode 1)
