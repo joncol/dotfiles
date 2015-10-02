@@ -209,7 +209,7 @@ let g:vim_json_syntax_conceal = 0
 let g:haskell_conceal = 0
 let g:haskell_conceal_enumerations = 0
 
-let g:rainbow_active = 1
+let g:rainbow_active = 0
 
 if !exists("*AltBufferAndDeleteCurrent")
   function AltBufferAndDeleteCurrent()
@@ -325,7 +325,7 @@ endif
 set hlsearch
 "let g:solarized_bold=0
 if has("gui_running")
-  colorscheme solarized
+  colorscheme molokai
   set background=dark
   set cursorline
 else
@@ -465,6 +465,7 @@ augroup autocommands
   autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setfiletype glsl
   autocmd BufRead,BufNewFile *.as set filetype=actionscript
   autocmd BufRead,BufNewFile *_log.txt setfiletype orz_log
+  autocmd BufRead,BufNewFile *.asd setfiletype lisp
 
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
