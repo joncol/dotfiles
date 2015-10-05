@@ -283,6 +283,8 @@ if s:uname != "Darwin"
   inoremap <a-o> <esc>:A<cr>
 endif
 
+nnoremap <leader>a :A<cr>
+
 set titlestring=%f title
 
 set rulerformat=%l:%c ruler
