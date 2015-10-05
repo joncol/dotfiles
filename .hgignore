@@ -14,7 +14,7 @@ obj/
 elpa/
 reports/
 semanticdb/
-^url/cache/
+^url/
 places
 recentf
 

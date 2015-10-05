@@ -247,7 +247,7 @@
     (setq projectile-indexing-method 'native))
 
 (if (display-graphic-p)
-    (load-theme 'solarized-dark t)
+    (load-theme 'gruvbox t)
   (load-theme 'molokai t))
 
 (require 'fill-column-indicator)
@@ -319,9 +319,11 @@
    (plantuml . t)))
 
 (setq org-confirm-babel-evaluate nil)
-(when (eq system-type 'windows-nt)
-  (setq org-ditaa-jar-path "c:tools/misc/ditaa.jar"
-        org-plantuml-jar-path "c:tools/misc/plantuml.jar"))
+(if (eq system-type 'windows-nt)
+    (setq org-ditaa-jar-path "c:/tools/misc/ditaa.jar"
+          org-plantuml-jar-path "c:/tools/misc/plantuml.jar")
+  (setq org-ditaa-jar-path "/usr/local/bin/ditaa.jar"
+        org-plantuml-jar-path "/usr/local/bin/plantuml.jar"))
 
 ;;; whitespace / tabs
 (electric-indent-mode 1)
