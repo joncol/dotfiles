@@ -1052,6 +1052,11 @@ Example:
 
 (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 
+(add-hook 'snippet-mode-hook
+          '(lambda ()
+             (ethan-wspace-mode -1))
+          t)
+
 ;;; Evil mode stuff
 
 ; make "kj" exit out of insert mode
