@@ -7,28 +7,33 @@
 
 (package-initialize)
 
-(setq package-list '(yasnippet ack-and-a-half angular-snippets airline-themes ag
-                               auto-complete better-defaults cider clojure-mode
+(setq package-list '(yasnippet ack-and-a-half afternoon-theme ample-theme
+                               angular-snippets airline-themes ag auto-complete
+                               better-defaults cider clojure-mode
                                clojure-snippets cmake-mode company company-cabal
-                               company-ghc confluence csharp-mode csv-mode dash
-                               dirtree ecb edit-server enh-ruby-mode epl
-                               ethan-wspace evil evil-jumper evil-leader
-                               evil-numbers evil-matchit evil-paredit
+                               company-ghc confluence csharp-mode csv-mode
+                               cyberpunk-theme dash dirtree ecb edit-server
+                               enh-ruby-mode epl espresso-theme ethan-wspace
+                               evil evil-jumper evil-leader evil-numbers
+                               evil-matchit evil-paredit
                                evil-search-highlight-persist evil-surround
                                exec-path-from-shell fill-column-indicator
-                               flx-ido flycheck fsharp-mode ggtags
-                               ghci-completion glsl-mode go-snippets goto-chg
-                               goto-last-change graphviz-dot-mode gruvbox-theme
-                               haskell-mode helm helm-ag helm-company helm-gtags
-                               htmlize java-snippets jira lua-mode magit
-                               markdown-mode molokai-theme monky monokai-theme
-                               neotree omnisharp org-plus-contrib org-present
-                               ox-reveal paredit pkg-info plantuml-mode popup
-                               pos-tip powerline project-explorer projectile
-                               qml-mode racket-mode rvm rainbow-delimiters
-                               rainbow-mode robe rspec-mode ruby-end rust-mode
-                               slime sml-mode solarized-theme toml-mode
-                               undo-tree xml-rpc yaml-mode))
+                               flatland-theme flatui-theme flx-ido flycheck
+                               fsharp-mode ggtags ghci-completion glsl-mode
+                               go-snippets goto-chg goto-last-change
+                               grandshell-theme graphviz-dot-mode
+                               gruber-darker-theme gruvbox-theme haskell-mode
+                               helm helm-ag helm-company helm-gtags hemisu-theme
+                               htmlize java-snippets jira leuven-theme lua-mode
+                               magit markdown-mode molokai-theme monky
+                               monokai-theme neotree omnisharp org-plus-contrib
+                               org-present ox-reveal paredit pkg-info
+                               plantuml-mode popup pos-tip powerline
+                               project-explorer projectile qml-mode racket-mode
+                               rvm rainbow-delimiters rainbow-mode robe
+                               rspec-mode ruby-end rust-mode slime sml-mode
+                               solarized-theme soothe-theme toml-mode undo-tree
+                               xml-rpc yaml-mode))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -93,11 +98,10 @@
 
 (global-set-key (kbd "C-x a r") 'align-regexp)
 ;; align with spaces only
-(defadvice align-regexp (around align-regexp-with-spaces)
+(defadvice align-regexp (around align-regexp-with-spaces activate compile)
   "Never use tabs for alignment."
   (let ((indent-tabs-mode nil))
     ad-do-it))
-(ad-activate 'align-regexp)
 
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
@@ -247,7 +251,8 @@
     (setq projectile-indexing-method 'native))
 
 (if (display-graphic-p)
-    (load-theme 'gruvbox t)
+    (load-theme 'soothe t)
+
   (load-theme 'molokai t))
 
 (require 'fill-column-indicator)
@@ -356,11 +361,10 @@
 (add-hook 'enh-ruby-mode-hook 'no-final-newline t)
 (add-hook 'ruby-mode-hook 'no-final-newline t)
 
-(defadvice ruby-mode-variables (after reset-final-newline)
+(defadvice ruby-mode-variables (after reset-final-newline activate compile)
   "Reset final-newline that ruby-mode enforces but conflicts with ethan-wspace."
   (setq require-final-newline nil)
   (setq mode-require-final-newline nil))
-(ad-activate 'ruby-mode-variables)
 
 (global-whitespace-mode 1)
 (setq-default whitespace-style '(face tabs trailing
