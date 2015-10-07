@@ -185,10 +185,6 @@
   (global-unset-key (kbd "C-x c"))
   (global-set-key (kbd "M-x") 'helm-M-x)
 
-  ;; (define-key helm-command-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-  ;; (define-key helm-command-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-  ;; (define-key helm-command-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
   (when (executable-find "curl")
     (setq helm-google-suggest-use-curl-p t))
 
@@ -218,13 +214,6 @@
   (add-hook 'c-mode-hook 'helm-gtags-mode)
   (add-hook 'c++-mode-hook 'helm-gtags-mode)
   (add-hook 'asm-mode-hook 'helm-gtags-mode)
-
-  ; (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
-  ; (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
-  ; (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
-  ; (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
-  ; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-  ; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
 
   (helm-mode 1)
   )
@@ -716,17 +705,15 @@ Example:
   (projectile-mode 1)
   (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
     (ggtags-mode 1)
-    (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
-    (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
-    (define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
-    (define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
-    (define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
-    (define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+    (define-key ggtags-mode-map (kbd "C-c t s") 'ggtags-find-other-symbol)
+    (define-key ggtags-mode-map (kbd "C-c t h") 'ggtags-view-tag-history)
+    (define-key ggtags-mode-map (kbd "C-c t r") 'ggtags-find-reference)
+    (define-key ggtags-mode-map (kbd "C-c t c") 'ggtags-create-tags)
+    (define-key ggtags-mode-map (kbd "C-c t u") 'ggtags-update-tags)
 
     (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark))
 
   (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
-  ;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
   (semantic-mode 1)
@@ -1133,6 +1120,14 @@ Example:
 
 (evil-leader/set-key "m a" 'monky-blame-current-file)
 (evil-leader/set-key "d" 'vc-diff)
+
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
+
+(define-key helm-map (kbd "<tab>") 'helm-select-action)
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z") 'helm-select-action)
 
 (custom-set-variables
  '(ecb-options-version "2.40"))
