@@ -9,7 +9,7 @@
 
 (setq package-list '(yasnippet ack-and-a-half afternoon-theme ample-theme
                                angular-snippets airline-themes ag auto-complete
-                               better-defaults cider clojure-mode
+                               better-defaults cider cloc clojure-mode
                                clojure-snippets cmake-mode company company-cabal
                                company-ghc confluence csharp-mode csv-mode
                                cyberpunk-theme dash dirtree ecb edit-server
