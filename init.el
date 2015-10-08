@@ -15,7 +15,7 @@
                                cyberpunk-theme dash dirtree ecb edit-server
                                enh-ruby-mode epl espresso-theme ethan-wspace
                                evil evil-jumper evil-leader evil-numbers
-                               evil-matchit evil-paredit
+                               evil-matchit evil-nerd-commenter evil-paredit
                                evil-search-highlight-persist evil-surround
                                exec-path-from-shell fill-column-indicator
                                flatland-theme flatui-theme flx-ido flycheck
@@ -87,12 +87,6 @@
 (setq yas-indent-line 'none)
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
 (load-library "iso-transl")
-
-(defun comment-current-line ()
-  (interactive)
-  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
-
-(global-set-key (kbd "C-;") 'comment-current-line)
 
 (global-set-key (kbd "<f4>")
                 (lambda ()
@@ -1070,9 +1064,6 @@ Example:
        (t (setq unread-command-events (append unread-command-events
                                               (list evt))))))))
 
-(evil-define-key
-  'normal omnisharp-mode-map (kbd "\M-g") 'omnisharp-go-to-definition)
-
 (evil-define-motion evil-ruby-jump-item (count)
   :jump t
   :type inclusive
@@ -1126,6 +1117,20 @@ Example:
 
 (evil-leader/set-key "m a" 'monky-blame-current-file)
 (evil-leader/set-key "d" 'vc-diff)
+
+;;; evil-nerd-commenter
+
+(global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
+
+(evil-leader/set-key
+  "ci" 'evilnc-comment-or-uncomment-lines
+  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "cc" 'evilnc-copy-and-comment-lines
+  "cp" 'evilnc-comment-or-uncomment-paragraphs
+  "cv" 'evilnc-toggle-invert-comment-line-by-line
+)
+
+;;; helm bindings
 
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
