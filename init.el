@@ -88,6 +88,12 @@
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
 (load-library "iso-transl")
 
+(defun comment-current-line ()
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+(global-set-key (kbd "C-;") 'comment-current-line)
+
 (global-set-key (kbd "<f4>")
                 (lambda ()
                   (interactive)

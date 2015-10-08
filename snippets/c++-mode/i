@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Include directive
+# key: i
+# --
+#include "$0"
