@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Protected access level specifier
+# key: pro
+# binding: direct-keybinding
+# --
+protected:

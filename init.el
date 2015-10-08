@@ -1121,11 +1121,11 @@ Example:
 (evil-leader/set-key "m a" 'monky-blame-current-file)
 (evil-leader/set-key "d" 'vc-diff)
 
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 
-(define-key helm-map (kbd "<tab>") 'helm-select-action)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") 'helm-select-action)
 
