@@ -207,6 +207,14 @@ nmap <f9> :TagbarToggle<cr>
 "   autocmd VimEnter * NERDTree
 " endif
 
+" emacs compatibility
+
+nnoremap <C-a> <Nop>
+nnoremap <C-x> <Nop>
+nnoremap <C-x><C-s> :w<cr>
+inoremap <C-x><C-s> <esc>:w<cr>
+nnoremap <C-x><C-c> :qa<cr>
+
 autocmd VimEnter * wincmd p
 
 let g:vim_json_syntax_conceal = 0
