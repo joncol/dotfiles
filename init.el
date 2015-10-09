@@ -988,17 +988,15 @@ Example:
 (global-evil-search-highlight-persist t)
 
 (eval-after-load "evil"
-            ;; disable evil for the following modes
+            ;; disable evil-mode for the following modes
             (dolist (mode-map '((ag-mode . emacs)
-                                ;; (cider-repl-mode . emacs)
                                 (comint-mode . emacs)
                                 (diff-mode . emacs)
                                 (eshell-mode . emacs)
                                 (eww-mode . emacs)
-                                (fundamental-mode . emacs)
+                                ;; (fundamental-mode . emacs)
                                 (git-commit-mode . insert)
                                 (git-rebase-mode . emacs)
-                                ;; (help-mode . emacs)
                                 (paradox-menu-mode . emacs)
                                 (term-mode . emacs)))
               (evil-set-initial-state `,(car mode-map) `,(cdr mode-map))))
