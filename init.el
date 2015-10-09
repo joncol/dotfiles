@@ -50,8 +50,11 @@
 (require 'semantic)
 (require 'semantic/bovine/gcc)
 
-;;; Set name and email
 
+(global-set-key (kbd "<f12>") '(lambda ()
+                                 (interactive)
+                                 (message "Current major mode: %s" major-mode)))
+;;; Set name and email
 (require 's)
 (setq user-full-name "Jonas Collberg")
 (setq user-mail-address
@@ -730,7 +733,7 @@ Example:
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook t)
 (defun my-c++-mode-hook ()
-  (setq compile-command (concat "cd " (projectile-project-root) "debug && make -j4 && ctest"))
+  (setq compile-command (concat "cd " (projectile-project-root) "debug ;and make -j4 ;and ctest"))
   (global-set-key (kbd "<f6>") 'compile)
   (c-set-offset 'innamespace '0)
 
