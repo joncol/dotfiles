@@ -23,15 +23,15 @@
                                go-snippets goto-chg goto-last-change
                                grandshell-theme graphviz-dot-mode
                                gruber-darker-theme gruvbox-theme haskell-mode
-                               helm helm-ag helm-company helm-gtags hemisu-theme
-                               htmlize java-snippets jira leuven-theme lua-mode
-                               magit markdown-mode molokai-theme monky
-                               monokai-theme neotree omnisharp org-plus-contrib
-                               org-present ox-reveal paredit pkg-info
-                               plantuml-mode popup pos-tip powerline
-                               project-explorer projectile qml-mode racket-mode
-                               rvm rainbow-delimiters rainbow-mode robe
-                               rspec-mode ruby-end rust-mode slime sml-mode
+                               helm helm-ag helm-company helm-gtags helm-swoop
+                               hemisu-theme htmlize java-snippets jira
+                               leuven-theme lua-mode magit markdown-mode
+                               molokai-theme monky monokai-theme neotree
+                               omnisharp org-plus-contrib org-present ox-reveal
+                               paredit pkg-info plantuml-mode popup pos-tip
+                               powerline project-explorer projectile qml-mode
+                               racket-mode rvm rainbow-delimiters rainbow-mode
+                               robe rspec-mode ruby-end rust-mode slime sml-mode
                                solarized-theme soothe-theme toml-mode undo-tree
                                xml-rpc yaml-mode))
 
@@ -177,48 +177,49 @@
         (rotate-region beg end)
         (goto-char (if (> opoint end) end opoint))))))
 
-(defun helm-setup ()
-  ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-  ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-  ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-  (global-set-key (kbd "C-c h") 'helm-command-prefix)
-  (global-unset-key (kbd "C-x c"))
-  (global-set-key (kbd "M-x") 'helm-M-x)
+;;; helm setup
 
-  (when (executable-find "curl")
-    (setq helm-google-suggest-use-curl-p t))
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+(global-set-key (kbd "M-x") 'helm-M-x)
 
-  (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-        helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil
-        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-        helm-ff-file-name-history-use-recentf t)
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
 
-  (setq helm-gtags-ignore-case t
-        helm-gtags-auto-update t
-        helm-gtags-use-input-at-cursor t
-        helm-gtags-pulse-at-cursor t
-        helm-gtags-prefix-key "\C-cg"
-        helm-gtags-suggested-key-mapping t
-        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore #*#;TAGS;*.html;*.json;*.map;*.opensdf;*.pdf;*.sdf"
-        helm-ag-insert-at-point 'word)
+(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t)
 
- (when (not (eq system-type 'windows-nt))
-   (setq helm-ag-ignore-patterns
-         '("#*#" "TAGS" "*.html" "*.json" "*.map" "*.opensdf" "*.pdf" "*.sdf")))
+(setq helm-gtags-ignore-case t
+      helm-gtags-auto-update t
+      helm-gtags-use-input-at-cursor t
+      helm-gtags-pulse-at-cursor t
+      helm-gtags-prefix-key "\C-cg"
+      helm-gtags-suggested-key-mapping t
+      helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore #*#;TAGS;*.html;*.json;*.map;*.opensdf;*.pdf;*.sdf"
+      helm-ag-insert-at-point 'word)
 
-  ;; enable helm-gtags-mode
-  (add-hook 'dired-mode-hook 'helm-gtags-mode)
-  (add-hook 'eshell-mode-hook 'helm-gtags-mode)
-  (add-hook 'c-mode-hook 'helm-gtags-mode)
-  (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  (add-hook 'asm-mode-hook 'helm-gtags-mode)
+(when (not (eq system-type 'windows-nt))
+  (setq helm-ag-ignore-patterns
+        '("#*#" "TAGS" "*.html" "*.json" "*.map" "*.opensdf" "*.pdf" "*.sdf")))
 
-  (helm-mode 1)
-  )
+;; enable helm-gtags-mode
+(add-hook 'dired-mode-hook 'helm-gtags-mode)
+(add-hook 'eshell-mode-hook 'helm-gtags-mode)
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
 
-(helm-setup)
+(helm-mode 1)
+
+
+;;; Font
 
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
@@ -1139,6 +1140,38 @@ Example:
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") 'helm-select-action)
+
+;;; helm-swoop
+
+(require 'helm-swoop)
+(global-set-key (kbd "M-i") 'helm-swoop)
+(evil-leader/set-key "s" 'helm-swoop)
+(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+(global-set-key (kbd "C-M-i") 'helm-multi-swoop)
+(evil-leader/set-key "m s" 'helm-multi-swoop)
+(global-set-key (kbd "C-M-S-i") 'helm-multi-swoop-all)
+(evil-leader/set-key "m S" 'helm-multi-swoop-all)
+
+(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
+(define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
+(define-key evil-motion-state-map (kbd "M-i") 'helm-swoop-from-evil-search)
+(define-key helm-swoop-map
+  (kbd "M-m") 'helm-multi-swoop-current-mode-from-helm-swoop)
+
+(define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
+(define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
+
+(setq helm-multi-swoop-edit-save t)
+(setq helm-swoop-split-with-multiple-windows nil)
+(setq helm-swoop-split-direction 'split-window-vertically)
+(setq helm-swoop-speed-or-color t)
+(setq helm-swoop-move-to-line-cycle t)
+(setq helm-swoop-use-line-number-face t)
+
+(setq helm-multi-swoop-ignore-buffers-match
+      (concat helm-multi-swoop-ignore-buffers-match "\\|TAGS"))
 
 (custom-set-variables
  '(ecb-options-version "2.40"))
