@@ -241,7 +241,7 @@
     (setq projectile-indexing-method 'native))
 
 (if (display-graphic-p)
-    (load-theme 'soothe t)
+    (load-theme 'solarized-dark t)
 
   (load-theme 'molokai t))
 
@@ -1140,6 +1140,8 @@ Example:
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") 'helm-select-action)
+
+(evil-leader/set-key "r" 'helm-resume)
 
 ;;; helm-swoop
 
