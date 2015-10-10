@@ -139,9 +139,6 @@
 
 (setq cider-show-error-buffer 'nil)
 
-(global-set-key (kbd "C-c g") 'magit-status)
-(global-set-key (kbd "C-c m") 'monky-status)
-
 (defun check-expansion ()
   (save-excursion
     (if (looking-at "\\_>") t
@@ -203,7 +200,7 @@
       helm-gtags-auto-update t
       helm-gtags-use-input-at-cursor t
       helm-gtags-pulse-at-cursor t
-      helm-gtags-prefix-key "\C-cg"
+      ;; helm-gtags-prefix-key "\C-cg"
       helm-gtags-suggested-key-mapping t
       helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore #*#;TAGS;*.html;*.json;*.map;*.opensdf;*.pdf;*.sdf"
       helm-ag-insert-at-point 'word)
@@ -1107,8 +1104,11 @@ Example:
     (interactive)
     (run-on-current-buffer "thg" "shelve")))
 
-(evil-leader/set-key "m a" 'monky-blame-current-file)
-(evil-leader/set-key "d" 'vc-diff)
+(evil-leader/set-key
+  "d" 'vc-diff
+  "m a" 'monky-blame-current-file
+  "h s" 'monky-status
+  "g s" 'magit-status)
 
 ;;; evil-nerd-commenter
 
