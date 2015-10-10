@@ -12,10 +12,10 @@
                                better-defaults cider cloc clojure-mode
                                clojure-snippets cmake-mode company company-cabal
                                company-ghc confluence csharp-mode csv-mode
-                               cyberpunk-theme dash dirtree ecb edit-server
-                               enh-ruby-mode epl espresso-theme ethan-wspace
-                               evil evil-jumper evil-leader evil-numbers
-                               evil-matchit evil-nerd-commenter evil-paredit
+                               cyberpunk-theme dash dirtree ecb edit-server epl
+                               espresso-theme ethan-wspace evil evil-jumper
+                               evil-leader evil-numbers evil-matchit
+                               evil-nerd-commenter evil-paredit
                                evil-search-highlight-persist evil-surround
                                exec-path-from-shell fill-column-indicator
                                flatland-theme flatui-theme flx-ido flycheck
@@ -351,7 +351,6 @@
 
 (add-hook 'sml-mode-hook 'no-final-newline t)
 (add-hook 'fsharp-mode-hook 'no-final-newline t)
-(add-hook 'enh-ruby-mode-hook 'no-final-newline t)
 (add-hook 'ruby-mode-hook 'no-final-newline t)
 
 (defadvice ruby-mode-variables (after reset-final-newline activate compile)
@@ -801,18 +800,14 @@ Example:
 
 ;;; Ruby
 
-(add-hook 'ruby-mode-hook 'enh-ruby-mode)
-(add-hook 'enh-ruby-mode-hook 'my-enh-ruby-mode-hook t)
-(defun my-enh-ruby-mode-hook ()
+(add-hook 'ruby-mode-hook 'my-ruby-mode-hook t)
+(defun my-ruby-mode-hook ()
   (common-prog)
   (setq evil-shift-width 2)
   (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
   (add-to-list 'company-backends 'company-robe)
   (ruby-end-mode 1)
-  (projectile-mode 1)
-  )
-
-(add-hook 'enh-ruby-mode-hook 'robe-mode)
+  (projectile-mode 1))
 
 (defun newline-and-indent-relative ()
   (interactive)
@@ -1078,11 +1073,6 @@ Example:
          (ruby-beginning-of-block count))
         (t
          (evil-jump-item count))))
-
-(add-hook 'enh-ruby-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map "%" 'evil-ruby-jump-item)
-            (define-key evil-motion-state-local-map "%" 'evil-ruby-jump-item)))
 
 (define-key evil-normal-state-map "+" 'rotate-word-at-point)
 (define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
