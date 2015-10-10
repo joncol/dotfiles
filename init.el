@@ -244,7 +244,7 @@
     (setq projectile-indexing-method 'native))
 
 (if (display-graphic-p)
-    (load-theme 'solarized-dark t)
+    (load-theme 'soothe t)
 
   (load-theme 'molokai t))
 
@@ -1125,6 +1125,7 @@ Example:
 ;;; helm bindings
 
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
+(evil-leader/set-key "b" 'helm-buffers-list)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 
