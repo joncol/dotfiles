@@ -65,7 +65,7 @@
                 "gmail.com")))
 
 
-(edit-server-start)
+;; (edit-server-start)
 (global-auto-revert-mode t)
 (setq ring-bell-function 'ignore)
 (global-font-lock-mode 1)
@@ -940,11 +940,12 @@ Example:
 
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
 
-(add-hook 'cmake-mode-hook 'my-cmake-mode-hook t)
-(defun my-cmake-mode-hook ()
-  (common-prog)
-  (projectile-mode 1)
-  )
+(add-hook 'cmake-mode-hook
+          '(lambda ()
+             (common-prog)
+             (projectile-mode 1)
+             (setq evil-shift-width 2)
+             (setq tab-width 2)))
 
 (add-hook 'tex-mode-hook 'my-tex-mode-hook t)
 (defun my-tex-mode-hook ()
