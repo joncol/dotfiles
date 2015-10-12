@@ -729,7 +729,10 @@ Example:
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook t)
 (defun my-c++-mode-hook ()
-  (setq compile-command (concat "cd " (projectile-project-root) "debug ;and make -j4 ;and ctest"))
+  ;TODO: check if in fish shell or not
+  (let ((conj (if (eq system-type 'windows-nt) "&&" ";and")))
+    (setq compile-command (concat "cd " (projectile-project-root)
+                                  "debug " conj " make -j4 " conj " ctest")))
   (global-set-key (kbd "<f6>") 'compile)
   (c-set-offset 'innamespace '0)
 
