@@ -139,9 +139,6 @@
 
 (setq cider-show-error-buffer 'nil)
 
-(global-set-key (kbd "C-c g") 'magit-status)
-(global-set-key (kbd "C-c m") 'monky-status)
-
 (defun check-expansion ()
   (save-excursion
     (if (looking-at "\\_>") t
@@ -1107,8 +1104,12 @@ Example:
     (interactive)
     (run-on-current-buffer "thg" "shelve")))
 
-(evil-leader/set-key "m a" 'monky-blame-current-file)
 (evil-leader/set-key "d" 'vc-diff)
+(evil-leader/set-key
+  "g s" 'magit-status
+  "h s" 'monky-status
+  "m a" 'monky-blame-current-file)
+
 
 ;;; evil-nerd-commenter
 
@@ -1119,8 +1120,7 @@ Example:
   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
   "cc" 'evilnc-copy-and-comment-lines
   "cp" 'evilnc-comment-or-uncomment-paragraphs
-  "cv" 'evilnc-toggle-invert-comment-line-by-line
-)
+  "cv" 'evilnc-toggle-invert-comment-line-by-line)
 
 ;;; helm bindings
 
