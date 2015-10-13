@@ -750,7 +750,7 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     endif
   else
     set columns=100
-    set lines=80
+    set lines=60
 
     if has("gui_gtk2")              " GTK+2 but not GTK+1
       set guifont=Inconsolata\ 12
