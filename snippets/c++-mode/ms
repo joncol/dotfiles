@@ -3,4 +3,4 @@
 # key: ms
 # binding: direct-keybinding
 # --
-std::make_shared<${1:}>(${2:});
+std::make_shared<${1:}>(${2:})
