@@ -836,7 +836,6 @@ Example:
   (global-unset-key [tab])
   (local-set-key [tab] (lambda () (interactive) (tab-indent-or-complete 1)))
 
-
   ;; (structured-haskell-mode)
   ;; (set-face-background 'shm-current-face "#05303b")
   ;; (set-face-background 'shm-quarantine-face "#05303b")
@@ -1109,6 +1108,8 @@ Example:
   "m a" 'monky-blame-current-file
   "h s" 'monky-status
   "g s" 'magit-status)
+
+(global-set-key (kbd "C-x C-SPC") 'evil-search-highlight-persist-remove-all)
 
 ;;; evil-nerd-commenter
 
