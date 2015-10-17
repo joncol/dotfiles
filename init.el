@@ -65,6 +65,8 @@
                 "gmail.com")))
 
 
+
+(modify-syntax-entry ?_ "w") ;; do not treat _ as word separator
 (edit-server-start)
 (global-auto-revert-mode t)
 (setq ring-bell-function 'ignore)
@@ -241,7 +243,7 @@
     (setq projectile-indexing-method 'native))
 
 (if (display-graphic-p)
-    (load-theme 'soothe t)
+    (load-theme 'molokai t)
 
   (load-theme 'molokai t))
 
@@ -537,10 +539,10 @@ Example:
 ;;; mode hooks
 
 (defun common-prog ()
-  (modify-syntax-entry ?_ "w")
   (rainbow-delimiters-mode 1)
   (fci-mode 1)
   (local-set-key (kbd "C-C p s a") 'helm-ag-project-root)
+  (modify-syntax-entry ?_ "w") ;; do not treat _ as word separator
   )
 
 (add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
