@@ -31,9 +31,9 @@
                                paredit pkg-info plantuml-mode popup pos-tip
                                powerline project-explorer projectile qml-mode
                                racket-mode rvm rainbow-delimiters rainbow-mode
-                               robe rspec-mode ruby-end rust-mode slime sml-mode
-                               solarized-theme soothe-theme toml-mode undo-tree
-                               xml-rpc yaml-mode))
+                               robe rspec-mode rubocop ruby-end rust-mode slime
+                               sml-mode solarized-theme soothe-theme toml-mode
+                               undo-tree xml-rpc yaml-mode))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -803,6 +803,7 @@ Example:
 (defun my-ruby-mode-hook ()
   (common-prog)
   (setq evil-shift-width 2)
+  (rvm-use-default)
   (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
   (add-to-list 'company-backends 'company-robe)
   (ruby-end-mode 1)
