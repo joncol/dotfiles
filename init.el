@@ -772,7 +772,8 @@ Example:
 (defun fix-enum-class ()
   "Setup `c++-mode' to better handle \"class enum\"."
   (add-to-list 'c-offsets-alist '(topmost-intro-cont . align-enum-class))
-  (add-to-list 'c-offsets-alist '(statement-cont . align-enum-class-closing-brace)))
+  (add-to-list 'c-offsets-alist
+               '(statement-cont . align-enum-class-closing-brace)))
 
 (add-hook 'c++-mode-hook 'fix-enum-class)
 
@@ -804,6 +805,7 @@ Example:
   (common-prog)
   (setq evil-shift-width 2)
   (rvm-use-default)
+  (rubocop-mode)
   (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
   (add-to-list 'company-backends 'company-robe)
   (ruby-end-mode 1)
