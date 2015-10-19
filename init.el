@@ -87,7 +87,7 @@
 (setq scroll-step           1
       scroll-conservatively 10000)
 (setq inhibit-startup-message t)
-(setq yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir))
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 (setq yas-indent-line 'none)
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
