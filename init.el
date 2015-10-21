@@ -1173,5 +1173,7 @@ Example:
 (setq helm-multi-swoop-ignore-buffers-match
       (concat helm-multi-swoop-ignore-buffers-match "\\|TAGS"))
 
+(set-face-background 'evil-search-highlight-persist-highlight-face "RoyalBlue4")
+
 (custom-set-variables
  '(ecb-options-version "2.40"))
