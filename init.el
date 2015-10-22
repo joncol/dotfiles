@@ -244,7 +244,7 @@
     (setq projectile-indexing-method 'native))
 
 (if (display-graphic-p)
-    (load-theme 'molokai t)
+    (load-theme 'solarized-dark t)
 
   (load-theme 'molokai t))
 
