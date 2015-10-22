@@ -89,7 +89,8 @@
 (setq inhibit-startup-message t)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
-(setq yas-indent-line 'none)
+(setq yas-indent-line 'auto)
+(setq yas-also-auto-indent-first-line t)
 (setq safe-local-variable-values (quote ((require-final-newline) require-final-newline)))
 (load-library "iso-transl")
 
@@ -698,7 +699,6 @@ Example:
   (c-set-offset 'substatement-open 0)
   (company-mode)
   (local-set-key (kbd "<tab>") 'company-complete-common)
-  ;; (yas-minor-mode 1)
   (rainbow-delimiters-mode 1)
   (define-key evil-normal-state-map (kbd "M-.") nil)
   (global-set-key "\M-." 'ggtags-find-tag-dwim)
