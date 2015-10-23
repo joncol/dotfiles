@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: org-mode header for UML doc
+# key: umldoc
+# binding: direct-keybinding
+# --
+#+OPTIONS: toc:nil
+#+OPTIONS: H:3 num:0
+#+LATEX: \pagestyle{empty}
