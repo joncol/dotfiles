@@ -23,17 +23,18 @@
                                go-snippets goto-chg goto-last-change
                                grandshell-theme graphviz-dot-mode
                                gruber-darker-theme gruvbox-theme haskell-mode
-                               helm helm-ag helm-company helm-gtags helm-swoop
-                               hemisu-theme htmlize java-snippets jira
-                               leuven-theme lua-mode magit markdown-mode
-                               molokai-theme monky monokai-theme neotree
-                               omnisharp org-plus-contrib org-present ox-reveal
-                               paredit pkg-info plantuml-mode popup pos-tip
-                               powerline project-explorer projectile qml-mode
-                               racket-mode rvm rainbow-delimiters rainbow-mode
-                               robe rspec-mode rubocop ruby-end rust-mode slime
-                               sml-mode solarized-theme soothe-theme toml-mode
-                               undo-tree xml-rpc yaml-mode))
+                               helm helm-ag helm-company helm-gtags
+                               helm-projectile helm-swoop hemisu-theme htmlize
+                               java-snippets jira leuven-theme lua-mode magit
+                               markdown-mode molokai-theme monky monokai-theme
+                               neotree omnisharp org-plus-contrib org-present
+                               ox-reveal paredit pkg-info plantuml-mode popup
+                               pos-tip powerline project-explorer projectile
+                               qml-mode racket-mode rvm rainbow-delimiters
+                               rainbow-mode robe rspec-mode rubocop ruby-end
+                               rust-mode slime sml-mode solarized-theme
+                               soothe-theme toml-mode undo-tree xml-rpc
+                               yaml-mode))
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -78,12 +79,14 @@
 (global-linum-mode t)
 (setq-default tab-width 4)
 (when (display-graphic-p) (global-hl-line-mode 1))
+
 (ido-mode)
 (flx-ido-mode)
 ;; (setq ido-enable-flex-matching t)
-(setq projectile-completion-system 'ido)
+
 (require 'jira)
 (setq jira-url "http://jira.combination.se:8080/rpc/xmlrpc")
+
 (setq scroll-step           1
       scroll-conservatively 10000)
 (setq inhibit-startup-message t)
@@ -222,7 +225,7 @@
 (helm-mode 1)
 
 
-;;; Font
+;;; font
 
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
@@ -240,12 +243,20 @@
   (when (display-graphic-p) (set-frame-size (selected-frame) 93 60)))
  )
 
+
+;;; projectile
+
+(projectile-global-mode)
 (when (not (eq system-type 'windows-nt))
     (setq projectile-indexing-method 'native))
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+
+;;; theme
 
 (if (display-graphic-p)
     (load-theme 'solarized-dark t)
-
   (load-theme 'molokai t))
 
 (require 'fill-column-indicator)
@@ -549,20 +560,17 @@ Example:
 (add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
 (defun my-markdown-mode-hook ()
   (common-prog)
-  (projectile-mode 1)
   (auto-fill-mode)
   )
 
 (add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
 (defun my-clojure-mode-hook ()
   (common-prog)
-  (projectile-mode 1)
   )
 
 (add-hook 'lua-mode-hook 'my-lua-mode-hook t)
 (defun my-lua-mode-hook ()
   (common-prog)
-  (projectile-mode 1)
   (setq lua-indent-level 4)
   )
 
@@ -664,8 +672,7 @@ Example:
 
 (add-hook 'python-mode-hook 'my-python-mode-hook t)
 (defun my-python-mode-hook ()
-  (common-prog)
-  (projectile-mode 1))
+  (common-prog))
 
 ;;; Racket
 
@@ -704,7 +711,6 @@ Example:
   (global-set-key "\M-." 'ggtags-find-tag-dwim)
   (local-set-key  (kbd "C-x o") 'ff-find-other-file)
   (local-set-key  (kbd "C-x C-o") 'ff-find-other-file)
-  (projectile-mode 1)
   (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
     (ggtags-mode 1)
     (define-key ggtags-mode-map (kbd "C-c t s") 'ggtags-find-other-symbol)
@@ -808,8 +814,7 @@ Example:
   (rubocop-mode)
   (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
   (add-to-list 'company-backends 'company-robe)
-  (ruby-end-mode 1)
-  (projectile-mode 1))
+  (ruby-end-mode 1))
 
 (defun newline-and-indent-relative ()
   (interactive)
@@ -851,7 +856,6 @@ Example:
   (add-to-list 'company-backends 'company-cabal)
   (add-to-list 'company-backends 'company-ghc)
   (setq company-ghc-show-info t)
-  (projectile-mode 1)
   (setq haskell-interactive-popup-errors nil)
 
   (define-key yas-minor-mode-map [(tab)] nil)
@@ -911,9 +915,7 @@ Example:
 (add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
 (add-hook 'qml-mode-hook 'my-qml-mode-hook t)
 (defun my-qml-mode-hook ()
-  (common-prog)
-  (projectile-mode 1)
-  )
+  (common-prog))
 
 (add-hook 'nxml-mode-hook 'my-xml-mode-hook t)
 (defun my-xml-mode-hook ()
@@ -924,34 +926,28 @@ Example:
 (add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
 (defun my-markdown-mode-hook ()
   (common-prog)
-  (setq evil-shift-width 4)
-  )
+  (setq evil-shift-width 4))
 
 (add-hook 'latex-mode-hook 'my-latex-mode-hook t)
 (defun my-latex-mode-hook ()
   (common-prog)
-  (setq evil-shift-width 2)
-  )
+  (setq evil-shift-width 2))
 
 (add-hook 'yaml-mode-hook 'my-yaml-mode-hook t)
 (defun my-yaml-mode-hook ()
   (common-prog)
-  (setq evil-shift-width 2)
-  )
+  (setq evil-shift-width 2))
 
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
 
 (add-hook 'cmake-mode-hook 'my-cmake-mode-hook t)
 (defun my-cmake-mode-hook ()
-  (common-prog)
-  (projectile-mode 1)
-  )
+  (common-prog))
 
 (add-hook 'tex-mode-hook 'my-tex-mode-hook t)
 (defun my-tex-mode-hook ()
   (common-prog)
-  (setq evil-shift-width 2)
-  )
+  (setq evil-shift-width 2))
 
 (add-hook 'rust-mode-hook 'my-rust-mode-hook t)
 (defun my-rust-mode-hook ()
