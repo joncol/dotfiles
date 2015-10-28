@@ -1169,6 +1169,8 @@ Example:
 (setq helm-multi-swoop-ignore-buffers-match
       (concat helm-multi-swoop-ignore-buffers-match "\\|TAGS"))
 
+(define-key projectile-command-map (kbd "s a") #'helm-projectile-ag)
+
 (set-face-background 'evil-search-highlight-persist-highlight-face "RoyalBlue4")
 
 (custom-set-variables
