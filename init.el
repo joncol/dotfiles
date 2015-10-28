@@ -240,8 +240,9 @@
 
  ((eq system-type 'darwin)
   (setq mac-right-option-modifier 'none)
-  (when (display-graphic-p) (set-frame-size (selected-frame) 93 60)))
- )
+  (when (display-graphic-p)
+    (set-frame-size (selected-frame) 93 60)
+    (set-face-attribute 'default nil :height 145))))
 
 
 ;;; projectile
@@ -256,7 +257,7 @@
 ;;; theme
 
 (if (display-graphic-p)
-    (load-theme 'solarized-dark t)
+    (load-theme 'cyberpunk t)
   (load-theme 'molokai t))
 
 (require 'fill-column-indicator)
