@@ -257,7 +257,8 @@
 ;;; theme
 
 (if (display-graphic-p)
-    (load-theme 'cyberpunk t)
+    (progn (load-theme 'molokai t)
+           (set-face-foreground 'font-lock-comment-face "gray50"))
   (load-theme 'molokai t))
 
 (require 'fill-column-indicator)
@@ -1012,10 +1013,6 @@ Example:
 
 (defun neotree-mode-hook ()
   (hl-line-mode 1)
-  (define-key evil-normal-state-map "\C-u" 'neotree-toggle)
-  (define-key evil-insert-state-map "\C-u" 'neotree-toggle)
-  (define-key evil-visual-state-map "\C-u" 'neotree-toggle)
-
   (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
   (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
   (define-key evil-normal-state-local-map (kbd "c") 'neotree-change-root)
@@ -1023,8 +1020,7 @@ Example:
   (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
   (define-key evil-normal-state-local-map (kbd "v") 'neotree-enter-vertical-split)
   (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-horizontal-split)
-  (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
-)
+  (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))
 
 ;; Stop SLIME's REPL from grabbing DEL,
 ;; which is annoying when backspacing over a '('
