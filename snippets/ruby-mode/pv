@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: puv
-# key: puv
+# name: pv
+# key: pv
 # binding: direct-keybinding
 # --
-puts "$1: #{$1}"
+puts "DEBUG -- $1: #{$1}"
