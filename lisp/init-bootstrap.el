@@ -6,8 +6,13 @@
     init-custom-funs
     init-common
     init-common-programming
+    init-flymake
+    init-global-company-mode
+    init-c-common
     init-clojure
     init-cmake
+    init-cpp
+    init-csharp
     init-emacs-lisp
     init-haskell
     init-old-config

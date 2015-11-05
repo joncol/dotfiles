@@ -1,7 +1,9 @@
 ;;; Common setup for various programming modes
 
-(dolist (hook '(clojure-mode-hook
+(dolist (hook '(c-mode-common-hook
+                clojure-mode-hook
                 cmake-mode-hook
+                csharp-mode-hook
                 emacs-lisp-mode-hook
                 fsharp-mode-hook
                 haskell-mode-hook
