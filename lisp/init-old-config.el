@@ -1,11 +1,6 @@
 ;;; This is the old monolithic configuration
 ;;; TODO: break this up into separate files
 
-(add-to-list 'load-path "~/repos/ghc-mod/elisp")
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
-
 (require 'semantic)
 (require 'semantic/bovine/gcc)
 
@@ -588,7 +583,8 @@ Key bindings:
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook t)
 (defun my-c-mode-common-hook ()
-  (common-prog)
+  (jco/common-prog)
+  (semantic-mode 1)
   (setq-default backward-delete-function nil)
   (c-add-style "my-c-style"
                '((c-basic-offset . 4)
@@ -601,11 +597,10 @@ Key bindings:
   ;; (c-set-offset 'brace-list-open '+)
   ;; (c-set-offset 'case-label '+)
   (setq tab-width 4)
-  ;; (setq indent-tabs-mode t)
   (setq align-to-tab-stop nil)
   (c-set-offset 'substatement-open 0)
-  (company-mode)
-  (local-set-key (kbd "<tab>") 'company-complete-common)
+  ;; (company-mode)
+  ;; (local-set-key (kbd "<tab>") 'company-complete-common)
   (rainbow-delimiters-mode 1)
   (define-key evil-normal-state-map (kbd "M-.") nil)
   (global-set-key "\M-." 'ggtags-find-tag-dwim)
@@ -624,7 +619,6 @@ Key bindings:
   (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
-  (semantic-mode 1)
   (global-ede-mode t)
   (ede-enable-generic-projects)
   (evil-leader/set-key "a" 'projectile-find-other-file)
@@ -687,113 +681,14 @@ Key bindings:
 
 (add-hook 'csharp-mode-hook 'my-csharp-mode-hook t)
 (defun my-csharp-mode-hook ()
-  (common-prog)
+  (jco/common-prog)
   (electric-pair-mode 0)
   (add-to-list 'company-backends 'company-omnisharp)
   (c-set-style "c#")
   (omnisharp-mode)
   (flycheck-mode)
-  (local-set-key "\M-g" 'omnisharp-go-to-definition))
+  (local-set-key (kbd "M-g") 'omnisharp-go-to-definition))
 
-
-;;; Haskell
-
-(defun newline-and-indent-relative ()
-  (interactive)
-  (newline)
-  (indent-to-column (save-excursion
-                      (forward-line -1)
-                      (back-to-indentation)
-                      (current-column))))
-
-(add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
-(defun my-haskell-mode-hook ()
-  (common-prog)
-  (turn-on-haskell-doc-mode)
-  (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-
-  ;; just use tab-stop indentation
-  ;; (turn-on-haskell-simple-indent)
-  ;; (setq indent-line-function 'tab-to-tab-stop)
-
-  (turn-on-haskell-indentation)
-  (haskell-indentation-disable-show-indentations)
-
-  (setq tab-stop-list
-        (loop for i from 0 upto 120 by 2 collect i))
-
-  (define-key global-map (kbd "RET") 'newline-and-indent-relative)
-  (global-unset-key [tab])
-  (local-set-key [tab] (lambda () (interactive) (tab-indent-or-complete 1)))
-
-  ;; (structured-haskell-mode)
-  ;; (set-face-background 'shm-current-face "#05303b")
-  ;; (set-face-background 'shm-quarantine-face "#05303b")
-
-  (setq evil-shift-width 2)
-
-  (company-mode)
-  (add-to-list 'company-backends 'company-cabal)
-  (add-to-list 'company-backends 'company-ghc)
-  (setq company-ghc-show-info t)
-  (setq haskell-interactive-popup-errors nil)
-
-  (define-key yas-minor-mode-map [(tab)] nil)
-  (define-key yas-minor-mode-map (kbd "TAB") nil)
-  (define-key haskell-indentation-mode-map (kbd "RET") nil)
-  (define-key evil-motion-state-map (kbd "RET") nil)
-  (define-key evil-normal-state-map (kbd "M-.") nil)
-
-  (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-    (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
-    (add-to-list 'exec-path my-cabal-path))
-
-  (setq haskell-process-auto-import-loaded-modules t)
-  (setq haskell-process-log t)
-  (setq haskell-process-suggest-remove-import-lines t)
-  (setq haskell-process-type 'cabal-repl)
-
-  (setq haskell-tags-on-save t)
-)
-
-(eval-after-load 'haskell-mode
-  '(progn
-     (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
-     (define-key haskell-mode-map (kbd "S-<f8>") 'haskell-sort-imports)))
-
-(eval-after-load 'haskell-mode
-  '(progn
-     (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-     (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-     (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
-     (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-     (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-     (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
-     (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
-
-(eval-after-load 'haskell-cabal
-  '(progn
-     (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-     (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-     (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-     (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
-
-(eval-after-load 'haskell-mode
-  '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
-(eval-after-load 'haskell-cabal
-  '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
-
-;; (defun my-compilation-mode-hook ()
-;;   (when (not (get-buffer-window "*compilation*"))
-;;     (save-selected-window
-;;       (save-excursion
-;;         (let* ((w (split-window-vertically))
-;;                (h (window-height w)))
-;;           (select-window w)
-;;           (switch-to-buffer "*compilation*")
-;;           (shrink-window (- h 10)))))))
-
-;; (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
 
 ;; airline is too slow on Mac OS X
 (if (not (eq system-type 'darwin))
@@ -823,9 +718,6 @@ Key bindings:
 (global-evil-surround-mode 1)
 (setq evil-normal-state-cursor '("green" box))
 (setq evil-insert-state-cursor '("green" bar))
-
-;; (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
-;; (setq evil-emacs-state-modes nil)
 
 (defun my-move-key (keymap-from keymap-to key)
   "Moves key binding from one keymap to another, deleting from the old location. "

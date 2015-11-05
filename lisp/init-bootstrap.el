@@ -9,6 +9,7 @@
     init-clojure
     init-cmake
     init-emacs-lisp
+    init-haskell
     init-old-config
     init-keybindings
     init-latex

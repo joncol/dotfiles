@@ -4,6 +4,7 @@
                 cmake-mode-hook
                 emacs-lisp-mode-hook
                 fsharp-mode-hook
+                haskell-mode-hook
                 latex-mode-hook
                 lisp-mode-hook
                 lua-mode-hook
