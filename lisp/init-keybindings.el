@@ -4,3 +4,5 @@
     (let ((key (car p))
           (command (cdr p)))
       (define-key keymap (kbd key) command))))
+
+(provide 'init-keybindings)

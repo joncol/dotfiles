@@ -2,7 +2,8 @@
   (add-to-list 'load-path lisp-dir))
 
 (defvar init-files
-  '(init-keybindings
+  '(init-custom-funs
+    init-keybindings
     init-ruby))
 
 (defun jco/safe-require (feature)

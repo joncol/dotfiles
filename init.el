@@ -871,24 +871,8 @@ Key bindings:
   (common-prog)
   (omnisharp-mode))
 
-;;; Ruby
 
-(add-hook 'ruby-mode-hook
-          '(lambda ()
-             (common-prog)
-             (setq evil-shift-width 2)
-             (rvm-use-default)
-             (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
-             (add-to-list 'company-backends 'company-robe)
-             (ruby-end-mode 1)
-             (flymake-ruby-load)
-             (my-flymake-minor-mode)
-             (rubocop-mode)
-             (setq ruby-align-chained-calls nil
-                   ruby-align-to-stmt-keywords nil
-                   ruby-deep-indent-paren nil
-                   ruby-deep-indent-paren-style nil
-                   ruby-use-smie nil)))
+;;; Haskell
 
 (defun newline-and-indent-relative ()
   (interactive)
@@ -897,8 +881,6 @@ Key bindings:
                       (forward-line -1)
                       (back-to-indentation)
                       (current-column))))
-
-;;; Haskell
 
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook t)
 (defun my-haskell-mode-hook ()
@@ -1126,19 +1108,6 @@ Key bindings:
         (push 'escape unread-command-events))
        (t (setq unread-command-events (append unread-command-events
                                               (list evt))))))))
-
-(evil-define-motion evil-ruby-jump-item (count)
-  :jump t
-  :type inclusive
-  (cond ((or (string-match ruby-block-beg-re (current-word))
-             (string-match "describe" (current-word))
-             (string-match "context" (current-word))
-             (string-match "it" (current-word)))
-         (ruby-end-of-block count))
-        ((string-match ruby-block-end-re (current-word))
-         (ruby-beginning-of-block count))
-        (t
-         (evil-jump-item count))))
 
 (define-key evil-normal-state-map "+" 'rotate-word-at-point)
 (define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
