@@ -565,76 +565,6 @@ Key bindings:
 
 ;;; mode hooks
 
-(defun common-prog ()
-  (rainbow-delimiters-mode 1)
-  (modify-syntax-entry ?_ "w") ;; do not treat _ as word separator
-  (local-set-key (kbd "C-c p s a") 'helm-ag-project-root)
-  (fci-mode 1))
-
-(add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
-(defun my-markdown-mode-hook ()
-  (common-prog)
-  (auto-fill-mode))
-
-(add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
-(defun my-clojure-mode-hook ()
-  (common-prog))
-
-(add-hook 'lua-mode-hook 'my-lua-mode-hook t)
-(defun my-lua-mode-hook ()
-  (common-prog)
-  (setq lua-indent-level 4))
-
-(add-hook 'org-mode-hook
-          '(lambda ()
-             (common-prog)
-             (setq org-src-fontify-natively t)
-             (load-library "ox-reveal")
-             (auto-fill-mode)
-             (global-unset-key (kbd "C-x C-v"))
-
-             ;;; Embedding youtube links in org-mode
-
-             (defvar yt-iframe-format
-               (concat "<iframe width=\"560\""
-                       " height=\"315\""
-                       " src=\"https://www.youtube.com/embed/%s?rel=0\""
-                       " frameborder=\"0\""
-                       " allowfullscreen>%s</iframe>"))
-
-             (defvar ytnc-iframe-format
-               (concat "<iframe width=\"560\""
-                       " height=\"315\""
-                       " src=\"https://www.youtube.com/embed/%s?rel=0&controls=0\""
-                       " frameborder=\"0\""
-                       " allowfullscreen>%s</iframe>"))
-
-             (org-add-link-type
-              "yt"
-              (lambda (handle)
-                (browse-url
-                 (concat "https://www.youtube.com/embed/"
-                         handle)))
-              (lambda (path desc backend)
-                (cl-case backend
-                  (html (format yt-iframe-format
-                                path (or desc "")))
-                  (latex (format "\href{%s}{%s}"
-                                 path (or desc "video"))))))
-
-             (org-add-link-type
-              "ytnc"
-              (lambda (handle)
-                (browse-url
-                 (concat "https://www.youtube.com/embed/"
-                         handle)))
-              (lambda (path desc backend)
-                (cl-case backend
-                  (html (format ytnc-iframe-format
-                                path (or desc "")))
-                  (latex (format "\href{%s}{%s}"
-                                 path (or desc "video"))))))))
-
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'global-company-mode-hook 'my-global-company-mode-hook t)
 (defun my-global-company-mode-hook ()
@@ -653,47 +583,6 @@ Key bindings:
   (define-key company-active-map (kbd "j") 'company-select-next-or-abort)
   (define-key company-active-map (kbd "k") 'company-select-previous-or-abort))
 
-(defun all-lisp-modes ()
-  (common-prog)
-  (paredit-mode)
-  (evil-paredit-mode))
-
-(add-hook 'lisp-mode-hook 'my-lisp-mode-hook t)
-(defun my-lisp-mode-hook ()
-  (all-lisp-modes)
-  (load (expand-file-name "~/quicklisp/slime-helper.el"))
-  (setq inferior-lisp-program "sbcl")
-  (define-key evil-normal-state-map (kbd "M-.") nil)
-  (global-set-key "\M-." 'slime-edit-definition))
-
-(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook t)
-(defun my-emacs-lisp-mode-hook ()
-  (all-lisp-modes))
-
-(add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
-(defun my-clojure-mode-hook ()
-  (all-lisp-modes))
-
-(add-hook 'scheme-mode-hook 'my-scheme-mode-hook t)
-(defun my-scheme-mode-hook ()
-  (all-lisp-modes)
-  (setq scheme-mit-dialect nil))
-
-;;; Python
-
-(add-hook 'python-mode-hook 'my-python-mode-hook t)
-(defun my-python-mode-hook ()
-  (common-prog))
-
-;;; Racket
-
-(add-hook 'racket-mode-hook 'my-racket-mode-hook t)
-(defun my-racket-mode-hook()
-  (common-prog))
-
-(eval-after-load 'racket-mode
-  '(progn
-     (define-key racket-mode-map (kbd "C-c C-l") 'racket-run)))
 
 ;;; C
 
@@ -806,13 +695,6 @@ Key bindings:
   (flycheck-mode)
   (local-set-key "\M-g" 'omnisharp-go-to-definition))
 
-;;; F#
-
-(add-hook 'fsharp-mode-hook 'my-fsharp-mode-hook t)
-(defun my-fsharp-mode-hook ()
-  (common-prog)
-  (omnisharp-mode))
-
 
 ;;; Haskell
 
@@ -900,60 +782,6 @@ Key bindings:
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
 (eval-after-load 'haskell-cabal
   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
-
-;;; Standard ML
-
-(add-hook 'sml-mode-hook 'my-sml-mode-hook t)
-(defun my-sml-mode-hook ()
-  (common-prog)
-  (setq sml-indent-level 2)
-  (setq evil-shift-width 2)
-  (setq sml-program-name "/usr/local/bin/sml"))
-
-(add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
-(add-hook 'qml-mode-hook 'my-qml-mode-hook t)
-(defun my-qml-mode-hook ()
-  (common-prog))
-
-(add-hook 'nxml-mode-hook 'my-xml-mode-hook t)
-(defun my-xml-mode-hook ()
-  (common-prog))
-
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-(add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
-(defun my-markdown-mode-hook ()
-  (common-prog)
-  (setq evil-shift-width 4))
-
-(add-hook 'latex-mode-hook 'my-latex-mode-hook t)
-(defun my-latex-mode-hook ()
-  (common-prog)
-  (setq evil-shift-width 2))
-
-(add-hook 'yaml-mode-hook 'my-yaml-mode-hook t)
-(defun my-yaml-mode-hook ()
-  (common-prog)
-  (setq evil-shift-width 2))
-
-(add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
-
-(add-hook 'cmake-mode-hook 'my-cmake-mode-hook t)
-(defun my-cmake-mode-hook ()
-  (common-prog))
-
-(add-hook 'tex-mode-hook 'my-tex-mode-hook t)
-(defun my-tex-mode-hook ()
-  (common-prog)
-  (setq evil-shift-width 2))
-
-(add-hook 'rust-mode-hook 'my-rust-mode-hook t)
-(defun my-rust-mode-hook ()
-  (common-prog))
-
-(add-hook 'toml-mode-hook 'my-toml-mode-hook t)
-(defun my-toml-mode-hook ()
-  (common-prog))
 
 ;; (defun my-compilation-mode-hook ()
 ;;   (when (not (get-buffer-window "*compilation*"))

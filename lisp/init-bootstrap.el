@@ -3,10 +3,25 @@
 
 (defvar init-files
   '(init-packages
+    init-clojure
+    init-cmake
     init-custom-funs
+    init-common-programming
+    init-emacs-lisp
     init-old-config
     init-keybindings
-    init-ruby))
+    init-latex
+    init-lisp
+    init-lua
+    init-markdown
+    init-org
+    init-qml
+    init-racket
+    init-ruby
+    init-scheme
+    init-standard-ml
+    init-tex
+    init-yaml))
 
 (defun jco/safe-require (feature)
   "Safely require FEATURE"
