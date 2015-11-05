@@ -3,5 +3,4 @@
 # key: pry
 # binding: direct-keybinding
 # --
-require 'pry'
-binding.pry
+require 'pry'; binding.pry
