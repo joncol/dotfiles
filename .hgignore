@@ -4,7 +4,8 @@
 ^projectile-bookmarks\.eld$
 ^projectile\.cache$
 ^helm-adaptive-history$
-tags$
+^tags$
+^TAGS$
 
 bin/
 build/

@@ -19,8 +19,8 @@
                                evil-search-highlight-persist evil-surround
                                exec-path-from-shell fill-column-indicator
                                flatland-theme flatui-theme flx-ido flycheck
-                               fsharp-mode ggtags ghci-completion glsl-mode
-                               go-snippets goto-chg goto-last-change
+                               flymake-ruby fsharp-mode ggtags ghci-completion
+                               glsl-mode go-snippets goto-chg goto-last-change
                                grandshell-theme graphviz-dot-mode
                                gruber-darker-theme gruvbox-theme haskell-mode
                                helm helm-ag helm-company helm-gtags
@@ -34,7 +34,20 @@
                                rainbow-mode robe rspec-mode rubocop ruby-end
                                rust-mode slime sml-mode solarized-theme
                                soothe-theme toml-mode undo-tree xml-rpc
-                               yaml-mode))
+                               yaml-mode yard-mode))
+
+
+;;; new modular system
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(setq jco/init-errors nil)
+
+(require 'init-bootstrap)
+(jco/safe-load-init-files)
+
+(message (if jco/init-errors
+             (mapconcat #'identity jco/init-errors "\n")
+           "Emacs initialized successfully"))
+
 
 (add-to-list 'load-path "~/repos/ghc-mod/elisp")
 (autoload 'ghc-init "ghc" nil t)
@@ -83,6 +96,18 @@
 (ido-mode)
 (flx-ido-mode)
 ;; (setq ido-enable-flex-matching t)
+
+;;; display ido results vertically, rather than horizontally
+(setq ido-decorations '("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]"
+                        " [Matched]" " [Not readable]" " [Too big]"
+                        " [Confirm]"))
+(defun ido-disable-line-truncation ()
+  (set (make-local-variable 'truncate-lines) nil))
+(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
+(defun ido-define-keys () ;; C-n/p is more intuitive in vertical layout
+  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+(add-hook 'ido-setup-hook 'ido-define-keys)
 
 (require 'jira)
 (setq jira-url "http://jira.combination.se:8080/rpc/xmlrpc")
@@ -551,31 +576,72 @@ Example:
                      (point))
     (indent-for-tab-command)))
 
+
+;;; flymake
+
+(defun my-flymake-show-next-error()
+  (interactive)
+  (flymake-goto-next-error)
+  (flymake-display-err-menu-for-current-line))
+
+(local-set-key (kbd "C-c C-v") 'my-flymake-show-next-error)
+
+(defvar my-flymake-minor-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "M-p") 'flymake-goto-prev-error)
+    (define-key map (kbd "M-n") 'flymake-goto-next-error)
+    map)
+  "Keymap for my flymake minor mode.")
+
+(defun my-flymake-err-at (pos)
+  (let ((overlays (overlays-at pos)))
+    (remove nil
+            (mapcar (lambda (overlay)
+                      (and (overlay-get overlay 'flymake-overlay)
+                           (overlay-get overlay 'help-echo)))
+                    overlays))))
+
+(defun my-flymake-err-echo ()
+  (message "%s" (mapconcat 'identity (my-flymake-err-at (point)) "\n")))
+
+(defadvice flymake-goto-next-error (after display-message activate compile)
+  (my-flymake-err-echo))
+
+(defadvice flymake-goto-prev-error (after display-message activate compile)
+  (my-flymake-err-echo))
+
+(define-minor-mode my-flymake-minor-mode
+  "Simple minor mode with key bindings for moving between errors.
+
+Key bindings:
+
+\\{my-flymake-minor-mode-map}"
+  nil
+  nil
+  :keymap my-flymake-minor-mode-map)
+
+
 ;;; mode hooks
 
 (defun common-prog ()
   (rainbow-delimiters-mode 1)
-  (fci-mode 1)
-  (local-set-key (kbd "C-C p s a") 'helm-ag-project-root)
   (modify-syntax-entry ?_ "w") ;; do not treat _ as word separator
-  )
+  (local-set-key (kbd "C-c p s a") 'helm-ag-project-root)
+  (fci-mode 1))
 
 (add-hook 'markdown-mode-hook 'my-markdown-mode-hook t)
 (defun my-markdown-mode-hook ()
   (common-prog)
-  (auto-fill-mode)
-  )
+  (auto-fill-mode))
 
 (add-hook 'clojure-mode-hook 'my-clojure-mode-hook t)
 (defun my-clojure-mode-hook ()
-  (common-prog)
-  )
+  (common-prog))
 
 (add-hook 'lua-mode-hook 'my-lua-mode-hook t)
 (defun my-lua-mode-hook ()
   (common-prog)
-  (setq lua-indent-level 4)
-  )
+  (setq lua-indent-level 4))
 
 (add-hook 'org-mode-hook
           '(lambda ()
@@ -796,28 +862,33 @@ Example:
   (c-set-style "c#")
   (omnisharp-mode)
   (flycheck-mode)
-  (local-set-key "\M-g" 'omnisharp-go-to-definition)
-  )
+  (local-set-key "\M-g" 'omnisharp-go-to-definition))
 
 ;;; F#
 
 (add-hook 'fsharp-mode-hook 'my-fsharp-mode-hook t)
 (defun my-fsharp-mode-hook ()
   (common-prog)
-  (omnisharp-mode)
-  )
+  (omnisharp-mode))
 
 ;;; Ruby
 
-(add-hook 'ruby-mode-hook 'my-ruby-mode-hook t)
-(defun my-ruby-mode-hook ()
-  (common-prog)
-  (setq evil-shift-width 2)
-  (rvm-use-default)
-  (rubocop-mode)
-  (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
-  (add-to-list 'company-backends 'company-robe)
-  (ruby-end-mode 1))
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (common-prog)
+             (setq evil-shift-width 2)
+             (rvm-use-default)
+             (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
+             (add-to-list 'company-backends 'company-robe)
+             (ruby-end-mode 1)
+             (flymake-ruby-load)
+             (my-flymake-minor-mode)
+             (rubocop-mode)
+             (setq ruby-align-chained-calls nil
+                   ruby-align-to-stmt-keywords nil
+                   ruby-deep-indent-paren nil
+                   ruby-deep-indent-paren-style nil
+                   ruby-use-smie nil)))
 
 (defun newline-and-indent-relative ()
   (interactive)
