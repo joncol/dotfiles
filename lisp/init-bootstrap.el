@@ -3,10 +3,11 @@
 
 (defvar init-files
   '(init-packages
+    init-custom-funs
+    init-common
+    init-common-programming
     init-clojure
     init-cmake
-    init-custom-funs
-    init-common-programming
     init-emacs-lisp
     init-old-config
     init-keybindings

@@ -20,11 +20,17 @@
                 robe-mode))
   (add-hook 'ruby-mode-hook mode))
 
+(defvar jco/rvm-use-default-called nil)
+
+(defadvice rvm-use-default (after rvm-use-default-after activate compile)
+  (setq jco/rvm-use-default-called t))
+
 (add-hook 'ruby-mode-hook
           '(lambda ()
              (jco/common-prog)
              (setq evil-shift-width 2)
-             (rvm-use-default)
+             (unless jco/rvm-use-default-called
+               (rvm-use-default))
              (add-to-list 'company-backends 'company-robe)
              (flymake-ruby-load)))
 
@@ -41,11 +47,11 @@
         (t
          (evil-jump-item count))))
 
-(setq ruby-align-chained-calls nil
-                   ruby-align-to-stmt-keywords nil
-                   ruby-deep-indent-paren nil
-                   ruby-deep-indent-paren-style nil
-                   ruby-use-smie nil)
+;; (setq ruby-align-chained-calls nil
+;;       ruby-align-to-stmt-keywords nil
+;;       ruby-deep-indent-paren nil
+;;       ruby-deep-indent-paren-style nil
+;;       ruby-use-smie nil)
 
 (jco/define-bindings ruby-mode-map
                      '(("C-c r a"  . rvm-activate-corresponding-ruby)))
