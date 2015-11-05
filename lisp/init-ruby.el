@@ -1,3 +1,5 @@
+(require 'inf-ruby)
+
 (dolist (fp '("\\.rb$"
               "\\.ru$"
               "\\.rake"
@@ -11,10 +13,12 @@
               "\\.god$"))
   (add-to-list 'auto-mode-alist `(,fp . ruby-mode)))
 
-(add-hook 'ruby-mode-hook 'yard-mode)
-(add-hook 'ruby-mode-hook 'ruby-end-mode)
-(add-hook 'ruby-mode-hook 'my-flymake-minor-mode)
-(add-hook 'ruby-mode-hook 'rubocop-mode)
+(dolist (mode '(yard-mode
+                ruby-end-mode
+                my-flymake-minor-mode
+                rubocop-mode
+                robe-mode))
+  (add-hook 'ruby-mode-hook mode))
 
 (add-hook 'ruby-mode-hook
           '(lambda ()

@@ -2,7 +2,9 @@
   (add-to-list 'load-path lisp-dir))
 
 (defvar init-files
-  '(init-custom-funs
+  '(init-packages
+    init-custom-funs
+    init-old-config
     init-keybindings
     init-ruby))
 
