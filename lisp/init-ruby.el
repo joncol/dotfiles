@@ -26,13 +26,17 @@
   (setq jco/rvm-use-default-called t))
 
 (add-hook 'ruby-mode-hook
-          '(lambda ()
+          (lambda ()
              (jco/common-prog)
              (setq evil-shift-width 2)
              (unless jco/rvm-use-default-called
                (rvm-use-default))
              (add-to-list 'company-backends 'company-robe)
-             (flymake-ruby-load)))
+             (flymake-ruby-load)
+             (setq prettify-symbols-alist
+               '(("lambda" . ?λ)
+                 ("->" . ?λ)))
+             (prettify-symbols-mode)))
 
 (evil-define-motion evil-ruby-jump-item (count)
   :jump t
@@ -46,12 +50,6 @@
          (ruby-beginning-of-block count))
         (t
          (evil-jump-item count))))
-
-;; (setq ruby-align-chained-calls nil
-;;       ruby-align-to-stmt-keywords nil
-;;       ruby-deep-indent-paren nil
-;;       ruby-deep-indent-paren-style nil
-;;       ruby-use-smie nil)
 
 (jco/define-bindings ruby-mode-map
                      '(("C-c r a"  . rvm-activate-corresponding-ruby)))
