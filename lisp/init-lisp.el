@@ -1,7 +1,7 @@
 (add-hook 'lisp-mode-hook
-          '(lambda ()
-             (paredit-mode)
-             (evil-paredit-mode)))
+          (lambda ()
+            (paredit-mode)
+            (evil-paredit-mode)))
 
 (when (file-exists-p "~/quicklisp/slime-helper.el")
   (load (expand-file-name "~/quicklisp/slime-helper.el")))

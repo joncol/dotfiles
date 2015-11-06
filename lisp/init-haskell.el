@@ -20,34 +20,34 @@
                       (current-column))))
 
 (add-hook 'haskell-mode-hook
-          '(lambda ()
-             (ghc-init)
+          (lambda ()
+            (ghc-init)
 
-             (turn-on-haskell-doc-mode)
-             (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+            (turn-on-haskell-doc-mode)
+            (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
-             (turn-on-haskell-indentation)
-             (global-unset-key [tab])
-             (local-set-key [tab] (lambda ()
-                                    (interactive)
-                                    (tab-indent-or-complete 1)))
-             (setq tab-stop-list
-                   (loop for i from 0 upto 120 by 2 collect i))
-             (setq evil-shift-width 2)
-             (company-mode)
-             (define-key haskell-indentation-mode-map (kbd "RET") nil)
-             (define-key global-map (kbd "RET") 'newline-and-indent-relative)
-             (add-to-list 'company-backends 'company-cabal)
-             (add-to-list 'company-backends 'company-ghc)
-             (setq company-ghc-show-info t)
+            (turn-on-haskell-indentation)
+            (global-unset-key [tab])
+            (local-set-key [tab] (lambda ()
+                                   (interactive)
+                                   (tab-indent-or-complete 1)))
+            (setq tab-stop-list
+                  (loop for i from 0 upto 120 by 2 collect i))
+            (setq evil-shift-width 2)
+            (company-mode)
+            (define-key haskell-indentation-mode-map (kbd "RET") nil)
+            (define-key global-map (kbd "RET") 'newline-and-indent-relative)
+            (add-to-list 'company-backends 'company-cabal)
+            (add-to-list 'company-backends 'company-ghc)
+            (setq company-ghc-show-info t)
 
-             (define-key yas-minor-mode-map (kbd "TAB") nil)
-             (define-key evil-motion-state-map (kbd "RET") nil)
-             (define-key evil-normal-state-map (kbd "M-.") nil)
+            (define-key yas-minor-mode-map (kbd "TAB") nil)
+            (define-key evil-motion-state-map (kbd "RET") nil)
+            (define-key evil-normal-state-map (kbd "M-.") nil)
 
-             (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-               (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
-               (add-to-list 'exec-path my-cabal-path))))
+            (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+              (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
+              (add-to-list 'exec-path my-cabal-path))))
 
 (eval-after-load 'haskell-mode
   '(jco/define-bindings haskell-mode-map

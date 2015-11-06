@@ -4,9 +4,9 @@
 (require 'semantic)
 (require 'semantic/bovine/gcc)
 
-(global-set-key (kbd "<f12>") '(lambda ()
-                                 (interactive)
-                                 (message "Current major mode: %s" major-mode)))
+(global-set-key (kbd "<f12>") (lambda ()
+                                (interactive)
+                                (message "Current major mode: %s" major-mode)))
 ;;; Set name and email
 (require 's)
 (setq user-full-name "Jonas Collberg")
@@ -370,8 +370,8 @@
        (add-hook 'confluence-before-save-hook 'longlines-before-revert-hook)
        (add-hook 'confluence-before-revert-hook 'longlines-before-revert-hook)
        (add-hook 'confluence-mode-hook
-                 '(lambda ()
-                    (local-set-key "\C-j" 'confluence-newline-and-indent))))))
+                 (lambda ()
+                   (local-set-key "\C-j" 'confluence-newline-and-indent))))))
 
 ;; LongLines mode: http://www.emacswiki.org/emacs-en/LongLines
 (autoload 'longlines-mode "longlines" "LongLines Mode." t)
@@ -401,13 +401,13 @@
          (longlines-suspend)))
 
      (add-hook 'ediff-cleanup-hook
-               '(lambda ()
-                  (dolist (tmp-buf (list ediff-buffer-A
-                                         ediff-buffer-B
-                                         ediff-buffer-C))
-                    (if (buffer-live-p tmp-buf)
-                        (with-current-buffer tmp-buf
-                          (longlines-restore))))))))
+               (lambda ()
+                 (dolist (tmp-buf (list ediff-buffer-A
+                                        ediff-buffer-B
+                                        ediff-buffer-C))
+                   (if (buffer-live-p tmp-buf)
+                       (with-current-buffer tmp-buf
+                         (longlines-restore))))))))
 
 ;; keybindings (change to suit)
 
@@ -417,8 +417,8 @@
 
 ;; setup confluence mode
 (add-hook 'confluence-mode-hook
-          '(lambda ()
-             (local-set-key "\C-xw" confluence-prefix-map)))
+          (lambda ()
+            (local-set-key "\C-xw" confluence-prefix-map)))
 
 ;; (global-set-key "\t" 'company-complete-common)
 
@@ -571,8 +571,8 @@ Example:
 (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 
 (add-hook 'snippet-mode-hook
-          '(lambda ()
-             (ethan-wspace-mode -1))
+          (lambda ()
+            (ethan-wspace-mode -1))
           t)
 
 ;;; Evil mode stuff

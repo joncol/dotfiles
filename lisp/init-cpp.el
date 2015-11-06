@@ -40,10 +40,10 @@
           ad-do-it)))
 
 (add-hook 'c++-mode-hook
-          '(lambda ()
-             (setq compile-command (concat "cd " (projectile-project-root) "debug ;and make -j4 ;and ctest"))
-             (define-key c++-mode-map (kbd "<f6>") 'compile)
-             (c-set-offset 'innamespace '0)
-             (fix-enum-class)))
+          (lambda ()
+            (setq compile-command (concat "cd " (projectile-project-root) "debug ;and make -j4 ;and ctest"))
+            (define-key c++-mode-map (kbd "<f6>") 'compile)
+            (c-set-offset 'innamespace '0)
+            (fix-enum-class)))
 
 (provide 'init-cpp)
