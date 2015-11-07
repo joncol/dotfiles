@@ -1,3 +1,5 @@
+(require 'cl)
+
 (setq ad-redefinition-action 'accept)
 
 ;;; Set name and email
@@ -18,7 +20,7 @@
                                  (format "+%d" (line-number-at-pos))
                                  (buffer-file-name))))
 
-(let ((init-file (concat user-emacs-directory "init.el")))
+(lexical-let ((init-file (concat user-emacs-directory "init.el")))
   (global-set-key (kbd "<f9>")
                   (lambda ()
                     (interactive)
