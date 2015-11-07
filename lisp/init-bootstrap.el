@@ -5,6 +5,11 @@
   '(init-packages
     init-custom-funs
     init-common
+    init-helm
+    init-ido
+    init-neotree
+    init-rotate
+    init-yas
     init-common-programming
     init-flymake
     init-global-company-mode
@@ -28,7 +33,8 @@
     init-scheme
     init-standard-ml
     init-tex
-    init-yaml))
+    init-yaml
+    init-evil))
 
 (defun jco/safe-require (feature)
   "Safely require FEATURE"

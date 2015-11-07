@@ -1,3 +1,5 @@
+(require 'evil)
+
 (add-hook 'lisp-mode-hook
           (lambda ()
             (paredit-mode)

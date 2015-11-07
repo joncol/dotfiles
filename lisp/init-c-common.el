@@ -1,3 +1,5 @@
+(require 'semantic/bovine/gcc)
+
 (add-hook 'c-mode-common-hook
           (lambda ()
             (semantic-mode 1)

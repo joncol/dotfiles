@@ -1,3 +1,4 @@
+(require 'evil)
 (require 'inf-ruby)
 
 (dolist (fp '("\\.rb$"
