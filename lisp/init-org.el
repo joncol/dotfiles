@@ -1,5 +1,27 @@
 (setq org-src-fontify-natively t)
 
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+(setq org-directory "~/org")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(define-key global-map "\C-cc" 'org-capture)
+(setq org-reveal-hlevel 2)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ditaa . t)
+   (dot . t)
+   (plantuml . t)))
+
+(setq org-confirm-babel-evaluate nil)
+(if (eq system-type 'windows-nt)
+    (setq org-ditaa-jar-path "c:/tools/misc/ditaa.jar"
+          org-plantuml-jar-path "c:/tools/misc/plantuml.jar")
+  (setq org-ditaa-jar-path "/usr/local/bin/ditaa.jar"
+        org-plantuml-jar-path "/usr/local/bin/plantuml.jar"))
+
 (add-hook 'org-mode-hook
           (lambda ()
             (load-library "ox-reveal")

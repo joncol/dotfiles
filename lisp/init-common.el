@@ -2,6 +2,15 @@
 
 (setq ad-redefinition-action 'accept)
 
+(if (display-graphic-p)
+    (progn (load-theme 'molokai t)
+           (set-face-foreground 'font-lock-comment-face "gray50"))
+  (load-theme 'molokai t))
+
+;;; airline is too slow on Mac OS X
+(if (not (eq system-type 'darwin))
+    (load-theme 'airline-powerlineish t))
+
 ;;; Set name and email
 (require 's)
 (let ((user-full-name "Jonas Collberg"))
@@ -37,11 +46,6 @@
 
 (global-set-key (kbd "C-c t f") 'toggle-frame-fullscreen)
 
-(modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
-(edit-server-start)
-(setq ring-bell-function 'ignore)
-(setq-default tab-width 4)
-
 (tool-bar-mode -1)
 (global-auto-revert-mode)
 (global-font-lock-mode)
@@ -50,6 +54,29 @@
 (rainbow-mode)
 (global-linum-mode)
 (when (display-graphic-p) (global-hl-line-mode))
+
+(modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
+(edit-server-start)
+(setq ring-bell-function 'ignore)
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(electric-indent-mode)
+(global-set-key (kbd "RET")
+                (lambda ()
+                  (interactive)
+                  (delete-trailing-whitespace (line-beginning-position)
+                                              (line-end-position))
+                  (newline-and-indent)))
+
+;;; autocomplete
+(setq tab-always-indent 'complete)
+(add-to-list 'completion-styles 'initials t)
+(auto-complete-mode)
+(setq ac-ignore-case 'smart)
+(setq company-dabbrev-ignore-case 'keep-prefix)
+(setq company-dabbrev-code-ignore-case nil)
+(setq company-dabbrev-downcase nil)
 
 (setq scroll-step           1
       scroll-conservatively 10000)
@@ -91,5 +118,12 @@
 
 (setq cider-show-error-buffer 'nil)
 (setq ecb-tip-of-the-day nil)
+
+(require 'recentf)
+(recentf-mode)
+(setq recentf-max-menu-items 25)
+
+(require 'omnisharp)
+(setq omnisharp-company-do-template-completion t)
 
 (provide 'init-common)

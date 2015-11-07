@@ -5,10 +5,13 @@
   '(init-packages
     init-custom-funs
     init-common
+    init-fci
+    init-font
     init-helm
     init-ido
     init-neotree
     init-rotate
+    init-wspace
     init-yas
     init-common-programming
     init-flymake
@@ -20,7 +23,6 @@
     init-csharp
     init-emacs-lisp
     init-haskell
-    init-old-config
     init-keybindings
     init-latex
     init-lisp
