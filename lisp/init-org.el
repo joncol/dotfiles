@@ -28,47 +28,31 @@
             (auto-fill-mode)
             (global-unset-key (kbd "C-x C-v"))
 
-             ;;; Embedding youtube links in org-mode
-             ;;; TODO: extract to function
+             ;;; Embed youtube links in org-mode
 
-            (let ((yt-iframe-format
-                   (concat "<iframe width=\"560\""
-                           " height=\"315\""
-                           " src=\"https://www.youtube.com/embed/%s?rel=0\""
-                           " frameborder=\"0\""
-                           " allowfullscreen>%s</iframe>"))
-                  (ytnc-iframe-format
-                   (concat "<iframe width=\"560\""
-                           " height=\"315\""
-                           " src=\"https://www.youtube.com/embed/%s?rel=0&controls=0\""
-                           " frameborder=\"0\""
-                           " allowfullscreen>%s</iframe>")))
+            (cl-defun add-link-type (name &optional (url-params nil))
+              (let ((yt-iframe-format
+                     (concat "<iframe width=\"560\""
+                             " height=\"315\""
+                             " src=\"https://www.youtube.com/embed/%s?rel=0"
+                             url-params
+                             "\""
+                             " frameborder=\"0\""
+                             " allowfullscreen>%s</iframe>")))
+                (org-add-link-type name
+                                   (lambda (handle)
+                                     (browse-url
+                                      (concat "https://www.youtube.com/embed/"
+                                              handle)))
+                                   (lambda (path desc backend)
+                                     (cl-case backend
+                                       (html (format yt-iframe-format
+                                                     path (or desc "")))
+                                       (latex (format "\href{%s}{%s}"
+                                                      path
+                                                      (or desc "video"))))))))
 
-
-              (org-add-link-type
-               "yt"
-               (lambda (handle)
-                 (browse-url
-                  (concat "https://www.youtube.com/embed/"
-                          handle)))
-               (lambda (path desc backend)
-                 (cl-case backend
-                   (html (format yt-iframe-format
-                                 path (or desc "")))
-                   (latex (format "\href{%s}{%s}"
-                                  path (or desc "video"))))))
-
-              (org-add-link-type
-               "ytnc"
-               (lambda (handle)
-                 (browse-url
-                  (concat "https://www.youtube.com/embed/"
-                          handle)))
-               (lambda (path desc backend)
-                 (cl-case backend
-                   (html (format ytnc-iframe-format
-                                 path (or desc "")))
-                   (latex (format "\href{%s}{%s}"
-                                  path (or desc "video")))))))))
+            (add-link-type "yt")
+            (add-link-type "ytnc" "&controls=0")))
 
 (provide 'init-org)
