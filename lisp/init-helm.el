@@ -27,7 +27,7 @@
 (when (not (eq system-type 'windows-nt))
   (setq helm-ag-ignore-patterns
         '("#*#" "TAGS" "*.html" "*.json" "*.log" "*.map" "*.opensdf" "*.pdf"
-          "*.sdf")))
+          "*.sdf" "coverage/")))
 
 ;; enable helm-gtags-mode
 (add-hook 'dired-mode-hook 'helm-gtags-mode)
