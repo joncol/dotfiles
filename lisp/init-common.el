@@ -2,10 +2,12 @@
 
 (setq ad-redefinition-action 'accept)
 
-(if (display-graphic-p)
-    (progn (load-theme 'molokai t)
-           (set-face-foreground 'font-lock-comment-face "gray50"))
-  (load-theme 'molokai t))
+(let ((theme 'molokai))
+  (if (display-graphic-p)
+      (progn (load-theme theme t)
+             (when (eq theme 'molokai)
+               (set-face-foreground 'font-lock-comment-face "azure4")))
+    (load-theme 'molokai t)))
 
 ;;; airline is too slow on Mac OS X
 (if (not (eq system-type 'darwin))
