@@ -7,7 +7,7 @@
       (progn (load-theme theme t)
              (when (eq theme 'molokai)
                (set-face-foreground 'font-lock-comment-face "azure4")))
-    (load-theme 'molokai t)))
+    (load-theme 'cyberpunk t)))
 
 ;;; airline is too slow on Mac OS X
 (if (not (eq system-type 'darwin))
