@@ -1,5 +1,6 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(setq jco/init-errors nil)
+(defvar jco/init-errors nil
+  "If there are any initialization errors, they will be appended to this list")
 
 (require 'init-bootstrap)
 (jco/safe-load-init-files)

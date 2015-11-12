@@ -128,4 +128,12 @@
 (require 'omnisharp)
 (setq omnisharp-company-do-template-completion t)
 
+(defun json-lint ()
+  "Pretty format JSON."
+  (interactive)
+  (save-restriction
+    (widen)
+    (shell-command-on-region (point-min) (point-max) "python -m json.tool"
+                             t t)))
+
 (provide 'init-common)
