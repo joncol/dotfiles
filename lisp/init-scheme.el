@@ -1,7 +1,6 @@
-(add-hook 'scheme-mode-hook
-          (lambda ()
-            (paredit-mode)
-            (evil-paredit-mode)))
+(require 'init-lisp-common)
+
+(add-hook 'scheme-mode-hook 'init-lisp-common)
 
 (setq scheme-mit-dialect nil)
 

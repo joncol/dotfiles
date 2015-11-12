@@ -2,6 +2,7 @@
 
 (dolist (hook '(c-mode-common-hook
                 clojure-mode-hook
+                conf-unix-mode-hook
                 cmake-mode-hook
                 csharp-mode-hook
                 emacs-lisp-mode-hook

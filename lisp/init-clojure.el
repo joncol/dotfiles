@@ -1,6 +1,5 @@
-(add-hook 'clojure-mode-hook
-          (lambda ()
-            (paredit-mode)
-            (evil-paredit-mode)))
+(require 'init-lisp-common)
+
+(add-hook 'clojure-mode-hook 'init-lisp-common)
 
 (provide 'init-clojure)

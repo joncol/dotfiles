@@ -19,6 +19,7 @@
     init-c-common
     init-clojure
     init-cmake
+    init-conf
     init-cpp
     init-csharp
     init-emacs-lisp
