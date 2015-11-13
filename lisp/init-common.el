@@ -54,6 +54,7 @@
 (show-paren-mode)
 (electric-pair-mode)
 (rainbow-mode)
+(nyan-mode)
 (global-linum-mode)
 (when (display-graphic-p) (global-hl-line-mode))
 

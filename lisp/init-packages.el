@@ -84,6 +84,7 @@
          monky
          monokai-theme
          neotree
+         nyan-mode
          omnisharp
          org-plus-contrib
          org-present
