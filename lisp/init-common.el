@@ -9,9 +9,9 @@
                (set-face-foreground 'font-lock-comment-face "azure4")))
     (load-theme 'cyberpunk t)))
 
-;;; airline is too slow on Mac OS X
-(if (not (eq system-type 'darwin))
-    (load-theme 'airline-powerlineish t))
+(if (eq system-type 'darwin)
+    (nyan-mode)
+  (load-theme 'airline-powerlineish t)) ;;; airline is too slow on Mac OS X
 
 ;;; Set name and email
 (require 's)
@@ -54,7 +54,6 @@
 (show-paren-mode)
 (electric-pair-mode)
 (rainbow-mode)
-(nyan-mode)
 (global-linum-mode)
 (when (display-graphic-p) (global-hl-line-mode))
 
