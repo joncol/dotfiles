@@ -137,10 +137,21 @@
                              t t)))
 
 (defun underline-line (&optional char)
+  (interactive)
+  (let ((line-length (get-line-length)))
+    (end-of-line)
+    (insert (concat "\n" (make-string line-length (or char ?-))))
+    (beginning-of-line)))
+
+(global-set-key (kbd "<f7>") 'underline-line)
+(global-set-key (kbd "<S-f7>") (lambda () (interactive) (underline-line ?=)))
+
+(defun get-line-length ()
+  (interactive)
   (save-excursion
     (beginning-of-line)
-    )
-  )
-
+    (let ((line-start-pos (point)))
+      (end-of-line)
+      (- (point) line-start-pos))))
 
 (provide 'init-common)
