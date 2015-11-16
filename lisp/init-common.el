@@ -136,4 +136,11 @@
     (shell-command-on-region (point-min) (point-max) "python -m json.tool"
                              t t)))
 
+(defun underline-line (&optional char)
+  (save-excursion
+    (beginning-of-line)
+    )
+  )
+
+
 (provide 'init-common)
