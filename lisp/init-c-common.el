@@ -38,6 +38,6 @@
             (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
             (global-ede-mode t)
             (ede-enable-generic-projects)
-            (evil-leader/set-key "a" 'projectile-find-other-file)))
+            (evil-leader/set-key "a" 'ff-find-other-file)))
 
 (provide 'init-c-common)
