@@ -146,12 +146,15 @@
 (global-set-key (kbd "<f7>") 'underline-line)
 (global-set-key (kbd "<S-f7>") (lambda () (interactive) (underline-line ?=)))
 
-(defun get-line-length ()
-  (interactive)
+(defun get-line-length (&optional print-message)
+  (interactive "p")
   (save-excursion
     (beginning-of-line)
     (let ((line-start-pos (point)))
       (end-of-line)
-      (- (point) line-start-pos))))
+      (let ((line-length (- (point) line-start-pos)))
+        (when print-message (message (format "Current line length: %d"
+                                             line-length)))
+        line-length))))
 
 (provide 'init-common)
