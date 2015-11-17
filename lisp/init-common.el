@@ -92,10 +92,13 @@
 (display-time-mode)
 
 (defun date (arg)
+  "Insert date at current point."
   (insert (if arg
               (format-time-string "%d.%m.%Y")
             (format-time-string "%Y-%m-%d"))))
+
 (defun timestamp (arg)
+  "Insert timestamp at current point."
   (insert (if arg
               (format-time-string "%Y-%m-%dT%H:%M:%S")
             (format-time-string "%H:%M:%S"))))
@@ -137,6 +140,7 @@
                              t t)))
 
 (defun underline-line (&optional char)
+  "Underline the current line with a character (\"-\" is the default)."
   (interactive)
   (let ((line-length (get-line-length)))
     (end-of-line)
@@ -147,6 +151,7 @@
 (global-set-key (kbd "<S-f7>") (lambda () (interactive) (underline-line ?=)))
 
 (defun get-line-length (&optional print-message)
+  "Get the length of the current line."
   (interactive "p")
   (save-excursion
     (beginning-of-line)
