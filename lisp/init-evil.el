@@ -16,8 +16,9 @@
                                 (git-commit-mode . insert)
                                 (git-rebase-mode . emacs)
                                 (paradox-menu-mode . emacs)
+                                (srefactor-ui-menu-mode . emacs)
                                 (term-mode . emacs)))
-              (evil-set-initial-state `,(car mode-map) `,(cdr mode-map))))
+              (evil-set-initial-state (car mode-map) (cdr mode-map))))
 
 (setq evil-normal-state-cursor '("green" box))
 (setq evil-insert-state-cursor '("green" bar))
@@ -50,11 +51,13 @@
        (t (setq unread-command-events (append unread-command-events
                                               (list evt))))))))
 
-(define-key evil-normal-state-map "+" 'rotate-word-at-point)
-(define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
-(define-key evil-normal-state-map (kbd "C-w C-j") 'evil-window-down)
-(define-key evil-normal-state-map (kbd "C-w C-k") 'evil-window-up)
-(define-key evil-normal-state-map (kbd "C-w C-l") 'evil-window-right)
+(jco/define-bindings evil-normal-state-map
+                     '(("+" . rotate-word-at-point)
+                       ("C-w C-h" . evil-window-left)
+                       ("C-w C-j" . evil-window-down)
+                       ("C-w C-k" . evil-window-up)
+                       ("C-w C-l" . evil-window-right)))
+
 (setq evil-flash-delay 3600)
 
 (defun run-on-current-buffer (program &rest args)
