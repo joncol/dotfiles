@@ -6,6 +6,7 @@
 ^helm-adaptive-history$
 ^tags$
 ^TAGS$
+^srecode-map\.el$
 
 bin/
 build/
