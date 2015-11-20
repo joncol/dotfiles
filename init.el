@@ -10,3 +10,7 @@
              (mapconcat #'identity jco/init-errors "\n")
            "Emacs initialized successfully"))
 (message "==============================")
+
+(custom-set-variables
+ '(ecb-options-version "2.40")
+ '(send-mail-function (quote smtpmail-send-it)))

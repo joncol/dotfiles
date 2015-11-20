@@ -23,6 +23,8 @@
                     "orzone.com"
                   "gmail.com"))))
 
+(setq gnus-init-file (concat user-emacs-directory "lisp/init-gnus.el"))
+
 (global-set-key (kbd "<f4>")
                 (lambda ()
                   (interactive)
