@@ -2,7 +2,8 @@
   '(("true" "false")
     ("True" "False")
     ("yes" "no")
-    ("YES" "NO"))
+    ("YES" "NO")
+    ("before" "after"))
   "List of text rotation sets.")
 
 (defun rotate-word-at-point ()
