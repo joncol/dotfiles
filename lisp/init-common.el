@@ -133,6 +133,9 @@
 (require 'omnisharp)
 (setq omnisharp-company-do-template-completion t)
 
+(setq fortune-dir "/usr/share/games/fortunes")
+(setq fortune-file "/usr/share/games/fortunes")
+
 (defun json-lint ()
   "Pretty format JSON."
   (interactive)
