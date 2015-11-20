@@ -9,6 +9,7 @@
     init-font
     init-helm
     init-ido
+    init-message
     init-neotree
     init-rotate
     init-wspace
