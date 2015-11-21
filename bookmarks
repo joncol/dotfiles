@@ -1,0 +1,40 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("(org) TODO extensions"
+ (front-context-string . "\n5.2 Extended us")
+ (rear-context-string . " Up: TODO items\n")
+ (position . 159872)
+ (filename . "/home/jco/.emacs.d/elpa/org-plus-contrib-20151116/org")
+ (info-node . "TODO extensions")
+ (handler . Info-bookmark-jump))
+("(org) TODO basics"
+ (front-context-string . "\n5.1 Basic TODO ")
+ (rear-context-string . " Up: TODO items\n")
+ (position . 157001)
+ (filename . "/home/jco/.emacs.d/elpa/org-plus-contrib-20151116/org")
+ (info-node . "TODO basics")
+ (handler . Info-bookmark-jump))
+("(org) Tables"
+ (front-context-string . "\n3 Tables\n******")
+ (rear-context-string . "cture,  Up: Top\n")
+ (position . 75578)
+ (filename . "/home/jco/.emacs.d/elpa/org-plus-contrib-20151116/org")
+ (info-node . "Tables")
+ (handler . Info-bookmark-jump))
+("(org) Document structure"
+ (front-context-string . "Drawers::       ")
+ (rear-context-string . "thin an entry\n* ")
+ (position . 38171)
+ (filename . "/home/jco/.emacs.d/elpa/org-plus-contrib-20151116/org")
+ (info-node . "Document structure")
+ (handler . Info-bookmark-jump))
+("(org) Structure editing"
+ (front-context-string . "     headlines. ")
+ (rear-context-string . "item lines into\n")
+ (position . 53643)
+ (filename . "/home/jco/.emacs.d/elpa/org-plus-contrib-20151116/org")
+ (info-node . "Structure editing")
+ (handler . Info-bookmark-jump))
+)
