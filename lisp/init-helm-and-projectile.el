@@ -42,7 +42,8 @@
 (projectile-global-mode)
 (when (not (eq system-type 'windows-nt))
   (setq projectile-indexing-method 'native))
+(setq projectile-enable-caching t)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
-(provide 'init-helm)
+(provide 'init-helm-and-projectile)

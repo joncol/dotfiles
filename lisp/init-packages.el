@@ -65,6 +65,7 @@
          graphviz-dot-mode
          gruber-darker-theme
          gruvbox-theme
+         guide-key
          haskell-mode
          helm
          helm-ag

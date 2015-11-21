@@ -136,6 +136,11 @@
 (setq fortune-dir "/usr/share/games/fortunes")
 (setq fortune-file "/usr/share/games/fortunes")
 
+(require 'guide-key)
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+;; (setq guide-key/popup-window-position "right")
+(guide-key-mode)
+
 (defun json-lint ()
   "Pretty format JSON."
   (interactive)

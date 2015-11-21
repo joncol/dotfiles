@@ -7,7 +7,7 @@
     init-common
     init-fci
     init-font
-    init-helm
+    init-helm-and-projectile
     init-ido
     init-message
     init-neotree

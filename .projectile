@@ -3,3 +3,4 @@
 -elpa
 -semanticdb
 -session.*
+-*.cache
