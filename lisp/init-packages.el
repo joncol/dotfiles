@@ -110,6 +110,7 @@
          rust-mode
          slime
          sml-mode
+         smtpmail-multi
          solarized-theme
          soothe-theme
          srefactor
