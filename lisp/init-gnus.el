@@ -1,13 +1,13 @@
 (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 
 (setq gnus-select-method
-      '(nnimap "gmail"
+      '(nnimap "gmail.com"
                (nnimap-address "imap.gmail.com")
                (nnimap-server-port 993)
                (nnimap-stream ssl)))
 
 (setq gnus-secondary-select-methods
-      '((nnimap "orzone"
+      '((nnimap "orzone.com"
                (nnimap-address "imap.gmail.com")
                (nnimap-server-port 993)
                (nnimap-stream ssl))

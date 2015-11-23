@@ -18,8 +18,7 @@
 (let ((user-full-name "Jonas Collberg"))
   (setq user-mail-address
         (concat (s-replace " " "." (downcase user-full-name)) "@"
-                (if (eq t (compare-strings (system-name) nil nil
-                                           "orz-lap01" nil nil t))
+                (if (member system-name '("orz-lap01" "mbp.local"))
                     "orzone.com"
                   "gmail.com"))))
 
