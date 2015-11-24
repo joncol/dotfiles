@@ -128,41 +128,4 @@
 ;; (setq guide-key/popup-window-position "right")
 (guide-key-mode)
 
-(defun jco/json-lint ()
-  "Pretty format JSON."
-  (interactive)
-  (save-restriction
-    (widen)
-    (shell-command-on-region (point-min) (point-max) "python -m json.tool"
-                             t t)))
-
-(defun jco/underline-line (&optional char)
-  "Underline the current line with a character (\"-\" is the default)."
-  (interactive)
-  (let ((line-length (jco/get-line-length)))
-    (end-of-line)
-    (insert (concat "\n" (make-string line-length (or char ?-))))
-    (beginning-of-line)))
-
-(global-set-key (kbd "<f7>") 'jco/underline-line)
-(global-set-key (kbd "<S-f7>") (lambda () (interactive) (jco/underline-line ?=)))
-
-(defun jco/get-line-length (&optional print-message)
-  "Get the length of the current line."
-  (interactive "p")
-  (save-excursion
-    (beginning-of-line)
-    (let ((line-start-pos (point)))
-      (end-of-line)
-      (let ((line-length (- (point) line-start-pos)))
-        (when print-message (message (format "Current line length: %d"
-                                             line-length)))
-        line-length))))
-
-(defun jco/read-lines (filePath)
-  "Return a list of lines of a file at filePath."
-  (with-temp-buffer
-    (insert-file-contents filePath)
-    (split-string (buffer-string) "\n" t)))
-
 (provide 'init-common)

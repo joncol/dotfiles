@@ -3,7 +3,7 @@
 
 (defvar init-files
   '(init-packages
-    init-custom-funs
+    init-common-funs
     init-common
     init-erc
     init-fci

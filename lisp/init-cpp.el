@@ -43,8 +43,15 @@
 
 (add-hook 'c++-mode-hook
           (lambda ()
-            (setq compile-command (concat "cd " (projectile-project-root)
-                                          "debug ;and make -j4 ;and ctest"))
+            (setq compile-command
+                  (if (jco/at-office-p)
+                      (let ((sln-file
+                             (car (directory-files (projectile-project-root)
+                                                   nil ".*\.sln"))))
+                        (concat "cd " (projectile-project-root)
+                                " && msbuild " sln-file))
+                    (concat "cd " (projectile-project-root)
+                            "debug ;and make -j4 ;and ctest")))
             (jco/define-bindings c++-mode-map
                                  '(("<f6>" . compile)
                                    ("M-RET" . srefactor-refactor-at-point)))
