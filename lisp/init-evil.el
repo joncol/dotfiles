@@ -26,6 +26,19 @@
 (jco/move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
 (jco/move-key evil-motion-state-map evil-normal-state-map " ")
 
+(jco/define-bindings evil-normal-state-map
+                     '(("+" . rotate-word-at-point)
+                       ("C-w C-h" . evil-window-left)
+                       ("C-w C-j" . evil-window-down)
+                       ("C-w C-k" . evil-window-up)
+                       ("C-w C-l" . evil-window-right)))
+
+(jco/define-bindings compilation-mode-map
+                     '(("C-w C-h" . evil-window-left)
+                       ("C-w C-j" . evil-window-down)
+                       ("C-w C-k" . evil-window-up)
+                       ("C-w C-l" . evil-window-right)))
+
 ;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over
 ;; a '('
 (add-hook 'slime-repl-mode-hook
@@ -147,21 +160,5 @@
 (define-key projectile-command-map (kbd "s a") #'helm-ag-project-root)
 
 (set-face-background 'evil-search-highlight-persist-highlight-face "RoyalBlue4")
-
-(custom-set-variables
- '(ecb-options-version "2.40"))
-
-(jco/define-bindings evil-normal-state-map
-                     '(("+" . rotate-word-at-point)
-                       ("C-w C-h" . evil-window-left)
-                       ("C-w C-j" . evil-window-down)
-                       ("C-w C-k" . evil-window-up)
-                       ("C-w C-l" . evil-window-right)))
-
-(jco/define-bindings compilation-mode-map
-                     '(("C-w C-h" . evil-window-left)
-                       ("C-w C-j" . evil-window-down)
-                       ("C-w C-k" . evil-window-up)
-                       ("C-w C-l" . evil-window-right)))
 
 (provide 'init-evil)
