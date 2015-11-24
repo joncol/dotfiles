@@ -51,13 +51,6 @@
        (t (setq unread-command-events (append unread-command-events
                                               (list evt))))))))
 
-(jco/define-bindings evil-normal-state-map
-                     '(("+" . rotate-word-at-point)
-                       ("C-w C-h" . evil-window-left)
-                       ("C-w C-j" . evil-window-down)
-                       ("C-w C-k" . evil-window-up)
-                       ("C-w C-l" . evil-window-right)))
-
 (setq evil-flash-delay 3600)
 
 (defun run-on-current-buffer (program &rest args)
@@ -157,5 +150,18 @@
 
 (custom-set-variables
  '(ecb-options-version "2.40"))
+
+(jco/define-bindings evil-normal-state-map
+                     '(("+" . rotate-word-at-point)
+                       ("C-w C-h" . evil-window-left)
+                       ("C-w C-j" . evil-window-down)
+                       ("C-w C-k" . evil-window-up)
+                       ("C-w C-l" . evil-window-right)))
+
+(jco/define-bindings compilation-mode-map
+                     '(("C-w C-h" . evil-window-left)
+                       ("C-w C-j" . evil-window-down)
+                       ("C-w C-k" . evil-window-up)
+                       ("C-w C-l" . evil-window-right)))
 
 (provide 'init-evil)
