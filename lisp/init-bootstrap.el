@@ -6,6 +6,7 @@
     init-common-funs
     init-common
     init-erc
+    init-eshell
     init-fci
     init-font
     init-helm-and-projectile
