@@ -1,8 +1,5 @@
 (require 'cl)
 
-(defun jco/at-office-p ()
-  (member system-name '("orz-lap01" "mbp.local")))
-
 (setq ad-redefinition-action 'accept)
 
 (let ((theme 'molokai))
@@ -95,27 +92,15 @@
 (setq display-time-string-forms '(24-hours ":" minutes))
 (display-time-mode)
 
-(defun date (arg)
-  "Insert date at current point."
-  (insert (if arg
-              (format-time-string "%d.%m.%Y")
-            (format-time-string "%Y-%m-%d"))))
-
-(defun timestamp (arg)
-  "Insert timestamp at current point."
-  (insert (if arg
-              (format-time-string "%Y-%m-%dT%H:%M:%S")
-            (format-time-string "%H:%M:%S"))))
-
-(global-set-key (kbd "C-c i d") (lambda () (interactive) (date nil)))
-(global-set-key (kbd "C-c i T") (lambda () (interactive) (timestamp t)))
-(global-set-key (kbd "C-c i t") (lambda () (interactive) (timestamp nil)))
-
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (defadvice align-regexp (around align-regexp-with-spaces activate compile)
   "Never use tabs for alignment."
   (let ((indent-tabs-mode nil))
     ad-do-it))
+
+(jco/define-bindings Info-mode-map
+                     '(("<tab>" . Info-next-reference)
+                       ("<backtab>" . Info-prev-reference)))
 
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)

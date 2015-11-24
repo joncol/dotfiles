@@ -26,7 +26,6 @@
     init-csharp
     init-emacs-lisp
     init-haskell
-    init-keybindings
     init-latex
     init-lisp
     init-lua
