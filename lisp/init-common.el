@@ -1,5 +1,8 @@
 (require 'cl)
 
+(defun jco/at-office-p ()
+  (member system-name '("orz-lap01" "mbp.local")))
+
 (setq ad-redefinition-action 'accept)
 
 (let ((theme 'molokai))
@@ -18,7 +21,7 @@
 (let ((user-full-name "Jonas Collberg"))
   (setq user-mail-address
         (concat (s-replace " " "." (downcase user-full-name)) "@"
-                (if (member system-name '("orz-lap01" "mbp.local"))
+                (if (jco/at-office-p)
                     "orzone.com"
                   "gmail.com"))))
 
@@ -140,7 +143,7 @@
 ;; (setq guide-key/popup-window-position "right")
 (guide-key-mode)
 
-(defun json-lint ()
+(defun jco/json-lint ()
   "Pretty format JSON."
   (interactive)
   (save-restriction
@@ -148,18 +151,18 @@
     (shell-command-on-region (point-min) (point-max) "python -m json.tool"
                              t t)))
 
-(defun underline-line (&optional char)
+(defun jco/underline-line (&optional char)
   "Underline the current line with a character (\"-\" is the default)."
   (interactive)
-  (let ((line-length (get-line-length)))
+  (let ((line-length (jco/get-line-length)))
     (end-of-line)
     (insert (concat "\n" (make-string line-length (or char ?-))))
     (beginning-of-line)))
 
-(global-set-key (kbd "<f7>") 'underline-line)
-(global-set-key (kbd "<S-f7>") (lambda () (interactive) (underline-line ?=)))
+(global-set-key (kbd "<f7>") 'jco/underline-line)
+(global-set-key (kbd "<S-f7>") (lambda () (interactive) (jco/underline-line ?=)))
 
-(defun get-line-length (&optional print-message)
+(defun jco/get-line-length (&optional print-message)
   "Get the length of the current line."
   (interactive "p")
   (save-excursion
@@ -170,5 +173,11 @@
         (when print-message (message (format "Current line length: %d"
                                              line-length)))
         line-length))))
+
+(defun jco/read-lines (filePath)
+  "Return a list of lines of a file at filePath."
+  (with-temp-buffer
+    (insert-file-contents filePath)
+    (split-string (buffer-string) "\n" t)))
 
 (provide 'init-common)
