@@ -5,6 +5,7 @@
   '(init-packages
     init-custom-funs
     init-common
+    init-erc
     init-fci
     init-font
     init-helm-and-projectile
