@@ -128,4 +128,6 @@
 ;; (setq guide-key/popup-window-position "right")
 (guide-key-mode)
 
+(put 'erase-buffer 'disabled nil)
+
 (provide 'init-common)
