@@ -1,6 +1,7 @@
 -auto-save-list
 -backups
 -elpa
+-eshell
 -semanticdb
 -session.*
 -*.cache

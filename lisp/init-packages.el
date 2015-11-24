@@ -103,6 +103,7 @@
          rvm
          rainbow-delimiters
          rainbow-mode
+         redshank
          robe
          rspec-mode
          rubocop

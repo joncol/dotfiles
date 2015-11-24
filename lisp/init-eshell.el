@@ -1,49 +1,46 @@
-;; (add-hook 'eshell-mode-hook
-;;           (lambda ()
-;;             (defun eshell-emit-prompt ()
-;;               "Emit a prompt if eshell is being used interactively. I
-;; am redefining it here so that it doesn't screw up my colors"
-;;               (run-hooks 'eshell-before-prompt-hook)
-;;               (if (not eshell-prompt-function)
-;;                   (set-marker eshell-last-output-end (point))
-;;                 (let ((prompt (funcall eshell-prompt-function)))
-;;                   (and eshell-highlight-prompt
-;;                        (add-text-properties 0 (length prompt)
-;;                                             '(read-only t
-;;                                                         ;; face eshell-prompt
-;;                                                         rear-nonsticky
-;;                                                         (face read-only))
-;;                                             prompt))
-;;                   (eshell-interactive-print prompt)))
-;;               (run-hooks 'eshell-after-prompt-hook))))
+(defun create-scm-string (type branch)
+  "Create a string to be shown in prompt. TYPE is either \"git\" or \"hg\" and
+BRANCH is the branch name."
+  (propertize (concat "[" type ":"
+                      (if (not (string-empty-p branch))
+                          branch
+                        "no branch")
+                      "] ")
+              'face `(:foreground "#f62459")))
 
-(defun curr-dir-git-branch-string (pwd)
+(defun curr-dir-scm-branch-string (dir)
   "Returns current git branch as a string, or the empty string if
-PWD is not in a git repo (or the git command is not found)."
+DIR is not in a git repo (or the git command is not found)."
   (interactive)
-  (if (and (eshell-search-path "git")
-           (locate-dominating-file pwd ".git"))
-      (let ((git-output
-             (shell-command-to-string
-              (concat "git branch | grep '\\*' | sed -e 's/^\\* //'"))))
-        (propertize
-         (concat "[±:"
-                 (if (> (length git-output) 0)
-                     (substring git-output 0 -1)
-                   "no branch")
-                 "]")
-         'face `(:foreground "#D1D62D")))
-    (propertize
-     "[±]" 'face `(:foreground "#555555"))))
+  (cond ((and (eshell-search-path "git")
+              (locate-dominating-file dir ".git"))
+         (let* ((git-output
+                 (shell-command-to-string
+                  (concat "git branch | grep '\\*' | sed -e 's/^\\* //'")))
+                (git-branch (if (not (string-empty-p git-output))
+                                (substring git-output 0 -1)
+                              "")))
+           (create-scm-string "git" git-branch)))
+        ((and (eshell-search-path "hg")
+              (locate-dominating-file dir ".hg"))
+         (let* ((hg-output
+                 (shell-command-to-string (concat "hg branch")))
+                (hg-branch (if (not (string-empty-p hg-output))
+                               (substring hg-output 0 -1)
+                             "")))
+           (create-scm-string "hg" hg-branch)))
+        (t "")))
 
 (setq eshell-prompt-function
       (lambda ()
-        (concat (curr-dir-git-branch-string (eshell/pwd))
-                (abbreviate-file-name (eshell/pwd))
-                "\n$ ")))
+        (concat (curr-dir-scm-branch-string (eshell/pwd))
+                (abbreviate-file-name (eshell/pwd)) "\n$ ")))
 
-(setq eshell-highlight-prompt t)
+(setq eshell-highlight-prompt t
+      eshell-prompt-regexp "\$ ")
 
-(setq eshell-prompt-regexp "\$ ")
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (set-face-foreground 'eshell-prompt-face "#f39c12")))
 
 (provide 'init-eshell)
