@@ -109,8 +109,7 @@
   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
   "cc" 'evilnc-copy-and-comment-lines
   "cp" 'evilnc-comment-or-uncomment-paragraphs
-  "cv" 'evilnc-toggle-invert-comment-line-by-line
-)
+  "cv" 'evilnc-toggle-invert-comment-line-by-line)
 
 ;;; helm bindings
 
@@ -160,5 +159,9 @@
 (define-key projectile-command-map (kbd "s a") #'helm-ag-project-root)
 
 (set-face-background 'evil-search-highlight-persist-highlight-face "RoyalBlue4")
+
+;;; ace-jump
+(evil-leader/set-key "l" 'ace-jump-char-mode)
+(evil-leader/set-key "w" 'ace-jump-mode)
 
 (provide 'init-evil)

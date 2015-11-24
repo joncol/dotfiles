@@ -11,7 +11,8 @@
   (package-refresh-contents))
 
 (let ((packages
-       '(ack-and-a-half
+       '(ace-jump-mode
+         ack-and-a-half
          afternoon-theme
          ample-theme
          angular-snippets
