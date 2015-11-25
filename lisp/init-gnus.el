@@ -11,8 +11,7 @@
                (nnimap-address "imap.gmail.com")
                (nnimap-server-port 993)
                (nnimap-stream ssl))
-        ;; (nntp "news.newshosting.com")
-        ))
+        (nntp "news.newshosting.com")))
 
 (setq smtpmail-smtp-service 587)
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
