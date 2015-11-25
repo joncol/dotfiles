@@ -108,6 +108,7 @@
 (global-set-key (kbd "C-c C-f") 'help-go-forward)
 
 (when (memq window-system '(mac ns))
+  (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize))
 
 (setq cider-show-error-buffer 'nil)
