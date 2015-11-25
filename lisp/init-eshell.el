@@ -41,6 +41,8 @@ DIR is not in a git repo (or the git command is not found)."
 
 (add-hook 'eshell-mode-hook
           (lambda ()
-            (set-face-foreground 'eshell-prompt-face "#f39c12")))
+            (set-face-foreground 'eshell-prompt-face "#f39c12")
+            (defalias 'ff 'find-file)
+            (defalias 'open 'find-file)))
 
 (provide 'init-eshell)
