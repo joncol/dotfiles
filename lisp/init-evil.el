@@ -161,7 +161,9 @@
 (set-face-background 'evil-search-highlight-persist-highlight-face "RoyalBlue4")
 
 ;;; ace-jump
-(evil-leader/set-key "l" 'ace-jump-char-mode)
-(evil-leader/set-key "w" 'ace-jump-mode)
+(evil-leader/set-key "j c" 'ace-jump-char-mode)
+(evil-leader/set-key "j l" 'ace-jump-line-mode)
+(evil-leader/set-key "j w" 'ace-jump-mode)
+(evil-leader/set-key "SPC" 'ace-jump-mode)
 
 (provide 'init-evil)
