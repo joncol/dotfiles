@@ -25,6 +25,7 @@
          clojure-mode
          clojure-snippets
          cmake-mode
+         command-log-mode
          company
          company-cabal
          company-ghc
