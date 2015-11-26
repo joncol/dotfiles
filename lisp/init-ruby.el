@@ -14,11 +14,13 @@
               "\\.god$"))
   (add-to-list 'auto-mode-alist `(,fp . ruby-mode)))
 
-(dolist (mode '(yard-mode
-                ruby-end-mode
+(dolist (mode '(hs-minor-mode
                 my-flymake-minor-mode
+                prettify-symbols-mode
                 rubocop-mode
-                robe-mode))
+                robe-mode
+                ruby-end-mode
+                yard-mode))
   (add-hook 'ruby-mode-hook mode))
 
 (defvar jco/rvm-use-default-called nil)
@@ -37,7 +39,13 @@
              (setq prettify-symbols-alist
                '(("lambda" . ?λ)
                  ("->" . ?λ)))
-             (prettify-symbols-mode)))
+             (eval-after-load "hideshow"
+               '(add-to-list 'hs-special-modes-alist
+                             `(ruby-mode
+                               ,(rx (or "def" "class" "module" "do" "{" "["))
+                               ,(rx (or "}" "]" "end"))
+                               ,(rx (or "#" "=begin"))
+                               ruby-forward-sexp nil)))))
 
 (evil-define-motion evil-ruby-jump-item (count)
   :jump t
