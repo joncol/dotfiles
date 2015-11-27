@@ -20,9 +20,8 @@
     (yas/expand)))
 
 (defun tab-indent-or-complete (use-ghc-complete)
-  (interactive)
   (if (minibufferp)
-      (minibuffer-complete)
+      (completion-at-point)
     (if (or (not yas/minor-mode)
             (null (do-yas-expand)))
         (if (check-expansion)
@@ -32,6 +31,8 @@
                 (ghc-complete)))
           (indent-for-tab-command)))))
 
-(global-set-key [tab] (lambda () (interactive) (tab-indent-or-complete nil)))
+(global-set-key [tab] (lambda ()
+                        (interactive)
+                        (tab-indent-or-complete nil)))
 
 (provide 'init-yas)

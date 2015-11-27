@@ -134,4 +134,6 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
+(setq compilation-scroll-output t)
+
 (provide 'init-common)
