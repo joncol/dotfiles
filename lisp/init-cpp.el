@@ -51,8 +51,7 @@
                     (concat "cd " (projectile-project-root)
                             "debug ;and make -j4 ;and ctest")))
             (jco/define-bindings c++-mode-map
-                                 '(("<f6>"    . compile)
-                                   ("M-RET"   . srefactor-refactor-at-point)))
+                                 '(("<f6>"    . compile)))
             (c-set-offset 'innamespace 0)
             (c-set-offset 'label '-)
             (fix-enum-class)))

@@ -16,7 +16,6 @@
                                 (git-commit-mode . insert)
                                 (git-rebase-mode . emacs)
                                 (paradox-menu-mode . emacs)
-                                (srefactor-ui-menu-mode . emacs)
                                 (term-mode . emacs)))
               (evil-set-initial-state (car mode-map) (cdr mode-map))))
 

@@ -116,7 +116,6 @@
          smtpmail-multi
          solarized-theme
          soothe-theme
-         srefactor
          toml-mode
          undo-tree
          xml-rpc

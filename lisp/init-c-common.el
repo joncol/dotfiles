@@ -33,7 +33,6 @@
 
             (global-ede-mode t)
             (ede-enable-generic-projects)
-            (evil-leader/set-key "a" 'ff-find-other-file)
-            (define-key c-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)))
+            (evil-leader/set-key "a" 'ff-find-other-file)))
 
 (provide 'init-c-common)
