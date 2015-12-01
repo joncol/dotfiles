@@ -9,6 +9,7 @@
     init-eshell
     init-fci
     init-font
+    init-global-company-mode
     init-helm-and-projectile
     init-ido
     init-message
@@ -18,7 +19,6 @@
     init-yas
     init-common-programming
     init-flymake
-    init-global-company-mode
     init-c-common
     init-clojure
     init-cmake
