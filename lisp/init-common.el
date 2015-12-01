@@ -102,6 +102,10 @@
                      '(("<tab>" . Info-next-reference)
                        ("<backtab>" . Info-prev-reference)))
 
+(jco/define-bindings help-mode-map
+                     '(("<tab>" . forward-button)
+                       ("<backtab>" . backward-button)))
+
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 (global-set-key (kbd "C-c C-b") 'help-go-back)
