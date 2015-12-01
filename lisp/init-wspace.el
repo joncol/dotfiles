@@ -27,5 +27,6 @@
                                       empty space-after-tab tab-mark))
 (set-face-background 'whitespace-trailing "#ff0000")
 
+(global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
 
 (provide 'init-wspace)
