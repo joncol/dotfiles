@@ -8,11 +8,11 @@
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
 
-(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-      helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil
-      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+(setq helm-split-window-in-side-p           t
+      helm-buffers-fuzzy-matching           t
+      helm-move-to-line-cycle-in-source     t
+      helm-ff-search-library-in-sexp        t
+      helm-scroll-amount                    8
       helm-ff-file-name-history-use-recentf t)
 
 (setq helm-gtags-ignore-case t
@@ -21,13 +21,14 @@
       helm-gtags-pulse-at-cursor t
       ;; helm-gtags-prefix-key "\C-cg"
       helm-gtags-suggested-key-mapping t
-      helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case --ignore #*#;TAGS;*.html;*.json;*.map;*.opensdf;*.pdf;*.sdf"
+      helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case
+ --ignore #*#;TAGS;*.html;*.json;*.map;*.opensdf;*.pdf;*.sdf"
       helm-ag-insert-at-point 'word)
 
 (when (not (eq system-type 'windows-nt))
   (setq helm-ag-ignore-patterns
         '("#*#" "TAGS" "*.html" "*.json" "*.log" "*.map" "*.opensdf" "*.pdf"
-          "*.sdf" "backups/" "coverage/" "doc/" "elpa/" "semanticdb/")))
+          "*.sdf" "backups" "coverage" "doc" "elpa" "semanticdb")))
 
 ;; enable helm-gtags-mode
 (add-hook 'dired-mode-hook 'helm-gtags-mode)
