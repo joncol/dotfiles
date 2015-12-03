@@ -2,7 +2,7 @@
 
 (setq ad-redefinition-action 'accept)
 
-(let ((theme 'solarized-dark))
+(let ((theme 'soothe))
   (if (display-graphic-p)
       (progn (load-theme theme t)
              (when (eq theme 'molokai)
