@@ -9,19 +9,33 @@
           (lambda ()
             (ethan-wspace-mode -1)))
 
-;; Add yasnippet support for all company backends
-;; https://github.com/syl20bnr/spacemacs/pull/179
-(defvar company-mode/enable-yas t
-  "Enable yasnippet for all backends.")
+(defun check-expansion ()
+  (save-excursion
+    (if (looking-at "\\_>") t
+      (backward-char 1)
+      (if (looking-at "\\.") t
+        (backward-char 1)
+        (if (looking-at "->") t nil)))))
 
-(defun company-mode/backend-with-yas (backend)
-  (if (or (not company-mode/enable-yas)
-          (and (listp backend) (member 'company-yasnippet backend)))
-      backend
-    (append (if (consp backend) backend (list backend))
-            '(:with company-yasnippet))))
+(defun do-yas-expand ()
+  (let ((yas/fallback-behavior 'return-nil))
+    (yas/expand)))
 
-(setq company-backends
-      (mapcar #'company-mode/backend-with-yas company-backends))
+(defun tab-indent-or-complete (use-ghc-complete)
+  (if (minibufferp)
+      (completion-at-point)
+    (if (or (not yas/minor-mode)
+            (null (do-yas-expand)))
+        (if (check-expansion)
+            (progn
+              (company-complete-common)
+              (when use-ghc-complete
+                (ghc-complete)))
+          (indent-for-tab-command)))))
+
+(global-set-key (kbd "<tab>")
+                (lambda ()
+                  (interactive)
+                  (tab-indent-or-complete nil)))
 
 (provide 'init-yas)

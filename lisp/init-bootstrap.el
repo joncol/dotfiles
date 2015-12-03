@@ -15,6 +15,7 @@
     init-message
     init-neotree
     init-rotate
+    init-smartparens
     init-wspace
     init-yas
     init-common-programming
