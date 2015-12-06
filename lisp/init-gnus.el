@@ -17,7 +17,7 @@
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 
 (setq send-mail-function    'smtpmail-send-it
-      smtpmail-smtp-user    "jonas.collberg@orzone.com"
+      smtpmail-smtp-user    user-mail-address
       smtpmail-smtp-server  "smtp.gmail.com"
       smtpmail-stream-type  'starttls
       smtpmail-smtp-service 587)
