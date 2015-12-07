@@ -48,7 +48,6 @@
          evil-nerd-commenter
          evil-paredit
          evil-search-highlight-persist
-         evil-smartparens
          evil-surround
          exec-path-from-shell
          fill-column-indicator
@@ -113,7 +112,6 @@
          ruby-end
          rust-mode
          slime
-         smartparens
          sml-mode
          smtpmail-multi
          solarized-theme
