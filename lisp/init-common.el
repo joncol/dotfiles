@@ -5,8 +5,10 @@
 (let ((theme 'soothe))
   (if (display-graphic-p)
       (progn (load-theme theme t)
-             (when (eq theme 'molokai)
-               (set-face-foreground 'font-lock-comment-face "azure4")))
+             (case theme
+               ('molokai (set-face-foreground 'font-lock-comment-face
+                                              "azure4"))
+               ('soothe (set-face-foreground 'linum "gray35"))))
     (load-theme 'cyberpunk t)))
 
 (if (eq system-type 'darwin)
@@ -129,7 +131,7 @@
 (setq fortune-file "/usr/share/games/fortunes")
 
 (require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r"))
 ;; (setq guide-key/popup-window-position "right")
 (guide-key-mode)
 
