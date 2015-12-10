@@ -8,7 +8,9 @@
              (case theme
                ('molokai (set-face-foreground 'font-lock-comment-face
                                               "azure4"))
-               ('soothe (set-face-foreground 'linum "gray35"))))
+               ('soothe
+                (require 'linum)
+                (set-face-foreground 'linum "gray35"))))
     (load-theme 'cyberpunk t)))
 
 (if (eq system-type 'darwin)
@@ -58,6 +60,7 @@
 (electric-pair-mode)
 (rainbow-mode)
 (global-linum-mode)
+
 (when (display-graphic-p) (global-hl-line-mode))
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
