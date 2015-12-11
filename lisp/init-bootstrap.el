@@ -31,6 +31,7 @@
     init-lisp
     init-lua
     init-markdown
+    init-nxml
     init-org
     init-qml
     init-racket
