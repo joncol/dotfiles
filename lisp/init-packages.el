@@ -106,6 +106,7 @@
          rainbow-delimiters
          rainbow-mode
          redshank
+         rnc-mode
          robe
          rspec-mode
          rubocop
