@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT sort
+# key: sort
+# binding: direct-keybinding
+# --
+<xsl:sort select="$1" />
