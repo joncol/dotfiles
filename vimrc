@@ -423,7 +423,7 @@ augroup filetypes
   autocmd FileType markdown setlocal textwidth=79 formatoptions+=t
   autocmd FileType objc setlocal tabstop=4 shiftwidth=4
   autocmd FileType python setlocal tabstop=4 shiftwidth=4
-  autocmd FileType xml setlocal tabstop=4 shiftwidth=4
+  autocmd FileType xml setlocal tabstop=2 shiftwidth=2
   autocmd FileType html setlocal tabstop=2 shiftwidth=2
   autocmd FileType vim setlocal tabstop=2 shiftwidth=2
   autocmd FileType jade setlocal tabstop=2 shiftwidth=2
