@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT template
+# key: t
+# binding: direct-keybinding
+# --
+<xsl:template match="$1">
+</xsl:template>

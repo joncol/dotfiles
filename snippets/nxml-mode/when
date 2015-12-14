@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT choose/when
+# key: when
+# binding: direct-keybinding
+# --
+<xsl:choose>
+  <xsl:when test="$1">
+  </xsl:when>
+  <xsl:otherwise>
+  </xsl:otherwise>
+</xsl:choose>

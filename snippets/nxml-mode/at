@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT apply-templates
+# key: at
+# binding: direct-keybinding
+# --
+<xsl:apply-templates />
