@@ -22,4 +22,11 @@
     (unless schema-filename
       (rng-set-schema-and-validate))))
 
+(defun jco/xmllint-format-buffer ()
+  (interactive)
+  (save-restriction
+    (widen)
+    (shell-command-on-region (point-min) (point-max)
+                             "xmllint --format -" t t))))
+
 (provide 'init-nxml)

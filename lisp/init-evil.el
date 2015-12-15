@@ -165,4 +165,6 @@
 (evil-leader/set-key "F" 'ace-jump-mode)
 (evil-leader/set-key "SPC" 'ace-jump-mode)
 
+(evil-leader/set-key "x f" 'jco/xmllint-format-buffer)
+
 (provide 'init-evil)
