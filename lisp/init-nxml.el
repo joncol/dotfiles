@@ -3,6 +3,9 @@
 (define-key nxml-mode-map (kbd "C-c C-p") 'rng-previous-error)
 
 (add-to-list 'auto-mode-alist '("\\.rnc\\'" . rnc-mode))
+(add-to-list 'rng-schema-locating-files
+             (expand-file-name (concat user-emacs-directory
+                                       "xslt-relax-ng/schemas.xml")))
 
 (when (eq system-type 'windows-nt)
   (setq rnc-jing-jar-file "c:/tools/jing/bin"))
