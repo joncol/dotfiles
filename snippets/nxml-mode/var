@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT variable
+# key: var
+# binding: direct-keybinding
+# --
+<xsl:variable name="$1" select="$2" />
