@@ -27,6 +27,10 @@
   (save-restriction
     (widen)
     (shell-command-on-region (point-min) (point-max)
-                             "xmllint --format -" t t))))
+                             "xmllint --format -" t t)))
+
+(add-hook 'nxml-mode-hook
+          (lambda ()
+            (setq evil-shift-width 2)))
 
 (provide 'init-nxml)
