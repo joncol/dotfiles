@@ -3,7 +3,10 @@
     ("True" "False")
     ("yes" "no")
     ("YES" "NO")
-    ("before" "after"))
+    ("before" "after")
+    ("BEFORE" "AFTER")
+    ("begin" "end")
+    ("BEGIN" "END"))
   "List of text rotation sets.")
 
 (defun rotate-word-at-point ()
