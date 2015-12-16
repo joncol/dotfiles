@@ -3,7 +3,10 @@
 # key: xsl
 # binding: direct-keybinding
 # --
-<xsl:transform version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-  <xsl:output indent="yes" />
+<xsl:transform version="3.0"
+               xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+               xmlns:fn="http://www.w3.org/2005/xpath-functions"
+               xmlns:saxon="http://saxon.sf.net/">
+  <xsl:output indent="yes" saxon:indent-spaces="2" />
 $1
 </xsl:transform>
