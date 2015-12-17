@@ -1,5 +1,7 @@
 (require 'nxml-mode)
 
+(setq rnc-indent-level 2)
+
 (define-key nxml-mode-map (kbd "C-c C-p") 'rng-previous-error)
 
 (add-to-list 'auto-mode-alist '("\\.rnc\\'" . rnc-mode))
