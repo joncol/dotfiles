@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT result-document
+# key: res
+# binding: direct-keybinding
+# --
+<xsl:result-document href="$1">
+$0
+</xsl:result-document>

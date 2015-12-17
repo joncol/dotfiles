@@ -22,14 +22,8 @@
       helm-gtags-pulse-at-cursor t
       ;; helm-gtags-prefix-key "\C-cg"
       helm-gtags-suggested-key-mapping t
-      helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case
- --ignore #*#;TAGS;*.html;*.json;*.map;*.opensdf;*.pdf;*.sdf"
+      helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case"
       helm-ag-insert-at-point 'word)
-
-(when (not (eq system-type 'windows-nt))
-  (setq helm-ag-ignore-patterns
-        '("#*#" "TAGS" "*.html" "*.json" "*.log" "*.map" "*.opensdf" "*.pdf"
-          "*.sdf" "backups" "coverage" "doc" "elpa" "semanticdb")))
 
 ;; enable helm-gtags-mode
 (add-hook 'dired-mode-hook 'helm-gtags-mode)
