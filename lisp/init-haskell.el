@@ -1,7 +1,3 @@
-(add-to-list 'load-path "~/repos/ghc-mod/elisp")
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-
 (setq haskell-interactive-popup-errors nil)
 
 (setq haskell-process-auto-import-loaded-modules t)
