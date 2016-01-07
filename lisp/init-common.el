@@ -2,7 +2,7 @@
 
 (setq ad-redefinition-action 'accept)
 
-(let ((theme 'soothe))
+(let ((theme 'molokai))
   (if (display-graphic-p)
       (progn (load-theme theme t)
              (case theme
