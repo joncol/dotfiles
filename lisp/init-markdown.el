@@ -1,6 +1,6 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-(add-hook 'markdown-mode-hook 'autofill-mode)
+(add-hook 'markdown-mode-hook 'auto-fill-mode)
 
 (add-hook 'markdown-mode-hook
           (lambda ()
