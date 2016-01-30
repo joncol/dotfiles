@@ -93,7 +93,6 @@
          org-present
          ox-reveal
          paredit
-         pastebin
          pkg-info
          plantuml-mode
          popup
