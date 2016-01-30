@@ -21,6 +21,7 @@ semanticdb/
 places
 recentf
 ^tramp$
+xkcd/
 
 \.\#.*$
 \#.*\#$
