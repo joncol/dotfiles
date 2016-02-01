@@ -16,7 +16,8 @@
                                 (git-commit-mode . insert)
                                 (git-rebase-mode . emacs)
                                 (paradox-menu-mode . emacs)
-                                (term-mode . emacs)))
+                                (term-mode . emacs)
+                                (xkcd-mode . emacs)))
               (evil-set-initial-state (car mode-map) (cdr mode-map))))
 
 (setq evil-normal-state-cursor '("green" box))
