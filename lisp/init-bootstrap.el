@@ -33,6 +33,7 @@
     init-markdown
     init-nxml
     init-org
+    init-python
     init-qml
     init-racket
     init-ruby
