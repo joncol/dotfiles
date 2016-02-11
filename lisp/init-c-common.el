@@ -33,6 +33,9 @@
 
             (global-ede-mode t)
             (ede-enable-generic-projects)
-            (evil-leader/set-key "a" 'ff-find-other-file)))
+            (evil-leader/set-key "a"
+              (lambda ()
+                (interactive)
+                (ff-find-other-file nil t)))))
 
 (provide 'init-c-common)
