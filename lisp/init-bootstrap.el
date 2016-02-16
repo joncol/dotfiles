@@ -36,6 +36,7 @@
     init-python
     init-qml
     init-racket
+    init-rfc
     init-ruby
     init-scheme
     init-standard-ml

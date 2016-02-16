@@ -20,6 +20,7 @@ semanticdb/
 ^url/
 places
 recentf
+^RFC/
 ^tramp$
 xkcd/
 
