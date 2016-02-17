@@ -6,7 +6,9 @@
     ("before" "after")
     ("BEFORE" "AFTER")
     ("begin" "end")
-    ("BEGIN" "END"))
+    ("BEGIN" "END")
+    ("width" "height")
+    ("x" "y"))
   "List of text rotation sets.")
 
 (defun rotate-word-at-point ()
