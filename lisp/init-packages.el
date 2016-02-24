@@ -76,6 +76,7 @@
          helm-projectile
          helm-swoop
          hemisu-theme
+         highlight2clipboard
          htmlize
          java-snippets
          jira
