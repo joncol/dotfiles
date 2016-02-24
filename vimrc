@@ -532,7 +532,12 @@ fun! s:remove_trailing_whitespace()
 endfun
 
 command! RemoveTrailingWhiteSpace call s:remove_trailing_whitespace()
-nnoremap <c-bs> :RemoveTrailingWhiteSpace<cr>
+
+if s:uname != "Darwin"
+  nnoremap <a-bs> :RemoveTrailingWhiteSpace<cr>
+else
+  nnoremap <c-bs> :RemoveTrailingWhiteSpace<cr>
+endif
 
 " QVariant findPackageMarker() const;
 
