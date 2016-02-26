@@ -78,6 +78,7 @@
          hemisu-theme
          highlight2clipboard
          htmlize
+         irfc
          java-snippets
          jira
          leuven-theme
