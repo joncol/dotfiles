@@ -1,6 +1,6 @@
 (defun jco/at-office-p (&optional print-message)
   (interactive "p")
-  (let ((at-office (member system-name '("ORZ-LAP01" "mbp.local"))))
+  (let ((at-office (member system-name '("JCO-LAPTOP" "mbp.local"))))
     (if print-message
         (message (if at-office
                      "You're at the office"
