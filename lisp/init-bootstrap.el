@@ -19,6 +19,7 @@
     init-yas
     init-common-programming
     init-flymake
+    init-c
     init-c-common
     init-clojure
     init-cmake

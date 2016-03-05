@@ -1,7 +1,7 @@
 (require 'semantic)
 
-(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 (defun inside-class-enum-p (pos)
   "Checks if POS is within the braces of a C++ \"enum class\"."
@@ -51,7 +51,7 @@
                     (concat "cd " (projectile-project-root)
                             "debug ;and make -j4 ;and ctest")))
             (jco/define-bindings c++-mode-map
-                                 '(("<f6>"    . compile)))
+                                 '(("<f6>" . compile)))
             (c-set-offset 'innamespace 0)
             (c-set-offset 'label '-)
             (fix-enum-class)))
