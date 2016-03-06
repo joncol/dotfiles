@@ -10,6 +10,8 @@
                             "debug ;and make -j4")))
             (jco/define-bindings c-mode-map
                                  '(("<f6>" . compile)))
-            (c-set-offset 'label '-)))
+            (c-set-offset 'label '-)
+            (setq comment-start "//"
+                  comment-end "")))
 
 (provide 'init-c)
