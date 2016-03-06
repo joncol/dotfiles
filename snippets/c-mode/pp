@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Print pointer
+# key: pp
+# --
+printf("$1: %lu", (unsigned long)$1);
