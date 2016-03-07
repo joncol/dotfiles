@@ -150,4 +150,6 @@
 
 (setq compilation-scroll-output t)
 
+(setq large-file-warning-threshold nil)
+
 (provide 'init-common)
