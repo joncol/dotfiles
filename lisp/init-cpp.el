@@ -1,7 +1,8 @@
 (require 'semantic)
 
-;; (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
-;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(when (jco/at-office-p)
+    (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+    (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)))
 
 (defun inside-class-enum-p (pos)
   "Checks if POS is within the braces of a C++ \"enum class\"."
