@@ -2,4 +2,4 @@
 # name: Print pointer
 # key: pp
 # --
-printf("$1: %lu\n", (unsigned long)$1);
+printf("$1: %p\n", $1);
