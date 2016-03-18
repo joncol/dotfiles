@@ -88,6 +88,7 @@
          monky
          monokai-theme
          neotree
+         nsis-mode
          nyan-mode
          omnisharp
          org-plus-contrib

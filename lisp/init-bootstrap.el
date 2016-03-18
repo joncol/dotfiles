@@ -32,6 +32,7 @@
     init-lisp
     init-lua
     init-markdown
+    init-nsis
     init-nxml
     init-org
     init-python

@@ -18,8 +18,7 @@
 
 (defadvice ruby-mode-variables (after reset-final-newline activate compile)
   "Reset final-newline that ruby-mode enforces but conflicts with ethan-wspace."
-  (setq require-final-newline nil)
-  (setq mode-require-final-newline nil))
+  (no-final-newline))
 
 (global-whitespace-mode 1)
 (setq-default whitespace-style '(face tabs trailing
