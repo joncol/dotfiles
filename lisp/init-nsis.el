@@ -1,6 +1,6 @@
 (add-hook 'nsis-mode-hook
           (lambda ()
-            (message "YOYOYO")
+            (fci-mode)
             (no-final-newline)))
 
 (provide 'init-nsis)
