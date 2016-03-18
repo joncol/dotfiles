@@ -1,7 +1,6 @@
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-mode)
-(evil-jumper-mode)
 (global-evil-matchit-mode)
 (global-evil-surround-mode)
 (global-evil-search-highlight-persist t)

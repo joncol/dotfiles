@@ -41,7 +41,6 @@
          espresso-theme
          ethan-wspace
          evil
-         evil-jumper
          evil-leader
          evil-numbers
          evil-matchit
