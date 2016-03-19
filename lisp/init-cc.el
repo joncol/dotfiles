@@ -43,4 +43,4 @@
                 (interactive)
                 (ff-find-other-file t t)))))
 
-(provide 'init-c-common)
+(provide 'init-cc)
