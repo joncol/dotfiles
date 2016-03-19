@@ -41,6 +41,11 @@
             (evil-leader/set-key "A"
               (lambda ()
                 (interactive)
-                (ff-find-other-file t t)))))
+                (ff-find-other-file t t)))
+
+            (defadvice semantic-symref (around no-confirmation activate)
+              (flet  ((yes-or-no-p (&rest args) t)
+                      (y-or-n-p (&rest args) t))
+                ad-do-it))))
 
 (provide 'init-cc)
