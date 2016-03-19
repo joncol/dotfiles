@@ -99,6 +99,8 @@
 
 (global-set-key (kbd "C-x C-SPC") 'evil-search-highlight-persist-remove-all)
 
+(evil-leader/set-key "g g" 'ggtags-find-tag-dwim)
+
 ;;; evil-nerd-commenter
 
 (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
