@@ -36,6 +36,11 @@
             (evil-leader/set-key "a"
               (lambda ()
                 (interactive)
-                (ff-find-other-file nil t)))))
+                (ff-find-other-file nil t)))
+
+            (evil-leader/set-key "A"
+              (lambda ()
+                (interactive)
+                (ff-find-other-file t t)))))
 
 (provide 'init-c-common)
