@@ -20,7 +20,7 @@
     init-common-programming
     init-flymake
     init-c
-    init-c-common
+    init-cc
     init-clojure
     init-cmake
     init-conf
