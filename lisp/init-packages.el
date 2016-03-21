@@ -17,9 +17,13 @@
          ample-theme
          angular-snippets
          airline-themes
+         ample-zen-theme
+         assemblage-theme
          ag
          auto-complete
          better-defaults
+         borland-blue-theme
+         cherry-blossom-theme
          cider
          cloc
          clojure-mode
