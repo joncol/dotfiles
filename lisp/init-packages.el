@@ -1,9 +1,11 @@
 (require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")))
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("org" . "http://orgmode.org/elpa/")
+        ("melpa" . "http://melpa.milkbox.net/packages/")
+        ("marmalade" . "https://marmalade-repo.org/packages/")
+        ("org" . "http://orgmode.org/elpa/")
+        ("SC" . "http://joseito.republika.pl/sunrise-commander/")))
 
 (package-initialize)
 
@@ -123,6 +125,9 @@
          smtpmail-multi
          solarized-theme
          soothe-theme
+         sunrise-commander
+         sunrise-x-buttons
+         sunrise-x-modeline
          toml-mode
          undo-tree
          xml-rpc
