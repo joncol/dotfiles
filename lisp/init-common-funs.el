@@ -33,24 +33,26 @@
 
 (defun jco/insert-date (arg)
   "Insert date at current point."
+  (interactive "p")
   (insert (if arg
               (format-time-string "%d.%m.%Y")
             (format-time-string "%Y-%m-%d"))))
 
 (defun jco/insert-timestamp (arg)
   "Insert timestamp at current point."
+  (interactive "p")
   (insert (if arg
               (format-time-string "%Y-%m-%dT%H:%M:%S")
             (format-time-string "%H:%M:%S"))))
 
 (global-set-key (kbd "C-c i d")
-                (lambda () (interactive) (insert-date nil)))
+                (lambda () (interactive) (jco/insert-date nil)))
 
 (global-set-key (kbd "C-c i T")
-                (lambda () (interactive) (insert-timestamp t)))
+                (lambda () (interactive) (jco/insert-timestamp t)))
 
 (global-set-key (kbd "C-c i t")
-                (lambda () (interactive) (insert-timestamp nil)))
+                (lambda () (interactive) (jco/insert-timestamp nil)))
 
 (defun jco/json-lint ()
   "Pretty format JSON."
