@@ -2,7 +2,6 @@
 # name: QObject class
 # key: qoc
 # --
-
 class ${1:name} : public QObject
 {
     Q_OBJECT
