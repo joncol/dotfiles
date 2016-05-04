@@ -7,7 +7,9 @@
       (progn (load-theme theme t)
              (case theme
                ('molokai (set-face-foreground 'font-lock-comment-face
-                                              "azure4"))
+                                              "azure4")
+                         (set-face-background 'ecb-default-highlight-face
+                                              "darkolivegreen3"))
                ('soothe
                 (require 'linum)
                 (set-face-foreground 'linum "gray35"))))
