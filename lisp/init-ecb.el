@@ -1,6 +1,6 @@
 (add-hook 'ecb-activate-hook
           (lambda ()
             (set-face-background 'ecb-default-highlight-face
-                                 "SkyBlue4")))
+                                 "midnight blue")))
 
 (provide 'init-ecb)
