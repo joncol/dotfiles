@@ -26,6 +26,7 @@
     init-conf
     init-cpp
     init-csharp
+    init-ecb
     init-emacs-lisp
     init-haskell
     init-latex
