@@ -4,6 +4,7 @@
 
 (define-key nxml-mode-map (kbd "C-c C-p") 'rng-previous-error)
 
+(add-to-list 'auto-mode-alist '("\\.qrc\\'" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.rnc\\'" . rnc-mode))
 (add-to-list 'rng-schema-locating-files
              (expand-file-name (concat user-emacs-directory
