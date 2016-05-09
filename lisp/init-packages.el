@@ -130,6 +130,7 @@
          sunrise-x-modeline
          toml-mode
          undo-tree
+         volatile-highlights
          xml-rpc
          yaml-mode
          yard-mode

@@ -152,4 +152,6 @@
 
 (setq large-file-warning-threshold nil)
 
+(volatile-highlights-mode t)
+
 (provide 'init-common)
