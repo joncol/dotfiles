@@ -61,12 +61,13 @@
 (tool-bar-mode -1)
 (global-auto-revert-mode)
 (global-font-lock-mode)
-(show-paren-mode)
 (electric-pair-mode)
 (rainbow-mode)
 (global-linum-mode)
 
-(when (display-graphic-p) (global-hl-line-mode))
+(when (display-graphic-p)
+  (global-hl-line-mode)
+  (show-paren-mode))
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
 (edit-server-start)

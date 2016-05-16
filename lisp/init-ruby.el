@@ -30,22 +30,25 @@
 
 (add-hook 'ruby-mode-hook
           (lambda ()
-             (jco/common-prog)
-             (setq evil-shift-width 2)
-             (unless jco/rvm-use-default-called
-               (rvm-use-default))
-             (add-to-list 'company-backends 'company-robe)
-             (flymake-ruby-load)
-             (setq prettify-symbols-alist
-               '(("lambda" . ?λ)
-                 ("->" . ?λ)))
-             (eval-after-load "hideshow"
-               '(add-to-list 'hs-special-modes-alist
-                             `(ruby-mode
-                               ,(rx (or "def" "class" "module" "do" "{" "["))
-                               ,(rx (or "}" "]" "end"))
-                               ,(rx (or "#" "=begin"))
-                               ruby-forward-sexp nil)))))
+            (unless (display-graphic-p)
+              (show-paren-mode -1))
+
+            (jco/common-prog)
+            (setq evil-shift-width 2)
+            (unless jco/rvm-use-default-called
+              (rvm-use-default))
+            (add-to-list 'company-backends 'company-robe)
+            (flymake-ruby-load)
+            (setq prettify-symbols-alist
+                  '(("lambda" . ?λ)
+                    ("->" . ?λ)))
+            (eval-after-load "hideshow"
+              '(add-to-list 'hs-special-modes-alist
+                            `(ruby-mode
+                              ,(rx (or "def" "class" "module" "do" "{" "["))
+                              ,(rx (or "}" "]" "end"))
+                              ,(rx (or "#" "=begin"))
+                              ruby-forward-sexp nil)))))
 
 (evil-define-motion evil-ruby-jump-item (count)
   :jump t
