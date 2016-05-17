@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Boost range include
+# key: bri
+# --
+#include <boost/range/algorithm/$1>

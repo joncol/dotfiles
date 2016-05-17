@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: back_inserter
+# key: bi
+# --
+std::back_inserter(${1:result})
