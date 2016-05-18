@@ -29,6 +29,12 @@
             (load-library "ox-reveal")
             (auto-fill-mode)
             (global-unset-key (kbd "C-x C-v"))
+            (jco/define-bindings org-mode-map
+                                 '(("<f5>" . (lambda ()
+                                               (interactive)
+                                               (org-remove-inline-images)
+                                               (org-ctrl-c-ctrl-c)
+                                               (org-display-inline-images)))))
 
              ;;; Embed youtube links in org-mode
 
