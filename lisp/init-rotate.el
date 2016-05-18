@@ -8,6 +8,7 @@
     ("begin" "end")
     ("BEGIN" "END")
     ("width" "height")
+    ("Width" "Height")
     ("x" "y"))
   "List of text rotation sets.")
 
