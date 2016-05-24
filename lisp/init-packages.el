@@ -85,10 +85,12 @@
          irfc
          java-snippets
          jira
+         json-mode
          leuven-theme
          lua-mode
          magit
          markdown-mode
+         modern-cpp-font-lock
          molokai-theme
          monky
          monokai-theme
