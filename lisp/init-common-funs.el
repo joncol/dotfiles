@@ -85,4 +85,11 @@
                                              line-length)))
         line-length))))
 
+(defun jco/capitalize-first-char (&optional string)
+  "Capitalize the first characer of STRING"
+  (when (and string (> (length string) 0))
+   (let ((first-char (substring string 0 1))
+         (rest-str (substring string 1)))
+     (concat (capitalize first-char) rest-str))))
+
 (provide 'init-common-funs)
