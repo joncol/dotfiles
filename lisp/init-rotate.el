@@ -9,7 +9,9 @@
     ("BEGIN" "END")
     ("width" "height")
     ("Width" "Height")
-    ("x" "y"))
+    ("x" "y")
+    ("in" "out")
+    ("In" "Out"))
   "List of text rotation sets.")
 
 (defun rotate-word-at-point ()
