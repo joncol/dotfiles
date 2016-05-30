@@ -2,7 +2,7 @@
 
 (setq ad-redefinition-action 'accept)
 
-(let ((theme 'molokai))
+(let ((theme 'solarized-dark))
   (if (display-graphic-p)
       (progn (load-theme theme t)
              (case theme
@@ -155,4 +155,7 @@
 
 (volatile-highlights-mode t)
 
+(require 'string-inflection)
+(global-unset-key (kbd "C-q"))
+(global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle)
 (provide 'init-common)
