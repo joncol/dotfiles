@@ -126,6 +126,7 @@
          smtpmail-multi
          solarized-theme
          soothe-theme
+         string-inflection
          toml-mode
          undo-tree
          volatile-highlights
