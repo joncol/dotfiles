@@ -90,7 +90,6 @@
          lua-mode
          magit
          markdown-mode
-         modern-cpp-font-lock
          molokai-theme
          monky
          monokai-theme

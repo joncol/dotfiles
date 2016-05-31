@@ -1,7 +1,5 @@
 (require 'semantic)
 
-(modern-c++-font-lock-global-mode t)
-
 (when (jco/at-office-p)
     (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
     (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)))
