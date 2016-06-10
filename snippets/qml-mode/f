@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Fill parent
+# key: f
+# --
+anchors.fill: parent
