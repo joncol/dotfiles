@@ -36,7 +36,7 @@
                                  (format "+%d" (line-number-at-pos))
                                  (buffer-file-name))))
 
-(global-set-key (kbd "<f6>")
+(global-set-key (kbd "S-<f6>")
                 (lambda ()
                   (interactive)
                   (kill-new (buffer-file-name))))
