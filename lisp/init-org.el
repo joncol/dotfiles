@@ -14,11 +14,11 @@
                                                (find-file
                                                 (concat org-directory
                                                         "/notes.org"))))
-                                  ("C-c w" . (lambda ()
+                                  ("C-c r" . (lambda ()
                                                (interactive)
                                                (find-file
                                                 (concat org-directory
-                                                        "/work.org"))))))
+                                                        "/refile.org"))))))
 (setq org-reveal-hlevel 2)
 (setq org-todo-keyword-faces
       '(("IN_PROGRESS" . "orange")))
@@ -29,7 +29,7 @@
 ;; (setq org-refile-use-outline-path t)
 (setq org-use-fast-todo-selection t)
 (setq org-capture-templates
-      '(("t" "Task" entry (file+headline "work.org" "Tasks")
+      '(("t" "Task" entry (file+headline "refile.org" "Tasks")
          "* TODO %?\n")
         ("n" "Note" entry (file+headline "notes.org" "Notes")
          "* %?\n")))
