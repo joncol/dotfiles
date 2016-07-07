@@ -34,10 +34,12 @@
 ;; (setq org-refile-use-outline-path t)
 (setq org-use-fast-todo-selection t)
 (setq org-capture-templates
-      '(("t" "Task" entry (file+headline "refile.org" "Tasks")
-         "* TODO %?\n")
+      '(("t" "Task" entry (file+headline "work.org" "Tasks")
+         "* TODO %?\n%u\n")
+        ("p" "Personal task" entry (file+headline "personal.org" "Tasks")
+         "* TODO %?\n%u\n")
         ("n" "Note" entry (file+headline "notes.org" "Notes")
-         "* %?\n")))
+         "* %?\n%u\n")))
 
 (org-babel-do-load-languages
  'org-babel-load-languages
