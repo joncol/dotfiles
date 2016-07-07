@@ -1,16 +1,38 @@
 (setq org-src-fontify-natively t)
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 (setq org-directory "~/org")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-(define-key global-map "\C-cc" 'org-capture)
+(setq org-default-notes-file "notes.org")
+(jco/define-bindings global-map '(("C-c a" . org-agenda)
+                                  ("C-c c" . org-capture)
+                                  ("C-c l" . org-store-link)
+                                  ("C-c M-w" . org-copy)
+                                  ("C-c C-w" . org-refile)
+                                  ("C-c n" . (lambda ()
+                                               (interactive)
+                                               (find-file
+                                                (concat org-directory
+                                                        "/notes.org"))))
+                                  ("C-c w" . (lambda ()
+                                               (interactive)
+                                               (find-file
+                                                (concat org-directory
+                                                        "/work.org"))))))
 (setq org-reveal-hlevel 2)
 (setq org-todo-keyword-faces
       '(("IN_PROGRESS" . "orange")))
-(setq org-agenda-files '("~/org/work.org"))
+(setq org-agenda-files (concat org-directory "/agenda-files"))
+(setq org-refile-targets '((org-agenda-files :level . 1)
+                           ("notes.org" :maxlevel . 9)))
+;; (setq org-outline-path-complete-in-steps nil)
+;; (setq org-refile-use-outline-path t)
+(setq org-use-fast-todo-selection t)
+(setq org-capture-templates
+      '(("t" "Task" entry (file+headline "work.org" "Tasks")
+         "* TODO %?\n")
+        ("n" "Note" entry (file+headline "notes.org" "Notes")
+         "* %?\n")))
 
 (org-babel-do-load-languages
  'org-babel-load-languages
