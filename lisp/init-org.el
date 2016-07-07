@@ -9,16 +9,21 @@
                                   ("C-c l" . org-store-link)
                                   ("C-c M-w" . org-copy)
                                   ("C-c C-w" . org-refile)
+                                  ("C-c g" . (lambda ()
+                                               (interactive)
+                                               (find-file
+                                                (concat org-directory
+                                                        "/gtd.org"))))
                                   ("C-c n" . (lambda ()
                                                (interactive)
                                                (find-file
                                                 (concat org-directory
                                                         "/notes.org"))))
-                                  ("C-c g" . (lambda ()
+                                  ("C-c w" . (lambda ()
                                                (interactive)
                                                (find-file
                                                 (concat org-directory
-                                                        "/gtd.org"))))))
+                                                        "/work.org"))))))
 (setq org-reveal-hlevel 2)
 (setq org-todo-keyword-faces
       '(("IN_PROGRESS" . "orange")))
