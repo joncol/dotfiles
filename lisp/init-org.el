@@ -10,6 +10,7 @@
 (setq org-reveal-hlevel 2)
 (setq org-todo-keyword-faces
       '(("IN_PROGRESS" . "orange")))
+(setq org-agenda-files '("~/org/work.org"))
 
 (org-babel-do-load-languages
  'org-babel-load-languages
