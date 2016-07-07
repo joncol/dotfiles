@@ -14,11 +14,11 @@
                                                (find-file
                                                 (concat org-directory
                                                         "/notes.org"))))
-                                  ("C-c r" . (lambda ()
+                                  ("C-c g" . (lambda ()
                                                (interactive)
                                                (find-file
                                                 (concat org-directory
-                                                        "/refile.org"))))))
+                                                        "/gtd.org"))))))
 (setq org-reveal-hlevel 2)
 (setq org-todo-keyword-faces
       '(("IN_PROGRESS" . "orange")))
