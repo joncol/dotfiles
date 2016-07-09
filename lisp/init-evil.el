@@ -82,9 +82,9 @@
 (evil-leader/set-key "t d"
   (lambda ()
     (interactive)
-    (if (eq system-type 'windows-nt)
-        (run-on-current-buffer "thg" "vdiff")
-      (run-on-current-buffer "hg" "opendiff"))))
+    (if (eq system-type 'darwin)
+        (run-on-current-buffer "hg" "opendiff")
+      (run-on-current-buffer "thg" "vdiff"))))
 
 (evil-leader/set-key "t s"
   (lambda ()
