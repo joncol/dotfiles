@@ -36,8 +36,6 @@
 (setq org-capture-templates
       '(("t" "Task" entry (file+headline "work.org" "Tasks")
          "* TODO %?\n%u\n")
-        ("p" "Personal task" entry (file+headline "personal.org" "Tasks")
-         "* TODO %?\n%u\n")
         ("n" "Note" entry (file+headline "notes.org" "Notes")
          "* %?\n%u\n")))
 
