@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: GTD config
+# key: gtd
+# --
+#+TAGS: { WORK(w) }
+#+SEQ_TODO: TODO(t) MAYBE(m) WAITING(w) NEXT(n) DONE(d)
+#+STARTUP: showall
+#+STARTUP: showstars
+#+OPTIONS: toc:nil
+
+* Tasks
