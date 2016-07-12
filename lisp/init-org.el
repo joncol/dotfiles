@@ -26,7 +26,11 @@
                                                         "/work.org"))))))
 (setq org-reveal-hlevel 2)
 (setq org-todo-keyword-faces
-      '(("IN_PROGRESS" . "orange")))
+      '(("TODO" . "deep pink")
+        ("IN_PROGRESS" . "orange")
+        ("NEXT" . "orange")
+        ("WAITING" . "purple")
+        ("MAYBE" . "gray60")))
 (setq org-agenda-files (concat org-directory "/agenda-files"))
 (setq org-refile-targets '((org-agenda-files :level . 1)
                            ("notes.org" :maxlevel . 9)))
