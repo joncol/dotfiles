@@ -6,6 +6,6 @@
 #+SEQ_TODO: TODO(t) MAYBE(m) WAITING(w) NEXT(n) DONE(d)
 #+STARTUP: showall
 #+STARTUP: showstars
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:nil ^:{}
 
 * Tasks
