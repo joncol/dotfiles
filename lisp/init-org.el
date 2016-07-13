@@ -42,6 +42,7 @@
          "* TODO %?\n%u\n")
         ("n" "Note" entry (file+headline "notes.org" "Notes")
          "* %?\n%u\n")))
+(setq org-log-into-drawer t)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
