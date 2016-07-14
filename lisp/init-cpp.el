@@ -44,11 +44,8 @@
           (lambda ()
             (setq compile-command
                   (if (jco/at-office-p)
-                      (let ((sln-file
-                             (car (directory-files (projectile-project-root)
-                                                   nil ".*\.sln"))))
-                        (concat "cd " (projectile-project-root)
-                                " && msbuild " sln-file " /p:UseEnv=true"))
+                      (concat "cd " (projectile-project-root)
+                              "../_build_vs && cmake --build .")))
                     (concat "cd " (projectile-project-root)
                             "../_build ;and cmake --build . ;and ctest")))
             (jco/define-bindings c++-mode-map
