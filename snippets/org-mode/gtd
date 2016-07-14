@@ -8,5 +8,3 @@
 #+STARTUP: showstars
 #+OPTIONS: toc:nil todo:nil tags:nil num:0 ^:{}
 #+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
-
-* Tasks
