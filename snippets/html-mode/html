@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: HTML template
+# key: html
+# --
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>${1:title}</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    $0
+  </body>
+</html>
