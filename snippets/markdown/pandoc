@@ -1,0 +1,41 @@
+# -*- mode: snippet -*-
+# name: Pandoc template
+# key: pandoc
+# --
+---
+header-includes:
+    - \usepackage{wasysym}
+    - \usepackage[margin=1.0in]{geometry}
+    - \usepackage{float}
+    - \usepackage{fancyhdr}
+    - \pagestyle{fancy}
+    - \usepackage{graphicx}
+    - \fancyhf{}
+    - \fancyfoot[C]{\thepage}
+    - \fancyhead[R]{\scriptsize ${1:title}}
+    - \newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
+    - \pagenumbering{gobble}
+
+fontsize: 12pt
+---
+
+\newcommand{\dotrule}[1]{%
+  \parbox[t]{#1}{\dotfill}}
+
+<!-- \tableofcontents -->
+
+<!-- \vspace{5mm} -->
+<!-- \dotrule{\textwidth} -->
+
+# Introduction
+
+The purpose of this document is to...
+
+Code sample:
+
+``` {.cpp}
+int main(int argc, char* argv[])
+{
+    return 0;
+}
+```
