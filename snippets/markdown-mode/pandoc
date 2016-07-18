@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: Pandoc template
 # key: pandoc
+# expand-env: ((yas/indent-line 'none))
 # --
 ---
 header-includes:
@@ -33,9 +34,9 @@ The purpose of this document is to...
 
 Code sample:
 
-``` {.cpp}
+\`\`\` {.cpp}
 int main(int argc, char* argv[])
 {
     return 0;
 }
-```
+\`\`\`
