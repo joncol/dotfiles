@@ -45,7 +45,7 @@
             (setq compile-command
                   (if (jco/at-office-p)
                       (concat "cd " (projectile-project-root)
-                              "../_build_vs && cmake --build .")))
+                              "../_build_vs && cmake --build .")
                     (concat "cd " (projectile-project-root)
                             "../_build ;and cmake --build . ;and ctest")))
             (jco/define-bindings c++-mode-map
