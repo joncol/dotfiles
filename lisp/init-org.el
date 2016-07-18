@@ -39,9 +39,10 @@
 (setq org-use-fast-todo-selection t)
 (setq org-capture-templates
       '(("t" "Task" entry (file+headline "work.org" "Tasks")
-         "* TODO %?\n%u\n")
-        ("n" "Note" entry (file+headline "notes.org" "Notes")
-         "* %?\n%u\n")))
+         "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n")
+        ("n" "Node" entry (file+headline "notes.org" "Notes")
+         "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n")))
+
 (setq org-log-into-drawer t)
 
 (org-babel-do-load-languages
