@@ -100,6 +100,7 @@
          org-plus-contrib
          org-present
          ox-reveal
+         pandoc-mode
          paredit
          pkg-info
          plantuml-mode
