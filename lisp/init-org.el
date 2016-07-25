@@ -40,7 +40,7 @@
 (setq org-capture-templates
       '(("t" "Task" entry (file+headline "work.org" "Tasks")
          "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n")
-        ("n" "Node" entry (file+headline "notes.org" "Notes")
+        ("n" "Note" entry (file+headline "notes.org" "Notes")
          "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n")))
 
 (setq org-log-into-drawer t)
@@ -57,6 +57,18 @@
           org-plantuml-jar-path "c:/tools/misc/plantuml.jar")
   (setq org-ditaa-jar-path "/usr/local/bin/ditaa.jar"
         org-plantuml-jar-path "/usr/local/bin/plantuml.jar"))
+
+(setq org-latex-listings 'minted)
+(setq org-latex-custom-lang-environments
+      '((emacs-lisp "common-lispcode")))
+(setq org-latex-minted-options
+      '(("frame" "lines")
+        ("fontsize" "\\scriptsize")
+        ("linenos" "")))
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+        "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+        "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
 
 (add-hook 'org-mode-hook
           (lambda ()
