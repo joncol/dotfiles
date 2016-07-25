@@ -12,7 +12,9 @@
  ((eq system-type 'darwin)
   (setq mac-right-option-modifier 'none)
   (when (display-graphic-p)
-    (set-frame-size (selected-frame) 93 60)
+    (if (<= (x-display-pixel-height) 900)
+        (set-frame-size (selected-frame) 93 47)
+      (set-frame-size (selected-frame) 93 60))
     (set-face-attribute 'default nil :height 145))))
 
 (provide 'init-font)
