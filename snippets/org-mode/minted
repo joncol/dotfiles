@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: minted
+# key: minted
+# --
+#+OPTIONS: toc:nil ^:{}
+#+LaTeX_HEADER: \usepackage{minted}
+#+LaTeX_HEADER: \usemintedstyle{default}
+#+LaTeX_HEADER: \usepackage[margin=1in]{geometry}
