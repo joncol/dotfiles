@@ -59,16 +59,27 @@
         org-plantuml-jar-path "/usr/local/bin/plantuml.jar"))
 
 (setq org-latex-listings 'minted)
+
 (setq org-latex-custom-lang-environments
       '((emacs-lisp "common-lispcode")))
+
 (setq org-latex-minted-options
       '(("frame" "lines")
-        ("fontsize" "\\scriptsize")
-        ("linenos" "")))
+        ("fontsize" "\\normalsize")
+        ;; ("fontsize" "\\scriptsize")
+        ("linenos" "")
+        ("mathescape" "")
+        ("samepage" "")
+        ("xrightmargin" "0.5cm")
+        ("xleftmargin"  "0.5cm")))
+
 (setq org-latex-pdf-process
       '("pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
         "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
         "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
+
+(setq org-latex-table-caption-above nil)
+(setq org-latex-default-figure-position "!htb")
 
 (add-hook 'org-mode-hook
           (lambda ()
