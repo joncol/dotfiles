@@ -81,6 +81,9 @@
 (setq org-latex-table-caption-above nil)
 (setq org-latex-default-figure-position "!htb")
 
+(setq org-mobile-directory (concat org-directory "/mobile"))
+(setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
+
 (add-hook 'org-mode-hook
           (lambda ()
             (load-library "ox-reveal")
