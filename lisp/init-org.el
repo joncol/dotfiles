@@ -83,6 +83,7 @@
 
 (setq org-mobile-directory (concat org-directory "/mobile"))
 (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
+(setq org-mobile-force-id-on-agenda-items nil)
 
 (add-hook 'org-mode-hook
           (lambda ()
