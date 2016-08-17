@@ -38,6 +38,7 @@
          csharp-mode
          csv-mode
          cyberpunk-theme
+         darktooth-theme
          dash
          dirtree
          ecb
@@ -100,6 +101,7 @@
          omnisharp
          org-plus-contrib
          org-present
+         organic-green-theme
          ox-reveal
          pandoc-mode
          paredit
