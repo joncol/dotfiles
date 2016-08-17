@@ -65,6 +65,7 @@
          ghci-completion
          glsl-mode
          go-snippets
+         gotham-theme
          goto-chg
          goto-last-change
          grandshell-theme
