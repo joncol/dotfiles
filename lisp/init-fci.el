@@ -1,8 +1,8 @@
 (require 'fill-column-indicator)
 
 (setq-default fill-column 80)
-(setq fci-rule-width 1)
 (setq fci-rule-color "#ff0000")
+(setq fci-always-use-textual-rule 1)
 
 ;;; Fix for htmlize producing garbage newlines when using fci-mode.
 

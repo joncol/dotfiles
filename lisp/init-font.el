@@ -1,6 +1,6 @@
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
-  (set-frame-font "Inconsolata-12")
+  (set-frame-font "Hack-10")
   (set-frame-position (selected-frame) 0 0)
   (set-frame-size (selected-frame) 100 60))
 
