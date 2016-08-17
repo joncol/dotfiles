@@ -2,16 +2,19 @@
 
 (setq ad-redefinition-action 'accept)
 
-(let ((theme 'gotham))
-  (if (display-graphic-p)
-      (progn (load-theme theme t)
-             (case theme
-               ('molokai (set-face-foreground 'font-lock-comment-face
-                                              "azure4"))
-               ('soothe
-                (require 'linum)
-                (set-face-foreground 'linum "gray35"))))
-    (load-theme 'cyberpunk t)))
+(setq jco/theme 'organic-green)
+
+(if (display-graphic-p)
+    (progn (load-theme jco/theme t)
+           (case jco/theme
+             ('molokai
+              (set-face-foreground 'font-lock-comment-face "azure4"))
+             ('soothe
+              (require 'linum)
+              (set-face-foreground 'linum "gray35"))
+             ('organic-green
+              (setq jco/cursor-color "gray25"))))
+  (load-theme 'cyberpunk t))
 
 (if (eq system-type 'darwin)
     (nyan-mode)
