@@ -45,7 +45,8 @@
     init-standard-ml
     init-tex
     init-yaml
-    init-evil))
+    init-evil
+    init-theme))
 
 (defun jco/safe-require (feature)
   "Safely require FEATURE"

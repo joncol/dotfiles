@@ -2,24 +2,6 @@
 
 (setq ad-redefinition-action 'accept)
 
-(setq jco/theme 'organic-green)
-
-(if (display-graphic-p)
-    (progn (load-theme jco/theme t)
-           (case jco/theme
-             ('molokai
-              (set-face-foreground 'font-lock-comment-face "azure4"))
-             ('soothe
-              (require 'linum)
-              (set-face-foreground 'linum "gray35"))
-             ('organic-green
-              (setq jco/cursor-color "gray25"))))
-  (load-theme 'cyberpunk t))
-
-(if (eq system-type 'darwin)
-    (nyan-mode)
-  (load-theme 'airline-powerlineish t)) ;;; airline is too slow on Mac OS X
-
 ;;; Set name and email
 (require 's)
 (let ((user-full-name "Jonas Collberg"))
@@ -161,4 +143,5 @@
 (require 'string-inflection)
 (global-unset-key (kbd "C-q"))
 (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle)
+
 (provide 'init-common)

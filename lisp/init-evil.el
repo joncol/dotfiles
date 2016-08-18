@@ -19,19 +19,6 @@
                                 (xkcd-mode . emacs)))
               (evil-set-initial-state (car mode-map) (cdr mode-map))))
 
-(unless (boundp 'jco/cursor-color)
-  (setq jco/cursor-color "green"))
-
-(setq evil-normal-state-cursor `(,jco/cursor-color box))
-(setq evil-insert-state-cursor `(,jco/cursor-color bar))
-
-(case jco/theme
-  ('molokai
-   (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "RoyalBlue4"))
-  ('organic-green
-   (set-face-background 'helm-selection "#a0f0a0")))
-
 (jco/move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
 (jco/move-key evil-motion-state-map evil-normal-state-map " ")
 
