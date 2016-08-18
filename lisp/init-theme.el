@@ -5,7 +5,7 @@
 (setq jco/cursor-color "green")
 
 (if (display-graphic-p)
-    (let ((theme 'organic-green))
+    (let ((theme 'organic-green)) ;;; change this to whatever theme you want
       (load-theme theme t)
 
       (case theme
