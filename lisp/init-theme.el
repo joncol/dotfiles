@@ -5,23 +5,26 @@
 (setq jco/cursor-color "green")
 
 (if (display-graphic-p)
-    (let ((theme 'material)) ;;; change this to whatever theme you want
+    (let ((theme 'organic-green)) ;;; change this to whatever theme you want
       (load-theme theme t)
 
       (case theme
+        ('material
+         (set-face-background 'hl-line "#37474f")
+         (set-face-foreground 'minibuffer-prompt "#263238"))
 
         ('molokai
          (set-face-foreground 'font-lock-comment-face "azure4")
          (set-face-background
           'evil-search-highlight-persist-highlight-face "RoyalBlue4"))
 
-        ('soothe
-         (require 'linum)
-         (set-face-foreground 'linum "gray35"))
-
         ('organic-green
          (setq jco/cursor-color "gray25")
-         (set-face-background 'helm-selection "#a0f0a0"))))
+         (set-face-background 'helm-selection "#a0f0a0"))
+
+        ('soothe
+         (require 'linum)
+         (set-face-foreground 'linum "gray35"))))
 
   (load-theme 'cyberpunk t))
 
