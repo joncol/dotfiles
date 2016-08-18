@@ -92,6 +92,7 @@
          lua-mode
          magit
          markdown-mode
+         material-theme
          molokai-theme
          monky
          monokai-theme
