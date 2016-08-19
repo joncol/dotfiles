@@ -1,12 +1,3 @@
-(setq haskell-interactive-popup-errors nil)
-
-(setq haskell-process-auto-import-loaded-modules t)
-(setq haskell-process-log t)
-(setq haskell-process-suggest-remove-import-lines t)
-(setq haskell-process-type 'cabal-repl)
-
-(setq haskell-tags-on-save t)
-
 (defun newline-and-indent-relative ()
   (interactive)
   (newline)
@@ -17,7 +8,12 @@
 
 (add-hook 'haskell-mode-hook
           (lambda ()
-            (ghc-init)
+            (setq haskell-interactive-popup-errors nil)
+            (setq haskell-process-auto-import-loaded-modules t)
+            (setq haskell-process-log t)
+            (setq haskell-process-suggest-remove-import-lines t)
+            (setq haskell-process-type 'auto)
+            (setq haskell-tags-on-save t)
 
             (turn-on-haskell-doc-mode)
             (remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
@@ -49,14 +45,14 @@
   '(jco/define-bindings haskell-mode-map
                         '(("<f8>" . haskell-navigate-imports)
                           ("S-<f8>" . haskell-sort-imports)
-                          ("C-c C-l" . haskell-process-load-or-reload)
+                          ("C-c C-l" . haskell-process-load-file)
                           ("C-c C-z" . haskell-interactive-switch)
                           ("C-c C-n C-t" . haskell-process-do-type)
                           ("C-c C-n C-i" . haskell-process-do-info)
                           ("C-c C-n C-c" . haskell-process-cabal-build)
                           ("C-c C-n c" . haskell-process-cabal)
                           ("C-c C-o" . haskell-compile)
-                          ("SPC" . haskell-mode-contextual-space))))
+                          ("C-c C-k" . haskell-interactive-mode-clear))))
 
 
 (eval-after-load 'haskell-cabal
