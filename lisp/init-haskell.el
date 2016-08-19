@@ -45,6 +45,7 @@
   '(jco/define-bindings haskell-mode-map
                         '(("<f8>" . haskell-navigate-imports)
                           ("S-<f8>" . haskell-sort-imports)
+                          ("C-c C-a" . haskell-align-imports)
                           ("C-c C-l" . haskell-process-load-file)
                           ("C-c C-z" . haskell-interactive-switch)
                           ("C-c C-n C-t" . haskell-process-do-type)
