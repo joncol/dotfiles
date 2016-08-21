@@ -5,7 +5,7 @@
   (set-frame-size (selected-frame) 100 60))
 
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
-  (set-frame-font "Bitstream Vera Sans Mono")
+  (set-frame-font "Hack-10")
   (set-face-attribute 'default nil :height 105)
   (set-frame-size (selected-frame) 93 64))
 
