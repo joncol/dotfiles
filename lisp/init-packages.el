@@ -22,6 +22,7 @@
          assemblage-theme
          ag
          auto-complete
+         avy
          better-defaults
          borland-blue-theme
          cherry-blossom-theme

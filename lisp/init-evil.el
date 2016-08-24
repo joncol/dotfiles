@@ -156,11 +156,11 @@
 
 (define-key projectile-command-map (kbd "s a") #'helm-ag-project-root)
 
-;;; ace-jump
-(evil-leader/set-key "f" 'ace-jump-char-mode)
-(evil-leader/set-key "#" 'ace-jump-line-mode)
-(evil-leader/set-key "F" 'ace-jump-mode)
-(evil-leader/set-key "SPC" 'ace-jump-mode)
+;;; avy
+(evil-leader/set-key "f" 'evil-avy-goto-char)
+(evil-leader/set-key "#" 'evil-avy-goto-line)
+(evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
+(evil-leader/set-key "SPC" 'evil-avy-goto-word-or-subword-1)
 
 (evil-leader/set-key "x f" 'jco/xmllint-format-buffer)
 
