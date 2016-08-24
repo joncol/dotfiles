@@ -9,6 +9,10 @@
       (load-theme theme t)
 
       (case theme
+        ('gotham
+         (set-face-background 'evil-search-highlight-persist-highlight-face
+                              "RoyalBlue4"))
+
         ('material
          (set-face-background 'hl-line "#37474f")
          (set-face-foreground 'minibuffer-prompt "#263238"))
