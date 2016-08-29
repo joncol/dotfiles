@@ -2,7 +2,7 @@
     (nyan-mode)
   (load-theme 'airline-powerlineish t)) ;;; airline is too slow on Mac OS X
 
-(setq jco/cursor-color "lightblue")
+(setq jco/cursor-color "green")
 
 (if (display-graphic-p)
     (let ((theme 'gotham)) ;;; change this to whatever theme you want
@@ -10,6 +10,7 @@
 
       (case theme
         ('gotham
+         (setq jco/cursor-color "lightblue")
          (set-face-background 'evil-search-highlight-persist-highlight-face
                               "RoyalBlue4"))
 
