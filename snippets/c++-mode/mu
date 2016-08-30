@@ -2,4 +2,4 @@
 # name: make_unique
 # key: mu
 # --
-std::make_unique<$1>($2)
+std::make_unique<`yas/selected-text`$0>
