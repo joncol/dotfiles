@@ -49,6 +49,7 @@
 (electric-pair-mode)
 (rainbow-mode)
 (global-linum-mode)
+(global-subword-mode)
 
 (when (display-graphic-p)
   (global-hl-line-mode)
