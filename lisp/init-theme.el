@@ -12,7 +12,8 @@
         ('gotham
          (setq jco/cursor-color "lightblue")
          (set-face-background 'evil-search-highlight-persist-highlight-face
-                              "RoyalBlue4"))
+                              "RoyalBlue4")
+         (set-face-foreground 'minibuffer-prompt "#263238"))
 
         ('material
          (set-face-background 'hl-line "#37474f")
