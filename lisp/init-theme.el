@@ -28,7 +28,8 @@
 
         ('organic-green
          (setq jco/cursor-color "gray25")
-         (set-face-background 'helm-selection "#a0f0a0"))
+         (set-face-background 'helm-selection "#a0f0a0")
+         (set-face-background 'show-paren-match "#c0c060"))
 
         ('soothe
          (require 'linum)
