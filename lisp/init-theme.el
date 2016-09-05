@@ -1,3 +1,5 @@
+(setq jco/theme 'organic-green) ;;; change this to whatever theme you want
+
 (if (eq system-type 'darwin)
     (nyan-mode)
   (load-theme 'airline-powerlineish t)) ;;; airline is too slow on Mac OS X
@@ -5,10 +7,10 @@
 (setq jco/cursor-color "green")
 
 (if (display-graphic-p)
-    (let ((theme 'gotham)) ;;; change this to whatever theme you want
-      (load-theme theme t)
+    (progn
+      (load-theme jco/theme t)
 
-      (case theme
+      (case jco/theme
         ('gotham
          (setq jco/cursor-color "lightblue")
          (set-face-background 'evil-search-highlight-persist-highlight-face
