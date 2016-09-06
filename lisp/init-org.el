@@ -39,9 +39,11 @@
 (setq org-use-fast-todo-selection t)
 (setq org-capture-templates
       '(("t" "Task" entry (file+headline "work.org" "Tasks")
-         "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n")
+         "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+         :empty-lines-before 1)
         ("n" "Note" entry (file+headline "notes.org" "Notes")
-         "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n")))
+         "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+         :empty-lines-before 1)))
 
 (setq org-log-into-drawer t)
 
