@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Center in parent
+# key: c
+# --
+anchors.centerIn: parent
