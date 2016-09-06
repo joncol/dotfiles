@@ -50,6 +50,7 @@
 (rainbow-mode)
 (global-linum-mode)
 (global-subword-mode)
+(setq helm-gtags-path-style 'absolute)
 
 (when (display-graphic-p)
   (global-hl-line-mode)
