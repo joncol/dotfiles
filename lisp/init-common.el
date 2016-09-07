@@ -84,6 +84,7 @@
 (setq inhibit-startup-message t)
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
+(setq scroll-margin 4)
 
 (load-library "iso-transl")
 (setq system-time-locale "C")
