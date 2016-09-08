@@ -1,4 +1,4 @@
-(setq jco/theme 'molokai) ;;; change this to whatever theme you want
+(setq jco/theme 'material) ;;; change this to whatever theme you want
 
 (if (eq system-type 'darwin)
     (nyan-mode)
@@ -19,7 +19,8 @@
 
         ('material
          (set-face-background 'hl-line "#37474f")
-         (set-face-foreground 'minibuffer-prompt "#263238"))
+         (set-face-foreground 'minibuffer-prompt "#263238")
+         (set-face-background 'org-todo "#401010"))
 
         ('molokai
          (set-face-foreground 'font-lock-comment-face "azure4")
