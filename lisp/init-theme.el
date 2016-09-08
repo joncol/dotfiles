@@ -1,4 +1,4 @@
-(setq jco/theme 'organic-green) ;;; change this to whatever theme you want
+(setq jco/theme 'molokai) ;;; change this to whatever theme you want
 
 (if (eq system-type 'darwin)
     (nyan-mode)
@@ -24,7 +24,8 @@
         ('molokai
          (set-face-foreground 'font-lock-comment-face "azure4")
          (set-face-background
-          'evil-search-highlight-persist-highlight-face "RoyalBlue4"))
+          'evil-search-highlight-persist-highlight-face "RoyalBlue4")
+         (set-face-foreground 'minibuffer-prompt "#263238"))
 
         ('organic-green
          (setq jco/cursor-color "gray25")
