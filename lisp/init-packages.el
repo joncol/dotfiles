@@ -66,6 +66,8 @@
          ggtags
          ghci-completion
          glsl-mode
+         gnuplot
+         gnuplot-mode
          go-snippets
          gotham-theme
          goto-chg
