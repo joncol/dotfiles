@@ -1,4 +1,4 @@
-(setq jco/theme 'material) ;;; change this to whatever theme you want
+(setq jco/theme 'organic-green) ;;; change this to whatever theme you want
 
 (if (eq system-type 'darwin)
     (nyan-mode)
