@@ -121,9 +121,6 @@
 (recentf-mode)
 (setq recentf-max-menu-items 25)
 
-(require 'omnisharp)
-(setq omnisharp-company-do-template-completion t)
-
 (setq fortune-dir "/usr/share/games/fortunes")
 (setq fortune-file "/usr/share/games/fortunes")
 
@@ -138,8 +135,6 @@
   (windmove-default-keybindings))
 
 (setq compilation-scroll-output t)
-
-(setq large-file-warning-threshold nil)
 
 (volatile-highlights-mode t)
 

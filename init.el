@@ -14,4 +14,5 @@
 (custom-set-variables
  '(ecb-options-version "2.40")
  '(safe-local-variable-values '((org-archive-location . "::* Archived Tasks")))
- '(send-mail-function (quote smtpmail-send-it)))
+ '(send-mail-function (quote smtpmail-send-it))
+ '(large-file-warning-threshold nil))
