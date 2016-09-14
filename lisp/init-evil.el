@@ -165,6 +165,9 @@
 
 (evil-leader/set-key "x f" 'jco/xmllint-format-buffer)
 
+(evil-leader/set-key "n" 'narrow-to-defun)
+(evil-leader/set-key "w" 'widen)
+
 ;;; yasnippet
 (evil-leader/set-key "TAB" 'yas-insert-snippet)
 
