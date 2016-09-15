@@ -1,7 +1,7 @@
 (require 'semantic/bovine/gcc)
-
 (add-hook 'c-mode-common-hook
           (lambda ()
+            (add-hook 'semantic-init-hooks 'semantic-reset-system-include)
             (semantic-mode 1)
             (setq-default backward-delete-function nil)
             (c-add-style "my-c-style"
