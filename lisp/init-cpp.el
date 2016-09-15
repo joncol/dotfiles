@@ -43,13 +43,18 @@
 (add-hook 'c++-mode-hook
           (lambda ()
             (setq compile-command
-                  (if (jco/at-office-p)
-                      (concat "cd " (projectile-project-root)
-                              "../_build_vs && cmake --build .")
-                    (concat "cd " (projectile-project-root)
-                            "../_build ;and cmake --build . ;and ctest")))
+                  (case system-name
+                    ("JCO-LAPTOP"
+                     (concat "cd " (projectile-project-root)
+                             "../_build_vs && cmake --build . -- -j4"))
+                    (t
+                     (concat "cd " (projectile-project-root)
+                             "../_build ;and cmake --build . -- -j4"
+                             " ;and ctest"))))
+
             (jco/define-bindings c++-mode-map
                                  '(("<f6>" . compile)))
+
             (c-set-offset 'innamespace 0)
             (c-set-offset 'label '-)
             (fix-enum-class)))
