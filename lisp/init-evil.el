@@ -168,6 +168,14 @@
 (evil-leader/set-key "n" 'narrow-to-defun)
 (evil-leader/set-key "w" 'widen)
 
+(evil-leader/set-key "i n" '(lambda ()
+                              (interactive)
+                              (insert user-full-name)))
+
+(evil-leader/set-key "i m" '(lambda ()
+                              (interactive)
+                              (insert user-mail-address)))
+
 ;;; yasnippet
 (evil-leader/set-key "TAB" 'yas-insert-snippet)
 
