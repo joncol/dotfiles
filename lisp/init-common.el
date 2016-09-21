@@ -26,6 +26,16 @@
                   (interactive)
                   (kill-new (buffer-file-name))))
 
+(global-set-key (kbd "<f8>")
+                (lambda ()
+                  (interactive)
+                  (insert user-full-name)))
+
+(global-set-key (kbd "S-<f8>")
+                (lambda ()
+                  (interactive)
+                  (insert user-mail-address)))
+
 (lexical-let ((init-file (concat user-emacs-directory "init.el")))
   (global-set-key (kbd "<f9>")
                   (lambda ()
