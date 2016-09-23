@@ -40,6 +40,7 @@ Plugin 'ervandew/supertab'
 Plugin 'fatih/vim-go'
 Plugin 'honza/vim-snippets'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'itchyny/vim-haskell-indent'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'jonathanfilip/vim-lucius'
@@ -744,7 +745,7 @@ endif
 if has("gui_running")             " 'guifont' doesn't work in the console
   if has("gui_macvim")
     set transparency=0
-    set guifont=Inconsolata:h14
+    set guifont=Hack:h14
 
     let b:screen_height = system("osascript -e 'tell application \"Finder\" to get bounds of window of desktop' | cut -d ' ' -f 4")
     if b:screen_height > 900
@@ -759,9 +760,9 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     set lines=60
 
     if has("gui_gtk2")              " GTK+2 but not GTK+1
-      set guifont=Inconsolata\ 12
+      set guifont=Hack\ 10.5
     else                            " non-X11 GUIs (Windows, Carbon, ...)
-      set guifont=Inconsolata:h12
+      set guifont=Hack:h11
     endif
 
     if s:uname == "Windows"
