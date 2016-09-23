@@ -63,8 +63,7 @@
 (setq evil-flash-delay 3600)
 
 (defun run-on-current-buffer (program &rest args)
-  (let ((all-args (-snoc args (buffer-file-name))))
-    (apply (-partial 'start-process program nil program) all-args)))
+  (apply 'start-process program nil program (append args (list (buffer-name)))))
 
 (evil-leader/set-key "t a"
   (lambda ()
