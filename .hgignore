@@ -8,6 +8,7 @@
 ^tags$
 ^TAGS$
 ^srecode-map\.el$
+network-security\.data
 
 bin/
 build/

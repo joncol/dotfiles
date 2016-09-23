@@ -1,4 +1,4 @@
-(package-initialize)
+;; (package-initialize)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (defvar jco/init-errors nil
