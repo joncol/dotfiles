@@ -6,8 +6,6 @@
         ("marmalade" . "https://marmalade-repo.org/packages/")
         ("org" . "http://orgmode.org/elpa/")))
 
-(package-initialize)
-
 (unless (package-installed-p 'yasnippet)
   (package-refresh-contents))
 
