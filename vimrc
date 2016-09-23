@@ -219,6 +219,12 @@ nnoremap <C-x><C-c> :qa<cr>
 
 autocmd VimEnter * wincmd p
 
+" easy window navigation
+nmap <silent> <S-Up> :wincmd k<CR>
+nmap <silent> <S-Down> :wincmd j<CR>
+nmap <silent> <S-Left> :wincmd h<CR>
+nmap <silent> <S-Right> :wincmd l<CR>
+
 let g:vim_json_syntax_conceal = 0
 let g:haskell_conceal = 0
 let g:haskell_conceal_enumerations = 0
