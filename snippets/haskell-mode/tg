@@ -6,5 +6,5 @@
 ${1:name}Tests :: TestTree
 $1Tests = testGroup "$1 tests"
   [ testCase "${2:First test}" $
-      2 + 2 @?= 4
+      ${3:actual} @?= ${4:expected}
   ]
