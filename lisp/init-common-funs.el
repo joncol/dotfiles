@@ -93,4 +93,11 @@
          (rest-str (substring string 1)))
      (concat (capitalize first-char) rest-str))))
 
+(defun jco/camelCaseToSentence (text)
+  "Convert `helloWorld` to `Hello world`"
+  (interactive)
+  (let* ((snake (string-inflection-underscore-function text))
+         (words (replace-regexp-in-string "_" " " snake)))
+    (jco/capitalize-first-char words)))
+
 (provide 'init-common-funs)
