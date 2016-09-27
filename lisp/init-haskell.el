@@ -15,7 +15,7 @@
             (haskell-doc-mode)
 
             (hindent-mode)
-            (haskell-indentation-mode)
+            ;; (haskell-indentation-mode)
 
             (global-unset-key [tab])
             (local-set-key [tab] (lambda ()
