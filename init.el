@@ -48,3 +48,5 @@
  '(safe-local-variable-values (quote ((org-archive-location
                                        . "::* Archived Tasks"))))
  '(send-mail-function (quote smtpmail-send-it)))
+
+(put 'narrow-to-region 'disabled nil)
