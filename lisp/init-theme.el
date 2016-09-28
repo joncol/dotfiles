@@ -1,5 +1,7 @@
 (setq jco/theme 'organic-green) ;;; change this to whatever theme you want
 
+(require 'airline-themes)
+
 (if (eq system-type 'darwin)
     (nyan-mode)
   (load-theme 'airline-powerlineish t)) ;;; airline is too slow on Mac OS X
