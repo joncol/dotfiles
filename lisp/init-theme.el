@@ -1,4 +1,4 @@
-(setq jco/theme 'organic-green) ;;; change this to whatever theme you want
+(setq jco/theme 'doom-molokai) ;;; change this to whatever theme you want
 
 (require 'airline-themes)
 
@@ -13,6 +13,9 @@
       (load-theme jco/theme t)
 
       (case jco/theme
+        ('doom-molokai
+         (set-face-foreground 'minibuffer-prompt "#263238"))
+
         ('gotham
          (setq jco/cursor-color "lightblue")
          (set-face-background 'evil-search-highlight-persist-highlight-face

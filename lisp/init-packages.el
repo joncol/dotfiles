@@ -41,6 +41,7 @@
          cyberpunk-theme
          darktooth-theme
          dash
+         doom-themes
          dirtree
          ecb
          edit-server
