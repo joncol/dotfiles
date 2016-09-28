@@ -35,7 +35,7 @@
 
             (define-key yas-minor-mode-map (kbd "TAB") nil)
             ;; (define-key evil-motion-state-map (kbd "RET") nil)
-            (define-key evil-normal-state-map (kbd "M-.") nil)))
+            ))
 
 (eval-after-load 'haskell-mode
   '(jco/define-bindings haskell-mode-map
