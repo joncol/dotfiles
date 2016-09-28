@@ -43,6 +43,7 @@
          dash
          doom-themes
          dirtree
+         ebal
          ecb
          edit-server
          epl
@@ -79,6 +80,7 @@
          gruvbox-theme
          guide-key
          haskell-mode
+         haskell-snippets
          helm
          helm-ag
          helm-company

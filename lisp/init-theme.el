@@ -15,7 +15,8 @@
       (case jco/theme
         ('doom-molokai
          (set-face-foreground 'minibuffer-prompt "#263238")
-         (set-face-background 'ecb-tag-header-face "OrangeRed4"))
+         ;; (set-face-background 'ecb-tag-header-face "OrangeRed4")
+         )
 
         ('gotham
          (setq jco/cursor-color "lightblue")

@@ -35,7 +35,10 @@
 
             (define-key yas-minor-mode-map (kbd "TAB") nil)
             ;; (define-key evil-motion-state-map (kbd "RET") nil)
-            ))
+
+            (setq ebal-operation-mode 'stack)
+            (evil-leader/set-key "e i" 'ebal-init)
+            (evil-leader/set-key "e e" 'ebal-execute)))
 
 (eval-after-load 'haskell-mode
   '(jco/define-bindings haskell-mode-map
