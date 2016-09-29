@@ -1,4 +1,4 @@
-(setq jco/theme 'doom-molokai) ;;; change this to whatever theme you want
+(setq jco/theme 'doom-one) ;;; change this to whatever theme you want
 
 (require 'airline-themes)
 
