@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anchor bottomMargin
+# key: abm
+# --
+anchors.bottomMargin: ${1:parent}
