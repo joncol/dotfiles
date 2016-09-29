@@ -1,4 +1,4 @@
-(setq jco/theme 'doom-one) ;;; change this to whatever theme you want
+(setq jco/theme 'molokai) ;;; change this to whatever theme you want
 
 (require 'airline-themes)
 
@@ -13,27 +13,20 @@
       (load-theme jco/theme t)
 
       (case jco/theme
-        ('doom-molokai
-         (set-face-foreground 'minibuffer-prompt "#263238")
-         ;; (set-face-background 'ecb-tag-header-face "OrangeRed4")
-         )
-
         ('gotham
          (setq jco/cursor-color "lightblue")
          (set-face-background 'evil-search-highlight-persist-highlight-face
-                              "RoyalBlue4")
-         (set-face-foreground 'minibuffer-prompt "#263238"))
+                              "RoyalBlue4"))
 
         ('material
          (set-face-background 'hl-line "#37474f")
-         (set-face-foreground 'minibuffer-prompt "#263238")
          (set-face-background 'org-todo "#401010"))
 
         ('molokai
          (set-face-foreground 'font-lock-comment-face "azure4")
          (set-face-background
           'evil-search-highlight-persist-highlight-face "RoyalBlue4")
-         (set-face-foreground 'minibuffer-prompt "#263238"))
+         )
 
         ('organic-green
          (setq jco/cursor-color "gray25")
@@ -42,7 +35,9 @@
 
         ('soothe
          (require 'linum)
-         (set-face-foreground 'linum "gray35"))))
+         (set-face-foreground 'linum "gray35")))
+
+      (set-face-foreground 'minibuffer-prompt "#263238"))
 
   (load-theme 'cyberpunk t))
 

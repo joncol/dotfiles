@@ -33,6 +33,7 @@
     init-latex
     init-lisp
     init-lua
+    init-macros
     init-markdown
     init-nsis
     init-nxml
