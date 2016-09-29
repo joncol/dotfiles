@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anchor verticalCenter
+# key: avc
+# --
+anchors.verticalCenter: ${1:parent}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anchor left
+# key: al
+# --
+anchors.left: ${1:parent}
