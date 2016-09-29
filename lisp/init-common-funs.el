@@ -93,14 +93,14 @@
          (rest-str (substring string 1)))
      (concat (capitalize first-char) rest-str))))
 
-(defun jco/camelCaseToSentence (text)
+(defun jco/camel-case-to-sentence (text)
   "Convert `helloWorld` to `Hello world`"
   (interactive)
   (let* ((snake (string-inflection-underscore-function text))
          (words (replace-regexp-in-string "_" " " snake)))
     (jco/capitalize-first-char words)))
 
-(defun jco/insertClassName ()
+(defun jco/insert-class-name ()
   "Return the class name corresponding to the name of the current buffer"
   (interactive)
   (let* ((base-name (file-name-base buffer-file-name))
