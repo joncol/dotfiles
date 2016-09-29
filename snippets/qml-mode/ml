@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Margin left
+# key: ml
+# --
+marginLeft: $1

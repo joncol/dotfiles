@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Margin right
+# key: mr
+# --
+marginRight: $1
