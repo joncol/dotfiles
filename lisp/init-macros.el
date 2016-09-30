@@ -14,8 +14,12 @@
 (fset 'jco/def-to-decl
    [?2 ?f ?: ?l ?d ?B ?/ ?\) return ?A ?\; ?k ?j ?0 ?\C-x ?\ ])
 
+(fset 'jco/make-const-ref
+   "iconst kjEi&kj")
+
 (evil-leader/set-key "q i" 'jco/fix-constr-destr)
 (evil-leader/set-key "q d" 'jco/decl-to-def)
 (evil-leader/set-key "q D" 'jco/def-to-decl)
+(evil-leader/set-key "q c" 'jco/make-const-ref)
 
 (provide 'init-macros)
