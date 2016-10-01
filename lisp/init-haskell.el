@@ -1,8 +1,12 @@
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+
 (defun set-yasnippet-fixed-indent ()
   (setq-local yas-indent-line 'fixed))
 
 (add-hook 'haskell-mode-hook
           (lambda ()
+            (ghc-init)
             (subword-mode -1)
 
             (setq haskell-interactive-popup-errors nil)
@@ -10,17 +14,17 @@
             (setq haskell-process-log t)
             (setq haskell-process-suggest-remove-import-lines t)
             (setq haskell-process-type 'auto)
-            ;; (setq haskell-tags-on-save t)
+            (setq haskell-tags-on-save t)
 
             (haskell-doc-mode)
 
             (hindent-mode)
             ;; (haskell-indentation-mode)
 
-            (global-unset-key [tab])
-            (local-set-key [tab] (lambda ()
-                                   (interactive)
-                                   (tab-indent-or-complete 1)))
+            ;; (global-unset-key [tab])
+            ;; (local-set-key [tab] (lambda ()
+            ;;                        (interactive)
+            ;;                        (tab-indent-or-complete 1)))
             (setq tab-stop-list
                   (loop for i from 0 upto 120 by 2 collect i))
             (setq evil-shift-width 2)
@@ -31,9 +35,10 @@
             ;; (define-key global-map (kbd "RET") 'newline-and-indent-relative)
             (add-to-list 'company-backends 'company-cabal)
             (add-to-list 'company-backends 'company-ghc)
+            (add-to-list 'company-backends 'company-dabbrev-code)
             (setq company-ghc-show-info t)
 
-            (define-key yas-minor-mode-map (kbd "TAB") nil)
+            ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
             ;; (define-key evil-motion-state-map (kbd "RET") nil)
 
             (setq ebal-operation-mode 'stack)

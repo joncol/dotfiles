@@ -124,8 +124,9 @@
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize))
 
-(setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
-(setq exec-path (append exec-path '("~/.local/bin")))
+(let ((my-bin-path (expand-file-name "~/.local/bin")))
+  (setenv "PATH" (concat (getenv "PATH") ":" my-bin-path))
+  (add-to-list 'exec-path my-bin-path))
 
 (setq cider-show-error-buffer 'nil)
 (setq ecb-tip-of-the-day nil)
