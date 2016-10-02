@@ -7,11 +7,11 @@
 (add-hook 'haskell-mode-hook
           (lambda ()
             (let* ((paths (split-string (shell-command-to-string
-                                         "stack path --bin-path 2> /dev/null")
+                                         "stack path --local-install-root 2> /dev/null")
                                         path-separator))
-                   (my-bin-path (car paths)))
-              (setenv "PATH" (concat (getenv "PATH") ":" my-bin-path))
-              (add-to-list 'exec-path my-bin-path))
+                   (bin-path (concat (string-trim-right (car paths)) "/bin")))
+              (setenv "PATH" (concat bin-path ":" (getenv "PATH")))
+              (add-to-list 'exec-path bin-path))
 
             (ghc-init)
             (subword-mode -1)
