@@ -6,7 +6,7 @@
 
 (add-hook 'haskell-mode-hook
           (lambda ()
-            (ghc-init)
+            ;; (ghc-init)
             (subword-mode -1)
 
             (setq haskell-interactive-popup-errors nil)
