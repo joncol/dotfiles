@@ -651,7 +651,7 @@ endif
 if !exists("*HgOpenDiff")
   fun HgOpenDiff()
     if has("unix")
-      execute '!hg opendiff %'
+      execute '!thg vdiff %'
     else
       execute '!start thg vdiff %'
     endif
