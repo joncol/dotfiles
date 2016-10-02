@@ -50,29 +50,28 @@
 
             (setq ebal-operation-mode 'stack)
             (evil-leader/set-key "e i" 'ebal-init)
-            (evil-leader/set-key "e e" 'ebal-execute)))
+            (evil-leader/set-key "e e" 'ebal-execute)
 
-(eval-after-load 'haskell-mode
-  '(jco/define-bindings haskell-mode-map
-                        '(("<f8>" . haskell-navigate-imports)
-                          ("S-<f8>" . haskell-sort-imports)
-                          ("C-c C-a" . haskell-align-imports)
-                          ("C-c C-l" . haskell-process-load-file)
-                          ("C-c C-z" . haskell-interactive-switch)
-                          ("C-c C-n C-t" . haskell-process-do-type)
-                          ("C-c C-n C-i" . haskell-process-do-info)
-                          ("C-c C-n C-c" . haskell-process-cabal-build)
-                          ("C-c C-n c" . haskell-process-cabal)
-                          ("C-c C-o" . haskell-compile)
-                          ("C-c C-k" . haskell-interactive-mode-clear))))
+            (jco/define-bindings
+             haskell-mode-map
+             '(("<f8>" . haskell-navigate-imports)
+               ("S-<f8>" . haskell-sort-imports)
+               ("C-c C-a" . haskell-align-imports)
+               ("C-c C-l" . haskell-process-load-file)
+               ("C-c C-z" . haskell-interactive-switch)
+               ("C-c C-n C-t" . haskell-process-do-type)
+               ("C-c C-n C-i" . haskell-process-do-info)
+               ("C-c C-n C-c" . haskell-process-cabal-build)
+               ("C-c C-n c" . haskell-process-cabal)
+               ("C-c C-o" . haskell-compile)
+               ("C-c C-k" . haskell-interactive-mode-clear)))
 
-
-(eval-after-load 'haskell-cabal
-  '(jco/define-bindings haskell-cabal-mode-map
-                        '(("C-c C-z" . haskell-interactive-switch)
-                          ("C-c C-k" . haskell-interactive-mode-clear)
-                          ("C-c C-c" . haskell-process-cabal-build)
-                          ("C-c c" . haskell-process-cabal)
-                          ("C-c C-o" . haskell-compile))))
+            (jco/define-bindings
+             haskell-cabal-mode-map
+             '(("C-c C-z" . haskell-interactive-switch)
+               ("C-c C-k" . haskell-interactive-mode-clear)
+               ("C-c C-c" . haskell-process-cabal-build)
+               ("C-c c" . haskell-process-cabal)
+               ("C-c C-o" . haskell-compile)))))
 
 (provide 'init-haskell)
