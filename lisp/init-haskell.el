@@ -6,7 +6,14 @@
 
 (add-hook 'haskell-mode-hook
           (lambda ()
-            ;; (ghc-init)
+            (let* ((paths (split-string (shell-command-to-string
+                                         "stack path --bin-path 2> /dev/null")
+                                        path-separator))
+                   (my-bin-path (car paths)))
+              (setenv "PATH" (concat (getenv "PATH") ":" my-bin-path))
+              (add-to-list 'exec-path my-bin-path))
+
+            (ghc-init)
             (subword-mode -1)
 
             (setq haskell-interactive-popup-errors nil)
