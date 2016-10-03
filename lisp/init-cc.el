@@ -26,6 +26,8 @@
                                      ("C-c t u" . ggtags-update-tags)
                                      ("M-," . pop-tag-mark))))
 
+            (add-to-list 'company-backends 'company-dabbrev-code)
+
             (dolist (mode '(global-semanticdb-minor-mode
                             global-semantic-idle-scheduler-mode
                             global-semantic-idle-summary-mode))
