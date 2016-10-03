@@ -21,7 +21,7 @@
             (setq haskell-process-log t)
             (setq haskell-process-suggest-remove-import-lines t)
             (setq haskell-process-type 'auto)
-            (setq haskell-tags-on-save t)
+            ;; (setq haskell-tags-on-save t) ;; doesn't work for Fish
 
             (haskell-doc-mode)
 
