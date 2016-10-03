@@ -768,7 +768,7 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     if has("gui_gtk2")              " GTK+2 but not GTK+1
       set guifont=Hack\ 10.5
     else                            " non-X11 GUIs (Windows, Carbon, ...)
-      set guifont=Hack:h11
+      set guifont=Inconsolata:h12
     endif
 
     if s:uname == "Windows"
