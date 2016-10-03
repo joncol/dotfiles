@@ -2,4 +2,4 @@
 # name: const QString&
 # key: cqs
 # --
-const QString& $1
+const QString&$1
