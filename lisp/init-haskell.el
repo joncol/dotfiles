@@ -42,7 +42,6 @@
             ;; (define-key global-map (kbd "RET") 'newline-and-indent-relative)
             (add-to-list 'company-backends 'company-cabal)
             (add-to-list 'company-backends 'company-ghc)
-            (add-to-list 'company-backends 'company-dabbrev-code)
             (setq company-ghc-show-info t)
 
             ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
