@@ -38,12 +38,12 @@
 ;; (setq org-refile-use-outline-path t)
 (setq org-use-fast-todo-selection t)
 (setq org-capture-templates
-      '(("t" "Task" entry (file+headline "work.org" "Tasks")
+      '(("t" "Task" entry (file+headline "work.org" "_Incoming")
          "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
-         :empty-lines-before 1)
+         :empty-lines-before 0)
         ("n" "Note" entry (file+headline "notes.org" "Notes")
          "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
-         :empty-lines-before 1)))
+         :empty-lines-before 0)))
 
 (setq org-log-into-drawer t)
 
