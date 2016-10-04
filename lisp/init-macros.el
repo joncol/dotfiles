@@ -1,5 +1,5 @@
-(fset 'jco/paste-over-word
-   "viw\"0p")
+(fset 'jco/paste-over
+   "\"0p")
 
 (fset 'jco/fix-constr-destr
    [?V ?j ?= ?\M-x ?j ?c ?o ?/ ?i ?n ?s ?e ?r ?t ?- ?c ?l ?a ?s ?s ?- ?n ?a ?m
@@ -21,6 +21,6 @@
 (fset 'jco/make-const-ref
    "iconst kjEi&kj")
 
-(evil-leader/set-key "p" 'jco/paste-over-word)
+(evil-leader/set-key "p" 'jco/paste-over)
 
 (provide 'init-macros)
