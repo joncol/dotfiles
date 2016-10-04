@@ -1,3 +1,6 @@
+(fset 'jco/paste-over-word
+   "viw\"0p")
+
 (fset 'jco/fix-constr-destr
    [?V ?j ?= ?\M-x ?j ?c ?o ?/ ?i ?n ?s ?e ?r ?t ?- ?c ?l ?a ?s ?s ?- ?n ?a ?m
        ?e return ?i ?: ?: ?k ?j ?f ?\( ?l ?\" ?t ?y ?i ?w ?f ?= ?h ?d ?t ?\) ?l
@@ -18,9 +21,6 @@
 (fset 'jco/make-const-ref
    "iconst kjEi&kj")
 
-(evil-leader/set-key "q i" 'jco/fix-constr-destr)
-(evil-leader/set-key "q d" 'jco/decl-to-def)
-(evil-leader/set-key "q D" 'jco/def-to-decl)
-(evil-leader/set-key "q c" 'jco/make-const-ref)
+(evil-leader/set-key "p" 'jco/paste-over-word)
 
 (provide 'init-macros)

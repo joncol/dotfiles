@@ -43,6 +43,11 @@
                 (interactive)
                 (ff-find-other-file t t)))
 
+            (evil-leader/set-key "q i" 'jco/fix-constr-destr)
+            (evil-leader/set-key "q d" 'jco/decl-to-def)
+            (evil-leader/set-key "q D" 'jco/def-to-decl)
+            (evil-leader/set-key "q c" 'jco/make-const-ref)
+
             (defadvice semantic-symref (around no-confirmation activate)
               (flet  ((yes-or-no-p (&rest args) t)
                       (y-or-n-p (&rest args) t))
