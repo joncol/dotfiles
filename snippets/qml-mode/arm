@@ -2,4 +2,4 @@
 # name: Anchor rightMargin
 # key: arm
 # --
-anchors.rightMargin: ${1:parent}
+anchors.rightMargin: $1

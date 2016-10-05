@@ -2,4 +2,4 @@
 # name: Anchor leftMargin
 # key: alm
 # --
-anchors.leftMargin: ${1:parent}
+anchors.leftMargin: $1

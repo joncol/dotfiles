@@ -2,4 +2,4 @@
 # name: Anchor topMargin
 # key: atm
 # --
-anchors.topMargin: ${1:parent}
+anchors.topMargin: $1

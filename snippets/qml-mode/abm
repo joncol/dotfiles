@@ -2,4 +2,4 @@
 # name: Anchor bottomMargin
 # key: abm
 # --
-anchors.bottomMargin: ${1:parent}
+anchors.bottomMargin: $1
