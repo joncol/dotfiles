@@ -37,7 +37,8 @@
          (require 'linum)
          (set-face-foreground 'linum "gray35")))
 
-      (set-face-foreground 'minibuffer-prompt "#263238"))
+      (set-face-foreground 'minibuffer-prompt "#263238")
+      (set-face-background 'minibuffer-prompt "#afd700"))
 
   (load-theme 'cyberpunk t))
 
