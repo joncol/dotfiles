@@ -28,7 +28,7 @@
 (setq org-todo-keyword-faces
       '(("TODO" . "deep pink")
         ("IN_PROGRESS" . "orange")
-        ("NEXT" . "orange")
+        ("NEXT" . "green2")
         ("WAITING" . "purple")
         ("MAYBE" . "gray60")))
 (setq org-agenda-files (concat org-directory "/agenda-files"))
