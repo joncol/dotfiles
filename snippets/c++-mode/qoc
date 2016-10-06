@@ -2,11 +2,11 @@
 # name: QObject class
 # key: qoc
 # --
-class ${1:`(jco/class-name)`} : public QObject
+class ${1:`(jco/class-name)`} : public ${2:QObject}
 {
     Q_OBJECT
 
 public:
-    ${1:$(yas/substr yas-text "[^: ]*")}(QObject* parent = nullptr);
-    ${2:virtual ~${1:$(yas/substr yas-text "[^: ]*")}();}
+    ${1:$(yas/substr yas-text "[^: ]*")}($2* parent = nullptr);
+    ${3:virtual ~${1:$(yas/substr yas-text "[^: ]*")}();}
 };
