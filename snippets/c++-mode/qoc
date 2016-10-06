@@ -2,7 +2,7 @@
 # name: QObject class
 # key: qoc
 # --
-class ${1:name} : public QObject
+class ${1:`(jco/class-name)`} : public QObject
 {
     Q_OBJECT
 
