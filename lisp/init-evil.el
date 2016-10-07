@@ -98,6 +98,11 @@
 (evil-leader/set-key "t s"
   (lambda ()
     (interactive)
+    (run-process "thg" "st")))
+
+(evil-leader/set-key "t S"
+  (lambda ()
+    (interactive)
     (run-on-current-buffer "thg" "shelve")))
 
 (evil-leader/set-key
