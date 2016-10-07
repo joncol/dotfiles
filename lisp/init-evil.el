@@ -62,6 +62,9 @@
 
 (setq evil-flash-delay 3600)
 
+(defun run-process (program &rest args)
+  (apply 'start-process program nil program args))
+
 (defun run-on-current-buffer (program &rest args)
   (apply 'start-process program nil program (append args (list (buffer-name)))))
 
@@ -71,6 +74,11 @@
     (run-on-current-buffer "thg" "annotate")))
 
 (evil-leader/set-key "t c"
+  (lambda ()
+    (interactive)
+    (run-process "thg" "ci")))
+
+(evil-leader/set-key "t C"
   (lambda ()
     (interactive)
     (run-on-current-buffer "thg" "ci")))
