@@ -70,6 +70,11 @@
     (interactive)
     (run-on-current-buffer "thg" "annotate")))
 
+(evil-leader/set-key "t c"
+  (lambda ()
+    (interactive)
+    (run-on-current-buffer "thg" "ci")))
+
 (evil-leader/set-key "t l"
   (lambda ()
     (interactive)
