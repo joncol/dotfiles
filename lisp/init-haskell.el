@@ -37,7 +37,6 @@
             (setq evil-shift-width 2)
             (set-yasnippet-fixed-indent)
 
-            (company-mode)
             ;; (define-key haskell-indentation-mode-map (kbd "RET") nil)
             ;; (define-key global-map (kbd "RET") 'newline-and-indent-relative)
             (add-to-list 'company-backends 'company-cabal)
