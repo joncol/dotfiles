@@ -50,6 +50,7 @@
             (setq ebal-operation-mode 'stack)
             (evil-leader/set-key "e i" 'ebal-init)
             (evil-leader/set-key "e e" 'ebal-execute)
+            (evil-leader/set-key "q a" 'jco/align-last-eq)
 
             (jco/define-bindings
              haskell-mode-map
