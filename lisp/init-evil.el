@@ -194,6 +194,8 @@
                               (interactive)
                               (insert user-mail-address)))
 
+(evil-leader/set-key "m m" 'mu4e)
+
 ;;; yasnippet
 (evil-leader/set-key "TAB" 'yas-insert-snippet)
 
