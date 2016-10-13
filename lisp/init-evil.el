@@ -10,6 +10,7 @@
             (dolist (mode-map '((ag-mode . emacs)
                                 (comint-mode . emacs)
                                 (diff-mode . emacs)
+                                (dired-mode . emacs)
                                 (eshell-mode . emacs)
                                 (eww-mode . emacs)
                                 (git-commit-mode . insert)
