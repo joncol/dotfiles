@@ -6,6 +6,9 @@
   (setq mu4e-get-mail-command "offlineimap")
   (setq mu4e-update-interval 120)
   (setq mu4e-sent-messages-behavior 'delete)
+  (setq mu4e-html2text-command "w3m -T text/html")
+  (setq mu4e-view-show-images t)
+  (setq mu4e-view-show-addresses t)
 
   (defun jco/smtp-server ()
     (cond ((or (s-contains? "gmail.com" user-mail-address)
@@ -25,12 +28,6 @@
   (setq message-send-mail-function 'jco/my-send-it
         starttls-use-gnutls t
         smtpmail-smtp-service 587)
-
-  ;; (setq message-send-mail-function 'smtpmail-send-it
-  ;;     smtpmail-stream-type 'starttls
-  ;;     smtpmail-default-smtp-server "smtp.kolabnow.com"
-  ;;     smtpmail-smtp-server "smtp.kolabnow.com"
-  ;;     smtpmail-smtp-service 587)
 
   ;; don't keep message buffers around
   (setq message-kill-buffer-on-exit t)
