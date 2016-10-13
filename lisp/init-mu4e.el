@@ -8,6 +8,8 @@
 (setq mu4e-sent-folder   "/Sent")
 (setq mu4e-trash-folder  "/Trash")
 
+(setq mu4e-update-interval 120)
+
 ;; don't save message to Sent Messages, Mykolab/IMAP takes care of this
 (setq mu4e-sent-messages-behavior 'delete)
 
@@ -57,5 +59,43 @@
 
 ;; don't keep message buffers around
 (setq message-kill-buffer-on-exit t)
+
+(setq mu4e-contexts
+      `( ,(make-mu4e-context
+           :name "Private"
+           :enter-func (lambda ()
+                         (mu4e-message "Switch to the Private context"))
+           ;; leave-func not defined
+           :match-func (lambda (msg)
+                         (when msg
+                           (mu4e-message-contact-field-matches
+                            msg :to "jonas.collberg@mykolab.com")))
+           :vars '((user-mail-address . "jonas.collberg@mykolab.com"  )
+                   ;; (mu4e-compose-signature . "Jonas\n")
+                   ))
+         ,(make-mu4e-context
+           :name "Work"
+           :enter-func (lambda () (mu4e-message "Switch to the Work context"))
+           ;; leave-fun not defined
+           :match-func (lambda (msg)
+                         (when msg
+                           (mu4e-message-contact-field-matches
+                            msg :to "jonas.collberg@orzone.com")))
+           :vars '((user-mail-address . "jonas.collberg@orzone.com" )
+                   ;; (mu4e-compose-signature . (concat
+                   ;;                             "Kind regards,\n"
+                   ;;                             user-full-name))
+                   ))))
+
+;; set `mu4e-context-policy` and `mu4e-compose-policy` to tweak when mu4e should
+;; guess or ask the correct context, e.g.
+
+;; start with the first (default) context;
+;; default is to ask-if-none (ask when there's no context yet, and none match)
+;; (setq mu4e-context-policy 'pick-first)
+
+;; compose with the current context is no context matches;
+;; default is to ask
+;; '(setq mu4e-compose-context-policy nil)
 
 (provide 'init-mu4e)
