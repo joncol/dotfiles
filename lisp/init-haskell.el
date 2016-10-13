@@ -40,6 +40,7 @@
             ;; (define-key haskell-indentation-mode-map (kbd "RET") nil)
             ;; (define-key global-map (kbd "RET") 'newline-and-indent-relative)
             (add-to-list 'company-backends 'company-cabal)
+            (add-to-list 'company-backends 'company-dabbrev)
             (add-to-list 'company-backends 'company-ghc)
             (setq company-ghc-show-info t)
 
