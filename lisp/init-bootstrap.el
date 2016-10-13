@@ -13,6 +13,7 @@
     init-helm-and-projectile
     init-ido
     init-message
+    init-mu4e
     init-neotree
     init-rotate
     init-wspace

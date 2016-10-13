@@ -9,7 +9,7 @@
         (concat (s-replace " " "." (downcase user-full-name)) "@"
                 (if (jco/at-office-p)
                     "orzone.com"
-                  "gmail.com"))))
+                  "mykolab.com"))))
 
 (setq gnus-init-file (concat user-emacs-directory "lisp/init-gnus.el"))
 
