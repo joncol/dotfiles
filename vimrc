@@ -47,7 +47,7 @@ Plugin 'jonathanfilip/vim-lucius'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'luochen1990/rainbow'
 Plugin 'majutsushi/tagbar'
@@ -352,6 +352,8 @@ if has("gui_running")
   set cursorline
 else
   colorscheme summerfruit256
+  autocmd InsertEnter * set cul
+  autocmd InsertLeave * set nocul
 endif
 
 set guioptions-=m " no menu
