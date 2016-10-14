@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anchor top
+# key: at
+# --
+anchors.top: ${1:parent}
