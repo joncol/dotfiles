@@ -5,7 +5,7 @@
 
   (setq mu4e-get-mail-command "offlineimap")
   (setq mu4e-update-interval 120)
-  (setq mu4e-sent-messages-behavior 'delete)
+  (setq mu4e-sent-messages-behavior 'sent)
   (setq mu4e-html2text-command "w3m -T text/html")
   (setq mu4e-view-show-images t)
   (setq mu4e-view-show-addresses t)
