@@ -36,7 +36,8 @@
 
   (add-hook 'mu4e-compose-mode-hook
             (lambda ()
-              (fci-mode)))
+              (fci-mode)
+              (footnote-mode)))
 
   (setq mu4e-contexts
         `( ,(make-mu4e-context
