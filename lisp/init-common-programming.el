@@ -9,6 +9,7 @@
                 fsharp-mode-hook
                 graphviz-dot-mode-hook
                 haskell-mode-hook
+                haskell-cabal-mode-hook
                 latex-mode-hook
                 lisp-mode-hook
                 lua-mode-hook
