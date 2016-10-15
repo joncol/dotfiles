@@ -46,9 +46,10 @@
                            (mu4e-message "Switch to the Private context"))
              ;; leave-func not defined
              :match-func (lambda (msg)
-                           (when msg
-                             (mu4e-message-contact-field-matches
-                              msg :to "jonas.collberg@mykolab.com")))
+                           (if msg
+                               (mu4e-message-contact-field-matches
+                                msg :to "jonas.collberg@mykolab.com")
+                             (not (jco/at-office-p))))
              :vars '((user-mail-address . "jonas.collberg@mykolab.com")
                      ;; (mu4e-compose-signature . "Jonas\n")
                      (mu4e-drafts-folder . "/personal_mykolab/Drafts")
@@ -64,9 +65,10 @@
              :enter-func (lambda () (mu4e-message "Switch to the Work context"))
              ;; leave-fun not defined
              :match-func (lambda (msg)
-                           (when msg
-                             (mu4e-message-contact-field-matches
-                              msg :to "jonas.collberg@orzone.com")))
+                           (if msg
+                               (mu4e-message-contact-field-matches
+                                msg :to "jonas.collberg@orzone.com")
+                             (jco/at-office-p)))
              :vars '((user-mail-address . "jonas.collberg@orzone.com")
                      ;; (mu4e-compose-signature . (concat
                      ;;                             "Kind regards,\n"
