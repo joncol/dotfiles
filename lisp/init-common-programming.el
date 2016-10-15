@@ -7,6 +7,7 @@
                 csharp-mode-hook
                 emacs-lisp-mode-hook
                 fsharp-mode-hook
+                graphviz-dot-mode-hook
                 haskell-mode-hook
                 latex-mode-hook
                 lisp-mode-hook
