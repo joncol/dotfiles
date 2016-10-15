@@ -34,6 +34,10 @@
   ;; don't keep message buffers around
   (setq message-kill-buffer-on-exit t)
 
+  (add-hook 'mu4e-compose-mode-hook
+            (lambda ()
+              (fci-mode)))
+
   (setq mu4e-contexts
         `( ,(make-mu4e-context
              :name "Private"
