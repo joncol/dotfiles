@@ -91,6 +91,7 @@
          highlight2clipboard
          hindent
          htmlize
+         intero
          irfc
          java-snippets
          jira

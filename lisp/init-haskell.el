@@ -16,6 +16,7 @@
             (ghc-init)
             (subword-mode -1)
 
+            (intero-mode)
             (setq haskell-interactive-popup-errors nil)
             (setq haskell-process-auto-import-loaded-modules t)
             (setq haskell-process-log t)
