@@ -17,6 +17,7 @@
             (subword-mode -1)
 
             (intero-mode)
+
             (setq haskell-interactive-popup-errors nil)
             (setq haskell-process-auto-import-loaded-modules t)
             (setq haskell-process-log t)
@@ -27,26 +28,10 @@
             (haskell-doc-mode)
 
             (hindent-mode)
-            ;; (haskell-indentation-mode)
-
-            ;; (global-unset-key [tab])
-            ;; (local-set-key [tab] (lambda ()
-            ;;                        (interactive)
-            ;;                        (tab-indent-or-complete 1)))
             (setq tab-stop-list
                   (loop for i from 0 upto 120 by 2 collect i))
             (setq evil-shift-width 2)
             (set-yasnippet-fixed-indent)
-
-            ;; (define-key haskell-indentation-mode-map (kbd "RET") nil)
-            ;; (define-key global-map (kbd "RET") 'newline-and-indent-relative)
-            (add-to-list 'company-backends 'company-cabal)
-            (add-to-list 'company-backends 'company-dabbrev)
-            (add-to-list 'company-backends 'company-ghc)
-            (setq company-ghc-show-info t)
-
-            ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
-            ;; (define-key evil-motion-state-map (kbd "RET") nil)
 
             (setq ebal-operation-mode 'stack)
             (evil-leader/set-key "e i" 'ebal-init)
