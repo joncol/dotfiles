@@ -61,6 +61,7 @@
 (global-linum-mode)
 ;; (global-subword-mode)
 (setq helm-gtags-path-style 'absolute)
+(setq sentence-end-double-space nil)
 
 (when (display-graphic-p)
   (global-hl-line-mode)

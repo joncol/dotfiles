@@ -36,8 +36,25 @@
 
   (add-hook 'mu4e-compose-mode-hook
             (lambda ()
-              (fci-mode)
-              (footnote-mode)))
+              ;; (turn-off-auto-fill)
+              ;; (fci-mode -1)
+              (setq fci-column 60)
+              (footnote-mode)
+              ;; (setq truncate-lines nil
+              ;;       word-wrap t
+              ;;       use-hard-newlines t)
+              ))
+
+  ;; (add-hook 'message-send-hook
+  ;;           (lambda ()
+  ;;             (mu4e-send-harden-newlines)))
+
+  ;; (defun mu4e-send-harden-newlines ()
+  ;;   "Set the hard property to all newlines."
+  ;;   (save-excursion
+  ;;     (goto-char (point-min))
+  ;;     (while (search-forward "\n" nil t)
+  ;;       (put-text-property (1- (point)) (point) 'hard t))))
 
   (setq mu4e-contexts
         `( ,(make-mu4e-context
