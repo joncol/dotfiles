@@ -12,6 +12,13 @@
   (add-to-list 'mu4e-view-actions '("ViewInBrowser" .
                                     mu4e-action-view-in-browser) t)
 
+  (setq mu4e-compose-context-policy 'always-ask)
+
+  (defun compl-fun (prompt maildirs predicate require-match initial-input)
+    (helm-comp-read prompt maildirs
+                    :name prompt
+                    :must-match t))
+
   (defun jco/smtp-server ()
     (cond ((or (s-contains? "gmail.com" user-mail-address)
                (s-contains? "orzone.com" user-mail-address)) "smtp.gmail.com")
@@ -34,15 +41,19 @@
   ;; don't keep message buffers around
   (setq message-kill-buffer-on-exit t)
 
+  (add-hook 'mu4e-view-mode-hook
+            (lambda ()
+              (mu4e-view-fill-long-lines)))
+
   (add-hook 'mu4e-compose-mode-hook
             (lambda ()
-              ;; (turn-off-auto-fill)
-              ;; (fci-mode -1)
-              (setq fci-column 60)
+              (fci-mode)
+              (ethan-wspace-mode -1)
+              (turn-off-auto-fill)
               (footnote-mode)
-              ;; (setq truncate-lines nil
-              ;;       word-wrap t
-              ;;       use-hard-newlines t)
+              (setq truncate-lines nil)
+              (setq word-wrap t)
+              ;; (setq use-hard-newlines t)
               ))
 
   ;; (add-hook 'message-send-hook
@@ -76,6 +87,7 @@
                       (("/personal_mykolab/INBOX" . ?i)
                        ("/personal_mykolab/Sent" . ?s)
                        ("/personal_mykolab/Trash" . ?t)))
+                     (mu4e-completing-read-function . compl-fun)
                      ))
            ,(make-mu4e-context
              :name "Work"
@@ -98,6 +110,7 @@
                        ("/work_gmail/[Gmail].Sent Mail" . ?s)
                        ("/work_gmail/[Gmail].Trash" . ?t)
                        ("/work_gmail/[Gmail].All Mail" . ?a)))
+                     (mu4e-completing-read-function . compl-fun)
                      ))))
 
   ;; set `mu4e-context-policy` and `mu4e-compose-policy` to tweak when mu4e
