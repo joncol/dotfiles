@@ -16,7 +16,6 @@
          ack-and-a-half
          afternoon-theme
          ample-theme
-         angular-snippets
          airline-themes
          ample-zen-theme
          assemblage-theme
@@ -29,7 +28,6 @@
          cider
          cloc
          clojure-mode
-         clojure-snippets
          cmake-mode
          command-log-mode
          company
@@ -70,7 +68,6 @@
          glsl-mode
          gnuplot
          gnuplot-mode
-         go-snippets
          gotham-theme
          goto-chg
          goto-last-change
@@ -93,7 +90,6 @@
          htmlize
          intero
          irfc
-         java-snippets
          jira
          json-mode
          leuven-theme
