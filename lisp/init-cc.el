@@ -33,6 +33,9 @@
 
             (global-ede-mode t)
             (ede-enable-generic-projects)
+
+            (add-to-list 'company-backends 'company-dabbrev-code)
+
             (evil-leader/set-key "a"
               (lambda ()
                 (interactive)
@@ -46,9 +49,9 @@
             (evil-leader/set-key "q i" 'jco/fix-constr-destr)
             (evil-leader/set-key "q d" 'jco/decl-to-def)
             (evil-leader/set-key "q D" 'jco/def-to-decl)
-            (evil-leader/set-key "q c" 'jco/make-const-ref)
+            (evil-leader/set-key "q r" 'jco/make-const-ref)
             (evil-leader/set-key "q t" 'jco/variadic-templatize)
-            (evil-leader/set-key "q p"
+            (evil-leader/set-key "q c"
               (lambda ()
                 (interactive)
                 (jco/insert-class-name)
