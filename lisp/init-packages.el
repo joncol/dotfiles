@@ -77,7 +77,6 @@
          gruvbox-theme
          guide-key
          haskell-mode
-         haskell-snippets
          helm
          helm-ag
          helm-company
