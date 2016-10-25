@@ -20,6 +20,12 @@
                                 (xkcd-mode . emacs)))
               (evil-set-initial-state (car mode-map) (cdr mode-map))))
 
+(defadvice org-goto (around make-it-evil activate)
+  (let ((orig-state evil-state)
+        (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
+    ad-do-it
+    (evil-change-state orig-state)))
+
 (jco/move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
 (jco/move-key evil-motion-state-map evil-normal-state-map " ")
 
