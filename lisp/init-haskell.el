@@ -16,6 +16,8 @@
             (ghc-init)
             (subword-mode -1)
 
+            (setq flycheck-check-syntax-automatically '(save new-line))
+
             (intero-mode)
 
             (setq haskell-interactive-popup-errors nil)
