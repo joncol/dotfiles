@@ -19,6 +19,7 @@
                 python-mode-hook
                 qml-mode-hook
                 racket-mode-hook
+                rst-mode-hook
                 ruby-mode-hook
                 rust-mode-hook
                 scheme-mode-hook
