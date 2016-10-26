@@ -14,7 +14,8 @@
 
             (setq flycheck-check-syntax-automatically '(save new-line))
 
-            (intero-mode)
+            (when (not (eq system-type 'windows-nt))
+              (intero-mode))
 
             (setq haskell-interactive-popup-errors nil)
             (setq haskell-process-auto-import-loaded-modules t)
