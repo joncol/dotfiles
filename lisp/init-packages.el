@@ -32,7 +32,6 @@
          command-log-mode
          company
          company-cabal
-         company-ghc
          confluence
          csharp-mode
          csv-mode

@@ -1,6 +1,3 @@
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-
 (defun set-yasnippet-fixed-indent ()
   (setq-local yas-indent-line 'fixed))
 
@@ -13,7 +10,6 @@
               (setenv "PATH" (concat bin-path ":" (getenv "PATH")))
               (add-to-list 'exec-path bin-path))
 
-            (ghc-init)
             (subword-mode -1)
 
             (setq flycheck-check-syntax-automatically '(save new-line))
