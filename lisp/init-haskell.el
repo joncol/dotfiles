@@ -14,7 +14,9 @@
 
             (setq flycheck-check-syntax-automatically '(save new-line))
 
-            (when (not (eq system-type 'windows-nt))
+            (when (and (not (eq system-type 'windows-nt))
+                       (not (s-contains? "org-src" (buffer-name)))
+                       (not (s-contains? "*temp" (buffer-name))))
               (intero-mode))
 
             (setq haskell-interactive-popup-errors nil)
