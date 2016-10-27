@@ -12,7 +12,8 @@
 
             (subword-mode -1)
 
-            (setq flycheck-check-syntax-automatically '(save new-line))
+            ;; (setq flycheck-check-syntax-automatically '(save new-line))
+            (flycheck-mode -1)
 
             (when (and (not (eq system-type 'windows-nt))
                        (not (s-contains? "org-src" (buffer-name)))
