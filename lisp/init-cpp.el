@@ -50,7 +50,7 @@
                     (t
                      (concat "cd " (projectile-project-root)
                              "../_build ;and cmake --build . -- -j4"
-                             " ;and ctest"))))
+                             " ;and ctest -V"))))
 
             (jco/define-bindings c++-mode-map
                                  '(("<f6>" . compile)))
