@@ -73,7 +73,8 @@
   (apply 'start-process program nil program args))
 
 (defun run-on-current-buffer (program &rest args)
-  (apply 'start-process program nil program (append args (list (buffer-name)))))
+  (apply 'start-process program nil program
+         (append args (list (buffer-file-name)))))
 
 (evil-leader/set-key "t a"
   (lambda ()
