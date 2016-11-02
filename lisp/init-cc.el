@@ -51,14 +51,13 @@
             (evil-leader/set-key "q D" 'jco/def-to-decl)
             (evil-leader/set-key "q r" 'jco/make-const-ref)
             (evil-leader/set-key "q t" 'jco/variadic-templatize)
+            (evil-leader/set-key "q c" 'jco/fix-class-name)
 
-            (evil-leader/set-key "q c"
+            (evil-leader/set-key "q C"
               (lambda ()
                 (interactive)
                 (jco/insert-class-name)
                 (insert "::")))
-
-            (evil-leader/set-key "q C" 'jco/fix-class-name)
 
             (defadvice semantic-symref (around no-confirmation activate)
               (flet  ((yes-or-no-p (&rest args) t)
