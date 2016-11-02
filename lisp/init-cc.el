@@ -56,6 +56,11 @@
                 (interactive)
                 (jco/insert-class-name)
                 (insert "::")))
+            (evil-leader/set-key "q C"
+              (lambda ()
+                (interactive)
+                (jco/fix-class-name)
+                (insert "::")))
 
             (defadvice semantic-symref (around no-confirmation activate)
               (flet  ((yes-or-no-p (&rest args) t)
