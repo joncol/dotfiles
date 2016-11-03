@@ -1,4 +1,4 @@
-(setq jco/theme 'organic-green) ;;; change this to whatever theme you want
+(setq jco/theme 'material) ;;; change this to whatever theme you want
 
 (require 'airline-themes)
 
@@ -20,7 +20,7 @@
 
         ('material
          (set-face-background 'hl-line "#37474f")
-         (set-face-background 'org-todo "#401010"))
+         (set-face-background 'org-todo nil))
 
         ('molokai
          (set-face-foreground 'font-lock-comment-face "azure4")
