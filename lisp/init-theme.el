@@ -22,6 +22,10 @@
          (set-face-background 'hl-line "#37474f")
          (set-face-background 'org-todo nil))
 
+        ('minimal
+         (set-face-background 'hl-line "#101f24")
+         (set-face-background 'org-todo nil))
+
         ('molokai
          (set-face-foreground 'font-lock-comment-face "azure4")
          (set-face-background
