@@ -1,4 +1,4 @@
-(setq jco/theme 'material) ;;; change this to whatever theme you want
+(setq jco/theme 'minimal) ;;; change this to whatever theme you want
 
 (require 'airline-themes)
 

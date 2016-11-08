@@ -95,6 +95,7 @@
          magit
          markdown-mode
          material-theme
+         minimal-theme
          molokai-theme
          monky
          monokai-theme
