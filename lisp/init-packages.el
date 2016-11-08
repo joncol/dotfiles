@@ -95,6 +95,7 @@
          magit
          markdown-mode
          material-theme
+         meacupla-theme
          minimal-theme
          molokai-theme
          monky
@@ -118,7 +119,7 @@
          projectile
          qml-mode
          racket-mode
-         rvm
+         reykjavik-theme
          rainbow-delimiters
          rainbow-mode
          redshank
@@ -128,12 +129,14 @@
          rubocop
          ruby-end
          rust-mode
+         rvm
          slime
          sml-mode
          smtpmail-multi
          solarized-theme
          soothe-theme
          string-inflection
+         tao-theme
          toml-mode
          undo-tree
          volatile-highlights

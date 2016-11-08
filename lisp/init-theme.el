@@ -1,4 +1,4 @@
-(setq jco/theme 'minimal) ;;; change this to whatever theme you want
+(setq jco/theme 'meacupla) ;;; change this to whatever theme you want
 
 (require 'airline-themes)
 
@@ -21,6 +21,9 @@
         ('material
          (set-face-background 'hl-line "#37474f")
          (set-face-background 'org-todo nil))
+
+        ('meacupla
+         (set-face-background 'hl-line "Gray80"))
 
         ('minimal
          (set-face-background 'hl-line "#101f24")
