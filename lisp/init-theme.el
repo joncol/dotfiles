@@ -24,7 +24,9 @@
 
         ('minimal
          (set-face-background 'hl-line "#101f24")
-         (set-face-background 'org-todo nil))
+         (set-face-background 'org-todo nil)
+         (set-face-background 'evil-search-highlight-persist-highlight-face
+                              "DarkOrange3"))
 
         ('molokai
          (set-face-foreground 'font-lock-comment-face "azure4")
