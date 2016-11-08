@@ -23,6 +23,7 @@
          (set-face-background 'org-todo nil))
 
         ('meacupla
+         (setq jco/cursor-color "azure4")
          (set-face-background 'hl-line "Gray80")
          (set-face-background 'whitespace-trailing "IndianRed1"))
 
