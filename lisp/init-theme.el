@@ -23,7 +23,8 @@
          (set-face-background 'org-todo nil))
 
         ('meacupla
-         (set-face-background 'hl-line "Gray80"))
+         (set-face-background 'hl-line "Gray80")
+         (set-face-background 'whitespace-trailing "IndianRed1"))
 
         ('minimal
          (set-face-background 'hl-line "#101f24")
