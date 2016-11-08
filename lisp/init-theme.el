@@ -52,8 +52,10 @@
          (setq jco/cursor-color "azure4"))
 
         ('tao-yin
+         (setq jco/cursor-color "gray50")
          (set-face-background 'hl-line "gray16")
-         (setq jco/cursor-color "gray50")))
+         (set-face-background 'evil-search-highlight-persist-highlight-face
+                              "MidnightBlue")))
 
       (set-face-foreground 'minibuffer-prompt "#263238")
       (set-face-background 'minibuffer-prompt "#afd700"))
