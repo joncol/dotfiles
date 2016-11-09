@@ -1,4 +1,4 @@
-(setq jco/theme 'tao-yin) ;;; change this to whatever theme you want
+(setq jco/theme 'material-light) ;;; change this to whatever theme you want
 
 (require 'airline-themes)
 
@@ -21,6 +21,10 @@
         ('material
          (set-face-background 'hl-line "#37474f")
          (set-face-background 'org-todo nil))
+
+        ('material-light
+         (setq jco/cursor-color "azure4")
+         (set-face-background 'hl-line "Gray75"))
 
         ('meacupla
          (setq jco/cursor-color "azure4")
