@@ -1,4 +1,4 @@
-(setq jco/theme 'meacupla) ;;; change this to whatever theme you want
+(setq jco/theme 'tao-yin) ;;; change this to whatever theme you want
 
 (require 'airline-themes)
 
@@ -46,7 +46,16 @@
 
         ('soothe
          (require 'linum)
-         (set-face-foreground 'linum "gray35")))
+         (set-face-foreground 'linum "gray35"))
+
+        ('tao-yang
+         (setq jco/cursor-color "azure4"))
+
+        ('tao-yin
+         (setq jco/cursor-color "gray50")
+         (set-face-background 'hl-line "gray16")
+         (set-face-background 'evil-search-highlight-persist-highlight-face
+                              "MidnightBlue")))
 
       (set-face-foreground 'minibuffer-prompt "#263238")
       (set-face-background 'minibuffer-prompt "#afd700"))
