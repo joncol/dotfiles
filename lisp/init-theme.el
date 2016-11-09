@@ -54,6 +54,7 @@
         ('tao-yin
          (setq jco/cursor-color "gray50")
          (set-face-background 'hl-line "gray16")
+         (set-face-foreground 'linum "gray25")
          (set-face-background 'evil-search-highlight-persist-highlight-face
                               "MidnightBlue")))
 
