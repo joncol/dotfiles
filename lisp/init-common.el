@@ -157,4 +157,6 @@
 (global-unset-key (kbd "C-q"))
 (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle)
 
+(require 'qmake-mode)
+
 (provide 'init-common)
