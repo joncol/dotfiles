@@ -17,6 +17,7 @@
                 nxml-mode-hook
                 org-mode-hook
                 python-mode-hook
+                qmake-mode-hook
                 qml-mode-hook
                 racket-mode-hook
                 rst-mode-hook
