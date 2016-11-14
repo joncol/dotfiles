@@ -105,6 +105,7 @@
          nyan-mode
          omnisharp
          org-plus-contrib
+         org-pomodoro
          org-present
          organic-green-theme
          ox-reveal
