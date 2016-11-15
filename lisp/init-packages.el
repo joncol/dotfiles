@@ -47,7 +47,6 @@
          espresso-theme
          ethan-wspace
          evil
-         evil-iedit-state
          evil-leader
          evil-numbers
          evil-matchit
