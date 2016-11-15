@@ -3,13 +3,7 @@
 # key: reveal
 # binding: direct-keybinding
 # --
-#+REVEAL_THEME: night
-#+REVEAL_TRANS: slide
-#+REVEAL_SPEED: fast
-#+REVEAL_EXTRA_CSS: ./css/extra.css
-#+REVEAL_HLEVEL: 3
-#+OPTIONS: toc:nil
-#+OPTIONS: H:3 num:0
+#+SETUPFILE: ~/.emacs.d/org-templates/reveal.org
 
 #+TITLE: ${Title}
 

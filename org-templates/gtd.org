@@ -1,0 +1,7 @@
+#+TAGS: { WORK(w) READ(r) }
+#+SEQ_TODO: TODO(t) MAYBE(m) WAITING(w) NEXT(n) DONE(d)
+#+STARTUP: overview
+#+STARTUP: showstars
+#+OPTIONS: tags:nil num:0 d:t p:t ^:{}
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+SETUPFILE: /home/jco/repos/org-html-themes/setup/theme-readtheorg.setup

@@ -2,10 +2,4 @@
 # name: GTD config
 # key: gtd
 # --
-#+TAGS: { WORK(w) }
-#+SEQ_TODO: TODO(t) MAYBE(m) WAITING(w) NEXT(n) DONE(d)
-#+STARTUP: showall
-#+STARTUP: showstars
-#+OPTIONS: todo:nil tags:nil num:0 d:t p:t ^:{}
-#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
-#+SETUPFILE: ~/repos/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: ~/.emacs.d/org-templates/gtd.org
