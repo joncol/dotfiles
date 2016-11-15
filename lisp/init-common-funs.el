@@ -27,6 +27,7 @@
   (define-key keymap-from key nil))
 
 (defun jco/common-prog ()
+  (iedit-mode)
   (rainbow-delimiters-mode)
   (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
   (local-set-key (kbd "C-c p s a") 'helm-ag-project-root)
