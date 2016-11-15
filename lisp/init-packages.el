@@ -47,6 +47,7 @@
          espresso-theme
          ethan-wspace
          evil
+         evil-iedit-state
          evil-leader
          evil-numbers
          evil-matchit
@@ -55,6 +56,7 @@
          evil-search-highlight-persist
          evil-surround
          exec-path-from-shell
+         expand-region
          fill-column-indicator
          flatland-theme
          flatui-theme
@@ -86,6 +88,7 @@
          highlight2clipboard
          hindent
          htmlize
+         iedit
          intero
          irfc
          jira
