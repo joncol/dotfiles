@@ -29,6 +29,7 @@
          cloc
          clojure-mode
          cmake-mode
+         color-theme-sanityinc-tomorrow
          command-log-mode
          company
          company-cabal
