@@ -1,4 +1,4 @@
-(setq jco/theme 'material) ;;; change this to whatever theme you want
+(setq jco/theme 'sanityinc-tomorrow-blue) ;;; change this to whatever theme you want
 
 (require 'airline-themes)
 
@@ -47,6 +47,10 @@
          (setq jco/cursor-color "gray25")
          (set-face-background 'helm-selection "#a0f0a0")
          (set-face-background 'show-paren-match "#c0c060"))
+
+        ((sanityinc-tomorrow-blue sanityinc-tomorrow-bright)
+         (set-face-background 'evil-search-highlight-persist-highlight-face
+                              "RoyalBlue"))
 
         ('soothe
          (require 'linum)
