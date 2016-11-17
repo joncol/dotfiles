@@ -15,38 +15,26 @@
        '(ace-jump-mode
          ace-window
          ack-and-a-half
-         afternoon-theme
-         ample-theme
-         airline-themes
-         ample-zen-theme
-         assemblage-theme
          ag
          auto-complete
          avy
          better-defaults
-         borland-blue-theme
-         cherry-blossom-theme
          cider
          cloc
          clojure-mode
          cmake-mode
-         color-theme-sanityinc-tomorrow
          command-log-mode
          company
          company-cabal
          confluence
          csharp-mode
          csv-mode
-         cyberpunk-theme
-         darktooth-theme
          dash
-         doom-themes
          dirtree
          ebal
          ecb
          edit-server
          epl
-         espresso-theme
          ethan-wspace
          evil
          evil-leader
@@ -59,8 +47,6 @@
          exec-path-from-shell
          expand-region
          fill-column-indicator
-         flatland-theme
-         flatui-theme
          flx-ido
          flycheck
          flymake-ruby
@@ -70,13 +56,9 @@
          glsl-mode
          gnuplot
          gnuplot-mode
-         gotham-theme
          goto-chg
          goto-last-change
-         grandshell-theme
          graphviz-dot-mode
-         gruber-darker-theme
-         gruvbox-theme
          guide-key
          haskell-mode
          helm
@@ -85,7 +67,6 @@
          helm-gtags
          helm-projectile
          helm-swoop
-         hemisu-theme
          highlight2clipboard
          hindent
          htmlize
@@ -94,16 +75,10 @@
          irfc
          jira
          json-mode
-         leuven-theme
          lua-mode
          magit
          markdown-mode
-         material-theme
-         meacupla-theme
-         minimal-theme
-         molokai-theme
          monky
-         monokai-theme
          neotree
          nsis-mode
          nyan-mode
@@ -111,7 +86,6 @@
          org-plus-contrib
          org-pomodoro
          org-present
-         organic-green-theme
          ox-reveal
          pandoc-mode
          paredit
@@ -124,7 +98,6 @@
          projectile
          qml-mode
          racket-mode
-         reykjavik-theme
          rainbow-delimiters
          rainbow-mode
          redshank
@@ -138,10 +111,7 @@
          slime
          sml-mode
          smtpmail-multi
-         solarized-theme
-         soothe-theme
          string-inflection
-         tao-theme
          toml-mode
          undo-tree
          volatile-highlights
@@ -150,6 +120,41 @@
          yard-mode
          yasnippet)))
   (dolist (p packages)
+    (unless (package-installed-p p)
+      (package-install p))))
+
+(let ((themes
+       '(afternoon-theme
+         ample-theme
+         airline-themes
+         ample-zen-theme
+         assemblage-theme
+         borland-blue-theme
+         cherry-blossom-theme
+         color-theme-sanityinc-tomorrow
+         cyberpunk-theme
+         darktooth-theme
+         doom-themes
+         espresso-theme
+         flatland-theme
+         flatui-theme
+         gotham-theme
+         grandshell-theme
+         gruber-darker-theme
+         gruvbox-theme
+         hemisu-theme
+         leuven-theme
+         material-theme
+         meacupla-theme
+         minimal-theme
+         molokai-theme
+         monokai-theme
+         organic-green-theme
+         reykjavik-theme
+         solarized-theme
+         soothe-theme
+         tao-theme)))
+  (dolist (p themes)
     (unless (package-installed-p p)
       (package-install p))))
 
