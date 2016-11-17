@@ -53,6 +53,8 @@
 
 (global-set-key (kbd "C-c t f") 'toggle-frame-fullscreen)
 
+(global-set-key (kbd "M-w") 'ace-window)
+
 (tool-bar-mode -1)
 (global-auto-revert-mode)
 (global-font-lock-mode)

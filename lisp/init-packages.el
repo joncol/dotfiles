@@ -13,6 +13,7 @@
 
 (let ((packages
        '(ace-jump-mode
+         ace-window
          ack-and-a-half
          afternoon-theme
          ample-theme
