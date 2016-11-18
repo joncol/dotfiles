@@ -161,6 +161,8 @@
 
 (global-set-key (kbd "C-=") 'er/expand-region)
 
+(fancy-narrow-mode)
+
 (require 'qmake-mode)
 (require 'iedit)
 
