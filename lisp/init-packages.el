@@ -68,6 +68,7 @@
          helm
          helm-ag
          helm-company
+         helm-descbinds
          helm-gtags
          helm-projectile
          helm-swoop

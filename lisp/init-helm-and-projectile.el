@@ -34,6 +34,9 @@
 
 (helm-mode)
 
+(require 'helm-descbinds)
+(helm-descbinds-mode)
+
 ;;; projectile
 (projectile-global-mode)
 (when (not (eq system-type 'windows-nt))
