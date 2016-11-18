@@ -2,12 +2,13 @@
 
 (global-set-key (kbd "<f1>") 'jco/hydra-main-menu/body)
 
-(defhydra jco/hydra-main-menu ()
+(defhydra jco/hydra-main-menu (:color blue)
   "common ops"
   ("e" (lambda ()
          (interactive)
          (find-file (concat user-emacs-directory "init.el")))
-   "edit configuration file")
-  ("m" (mu4e) "mail"))
+   "edit config")
+  ("m" (mu4e) "mail")
+  ("h" (monky-status) "monky status"))
 
 (provide 'init-hydras)
