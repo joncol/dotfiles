@@ -32,6 +32,8 @@
          csharp-mode
          csv-mode
          dash
+         diminish
+         dired+
          dirtree
          ebal
          ecb

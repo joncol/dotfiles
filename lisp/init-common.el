@@ -172,4 +172,8 @@
 (require 'qmake-mode)
 (require 'iedit)
 
+(require 'diminish)
+(eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
+(eval-after-load "company" '(diminish 'company-mode))
+
 (provide 'init-common)
