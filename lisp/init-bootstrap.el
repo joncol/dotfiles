@@ -11,6 +11,7 @@
     init-font
     init-global-company-mode
     init-helm-and-projectile
+    init-hydras
     init-ido
     init-message
     init-mu4e
