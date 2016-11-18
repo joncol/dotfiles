@@ -48,7 +48,10 @@
          (set-face-background 'helm-selection "#a0f0a0")
          (set-face-background 'show-paren-match "#c0c060"))
 
-        ((sanityinc-tomorrow-blue sanityinc-tomorrow-bright)
+        ((sanityinc-tomorrow-blue sanityinc-tomorrow-bright
+                                  sanityinc-tomorrow-day
+                                  sanityinc-tomorrow-eighties
+                                  sanityinc-tomorrow-night)
          (set-face-background 'evil-search-highlight-persist-highlight-face
                               "RoyalBlue"))
 
