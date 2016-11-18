@@ -13,9 +13,11 @@
 
 (let ((packages
        '(ace-jump-mode
+         ace-link
          ace-window
          ack-and-a-half
          ag
+         anzu
          auto-complete
          avy
          better-defaults
@@ -52,6 +54,7 @@
          flycheck
          flymake-ruby
          fsharp-mode
+         fuzzy
          ggtags
          ghci-completion
          glsl-mode

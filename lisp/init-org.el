@@ -141,4 +141,6 @@ foreground and background of code, to the current theme's colors"
 
 (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
 
+(define-key org-mode-map (kbd "M-o") 'ace-link-org)
+
 (provide 'init-org)

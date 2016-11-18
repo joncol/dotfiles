@@ -155,6 +155,8 @@
 
 (volatile-highlights-mode t)
 
+(global-anzu-mode)
+
 (require 'string-inflection)
 (global-unset-key (kbd "C-q"))
 (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle)
@@ -162,6 +164,10 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 (fancy-narrow-mode)
+(ace-link-setup-default (kbd "f"))
+
+(require 'fuzzy)
+(turn-on-fuzzy-isearch)
 
 (require 'qmake-mode)
 (require 'iedit)
