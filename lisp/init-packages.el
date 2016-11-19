@@ -80,6 +80,7 @@
          hindent
          htmlize
          iedit
+         info+
          intero
          irfc
          jira
