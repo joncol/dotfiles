@@ -171,6 +171,7 @@
 
 (fancy-narrow-mode)
 (diminish 'fancy-narrow-mode)
+(put 'narrow-to-region 'disabled nil)
 
 (ace-link-setup-default (kbd "f"))
 
@@ -193,5 +194,9 @@
 ;; (diminish 'golden-ratio-mode)
 
 (global-set-key (kbd "C-x o") 'ace-window)
+
+(setq large-file-warning-threshold nil)
+(setq safe-local-variable-values
+      '((org-archive-location . "::* Archived Tasks")))
 
 (provide 'init-common)
