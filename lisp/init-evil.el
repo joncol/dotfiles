@@ -31,8 +31,8 @@
 
 (jco/define-bindings evil-normal-state-map '(("+" . rotate-word-at-point)))
 
-(dolist (mode-map (list compilation-mode-map evil-normal-state-map
-                        help-mode-map))
+(dolist (mode-map (list apropos-mode-map compilation-mode-map
+                        evil-normal-state-map help-mode-map))
   (jco/define-bindings mode-map
                        '(("C-w C-h" . windmove-left)
                          ("C-w C-j" . windmove-down)
