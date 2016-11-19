@@ -94,6 +94,7 @@
          org-pomodoro
          org-present
          ox-reveal
+         package-utils
          pandoc-mode
          paredit
          pkg-info
