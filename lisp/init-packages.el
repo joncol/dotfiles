@@ -20,6 +20,7 @@
          anzu
          auto-complete
          avy
+         beacon
          better-defaults
          cider
          cloc
@@ -119,6 +120,7 @@
          slime
          sml-mode
          smtpmail-multi
+         spaceline
          string-inflection
          toml-mode
          undo-tree

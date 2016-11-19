@@ -2,6 +2,7 @@
 
 (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
 (yas-global-mode)
+(diminish 'yas-minor-mode)
 (setq yas-indent-line 'auto)
 (setq yas-also-auto-indent-first-line t)
 

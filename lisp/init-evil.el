@@ -113,11 +113,7 @@
     (interactive)
     (run-on-current-buffer "thg" "shelve")))
 
-(evil-leader/set-key
-  "d" 'vc-diff
-  ;; "m a" 'monky-blame-current-file
-  "h s" 'monky-status
-  "g s" 'magit-status)
+(evil-leader/set-key "d" 'vc-diff)
 
 (global-set-key (kbd "C-x C-SPC") 'evil-search-highlight-persist-remove-all)
 

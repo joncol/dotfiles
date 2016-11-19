@@ -33,12 +33,14 @@
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
 (helm-mode)
+(diminish 'helm-mode)
 
 (require 'helm-descbinds)
 (helm-descbinds-mode)
 
 ;;; projectile
 (projectile-global-mode)
+(diminish 'projectile-mode)
 (when (not (eq system-type 'windows-nt))
   (setq projectile-indexing-method 'native))
 (setq projectile-enable-caching t)

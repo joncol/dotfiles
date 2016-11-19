@@ -1,5 +1,8 @@
 (require 'cl)
 
+;;; Avoid the empty (custom-set-faces) at end of init.el.
+(setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
+
 (setq ad-redefinition-action 'accept)
 
 ;;; Set name and email
@@ -145,6 +148,7 @@
 (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r"))
 ;; (setq guide-key/popup-window-position "right")
 (guide-key-mode)
+(diminish 'guide-key-mode)
 
 (put 'erase-buffer 'disabled nil)
 
@@ -154,8 +158,10 @@
 (setq compilation-scroll-output t)
 
 (volatile-highlights-mode t)
+(diminish 'volatile-highlights-mode)
 
 (global-anzu-mode)
+(diminish 'anzu-mode)
 
 (require 'string-inflection)
 (global-unset-key (kbd "C-q"))

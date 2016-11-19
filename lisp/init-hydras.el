@@ -6,14 +6,14 @@
 
 (defhydra jco/hydra-main-menu (:color blue :hint nil)
   "
-Menu: _a_propos _e_dit-cfg _h_g _m_ail _p_kgs _s_nippets s_w_oop"
+Menu: _a_propos _e_dit-cfg _m_ail _p_kgs _s_nippets s_w_oop _v_cs"
   ("a" jco/hydra-apropos/body)
   ("e" jco/hydra-edit-config/body)
-  ("h" monky-status)
   ("m" mu4e)
   ("p" jco/hydra-packages/body)
   ("s" jco/hydra-snippets/body)
-  ("w" jco/hydra-swoop/body))
+  ("w" jco/hydra-swoop/body)
+  ("v" jco/hydra-vcs/body))
 
 (defhydra jco/hydra-edit-config (:color blue :hint nil)
   "
@@ -57,5 +57,11 @@ Snippets: _i_nsert _e_dit _r_eload"
   ("m" helm-multi-swoop "multi")
   ("M" helm-multi-swoop-all "multi-all")
   ("s" helm-swoop "swoop"))
+
+(defhydra jco/hydra-vcs (:color blue :hint nil)
+  "
+VCS: _g_it _m_ercurial"
+  ("g" magit-status)
+  ("m" monky-status))
 
 (provide 'init-hydras)

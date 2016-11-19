@@ -1,3 +1,4 @@
+^custom\.el$
 ^bookmarks$
 ^ede-projects\.el$
 ^ido\.last$

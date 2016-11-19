@@ -8,6 +8,8 @@
 
 (setq jco/cursor-color "green")
 
+(toggle-debug-on-error)
+
 (if (display-graphic-p)
     (progn
       (load-theme jco/theme t)
@@ -48,12 +50,17 @@
          (set-face-background 'helm-selection "#a0f0a0")
          (set-face-background 'show-paren-match "#c0c060"))
 
-        ((sanityinc-tomorrow-blue sanityinc-tomorrow-bright
-                                  sanityinc-tomorrow-day
-                                  sanityinc-tomorrow-eighties
-                                  sanityinc-tomorrow-night)
+        ((sanityinc-tomorrow-bright sanityinc-tomorrow-day
+                                    sanityinc-tomorrow-eighties
+                                    sanityinc-tomorrow-night)
          (set-face-background 'evil-search-highlight-persist-highlight-face
                               "RoyalBlue"))
+
+        ('sanityinc-tomorrow-blue
+         (set-face-background 'evil-search-highlight-persist-highlight-face
+                              "RoyalBlue")
+         (set-face-background 'company-tooltip-selection "SteelBlue1")
+         (set-face-foreground 'company-tooltip-selection "gray8"))
 
         ('soothe
          (require 'linum)

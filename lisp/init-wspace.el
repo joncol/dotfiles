@@ -7,6 +7,7 @@
 (no-final-newline)
 
 (global-ethan-wspace-mode)
+(diminish 'ethan-wspace-mode)
 
 (defun tabs-are-ok ()
   (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
@@ -21,6 +22,8 @@
   (no-final-newline))
 
 (global-whitespace-mode 1)
+(diminish 'global-whitespace-mode)
+
 (setq-default whitespace-style '(face tabs trailing
                                       space-before-tab indentation
                                       empty space-after-tab tab-mark))
