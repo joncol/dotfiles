@@ -115,7 +115,7 @@
 
 (evil-leader/set-key
   "d" 'vc-diff
-  "m a" 'monky-blame-current-file
+  ;; "m a" 'monky-blame-current-file
   "h s" 'monky-status
   "g s" 'magit-status)
 
@@ -154,9 +154,9 @@
 (evil-leader/set-key "s" 'helm-swoop)
 (global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
 (global-set-key (kbd "C-M-i") 'helm-multi-swoop)
-(evil-leader/set-key "m s" 'helm-multi-swoop)
+;; (evil-leader/set-key "m s" 'helm-multi-swoop)
 (global-set-key (kbd "C-M-S-i") 'helm-multi-swoop-all)
-(evil-leader/set-key "m S" 'helm-multi-swoop-all)
+;; (evil-leader/set-key "m S" 'helm-multi-swoop-all)
 
 (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
 (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
@@ -201,7 +201,9 @@
                               (interactive)
                               (insert user-mail-address)))
 
-(evil-leader/set-key "m m" 'mu4e)
+;; (evil-leader/set-key "m m" 'mu4e)
+
+(evil-leader/set-key "m" 'jco/hydra-main-menu/body)
 
 ;;; yasnippet
 (evil-leader/set-key "TAB" 'yas-insert-snippet)
