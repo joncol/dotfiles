@@ -25,10 +25,6 @@
                                                 (concat org-directory
                                                         "/work.org"))))))
 
-(jco/define-bindings org-agenda-mode-map
-                     '(("j" . org-agenda-next-item)
-                       ("k" . org-agenda-previous-item)))
-
 (setq org-reveal-hlevel 2)
 (setq org-todo-keyword-faces
       '(("TODO" . "deep pink")
@@ -60,14 +56,15 @@
                  (org-agenda-overriding-header
                   "High-priority unfinished tasks:")))
           (agenda "" ((org-agenda-ndays 1)))
-          (alltodo ""
+          (tags-todo "WORK"
                    ((org-agenda-skip-function
                      '(or (jco/org-skip-subtree-if-habit)
                           (jco/org-skip-subtree-if-priority ?A)
                           (org-agenda-skip-if nil '(scheduled deadline))))
                     (org-agenda-overriding-header
                      "All normal priority tasks:"))))
-         ((org-agenda-compact-blocks nil)))))
+         ((org-agenda-compact-blocks nil)
+          (org-agenda-files '("~/org/work.org"))))))
 
 (defun jco/org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.
@@ -138,6 +135,19 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                                (org-remove-inline-images)
                                                (org-ctrl-c-ctrl-c)
                                                (org-display-inline-images)))))
+
+            (require 'org-agenda)
+            (jco/define-bindings org-agenda-mode-map
+                                 '(("j"       . org-agenda-next-item)
+                                   ("k"       . org-agenda-previous-item)
+                                   ("C-w h"   . windmove-left)
+                                   ("C-w j"   . windmove-down)
+                                   ("C-w k"   . windmove-up)
+                                   ("C-w l"   . windmove-right)
+                                   ("C-w C-h" . windmove-left)
+                                   ("C-w C-j" . windmove-down)
+                                   ("C-w C-k" . windmove-up)
+                                   ("C-w C-l" . windmove-right)))
 
              ;;; Embed youtube links in org-mode
 
