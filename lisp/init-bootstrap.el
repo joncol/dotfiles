@@ -9,7 +9,7 @@
     init-eshell
     init-fci
     init-font
-    init-global-company-mode
+    init-company-mode
     init-helm-and-projectile
     init-hydras
     init-ido
