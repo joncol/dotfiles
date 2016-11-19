@@ -31,6 +31,8 @@
 
 (jco/define-bindings evil-normal-state-map '(("+" . rotate-word-at-point)))
 
+(require 'apropos)
+
 (dolist (mode-map (list apropos-mode-map compilation-mode-map
                         evil-normal-state-map help-mode-map))
   (jco/define-bindings mode-map
