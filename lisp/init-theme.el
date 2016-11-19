@@ -63,8 +63,10 @@
          (setq jco/cursor-color "SteelBlue1")
          (set-face-background 'evil-search-highlight-persist-highlight-face
                               "RoyalBlue")
-         (set-face-background 'company-tooltip-selection "SteelBlue1")
-         (set-face-foreground 'company-tooltip-selection "gray8"))
+         (set-face-background 'company-tooltip-selection "snow")
+         (set-face-foreground 'company-tooltip-selection "gray8")
+         (set-face-foreground 'company-tooltip-common-selection "VioletRed4")
+         (set-face-background 'company-scrollbar-fg "LightBlue"))
 
         ('soothe
          (require 'linum)
