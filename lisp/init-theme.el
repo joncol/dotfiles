@@ -60,7 +60,7 @@
                               "RoyalBlue"))
 
         ('sanityinc-tomorrow-blue
-         (setq jco/cursor-color "SteelBlue1")
+         (setq jco/cursor-color "snow")
          (set-face-background 'evil-search-highlight-persist-highlight-face
                               "RoyalBlue")
          (set-face-background 'company-tooltip-selection "snow")
