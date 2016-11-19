@@ -183,6 +183,7 @@
 (eval-after-load "company" '(diminish 'company-mode))
 
 (require 'golden-ratio)
-(golden-ratio-mode 1)
+(golden-ratio-mode)
+(diminish 'golden-ratio-mode)
 
 (provide 'init-common)
