@@ -34,7 +34,7 @@
 (require 'apropos)
 
 (dolist (mode-map (list apropos-mode-map compilation-mode-map
-                        evil-normal-state-map help-mode-map))
+                        evil-normal-state-map help-mode-map monky-mode-map))
   (jco/define-bindings mode-map
                        '(("C-w C-h" . windmove-left)
                          ("C-w C-j" . windmove-down)
