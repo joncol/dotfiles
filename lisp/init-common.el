@@ -192,4 +192,6 @@
 ;; (golden-ratio-mode)
 ;; (diminish 'golden-ratio-mode)
 
+(global-set-key (kbd "C-x o") 'ace-window)
+
 (provide 'init-common)
