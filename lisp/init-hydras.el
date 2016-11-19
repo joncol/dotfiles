@@ -1,5 +1,3 @@
-(global-unset-key (kbd "<f1>"))
-
 (global-set-key (kbd "<f1>") 'jco/hydra-main-menu/body)
 
 (defun open-config-file (file-name)
