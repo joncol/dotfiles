@@ -6,19 +6,19 @@
 (global-evil-search-highlight-persist t)
 
 (eval-after-load "evil"
-            ;; set other modes than evil-mode for the following modes
-            (dolist (mode-map '((ag-mode . emacs)
-                                (comint-mode . emacs)
-                                (diff-mode . emacs)
-                                (dired-mode . emacs)
-                                (eshell-mode . emacs)
-                                (eww-mode . emacs)
-                                (git-commit-mode . insert)
-                                (git-rebase-mode . emacs)
-                                (paradox-menu-mode . emacs)
-                                (term-mode . emacs)
-                                (xkcd-mode . emacs)))
-              (evil-set-initial-state (car mode-map) (cdr mode-map))))
+  ;; set other modes than evil-mode for the following modes
+  (dolist (mode-map '((ag-mode . emacs)
+                      (comint-mode . emacs)
+                      (diff-mode . emacs)
+                      (dired-mode . emacs)
+                      (eshell-mode . emacs)
+                      (eww-mode . emacs)
+                      (git-commit-mode . insert)
+                      (git-rebase-mode . emacs)
+                      (paradox-menu-mode . emacs)
+                      (term-mode . emacs)
+                      (xkcd-mode . emacs)))
+    (evil-set-initial-state (car mode-map) (cdr mode-map))))
 
 (defadvice org-goto (around make-it-evil activate)
   (let ((orig-state evil-state)
@@ -29,24 +29,15 @@
 (jco/move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
 (jco/move-key evil-motion-state-map evil-normal-state-map " ")
 
-(jco/define-bindings evil-normal-state-map
-                     '(("+" . rotate-word-at-point)
-                       ("C-w h" . windmove-left)
-                       ("C-w j" . windmove-down)
-                       ("C-w k" . windmove-up)
-                       ("C-w l" . windmove-right)))
+(jco/define-bindings evil-normal-state-map '(("+" . rotate-word-at-point)))
 
-(jco/define-bindings evil-normal-state-map
-                     '(("C-w C-h" . windmove-left)
-                       ("C-w C-j" . windmove-down)
-                       ("C-w C-k" . windmove-up)
-                       ("C-w C-l" . windmove-right)))
-
-(jco/define-bindings compilation-mode-map
-                     '(("C-w C-h" . windmove-left)
-                       ("C-w C-j" . windmove-down)
-                       ("C-w C-k" . windmove-up)
-                       ("C-w C-l" . windmove-right)))
+(dolist (mode-map (list compilation-mode-map evil-normal-state-map
+                        help-mode-map))
+  (jco/define-bindings mode-map
+                       '(("C-w C-h" . windmove-left)
+                         ("C-w C-j" . windmove-down)
+                         ("C-w C-k" . windmove-up)
+                         ("C-w C-l" . windmove-right))))
 
 ;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over
 ;; a '('
