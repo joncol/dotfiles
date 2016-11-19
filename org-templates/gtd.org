@@ -1,5 +1,5 @@
 #+TAGS: { WORK(w) READ(r) BUG(b) }
-#+SEQ_TODO: TODO(t) MAYBE(m) WAITING(w) NEXT(n) CANCELED(c) DONE(d)
+#+SEQ_TODO: TODO(t) IN-PROGRESS(p) MAYBE(m) WAITING(w) NEXT(n) CANCELED(c) DONE(d)
 #+STARTUP: overview
 #+STARTUP: showstars
 #+OPTIONS: tags:nil num:0 d:t p:t ^:{}

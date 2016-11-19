@@ -27,7 +27,7 @@
 (setq org-reveal-hlevel 2)
 (setq org-todo-keyword-faces
       '(("TODO" . "deep pink")
-        ("IN_PROGRESS" . "orange")
+        ("IN-PROGRESS" . "orange")
         ("NEXT" . "green2")
         ("WAITING" . "purple")
         ("MAYBE" . "gray60")))
