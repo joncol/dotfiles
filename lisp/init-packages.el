@@ -49,6 +49,7 @@
          evil-paredit
          evil-search-highlight-persist
          evil-surround
+         erc-hl-nicks
          exec-path-from-shell
          expand-region
          fancy-narrow

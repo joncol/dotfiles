@@ -8,9 +8,10 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-Menu: _a_pp _e_dit-cfg _p_kgs _s_woop _S_nippets _v_cs"
+Menu: _a_pp _e_dit-cfg _o_rg _p_kgs _s_woop _S_nippets _v_cs"
   ("a" jco/hydra-app/body)
   ("e" jco/hydra-edit-config/body)
+  ("o" jco/hydra-org/body)
   ("p" jco/hydra-packages/body)
   ("s" jco/hydra-swoop/body)
   ("S" jco/hydra-snippets/body)
@@ -26,12 +27,17 @@ Edit cfg: _i_nit _c_ommon _f_ile _h_ydras _p_ackages _t_heme"
   ("p" (open-config-file "lisp/init-packages.el"))
   ("t" (open-config-file "lisp/init-theme.el")))
 
+(defhydra jco/hydra-org (:color teal :hint nil)
+  "
+Org: _a_genda"
+  ("a" (org-agenda)))
+
 (defhydra jco/hydra-packages (:color teal :hint nil)
   "
 Packages: _l_ist _n_o-fetch _u_pgrade-all"
   ("l" list-packages)
   ("n" package-list-packages-no-fetch)
-  ("u" package-utils-upgrade-all))
+  ("u" package-utils-upgrade-all))d
 
 (defhydra jco/hydra-snippets (:color teal :hint nil)
   "
