@@ -170,6 +170,8 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 (fancy-narrow-mode)
+(diminish 'fancy-narrow-mode)
+
 (ace-link-setup-default (kbd "f"))
 
 (require 'fuzzy)
@@ -179,9 +181,10 @@
 (require 'iedit)
 
 (require 'diminish)
-(eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
 (eval-after-load "company" '(diminish 'company-mode))
 
+(global-undo-tree-mode)
+(diminish 'undo-tree-mode)
 (setq undo-tree-visualizer-diff t)
 (setq undo-tree-visualizer-timestamps t)
 
