@@ -5,8 +5,11 @@
 ;; (if (eq system-type 'darwin)
 ;;     (nyan-mode)
 ;;   (load-theme 'airline-powerlineish t)) ;;; airline is too slow on Mac OS X
+
 (require 'spaceline-config)
 (spaceline-spacemacs-theme)
+(spaceline-helm-mode)
+(spaceline-info-mode)
 
 (setq jco/cursor-color "green")
 
