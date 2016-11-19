@@ -8,17 +8,17 @@
 
 (defhydra jco/hydra-main-menu (:color blue)
   "Menu"
+  ("a" jco/hydra-apropos/body "apropos")
   ("e" jco/hydra-edit-config/body "edit config")
   ("m" mu4e "mail")
-  ("h" monky-status "monky status")
-  ("a" jco/hydra-apropos/body "apropos")
-  )
+  ("h" monky-status "monky status"))
 
 (defhydra jco/hydra-edit-config (:color blue)
   "Edit config"
   ("c" (open-config-file "lisp/init-common.el") "common")
-  ("t" (open-config-file "lisp/init-theme.el") "theme")
-  )
+  ("h" (open-config-file "lisp/init-hydras.el") "hydras")
+  ("p" (open-config-file "lisp/init-packages.el") "packages")
+  ("t" (open-config-file "lisp/init-theme.el") "theme"))
 
 (defhydra jco/hydra-apropos (:color blue :hint nil)
   "Apropos"
