@@ -6,13 +6,13 @@
 
 (defhydra jco/hydra-main-menu (:color blue :hint nil)
   "
-Menu: _a_propos _e_dit-cfg _m_ail _p_kgs _s_nippets s_w_oop _v_cs"
+Menu: _a_propos _e_dit-cfg _m_ail _p_kgs _s_woop _S_nippets _v_cs"
   ("a" jco/hydra-apropos/body)
   ("e" jco/hydra-edit-config/body)
   ("m" mu4e)
   ("p" jco/hydra-packages/body)
-  ("s" jco/hydra-snippets/body)
-  ("w" jco/hydra-swoop/body)
+  ("s" jco/hydra-swoop/body)
+  ("S" jco/hydra-snippets/body)
   ("v" jco/hydra-vcs/body))
 
 (defhydra jco/hydra-edit-config (:color blue :hint nil)
@@ -52,11 +52,12 @@ Snippets: _i_nsert _e_dit _r_eload"
   ("e" yas/visit-snippet-file)
   ("r" yas/reload-all))
 
-(defhydra jco/hydra-swoop (:color blue)
-  "Swoop:"
-  ("m" helm-multi-swoop "multi")
-  ("M" helm-multi-swoop-all "multi-all")
-  ("s" helm-swoop "swoop"))
+(defhydra jco/hydra-swoop (:color blue :hint nil)
+  "
+Swoop: _m_ulti multi-_a_ll _s_woop"
+  ("m" helm-multi-swoop)
+  ("a" helm-multi-swoop-all)
+  ("s" helm-swoop))
 
 (defhydra jco/hydra-vcs (:color blue :hint nil)
   "
