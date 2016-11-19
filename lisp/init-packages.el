@@ -63,6 +63,7 @@
          glsl-mode
          gnuplot
          gnuplot-mode
+         golden-ratio
          goto-chg
          goto-last-change
          graphviz-dot-mode

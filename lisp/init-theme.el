@@ -1,10 +1,12 @@
 (setq jco/theme 'sanityinc-tomorrow-blue) ;;; change this to whatever theme you want
 
-(require 'airline-themes)
+;; (require 'airline-themes)
 
-(if (eq system-type 'darwin)
-    (nyan-mode)
-  (load-theme 'airline-powerlineish t)) ;;; airline is too slow on Mac OS X
+;; (if (eq system-type 'darwin)
+;;     (nyan-mode)
+;;   (load-theme 'airline-powerlineish t)) ;;; airline is too slow on Mac OS X
+(require 'spaceline-config)
+(spaceline-spacemacs-theme)
 
 (setq jco/cursor-color "green")
 

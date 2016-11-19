@@ -182,4 +182,7 @@
 (eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
 (eval-after-load "company" '(diminish 'company-mode))
 
+(require 'golden-ratio)
+(golden-ratio-mode 1)
+
 (provide 'init-common)

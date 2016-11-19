@@ -31,16 +31,22 @@
 
 (jco/define-bindings evil-normal-state-map
                      '(("+" . rotate-word-at-point)
-                       ("C-w C-h" . evil-window-left)
-                       ("C-w C-j" . evil-window-down)
-                       ("C-w C-k" . evil-window-up)
-                       ("C-w C-l" . evil-window-right)))
+                       ("C-w h" . windmove-left)
+                       ("C-w j" . windmove-down)
+                       ("C-w k" . windmove-up)
+                       ("C-w l" . windmove-right)))
+
+(jco/define-bindings evil-normal-state-map
+                     '(("C-w C-h" . windmove-left)
+                       ("C-w C-j" . windmove-down)
+                       ("C-w C-k" . windmove-up)
+                       ("C-w C-l" . windmove-right)))
 
 (jco/define-bindings compilation-mode-map
-                     '(("C-w C-h" . evil-window-left)
-                       ("C-w C-j" . evil-window-down)
-                       ("C-w C-k" . evil-window-up)
-                       ("C-w C-l" . evil-window-right)))
+                     '(("C-w C-h" . windmove-left)
+                       ("C-w C-j" . windmove-down)
+                       ("C-w C-k" . windmove-up)
+                       ("C-w C-l" . windmove-right)))
 
 ;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over
 ;; a '('
