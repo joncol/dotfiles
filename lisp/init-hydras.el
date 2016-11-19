@@ -1,4 +1,6 @@
-(global-set-key (kbd "<f1>") 'jco/hydra-main-menu/body)
+(evil-leader/set-key "m" 'jco/hydra-main-menu/body)
+
+(global-set-key (kbd "<f1>") 'jco/hydra-help/body)
 
 (defun open-config-file (file-name)
   (interactive)
@@ -6,10 +8,9 @@
 
 (defhydra jco/hydra-main-menu (:color blue :hint nil)
   "
-Menu: _a_propos _e_dit-cfg _m_ail _p_kgs _s_woop _S_nippets _v_cs"
-  ("a" jco/hydra-apropos/body)
+Menu: _a_pp _e_dit-cfg _p_kgs _s_woop _S_nippets _v_cs"
+  ("a" jco/hydra-app/body)
   ("e" jco/hydra-edit-config/body)
-  ("m" mu4e)
   ("p" jco/hydra-packages/body)
   ("s" jco/hydra-swoop/body)
   ("S" jco/hydra-snippets/body)
@@ -24,19 +25,6 @@ Edit cfg: _i_nit _c_ommon _f_ile _h_ydras _p_ackages _t_heme"
   ("h" (open-config-file "lisp/init-hydras.el"))
   ("p" (open-config-file "lisp/init-packages.el"))
   ("t" (open-config-file "lisp/init-theme.el")))
-
-(defhydra jco/hydra-apropos (:color blue :hint nil)
-  "
-Apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _t_ags"
-  ("a" apropos)
-  ("c" apropos-command)
-  ("d" apropos-documentation)
-  ("e" apropos-value)
-  ("l" apropos-library)
-  ("o" apropos-user-option)
-  ("v" apropos-variable)
-  ("i" info-apropos)
-  ("t" tags-apropos))
 
 (defhydra jco/hydra-packages (:color blue :hint nil)
   "
@@ -64,5 +52,31 @@ Swoop: _m_ulti multi-_a_ll _s_woop"
 VCS: _g_it _m_ercurial"
   ("g" magit-status)
   ("m" monky-status))
+
+(defhydra jco/hydra-app (:color blue :hint nil)
+  "
+App: _e_rc _m_u4e"
+  ("e" (erc :server "irc.freenode.net" :port 6667))
+  ("m" mu4e))
+
+;;; Help menu
+
+(defhydra jco/hydra-help (:color blue :hint nil)
+  "
+_a_propos"
+  ("a" jco/hydra-apropos/body))
+
+(defhydra jco/hydra-apropos (:color blue :hint nil)
+  "
+Apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _t_ags"
+  ("a" apropos)
+  ("c" apropos-command)
+  ("d" apropos-documentation)
+  ("e" apropos-value)
+  ("l" apropos-library)
+  ("o" apropos-user-option)
+  ("v" apropos-variable)
+  ("i" info-apropos)
+  ("t" tags-apropos))
 
 (provide 'init-hydras)

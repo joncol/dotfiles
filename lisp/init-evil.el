@@ -198,8 +198,6 @@
 
 ;; (evil-leader/set-key "m m" 'mu4e)
 
-(evil-leader/set-key "m" 'jco/hydra-main-menu/body)
-
 ;;; yasnippet
 (evil-leader/set-key "TAB" 'yas-insert-snippet)
 
