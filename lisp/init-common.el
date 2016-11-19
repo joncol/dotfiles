@@ -182,8 +182,11 @@
 (eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
 (eval-after-load "company" '(diminish 'company-mode))
 
-(require 'golden-ratio)
-(golden-ratio-mode)
-(diminish 'golden-ratio-mode)
+(setq undo-tree-visualizer-diff t)
+(setq undo-tree-visualizer-timestamps t)
+
+;; (require 'golden-ratio)
+;; (golden-ratio-mode)
+;; (diminish 'golden-ratio-mode)
 
 (provide 'init-common)

@@ -10,8 +10,6 @@
 
 (setq jco/cursor-color "green")
 
-(toggle-debug-on-error)
-
 (if (display-graphic-p)
     (progn
       (load-theme jco/theme t)
