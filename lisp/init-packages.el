@@ -41,6 +41,7 @@
          ecb
          edit-server
          epl
+         erc-hl-nicks
          ethan-wspace
          evil
          evil-leader

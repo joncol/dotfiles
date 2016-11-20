@@ -20,8 +20,9 @@ menu: _a_pp _e_dit-cfg _f_ind _o_rg _p_kgs _s_woop _S_nippets _v_cs"
 
 (defhydra jco/hydra-edit-config (:color teal :hint nil)
   "
-edit cfg: _i_nit _c_ommon _f_ile _h_ydras _p_ackages _t_heme"
+edit cfg: _i_nit _b_ootstrap _c_ommon _f_ile _h_ydras _p_ackages _t_heme"
   ("i" (open-config-file "init.el"))
+  ("b" (open-config-file "lisp/init-bootstrap.el"))
   ("c" (open-config-file "lisp/init-common.el"))
   ("f" (helm-find-files-1 (expand-file-name "~/.emacs.d/lisp/")))
   ("h" (open-config-file "lisp/init-hydras.el"))

@@ -11,8 +11,6 @@
             (setq erc-nickserv-passwords
                   `((freenode ((,erc-nick . ,erc-password)))))
 
-            (setq erc-interpret-mirc-color t)
-
             (setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
             (setq erc-lurker-threshold-time 3600)
             (setq erc-autojoin-channels-alist

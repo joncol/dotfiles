@@ -6,11 +6,11 @@
 
 (no-final-newline)
 
-(global-ethan-wspace-mode)
-(diminish 'ethan-wspace-mode)
+(eval-after-load "ethan-wspace" '(diminish 'ethan-wspace-mode))
 
 (defun tabs-are-ok ()
   (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
+
 (add-hook 'makefile-mode-hook 'tabs-are-ok)
 
 (add-hook 'sml-mode-hook 'no-final-newline t)
@@ -21,8 +21,9 @@
   "Reset final-newline that ruby-mode enforces but conflicts with ethan-wspace."
   (no-final-newline))
 
-(global-whitespace-mode 1)
-(diminish 'global-whitespace-mode)
+(require 'whitespace)
+
+(diminish 'whitespace-mode)
 
 (setq-default whitespace-style '(face tabs trailing
                                       space-before-tab indentation
