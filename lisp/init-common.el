@@ -137,6 +137,10 @@
 (setq cider-show-error-buffer 'nil)
 (setq ecb-tip-of-the-day nil)
 
+(setq large-file-warning-threshold nil)
+(setq safe-local-variable-values
+      '((org-archive-location . "::* Archived Tasks")))
+
 (require 'recentf)
 (recentf-mode)
 (setq recentf-max-menu-items 25)
@@ -195,8 +199,6 @@
 
 (global-set-key (kbd "C-x o") 'ace-window)
 
-(setq large-file-warning-threshold nil)
-(setq safe-local-variable-values
-      '((org-archive-location . "::* Archived Tasks")))
+(eval-after-load "info" '(require 'info+))
 
 (provide 'init-common)

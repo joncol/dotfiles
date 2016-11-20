@@ -5,6 +5,7 @@
   '(init-packages
     init-common-funs
     init-common
+    init-circe
     init-erc
     init-eshell
     init-fci

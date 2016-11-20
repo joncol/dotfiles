@@ -1,10 +1,18 @@
-(when (file-exists-p "~/.my_erc_account")
-  (let ((acc (jco/read-lines "~/.my_erc_account")))
-    (setq erc-nick (car acc))
-    (setq erc-password (nth 1 acc))))
+(let ((acc (jco/irc-account)))
+  (setq erc-nick (car acc))
+  (setq erc-password (cdr acc)))
 
 (add-hook 'erc-mode-hook
           (lambda ()
+            ;; Automatically identify with NickServ.
+            (require 'erc-services)
+            (erc-services-mode)
+            (setq erc-prompt-for-nickserv-password nil)
+            (setq erc-nickserv-passwords
+                  `((freenode ((,erc-nick . ,erc-password)))))
+
+            (setq erc-interpret-mirc-color t)
+
             (setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
             (setq erc-lurker-threshold-time 3600)
             (setq erc-autojoin-channels-alist
