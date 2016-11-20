@@ -8,8 +8,9 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-menu: _a_pp _e_dit-cfg _f_ind _o_rg _p_kgs _s_woop _S_nippets _v_cs"
+menu: _a_pp _b_ookmarks _e_dit-cfg _f_ind _o_rg _p_kgs _s_woop _S_nippets _v_cs"
   ("a" jco/hydra-app/body)
+  ("b" helm-bookmarks)
   ("e" jco/hydra-edit-config/body)
   ("f" jco/hydra-find/body)
   ("o" jco/hydra-org/body)
