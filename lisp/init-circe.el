@@ -13,6 +13,10 @@
           :port "6697"
           :channels ("#emacs")))))
 
-(setq circe-reduce-lurker-spam t)
+(add-hook 'circe-mode-hook
+          (lambda ()
+            (enable-circe-color-nicks)
+            (enable-circe-highlight-all-nicks)
+            (setq circe-reduce-lurker-spam t)))
 
 (provide 'init-circe)
