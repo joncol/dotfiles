@@ -4,26 +4,26 @@
 (setq org-log-done t)
 (setq org-directory "~/org")
 (setq org-default-notes-file "notes.org")
-(jco/define-bindings global-map '(("C-c a" . org-agenda)
-                                  ("C-c c" . org-capture)
-                                  ("C-c l" . org-store-link)
+(jco/define-bindings global-map '(("C-c a"   . org-agenda)
+                                  ("C-c c"   . org-capture)
+                                  ("C-c l"   . org-store-link)
                                   ("C-c M-w" . org-copy)
                                   ("C-c C-w" . org-refile)
-                                  ("C-c g" . (lambda ()
-                                               (interactive)
-                                               (find-file
-                                                (concat org-directory
-                                                        "/gtd.org"))))
-                                  ("C-c n" . (lambda ()
-                                               (interactive)
-                                               (find-file
-                                                (concat org-directory
-                                                        "/notes.org"))))
-                                  ("C-c w" . (lambda ()
-                                               (interactive)
-                                               (find-file
-                                                (concat org-directory
-                                                        "/work.org"))))))
+                                  ("C-c g"   . (lambda ()
+                                                 (interactive)
+                                                 (find-file
+                                                  (concat org-directory
+                                                          "/gtd.org"))))
+                                  ("C-c n"   . (lambda ()
+                                                 (interactive)
+                                                 (find-file
+                                                  (concat org-directory
+                                                          "/notes.org"))))
+                                  ("C-c w"   . (lambda ()
+                                                 (interactive)
+                                                 (find-file
+                                                  (concat org-directory
+                                                          "/work.org"))))))
 
 (setq org-reveal-hlevel 2)
 (setq org-todo-keyword-faces
@@ -49,7 +49,7 @@
 (setq org-log-into-drawer t)
 
 (setq org-agenda-custom-commands
-      '(("c" "Simple agenda view"
+      '(("d" "Daily agenda view"
          ((tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if
                                              'todo 'done))
@@ -62,7 +62,7 @@
                           (jco/org-skip-subtree-if-priority ?A)
                           (org-agenda-skip-if nil '(scheduled deadline))))
                     (org-agenda-overriding-header
-                     "All normal priority tasks:"))))
+                     "All normal priority tasks, tagged with WORK:"))))
          ((org-agenda-compact-blocks nil)
           (org-agenda-files '("~/org/work.org"))))))
 

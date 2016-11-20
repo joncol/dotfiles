@@ -30,7 +30,7 @@ Edit cfg: _i_nit _c_ommon _f_ile _h_ydras _p_ackages _t_heme"
 (defhydra jco/hydra-org (:color teal :hint nil)
   "
 Org: _a_genda"
-  ("a" (org-agenda)))
+  ("a" (org-agenda nil "d")))
 
 (defhydra jco/hydra-packages (:color teal :hint nil)
   "
