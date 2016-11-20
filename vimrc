@@ -47,7 +47,7 @@ Plugin 'jonathanfilip/vim-lucius'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'luochen1990/rainbow'
 Plugin 'majutsushi/tagbar'
@@ -352,6 +352,8 @@ if has("gui_running")
   set cursorline
 else
   colorscheme summerfruit256
+  autocmd InsertEnter * set cul
+  autocmd InsertLeave * set nocul
 endif
 
 set guioptions-=m " no menu
@@ -769,7 +771,7 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     if has("gui_gtk2")              " GTK+2 but not GTK+1
       set guifont=Hack\ 10.5
     else                            " non-X11 GUIs (Windows, Carbon, ...)
-      set guifont=Hack:h11
+      set guifont=Inconsolata:h12
     endif
 
     if s:uname == "Windows"
