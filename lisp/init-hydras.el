@@ -37,7 +37,7 @@ Org: _a_genda"
 Packages: _l_ist _n_o-fetch _u_pgrade-all"
   ("l" list-packages)
   ("n" package-list-packages-no-fetch)
-  ("u" package-utils-upgrade-all))d
+  ("u" package-utils-upgrade-all))
 
 (defhydra jco/hydra-snippets (:color teal :hint nil)
   "
