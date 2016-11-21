@@ -18,6 +18,7 @@
             (global-set-key "\M-." 'ggtags-find-tag-dwim)
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
               (ggtags-mode)
+              (diminish 'ggtags-mode)
               (jco/define-bindings ggtags-mode-map
                                    '(("C-c t s" . ggtags-find-other-symbol)
                                      ("C-c t h" . ggtags-view-tag-history)

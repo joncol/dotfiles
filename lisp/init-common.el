@@ -203,4 +203,6 @@
 
 (setq paradox-github-token "68afbf92086e59ec7e2ed974a8bad7ecf7b39127")
 
+(diminish 'abbrev-mode)
+
 (provide 'init-common)

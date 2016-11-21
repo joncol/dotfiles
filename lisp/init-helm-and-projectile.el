@@ -32,6 +32,8 @@
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
+(eval-after-load "helm-gtags" '(diminish 'helm-gtags-mode))
+
 (helm-mode)
 (diminish 'helm-mode)
 
