@@ -32,9 +32,10 @@ edit cfg: _i_nit _b_ootstrap _c_ommon _f_ile _h_ydras _p_ackages _t_heme"
 
 (defhydra jco/hydra-find (:color teal :hint nil)
   "
-find: _f_unction _l_ibrary"
+find: _f_un _l_ib _v_ar"
   ("f" find-function)
-  ("l" find-library))
+  ("l" find-library)
+  ("v" find-variable))
 
 (defhydra jco/hydra-org (:color teal :hint nil)
   "
