@@ -51,6 +51,8 @@
 (setq display-time-string-forms '(24-hours ":" minutes))
 (display-time-mode)
 
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (defadvice align-regexp (around align-regexp-with-spaces activate compile)
   "Never use tabs for alignment."
@@ -85,41 +87,44 @@
 
 (use-package recentf
   :config
-  ;; (recentf-mode)
-  (setq recentf-max-menu-items 25)
-  :demand)
+  (recentf-mode)
+  (setq recentf-max-menu-items 25))
 
 (setq fortune-dir "/usr/share/games/fortunes")
 (setq fortune-file "/usr/share/games/fortunes")
 
-(require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r"))
-;; (setq guide-key/popup-window-position "right")
-(guide-key-mode)
-(diminish 'guide-key-mode)
+(use-package guide-key
+  :diminish guide-key-mode
+  :config
+  (guide-key-mode)
+  ;; (setq guide-key/popup-window-position "right")
+  (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
 
 (put 'erase-buffer 'disabled nil)
 
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
+(windmove-default-keybindings)
 
 (setq compilation-scroll-output t)
 
-(volatile-highlights-mode t)
-(diminish 'volatile-highlights-mode)
+(use-package volatile-highlights
+  :diminish volatile-highlights-mode
+  :config
+  (volatile-highlights-mode))
 
-(global-anzu-mode)
-(diminish 'anzu-mode)
+(use-package anzu
+  :diminish anzu-mode
+  :config
+  (global-anzu-mode))
 
-(require 'string-inflection)
-(global-unset-key (kbd "C-q"))
-(global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle)
+(use-package string-inflection
+  :config
+  (global-unset-key (kbd "C-q"))
+  (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle))
 
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-(fancy-narrow-mode)
-(diminish 'fancy-narrow-mode)
-(put 'narrow-to-region 'disabled nil)
+(use-package fancy-narrow
+  :diminish fancy-narrow-mode
+  :config
+  (put 'narrow-to-region 'disabled nil))
 
 (ace-link-setup-default (kbd "f"))
 
@@ -136,10 +141,6 @@
 (diminish 'undo-tree-mode)
 (setq undo-tree-visualizer-diff t)
 (setq undo-tree-visualizer-timestamps t)
-
-;; (require 'golden-ratio)
-;; (golden-ratio-mode)
-;; (diminish 'golden-ratio-mode)
 
 (global-set-key (kbd "C-x o") 'ace-window)
 

@@ -123,6 +123,9 @@
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 
+(evil-leader/set-key "SPC" 'cycle-spacing)
+(evil-leader/set-key "RET" 'delete-blank-lines)
+
 ;;; evil-nerd-commenter
 
 (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
@@ -185,7 +188,6 @@
 (evil-leader/set-key "f" 'evil-avy-goto-char)
 (evil-leader/set-key "#" 'evil-avy-goto-line)
 (evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
-(evil-leader/set-key "SPC" 'evil-avy-goto-word-or-subword-1)
 (setq avy-case-fold-search nil)
 
 (evil-leader/set-key "x f" 'jco/xmllint-format-buffer)
