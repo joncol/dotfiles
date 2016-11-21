@@ -38,8 +38,9 @@ find: _f_unction _l_ibrary"
 
 (defhydra jco/hydra-org (:color teal :hint nil)
   "
-Org: _a_genda"
-  ("a" (org-agenda nil "d")))
+Org: _a_genda _p_omodoro"
+  ("a" (org-agenda nil "d"))
+  ("p" (org-pomodoro)))
 
 (defhydra jco/hydra-packages (:color teal :hint nil)
   "
