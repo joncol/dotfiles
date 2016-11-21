@@ -133,6 +133,7 @@
          string-inflection
          toml-mode
          undo-tree
+         use-package
          volatile-highlights
          xml-rpc
          yaml-mode
