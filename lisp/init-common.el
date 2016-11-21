@@ -7,7 +7,7 @@
 
 (global-set-key (kbd "M-w") 'ace-window)
 
-(tool-bar-mode nil)
+(tool-bar-mode -1)
 (global-auto-revert-mode)
 (global-font-lock-mode)
 (electric-pair-mode)
