@@ -1,7 +1,7 @@
 (let ((lisp-dir (expand-file-name "lisp" user-emacs-directory)))
   (add-to-list 'load-path lisp-dir))
 
-(defvar init-files
+(defvar jco/init-base-files
   '(init-packages
     init-common-funs
     init-common
@@ -11,16 +11,21 @@
     init-fci
     init-font
     init-company-mode
+    init-ext-apps
     init-helm-and-projectile
     init-hydras
+    init-id
     init-ido
     init-message
     init-mu4e
     init-neotree
     init-rotate
+    init-utils
     init-wspace
-    init-yas
-    init-common-programming
+    init-yas))
+
+(defvar jco/init-prg-files
+  '(init-common-programming
     init-flymake
     init-bat
     init-c
@@ -53,6 +58,8 @@
     init-evil
     init-theme))
 
+(defvar jco/init-files (append jco/init-base-files jco/init-prg-files))
+
 (defun jco/safe-require (feature)
   "Safely require FEATURE"
   (condition-case ex
@@ -62,11 +69,11 @@
                                  (symbol-name feature) ex)))))
 
 (defun jco/safe-load-init-files ()
-  (dolist (file init-files)
+  (dolist (file jco/init-files)
     (jco/safe-require file)))
 
 (defun jco/unsafe-load-init-files ()
-  (dolist (file init-files)
+  (dolist (file jco/init-files)
     (require file)))
 
 (provide 'init-bootstrap)

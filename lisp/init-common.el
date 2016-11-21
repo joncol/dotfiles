@@ -5,67 +5,14 @@
 
 (setq ad-redefinition-action 'accept)
 
-;;; Set name and email
-(require 's)
-(let ((user-full-name "Jonas Collberg"))
-  (setq user-mail-address
-        (concat (s-replace " " "." (downcase user-full-name)) "@"
-                (if (jco/at-office-p)
-                    "orzone.com"
-                  "mykolab.com"))))
-
-(setq gnus-init-file (concat user-emacs-directory "lisp/init-gnus.el"))
-
-(global-set-key (kbd "<f4>")
-                (lambda ()
-                  (interactive)
-                  (start-process "gvim" nil
-                                 "gvim"
-                                 (format "+%d" (line-number-at-pos))
-                                 (buffer-file-name))))
-
-(global-set-key (kbd "S-<f6>")
-                (lambda ()
-                  (interactive)
-                  (kill-new (buffer-file-name))))
-
-(global-set-key (kbd "<f8>")
-                (lambda ()
-                  (interactive)
-                  (insert user-full-name)))
-
-(global-set-key (kbd "S-<f8>")
-                (lambda ()
-                  (interactive)
-                  (insert user-mail-address)))
-
-(lexical-let ((init-file (concat user-emacs-directory "init.el")))
-  (global-set-key (kbd "<f9>")
-                  (lambda ()
-                    (interactive)
-                    (find-file init-file)))
-
-  (global-set-key (kbd "S-<f9>")
-                  (lambda ()
-                    (interactive)
-                    (load-file init-file))))
-
-(global-set-key (kbd "<f12>") (lambda ()
-                                (interactive)
-                                (message "Current major mode: %s" major-mode)))
-
-(global-set-key (kbd "C-c t f") 'toggle-frame-fullscreen)
-
 (global-set-key (kbd "M-w") 'ace-window)
 
-(tool-bar-mode -1)
+(tool-bar-mode nil)
 (global-auto-revert-mode)
 (global-font-lock-mode)
 (electric-pair-mode)
 (rainbow-mode)
-(global-linum-mode)
-;; (global-subword-mode)
-(setq helm-gtags-path-style 'absolute)
+;; (global-linum-mode)
 (setq sentence-end-double-space nil)
 
 (when (display-graphic-p)

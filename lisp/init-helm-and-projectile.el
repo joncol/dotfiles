@@ -23,7 +23,8 @@
       ;; helm-gtags-prefix-key "\C-cg"
       helm-gtags-suggested-key-mapping t
       helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case"
-      helm-ag-insert-at-point 'word)
+      helm-ag-insert-at-point 'word
+      helm-gtags-path-style 'absolute)
 
 ;; enable helm-gtags-mode
 (add-hook 'dired-mode-hook 'helm-gtags-mode)
