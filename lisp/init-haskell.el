@@ -14,11 +14,13 @@
 
             ;; (setq flycheck-check-syntax-automatically '(save new-line))
             (flycheck-mode -1)
+            (diminish 'flycheck-mode)
 
             (when (and (not (eq system-type 'windows-nt))
                        (not (s-contains? "org-src" (buffer-name)))
                        (not (s-contains? "*temp" (buffer-name))))
-              (intero-mode))
+              (intero-mode)
+              (diminish 'intero-mode))
 
             (setq haskell-interactive-popup-errors nil)
             (setq haskell-process-auto-import-loaded-modules t)
@@ -28,8 +30,11 @@
             ;; (setq haskell-tags-on-save t) ;; doesn't work for Fish
 
             (haskell-doc-mode)
+            (diminish 'haskell-doc-mode)
 
             (hindent-mode)
+            (diminish 'hindent-mode)
+
             (setq tab-stop-list
                   (loop for i from 0 upto 120 by 2 collect i))
             (setq evil-shift-width 2)
