@@ -8,8 +8,12 @@
 
 (package-initialize)
 
-(unless (package-installed-p 'yasnippet)
-  (package-refresh-contents))
+(setq jco/package-list-refreshed nil)
+
+(defun jco/refresh-package-list ()
+  (unless jco/package-list-refreshed
+    (package-refresh-contents)
+    (setq jco/package-list-refreshed t)))
 
 (let ((packages
        '(ace-jump-mode
@@ -134,7 +138,9 @@
          yard-mode
          yasnippet)))
   (dolist (p packages)
+    ;; (message (format "Package %s status: %s" p (package-installed-p p)))
     (unless (package-installed-p p)
+      (jco/refresh-package-list)
       (package-install p))))
 
 (let ((themes
