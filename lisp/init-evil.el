@@ -120,6 +120,9 @@
 
 (evil-leader/set-key "g g" 'ggtags-find-tag-dwim)
 
+(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
+(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
+
 ;;; evil-nerd-commenter
 
 (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)

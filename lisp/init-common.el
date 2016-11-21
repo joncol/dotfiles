@@ -11,16 +11,23 @@
 (global-auto-revert-mode)
 (global-font-lock-mode)
 (electric-pair-mode)
+(show-paren-mode)
 (rainbow-mode)
+(global-hl-line-mode)
 ;; (global-linum-mode)
-(setq sentence-end-double-space nil)
-
-(when (display-graphic-p)
-  (global-hl-line-mode)
-  (show-paren-mode))
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
+
+(use-package server
+  :demand
+  :config
+  (when (not (server-running-p))
+    (server-start)))
+
 (edit-server-start)
+
+(setq inhibit-startup-message t)
+(setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
 
 (setq-default indent-tabs-mode nil)
@@ -33,18 +40,8 @@
                                               (line-end-position))
                   (newline-and-indent)))
 
-;;; autocomplete
-(setq tab-always-indent 'complete)
-(add-to-list 'completion-styles 'initials t)
-(auto-complete-mode)
-(setq ac-ignore-case 'smart)
-(setq company-dabbrev-ignore-case 'keep-prefix)
-(setq company-dabbrev-code-ignore-case nil)
-(setq company-dabbrev-downcase nil)
-
-(setq scroll-step           1
-      scroll-conservatively 10000)
-(setq inhibit-startup-message t)
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 (setq scroll-margin 4)
@@ -68,8 +65,6 @@
                      '(("<tab>" . forward-button)
                        ("<backtab>" . backward-button)))
 
-(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
-(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 (global-set-key (kbd "C-c C-b") 'help-go-back)
 (global-set-key (kbd "C-c C-f") 'help-go-forward)
 
@@ -88,9 +83,11 @@
 (setq safe-local-variable-values
       '((org-archive-location . "::* Archived Tasks")))
 
-(require 'recentf)
-(recentf-mode)
-(setq recentf-max-menu-items 25)
+(use-package recentf
+  :config
+  ;; (recentf-mode)
+  (setq recentf-max-menu-items 25)
+  :demand)
 
 (setq fortune-dir "/usr/share/games/fortunes")
 (setq fortune-file "/usr/share/games/fortunes")

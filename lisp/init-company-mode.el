@@ -18,6 +18,14 @@
                                  '(("C-j" . company-select-next-or-abort)
                                    ("C-k" . company-select-previous-or-abort)))
 
+            (setq tab-always-indent 'complete)
+            (add-to-list 'completion-styles 'initials t)
+            ;; (auto-complete-mode)
+            ;; (setq ac-ignore-case 'smart)
+            (setq company-dabbrev-ignore-case 'keep-prefix)
+            (setq company-dabbrev-code-ignore-case nil)
+            (setq company-dabbrev-downcase nil)
+
             (setq company-tooltip-limit 20)
             (setq company-idle-delay .3)
             (setq company-echo-delay 0)
