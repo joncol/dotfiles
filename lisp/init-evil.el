@@ -36,17 +36,8 @@
 
 (dolist (mode-map (list apropos-mode-map compilation-mode-map
                         evil-normal-state-map help-mode-map Info-mode-map
-                        monky-mode-map mu4e-headers-mode-map mu4e-main-mode-map
-                        mu4e-view-mode-map))
-  (jco/define-bindings mode-map
-                       '(("C-w h" . windmove-left)
-                         ("C-w j" . windmove-down)
-                         ("C-w k" . windmove-up)
-                         ("C-w l" . windmove-right)
-                         ("C-w C-h" . windmove-left)
-                         ("C-w C-j" . windmove-down)
-                         ("C-w C-k" . windmove-up)
-                         ("C-w C-l" . windmove-right))))
+                        monky-mode-map))
+  (jco/bind-windmove-keys mode-map))
 
 ;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over
 ;; a '('
