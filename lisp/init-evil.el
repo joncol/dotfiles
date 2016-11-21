@@ -34,10 +34,14 @@
 (require 'apropos)
 (require 'monky)
 
-(dolist (mode-map (list apropos-mode-map compilation-mode-map
-                        evil-normal-state-map help-mode-map Info-mode-map
-                        monky-mode-map))
-  (jco/bind-windmove-keys mode-map))
+(custom-set-variables
+ '(evil-want-C-w-in-emacs-state t))
+
+(jco/define-bindings 'evil-window-map
+                     '(("C-h" . windmove-left)
+                       ("C-j" . windmove-down)
+                       ("C-k" . windmove-up)
+                       ("C-l" . windmove-right)))
 
 ;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over
 ;; a '('

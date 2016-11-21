@@ -120,15 +120,4 @@
       (cons (car lines) (cadr lines)))
     '("" . "")))
 
-(defun jco/bind-windmove-keys (mode-map)
- (jco/define-bindings mode-map
-                      '(("C-w h"   . windmove-left)
-                        ("C-w j"   . windmove-down)
-                        ("C-w k"   . windmove-up)
-                        ("C-w l"   . windmove-right)
-                        ("C-w C-h" . windmove-left)
-                        ("C-w C-j" . windmove-down)
-                        ("C-w C-k" . windmove-up)
-                        ("C-w C-l" . windmove-right))))
-
 (provide 'init-common-funs)

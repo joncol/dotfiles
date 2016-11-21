@@ -130,9 +130,6 @@
   ;; default is to ask
   ;; '(setq mu4e-compose-context-policy nil)
 
-  (dolist (mode-map (mu4e-headers-mode-map mu4e-main-mode-map
-                                           mu4e-view-mode-map))
-    (jco/bind-windmove-keys mode-map))
   )
 
 (provide 'init-mu4e)
