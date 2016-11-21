@@ -105,6 +105,7 @@
          ox-reveal
          package-utils
          pandoc-mode
+         paradox
          paredit
          pkg-info
          plantuml-mode

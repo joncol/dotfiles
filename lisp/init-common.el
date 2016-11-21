@@ -201,4 +201,6 @@
 
 (eval-after-load "info" '(require 'info+))
 
+(setq paradox-github-token "68afbf92086e59ec7e2ed974a8bad7ecf7b39127")
+
 (provide 'init-common)
