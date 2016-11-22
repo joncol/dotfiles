@@ -18,17 +18,13 @@
    ((minibufferp)
     (minibuffer-complete))
    (t
-    ;; (indent-for-tab-command)
     (if (or (not yas/minor-mode)
             (null (do-yas-expand)))
         (if (check-expansion)
             (progn
               (company-manual-begin)
               (if (null company-candidates)
-                  (progn
-                    (company-abort)
-                    (indent-for-tab-command)
-                    ))))))))
+                  (company-abort))))))))
 
 (defun tab-complete-or-next-field ()
   (interactive)
