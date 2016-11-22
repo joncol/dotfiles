@@ -88,6 +88,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
  'org-babel-load-languages
  '((ditaa . t)
    (dot . t)
+   (latex . t)
    (plantuml . t)))
 
 (setq org-confirm-babel-evaluate nil)
@@ -96,6 +97,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
           org-plantuml-jar-path "c:/tools/misc/plantuml.jar")
   (setq org-ditaa-jar-path "/usr/local/bin/ditaa.jar"
         org-plantuml-jar-path "/usr/local/bin/plantuml.jar"))
+
+(require 'ox-latex)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
 
 (setq org-latex-listings 'minted)
 
