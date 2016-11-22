@@ -192,8 +192,8 @@
 
 (evil-leader/set-key "x f" 'jco/xmllint-format-buffer)
 
-(evil-leader/set-key "n" 'fancy-narrow-to-defun)
-(evil-leader/set-key "w" 'fancy-widen)
+(evil-leader/set-key "n" 'narrow-to-defun)
+(evil-leader/set-key "w" 'widen)
 
 (evil-leader/set-key "i n" '(lambda ()
                               (interactive)
