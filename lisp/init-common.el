@@ -155,6 +155,6 @@
 (use-package ace-jump-helm-line-mode
   :diminish ace-jump-helm-line-mode
   :bind (:map helm-map
-         ("C-'" . ace-jump-helm-line)))
+         ("M-f" . ace-jump-helm-line)))
 
 (provide 'init-common)
