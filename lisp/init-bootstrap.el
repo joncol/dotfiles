@@ -20,6 +20,7 @@
     init-mu4e
     init-neotree
     init-rotate
+    init-tab
     init-utils
     init-wspace
     init-yas))

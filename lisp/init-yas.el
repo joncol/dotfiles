@@ -22,21 +22,4 @@
   (let ((yas/fallback-behavior 'return-nil))
     (yas/expand)))
 
-(defun tab-indent-or-complete (use-ghc-complete)
-  (if (minibufferp)
-      (completion-at-point)
-    (if (or (not yas/minor-mode)
-            (null (do-yas-expand)))
-        (if (check-expansion)
-            (progn
-              (company-complete-common)
-              (when use-ghc-complete
-                (ghc-complete)))
-          (indent-for-tab-command)))))
-
-(global-set-key (kbd "<tab>")
-                (lambda ()
-                  (interactive)
-                  (tab-indent-or-complete nil)))
-
 (provide 'init-yas)
