@@ -194,6 +194,7 @@
 
 (require 'fancy-narrow)
 (fancy-narrow-mode)
+(diminish 'fancy-narrow-mode)
 (evil-leader/set-key "n" 'fancy-narrow-to-defun)
 (evil-leader/set-key "w" 'fancy-widen)
 
