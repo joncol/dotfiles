@@ -11,6 +11,7 @@
 ^srecode-map\.el$
 network-security\.data
 ^server/server$
+^org-clock-save\.el$
 
 bin/
 build/
