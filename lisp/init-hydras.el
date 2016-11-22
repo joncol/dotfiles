@@ -8,11 +8,12 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-menu: _a_pp _b_ookmarks _e_dit-cfg _f_ind _o_rg _p_kgs _s_woop _S_nippets _v_cs"
+menu: _a_pp _b_ookmarks _e_dit-cfg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs"
   ("a" jco/hydra-app/body)
   ("b" helm-bookmarks)
   ("e" jco/hydra-edit-config/body)
   ("f" jco/hydra-find/body)
+  ("l" jco/hydra-lang/body)
   ("o" jco/hydra-org/body)
   ("p" jco/hydra-packages/body)
   ("s" jco/hydra-swoop/body)
@@ -36,6 +37,12 @@ find: _f_un _l_ib _v_ar"
   ("f" find-function)
   ("l" find-library)
   ("v" find-variable))
+
+(defhydra jco/hydra-lang (:color teal :hint nil)
+"
+_f_lyspell _l_angtool"
+  ("f" flyspell-mode)
+  ("l" langtool-check))
 
 (defhydra jco/hydra-org (:color teal :hint nil)
   "

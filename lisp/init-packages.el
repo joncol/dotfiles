@@ -16,7 +16,10 @@
     (setq jco/package-list-refreshed t)))
 
 (let ((packages
-       '(ace-jump-mode
+       '(ace-flyspell
+         ace-isearch
+         ace-jump-helm-line
+         ace-jump-mode
          ace-link
          ace-window
          ack-and-a-half
@@ -91,6 +94,7 @@
          irfc
          jira
          json-mode
+         langtool
          lua-mode
          magit
          markdown-mode
