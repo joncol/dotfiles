@@ -26,8 +26,8 @@
 
 (defvar jco/init-prg-files
   '(init-common-programming
-    init-flymake
     init-bat
+    init-flymake
     init-c
     init-cc
     init-clojure
@@ -54,11 +54,15 @@
     init-scheme
     init-standard-ml
     init-tex
-    init-yaml
-    init-evil
+    init-yaml))
+
+(defvar jco/init-last-files
+  '(init-evil
     init-theme))
 
-(defvar jco/init-files (append jco/init-base-files jco/init-prg-files))
+(defvar jco/init-files (append jco/init-base-files
+                               jco/init-prg-files
+                               jco/init-last-files))
 
 (defun jco/safe-require (feature)
   "Safely require FEATURE"

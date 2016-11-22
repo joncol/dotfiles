@@ -122,12 +122,6 @@
   (global-unset-key (kbd "C-q"))
   (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle))
 
-(use-package fancy-narrow
-  :if (not (eq system-type 'windows-nt))
-  :diminish fancy-narrow-mode
-  :config
-  (put 'narrow-to-region 'disabled nil))
-
 (ace-link-setup-default (kbd "f"))
 
 (use-package fuzzy
