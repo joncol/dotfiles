@@ -10,6 +10,7 @@
 ^TAGS$
 ^srecode-map\.el$
 network-security\.data
+^server/server$
 
 bin/
 build/

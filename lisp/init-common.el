@@ -63,6 +63,7 @@
                      '(("<tab>" . Info-next-reference)
                        ("<backtab>" . Info-prev-reference)))
 
+(require 'help-mode)
 (jco/define-bindings help-mode-map
                      '(("<tab>" . forward-button)
                        ("<backtab>" . backward-button)))
