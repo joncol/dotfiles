@@ -110,7 +110,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
       '(("frame" "lines")
         ("fontsize" "\\normalsize")
         ;; ("fontsize" "\\scriptsize")
-        ("linenos" "")
         ("mathescape" "")
         ("samepage" "")
         ("xrightmargin" "0.5cm")
