@@ -128,8 +128,9 @@
 
 (ace-link-setup-default (kbd "f"))
 
-(require 'fuzzy)
-(turn-on-fuzzy-isearch)
+(use-package fuzzy
+  :config
+  (turn-on-fuzzy-isearch))
 
 (require 'qmake-mode)
 (require 'iedit)
@@ -149,5 +150,15 @@
 (setq paradox-github-token "68afbf92086e59ec7e2ed974a8bad7ecf7b39127")
 
 (diminish 'abbrev-mode)
+
+(use-package ace-isearch
+  :diminish ace-isearch-mode
+  :config
+  (global-ace-isearch-mode))
+
+(use-package ace-jump-helm-line-mode
+  :diminish ace-jump-helm-line-mode
+  :bind (:map helm-map
+         ("C-'" . ace-jump-helm-line)))
 
 (provide 'init-common)
