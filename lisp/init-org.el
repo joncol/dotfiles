@@ -100,6 +100,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 (require 'ox-latex)
 (add-to-list 'org-latex-packages-alist '("" "minted"))
+(add-to-list 'org-latex-inputenc-alist '("utf8" . "utf8x"))
+(setq org-latex-default-packages-alist (cons '("mathletters" "ucs" nil)
+                                             org-latex-default-packages-alist))
 
 (setq org-latex-listings 'minted)
 
