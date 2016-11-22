@@ -72,10 +72,12 @@ vcs: _g_it _m_ercurial"
 
 (defhydra jco/hydra-app (:color teal :hint nil)
   "
-app: _c_irce _e_rc _m_u4e"
+app: _c_irce _e_rc _m_u4e _v_im e_w_w"
   ("c" (circe "Freenode"))
   ("e" (erc :server "irc.freenode.net" :port 6667))
-  ("m" mu4e))
+  ("m" mu4e)
+  ("v" vim)
+  ("w" eww))
 
 ;;; Help menu
 
