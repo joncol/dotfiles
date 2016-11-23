@@ -9,8 +9,8 @@ BRANCH is the branch name."
               'face `(:foreground "#f62459")))
 
 (defun curr-dir-scm-branch-string (dir)
-  "Returns current git branch as a string, or the empty string if
-DIR is not in a git repo (or the git command is not found)."
+  "Return current git branch as a string, or the empty string if DIR is not in a
+git repo (or the git command is not found)."
   (interactive)
   (cond ((and (eshell-search-path "git")
               (locate-dominating-file dir ".git"))
@@ -44,5 +44,23 @@ DIR is not in a git repo (or the git command is not found)."
             (set-face-foreground 'eshell-prompt-face "#f39c12")
             (defalias 'ff 'find-file)
             (defalias 'open 'find-file)))
+
+(defun jco/eshell-here ()
+  "Open up a new shell in the directory associated with the current buffer's
+file. The eshell is renamed to match that directory to make multiple eshell
+windows easier."
+  (interactive)
+  (let* ((parent (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   default-directory))
+         (height (/ (window-total-height) 3))
+         (name   (car (last (split-string parent "/" t)))))
+    (split-window-vertically (- height))
+    (other-window 1)
+    (eshell "new")
+    (rename-buffer (concat "*eshell: " name "*"))
+
+    (insert (concat "ls"))
+    (eshell-send-input)))
 
 (provide 'init-eshell)
