@@ -121,8 +121,8 @@
     '("" . "")))
 
 (defun jco/update-config ()
-  (cd user-emacs-directory)
+  (shell-process-pushd user-emacs-directory)
   (monky-fetch)
-  (cd default-directory))
+  (shell-process-popd "1"))
 
 (provide 'init-common-funs)
