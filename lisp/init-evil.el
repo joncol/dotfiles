@@ -121,6 +121,7 @@
 (global-set-key (kbd "C-x C-SPC") 'evil-search-highlight-persist-remove-all)
 
 (evil-leader/set-key "g g" 'ggtags-find-tag-dwim)
+(evil-leader/set-key "g o" 'google-this)
 
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
