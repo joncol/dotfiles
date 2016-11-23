@@ -56,13 +56,13 @@
                  (org-agenda-overriding-header
                   "High-priority unfinished tasks:")))
           (agenda "" ((org-agenda-ndays 1)))
-          (tags-todo "WORK"
+          (tags-todo "@WORK"
                    ((org-agenda-skip-function
                      '(or (jco/org-skip-subtree-if-habit)
                           (jco/org-skip-subtree-if-priority ?A)
                           (org-agenda-skip-if nil '(scheduled deadline))))
                     (org-agenda-overriding-header
-                     "All normal priority tasks, tagged with WORK:"))))
+                     "All normal priority tasks, tagged with @WORK:"))))
          ((org-agenda-compact-blocks nil)
           (org-agenda-files '("~/org/work.org"))))))
 
@@ -83,6 +83,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     (if (string= (org-entry-get nil "STYLE") "habit")
         subtree-end
       nil)))
+
+(add-to-list 'org-modules 'org-habit)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
