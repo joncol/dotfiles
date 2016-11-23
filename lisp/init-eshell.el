@@ -63,4 +63,9 @@ windows easier."
     (insert (concat "ls"))
     (eshell-send-input)))
 
+(defun eshell/x ()
+  (insert "exit")
+  (eshell-send-input)
+  (delete-window))
+
 (provide 'init-eshell)
