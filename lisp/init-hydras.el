@@ -8,10 +8,10 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-menu: _a_pp _b_ookmarks _e_dit-cfg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs"
+menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs"
   ("a" jco/hydra-app/body)
   ("b" helm-bookmarks)
-  ("e" jco/hydra-edit-config/body)
+  ("c" jco/hydra-config/body)
   ("f" jco/hydra-find/body)
   ("l" jco/hydra-lang/body)
   ("o" jco/hydra-org/body)
@@ -20,16 +20,17 @@ menu: _a_pp _b_ookmarks _e_dit-cfg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets
   ("S" jco/hydra-snippets/body)
   ("v" jco/hydra-vcs/body))
 
-(defhydra jco/hydra-edit-config (:color teal :hint nil)
+(defhydra jco/hydra-config (:color teal :hint nil)
   "
-edit cfg: _i_nit _b_ootstrap _c_ommon _f_ile _h_ydras _p_ackages _t_heme"
+edit cfg: _i_nit _b_ootstrap _c_ommon _f_ile _h_ydras _p_ackages _t_heme _u_pdate"
   ("i" (open-config-file "init.el"))
   ("b" (open-config-file "lisp/init-bootstrap.el"))
   ("c" (open-config-file "lisp/init-common.el"))
   ("f" (helm-find-files-1 (expand-file-name "~/.emacs.d/lisp/")))
   ("h" (open-config-file "lisp/init-hydras.el"))
   ("p" (open-config-file "lisp/init-packages.el"))
-  ("t" (open-config-file "lisp/init-theme.el")))
+  ("t" (open-config-file "lisp/init-theme.el"))
+  ("u" (jco/update-config)))
 
 (defhydra jco/hydra-find (:color teal :hint nil)
   "

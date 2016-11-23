@@ -120,4 +120,9 @@
       (cons (car lines) (cadr lines)))
     '("" . "")))
 
+(defun jco/update-config ()
+  (cd user-emacs-directory)
+  (monky-fetch)
+  (cd default-directory))
+
 (provide 'init-common-funs)
