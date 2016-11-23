@@ -35,27 +35,24 @@
   (fci-mode))
 
 (defun jco/insert-date (arg)
-  "Insert date at current point."
-  (interactive "p")
+  "Insert date at current point, in format 2016-11-23. If a prefix argument is
+given, dots are used instead of dashes."
+  (interactive "P")
   (insert (if arg
               (format-time-string "%d.%m.%Y")
             (format-time-string "%Y-%m-%d"))))
 
 (defun jco/insert-timestamp (arg)
-  "Insert timestamp at current point."
-  (interactive "p")
+  "Insert timestamp at current point. The format of the timestamp is 00:00:00.
+If a prefix argument is given, the date is also inserted, and the format of the
+timestamp is 2016-11-23T00:00:00 (in accordance with ISO 8601)."
+  (interactive "P")
   (insert (if arg
               (format-time-string "%Y-%m-%dT%H:%M:%S")
             (format-time-string "%H:%M:%S"))))
 
-(global-set-key (kbd "C-c i d")
-                (lambda () (interactive) (jco/insert-date nil)))
-
-(global-set-key (kbd "C-c i T")
-                (lambda () (interactive) (jco/insert-timestamp t)))
-
-(global-set-key (kbd "C-c i t")
-                (lambda () (interactive) (jco/insert-timestamp nil)))
+(global-set-key (kbd "C-c i d") 'jco/insert-date)
+(global-set-key (kbd "C-c i t") 'jco/insert-timestamp)
 
 (defun jco/json-lint ()
   "Pretty format JSON."
