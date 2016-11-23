@@ -10,11 +10,13 @@
 (tool-bar-mode -1)
 (global-auto-revert-mode)
 (global-font-lock-mode)
-(electric-pair-mode)
 (show-paren-mode)
 (rainbow-mode)
 (global-hl-line-mode)
 ;; (global-linum-mode)
+
+(electric-pair-mode)
+(setq electric-pair-preserve-balance nil)
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
 
