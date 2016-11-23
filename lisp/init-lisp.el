@@ -6,6 +6,10 @@
   (load (expand-file-name "~/quicklisp/slime-helper.el")))
 
 (setq inferior-lisp-program "sbcl")
+
+(eval-after-load "evil"
+  '(jco/define-bindings evil-normal-state-map '(("M-." . nil))))
+
 (jco/define-bindings lisp-mode-map '(("M-." . slime-edit-definition)))
 
 (provide 'init-lisp)
