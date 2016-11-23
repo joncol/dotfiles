@@ -1,4 +1,3 @@
-(require 'evil)
 (require 'inf-ruby)
 
 (dolist (fp '("\\.rb$"
@@ -34,7 +33,9 @@
               (show-paren-mode -1))
 
             (jco/common-prog)
-            (setq evil-shift-width 2)
+
+            (eval-after-load "evil" '(setq evil-shift-width 2))
+
             (unless jco/rvm-use-default-called
               (rvm-use-default))
             (add-to-list 'company-backends 'company-robe)
@@ -50,18 +51,19 @@
                               ,(rx (or "#" "=begin"))
                               ruby-forward-sexp nil)))))
 
-(evil-define-motion evil-ruby-jump-item (count)
-  :jump t
-  :type inclusive
-  (cond ((or (string-match ruby-block-beg-re (current-word))
-             (string-match "describe" (current-word))
-             (string-match "context" (current-word))
-             (string-match "it" (current-word)))
-         (ruby-end-of-block count))
-        ((string-match ruby-block-end-re (current-word))
-         (ruby-beginning-of-block count))
-        (t
-         (evil-jump-item count))))
+(eval-after-load "evil"
+  '(evil-define-motion evil-ruby-jump-item (count)
+     :jump t
+     :type inclusive
+     (cond ((or (string-match ruby-block-beg-re (current-word))
+                (string-match "describe" (current-word))
+                (string-match "context" (current-word))
+                (string-match "it" (current-word)))
+            (ruby-end-of-block count))
+           ((string-match ruby-block-end-re (current-word))
+            (ruby-beginning-of-block count))
+           (t
+            (evil-jump-item count)))))
 
 (jco/define-bindings ruby-mode-map
                      '(("C-c r a"  . rvm-activate-corresponding-ruby)))

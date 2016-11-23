@@ -4,6 +4,8 @@
 (defvar jco/init-errors nil
   "If there are any initialization errors, they will be appended to this list.")
 
+(setq evil-want-C-i-jump nil)
+
 (require 'init-bootstrap)
 (jco/safe-load-init-files)
 

@@ -1,3 +1,5 @@
+(require 'evil)
+
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-mode)
