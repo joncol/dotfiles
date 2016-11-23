@@ -135,6 +135,7 @@
          smtpmail-multi
          spaceline
          string-inflection
+         sx
          toml-mode
          undo-tree
          use-package

@@ -12,6 +12,7 @@
 network-security\.data
 ^server/server$
 ^org-clock-save\.el$
+^\.sx$
 
 bin/
 build/
