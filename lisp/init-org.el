@@ -85,6 +85,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
       nil)))
 
 (add-to-list 'org-modules 'org-habit)
+(setq org-habit-show-all-today t)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
