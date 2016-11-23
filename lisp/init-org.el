@@ -158,9 +158,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                    ("C-w C-k" . windmove-up)
                                    ("C-w C-l" . windmove-right)))
 
-             ;;; Embed youtube links in org-mode
-
-            (cl-defun add-link-type (name &optional (url-params nil))
+            (cl-defun jco/add-youtube-link-type (name &optional
+                                                      (url-params nil))
+              "Add org link type for embedding YouTube links in org-mode."
               (let ((yt-iframe-format
                      (concat "<iframe width=\"560\""
                              " height=\"315\""
@@ -182,8 +182,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                                       path
                                                       (or desc "video"))))))))
 
-            (add-link-type "yt")
-            (add-link-type "ytnc" "&controls=0")))
+            (jco/add-youtube-link-type "yt")
+            (jco/add-youtube-link-type "ytnc" "&controls=0")))
 
 (defun my/org-inline-css-hook (exporter)
   "Insert custom inline css to automatically set the
