@@ -157,7 +157,7 @@
 (use-package ace-jump-helm-line-mode
   :diminish ace-jump-helm-line-mode
   :bind (:map helm-map
-         ("M-f" . ace-jump-helm-line)))
+              ("M-f" . ace-jump-helm-line)))
 
 (use-package avy
   :config
@@ -168,5 +168,12 @@
            (avy-setup-default)))
 
   (setq avy-case-fold-search nil))
+
+(use-package sx-question-mode
+  ;; :commands sx-tab-all-questions
+  :config
+  (bind-keys :map sx-question-mode-map
+             ("j" . scroll-up-line)
+             ("k" . scroll-down-line)))
 
 (provide 'init-common)
