@@ -1,5 +1,5 @@
 (use-package langtool
-  :config
+  :init
   (setq langtool-language-tool-jar
         "/opt/LanguageTool-3.5/languagetool-commandline.jar"))
 

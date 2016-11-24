@@ -41,9 +41,13 @@ find: _f_un _l_ib _v_ar"
 
 (defhydra jco/hydra-lang (:color teal :hint nil)
 "
-_f_lyspell _l_angtool"
+_f_lyspell
+
+_l_angtool _c_orrect _d_one"
   ("f" flyspell-mode)
-  ("l" langtool-check))
+  ("l" langtool-check)
+  ("c" langtool-correct-buffer)
+  ("d" langtool-check-done))
 
 (defhydra jco/hydra-org (:color teal :hint nil)
   "

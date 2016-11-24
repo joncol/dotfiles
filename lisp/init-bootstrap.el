@@ -39,6 +39,7 @@
     init-ecb
     init-emacs-lisp
     init-haskell
+    init-lang
     init-latex
     init-lisp
     init-lua
