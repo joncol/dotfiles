@@ -189,12 +189,6 @@
 
 (define-key projectile-command-map (kbd "s a") #'helm-ag-project-root)
 
-;;; avy
-(evil-leader/set-key "f" 'evil-avy-goto-char)
-(evil-leader/set-key "#" 'evil-avy-goto-line)
-(evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
-(setq avy-case-fold-search nil)
-
 (evil-leader/set-key "x f" 'jco/xmllint-format-buffer)
 
 (require 'fancy-narrow)
