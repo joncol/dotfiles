@@ -157,10 +157,10 @@
 (use-package avy
   :config
   (eval-after-load "evil"
-    (progn (evil-leader/set-key "f" 'evil-avy-goto-char)
-           (evil-leader/set-key "#" 'evil-avy-goto-line)
-           (evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
-           (avy-setup-default)))
+    '(progn (evil-leader/set-key "f" 'evil-avy-goto-char)
+            (evil-leader/set-key "#" 'evil-avy-goto-line)
+            (evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
+            (avy-setup-default)))
 
   (setq avy-case-fold-search nil))
 
