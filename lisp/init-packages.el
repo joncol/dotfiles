@@ -89,6 +89,7 @@
          hindent
          htmlize
          iedit
+         impatient-mode
          info+
          intero
          irfc
