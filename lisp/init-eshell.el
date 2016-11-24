@@ -64,8 +64,7 @@ windows easier."
     (eshell-send-input)))
 
 (defun eshell/x ()
-  (insert "exit")
-  (eshell-send-input)
+  (eshell-quit-process)
   (delete-window))
 
 (provide 'init-eshell)
