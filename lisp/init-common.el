@@ -149,11 +149,6 @@
 
 (diminish 'abbrev-mode)
 
-(use-package ace-isearch
-  :diminish ace-isearch-mode
-  :config
-  (global-ace-isearch-mode))
-
 (use-package ace-jump-helm-line-mode
   :diminish ace-jump-helm-line-mode
   :bind (:map helm-map
