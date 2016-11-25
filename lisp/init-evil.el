@@ -35,7 +35,9 @@
 (jco/move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
 (jco/move-key evil-motion-state-map evil-normal-state-map " ")
 
-(jco/define-bindings evil-normal-state-map '(("+" . rotate-word-at-point)))
+(define-key evil-normal-state-map (kbd "+") 'rotate-word-at-point)
+
+(define-key evil-normal-state-map (kbd "M-.") nil)
 
 (require 'apropos)
 (require 'monky)

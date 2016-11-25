@@ -1,23 +1,26 @@
+;;; init-rtags.el --- Setup RTags for C++ completion and flycheck support.
+
+;;; Commentary:
+
+;;; Code:
+
 (when (eq system-type 'gnu/linux)
   (add-hook 'c-mode-common-hook
             (lambda ()
               (require 'rtags)
               (require 'flycheck-rtags)
+              (require 'projectile)
               (when (not (boundp 'cmake-ide-build-dir))
                 (defvar cmake-ide-build-dir
-                  (concat (projectile-project-root) "../_build")))
+                  (concat (projectile-project-root) "_build")))
               (cmake-ide-setup)
-
-              (eval-after-load "evil"
-                '(bind-keys :map evil-normal-state-map
-                            ("M-." . nil)))
 
               (rtags-enable-standard-keybindings)
               (setq rtags-use-helm t)
 
               (push 'company-rtags company-backends)
 
-              (bind-key "M-." 'rtags-find-symbol-at-point))
+              (bind-key "M-." 'rtags-find-symbol-at-point c-mode-base-map)
 
               ;; Fix color of filenames when using rtags-find-file.
               (add-hook 'minibuffer-inactive-mode-hook
@@ -39,6 +42,7 @@
                   "g <" 'rtags-find-references
                   "g [" 'rtags-location-stack-back
                   "g ]" 'rtags-location-stack-forward
+                  "g C" 'rtags-compile-file
                   "g D" 'rtags-diagnostics
                   "g G" 'rtags-guess-function-at-point
                   "g p" 'rtags-set-current-project
@@ -57,6 +61,8 @@
                   "g I" 'rtags-imenu
                   "g T" 'rtags-taglist
                   "g h" 'rtags-print-class-hierarchy
-                  "g a" 'rtags-print-source-arguments))))
+                  "g a" 'rtags-print-source-arguments)))))
 
 (provide 'init-rtags)
+
+;;; init-rtags.el ends here

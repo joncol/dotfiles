@@ -3,8 +3,6 @@
 (add-hook 'lisp-mode-hook
           (lambda ()
             (init-lisp-common)
-            (eval-after-load "evil"
-              '(jco/define-bindings evil-normal-state-map '(("M-." . nil))))
             (setq inferior-lisp-program "sbcl")
             (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)))
 

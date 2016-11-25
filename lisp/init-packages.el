@@ -74,6 +74,7 @@
          gnuplot
          gnuplot-mode
          golden-ratio
+         google-this
          goto-chg
          goto-last-change
          graphviz-dot-mode

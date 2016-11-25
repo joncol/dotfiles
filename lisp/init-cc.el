@@ -5,9 +5,6 @@
 
               (helm-gtags-mode)
 
-              (with-eval-after-load 'evil
-                (define-key evil-normal-state-map (kbd "M-.") nil))
-
               (global-set-key "\M-." 'ggtags-find-tag-dwim)
 
               (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
