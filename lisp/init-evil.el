@@ -36,8 +36,10 @@
 (jco/move-key evil-motion-state-map evil-normal-state-map " ")
 
 (define-key evil-normal-state-map (kbd "+") 'rotate-word-at-point)
-
 (define-key evil-normal-state-map (kbd "M-.") nil)
+
+(setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
+(define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
 
 (require 'apropos)
 (require 'monky)
