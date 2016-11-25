@@ -165,7 +165,6 @@
   (setq avy-case-fold-search nil))
 
 (use-package sx-question-mode
-  ;; :commands sx-tab-all-questions
   :config
   (bind-keys :map sx-question-mode-map
              ("j" . scroll-up-line)
@@ -173,6 +172,7 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (with-eval-after-load 'flycheck
+  (diminish 'flycheck-mode)
   (flycheck-pos-tip-mode))
 
 (setq-default flycheck-emacs-lisp-load-path load-path)
