@@ -171,4 +171,6 @@
              ("j" . scroll-up-line)
              ("k" . scroll-down-line)))
 
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 (provide 'init-common)

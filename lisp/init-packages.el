@@ -32,6 +32,7 @@
          circe
          cloc
          clojure-mode
+         cmake-ide
          cmake-mode
          command-log-mode
          company

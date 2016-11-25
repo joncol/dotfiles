@@ -15,20 +15,23 @@
             (c-set-offset 'substatement-open 0)
             (rainbow-delimiters-mode 1)
 
-            (eval-after-load "evil"
-              '(define-key evil-normal-state-map (kbd "M-.") nil))
+            (when (not (eq system-type 'gnu/linux))
+              (helm-gtags-mode)
 
-            (global-set-key "\M-." 'ggtags-find-tag-dwim)
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-              (ggtags-mode)
-              (diminish 'ggtags-mode)
-              (jco/define-bindings ggtags-mode-map
-                                   '(("C-c t s" . ggtags-find-other-symbol)
-                                     ("C-c t h" . ggtags-view-tag-history)
-                                     ("C-c t r" . ggtags-find-reference)
-                                     ("C-c t c" . ggtags-create-tags)
-                                     ("C-c t u" . ggtags-update-tags)
-                                     ("M-," . pop-tag-mark))))
+              (eval-after-load "evil"
+                '(define-key evil-normal-state-map (kbd "M-.") nil))
+
+              (global-set-key "\M-." 'ggtags-find-tag-dwim)
+              (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+                (ggtags-mode)
+                (diminish 'ggtags-mode)
+                (jco/define-bindings ggtags-mode-map
+                                     '(("C-c t s" . ggtags-find-other-symbol)
+                                       ("C-c t h" . ggtags-view-tag-history)
+                                       ("C-c t r" . ggtags-find-reference)
+                                       ("C-c t c" . ggtags-create-tags)
+                                       ("C-c t u" . ggtags-update-tags)
+                                       ("M-," . pop-tag-mark)))))
 
             (dolist (mode '(global-semanticdb-minor-mode
                             global-semantic-idle-scheduler-mode
@@ -61,11 +64,11 @@
               (lambda ()
                 (interactive)
                 (jco/insert-class-name)
-                (insert "::")))
+                (insert "::"))))
 
-            (defadvice semantic-symref (around no-confirmation activate)
-              (flet  ((yes-or-no-p (&rest args) t)
-                      (y-or-n-p (&rest args) t))
-                ad-do-it))))
+          (defadvice semantic-symref (around no-confirmation activate)
+            (flet  ((yes-or-no-p (&rest args) t)
+                    (y-or-n-p (&rest args) t))
+              ad-do-it)))
 
 (provide 'init-cc)

@@ -59,6 +59,7 @@
     init-qml
     init-racket
     init-rfc
+    init-rtags
     init-ruby
     init-scheme
     init-standard-ml

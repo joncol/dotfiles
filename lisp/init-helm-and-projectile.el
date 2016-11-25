@@ -20,17 +20,13 @@
       helm-gtags-auto-update t
       helm-gtags-use-input-at-cursor t
       helm-gtags-pulse-at-cursor t
-      ;; helm-gtags-prefix-key "\C-cg"
       helm-gtags-suggested-key-mapping t
       helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case"
       helm-ag-insert-at-point 'word
       helm-gtags-path-style 'absolute)
 
-;; enable helm-gtags-mode
 (add-hook 'dired-mode-hook 'helm-gtags-mode)
 (add-hook 'eshell-mode-hook 'helm-gtags-mode)
-(add-hook 'c-mode-hook 'helm-gtags-mode)
-(add-hook 'c++-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
 (eval-after-load "helm-gtags" '(diminish 'helm-gtags-mode))
