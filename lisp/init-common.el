@@ -11,7 +11,7 @@
 (global-auto-revert-mode)
 (global-font-lock-mode)
 (show-paren-mode)
-(rainbow-mode)
+(rainbow-mode t)
 (global-hl-line-mode)
 ;; (global-linum-mode)
 

@@ -1,3 +1,10 @@
+;;; init-bootstrap.el --- Load all other configuration files.
+
+;;; Commentary:
+;;
+
+;;; Code:
+
 (let ((lisp-dir (expand-file-name "lisp" user-emacs-directory)))
   (add-to-list 'load-path lisp-dir))
 
@@ -66,8 +73,11 @@
                                jco/init-prg-files
                                jco/init-last-files))
 
+(defvar jco/init-errors nil
+  "If there are any initialization errors, they will be appended to this list.")
+
 (defun jco/safe-require (feature)
-  "Safely require FEATURE"
+  "Safely require FEATURE."
   (condition-case ex
       (require feature)
     ('error (add-to-list 'jco/init-errors
@@ -75,11 +85,17 @@
                                  (symbol-name feature) ex)))))
 
 (defun jco/safe-load-init-files ()
+  "Safely requires all files in jco/init-files."
   (dolist (file jco/init-files)
     (jco/safe-require file)))
 
 (defun jco/unsafe-load-init-files ()
+  "Unsafely requires all files in jco/init-files."
   (dolist (file jco/init-files)
     (require file)))
 
 (provide 'init-bootstrap)
+
+(provide 'init-bootstrap)
+
+;;; init-bootstrap.el ends here

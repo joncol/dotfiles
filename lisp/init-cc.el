@@ -14,7 +14,10 @@
             (setq align-to-tab-stop nil)
             (c-set-offset 'substatement-open 0)
             (rainbow-delimiters-mode 1)
-            (define-key evil-normal-state-map (kbd "M-.") nil)
+
+            (eval-after-load "evil"
+              '(define-key evil-normal-state-map (kbd "M-.") nil))
+
             (global-set-key "\M-." 'ggtags-find-tag-dwim)
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
               (ggtags-mode)
