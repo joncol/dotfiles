@@ -22,6 +22,8 @@
 
               (bind-key "M-." 'rtags-find-symbol-at-point c-mode-base-map)
 
+              (add-hook 'rtags-jump-hook 'evil-set-jump)
+
               ;; Fix color of filenames when using rtags-find-file.
               (add-hook 'minibuffer-inactive-mode-hook
                         (lambda ()
