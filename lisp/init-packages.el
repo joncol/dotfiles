@@ -64,6 +64,7 @@
          fill-column-indicator
          flx-ido
          flycheck
+         flycheck-pos-tip
          flymake-ruby
          fsharp-mode
          fuzzy
@@ -127,6 +128,7 @@
          rnc-mode
          robe
          rspec-mode
+         rtags
          rubocop
          ruby-end
          rust-mode
