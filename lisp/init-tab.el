@@ -1,6 +1,13 @@
-;;; Taken from http://emacs.stackexchange.com/questions/7908/how-to-make-yasnippet-and-company-work-nicer.
+;;; init-tab.el --- Setup tab key functionality
 
-(defun check-expansion ()
+;;; Commentary:
+;; Most code taken from
+;; http://emacs.stackexchange.com/questions/7908/
+;; how-to-make-yasnippet-and-company-work-nicer.
+
+;;; Code:
+
+(defun jco/check-expansion ()
   (save-excursion
     (if (looking-at "\\_>") t
       (backward-char 1)
@@ -8,31 +15,31 @@
         (backward-char 1)
         (if (looking-at "->") t nil)))))
 
-(defun do-yas-expand ()
+(defun jco/do-yas-expand ()
   (let ((yas/fallback-behavior 'return-nil))
     (yas/expand)))
 
-(defun tab-indent-or-complete ()
+(defun jco/tab-indent-or-complete ()
   (interactive)
   (cond
    ((minibufferp)
     (minibuffer-complete))
    (t
     (if (or (not yas/minor-mode)
-            (null (do-yas-expand)))
-        (if (check-expansion)
+            (null (jco/do-yas-expand)))
+        (if (jco/check-expansion)
             (progn
               (company-manual-begin)
               (if (null company-candidates)
                   (company-abort))))))))
 
-(defun tab-complete-or-next-field ()
+(defun jco/tab-complete-or-next-field ()
   (interactive)
   (if (or (not yas/minor-mode)
-          (null (do-yas-expand)))
+          (null (jco/do-yas-expand)))
       (if company-candidates
           (company-complete-selection)
-        (if (check-expansion)
+        (if (jco/check-expansion)
             (progn
               (company-manual-begin)
               (if (null company-candidates)
@@ -41,25 +48,25 @@
                     (yas-next-field))))
           (yas-next-field)))))
 
-(defun expand-snippet-or-complete-selection ()
+(defun jco/expand-snippet-or-complete-selection ()
   (interactive)
   (if (or (not yas/minor-mode)
-          (null (do-yas-expand))
+          (null (jco/do-yas-expand))
           (company-abort))
       (company-complete-selection)))
 
-(defun abort-company-or-yas ()
+(defun jco/abort-company-or-yas ()
   (interactive)
   (if (null company-candidates)
       (yas-abort-snippet)
     (company-abort)))
 
-(global-set-key [tab] 'tab-indent-or-complete)
-(global-set-key (kbd "TAB") 'tab-indent-or-complete)
+(global-set-key [tab] 'jco/tab-indent-or-complete)
+(global-set-key (kbd "TAB") 'jco/tab-indent-or-complete)
 (global-set-key [(control return)] 'company-complete-common)
 
 (require 'company)
-(define-key company-active-map [tab] 'expand-snippet-or-complete-selection)
+(define-key company-active-map [tab] 'jco/expand-snippet-or-complete-selection)
 (define-key company-active-map (kbd "TAB")
   'expand-snippet-or-complete-selection)
 
@@ -67,9 +74,11 @@
 (define-key yas-minor-mode-map [tab] nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 
-(define-key yas-keymap [tab] 'tab-complete-or-next-field)
-(define-key yas-keymap (kbd "TAB") 'tab-complete-or-next-field)
+(define-key yas-keymap [tab] 'jco/tab-complete-or-next-field)
+(define-key yas-keymap (kbd "TAB") 'jco/tab-complete-or-next-field)
 (define-key yas-keymap [(control tab)] 'yas-next-field)
-(define-key yas-keymap (kbd "C-g") 'abort-company-or-yas)
+(define-key yas-keymap (kbd "C-g") 'jco/abort-company-or-yas)
 
 (provide 'init-tab)
+
+;;; init-tab.el ends here

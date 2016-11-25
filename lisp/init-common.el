@@ -175,4 +175,6 @@
 (with-eval-after-load 'flycheck
   (flycheck-pos-tip-mode))
 
+(setq-default flycheck-emacs-lisp-load-path load-path)
+
 (provide 'init-common)
