@@ -11,7 +11,6 @@
   ;; set other modes than evil-mode for the following modes
   (dolist (mode-map '((ag-mode               . emacs)
                       (comint-mode           . emacs)
-                      (diff-mode             . emacs)
                       (dired-mode            . emacs)
                       (eshell-mode           . emacs)
                       (eww-mode              . emacs)
