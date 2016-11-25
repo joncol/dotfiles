@@ -35,7 +35,7 @@
             (global-ede-mode t)
             (ede-enable-generic-projects)
 
-            ;; (add-to-list 'company-backends 'company-dabbrev-code)
+            (setq company-backends (delete 'company-clang company-backends))
 
             (evil-leader/set-key "a"
               (lambda ()

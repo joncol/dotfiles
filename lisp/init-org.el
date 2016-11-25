@@ -84,6 +84,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         subtree-end
       nil)))
 
+(require 'org)
 (add-to-list 'org-modules 'org-habit)
 (setq org-habit-show-all-today t)
 (setq org-habit-show-habits-only-for-today t)
