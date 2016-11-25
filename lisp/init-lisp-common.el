@@ -4,6 +4,7 @@
   (diminish 'paredit-mode)
   (setq redshank-prefix-key "C-c C-r")
   (redshank-mode)
-  (diminish 'redshank-mode))
+  (diminish 'redshank-mode)
+  (flycheck-mode))
 
 (provide 'init-lisp-common)
