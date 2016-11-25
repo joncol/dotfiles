@@ -1,39 +1,15 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (not (eq system-type 'gnu/linux))
-              (require 'semantic)
-              (require 'semantic/bovine/gcc)
-              (add-hook 'semantic-init-hooks 'semantic-reset-system-include)
-              (semantic-mode 1)
-              (dolist (mode '(global-semanticdb-minor-mode
-                              global-semantic-idle-scheduler-mode
-                              global-semantic-idle-summary-mode))
-                (add-to-list 'semantic-default-submodes mode))
+              (setq company-backends (delete 'company-clang company-backends))
 
-              (defadvice semantic-symref (around no-confirmation activate)
-                (flet  ((yes-or-no-p (&rest args) t)
-                        (y-or-n-p (&rest args) t))
-                  ad-do-it)))
-
-            (setq-default backward-delete-function nil)
-            (c-add-style "my-c-style"
-                         '((c-basic-offset . 4)
-                           (c-offsets-alist (label . +))))
-            (c-set-style "my-c-style")
-            (c-set-offset 'substatement-open 0)
-            (c-set-offset 'inline-open 0)
-            (setq tab-width 4)
-            (setq align-to-tab-stop nil)
-            (c-set-offset 'substatement-open 0)
-            (rainbow-delimiters-mode 1)
-
-            (when (not (eq system-type 'gnu/linux))
               (helm-gtags-mode)
 
-              (eval-after-load "evil"
-                '(define-key evil-normal-state-map (kbd "M-.") nil))
+              (with-eval-after-load 'evil
+                (define-key evil-normal-state-map (kbd "M-.") nil))
 
               (global-set-key "\M-." 'ggtags-find-tag-dwim)
+
               (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
                 (ggtags-mode)
                 (diminish 'ggtags-mode)
@@ -45,10 +21,19 @@
                                        ("C-c t u" . ggtags-update-tags)
                                        ("M-," . pop-tag-mark)))))
 
+            (setq-default backward-delete-function nil)
+            (c-add-style "my-c-style"
+                         '((c-basic-offset . 4)
+                           (c-offsets-alist (label . +))))
+            (c-set-style "my-c-style")
+            (c-set-offset 'substatement-open 0)
+            (c-set-offset 'inline-open 0)
+            (setq tab-width 4)
+            (setq align-to-tab-stop nil)
+            (c-set-offset 'substatement-open 0)
+
             (global-ede-mode t)
             (ede-enable-generic-projects)
-
-            (setq company-backends (delete 'company-clang company-backends))
 
             (evil-leader/set-key "a"
               (lambda ()

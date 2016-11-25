@@ -62,6 +62,7 @@
     init-rtags
     init-ruby
     init-scheme
+    init-semantic
     init-standard-ml
     init-tex
     init-yaml))
