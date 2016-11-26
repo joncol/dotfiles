@@ -15,7 +15,7 @@
                   (concat (projectile-project-root) "_build")))
               (cmake-ide-setup)
 
-              (rtags-enable-standard-keybindings)
+              ;; (rtags-enable-standard-keybindings)
               (setq rtags-use-helm t)
               (setq rtags-autostart-diagnostics t)
               (setq rtags-completions-enabled t)
@@ -47,19 +47,22 @@
                   "g <" 'rtags-find-references
                   "g [" 'rtags-location-stack-back
                   "g ]" 'rtags-location-stack-forward
-                  "g C" 'rtags-compile-file
+                  "g c" 'rtags-compile-file
+                  "g C" 'rtags-recompile-file
                   "g D" 'rtags-diagnostics
                   "g G" 'rtags-guess-function-at-point
                   "g p" 'rtags-set-current-project
                   "g P" 'rtags-print-dependencies
                   "g e" 'rtags-reparse-file
                   "g E" 'rtags-preprocess-file
-                  "g R" 'rtags-rename-symbol
+                  "g r" 'rtags-rename-symbol
+                  "g m" 'rtags-make-member
                   "g M" 'rtags-symbol-info
                   "g S" 'rtags-display-summary
                   "g O" 'rtags-goto-offset
                   "g ;" 'rtags-find-file
-                  "g F" 'rtags-fixit
+                  "g f" 'rtags-fixit
+                  "g F" 'rtags-find-symbol-current-dir
                   "g L" 'rtags-copy-and-print-current-location
                   "g X" 'rtags-fix-fixit-at-point
                   "g B" 'rtags-show-rtags-buffer
