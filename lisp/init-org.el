@@ -48,6 +48,9 @@
 
 (setq org-log-into-drawer t)
 
+(setq org-enforce-todo-dependencies t)
+(setq org-agenda-dim-blocked-tasks t)
+
 (setq org-agenda-custom-commands
       '(("d" "Daily agenda view"
          ((tags "PRIORITY=\"A\""
