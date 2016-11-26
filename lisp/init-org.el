@@ -50,6 +50,7 @@
 
 (setq org-enforce-todo-dependencies t)
 (setq org-agenda-dim-blocked-tasks t)
+(setq org-enforce-todo-checkbox-dependencies t)
 
 (setq org-agenda-custom-commands
       '(("d" "Daily agenda view"
