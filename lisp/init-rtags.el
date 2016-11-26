@@ -17,6 +17,9 @@
 
               (rtags-enable-standard-keybindings)
               (setq rtags-use-helm t)
+              (setq rtags-autostart-diagnostics t)
+              (setq rtags-completions-enabled t)
+              (rtags-diagnostics)
 
               (push 'company-rtags company-backends)
 
