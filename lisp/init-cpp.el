@@ -44,10 +44,10 @@
                   (case system-name
                     ("JCO-LAPTOP"
                      (concat "cd " (projectile-project-root)
-                             "../_build_vs && cmake --build . -- -j4"))
+                             "_build_vs && cmake --build . -- -j4"))
                     (t
                      (concat "cd " (projectile-project-root)
-                             "../_build ;and cmake --build . -- -j4"
+                             "_build ;and cmake --build . -- -j4"
                              " ;and ctest -V"))))
 
             (jco/define-bindings c++-mode-map
