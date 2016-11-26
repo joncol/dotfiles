@@ -1,4 +1,4 @@
-#+TAGS: { @WORK(w) READ(r) BUG(b) }
+#+TAGS: @WORK(w) READ(r) BUG(b)
 #+SEQ_TODO: TODO(t) IN-PROGRESS(i) MAYBE(m) WAITING(w) NEXT(n) CANCELED(c) DONE(d)
 #+STARTUP: overview
 #+STARTUP: showstars
