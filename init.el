@@ -11,11 +11,18 @@
 (require 'init-bootstrap)
 (jco/safe-load-init-files)
 
+;; Change for different username.
+(setq inhibit-startup-echo-area-message "jco")
+
 (message "==============================")
 (message (if jco/init-errors
              (mapconcat #'identity jco/init-errors "\n")
            "Emacs initialized successfully"))
 (message "==============================")
+
+(if jco/init-errors
+    (message "%s" (propertize "There were errors" 'face '(:foreground "red")))
+  (message "%s" (propertize "No errors" 'face '(:foreground "green"))))
 
 (provide 'init)
 
