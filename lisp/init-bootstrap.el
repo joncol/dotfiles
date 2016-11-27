@@ -40,6 +40,7 @@
     init-cc
     init-clojure
     init-cmake
+    init-cmake-ide
     init-conf
     init-cpp
     init-csharp
@@ -59,7 +60,6 @@
     init-qml
     init-racket
     init-rfc
-    init-rtags
     init-ruby
     init-scheme
     init-semantic

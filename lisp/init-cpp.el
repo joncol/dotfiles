@@ -40,6 +40,7 @@
 
 (add-hook 'c++-mode-hook
           (lambda ()
+            (setq flycheck-clang-language-standard "c++14")
             (setq compile-command
                   (case system-name
                     ("JCO-LAPTOP"

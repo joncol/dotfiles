@@ -1,4 +1,4 @@
-;;; init-rtags.el --- Setup RTags for C++ completion and flycheck support.
+;;; init-cmake-ide.el --- Setup cmake-ide -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -15,9 +15,12 @@
                   (concat (projectile-project-root) "_build")))
               (cmake-ide-setup)
 
+              (setq cmake-ide-flags-c++ (append '("-std=c++14")))
+              (global-set-key (kbd "C-c m") 'cmake-ide-compile)
+
               (setq rtags-use-helm t)
-              (setq rtags-autostart-diagnostics t)
               (setq rtags-completions-enabled t)
+              (setq rtags-autostart-diagnostics t)
               (rtags-diagnostics)
 
               (push 'company-rtags company-backends)
@@ -72,6 +75,6 @@
                 "g h" 'rtags-print-class-hierarchy
                 "g a" 'rtags-print-source-arguments))))
 
-(provide 'init-rtags)
+(provide 'init-cmake-ide)
 
-;;; init-rtags.el ends here
+;;; init-cmake-ide.el ends here
