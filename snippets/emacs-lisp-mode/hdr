@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: Elisp header
+# key: hdr
+# --
+;;; #${1:`(file-name-nondirectory (buffer-file-name))`} --- ${2:Summary} -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;; $3
+
+;;; Code:
+
+`yas/selected-text`$0
+
+(provide '`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`)
+
+;;; $1 ends here

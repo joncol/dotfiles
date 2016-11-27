@@ -1,3 +1,11 @@
+;;; #init-packages.el --- Install used packages -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;; Takes care of installing all used packages from package archives.
+
+;;; Code:
+
 (require 'package)
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -192,3 +200,5 @@
       (package-install p))))
 
 (provide 'init-packages)
+
+;;; init-packages.el ends here
