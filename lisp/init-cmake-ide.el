@@ -8,17 +8,16 @@
   (add-hook 'c-mode-common-hook
             (lambda ()
               (require 'rtags)
-              ;; (require 'flycheck-rtags)
-              ;; (require 'projectile)
+              (require 'flycheck-rtags) ;; Needed to make flycheck work.
               (when (not (boundp 'cmake-ide-build-dir))
                 (defvar cmake-ide-build-dir
                   (concat (projectile-project-root) "_build")))
               (cmake-ide-setup)
 
               (setq cmake-ide-flags-c++ (append '("-std=c++14")))
-              (global-set-key (kbd "C-c m") 'cmake-ide-compile)
+              (global-set-key (kbd "C-c m") 'cmake-ide-run-cmake)
 
-              (setq rtags-use-helm t)
+              ;; (setq rtags-use-helm t)
               (setq rtags-completions-enabled t)
               (setq rtags-autostart-diagnostics t)
               (rtags-diagnostics)
