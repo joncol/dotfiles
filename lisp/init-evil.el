@@ -4,27 +4,34 @@
 (evil-leader/set-leader ",")
 (evil-mode)
 (global-evil-matchit-mode)
-(global-evil-surround-mode)
 (global-evil-search-highlight-persist t)
 
-(eval-after-load "evil"
-  ;; set other modes than evil-mode for the following modes
-  (dolist (mode-map '((ag-mode                  . emacs)
-                      (comint-mode              . emacs)
-                      (diff-mode                . emacs)
-                      (dired-mode               . emacs)
-                      (eshell-mode              . emacs)
-                      (eww-mode                 . emacs)
-                      (flycheck-error-list-mode . emacs)
-                      (git-commit-mode          . insert)
-                      (git-rebase-mode          . emacs)
-                      (paradox-menu-mode        . emacs)
-                      (rtags-mode               . emacs)
-                      (sx-question-list-mode    . emacs)
-                      (sx-question-mode         . emacs)
-                      (term-mode                . emacs)
-                      (xkcd-mode                . emacs)))
-    (evil-set-initial-state (car mode-map) (cdr mode-map))))
+(use-package evil-surround
+  :init
+  (global-evil-surround-mode)
+  :config
+  (dolist (hook '(emacs-lisp-mode-hook erc-mode-hook))
+    (add-hook hook
+              (lambda ()
+                (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))))
+
+;; Set other modes than evil-mode for the following modes.
+(dolist (mode-map '((ag-mode                  . emacs)
+                    (comint-mode              . emacs)
+                    (diff-mode                . emacs)
+                    (dired-mode               . emacs)
+                    (eshell-mode              . emacs)
+                    (eww-mode                 . emacs)
+                    (flycheck-error-list-mode . emacs)
+                    (git-commit-mode          . insert)
+                    (git-rebase-mode          . emacs)
+                    (paradox-menu-mode        . emacs)
+                    (rtags-mode               . emacs)
+                    (sx-question-list-mode    . emacs)
+                    (sx-question-mode         . emacs)
+                    (term-mode                . emacs)
+                    (xkcd-mode                . emacs)))
+  (evil-set-initial-state (car mode-map) (cdr mode-map)))
 
 (defadvice org-goto (around make-it-evil activate)
   (let ((orig-state evil-state)
