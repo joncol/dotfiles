@@ -10,7 +10,7 @@
   :init
   (global-evil-surround-mode)
   :config
-  (dolist (hook '(emacs-lisp-mode-hook erc-mode-hook))
+  (dolist (hook '(emacs-lisp-mode-hook erc-mode-hook org-mode-hook))
     (add-hook hook
               (lambda ()
                 (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))))
