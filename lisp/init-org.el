@@ -1,3 +1,14 @@
+;;; init-org.el --- summary
+
+;;; Commentary:
+;;
+
+;;; Code:
+
+;;; init-org.el ends here
+
+(require 'org)
+
 (setq org-src-fontify-natively t)
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -33,7 +44,7 @@
         ("WAITING" . "purple")
         ("MAYBE" . "gray60")))
 (setq org-agenda-files (concat org-directory "/agenda-files"))
-(setq org-refile-targets '((org-agenda-files :level . 1)
+(setq org-refile-targets '((org-agenda-files :maxlevel . 9)
                            ("notes.org" :maxlevel . 9)))
 ;; (setq org-outline-path-complete-in-steps nil)
 ;; (setq org-refile-use-outline-path t)
@@ -193,8 +204,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
             (jco/add-youtube-link-type "ytnc" "&controls=0")))
 
 (defun my/org-inline-css-hook (exporter)
-  "Insert custom inline css to automatically set the
-foreground and background of code, to the current theme's colors"
+  "Fix colors of snippets when EXPORTER is 'html.
+Insert custom inline css to automatically set the
+foreground and background of code, to the current theme's colors."
   (when (eq exporter 'html)
     (let* ((my-pre-bg (face-background 'default))
            (my-pre-fg (face-foreground 'default)))
@@ -220,3 +232,5 @@ foreground and background of code, to the current theme's colors"
 (org-clock-persistence-insinuate)
 
 (provide 'init-org)
+
+;;; init-org.el ends here
