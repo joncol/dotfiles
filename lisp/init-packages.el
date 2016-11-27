@@ -17,6 +17,7 @@
 
 (let ((packages
        '(ace-flyspell
+         ace-isearch
          ace-jump-helm-line
          ace-jump-mode
          ace-link
@@ -28,6 +29,7 @@
          avy
          beacon
          better-defaults
+         bookmark+
          cider
          circe
          cloc

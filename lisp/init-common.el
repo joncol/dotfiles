@@ -149,6 +149,11 @@
 
 (diminish 'abbrev-mode)
 
+(use-package ace-isearch
+  :diminish ace-isearch-mode
+  :config
+  (global-ace-isearch-mode))
+
 (use-package ace-jump-helm-line-mode
   :diminish ace-jump-helm-line-mode
   :bind (:map helm-map
@@ -176,5 +181,11 @@
   (flycheck-pos-tip-mode))
 
 (setq-default flycheck-emacs-lisp-load-path load-path)
+
+(require 'bookmark+)
+
+(use-package desktop
+  :config
+  (push ".*" desktop-clear-preserve-buffers))
 
 (provide 'init-common)
