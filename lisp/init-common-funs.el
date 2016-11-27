@@ -1,5 +1,21 @@
+;;; #init-common-funs.el --- Common functions -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
+(defun jco/update-config ()
+  "Get the latest config from source control."
+  (shell-process-pushd user-emacs-directory)
+  (monky-fetch)
+  (shell-process-popd "1"))
+
 (defun jco/at-office-p (&optional print-message)
-  (interactive "p")
+  "Check whether I'm at the office.
+If PRINT-MESSAGE is true, a message will be printed indicating the result."
+  (interactive "P")
   (let ((at-office (member system-name '("JCO-LAPTOP" "mbp.local"
                                          "debian.orzone.local"))))
     (if print-message
@@ -9,7 +25,7 @@
       at-office)))
 
 (defun jco/read-lines (filePath)
-  "Return a list of lines of a file at filePath."
+  "Return a list of lines of a file at FILEPATH."
   (with-temp-buffer
     (insert-file-contents filePath)
     (split-string (buffer-string) "\n" t)))
@@ -21,12 +37,13 @@
           (command (cdr p)))
       (define-key keymap (kbd key) command))))
 
-(defun jco/move-key (keymap-from keymap-to key)
-  "Moves key binding from one keymap to another."
+(defun jco/move-key (key keymap-from keymap-to)
+  "Move KEY binding from KEYMAP-FROM to KEYMAP-TO."
   (define-key keymap-to key (lookup-key keymap-from key))
   (define-key keymap-from key nil))
 
 (defun jco/common-prog ()
+  "Common setup for programming modes."
   (ethan-wspace-mode)
   (whitespace-mode)
   (rainbow-delimiters-mode)
@@ -35,16 +52,17 @@
   (fci-mode))
 
 (defun jco/insert-date (arg)
-  "Insert date at current point, in format 2016-11-23. If a prefix argument is
-given, dots are used instead of dashes."
+  "Insert date at current point, in format 2016-11-23.
+If ARG is given, dots are used instead of dashes."
   (interactive "P")
   (insert (if arg
               (format-time-string "%d.%m.%Y")
             (format-time-string "%Y-%m-%d"))))
 
 (defun jco/insert-timestamp (arg)
-  "Insert timestamp at current point. The format of the timestamp is 00:00:00.
-If a prefix argument is given, the date is also inserted, and the format of the
+  "Insert timestamp at current point.
+The format of the timestamp is 00:00:00.
+If ARG is given, the date is also inserted, and the format of the
 timestamp is 2016-11-23T00:00:00 (in accordance with ISO 8601)."
   (interactive "P")
   (insert (if arg
@@ -63,7 +81,7 @@ timestamp is 2016-11-23T00:00:00 (in accordance with ISO 8601)."
                              t t)))
 
 (defun jco/underline-line (&optional char)
-  "Underline the current line with a character (\"-\" is the default)."
+  "Underline the current line with a character CHAR (\"-\" is the default)."
   (interactive)
   (let ((line-length (jco/get-line-length)))
     (end-of-line)
@@ -74,7 +92,8 @@ timestamp is 2016-11-23T00:00:00 (in accordance with ISO 8601)."
 (global-set-key (kbd "<S-f7>") (lambda () (interactive) (jco/underline-line ?=)))
 
 (defun jco/get-line-length (&optional print-message)
-  "Get the length of the current line."
+  "Get the length of the current line.
+If PRINT-MESSAGE is non-nil, print a message"
   (interactive "p")
   (save-excursion
     (beginning-of-line)
@@ -93,7 +112,8 @@ timestamp is 2016-11-23T00:00:00 (in accordance with ISO 8601)."
      (concat (capitalize first-char) rest-str))))
 
 (defun jco/camel-case-to-sentence (text)
-  "Convert `helloWorld` to `Hello world`."
+  "Convert TEXT from camelCase to a sentence.
+Example: `helloWorld` becomes `Hello world`."
   (interactive)
   (let* ((snake (string-inflection-underscore-function text))
          (words (replace-regexp-in-string "_" " " snake)))
@@ -117,9 +137,15 @@ timestamp is 2016-11-23T00:00:00 (in accordance with ISO 8601)."
       (cons (car lines) (cadr lines)))
     '("" . "")))
 
-(defun jco/update-config ()
-  (shell-process-pushd user-emacs-directory)
-  (monky-fetch)
-  (shell-process-popd "1"))
+(require 'f)
+
+(defun jco/cmake-project-name ()
+  "Get name of CMake project.
+Traverses the directory hierarchy upwards and looks for the first
+CMakeLists.txt file."
+  (let ((dir (locate-dominating-file (buffer-file-name) "CMakeLists.txt")))
+    (car (last (f-split dir)))))
 
 (provide 'init-common-funs)
+
+;;; init-common-funs.el ends here

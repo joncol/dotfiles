@@ -39,8 +39,8 @@
     ad-do-it
     (evil-change-state orig-state)))
 
-(jco/move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
-(jco/move-key evil-motion-state-map evil-normal-state-map " ")
+(jco/move-key (kbd "RET") evil-motion-state-map evil-normal-state-map)
+(jco/move-key " " evil-motion-state-map evil-normal-state-map)
 
 (define-key evil-normal-state-map (kbd "+") 'rotate-word-at-point)
 (define-key evil-normal-state-map (kbd "M-.") nil)

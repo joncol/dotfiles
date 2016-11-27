@@ -40,19 +40,18 @@
 
 (add-hook 'c++-mode-hook
           (lambda ()
-            (setq flycheck-clang-language-standard "c++14")
-            (setq compile-command
-                  (case system-name
-                    ("JCO-LAPTOP"
-                     (concat "cd " (projectile-project-root)
-                             "_build_vs && cmake --build . -- -j4"))
-                    (t
-                     (concat "cd " (projectile-project-root)
-                             "_build ;and cmake --build . -- -j4"
-                             " ;and ctest -V"))))
+            (let ((sh (getenv "SHELL")))
+              (set (make-local-variable 'compile-command)
+                   (concat "cd " (projectile-project-root)
+                           (cond ((s-contains-p "bash" sh)
+                                  "_build_vs && cmake --build . -- -j4")
+                                 ((s-contains-p "fish" sh)
+                                  (format "_build ;and cmake --build . --target %s -- -j4"
+                                          (jco/cmake-project-name)))))))
 
-            (jco/define-bindings c++-mode-map
-                                 '(("<f6>" . compile)))
+            (jco/define-bindings c++-mode-map '(("<f6>" . compile)))
+
+            (setq flycheck-clang-language-standard "c++14")
 
             (c-set-offset 'innamespace 0)
             (c-set-offset 'label '-)
