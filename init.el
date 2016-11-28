@@ -5,6 +5,7 @@
 (package-initialize) ;; Don't delete this. It will be readded automatically.
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(setq-default flycheck-emacs-lisp-load-path load-path)
 
 (defvar evil-want-C-i-jump nil)
 

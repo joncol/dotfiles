@@ -20,7 +20,8 @@ network-security\.data
 ^org-clock-save\.el$
 ^\.sx$
 \bflycheck_
-\.desktop(\.lock)?$
+\.desktop$
+\.desktop\.lock$
 
 bin/
 build/

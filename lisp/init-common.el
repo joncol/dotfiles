@@ -1,4 +1,10 @@
-(require 'cl)
+;;; #init-common.el --- Summary -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
 
 ;;; Avoid the empty (custom-set-faces) at end of init.el.
 (setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
@@ -15,19 +21,20 @@
 (global-hl-line-mode)
 ;; (global-linum-mode)
 
-(electric-pair-mode)
-(setq electric-pair-preserve-balance nil)
+(use-package elec-pair
+  :init
+  (electric-pair-mode)
+  :config
+  (setq electric-pair-preserve-balance nil))
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq auto-save-default nil)
 
-(use-package server
-  :demand
-  :config
-  (when (not (server-running-p))
-    (server-start)))
+(require 'server)
+(when (not (server-running-p))
+  (server-start))
 
 (edit-server-start)
 
@@ -53,7 +60,10 @@
 
 (load-library "iso-transl")
 (setq system-time-locale "C")
+
+(require 'time)
 (setq display-time-string-forms '(24-hours ":" minutes))
+
 (display-time-mode)
 
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -64,19 +74,24 @@
   (let ((indent-tabs-mode nil))
     ad-do-it))
 
-(jco/define-bindings Info-mode-map
-                     '(("<tab>" . Info-next-reference)
-                       ("<backtab>" . Info-prev-reference)))
+(use-package info
+  :config
+  (bind-keys :map Info-mode-map
+             ("<tab>"     . Info-next-reference)
+             ("<backtab>" . Info-prev-reference)))
 
-(require 'help-mode)
-(jco/define-bindings help-mode-map
-                     '(("<tab>" . forward-button)
-                       ("<backtab>" . backward-button)))
+(use-package help-mode
+  :config
+  (bind-keys :map help-mode-map
+             ("<tab>"     . forward-button)
+             ("<backtab>" . backward-button)))
 
 (global-set-key (kbd "C-c C-b") 'help-go-back)
 (global-set-key (kbd "C-c C-f") 'help-go-forward)
 
-(when (memq window-system '(mac ns))
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns))
+  :config
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize))
 
@@ -84,8 +99,13 @@
   (setenv "PATH" (concat (getenv "PATH") ":" my-bin-path))
   (add-to-list 'exec-path my-bin-path t))
 
-(setq cider-show-error-buffer 'nil)
-(setq ecb-tip-of-the-day nil)
+(use-package cider
+  :config
+  (setq cider-show-error-buffer 'nil))
+
+(use-package ecb
+  :config
+  (setq ecb-tip-of-the-day nil))
 
 (setq large-file-warning-threshold nil)
 (setq safe-local-variable-values
@@ -96,8 +116,10 @@
   (recentf-mode)
   (setq recentf-max-menu-items 25))
 
-(setq fortune-dir "/usr/share/games/fortunes")
-(setq fortune-file "/usr/share/games/fortunes")
+(use-package fortune
+  :config
+  (setq fortune-dir "/usr/share/games/fortunes")
+  (setq fortune-file "/usr/share/games/fortunes"))
 
 (use-package guide-key
   :diminish guide-key-mode
@@ -129,9 +151,8 @@
 
 (ace-link-setup-default (kbd "f"))
 
-(use-package fuzzy
-  :config
-  (turn-on-fuzzy-isearch))
+(require 'fuzzy)
+(turn-on-fuzzy-isearch)
 
 (require 'qmake-mode)
 (require 'iedit)
@@ -139,16 +160,21 @@
 (require 'diminish)
 (eval-after-load "company" '(diminish 'company-mode))
 
-(global-undo-tree-mode)
-(diminish 'undo-tree-mode)
-(setq undo-tree-visualizer-diff t)
-(setq undo-tree-visualizer-timestamps t)
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :init
+  (global-undo-tree-mode)
+  :config
+  (setq undo-tree-visualizer-diff t)
+  (setq undo-tree-visualizer-timestamps t))
 
 (global-set-key (kbd "C-x o") 'ace-window)
 
 (eval-after-load "info" '(require 'info+))
 
-(setq paradox-github-token "68afbf92086e59ec7e2ed974a8bad7ecf7b39127")
+(use-package paradox
+  :config
+  (setq paradox-github-token "68afbf92086e59ec7e2ed974a8bad7ecf7b39127"))
 
 (diminish 'abbrev-mode)
 
@@ -183,8 +209,6 @@
   (diminish 'flycheck-mode)
   (flycheck-pos-tip-mode))
 
-(setq-default flycheck-emacs-lisp-load-path load-path)
-
 (require 'bookmark+)
 
 (use-package desktop
@@ -192,3 +216,5 @@
   (push ".*" desktop-clear-preserve-buffers))
 
 (provide 'init-common)
+
+;;; init-common.el ends here
