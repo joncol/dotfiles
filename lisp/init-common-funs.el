@@ -146,6 +146,13 @@ CMakeLists.txt file."
   (let ((dir (locate-dominating-file (buffer-file-name) "CMakeLists.txt")))
     (car (last (f-split dir)))))
 
+(defun jco/vcs-status ()
+  "Run either monky-status or magit-status depending on the kind of repository."
+  (interactive)
+  (case (projectile-project-vcs)
+    (hg (monky-status))
+    (git (magit-status))))
+
 (provide 'init-common-funs)
 
 ;;; init-common-funs.el ends here

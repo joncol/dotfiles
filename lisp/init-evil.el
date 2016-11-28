@@ -204,6 +204,8 @@
 
 (evil-leader/set-key "x f" 'jco/xmllint-format-buffer)
 
+(evil-leader/set-key "v" 'jco/vcs-status)
+
 (require 'fancy-narrow)
 (fancy-narrow-mode)
 (diminish 'fancy-narrow-mode)
