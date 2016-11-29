@@ -9,7 +9,7 @@
 (defun jco/update-config ()
   "Get the latest config from source control."
   (shell-process-pushd user-emacs-directory)
-  (monky-run-hg-async "pull" "-u")
+  (magit-pull "origin/master" nil)
   (shell-process-popd "1"))
 
 (defun jco/at-office-p (&optional print-message)
