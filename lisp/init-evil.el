@@ -25,7 +25,7 @@
                     (flycheck-error-list-mode . emacs)
                     (git-commit-mode          . insert)
                     (git-rebase-mode          . emacs)
-                    (paradox-menu-mode        . emacs)
+                    ;; (paradox-menu-mode        . emacs)
                     (rtags-mode               . emacs)
                     (sx-question-list-mode    . emacs)
                     (sx-question-mode         . emacs)

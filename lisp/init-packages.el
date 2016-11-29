@@ -6,17 +6,14 @@
 
 ;;; Code:
 
+(require 'init-security)
+
 (require 'package)
 (setq package-archives
-      '(("gnu" . "https://elpa.gnu.org/packages/")
-        ("org" . "https://orgmode.org/elpa/")
-        ("melpa" . "https://melpa.milkbox.net/packages/")
-        ("marmalade" . "https://marmalade-repo.org/packages/")
-        ("org" . "https://orgmode.org/elpa/")))
+      '(("elpa" . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
-
-(require 'init-security)
 
 (defvar jco/package-list-refreshed)
 
@@ -25,6 +22,7 @@
 (defun jco/refresh-package-list ()
   "Refresh package list if it has not already been done."
   (unless jco/package-list-refreshed
+    (message "Refreshing package contents")
     (package-refresh-contents)
     (setq jco/package-list-refreshed t)))
 
@@ -35,12 +33,10 @@
          ace-jump-mode
          ace-link
          ace-window
-         ack-and-a-half
          ag
          anzu
          auto-complete
          avy
-         beacon
          better-defaults
          bookmark+
          cider
@@ -88,7 +84,6 @@
          glsl-mode
          gnuplot
          gnuplot-mode
-         golden-ratio
          google-this
          goto-chg
          goto-last-change
@@ -121,13 +116,12 @@
          nsis-mode
          nyan-mode
          omnisharp
-         org-plus-contrib
          org-pomodoro
          org-present
          ox-reveal
          package-utils
          pandoc-mode
-         paradox
+         ;; paradox
          paredit
          pkg-info
          plantuml-mode
@@ -168,6 +162,7 @@
     ;; (message (format "Package %s status: %s" p (package-installed-p p)))
     (unless (package-installed-p p)
       (jco/refresh-package-list)
+      (message (format "Installing package: %s" p))
       (package-install p))))
 
 (let ((themes
@@ -175,7 +170,7 @@
          ample-theme
          airline-themes
          ample-zen-theme
-         assemblage-theme
+         ;; assemblage-theme
          borland-blue-theme
          cherry-blossom-theme
          color-theme-sanityinc-tomorrow
