@@ -148,6 +148,7 @@
          sml-mode
          smtpmail-multi
          spaceline
+         spinner
          string-inflection
          sx
          toml-mode

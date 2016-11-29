@@ -5,6 +5,8 @@
 
 (global-set-key (kbd "S-<f6>") 'yank-current-filename)
 
+(require 'cl)
+
 (lexical-let ((init-file (concat user-emacs-directory "init.el")))
   (global-set-key (kbd "<f9>")
                   (lambda ()

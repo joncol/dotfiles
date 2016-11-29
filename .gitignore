@@ -19,7 +19,7 @@ network-security.data
 server/server
 org-clock-save.el
 .sx
-bflycheck_
+flycheck_init.el
 .desktop
 .desktop.lock
 tramp
