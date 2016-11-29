@@ -8,17 +8,22 @@
 
 (require 'package)
 (setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")
-        ("melpa" . "http://melpa.milkbox.net/packages/")
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")
+        ("melpa" . "https://melpa.milkbox.net/packages/")
         ("marmalade" . "https://marmalade-repo.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")))
+        ("org" . "https://orgmode.org/elpa/")))
 
 (package-initialize)
 
-(setq jco/package-list-refreshed nil)
+(require 'init-security)
+
+(defvar jco/package-list-refreshed)
+
+(set (make-local-variable 'jco/package-list-refreshed) nil)
 
 (defun jco/refresh-package-list ()
+  "Refresh package list if it has not already been done."
   (unless jco/package-list-refreshed
     (package-refresh-contents)
     (setq jco/package-list-refreshed t)))
@@ -198,6 +203,7 @@
          tao-theme)))
   (dolist (p themes)
     (unless (package-installed-p p)
+      (jco/refresh-package-list)
       (package-install p))))
 
 (provide 'init-packages)

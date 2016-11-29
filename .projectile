@@ -5,4 +5,5 @@
 -semanticdb
 -session.*
 -*.cache
+-url/cache
 -/xslt-relax-ng
