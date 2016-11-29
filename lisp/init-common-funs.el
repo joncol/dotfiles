@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(require 'shell)
+
 (defun jco/update-config ()
   "Get the latest config from source control."
   (shell-process-pushd user-emacs-directory)
@@ -111,6 +113,7 @@ If PRINT-MESSAGE is non-nil, print a message"
          (rest-str (substring string 1)))
      (concat (capitalize first-char) rest-str))))
 
+(require 'string-inflection)
 (defun jco/camel-case-to-sentence (text)
   "Convert TEXT from camelCase to a sentence.
 Example: `helloWorld` becomes `Hello world`."
@@ -146,12 +149,22 @@ CMakeLists.txt file."
   (let ((dir (locate-dominating-file (buffer-file-name) "CMakeLists.txt")))
     (car (last (f-split dir)))))
 
+(require 'monky)
+(require 'projectile)
+
 (defun jco/vcs-status ()
-  "Run either monky-status or magit-status depending on the kind of repository."
+  "Run either monky-status or magit-status, depending on the kind of repo."
   (interactive)
-  (case (projectile-project-vcs)
-    (hg (monky-status))
-    (git (magit-status))))
+  (cl-case (projectile-project-vcs)
+    (git (magit-status))
+    (hg (monky-status))))
+
+(defun jco/vcs-update ()
+  "Run either `hg pull -u' or `git pull', depending on the kind of repo."
+  (interactive)
+  (cl-case (projectile-project-vcs)
+    (git (magit-pull "origin/master" nil))
+    (hg (monky-hg-command "pull -u"))))
 
 (provide 'init-common-funs)
 

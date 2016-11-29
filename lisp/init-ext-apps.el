@@ -1,4 +1,4 @@
-(defun vim ()
+(defun jco/vim ()
   "Open current buffer in Vim."
   (interactive)
   (start-process "gvim" nil

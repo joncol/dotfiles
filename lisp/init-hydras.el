@@ -1,8 +1,17 @@
+;;; #init-hydras.el --- Hydras -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (evil-leader/set-key "m" 'jco/hydra-main-menu/body)
 
 (global-set-key (kbd "<f1>") 'jco/hydra-help/body)
 
 (defun open-config-file (file-name)
+  "Open FILE-NAME in ~/.emacs.d/lisp."
   (interactive)
   (find-file (concat user-emacs-directory file-name)))
 
@@ -19,6 +28,9 @@ menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_c
   ("s" jco/hydra-swoop/body)
   ("S" jco/hydra-snippets/body)
   ("v" jco/hydra-vcs/body))
+
+(require 'helm-files)
+(require 'init-common-funs)
 
 (defhydra jco/hydra-config (:color teal :hint nil)
   "
@@ -38,6 +50,8 @@ find: _f_un _l_ib _v_ar"
   ("f" find-function)
   ("l" find-library)
   ("v" find-variable))
+
+(require 'langtool)
 
 (defhydra jco/hydra-lang (:color teal :hint nil)
 "
@@ -62,12 +76,14 @@ packages: _l_ist _n_o-fetch _u_pgrade-all"
   ("n" package-list-packages-no-fetch)
   ("u" package-utils-upgrade-all))
 
+(require 'yasnippet)
+
 (defhydra jco/hydra-snippets (:color teal :hint nil)
   "
 snippets: _i_nsert _e_dit _r_eload"
-  ("i" yas/insert-snippet)
-  ("e" yas/visit-snippet-file)
-  ("r" yas/reload-all))
+  ("i" yas-insert-snippet)
+  ("e" yas-visit-snippet-file)
+  ("r" yas-reload-all))
 
 (defhydra jco/hydra-swoop (:color teal :hint nil)
   "
@@ -82,6 +98,9 @@ vcs: _g_it _m_ercurial"
   ("g" magit-status)
   ("m" monky-status))
 
+(require 'init-eshell)
+(require 'init-ext-apps)
+
 (defhydra jco/hydra-app (:color teal :hint nil)
   "
 app: _c_irce _e_rc _m_u4e e_s_hell _v_im e_w_w s_x_"
@@ -89,7 +108,7 @@ app: _c_irce _e_rc _m_u4e e_s_hell _v_im e_w_w s_x_"
   ("e" (erc :server "irc.freenode.net" :port 6667))
   ("m" mu4e)
   ("s" jco/eshell-here)
-  ("v" vim)
+  ("v" jco/vim)
   ("w" eww)
   ("x" sx-tab-all-questions))
 
@@ -102,7 +121,7 @@ help: _a_propos"
 
 (defhydra jco/hydra-apropos (:color teal :hint nil)
   "
-apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _t_ags"
+apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   ("a" apropos)
   ("c" apropos-command)
   ("d" apropos-documentation)
@@ -111,6 +130,8 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _t_ags"
   ("o" apropos-user-option)
   ("v" apropos-variable)
   ("i" info-apropos)
-  ("t" tags-apropos))
+  ("x" xref-find-apropos))
 
 (provide 'init-hydras)
+
+;;; init-hydras.el ends here
