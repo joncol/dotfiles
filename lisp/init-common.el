@@ -206,6 +206,8 @@
 
 (require 'bookmark+)
 
+(require 'dired+)
+
 (use-package desktop
   :config
   (push ".*" desktop-clear-preserve-buffers))
