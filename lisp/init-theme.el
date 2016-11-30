@@ -10,10 +10,18 @@
 (defvar jco/theme)
 (set (make-local-variable 'jco/theme) 'sanityinc-tomorrow-blue)
 
+(require 'powerline)
 (require 'spaceline-config)
-(spaceline-spacemacs-theme)
-(spaceline-helm-mode)
-(spaceline-info-mode)
+
+(use-package spaceline
+  :ensure t
+  :init
+  (setq powerline-default-separator 'utf-8)
+  :config
+  (spaceline-spacemacs-theme)
+  ;; (spaceline-helm-mode)
+  ;; (spaceline-info-mode)
+  )
 
 (defvar jco/cursor-color)
 (set (make-local-variable 'jco/cursor-color) "green")

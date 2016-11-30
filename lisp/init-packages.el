@@ -50,7 +50,7 @@
          company-cabal
          confluence
          csharp-mode
-         csv-mode
+         ;; csv-mode
          dash
          diminish
          dired+
@@ -81,6 +81,7 @@
          fuzzy
          ggtags
          ghci-completion
+         git-gutter-fringe
          glsl-mode
          gnuplot
          gnuplot-mode

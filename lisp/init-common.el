@@ -19,7 +19,7 @@
 (show-paren-mode)
 (rainbow-mode t)
 (global-hl-line-mode)
-;; (global-linum-mode)
+(global-linum-mode)
 
 (use-package elec-pair
   :init
@@ -210,6 +210,16 @@
 (use-package desktop
   :config
   (push ".*" desktop-clear-preserve-buffers))
+
+(use-package git-gutter-fringe
+  :ensure t
+  :diminish git-gutter-mode
+  :config
+  (setq git-gutter-fr:side 'right-fringe)
+  (set-face-foreground 'git-gutter-fr:modified "#63747c")
+  (set-face-foreground 'git-gutter-fr:added    "#63747c")
+  (set-face-foreground 'git-gutter-fr:deleted  "#63747c")
+  (global-git-gutter-mode +1))
 
 (provide 'init-common)
 
