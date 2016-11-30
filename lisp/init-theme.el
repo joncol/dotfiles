@@ -31,7 +31,8 @@
 (cl-case jco/theme
   (darkone
    (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "midnightblue"))
+                        "midnightblue")
+   (set-face-background 'hl-line "#041040"))
 
   (gotham
    (setq jco/cursor-color "lightblue")
