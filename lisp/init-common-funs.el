@@ -167,12 +167,12 @@ CMakeLists.txt file."
     (git (magit-pull "origin/master" nil))
     (hg (monky-hg-command "pull -u"))))
 
-(defun what-face ()
-  "Determine the face at the current point."
+(defun what-face (pos)
+  "Determine the face at the point POS."
   (interactive "d")
   (let ((face (or (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
-    (if face (message "Face: %s" face) (message "No face at %d" (point)))))
+    (if face (message "Face: %s" face) (message "No face at %d" pos))))
 
 (provide 'init-common-funs)
 
