@@ -1,3 +1,11 @@
+;;; #init-helm-and-projectile.el --- Helm and projectile config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
 ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
@@ -6,8 +14,14 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-m") 'helm-semantic-or-imenu)
 
+(require 'helm-ag)
+(require 'helm-buffers)
+(require 'helm-files)
+(require 'helm-gtags)
+(require 'helm-net)
+
 (when (executable-find "curl")
-  (setq helm-google-suggest-use-curl-p t))
+  (setq helm-net-prefer-curl t))
 
 (setq helm-split-window-in-side-p           t
       helm-buffers-fuzzy-matching           t
@@ -38,7 +52,8 @@
 (helm-descbinds-mode)
 
 ;;; projectile
-(projectile-global-mode)
+(require 'projectile)
+(projectile-mode)
 (diminish 'projectile-mode)
 (when (not (eq system-type 'windows-nt))
   (setq projectile-indexing-method 'native))
@@ -47,3 +62,5 @@
 (helm-projectile-on)
 
 (provide 'init-helm-and-projectile)
+
+;;; init-helm-and-projectile.el ends here
