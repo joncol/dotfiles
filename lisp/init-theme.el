@@ -8,7 +8,7 @@
 
 ;;; Change this to whatever theme you want.
 (defvar jco/theme)
-(set (make-local-variable 'jco/theme) 'sanityinc-tomorrow-blue)
+(set (make-local-variable 'jco/theme) 'darkane)
 
 (require 'powerline)
 (require 'spaceline-config)

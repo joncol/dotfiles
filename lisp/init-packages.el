@@ -51,6 +51,7 @@
          confluence
          csharp-mode
          ;; csv-mode
+         darkane-theme
          dash
          diminish
          dired+
