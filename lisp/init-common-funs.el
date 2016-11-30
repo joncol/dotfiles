@@ -170,9 +170,14 @@ CMakeLists.txt file."
 (defun what-face (pos)
   "Determine the face at the point POS."
   (interactive "d")
-  (let ((face (or (get-char-property (point) 'read-face-name)
-                  (get-char-property (point) 'face))))
-    (if face (message "Face: %s" face) (message "No face at %d" pos))))
+  (let ((g (global-hl-line-mode)))
+    (global-hl-line-mode -1)
+    (let ((face (or (get-char-property (point) 'read-face-name)
+                    (get-char-property (point) 'face))))
+      (if face
+          (message "Face: %s" face)
+        (message "No face at %d" pos)))
+    (global-hl-line-mode g)))
 
 (provide 'init-common-funs)
 
