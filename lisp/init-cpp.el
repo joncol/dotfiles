@@ -79,18 +79,18 @@
             (c-set-offset 'label '-)
             (fix-enum-class)
 
-            (evil-leader/set-key "q i" 'jco/fix-constr-destr)
-            (evil-leader/set-key "q d" 'jco/decl-to-def)
-            (evil-leader/set-key "q D" 'jco/def-to-decl)
-            (evil-leader/set-key "q r" 'jco/make-const-ref)
-            (evil-leader/set-key "q t" 'jco/variadic-templatize)
-            (evil-leader/set-key "q c" 'jco/fix-class-name)
-            (evil-leader/set-key "q o" 'jco/override-cpp-method)
+            (evil-leader/set-key "q i" 'jco/cpp-fix-constr-destr)
+            (evil-leader/set-key "q d" 'jco/cpp-decl-to-def)
+            (evil-leader/set-key "q D" 'jco/cpp-def-to-decl)
+            (evil-leader/set-key "q r" 'jco/cpp-make-const-ref)
+            (evil-leader/set-key "q t" 'jco/cpp-variadic-templatize)
+            (evil-leader/set-key "q c" 'jco/cpp-fix-class-name)
+            (evil-leader/set-key "q o" 'jco/cpp-override-method)
 
             (evil-leader/set-key "q C"
               (lambda ()
                 (interactive)
-                (jco/insert-class-name)
+                (jco/cpp-insert-class-name)
                 (insert "::")))))
 
 (provide 'init-cpp)
