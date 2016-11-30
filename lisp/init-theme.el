@@ -29,6 +29,10 @@
 (load-theme jco/theme t)
 
 (cl-case jco/theme
+  (darkone
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "midnightblue"))
+
   (gotham
    (setq jco/cursor-color "lightblue")
    (set-face-background 'evil-search-highlight-persist-highlight-face
