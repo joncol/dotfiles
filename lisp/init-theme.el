@@ -29,7 +29,7 @@
 (load-theme jco/theme t)
 
 (cl-case jco/theme
-  (darkone
+  (darkane
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "midnightblue")
    (set-face-background 'hl-line "#041040"))
