@@ -101,6 +101,26 @@
 (set-face-foreground 'minibuffer-prompt "#263238")
 (set-face-background 'minibuffer-prompt "#afd700")
 
+;; Fix ediff colors.
+(require 'ediff)
+(dolist (f '(ediff-current-diff-A
+             ediff-current-diff-Ancestor
+             ediff-current-diff-B
+             ediff-current-diff-C
+             ediff-even-diff-A
+             ediff-even-diff-Ancestor
+             ediff-even-diff-B
+             ediff-even-diff-C
+             ediff-fine-diff-A
+             ediff-fine-diff-Ancestor
+             ediff-fine-diff-B
+             ediff-fine-diff-C
+             ediff-odd-diff-A
+             ediff-odd-diff-Ancestor
+             ediff-odd-diff-B
+             ediff-odd-diff-C))
+  (set-face-foreground f "black"))
+
 (require 'evil)
 (setq evil-normal-state-cursor `(,jco/cursor-color box))
 (setq evil-insert-state-cursor `(,jco/cursor-color bar))
