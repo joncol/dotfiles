@@ -49,6 +49,7 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
   (ethan-wspace-mode)
   (whitespace-mode)
   (rainbow-delimiters-mode)
+  (rainbow-mode t)
   (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
   (local-set-key (kbd "C-c p s a") 'helm-ag-project-root)
   (fci-mode))

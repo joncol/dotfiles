@@ -81,7 +81,6 @@
          fuzzy
          ggtags
          ghci-completion
-         git-gutter-fringe
          glsl-mode
          gnuplot
          gnuplot-mode
