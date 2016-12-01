@@ -223,6 +223,12 @@
   (setq magit-display-buffer-function
         #'magit-display-buffer-fullframe-status-v1))
 
+(use-package outline
+  :init
+  (if (version< emacs-version "25.1")
+      (add-hook 'ediff-prepare-buffer-hook #'show-all)
+    (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)))
+
 (provide 'init-common)
 
 ;;; init-common.el ends here
