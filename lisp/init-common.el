@@ -212,6 +212,10 @@
   :config
   (push ".*" desktop-clear-preserve-buffers))
 
+(use-package unkillable-scratch
+  :init
+  (unkillable-scratch))
+
 (provide 'init-common)
 
 ;;; init-common.el ends here

@@ -153,6 +153,7 @@
          sx
          toml-mode
          undo-tree
+         unkillable-scratch
          use-package
          volatile-highlights
          xml-rpc
