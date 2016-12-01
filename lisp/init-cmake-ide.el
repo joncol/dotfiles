@@ -4,6 +4,11 @@
 
 ;;; Code:
 
+(require 'cmake-ide)
+(require 'company)
+(require 'projectile)
+(require 'rtags)
+
 (when (eq system-type 'gnu/linux)
   (add-hook 'c-mode-common-hook
             (lambda ()
