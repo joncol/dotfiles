@@ -79,6 +79,18 @@
 (define-key yas-keymap [(control tab)] 'yas-next-field)
 (define-key yas-keymap (kbd "C-g") 'jco/abort-company-or-yas)
 
+(use-package magit
+  :bind (:map magit-mode-map
+              ([tab] . magit-section-toggle)))
+
+(use-package monky
+  :bind (:map monky-mode-map
+              ([tab] . monky-toggle-section)))
+
+(use-package minibuffer
+  :bind (:map read-expression-map
+              ([tab] . completion-at-point)))
+
 (provide 'init-tab)
 
 ;;; init-tab.el ends here
