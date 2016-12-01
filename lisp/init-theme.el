@@ -121,6 +121,11 @@
              ediff-odd-diff-C))
   (set-face-foreground f "black"))
 
+(set-face-background 'info-function-ref-item "gray16")
+(set-face-background 'info-variable-ref-item "gray16")
+(set-face-background 'info-user-option-ref-item "gray16")
+(set-face-background 'info-reference-item "gray16")
+
 (require 'evil)
 (setq evil-normal-state-cursor `(,jco/cursor-color box))
 (setq evil-insert-state-cursor `(,jco/cursor-color bar))
