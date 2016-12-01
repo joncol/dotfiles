@@ -123,16 +123,16 @@ Example: `helloWorld` becomes `Hello world`."
          (words (replace-regexp-in-string "_" " " snake)))
     (jco/capitalize-first-char words)))
 
-(defun jco/class-name ()
+(defun jco/cpp-class-name ()
   "Return the class name corresponding to the name of the current buffer."
   (interactive)
   (let* ((base-name (file-name-base buffer-file-name)))
     (string-inflection-camelcase-function base-name)))
 
-(defun jco/insert-class-name ()
+(defun jco/cpp-insert-class-name ()
   "Insert the class name corresponding to the name of the current buffer."
   (interactive)
-  (insert (jco/class-name)))
+  (insert (jco/cpp-class-name)))
 
 (defun jco/irc-account ()
   "Return a cons cell of username and password."
