@@ -19,6 +19,8 @@
                   (concat (projectile-project-root) "_build")))
               (cmake-ide-setup)
 
+              (setq cmake-ide-header-search-other-file nil)
+
               (setq cmake-ide-flags-c++ (append '("-std=c++14")))
               (global-set-key (kbd "C-c m") 'cmake-ide-run-cmake)
 
