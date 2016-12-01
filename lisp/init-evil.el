@@ -225,6 +225,7 @@
 ;;; yasnippet
 (evil-leader/set-key "TAB" 'yas-insert-snippet)
 
-(evil-leader/set-key "e w" 'jco/what-face)
+(evil-leader/set-key "e f" 'jco/what-face)
+(evil-leader/set-key "e w" 'ace-window)
 
 (provide 'init-evil)
