@@ -179,8 +179,6 @@ CMakeLists.txt file."
         (message "No face at %d" pos)))
     (global-hl-line-mode g)))
 
-(global-set-key (kbd "M-p") 'jco/what-face)
-
 (provide 'init-common-funs)
 
 ;;; init-common-funs.el ends here
