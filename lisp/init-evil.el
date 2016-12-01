@@ -49,7 +49,6 @@
 (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
 
 (require 'apropos)
-(require 'monky)
 
 (custom-set-variables
  '(evil-want-C-w-in-emacs-state t))
