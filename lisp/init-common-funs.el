@@ -167,7 +167,7 @@ CMakeLists.txt file."
     (git (magit-pull "origin/master" nil))
     (hg (monky-hg-command "pull -u"))))
 
-(defun what-face (pos)
+(defun jco/what-face (pos)
   "Determine the face at the point POS."
   (interactive "d")
   (let ((g (global-hl-line-mode)))
