@@ -216,6 +216,13 @@
   :init
   (unkillable-scratch))
 
+(require 'magit-mode)
+
+(use-package magit
+  :config
+  (setq magit-display-buffer-function
+        #'magit-display-buffer-fullframe-status-v1))
+
 (provide 'init-common)
 
 ;;; init-common.el ends here
