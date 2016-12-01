@@ -121,12 +121,20 @@
              ediff-odd-diff-C))
   (set-face-foreground f "black"))
 
-(set-face-background 'info-function-ref-item "gray16")
-(set-face-background 'info-variable-ref-item "gray16")
-(set-face-background 'info-user-option-ref-item "gray16")
-(set-face-background 'info-reference-item "gray16")
+(let ((info-bg "gray16"))
+  (dolist (f '(info-command-ref-item
+               info-constant-ref-item
+               info-file
+               info-function-ref-item
+               info-macro-ref-item
+               info-reference-item
+               info-special-form-ref-item
+               info-syntax-class-item
+               info-user-option-ref-item
+               info-variable-ref-item))
+    (set-face-background f info-bg)))
 
-(require 'evil)
+(require 'evil-states)
 (setq evil-normal-state-cursor `(,jco/cursor-color box))
 (setq evil-insert-state-cursor `(,jco/cursor-color bar))
 (blink-cursor-mode -1)
