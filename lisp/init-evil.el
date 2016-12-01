@@ -132,6 +132,7 @@
     (run-on-current-buffer "thg" "shelve")))
 
 (evil-leader/set-key "d" 'vc-diff)
+(evil-leader/set-key "D" 'ediff-current-file)
 
 (global-set-key (kbd "C-x C-SPC") 'evil-search-highlight-persist-remove-all)
 
