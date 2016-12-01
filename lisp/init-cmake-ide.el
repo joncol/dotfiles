@@ -32,6 +32,8 @@
               (push 'company-rtags company-backends)
 
               (bind-key "M-." 'rtags-find-symbol-at-point c-mode-base-map)
+              (bind-key "M-n" 'rtags-next-match c-mode-base-map)
+              (bind-key "M-p" 'rtags-previous-match c-mode-base-map)
 
               (add-hook 'rtags-jump-hook 'evil-set-jump)
 
