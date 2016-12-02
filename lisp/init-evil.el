@@ -128,6 +128,11 @@ invokation."
     (interactive)
     (run-on-current-buffer "thg" "log")))
 
+(evil-leader/set-key "t L"
+  (lambda ()
+    (interactive)
+    (run-process "thg" "log")))
+
 (evil-leader/set-key "t d"
   (lambda ()
     (interactive)
