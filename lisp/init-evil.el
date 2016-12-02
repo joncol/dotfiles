@@ -47,10 +47,10 @@
   (evil-set-initial-state (car mode-map) (cdr mode-map)))
 
 (defadvice org-goto (around make-it-evil activate)
-  (let ((orig-state evil-state)
-        (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
+  "Disable evil-mode mappings for org-goto."
+  (let ((evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
     ad-do-it
-    (evil-change-state orig-state)))
+    (evil-change-state evil-state)))
 
 (jco/move-key (kbd "RET") evil-motion-state-map evil-normal-state-map)
 (jco/move-key " " evil-motion-state-map evil-normal-state-map)
