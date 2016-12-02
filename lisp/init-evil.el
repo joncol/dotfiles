@@ -17,6 +17,8 @@
 ;; Want transpose-chars instead.
 (unbind-key "C-t" evil-normal-state-map)
 
+(add-hook 'edebug-mode-hook 'evil-normalize-keymaps)
+
 (use-package evil-surround
   :init
   (global-evil-surround-mode)
