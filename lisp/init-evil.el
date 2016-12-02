@@ -6,6 +6,9 @@
 (global-evil-matchit-mode)
 (global-evil-search-highlight-persist t)
 
+;; Want transpose-chars instead.
+(unbind-key "C-t" evil-normal-state-map)
+
 (use-package evil-surround
   :init
   (global-evil-surround-mode)
