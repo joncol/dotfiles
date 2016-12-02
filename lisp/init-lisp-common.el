@@ -17,9 +17,10 @@
   (use-package redshank
     :demand
     :diminish
+    :init
+    (setq redshank-prefix-key "C-c C-r")
     :config
-    (redshank-mode)
-    (setq redshank-prefix-key "C-c C-r")))
+    (redshank-mode)))
 
 (provide 'init-lisp-common)
 
