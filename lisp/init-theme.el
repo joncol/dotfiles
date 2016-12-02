@@ -131,10 +131,10 @@
                info-special-form-ref-item
                info-syntax-class-item
                info-user-option-ref-item
-               info-variable-ref-item
-               helm-buffer-directory
-               helm-ff-directory))
+               info-variable-ref-item))
     (set-face-background f info-bg)))
+
+(set-face-background 'helm-buffer-directory "gray60")
 
 (require 'evil-states)
 (setq evil-normal-state-cursor `(,jco/cursor-color box))
