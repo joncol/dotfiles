@@ -131,7 +131,9 @@
                info-special-form-ref-item
                info-syntax-class-item
                info-user-option-ref-item
-               info-variable-ref-item))
+               info-variable-ref-item
+               helm-buffer-directory
+               helm-ff-directory))
     (set-face-background f info-bg)))
 
 (require 'evil-states)
