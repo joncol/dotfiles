@@ -223,8 +223,10 @@ invokation."
 
 (evil-leader/set-key "v" 'jco/vcs-status)
 
-(evil-leader/set-key "n" 'narrow-to-defun)
-(evil-leader/set-key "w" 'widen)
+(evil-leader/set-key "n n" 'narrow-to-defun)
+(evil-leader/set-key "n r" 'narrow-to-region)
+(evil-leader/set-key "n s" 'org-narrow-to-subtree)
+(evil-leader/set-key "n w" 'widen)
 
 (evil-leader/set-key "i n" '(lambda ()
                               (interactive)
