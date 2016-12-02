@@ -63,8 +63,7 @@
 
 (require 'apropos)
 
-(custom-set-variables
- '(evil-want-C-w-in-emacs-state t))
+(setq evil-want-C-w-in-emacs-state t)
 
 (jco/define-bindings 'evil-window-map
                      '(("C-h" . windmove-left)
