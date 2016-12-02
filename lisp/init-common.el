@@ -218,6 +218,9 @@
 
 (use-package magit
   :config
+  ;; Needed for success status message to be shown.
+  (setq magit-auto-revert-mode nil)
+
   (setq magit-display-buffer-function
         #'magit-display-buffer-fullframe-status-v1))
 
