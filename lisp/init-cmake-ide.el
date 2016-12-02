@@ -24,7 +24,9 @@
               (setq cmake-ide-flags-c++ (append '("-std=c++14")))
               (global-set-key (kbd "C-c m") 'cmake-ide-run-cmake)
 
-              ;; (setq rtags-use-helm t)
+              (require 'rtags-helm)
+              (setq rtags-use-helm t)
+
               (setq rtags-completions-enabled t)
               (setq rtags-autostart-diagnostics t)
               (rtags-diagnostics)
@@ -32,8 +34,6 @@
               (push 'company-rtags company-backends)
 
               (bind-key "M-." 'rtags-find-symbol-at-point c-mode-base-map)
-              (bind-key "M-n" 'rtags-next-match c-mode-base-map)
-              (bind-key "M-p" 'rtags-previous-match c-mode-base-map)
 
               (add-hook 'rtags-jump-hook 'evil-set-jump)
 
