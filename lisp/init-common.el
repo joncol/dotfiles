@@ -146,7 +146,7 @@
   (global-unset-key (kbd "C-q"))
   (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle))
 
-(ace-link-setup-default (kbd "f"))
+(ace-link-setup-default "f")
 
 (require 'fuzzy)
 (turn-on-fuzzy-isearch)
