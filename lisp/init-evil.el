@@ -1,3 +1,11 @@
+;;; #init-evil.el --- Evil config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (require 'evil)
 
 (global-evil-leader-mode)
@@ -90,9 +98,13 @@
 (setq evil-flash-delay 3600)
 
 (defun run-process (program &rest args)
+  "Start process PROGRAM with arguments ARGS."
   (apply 'start-process program nil program args))
 
 (defun run-on-current-buffer (program &rest args)
+  "Start process PROGRAM with arguments ARGS on current buffer.
+The filename of the current buffer is passed as the last argument to the process
+invokation."
   (apply 'start-process program nil program
          (append args (list (buffer-file-name)))))
 
@@ -165,6 +177,8 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 
+(require 'helm)
+
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") 'helm-select-action)
@@ -229,3 +243,5 @@
 (evil-leader/set-key "e w" 'ace-window)
 
 (provide 'init-evil)
+
+;;; init-evil.el ends here
