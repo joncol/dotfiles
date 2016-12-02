@@ -2,7 +2,7 @@
 # name: QObject class
 # key: qoc
 # --
-class ${1:`(jco/class-name)`} : public ${2:QObject}
+class ${1:`(jco/cpp-class-name)`} : public ${2:QObject}
 {
     Q_OBJECT
 
