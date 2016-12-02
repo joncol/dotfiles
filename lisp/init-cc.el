@@ -16,7 +16,7 @@
                                        ("C-c t r" . ggtags-find-reference)
                                        ("C-c t c" . ggtags-create-tags)
                                        ("C-c t u" . ggtags-update-tags)
-                                       ("M-," . pop-tag-mark)))))
+                                       ("M-,"     . pop-tag-mark)))))
 
             (setq-default backward-delete-function nil)
             (c-add-style "my-c-style"
@@ -40,8 +40,6 @@
             (evil-leader/set-key "A"
               (lambda ()
                 (interactive)
-                (ff-find-other-file t t)))
-
-            ))
+                (ff-find-other-file t t)))))
 
 (provide 'init-cc)
