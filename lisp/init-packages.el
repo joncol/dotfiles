@@ -114,6 +114,7 @@
          markdown-mode
          monky
          neotree
+         nlinum
          nsis-mode
          nyan-mode
          omnisharp

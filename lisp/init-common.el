@@ -16,7 +16,7 @@
 (global-font-lock-mode)
 (show-paren-mode)
 (global-hl-line-mode)
-(global-linum-mode)
+(global-nlinum-mode)
 
 (use-package elec-pair
   :init
