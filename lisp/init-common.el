@@ -227,6 +227,8 @@
       (add-hook 'ediff-prepare-buffer-hook #'show-all)
     (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)))
 
+(put 'narrow-to-region 'disabled nil)
+
 (provide 'init-common)
 
 ;;; init-common.el ends here
