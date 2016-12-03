@@ -73,13 +73,13 @@
                    (org-agenda-overriding-header
                     "High-priority unfinished tasks:")))
             (agenda "" ((org-agenda-ndays 1)))
-            (tags-todo "@WORK"
+            (tags-todo "work"
                        ((org-agenda-skip-function
                          '(or (jco/org-skip-subtree-if-habit)
                               (jco/org-skip-subtree-if-priority ?A)
                               (org-agenda-skip-if nil '(scheduled deadline))))
                         (org-agenda-overriding-header
-                         "All normal priority tasks, tagged with @WORK:"))))
+                         "All normal priority tasks, tagged with `work':"))))
            ((org-agenda-compact-blocks nil)
             (org-agenda-files '("~/org/work.org"))))))
 
