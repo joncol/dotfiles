@@ -52,7 +52,7 @@
         helm-ag-insert-at-point 'word
         helm-gtags-path-style 'absolute)
 
-  :diminish)
+  :diminish helm-mode)
 
 (use-package helm-ag)
 
@@ -62,7 +62,7 @@
   (add-hook 'eshell-mode-hook 'helm-gtags-mode)
   (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
-  :diminish)
+  :diminish helm-gtags-mode)
 
 (use-package helm-descbinds
   :init

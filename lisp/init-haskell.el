@@ -6,7 +6,7 @@
 
 ;;; Code:
 
-(use-package intero :diminish)
+(use-package intero :diminish intero-mode)
 
 (use-package haskell-mode
   ;; :commands haskell-mode

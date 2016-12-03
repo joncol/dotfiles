@@ -250,9 +250,9 @@
 
 (put 'narrow-to-region 'disabled nil)
 
-(use-package rainbow-mode)
+(use-package rainbow-mode :diminish rainbow-mode)
 
-(use-package rainbow-delimiters)
+(use-package rainbow-delimiters :diminish rainbow-delimiters-mode)
 
 (provide 'init-common)
 

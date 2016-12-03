@@ -14,7 +14,7 @@
   (use-package paredit
     :init
     (paredit-mode)
-    :diminish)
+    :diminish paredit-mode)
 
   (use-package evil-paredit
     :init

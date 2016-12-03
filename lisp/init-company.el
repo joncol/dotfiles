@@ -28,7 +28,7 @@
   (setq company-echo-delay 0)
   (setq company-begin-commands '(self-insert-command))
 
-  :diminish)
+  :diminish company-mode)
 
 (defun jco/turn-off-fci-during-company-complete(command)
   "Fixes the issue where the first item is shown far off to the right."
