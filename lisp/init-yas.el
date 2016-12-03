@@ -22,4 +22,9 @@
   (let ((yas/fallback-behavior 'return-nil))
     (yas/expand)))
 
+(use-package helm-c-yasnippet
+  :bind (([C-tab] . helm-yas-complete))
+  :config
+  (setq helm-yas-display-key-on-candidate t))
+
 (provide 'init-yas)

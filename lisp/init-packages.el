@@ -92,6 +92,7 @@
          haskell-mode
          helm
          helm-ag
+         helm-c-yasnippet
          helm-company
          helm-descbinds
          helm-gtags
