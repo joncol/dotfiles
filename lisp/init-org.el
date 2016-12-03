@@ -7,153 +7,133 @@
 
 ;;; init-org.el ends here
 
-(require 'org)
+(use-package ox-reveal)
 
-(setq org-src-fontify-natively t)
+(use-package org
+  :config
+  (setq org-src-fontify-natively t)
 
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(setq org-log-done t)
-(setq org-directory "~/org")
-(setq org-default-notes-file "notes.org")
-(jco/define-bindings global-map '(("C-c a"   . org-agenda)
-                                  ("C-c c"   . org-capture)
-                                  ("C-c l"   . org-store-link)
-                                  ("C-c M-w" . org-copy)
-                                  ("C-c C-w" . org-refile)
-                                  ("C-c g"   . (lambda ()
-                                                 (interactive)
-                                                 (find-file
-                                                  (concat org-directory
-                                                          "/gtd.org"))))
-                                  ("C-c n" . (lambda ()
+  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+  (setq org-log-done t)
+  (setq org-directory "~/org")
+  (setq org-default-notes-file "notes.org")
+  (jco/define-bindings global-map '(("C-c a"   . org-agenda)
+                                    ("C-c c"   . org-capture)
+                                    ("C-c l"   . org-store-link)
+                                    ("C-c M-w" . org-copy)
+                                    ("C-c C-w" . org-refile)
+                                    ("C-c g"   . (lambda ()
+                                                   (interactive)
+                                                   (find-file
+                                                    (concat org-directory
+                                                            "/gtd.org"))))
+                                    ("C-c n" . (lambda ()
                                                  (interactive)
                                                  (find-file
                                                   (concat org-directory
                                                           "/notes.org"))))
-                                  ("C-c w" . (lambda ()
+                                    ("C-c w" . (lambda ()
                                                  (interactive)
                                                  (find-file
                                                   (concat org-directory
                                                           "/work.org"))))))
 
-(setq org-reveal-hlevel 2)
-(setq org-todo-keyword-faces
-      '(("TODO" . "deep pink")
-        ("IN-PROGRESS" . "orange")
-        ("NEXT" . "green2")
-        ("WAITING" . "purple")
-        ("MAYBE" . "gray60")))
-(setq org-agenda-files (concat org-directory "/agenda-files"))
-(setq org-refile-targets '((org-agenda-files :maxlevel . 9)
-                           ("notes.org" :maxlevel . 9)))
-;; (setq org-outline-path-complete-in-steps nil)
-;; (setq org-refile-use-outline-path t)
-(setq org-use-fast-todo-selection t)
-(setq org-capture-templates
-      '(("t" "Task" entry (file+headline "work.org" "_Incoming")
-         "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
-         :empty-lines-before 0)
-        ("n" "Note" entry (file+headline "notes.org" "Notes")
-         "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
-         :empty-lines-before 0)))
+  (setq org-reveal-hlevel 2)
+  (setq org-todo-keyword-faces
+        '(("TODO" . "deep pink")
+          ("IN-PROGRESS" . "orange")
+          ("NEXT" . "green2")
+          ("WAITING" . "purple")
+          ("MAYBE" . "gray60")))
+  (setq org-agenda-files (concat org-directory "/agenda-files"))
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
+                             ("notes.org" :maxlevel . 9)))
+  ;; (setq org-outline-path-complete-in-steps nil)
+  ;; (setq org-refile-use-outline-path t)
+  (setq org-use-fast-todo-selection t)
+  (setq org-capture-templates
+        '(("t" "Task" entry (file+headline "work.org" "_Incoming")
+           "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+           :empty-lines-before 0)
+          ("n" "Note" entry (file+headline "notes.org" "Notes")
+           "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+           :empty-lines-before 0)))
 
-(setq org-log-into-drawer t)
+  (setq org-log-into-drawer t)
 
-(setq org-enforce-todo-dependencies t)
-(setq org-agenda-dim-blocked-tasks t)
-(setq org-enforce-todo-checkbox-dependencies t)
+  (setq org-enforce-todo-dependencies t)
+  (setq org-agenda-dim-blocked-tasks t)
+  (setq org-enforce-todo-checkbox-dependencies t)
 
-(setq org-agenda-custom-commands
-      '(("d" "Daily agenda view"
-         ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if
-                                             'todo 'done))
-                 (org-agenda-overriding-header
-                  "High-priority unfinished tasks:")))
-          (agenda "" ((org-agenda-ndays 1)))
-          (tags-todo "@WORK"
-                   ((org-agenda-skip-function
-                     '(or (jco/org-skip-subtree-if-habit)
-                          (jco/org-skip-subtree-if-priority ?A)
-                          (org-agenda-skip-if nil '(scheduled deadline))))
-                    (org-agenda-overriding-header
-                     "All normal priority tasks, tagged with @WORK:"))))
-         ((org-agenda-compact-blocks nil)
-          (org-agenda-files '("~/org/work.org"))))))
+  (setq org-agenda-custom-commands
+        '(("d" "Daily agenda view"
+           ((tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if
+                                               'todo 'done))
+                   (org-agenda-overriding-header
+                    "High-priority unfinished tasks:")))
+            (agenda "" ((org-agenda-ndays 1)))
+            (tags-todo "@WORK"
+                       ((org-agenda-skip-function
+                         '(or (jco/org-skip-subtree-if-habit)
+                              (jco/org-skip-subtree-if-priority ?A)
+                              (org-agenda-skip-if nil '(scheduled deadline))))
+                        (org-agenda-overriding-header
+                         "All normal priority tasks, tagged with @WORK:"))))
+           ((org-agenda-compact-blocks nil)
+            (org-agenda-files '("~/org/work.org"))))))
 
-(defun jco/org-skip-subtree-if-priority (priority)
-  "Skip an agenda subtree if it has a priority of PRIORITY.
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-habit-show-all-today t)
+  (setq org-habit-show-habits-only-for-today t)
 
-PRIORITY may be one of the characters ?A, ?B, or ?C."
-  (let ((subtree-end (save-excursion (org-end-of-subtree t)))
-        (pri-value (* 1000 (- org-lowest-priority priority)))
-        (pri-current (org-get-priority (thing-at-point 'line t))))
-    (if (= pri-value pri-current)
-        subtree-end
-      nil)))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ditaa . t)
+     (dot . t)
+     (latex . t)
+     (plantuml . t)))
 
-(defun jco/org-skip-subtree-if-habit ()
-  "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
-  (let ((subtree-end (save-excursion (org-end-of-subtree t))))
-    (if (string= (org-entry-get nil "STYLE") "habit")
-        subtree-end
-      nil)))
+  (setq org-confirm-babel-evaluate nil)
+  (if (eq system-type 'windows-nt)
+      (setq org-ditaa-jar-path "c:/tools/misc/ditaa.jar"
+            org-plantuml-jar-path "c:/tools/misc/plantuml.jar")
+    (setq org-ditaa-jar-path "/usr/local/bin/ditaa.jar"
+          org-plantuml-jar-path "/usr/local/bin/plantuml.jar"))
 
-(require 'org)
-(add-to-list 'org-modules 'org-habit)
-(setq org-habit-show-all-today t)
-(setq org-habit-show-habits-only-for-today t)
+  (require 'ox-latex)
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (add-to-list 'org-latex-inputenc-alist '("utf8" . "utf8x"))
+  (setq org-latex-default-packages-alist (cons '("mathletters" "ucs" nil)
+                                               org-latex-default-packages-alist))
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((ditaa . t)
-   (dot . t)
-   (latex . t)
-   (plantuml . t)))
+  (setq org-latex-listings 'minted)
 
-(setq org-confirm-babel-evaluate nil)
-(if (eq system-type 'windows-nt)
-    (setq org-ditaa-jar-path "c:/tools/misc/ditaa.jar"
-          org-plantuml-jar-path "c:/tools/misc/plantuml.jar")
-  (setq org-ditaa-jar-path "/usr/local/bin/ditaa.jar"
-        org-plantuml-jar-path "/usr/local/bin/plantuml.jar"))
+  (setq org-latex-custom-lang-environments
+        '((emacs-lisp "common-lispcode")))
 
-(require 'ox-latex)
-(add-to-list 'org-latex-packages-alist '("" "minted"))
-(add-to-list 'org-latex-inputenc-alist '("utf8" . "utf8x"))
-(setq org-latex-default-packages-alist (cons '("mathletters" "ucs" nil)
-                                             org-latex-default-packages-alist))
+  (setq org-latex-minted-options
+        '(("frame" "lines")
+          ("fontsize" "\\normalsize")
+          ;; ("fontsize" "\\scriptsize")
+          ("mathescape" "")
+          ("samepage" "")
+          ("xrightmargin" "0.5cm")
+          ("xleftmargin"  "0.5cm")))
 
-(setq org-latex-listings 'minted)
+  (setq org-latex-pdf-process
+        '("pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+          "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+          "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
 
-(setq org-latex-custom-lang-environments
-      '((emacs-lisp "common-lispcode")))
+  (setq org-latex-table-caption-above nil)
+  (setq org-latex-default-figure-position "!htb")
 
-(setq org-latex-minted-options
-      '(("frame" "lines")
-        ("fontsize" "\\normalsize")
-        ;; ("fontsize" "\\scriptsize")
-        ("mathescape" "")
-        ("samepage" "")
-        ("xrightmargin" "0.5cm")
-        ("xleftmargin"  "0.5cm")))
+  (setq org-mobile-directory (concat org-directory "/mobile"))
+  (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
+  (setq org-mobile-force-id-on-agenda-items nil)
 
-(setq org-latex-pdf-process
-      '("pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
-        "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
-        "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
 
-(setq org-latex-table-caption-above nil)
-(setq org-latex-default-figure-position "!htb")
-
-(setq org-mobile-directory (concat org-directory "/mobile"))
-(setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
-(setq org-mobile-force-id-on-agenda-items nil)
-
-(use-package ox-reveal)
-
-(use-package org
-  :config
   (load-library "ox-reveal")
   (auto-fill-mode)
   (global-unset-key (kbd "C-x C-v"))
@@ -203,7 +183,21 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                             (or desc "video"))))))))
 
   (jco/add-youtube-link-type "yt")
-  (jco/add-youtube-link-type "ytnc" "&controls=0"))
+  (jco/add-youtube-link-type "ytnc" "&controls=0")
+
+  (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+
+  (define-key org-mode-map (kbd "M-o") 'ace-link-org)
+
+  (setq org-hide-emphasis-markers t)
+
+  (font-lock-add-keywords
+   'org-mode
+   '(("^ +\\([-*]\\) "
+      (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate))
 
 (defun my/org-inline-css-hook (exporter)
   "Fix colors of snippets when EXPORTER is 'html.
@@ -219,19 +213,23 @@ foreground and background of code, to the current theme's colors."
         (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
                 my-pre-bg my-pre-fg))))))
 
-(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+(defun jco/org-skip-subtree-if-priority (priority)
+  "Skip an agenda subtree if it has a priority of PRIORITY.
 
-(define-key org-mode-map (kbd "M-o") 'ace-link-org)
+PRIORITY may be one of the characters ?A, ?B, or ?C."
+  (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+        (pri-value (* 1000 (- org-lowest-priority priority)))
+        (pri-current (org-get-priority (thing-at-point 'line t))))
+    (if (= pri-value pri-current)
+        subtree-end
+      nil)))
 
-(setq org-hide-emphasis-markers t)
-
-(font-lock-add-keywords
- 'org-mode
- '(("^ +\\([-*]\\) "
-    (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-(setq org-clock-persist 'history)
-(org-clock-persistence-insinuate)
+(defun jco/org-skip-subtree-if-habit ()
+  "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
+  (let ((subtree-end (save-excursion (org-end-of-subtree t))))
+    (if (string= (org-entry-get nil "STYLE") "habit")
+        subtree-end
+      nil)))
 
 (provide 'init-org)
 
