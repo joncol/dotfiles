@@ -61,6 +61,7 @@
          edit-server
          epl
          erc-hl-nicks
+         esup
          ethan-wspace
          evil
          evil-leader
