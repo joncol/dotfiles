@@ -32,6 +32,7 @@ obj/
 elpa/
 reports/
 semanticdb/
+server/
 url/
 places
 recentf
