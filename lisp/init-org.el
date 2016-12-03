@@ -150,58 +150,60 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
 (setq org-mobile-force-id-on-agenda-items nil)
 
-(add-hook 'org-mode-hook
-          (lambda ()
-            (load-library "ox-reveal")
-            (auto-fill-mode)
-            (global-unset-key (kbd "C-x C-v"))
-            (jco/define-bindings org-mode-map
-                                 '(("<f5>" . (lambda ()
-                                               (interactive)
-                                               (org-remove-inline-images)
-                                               (org-ctrl-c-ctrl-c)
-                                               (org-display-inline-images)))
-                                   ("M-o" . helm-org-in-buffer-headings)))
+(use-package ox-reveal)
 
-            (require 'org-agenda)
-            (jco/define-bindings org-agenda-mode-map
-                                 '(("j"       . org-agenda-next-item)
-                                   ("k"       . org-agenda-previous-item)
-                                   ("C-w h"   . windmove-left)
-                                   ("C-w j"   . windmove-down)
-                                   ("C-w k"   . windmove-up)
-                                   ("C-w l"   . windmove-right)
-                                   ("C-w C-h" . windmove-left)
-                                   ("C-w C-j" . windmove-down)
-                                   ("C-w C-k" . windmove-up)
-                                   ("C-w C-l" . windmove-right)))
+(use-package org
+  :config
+  (load-library "ox-reveal")
+  (auto-fill-mode)
+  (global-unset-key (kbd "C-x C-v"))
+  (jco/define-bindings org-mode-map
+                       '(("<f5>" . (lambda ()
+                                     (interactive)
+                                     (org-remove-inline-images)
+                                     (org-ctrl-c-ctrl-c)
+                                     (org-display-inline-images)))
+                         ("M-o" . helm-org-in-buffer-headings)))
 
-            (cl-defun jco/add-youtube-link-type (name &optional
-                                                      (url-params nil))
-              "Add org link type for embedding YouTube links in org-mode."
-              (let ((yt-iframe-format
-                     (concat "<iframe width=\"560\""
-                             " height=\"315\""
-                             " src=\"https://www.youtube.com/embed/%s?rel=0"
-                             url-params
-                             "\""
-                             " frameborder=\"0\""
-                             " allowfullscreen>%s</iframe>")))
-                (org-add-link-type name
-                                   (lambda (handle)
-                                     (browse-url
-                                      (concat "https://www.youtube.com/embed/"
-                                              handle)))
-                                   (lambda (path desc backend)
-                                     (cl-case backend
-                                       (html (format yt-iframe-format
-                                                     path (or desc "")))
-                                       (latex (format "\href{%s}{%s}"
-                                                      path
-                                                      (or desc "video"))))))))
+  (require 'org-agenda)
+  (bind-keys :map org-agenda-mode-map
+             ("j"       . org-agenda-next-item)
+             ("k"       . org-agenda-previous-item)
+             ("C-w h"   . windmove-left)
+             ("C-w j"   . windmove-down)
+             ("C-w k"   . windmove-up)
+             ("C-w l"   . windmove-right)
+             ("C-w C-h" . windmove-left)
+             ("C-w C-j" . windmove-down)
+             ("C-w C-k" . windmove-up)
+             ("C-w C-l" . windmove-right))
 
-            (jco/add-youtube-link-type "yt")
-            (jco/add-youtube-link-type "ytnc" "&controls=0")))
+  (cl-defun jco/add-youtube-link-type (name &optional
+                                            (url-params nil))
+    "Add org link type for embedding YouTube links in org-mode."
+    (let ((yt-iframe-format
+           (concat "<iframe width=\"560\""
+                   " height=\"315\""
+                   " src=\"https://www.youtube.com/embed/%s?rel=0"
+                   url-params
+                   "\""
+                   " frameborder=\"0\""
+                   " allowfullscreen>%s</iframe>")))
+      (org-add-link-type name
+                         (lambda (handle)
+                           (browse-url
+                            (concat "https://www.youtube.com/embed/"
+                                    handle)))
+                         (lambda (path desc backend)
+                           (cl-case backend
+                             (html (format yt-iframe-format
+                                           path (or desc "")))
+                             (latex (format "\href{%s}{%s}"
+                                            path
+                                            (or desc "video"))))))))
+
+  (jco/add-youtube-link-type "yt")
+  (jco/add-youtube-link-type "ytnc" "&controls=0"))
 
 (defun my/org-inline-css-hook (exporter)
   "Fix colors of snippets when EXPORTER is 'html.
