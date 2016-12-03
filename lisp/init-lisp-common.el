@@ -11,16 +11,22 @@
 
   ;; do not treat "-" as a word separator
   (modify-syntax-entry ?- "w")
-  (paredit-mode)
-  (evil-paredit-mode)
-  (diminish 'paredit-mode)
+  (use-package paredit
+    :init
+    (paredit-mode)
+    :diminish)
+
+  (use-package evil-paredit
+    :init
+    (evil-paredit-mode))
+
   (use-package redshank
-    :demand
-    :diminish
+    :demand t
     :init
     (setq redshank-prefix-key "C-c C-r")
     :config
-    (redshank-mode)))
+    (redshank-mode)
+    :diminish redshank-mode))
 
 (provide 'init-lisp-common)
 

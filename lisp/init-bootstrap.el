@@ -17,15 +17,16 @@
     init-eshell
     init-fci
     init-font
-    init-company-mode
+    init-company
     init-ext-apps
-    init-helm-and-projectile
+    init-helm
     init-hydras
     init-id
     init-ido
     init-message
     init-mu4e
     init-neotree
+    init-projectile
     init-rotate
     init-tab
     init-utils

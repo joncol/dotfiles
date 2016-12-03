@@ -10,23 +10,26 @@
 (defvar jco/theme)
 (set (make-local-variable 'jco/theme) 'darkane)
 
-(require 'powerline)
-(require 'spaceline-config)
+(use-package powerline)
 
 (use-package spaceline
-  :ensure t
   :init
+  (require 'spaceline-config)
   (setq powerline-default-separator 'utf-8)
-  :config
-  (spaceline-spacemacs-theme)
-  ;; (spaceline-helm-mode)
-  ;; (spaceline-info-mode)
-  )
+  (spaceline-spacemacs-theme))
+
+(defvar jco/theme-pkg)
+(set (make-local-variable 'jco/theme-pkg)
+     (intern (concat (symbol-name jco/theme) "-theme")))
+
+(unless (package-installed-p jco/theme-pkg)
+  (package-refresh-contents)
+  (package-install jco/theme-pkg))
+
+(load-theme jco/theme t)
 
 (defvar jco/cursor-color)
 (set (make-local-variable 'jco/cursor-color) "green")
-
-(load-theme jco/theme t)
 
 (cl-case jco/theme
   (darkane

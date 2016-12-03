@@ -6,9 +6,11 @@
 
 ;;; Code:
 
-(evil-leader/set-key "m" 'jco/hydra-main-menu/body)
-
-(global-set-key (kbd "<f1>") 'jco/hydra-help/body)
+(use-package hydra
+  :config
+  (global-set-key (kbd "<f1>") 'jco/hydra-help/body)
+  (with-eval-after-load 'evil-leader
+    (evil-leader/set-key "m" 'jco/hydra-main-menu/body)))
 
 (defun open-config-file (file-name)
   "Open FILE-NAME in ~/.emacs.d/lisp."

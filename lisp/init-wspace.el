@@ -1,25 +1,34 @@
-(require 'ethan-wspace)
+;;; #init-wspace.el --- Whitespace config -*- lexical-binding: t; -*-
 
-(defun no-final-newline ()
+;;; Commentary:
+
+;;
+
+;;; Code:
+
+(defun jco/no-final-newline ()
   (setq require-final-newline nil)
   (setq mode-require-final-newline nil))
 
-(no-final-newline)
-
-(eval-after-load "ethan-wspace" '(diminish 'ethan-wspace-mode))
-
-(defun tabs-are-ok ()
+(defun jco/tabs-are-ok ()
   (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
 
-(add-hook 'makefile-mode-hook 'tabs-are-ok)
+(use-package ethan-wspace
+  :diminish ethan-wspace-mode
 
-(add-hook 'sml-mode-hook 'no-final-newline t)
-(add-hook 'fsharp-mode-hook 'no-final-newline t)
-(add-hook 'ruby-mode-hook 'no-final-newline t)
+  :config
+  (jco/no-final-newline)
+  (global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
 
-(defadvice ruby-mode-variables (after reset-final-newline activate compile)
-  "Reset final-newline that ruby-mode enforces but conflicts with ethan-wspace."
-  (no-final-newline))
+  (add-hook 'makefile-mode-hook 'jco/tabs-are-ok)
+
+  (add-hook 'sml-mode-hook 'jco/no-final-newline t)
+  (add-hook 'fsharp-mode-hook 'jco/no-final-newline t)
+  (add-hook 'ruby-mode-hook 'jco/no-final-newline t)
+  (defadvice ruby-mode-variables (after reset-final-newline activate compile)
+    "Reset final-newline that ruby-mode enforces but conflicts with
+ethan-wspace."
+    (jco/no-final-newline)))
 
 (require 'whitespace)
 
@@ -30,6 +39,6 @@
                                       empty space-after-tab tab-mark))
 (set-face-background 'whitespace-trailing "#ff0000")
 
-(global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
-
 (provide 'init-wspace)
+
+;;; init-wspace.el ends here

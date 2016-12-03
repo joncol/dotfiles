@@ -48,8 +48,10 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
   "Common setup for programming modes."
   (ethan-wspace-mode)
   (whitespace-mode)
+
   (rainbow-delimiters-mode)
   (rainbow-mode t)
+
   (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
   (local-set-key (kbd "C-c p s a") 'helm-ag-project-root)
   (fci-mode))
@@ -114,7 +116,8 @@ If PRINT-MESSAGE is non-nil, print a message"
          (rest-str (substring string 1)))
      (concat (capitalize first-char) rest-str))))
 
-(require 'string-inflection)
+(use-package string-inflection)
+
 (defun jco/camel-case-to-sentence (text)
   "Convert TEXT from camelCase to a sentence.
 Example: `helloWorld` becomes `Hello world`."

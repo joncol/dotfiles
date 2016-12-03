@@ -1,4 +1,4 @@
-;;; init.el --- Main startup file
+;;; init.el --- Main startup file -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;
 ;;; Code:
@@ -21,9 +21,13 @@
            "Emacs initialized successfully"))
 (message "==============================")
 
-(if jco/init-errors
-    (message "%s" (propertize "There were errors" 'face '(:foreground "red")))
-  (message "%s" (propertize "No errors" 'face '(:foreground "green"))))
+(add-hook 'after-init-hook
+          (lambda ()
+            (if jco/init-errors
+                (message "%s" (propertize "There were errors"
+                                          'face '(:foreground "red")))
+              (message "%s" (propertize "No errors"
+                                        'face '(:foreground "green"))))))
 
 (provide 'init)
 

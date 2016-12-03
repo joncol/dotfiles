@@ -19,6 +19,8 @@
   (let ((yas/fallback-behavior 'return-nil))
     (yas/expand)))
 
+(require 'minibuffer)
+
 (defun jco/tab-indent-or-complete ()
   (interactive)
   (cond
@@ -79,17 +81,13 @@
 (define-key yas-keymap [(control tab)] 'yas-next-field)
 (define-key yas-keymap (kbd "C-g") 'jco/abort-company-or-yas)
 
-(use-package magit
-  :bind (:map magit-mode-map
-              ([tab] . magit-section-toggle)))
+(with-eval-after-load 'magit
+  (bind-key [tab] 'magit-section-toggle magit-mode-map))
 
-(use-package monky
-  :bind (:map monky-mode-map
-              ([tab] . monky-toggle-section)))
+(with-eval-after-load 'monky
+  (bind-key [tab] 'monky-toggle-section monky-mode-map))
 
-(use-package minibuffer
-  :bind (:map read-expression-map
-              ([tab] . completion-at-point)))
+(bind-key [tab] 'completion-at-point read-expression-map)
 
 (provide 'init-tab)
 

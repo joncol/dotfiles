@@ -6,16 +6,90 @@
 
 ;;; Code:
 
-(require 'evil)
+(use-package evil-leader
+  :init
+  ;; Enable global-evil-leader-mode before evil-mode, to make leader key work
+  ;; in *Messages* and *scratch* buffers.
+  (global-evil-leader-mode)
+  (evil-leader/set-leader ","))
 
-(global-evil-leader-mode)
-(evil-leader/set-leader ",")
-(evil-mode)
-(global-evil-matchit-mode)
-(global-evil-search-highlight-persist t)
+(use-package evil
+  :init
+  (evil-mode)
 
-;; Want transpose-chars instead.
-(unbind-key "C-t" evil-normal-state-map)
+  :config
+  ;; Want transpose-chars instead.
+  (unbind-key "C-t" evil-normal-state-map)
+  (setq evil-want-C-w-in-emacs-state t)
+
+  ;; Set other modes than evil-mode for the following modes.
+  (dolist (mode-map '((ag-mode                  . emacs)
+                      (comint-mode              . emacs)
+                      (diff-mode                . emacs)
+                      (dired-mode               . emacs)
+                      (eshell-mode              . emacs)
+                      (eww-mode                 . emacs)
+                      (flycheck-error-list-mode . emacs)
+                      (git-commit-mode          . insert)
+                      (git-rebase-mode          . emacs)
+                      ;; (paradox-menu-mode        . emacs)
+                      (rtags-mode               . emacs)
+                      (sx-question-list-mode    . emacs)
+                      (sx-question-mode         . emacs)
+                      (term-mode                . emacs)
+                      (xkcd-mode                . emacs)))
+    (evil-set-initial-state (car mode-map) (cdr mode-map)))
+
+  (defadvice org-goto (around make-it-evil activate)
+    "Disable evil-mode mappings for org-goto."
+    (let ((evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
+      ad-do-it
+      (evil-change-state evil-state)))
+
+  (jco/move-key (kbd "RET") evil-motion-state-map evil-normal-state-map)
+  (jco/move-key " " evil-motion-state-map evil-normal-state-map)
+
+  (define-key evil-normal-state-map (kbd "+") 'rotate-word-at-point)
+  (define-key evil-normal-state-map (kbd "M-.") nil)
+
+  (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
+  (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
+
+  ;; (require 'apropos)
+
+  (jco/define-bindings 'evil-window-map
+                       '(("C-h" . windmove-left)
+                         ("C-j" . windmove-down)
+                         ("C-k" . windmove-up)
+                         ("C-l" . windmove-right)))
+
+                                        ; make "kj" exit out of insert mode
+  (define-key evil-insert-state-map "k" #'jco/maybe-exit)
+  (evil-define-command jco/maybe-exit ()
+    :repeat change
+    (interactive)
+    (let ((modified (buffer-modified-p)))
+      (insert "k")
+      (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
+                             nil 0.5)))
+        (cond
+         ((null evt) (message ""))
+         ((and (integerp evt) (char-equal evt ?j))
+          (delete-char -1)
+          (set-buffer-modified-p modified)
+          (push 'escape unread-command-events))
+         (t (setq unread-command-events (append unread-command-events
+                                                (list evt))))))))
+
+  (setq evil-flash-delay 3600))
+
+(use-package evil-matchit
+  :init
+  (global-evil-matchit-mode))
+
+(use-package evil-search-highlight-persist
+  :init
+  (global-evil-search-highlight-persist t))
 
 (add-hook 'edebug-mode-hook 'evil-normalize-keymaps)
 
@@ -28,49 +102,6 @@
               (lambda ()
                 (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))))
 
-;; Set other modes than evil-mode for the following modes.
-(dolist (mode-map '((ag-mode                  . emacs)
-                    (comint-mode              . emacs)
-                    (diff-mode                . emacs)
-                    (dired-mode               . emacs)
-                    (eshell-mode              . emacs)
-                    (eww-mode                 . emacs)
-                    (flycheck-error-list-mode . emacs)
-                    (git-commit-mode          . insert)
-                    (git-rebase-mode          . emacs)
-                    ;; (paradox-menu-mode        . emacs)
-                    (rtags-mode               . emacs)
-                    (sx-question-list-mode    . emacs)
-                    (sx-question-mode         . emacs)
-                    (term-mode                . emacs)
-                    (xkcd-mode                . emacs)))
-  (evil-set-initial-state (car mode-map) (cdr mode-map)))
-
-(defadvice org-goto (around make-it-evil activate)
-  "Disable evil-mode mappings for org-goto."
-  (let ((evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
-    ad-do-it
-    (evil-change-state evil-state)))
-
-(jco/move-key (kbd "RET") evil-motion-state-map evil-normal-state-map)
-(jco/move-key " " evil-motion-state-map evil-normal-state-map)
-
-(define-key evil-normal-state-map (kbd "+") 'rotate-word-at-point)
-(define-key evil-normal-state-map (kbd "M-.") nil)
-
-(setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-(define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
-
-(require 'apropos)
-
-(setq evil-want-C-w-in-emacs-state t)
-
-(jco/define-bindings 'evil-window-map
-                     '(("C-h" . windmove-left)
-                       ("C-j" . windmove-down)
-                       ("C-k" . windmove-up)
-                       ("C-l" . windmove-right)))
-
 ;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over
 ;; a '('
 (add-hook 'slime-repl-mode-hook
@@ -78,31 +109,11 @@
             (define-key slime-repl-mode-map
               (read-kbd-macro paredit-backward-delete-key) nil)))
 
-; make "kj" exit out of insert mode
-(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
-(evil-define-command cofi/maybe-exit ()
-  :repeat change
-  (interactive)
-  (let ((modified (buffer-modified-p)))
-    (insert "k")
-    (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-                           nil 0.5)))
-      (cond
-       ((null evt) (message ""))
-       ((and (integerp evt) (char-equal evt ?j))
-        (delete-char -1)
-        (set-buffer-modified-p modified)
-        (push 'escape unread-command-events))
-       (t (setq unread-command-events (append unread-command-events
-                                              (list evt))))))))
-
-(setq evil-flash-delay 3600)
-
-(defun run-process (program &rest args)
+(defun jco/run-process (program &rest args)
   "Start process PROGRAM with arguments ARGS."
   (apply 'start-process program nil program args))
 
-(defun run-on-current-buffer (program &rest args)
+(defun jco/run-on-current-buffer (program &rest args)
   "Start process PROGRAM with arguments ARGS on current buffer.
 The filename of the current buffer is passed as the last argument to the process
 invokation."
@@ -112,44 +123,44 @@ invokation."
 (evil-leader/set-key "t a"
   (lambda ()
     (interactive)
-    (run-on-current-buffer "thg" "annotate")))
+    (jco/run-on-current-buffer "thg" "annotate")))
 
 (evil-leader/set-key "t c"
   (lambda ()
     (interactive)
-    (run-process "thg" "ci")))
+    (jco/run-process "thg" "ci")))
 
 (evil-leader/set-key "t C"
   (lambda ()
     (interactive)
-    (run-on-current-buffer "thg" "ci")))
+    (jco/run-on-current-buffer "thg" "ci")))
 
 (evil-leader/set-key "t l"
   (lambda ()
     (interactive)
-    (run-on-current-buffer "thg" "log")))
+    (jco/run-on-current-buffer "thg" "log")))
 
 (evil-leader/set-key "t L"
   (lambda ()
     (interactive)
-    (run-process "thg" "log")))
+    (jco/run-process "thg" "log")))
 
 (evil-leader/set-key "t d"
   (lambda ()
     (interactive)
     (if (eq system-type 'darwin)
-        (run-on-current-buffer "hg" "opendiff")
-      (run-on-current-buffer "thg" "vdiff"))))
+        (jco/run-on-current-buffer "hg" "opendiff")
+      (jco/run-on-current-buffer "thg" "vdiff"))))
 
 (evil-leader/set-key "t s"
   (lambda ()
     (interactive)
-    (run-process "thg" "st")))
+    (jco/run-process "thg" "st")))
 
 (evil-leader/set-key "t S"
   (lambda ()
     (interactive)
-    (run-on-current-buffer "thg" "shelve")))
+    (jco/run-on-current-buffer "thg" "shelve")))
 
 (evil-leader/set-key "d" 'vc-diff)
 (evil-leader/set-key "D" 'ediff-current-file)
@@ -165,35 +176,21 @@ invokation."
 (evil-leader/set-key "SPC" 'cycle-spacing)
 (evil-leader/set-key "RET" 'delete-blank-lines)
 
-;;; evil-nerd-commenter
+(use-package evil-nerd-commenter
+  :demand t
+  :config
+  (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
+  (evil-leader/set-key
+    "ci" 'evilnc-comment-or-uncomment-lines
+    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "cc" 'evilnc-copy-and-comment-lines
+    "cp" 'evilnc-comment-or-uncomment-paragraphs
+    "cv" 'evilnc-toggle-invert-comment-line-by-line))
 
-(global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
-
-(evil-leader/set-key
-  "ci" 'evilnc-comment-or-uncomment-lines
-  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-  "cc" 'evilnc-copy-and-comment-lines
-  "cp" 'evilnc-comment-or-uncomment-paragraphs
-  "cv" 'evilnc-toggle-invert-comment-line-by-line)
-
-;;; helm bindings
-
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-(evil-leader/set-key "b" 'helm-buffers-list)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x C-r") 'helm-recentf)
-
-(require 'helm)
-
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-(define-key helm-map (kbd "C-z") 'helm-select-action)
-
-(evil-leader/set-key "r" 'helm-resume)
 
 ;;; helm-swoop
 
-(require 'helm-swoop)
+(use-package helm-swoop)
 (global-set-key (kbd "M-i") 'helm-swoop)
 (evil-leader/set-key "s" 'helm-swoop)
 (global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
@@ -222,8 +219,6 @@ invokation."
 
 (setq helm-multi-swoop-ignore-buffers-match
       (concat helm-multi-swoop-ignore-buffers-match "\\|TAGS"))
-
-(define-key projectile-command-map (kbd "s a") #'helm-ag-project-root)
 
 (evil-leader/set-key "x f" 'jco/xmllint-format-buffer)
 

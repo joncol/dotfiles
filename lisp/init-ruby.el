@@ -1,4 +1,12 @@
-(require 'inf-ruby)
+;;; #init-ruby.el --- Ruby config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
+(use-package inf-ruby)
 
 (dolist (fp '("\\.rb$"
               "\\.ru$"
@@ -38,6 +46,7 @@
 
             (unless jco/rvm-use-default-called
               (rvm-use-default))
+
             (add-to-list 'company-backends 'company-robe)
             (flymake-ruby-load)
             (setq prettify-symbols-alist
@@ -49,23 +58,24 @@
                               ,(rx (or "def" "class" "module" "do" "{" "["))
                               ,(rx (or "}" "]" "end"))
                               ,(rx (or "#" "=begin"))
-                              ruby-forward-sexp nil)))))
+                              ruby-forward-sexp nil))))
 
-(eval-after-load "evil"
-  '(evil-define-motion evil-ruby-jump-item (count)
-     :jump t
-     :type inclusive
-     (cond ((or (string-match ruby-block-beg-re (current-word))
-                (string-match "describe" (current-word))
-                (string-match "context" (current-word))
-                (string-match "it" (current-word)))
-            (ruby-end-of-block count))
-           ((string-match ruby-block-end-re (current-word))
-            (ruby-beginning-of-block count))
-           (t
-            (evil-jump-item count)))))
+          (eval-after-load "evil"
+            '(evil-define-motion evil-ruby-jump-item (count)
+               :jump t
+               :type inclusive
+               (cond ((or (string-match ruby-block-beg-re (current-word))
+                          (string-match "describe" (current-word))
+                          (string-match "context" (current-word))
+                          (string-match "it" (current-word)))
+                      (ruby-end-of-block count))
+                     ((string-match ruby-block-end-re (current-word))
+                      (ruby-beginning-of-block count))
+                     (t
+                      (evil-jump-item count)))))
 
-(jco/define-bindings ruby-mode-map
-                     '(("C-c r a"  . rvm-activate-corresponding-ruby)))
+          (bind-keys :map ruby-mode-map ("C-c r a" . rvm-activate-corresponding-ruby)))
 
 (provide 'init-ruby)
+
+;;; init-ruby.el ends here

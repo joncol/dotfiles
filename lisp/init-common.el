@@ -6,23 +6,34 @@
 
 ;;; Code:
 
+;; (require 'use-package)
+;; (setq use-package-verbose t)
+
 ;;; Avoid the empty (custom-set-faces) at end of init.el.
 (setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
 
 (setq ad-redefinition-action 'accept)
 
+(scroll-bar-mode -1)
 (tool-bar-mode -1)
 (global-auto-revert-mode)
 (global-font-lock-mode)
 (show-paren-mode)
 (global-hl-line-mode)
-(global-nlinum-mode)
+
+(use-package esup)
+
+(use-package nlinum
+  :init
+  (global-nlinum-mode))
 
 (use-package elec-pair
   :init
   (electric-pair-mode)
   :config
   (setq electric-pair-preserve-balance nil))
+
+(use-package f)
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
 
@@ -33,7 +44,9 @@
 (when (not (server-running-p))
   (server-start))
 
-(edit-server-start)
+(use-package edit-server
+  :init
+  (edit-server-start))
 
 (setq inhibit-startup-message t)
 (setq sentence-end-double-space nil)
@@ -71,17 +84,15 @@
   (let ((indent-tabs-mode nil))
     ad-do-it))
 
-(use-package info
+(use-package info+
   :config
   (bind-keys :map Info-mode-map
              ("<tab>"     . Info-next-reference)
              ("<backtab>" . Info-prev-reference)))
 
-(use-package help-mode
-  :config
-  (bind-keys :map help-mode-map
-             ("<tab>"     . forward-button)
-             ("<backtab>" . backward-button)))
+(bind-keys :map help-mode-map
+           ("<tab>"     . forward-button)
+           ("<backtab>" . backward-button))
 
 (global-set-key (kbd "C-c C-b") 'help-go-back)
 (global-set-key (kbd "C-c C-f") 'help-go-forward)
@@ -146,16 +157,17 @@
   (global-unset-key (kbd "C-q"))
   (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle))
 
-(ace-link-setup-default "f")
+(use-package ace-link
+  :init
+  (ace-link-setup-default "f"))
 
-(require 'fuzzy)
-(turn-on-fuzzy-isearch)
+(use-package fuzzy
+  :config
+  (turn-on-fuzzy-isearch))
 
 (require 'qmake-mode)
-(require 'iedit)
 
-(require 'diminish)
-(eval-after-load "company" '(diminish 'company-mode))
+(use-package iedit)
 
 (use-package undo-tree
   :diminish undo-tree-mode
@@ -176,7 +188,7 @@
   :config
   (global-ace-isearch-mode))
 
-(use-package ace-jump-helm-line-mode
+(use-package ace-jump-helm-line
   :diminish ace-jump-helm-line-mode
   :bind (:map helm-map
               ("M-f" . ace-jump-helm-line)))
@@ -191,20 +203,26 @@
 
   (setq avy-case-fold-search nil))
 
-(use-package sx-question-mode
+(use-package sx
   :config
-  (bind-keys :map sx-question-mode-map
-             ("j" . scroll-up-line)
-             ("k" . scroll-down-line)))
+  (with-eval-after-load "sx-question-mode"
+    (bind-keys :map sx-question-mode-map
+               ("j" . scroll-up-line)
+               ("k" . scroll-down-line))))
 
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(with-eval-after-load 'flycheck
-  (diminish 'flycheck-mode)
+(use-package flycheck
+  :init
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  :config
+  :diminish 'flycheck-mode)
+
+(use-package flycheck-pos-tip
+  :init
   (flycheck-pos-tip-mode))
 
-(require 'bookmark+)
+(use-package bookmark+)
 
-(require 'dired+)
+(use-package dired+)
 
 (use-package desktop
   :config
@@ -214,8 +232,6 @@
   :init
   (unkillable-scratch))
 
-(require 'magit-mode)
-
 (use-package magit
   :config
   ;; Needed for success status message to be shown.
@@ -224,6 +240,8 @@
   (setq magit-display-buffer-function
         #'magit-display-buffer-fullframe-status-v1))
 
+(use-package monky)
+
 (use-package outline
   :init
   (if (version< emacs-version "25.1")
@@ -231,6 +249,10 @@
     (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)))
 
 (put 'narrow-to-region 'disabled nil)
+
+(use-package rainbow-mode)
+
+(use-package rainbow-delimiters)
 
 (provide 'init-common)
 

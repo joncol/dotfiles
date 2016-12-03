@@ -1,4 +1,13 @@
+;;; #init-id.el --- User specific config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 ;;; Set name and email
+
 (use-package s
   :config
   (setq user-mail-address
@@ -8,3 +17,5 @@
                   "mykolab.com"))))
 
 (provide 'init-id)
+
+;;; init-id.el ends here
