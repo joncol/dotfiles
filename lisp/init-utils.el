@@ -1,3 +1,11 @@
+;;; #init-utils.el --- Utils config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (defun yank-current-filename ()
   "Yank the name of the current file to the kill ring."
   (interactive)
@@ -5,9 +13,7 @@
 
 (global-set-key (kbd "S-<f6>") 'yank-current-filename)
 
-(require 'cl)
-
-(lexical-let ((init-file (concat user-emacs-directory "init.el")))
+(let ((init-file (concat user-emacs-directory "init.el")))
   (global-set-key (kbd "<f9>")
                   (lambda ()
                     (interactive)
@@ -25,3 +31,5 @@
 (global-set-key (kbd "C-c t f") 'toggle-frame-fullscreen)
 
 (provide 'init-utils)
+
+;;; init-utils.el ends here

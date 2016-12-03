@@ -197,7 +197,8 @@
       (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
   (setq org-clock-persist 'history)
-  (org-clock-persistence-insinuate))
+  (org-clock-persistence-insinuate)
+  (add-hook 'message-mode-hook 'turn-on-orgstruct++))
 
 (defun my/org-inline-css-hook (exporter)
   "Fix colors of snippets when EXPORTER is 'html.

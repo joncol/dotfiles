@@ -1,3 +1,11 @@
+;;; #init-circe.el --- Circe config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (use-package circe
   :init
   (let* ((acc (jco/irc-account))
@@ -20,3 +28,5 @@
   (setq circe-reduce-lurker-spam t))
 
 (provide 'init-circe)
+
+;;; init-circe.el ends here

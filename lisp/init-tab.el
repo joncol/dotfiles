@@ -67,14 +67,14 @@
 (global-set-key (kbd "TAB") 'jco/tab-indent-or-complete)
 (global-set-key [(control return)] 'company-complete-common)
 
-(require 'company)
-(define-key company-active-map [tab] 'jco/expand-snippet-or-complete-selection)
-(define-key company-active-map (kbd "TAB")
-  'expand-snippet-or-complete-selection)
+(with-eval-after-load 'company
+  (define-key company-active-map [tab] 'jco/expand-snippet-or-complete-selection)
+  (define-key company-active-map (kbd "TAB")
+    'expand-snippet-or-complete-selection))
 
-(require 'yasnippet)
-(define-key yas-minor-mode-map [tab] nil)
-(define-key yas-minor-mode-map (kbd "TAB") nil)
+(with-eval-after-load 'yasnippet
+  (define-key yas-minor-mode-map [tab] nil)
+  (define-key yas-minor-mode-map (kbd "TAB") nil))
 
 (define-key yas-keymap [tab] 'jco/tab-complete-or-next-field)
 (define-key yas-keymap (kbd "TAB") 'jco/tab-complete-or-next-field)

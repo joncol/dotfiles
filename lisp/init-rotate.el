@@ -1,4 +1,12 @@
-(defvar rotate-text-rotations
+;;; #init-rotate.el --- Text rotations -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
+(defvar jco/rotate-text-rotations
   '(("true" "false")
     ("True" "False")
     ("TRUE" "FALSE")
@@ -25,7 +33,7 @@
   "List of text rotation sets.")
 
 (defun rotate-word-at-point ()
-  "Rotate word at point based on sets in `rotate-text-rotations'."
+  "Rotate word at point based on contents of `jco/rotate-text-rotations'."
   (interactive)
   (let ((bounds (bounds-of-thing-at-point 'word))
         (opoint (point)))
@@ -36,10 +44,10 @@
         (goto-char (if (> opoint end) end opoint))))))
 
 (defun rotate-region (beg end)
-  "Rotate all matches in `rotate-text-rotations' between point and mark."
+  "Rotate all matches in `jco/rotate-text-rotations' between point and mark."
   (interactive "r")
-  (let ((regexp (rotate-convert-rotations-to-regexp
-                 rotate-text-rotations))
+  (let ((regexp (jco/rotate-convert-rotations-to-regexp
+                 jco/rotate-text-rotations))
         (end-mark (copy-marker end)))
     (save-excursion
       (goto-char beg)
@@ -50,15 +58,15 @@
 
 (defun rotate-string (string &optional rotations)
   "Rotate all matches in STRING using associations in ROTATIONS.
-If ROTATIONS are not given it defaults to `rotate-text-rotations'."
-  (let ((regexp (rotate-convert-rotations-to-regexp
-                 (or rotations rotate-text-rotations)))
+If ROTATIONS are not given it defaults to `jco/rotate-text-rotations'."
+  (let ((regexp (jco/rotate-convert-rotations-to-regexp
+                 (or rotations jco/rotate-text-rotations)))
         (start 0))
     (while (string-match regexp string start)
       (let* ((found (match-string 0 string))
              (replace (rotate-next
                        found
-                       (or rotations rotate-text-rotations))))
+                       (or rotations jco/rotate-text-rotations))))
         (setq start (+ (match-end 0)
                        (- (length replace) (length found))))
         (setq string (replace-match replace nil t string))))
@@ -68,7 +76,7 @@ If ROTATIONS are not given it defaults to `rotate-text-rotations'."
   "Return the next element after STRING in ROTATIONS."
   (let ((rots (rotate-get-rotations-for
                string
-               (or rotations rotate-text-rotations))))
+               (or rotations jco/rotate-text-rotations))))
     (if (> (length rots) 1)
         (error (format "Ambiguous rotation for %s" string))
       (if (< (length rots) 1)
@@ -85,29 +93,23 @@ If ROTATIONS are not given it defaults to `rotate-text-rotations'."
 (defun rotate-get-rotations-for (string &optional rotations)
   "Return the string rotations for STRING in ROTATIONS."
   (remq nil (mapcar (lambda (rot) (if (member string rot) rot))
-                    (or rotations rotate-text-rotations))))
+                    (or rotations jco/rotate-text-rotations))))
 
-(defun rotate-convert-rotations-to-regexp (rotations)
-  (regexp-opt (rotate-flatten-list rotations)))
+(defun jco/rotate-convert-rotations-to-regexp (rotations)
+  (regexp-opt (jco/rotate-flatten-list rotations)))
 
-(defun rotate-flatten-list (list-of-lists)
+(defun jco/rotate-flatten-list (list-of-lists)
   "Flatten LIST-OF-LISTS to a single list.
 Example:
-  (rotate-flatten-list '((a b c) (1 ((2 3)))))
+  (jco/rotate-flatten-list '((a b c) (1 ((2 3)))))
     => (a b c 1 2 3)"
   (if (null list-of-lists)
       list-of-lists
     (if (listp list-of-lists)
-        (append (rotate-flatten-list (car list-of-lists))
-                (rotate-flatten-list (cdr list-of-lists)))
+        (append (jco/rotate-flatten-list (car list-of-lists))
+                (jco/rotate-flatten-list (cdr list-of-lists)))
       (list list-of-lists))))
 
-(defun indent-or-rotate ()
-  "If point is at end of a word, then rotate else indent the line."
-  (interactive)
-  (if (looking-at "\\>")
-      (rotate-region (save-excursion (forward-word -1) (point))
-                     (point))
-    (indent-for-tab-command)))
-
 (provide 'init-rotate)
+
+;;; init-rotate.el ends here

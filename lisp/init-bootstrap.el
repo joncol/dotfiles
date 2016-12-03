@@ -12,7 +12,7 @@
   '(init-packages
     init-common-funs
     init-common
-    init-circe
+    ;; init-circe
     init-erc
     init-eshell
     init-fci
@@ -23,7 +23,6 @@
     init-hydras
     init-id
     init-ido
-    init-message
     init-mu4e
     init-neotree
     init-projectile

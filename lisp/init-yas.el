@@ -1,3 +1,11 @@
+;;; #init-yas.el --- Yasnippet config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (use-package yasnippet
   :init
   (yas-global-mode)
@@ -16,3 +24,5 @@
   (setq helm-yas-display-key-on-candidate t))
 
 (provide 'init-yas)
+
+;;; init-yas.el ends here
