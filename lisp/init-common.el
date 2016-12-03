@@ -84,6 +84,8 @@
   (let ((indent-tabs-mode nil))
     ad-do-it))
 
+(put 'narrow-to-region 'disabled nil)
+
 (use-package info+
   :config
   (bind-keys :map Info-mode-map
@@ -248,7 +250,7 @@
       (add-hook 'ediff-prepare-buffer-hook #'show-all)
     (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)))
 
-(put 'narrow-to-region 'disabled nil)
+(use-package package-utils)
 
 (use-package rainbow-mode :diminish rainbow-mode)
 
