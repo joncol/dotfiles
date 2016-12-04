@@ -14,7 +14,13 @@
   (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
   (setq yas-indent-line 'auto)
   (setq yas-also-auto-indent-first-line t)
-  (add-hook 'snippet-mode-hook (lambda () (ethan-wspace-mode -1)))
+
+  ;; Needed to unload snippets in elpa dir.
+  (yas-reload-all)
+
+  ;; Turn off ethan-wspace-mode when editing snippets.
+  (add-hook 'snippet-mode-hook (lambda ()
+                                 (ethan-wspace-mode -1)))
 
   :diminish yas-minor-mode)
 
