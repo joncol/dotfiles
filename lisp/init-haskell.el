@@ -36,8 +36,7 @@
   (setq tab-stop-list
         (loop for i from 0 upto 120 by 2 collect i))
 
-  (with-eval-after-load 'evil
-    (setq evil-shift-width 2))
+  (setq evil-shift-width 2)
 
   (setq-local yas-indent-line 'fixed)
 
