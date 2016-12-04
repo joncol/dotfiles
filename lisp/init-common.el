@@ -14,6 +14,7 @@
 
 (setq ad-redefinition-action 'accept)
 
+(menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (global-auto-revert-mode)
