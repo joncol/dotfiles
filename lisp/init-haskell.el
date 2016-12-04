@@ -9,8 +9,16 @@
 (use-package intero :diminish intero-mode)
 
 (use-package haskell-mode
-  ;; :commands haskell-mode
   :config
+  (fset 'jco/align-last-eq
+        [?\C-u ?\C-x ?a ?r ?= ?\[ ?^ ?= ?\] ?* ?$ return return return ?n])
+  (evil-leader/set-key "q a" 'jco/align-last-eq)
+
+  (fset 'jco/haskell-list-to-multiline
+        [?0 ?f ?\[ ?c ?s ?\] ?\[ ?: ?s ?/ ?, ?  ?/ ?\\ ?n ?, ?  ?/ ?g return
+            ?\C-o])
+  (evil-leader/set-key "q l" 'jco/haskell-list-to-multiline)
+
   (let* ((paths (split-string (shell-command-to-string
                                "stack path --local-install-root 2> /dev/null")
                               path-separator))
@@ -19,18 +27,18 @@
     (add-to-list 'exec-path bin-path))
 
   (subword-mode -1)
-
   ;; (setq flycheck-check-syntax-automatically '(save new-line))
-  (flycheck-mode -1)
 
+  (flycheck-mode -1)
   (setq haskell-interactive-popup-errors nil)
   (setq haskell-process-auto-import-loaded-modules t)
   (setq haskell-process-log t)
   (setq haskell-process-suggest-remove-import-lines t)
   (setq haskell-process-type 'auto)
-  ;; (setq haskell-tags-on-save t) ;; doesn't work for Fish
 
+  ;; (setq haskell-tags-on-save t) ;; doesn't work for Fish
   (haskell-doc-mode)
+
   (diminish 'haskell-doc-mode)
 
   (setq tab-stop-list
@@ -38,9 +46,7 @@
 
   (setq evil-shift-width 2)
 
-  (setq-local yas-indent-line 'fixed)
-
-  (evil-leader/set-key "q a" 'jco/align-last-eq))
+  (setq-local yas-indent-line 'fixed))
 
 (use-package ebal
   :config
