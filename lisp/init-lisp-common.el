@@ -7,6 +7,7 @@
 ;;; Code:
 
 (use-package redshank
+  :disabled t
   :defer t
   :init
   (setq redshank-prefix-key "C-c C-r")
@@ -32,7 +33,8 @@
   (paredit-mode)
   (evil-paredit-mode)
   (evil-lispy-mode)
-  (redshank-mode))
+  ;; (redshank-mode)
+  )
 
 (provide 'init-lisp-common)
 
