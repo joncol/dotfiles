@@ -10,6 +10,7 @@
 (use-package ox-reveal)
 
 (use-package org
+  :defer t
   :config
   (setq org-src-fontify-natively t)
 
