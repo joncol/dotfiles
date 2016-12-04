@@ -87,6 +87,11 @@
 
 (put 'narrow-to-region 'disabled nil)
 
+(add-hook 'help-mode-hook
+          (lambda ()
+            ;; do not treat "-" as a word separator
+            (modify-syntax-entry ?- "w")))
+
 (use-package info+
   :config
   (bind-keys :map Info-mode-map
