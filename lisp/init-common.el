@@ -244,6 +244,10 @@
   :config
   (push ".*" desktop-clear-preserve-buffers))
 
+(use-package evil-numbers
+  :bind (("C-c +" . evil-numbers/inc-at-pt)
+         ("C-c -" . evil-numbers/dec-at-pt)))
+
 (use-package unkillable-scratch
   :init
   (unkillable-scratch))

@@ -170,9 +170,6 @@ invokation."
 (evil-leader/set-key "g g" 'ggtags-find-tag-dwim)
 (evil-leader/set-key "g o" 'google-this)
 
-(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
-(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
-
 (evil-leader/set-key "SPC" 'cycle-spacing)
 (evil-leader/set-key "RET" 'delete-blank-lines)
 
