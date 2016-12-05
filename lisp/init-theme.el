@@ -8,10 +8,10 @@
 
 ;;; Change this to whatever theme you want.
 (defvar jco/theme)
-(set (make-local-variable 'jco/theme) 'doom-molokai)
+(set (make-local-variable 'jco/theme) 'solarized-dark)
 
 (defvar jco/theme-pkg)
-(set (make-local-variable 'jco/theme-pkg) 'doom-themes)
+(set (make-local-variable 'jco/theme-pkg) 'solarized-theme)
 
 (use-package powerline)
 
@@ -21,9 +21,8 @@
   (setq powerline-default-separator 'utf-8)
   (spaceline-spacemacs-theme))
 
-(setq jco/theme-pkg
-      (or jco/theme-pkg
-          (intern (concat (symbol-name jco/theme) "-theme"))))
+(unless (boundp 'jco/theme-pkg)
+  (setq jco/theme-pkg (intern (concat (symbol-name jco/theme) "-theme"))))
 
 (unless (package-installed-p jco/theme-pkg)
   (package-refresh-contents)
