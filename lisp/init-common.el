@@ -105,6 +105,7 @@
              ("<tab>"     . Info-next-reference)
              ("<backtab>" . Info-prev-reference)))
 
+(require 'help-mode)
 (bind-keys :map help-mode-map
            ("<tab>"     . forward-button)
            ("<backtab>" . backward-button))
