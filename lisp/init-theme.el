@@ -8,10 +8,43 @@
 
 ;;; Change this to whatever theme you want.
 (defvar jco/theme)
-(set (make-local-variable 'jco/theme) 'solarized-dark)
+(set (make-local-variable 'jco/theme) 'organic-green)
 
 (defvar jco/theme-pkg)
-(set (make-local-variable 'jco/theme-pkg) 'solarized-theme)
+;; (set (make-local-variable 'jco/theme-pkg) 'solarized-theme)
+
+;;; Previously used themes:
+
+;; afternoon-theme
+;; ample-theme
+;; airline-themes
+;; ample-zen-theme
+;; assemblage-theme
+;; borland-blue-theme
+;; cherry-blossom-theme
+;; color-theme-sanityinc-tomorrow
+;; cyberpunk-theme
+;; darktooth-theme
+;; doom-themes
+;; espresso-theme
+;; flatland-theme
+;; flatui-theme
+;; gotham-theme
+;; grandshell-theme
+;; gruber-darker-theme
+;; gruvbox-theme
+;; hemisu-theme
+;; leuven-theme
+;; material-theme
+;; meacupla-theme
+;; minimal-theme
+;; molokai-theme
+;; monokai-theme
+;; organic-green-theme
+;; reykjavik-theme
+;; solarized-theme
+;; soothe-theme
+;; tao-theme
 
 (use-package powerline)
 
