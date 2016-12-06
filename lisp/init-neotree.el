@@ -10,18 +10,27 @@
   :init
   (global-set-key (kbd "<f2>") 'neotree-toggle)
 
-  :bind (:map evil-normal-state-local-map
-              ([tab] . neotree-enter)
-              ([spc] . neotree-enter)
-              ([ret] . neotree-enter)
-              ("c" . neotree-change-root)
-              ("g" . neotree-refresh)
-              ("q" . neotree-hide)
-              ("v" . neotree-enter-vertical-split)
-              ("s" . neotree-enter-horizontal-split))
-
   :config
   (setq neo-show-header nil))
+
+(add-hook 'neotree-mode-hook
+          (lambda ()
+            (define-key evil-normal-state-local-map
+              (kbd "TAB") 'neotree-enter)
+            (define-key evil-normal-state-local-map
+              (kbd "SPC") 'neotree-enter)
+            (define-key evil-normal-state-local-map
+              (kbd "RET") 'neotree-enter)
+            (define-key evil-normal-state-local-map
+              (kbd "c") 'neotree-change-root)
+            (define-key evil-normal-state-local-map
+              (kbd "g") 'neotree-refresh)
+            (define-key evil-normal-state-local-map
+              (kbd "q") 'neotree-hide)
+            (define-key evil-normal-state-local-map
+              (kbd "v") 'neotree-enter-vertical-split)
+            (define-key evil-normal-state-local-map
+              (kbd "s") 'neotree-enter-horizontal-split)))
 
 (provide 'init-neotree)
 
