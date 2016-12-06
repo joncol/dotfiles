@@ -34,7 +34,8 @@
 
   (with-eval-after-load 'evil-leader
     (evil-leader/set-key "b" 'helm-buffers-list)
-    (evil-leader/set-key "r" 'helm-resume))
+    (evil-leader/set-key "r" 'helm-resume)
+    (evil-leader/set-key "h g" 'helm-google-suggest))
 
   (setq helm-split-window-in-side-p           t
         helm-buffers-fuzzy-matching           t
