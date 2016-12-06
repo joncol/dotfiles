@@ -60,13 +60,8 @@
   (add-to-list 'mu4e-view-actions
                '("org-contact-add" . mu4e-action-add-org-contact) t)
 
-  ;; (use-package helm-mu
-  ;;   :bind (:map mu4e-main-mode-map
-  ;;               ("s" . helm-mu)
-  ;;               :map mu4e-headers-mode-map
-  ;;               ("s" . helm-mu)
-  ;;               :map mu4e-view-mode-map
-  ;;               ("s" . helm-mu)))
+  ;; Useful for searching contacts.
+  (use-package helm-mu)
 
   (setq mu4e-contexts
         `( ,(make-mu4e-context
