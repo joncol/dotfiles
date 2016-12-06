@@ -56,6 +56,22 @@
 
 (use-package helm-ag)
 
+(use-package helm-chrome
+  :init
+  (evil-leader/set-key "h c" 'helm-chrome-bookmarks))
+
+(use-package helm-descbinds
+  :init
+  (helm-descbinds-mode))
+
+(use-package helm-flx
+  :init
+  (helm-flx-mode))
+
+(use-package helm-fuzzier
+  :init
+  (helm-fuzzier-mode))
+
 (use-package helm-gtags
   :config
   (add-hook 'dired-mode-hook 'helm-gtags-mode)
@@ -64,13 +80,7 @@
 
   :diminish helm-gtags-mode)
 
-(use-package helm-descbinds
-  :init
-  (helm-descbinds-mode))
-
-(use-package helm-chrome
-  :init
-  (evil-leader/set-key "h c" 'helm-chrome-bookmarks))
+(use-package helm-ispell)
 
 (provide 'init-helm)
 
