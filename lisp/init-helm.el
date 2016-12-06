@@ -85,9 +85,7 @@
   :diminish helm-gtags-mode)
 
 (use-package helm-ispell
-  :bind (("M-$" . helm-ispell)
-         :map evil-normal-state-map
-         ("z=" . helm-ispell)))
+  :bind (([C-iso-lefttab] . helm-ispell)))
 
 (provide 'init-helm)
 
