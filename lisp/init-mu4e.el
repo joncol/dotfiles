@@ -52,9 +52,7 @@
               (turn-off-auto-fill)
               (footnote-mode)
               (setq truncate-lines nil)
-              (setq word-wrap t)
-              ;; (setq use-hard-newlines t)
-              ))
+              (setq word-wrap t)))
 
   (setq mu4e-org-contacts-file "~/.contacts")
   (add-to-list 'mu4e-headers-actions
@@ -62,16 +60,13 @@
   (add-to-list 'mu4e-view-actions
                '("org-contact-add" . mu4e-action-add-org-contact) t)
 
-  ;; (add-hook 'message-send-hook
-  ;;           (lambda ()
-  ;;             (mu4e-send-harden-newlines)))
-
-  ;; (defun mu4e-send-harden-newlines ()
-  ;;   "Set the hard property to all newlines."
-  ;;   (save-excursion
-  ;;     (goto-char (point-min))
-  ;;     (while (search-forward "\n" nil t)
-  ;;       (put-text-property (1- (point)) (point) 'hard t))))
+  ;; (use-package helm-mu
+  ;;   :bind (:map mu4e-main-mode-map
+  ;;               ("s" . helm-mu)
+  ;;               :map mu4e-headers-mode-map
+  ;;               ("s" . helm-mu)
+  ;;               :map mu4e-view-mode-map
+  ;;               ("s" . helm-mu)))
 
   (setq mu4e-contexts
         `( ,(make-mu4e-context
