@@ -156,6 +156,8 @@
 
 (windmove-default-keybindings)
 
+(define-key package-menu-mode-map "\C-w" 'evil-window-map)
+
 (setq compilation-scroll-output t)
 
 (use-package volatile-highlights
