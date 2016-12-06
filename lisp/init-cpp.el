@@ -95,17 +95,18 @@
 (defun jco/cpp-decl-field-accessors ()
   "Create C++ accessor declarations from field."
   (interactive)
-  (beginning-of-line)
-  (re-search-forward "\\(\\s-+\\)\\(.+\\) m_\\(.+\\);" (point-at-eol) nil)
-  (let* ((whole (match-string 0))
-         (name (match-string 3))
-         (uname (save-match-data
-                  (string-inflection-camelcase-function name)))
-         (spc (match-string 1))
-         (type (match-string 2)))
-    (replace-match (format "%s\n%svoid set%s(%s %s);\n%s%s get%s(%s %s) const;"
-                           whole spc uname type name
-                           spc type uname type name))))
+  (save-excursion
+    (beginning-of-line)
+    (re-search-forward "\\(\\s-+\\)\\(.+\\) m_\\(.+\\);" (point-at-eol) nil)
+    (let* ((whole (match-string 0))
+           (name (match-string 3))
+           (uname (save-match-data
+                    (string-inflection-camelcase-function name)))
+           (spc (match-string 1))
+           (type (match-string 2)))
+      (replace-match (format "%s\n%svoid set%s(%s %s);\n%s%s get%s(%s %s) const;"
+                             whole spc uname type name
+                             spc type uname type name)))))
 
 (add-hook 'c++-mode-hook
           (lambda ()
