@@ -72,6 +72,7 @@
   (helm-flx-mode))
 
 (use-package helm-fuzzier
+  :disabled t
   :init
   (helm-fuzzier-mode))
 
