@@ -19,9 +19,10 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs"
+menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs"
   ("a" jco/hydra-app/body)
   ("b" helm-bookmarks)
+  ("B" helm-chrome-bookmarks)
   ("c" jco/hydra-config/body)
   ("f" jco/hydra-find/body)
   ("l" jco/hydra-lang/body)
