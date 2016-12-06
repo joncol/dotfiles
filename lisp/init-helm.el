@@ -68,6 +68,10 @@
   :init
   (helm-descbinds-mode))
 
+(use-package helm-chrome
+  :init
+  (evil-leader/set-key "h c" 'helm-chrome-bookmarks))
+
 (provide 'init-helm)
 
 ;;; init-helm.el ends here
