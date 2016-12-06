@@ -84,9 +84,6 @@
 
   :diminish helm-gtags-mode)
 
-(use-package helm-ispell
-  :bind (([C-iso-lefttab] . helm-ispell)))
-
 (provide 'init-helm)
 
 ;;; init-helm.el ends here

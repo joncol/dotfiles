@@ -10,6 +10,8 @@
   :init
   (add-hook 'after-init-hook 'global-company-mode)
 
+  :bind (([C-iso-lefttab] . company-ispell))
+
   :config
   (advice-add 'company-call-frontends :before
               #'jco/turn-off-fci-during-company-complete)
