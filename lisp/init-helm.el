@@ -48,13 +48,15 @@
         helm-gtags-use-input-at-cursor t
         helm-gtags-pulse-at-cursor t
         helm-gtags-suggested-key-mapping t
-        helm-ag-base-command "ag --nocolor --nogroup --line-numbers --smart-case"
-        helm-ag-insert-at-point 'word
         helm-gtags-path-style 'absolute)
 
   :diminish helm-mode)
 
-(use-package helm-ag)
+(use-package helm-ag
+  :config
+  (setq helm-ag-base-command
+        "ag --nocolor --nogroup --line-numbers --smart-case")
+  (setq helm-ag-insert-at-point 'word))
 
 (use-package helm-chrome
   :init
