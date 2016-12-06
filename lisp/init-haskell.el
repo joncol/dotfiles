@@ -46,7 +46,14 @@
 
   (setq evil-shift-width 2)
 
-  (setq-local yas-indent-line 'fixed))
+  (setq-local yas-indent-line 'fixed)
+  (use-package helm-hayoo
+    :config
+    (evil-leader/set-key "h H" 'helm-hayoo))
+
+  (use-package helm-hoogle
+    :config
+    (evil-leader/set-key "h h" 'helm-hoogle)))
 
 (use-package ebal
   :config
