@@ -66,13 +66,6 @@
           ?o ?/ ?c ?p ?p ?- ?i ?n ?s ?e ?r ?t ?- ?c ?l ?a ?s ?s ?- ?n ?a ?m ?e
           return ?i ?: ?: ?k ?j ?f ?\) ?a ? ?= ? ?d ?e ?f ?a ?u ?l ?t ?k ?j ?j])
 
-(fset 'jco/cpp-decl-to-def
-      [?_ ?: ?s ?/ ?Q ?_ ?I ?N ?V ?O ?K ?A ?B ?L ?E ? ?/ ?/ return ?f ?\( ?b
-          ?\M-x ?j ?c ?o ?/ ?c ?p ?p ?- ?i ?n ?s ?e ?r ?t ?- ?c ?l ?a ?s ?s ?-
-          ?n ?a ?m ?e return ?i ?: ?: ?k ?j ?/ ?\; return ?: ?s ?/ ? ?o ?v ?e ?r
-          ?r ?i ?d ?e ?/ ?/ return ?/ ?\; return ?s return ?\{ return ?k ?j ?d
-          ?d ?o ?k ?j ?j ?\[ ?\[ ?V ?\} ?= ?\} ?j ?\C-x ?\ ])
-
 (fset 'jco/cpp-def-to-decl
       [?V ?/ ?\) return ?= ?2 ?f ?: ?l ?d ?B ?/ ?\) return ?A ?\; ?k ?j ?0
           ?\C-x ?\ ])
@@ -109,6 +102,43 @@
       (replace-match (format "%s\n%svoid set%s(%s %s);\n%s%s %s(%s %s) const;"
                              whole spc uname type name
                              spc type lname type name)))))
+
+(defun jco/cpp-decl-to-def ()
+  "Create C++ method definition from declaration."
+  (interactive)
+  (defvar jco/start-pos)
+  (set (make-local-variable 'jco/start-pos) (point))
+  (save-excursion
+    (save-restriction
+      (widen)
+      (beginning-of-line)
+      (re-search-forward ";")
+      (defvar jco/end-of-decl)
+      (set (make-local-variable 'jco/end-of-decl) (point))
+      (goto-char jco/start-pos)
+
+      (save-excursion (while (re-search-forward "\\(Q_INVOKABLE \\| override\\)"
+                                 jco/end-of-decl t)
+         (replace-match "")))
+
+      (re-search-forward "\\([^\s-]+\\)(.+ \\(.+\\))" jco/end-of-decl nil)
+      (let* ((method-name (match-string 1))
+             (param-name (match-string 2))
+             (method-name-t (save-match-data
+                              (string-inflection-underscore-function
+                               method-name)))
+             (is-setter (string= method-name-t (concat "set_" param-name)))
+             (is-getter (string= method-name-t param-name)))
+        (goto-char (match-beginning 0))
+        (jco/cpp-insert-class-name)
+        (insert "::")
+        (re-search-forward ";")
+        (goto-char (match-beginning 0))
+        (replace-match "\n{\n")
+        (cond (is-setter (insert (format "m_%s = %s;\n" param-name param-name)))
+              (is-getter (insert (format "return m_%s;\n" param-name))))
+        (insert "}")
+        (evil-indent jco/start-pos (point))))))
 
 (add-hook 'c++-mode-hook
           (lambda ()
