@@ -140,7 +140,6 @@
              (method-name-t (save-match-data
                               (string-inflection-underscore-function
                                method-name)))
-             ;; (last-param-name (match-string 2))
              (is-setter (and (s-starts-with-p "set" method-name-t)
                              (eq 1 (jco/cpp-arg-count jco/start-pos
                                                       jco/end-of-decl))))
