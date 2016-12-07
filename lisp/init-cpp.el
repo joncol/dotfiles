@@ -107,7 +107,7 @@
                              spc type lname)))))
 
 (defun jco/cpp-type-should-be-const-ref-p (type)
-  "Return true if TYPE should be declared as const ref when used as parameter."
+  "Return non-nil value if TYPE should be `const ref' when used for parameter."
   (cond ((s-ends-with? "*" type) nil)
         ((string= type "bool") nil)
         ((string= type "int") nil)
