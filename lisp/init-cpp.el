@@ -98,10 +98,24 @@
            (lname (save-match-data
                     (string-inflection-lower-camelcase-function name)))
            (spc (match-string 1))
-           (type (match-string 2)))
+           (type (match-string 2))
+           (type-t (if (jco/cpp-type-should-be-const-ref-p type)
+                       (format "const %s&" type)
+                     type)))
       (replace-match (format "%s\n%svoid set%s(%s %s);\n%s%s %s() const;"
-                             whole spc uname type name
+                             whole spc uname type-t name
                              spc type lname)))))
+
+(defun jco/cpp-type-should-be-const-ref-p (type)
+  "Return true if TYPE should be declared as const ref when used as parameter."
+  (cond ((s-ends-with? "*" type) nil)
+        ((string= type "bool") nil)
+        ((string= type "int") nil)
+        ((string= type "float") nil)
+        ((string= type "double") nil)
+        ((string= type "long") nil)
+        ((string= type "short") nil)
+        (t t)))
 
 (defun jco/cpp-decl-to-def ()
   "Create C++ method definition from declaration."
