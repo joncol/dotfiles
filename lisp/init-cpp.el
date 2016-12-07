@@ -131,7 +131,8 @@
       (set (make-local-variable 'jco/end-of-decl) (point))
       (goto-char jco/start-pos)
 
-      (save-excursion (while (re-search-forward "\\(Q_INVOKABLE \\| override\\)"
+      (save-excursion (while (re-search-forward
+                              "\\(Q_INVOKABLE \\| override \\|explicit \\)"
                                  jco/end-of-decl t)
          (replace-match "")))
 
