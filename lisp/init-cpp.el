@@ -142,8 +142,12 @@
              (method-name-t (save-match-data
                               (string-inflection-underscore-function
                                method-name)))
-             (is-setter (s-starts-with-p "set" method-name-t))
-             (is-getter (not (string= (jco/first-word-on-line) "void"))))
+             (is-setter (and (s-starts-with-p "set" method-name-t)
+                             (eq 1 (jco/cpp-arg-count jco/start-pos
+                                                      jco/end-of-decl))))
+             (is-getter (and (not (string= (jco/first-word-on-line) "void"))
+                             (eq 0 (jco/cpp-arg-count jco/start-pos
+                                                      jco/end-of-decl)))))
 
         (goto-char (match-beginning 0))
         (jco/cpp-insert-class-name)
@@ -165,6 +169,19 @@
     (beginning-of-line)
     (re-search-forward "\\s-*\\([^\s-]+\\)" (point-at-eol))
     (match-string-no-properties 1)))
+
+(defun jco/cpp-arg-count (start-pos end-pos)
+  "Count number of arguments in declaration between START-POS and END-POS."
+  (interactive)
+  (save-excursion
+    (save-match-data
+      (goto-char start-pos)
+      (if (re-search-forward ".+(\\(.+\\))" end-pos t)
+          (let ((args-start (match-beginning 1))
+                (args-end (match-end 1)))
+            (goto-char args-start)
+            (1+ (count-matches "," args-start args-end)))
+        0))))
 
 (add-hook 'c++-mode-hook
           (lambda ()
