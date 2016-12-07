@@ -46,3 +46,5 @@ xkcd/
 *.swo
 *.swp
 *.orig
+
+.goutputstream*
