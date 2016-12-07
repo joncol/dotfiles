@@ -38,7 +38,7 @@
 
 (require 'cc-vars)
 
-(defun fix-enum-class ()
+(defun jco/fix-enum-class ()
   "Setup `c++-mode' to better handle \"class enum\"."
   (add-to-list 'c-offsets-alist '(topmost-intro-cont . align-enum-class))
   (add-to-list 'c-offsets-alist
@@ -165,6 +165,43 @@
     (beginning-of-line)
     (re-search-forward "\\s-*\\([^\s-]+\\)" (point-at-eol))
     (match-string-no-properties 1)))
+
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (when (stringp (buffer-file-name))
+              (let ((sh (getenv "SHELL")))
+                (set (make-local-variable 'compile-command)
+                     (concat
+                      "cd " (projectile-project-root)
+                      (cond
+                       ((s-contains-p "bash" sh)
+                        "_build_vs && cmake --build . -- -j4")
+                       ((s-contains-p "fish" sh)
+                        (format "_build ;and cmake --build . --target %s -- -j4"
+                                (jco/cmake-project-name))))))))
+
+            (jco/define-bindings c++-mode-map '(("<f6>" . compile)))
+
+            (setq flycheck-clang-language-standard "c++14")
+
+            (c-set-offset 'innamespace 0)
+            (c-set-offset 'label '-)
+            (jco/fix-enum-class)
+
+            (evil-leader/set-key "q i" 'jco/cpp-fix-constr-destr)
+            (evil-leader/set-key "q d" 'jco/cpp-decl-to-def)
+            (evil-leader/set-key "q D" 'jco/cpp-def-to-decl)
+            (evil-leader/set-key "q f" 'jco/cpp-decl-field-accessors)
+            (evil-leader/set-key "q r" 'jco/cpp-make-const-ref)
+            (evil-leader/set-key "q t" 'jco/cpp-variadic-templatize)
+            (evil-leader/set-key "q c" 'jco/cpp-fix-class-name)
+            (evil-leader/set-key "q o" 'jco/cpp-override-method)
+
+            (evil-leader/set-key "q C"
+              (lambda ()
+                (interactive)
+                (jco/cpp-insert-class-name)
+                (insert "::")))))
 
 (provide 'init-cpp)
 
