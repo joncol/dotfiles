@@ -99,19 +99,19 @@
                     (string-inflection-lower-camelcase-function name)))
            (spc (match-string 1))
            (type (match-string 2)))
-      (replace-match (format "%s\n%svoid set%s(%s %s);\n%s%s %s(%s %s) const;"
+      (replace-match (format "%s\n%svoid set%s(%s %s);\n%s%s %s() const;"
                              whole spc uname type name
-                             spc type lname type name)))))
+                             spc type lname)))))
 
 (defun jco/cpp-decl-to-def ()
   "Create C++ method definition from declaration."
   (interactive)
   (defvar jco/start-pos)
+  (beginning-of-line)
   (set (make-local-variable 'jco/start-pos) (point))
   (save-excursion
     (save-restriction
       (widen)
-      (beginning-of-line)
       (re-search-forward ";")
       (defvar jco/end-of-decl)
       (set (make-local-variable 'jco/end-of-decl) (point))
@@ -121,14 +121,16 @@
                                  jco/end-of-decl t)
          (replace-match "")))
 
-      (re-search-forward "\\([^\s-]+\\)(.+ \\(.+\\))" jco/end-of-decl nil)
+      (re-search-forward "\\([^\s-]+\\)(\\(.+ \\(.+\\)\\)?)"
+                         jco/end-of-decl nil)
       (let* ((method-name (match-string 1))
-             (param-name (match-string 2))
+             (param-name (match-string 3))
              (method-name-t (save-match-data
                               (string-inflection-underscore-function
                                method-name)))
-             (is-setter (string= method-name-t (concat "set_" param-name)))
-             (is-getter (string= method-name-t param-name)))
+             (is-setter (s-starts-with-p "set" method-name-t))
+             (is-getter (not (string= (jco/first-word-on-line) "void"))))
+
         (goto-char (match-beginning 0))
         (jco/cpp-insert-class-name)
         (insert "::")
@@ -136,46 +138,19 @@
         (goto-char (match-beginning 0))
         (replace-match "\n{\n")
         (cond (is-setter (insert (format "m_%s = %s;\n" param-name param-name)))
-              (is-getter (insert (format "return m_%s;\n" param-name))))
+              (is-getter (insert (format "return m_%s;\n"
+                                         (string-inflection-underscore-function
+                                          method-name)))))
         (insert "}")
         (evil-indent jco/start-pos (point))))))
 
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (when (stringp (buffer-file-name))
-              (let ((sh (getenv "SHELL")))
-                (set (make-local-variable 'compile-command)
-                     (concat
-                      "cd " (projectile-project-root)
-                      (cond
-                       ((s-contains-p "bash" sh)
-                        "_build_vs && cmake --build . -- -j4")
-                       ((s-contains-p "fish" sh)
-                        (format "_build ;and cmake --build . --target %s -- -j4"
-                                (jco/cmake-project-name))))))))
-
-            (jco/define-bindings c++-mode-map '(("<f6>" . compile)))
-
-            (setq flycheck-clang-language-standard "c++14")
-
-            (c-set-offset 'innamespace 0)
-            (c-set-offset 'label '-)
-            (fix-enum-class)
-
-            (evil-leader/set-key "q i" 'jco/cpp-fix-constr-destr)
-            (evil-leader/set-key "q d" 'jco/cpp-decl-to-def)
-            (evil-leader/set-key "q D" 'jco/cpp-def-to-decl)
-            (evil-leader/set-key "q f" 'jco/cpp-decl-field-accessors)
-            (evil-leader/set-key "q r" 'jco/cpp-make-const-ref)
-            (evil-leader/set-key "q t" 'jco/cpp-variadic-templatize)
-            (evil-leader/set-key "q c" 'jco/cpp-fix-class-name)
-            (evil-leader/set-key "q o" 'jco/cpp-override-method)
-
-            (evil-leader/set-key "q C"
-              (lambda ()
-                (interactive)
-                (jco/cpp-insert-class-name)
-                (insert "::")))))
+(defun jco/first-word-on-line ()
+  "Return the first word on the current line."
+  (interactive)
+  (save-match-data
+    (beginning-of-line)
+    (re-search-forward "\\s-*\\([^\s-]+\\)" (point-at-eol))
+    (match-string-no-properties 1)))
 
 (provide 'init-cpp)
 
