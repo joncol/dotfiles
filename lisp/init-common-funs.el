@@ -116,6 +116,10 @@ If PRINT-MESSAGE is non-nil, print a message"
          (rest-str (substring string 1)))
      (concat (capitalize first-char) rest-str))))
 
+(defun jco/downcase-first-char (string)
+  "Downcase the first character of STRING."
+  (concat (downcase (substring string 0 1)) (substring string 1)))
+
 (use-package string-inflection)
 
 (defun jco/camel-case-to-sentence (text)
@@ -181,6 +185,16 @@ CMakeLists.txt file."
           (message "Face: %s" face)
         (message "No face at %d" pos)))
     (global-hl-line-mode g)))
+
+(defun jco/re-seq (regexp string)
+  "Get a list of all regex-matches of REGEXP in STRING."
+  (save-match-data
+    (let ((pos 0)
+          matches)
+      (while (string-match regexp string pos)
+        (push (match-string 0 string) matches)
+        (setq pos (match-end 0)))
+      (reverse matches))))
 
 (provide 'init-common-funs)
 
