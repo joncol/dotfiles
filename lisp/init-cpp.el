@@ -135,13 +135,12 @@
                                  jco/end-of-decl t)
          (replace-match "")))
 
-      (re-search-forward "\\([^\s-]+\\)(\\(.+ \\(.+\\)\\)?)"
-                         jco/end-of-decl nil)
+      (re-search-forward "\\([^\s-]+\\)(" jco/end-of-decl nil)
       (let* ((method-name (match-string 1))
-             (param-name (match-string 3))
              (method-name-t (save-match-data
                               (string-inflection-underscore-function
                                method-name)))
+             ;; (last-param-name (match-string 2))
              (is-setter (and (s-starts-with-p "set" method-name-t)
                              (eq 1 (jco/cpp-arg-count jco/start-pos
                                                       jco/end-of-decl))))
@@ -155,7 +154,12 @@
         (re-search-forward ";")
         (goto-char (match-beginning 0))
         (replace-match "\n{\n")
-        (cond (is-setter (insert (format "m_%s = %s;\n" param-name param-name)))
+        (cond (is-setter
+               (save-excursion
+                 (goto-char jco/start-pos)
+                 (re-search-forward "(.+ \\([^\s-]+\\))"))
+               (let ((param-name (match-string 1)))
+                 (insert (format "m_%s = %s;\n" param-name param-name))))
               (is-getter (insert (format "return m_%s;\n"
                                          (string-inflection-underscore-function
                                           method-name)))))
@@ -173,14 +177,13 @@
 (defun jco/cpp-arg-count (start-pos end-pos)
   "Count number of arguments in declaration between START-POS and END-POS."
   (interactive)
-  (save-excursion
-    (save-match-data
-      (goto-char start-pos)
-      (if (re-search-forward ".+(\\(.+\\))" end-pos t)
+  (save-match-data
+    (let* ((buf (buffer-substring-no-properties start-pos end-pos))
+           (str (s-replace "\n" "" buf)))
+      (if (string-match ".+(\\(.+\\))" str)
           (let ((args-start (match-beginning 1))
                 (args-end (match-end 1)))
-            (goto-char args-start)
-            (1+ (count-matches "," args-start args-end)))
+            (1+ (s-count-matches "," str args-start args-end)))
         0))))
 
 (add-hook 'c++-mode-hook
