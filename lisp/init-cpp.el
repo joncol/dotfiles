@@ -99,12 +99,17 @@
                     (string-inflection-lower-camelcase-function name)))
            (spc (match-string 1))
            (type (match-string 2))
-           (type-t (if (jco/cpp-type-should-be-const-ref-p type)
-                       (format "const %s&" type)
-                     type)))
-      (replace-match (format "%s\n%svoid set%s(%s %s);\n%s%s %s() const;"
-                             whole spc uname type-t name
-                             spc type lname)))))
+           (ttype (if (jco/cpp-type-should-be-const-ref-p type)
+                      (format "const %s&" type)
+                    type))
+           (tname (if (string= type "bool")
+                      (concat "is" uname)
+                    lname)))
+      (end-of-line)
+      (newline)
+      (insert (format "%svoid set%s(%s %s);\n%s%s %s() const;"
+                      spc uname ttype name
+                      spc type tname)))))
 
 (defun jco/cpp-type-should-be-const-ref-p (type)
   "Return non-nil value if TYPE should be `const ref' when used for parameter."
@@ -120,12 +125,17 @@
 (defun jco/cpp-decl-to-def ()
   "Create C++ method definition from declaration."
   (interactive)
-  (defvar jco/start-pos)
   (beginning-of-line)
+  (defvar jco/start-pos)
   (set (make-local-variable 'jco/start-pos) (point))
   (save-excursion
     (save-restriction
       (widen)
+
+      (defvar jco/is-bool-getter)
+      (set (make-local-variable 'jco/is-bool-getter)
+           (string= (jco/first-word-on-line) "bool"))
+
       (re-search-forward ";")
       (defvar jco/end-of-decl)
       (set (make-local-variable 'jco/end-of-decl) (point))
@@ -136,14 +146,23 @@
                                  jco/end-of-decl t)
          (replace-match "")))
 
-      (re-search-forward "\\([^\s-]+\\)(" jco/end-of-decl nil)
-      (let* ((method-name (match-string 1))
+      (re-search-forward "\\([^\s-]+\\)(" jco/end-of-decl)
+
+      (let* ((name (match-string 1))
+             (method-name (if jco/is-bool-getter
+                              (replace-regexp-in-string "\\bis" "" name)
+                            name))
              (method-name-t (save-match-data
                               (string-inflection-underscore-function
                                method-name)))
-             (is-setter (and (s-starts-with-p "set" method-name-t)
-                             (eq 1 (jco/cpp-arg-count jco/start-pos
-                                                      jco/end-of-decl))))
+             (is-setter (and (eq 1 (jco/cpp-arg-count jco/start-pos
+                                                      jco/end-of-decl))
+                             (string=
+                              method-name-t
+                              (concat "set_"
+                                      (jco/cpp-arg-name 0
+                                                        jco/start-pos
+                                                        jco/end-of-decl)))))
              (is-getter (and (not (string= (jco/first-word-on-line) "void"))
                              (eq 0 (jco/cpp-arg-count jco/start-pos
                                                       jco/end-of-decl)))))
@@ -169,10 +188,11 @@
 (defun jco/first-word-on-line ()
   "Return the first word on the current line."
   (interactive)
-  (save-match-data
-    (beginning-of-line)
-    (re-search-forward "\\s-*\\([^\s-]+\\)" (point-at-eol))
-    (match-string-no-properties 1)))
+  (save-excursion
+    (save-match-data
+      (beginning-of-line)
+      (re-search-forward "\\s-*\\([^\s-]+\\)" (point-at-eol))
+      (match-string-no-properties 1))))
 
 (defun jco/cpp-arg-count (start-pos end-pos)
   "Count number of arguments in declaration between START-POS and END-POS."
@@ -185,6 +205,18 @@
                 (args-end (match-end 1)))
             (1+ (s-count-matches "," str args-start args-end)))
         0))))
+
+(defun jco/cpp-arg-name (n start-pos end-pos)
+  "Get name of argument number N in declaration between START-POS and END-POS."
+  (interactive)
+  (save-match-data
+    (let* ((buf (buffer-substring-no-properties start-pos end-pos))
+           (str (s-replace "\n" "" buf))
+           (strs (jco/re-seq "[^\s-]+[,)]" str))
+           (re (elt strs n)))
+      (if re
+          (substring re 0 -1)
+        nil))))
 
 (add-hook 'c++-mode-hook
           (lambda ()
