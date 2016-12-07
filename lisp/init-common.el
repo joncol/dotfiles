@@ -22,6 +22,11 @@
 (show-paren-mode)
 (global-hl-line-mode)
 
+(modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq auto-save-default nil)
+
 (use-package buffer-move
   :config
   (global-set-key (kbd "<C-S-up>") 'buf-move-up)
@@ -43,10 +48,7 @@
 
 (use-package f)
 
-(modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
-
-(defalias 'yes-or-no-p 'y-or-n-p)
-(setq auto-save-default nil)
+(use-package google-this)
 
 (require 'server)
 (when (not (server-running-p))
