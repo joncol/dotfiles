@@ -138,6 +138,7 @@
 
 (set-face-foreground 'minibuffer-prompt "#263238")
 (set-face-background 'minibuffer-prompt "#afd700")
+(set-face-background 'rtags-argument-face "#8cc4ff")
 
 ;; Fix ediff colors.
 (require 'ediff)
