@@ -30,14 +30,16 @@
 ethan-wspace."
     (jco/no-final-newline)))
 
-(require 'whitespace)
+(use-package whitespace
+  :diminish whitespace-mode
 
-(diminish 'whitespace-mode)
-
-(setq-default whitespace-style '(face tabs trailing
-                                      space-before-tab indentation
-                                      empty space-after-tab tab-mark))
-(set-face-background 'whitespace-trailing "#ff0000")
+  :config
+  (setq-default whitespace-style '(face tabs trailing
+                                        space-before-tab indentation
+                                        empty space-after-tab tab-mark))
+  (add-hook 'after-init-hook
+            (lambda ()
+              (set-face-background 'whitespace-trailing "#ff0000"))))
 
 (provide 'init-wspace)
 
