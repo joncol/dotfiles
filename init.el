@@ -25,9 +25,11 @@
           (lambda ()
             (if jco/init-errors
                 (message "%s" (propertize "There were errors"
-                                          'face '(:foreground "red")))
+                                          'face '(:background "red"
+                                                  :foreground "white")))
               (message "%s" (propertize "No errors"
-                                        'face '(:foreground "green"))))))
+                                        'face '(:background "green"
+                                                :foreground "black"))))))
 
 (provide 'init)
 
