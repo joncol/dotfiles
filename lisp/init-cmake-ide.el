@@ -8,7 +8,7 @@
   (add-hook 'c-mode-common-hook
             (lambda ()
               (use-package cmake-ide)
-              
+
               (when (not (boundp 'cmake-ide-build-dir))
                 (defvar cmake-ide-build-dir
                   (concat (projectile-project-root) "_build")))
@@ -43,6 +43,8 @@
                                                      '((:background nil)))
                             (face-remap-add-relative 'font-lock-preprocessor-face
                                                      '((:background nil)))))
+
+                (set-face-background 'rtags-argument-face "#8cc4ff")
 
                 ;; Would be nice to be able to use mode-specific bindings here,
                 ;; but I didn't get this to work using
