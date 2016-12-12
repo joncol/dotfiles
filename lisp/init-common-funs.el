@@ -194,7 +194,7 @@ CMakeLists.txt file."
       (while (string-match regexp string pos)
         (push (match-string 0 string) matches)
         (setq pos (match-end 0)))
-      (reverse matches))))
+      (nreverse matches))))
 
 (provide 'init-common-funs)
 
