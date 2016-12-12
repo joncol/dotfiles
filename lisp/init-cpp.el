@@ -225,11 +225,15 @@
                      (concat
                       "cd " (projectile-project-root)
                       (cond
-                       ((s-contains-p "bash" sh)
-                        "_build_vs && cmake --build . -- -j4")
                        ((s-contains-p "fish" sh)
                         (format "_build ;and cmake --build . --target %s -- -j4"
-                                (jco/cmake-project-name))))))))
+                                (jco/cmake-project-name)))
+                       ((eq system-type 'windows-nt)
+                        (format "_build_vs && cmake --build . --target %s"
+                                (jco/cmake-project-name)))
+                       (t (format
+                           "_build_vs && cmake --build . --target %s -- -j4"
+                           (jco/cmake-project-name))))))))
 
             (jco/define-bindings c++-mode-map '(("<f6>" . compile)))
 
