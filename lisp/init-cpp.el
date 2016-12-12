@@ -137,7 +137,7 @@
 
       (re-search-forward ";")
       (defvar jco/end-of-decl)
-      (set (make-local-variable 'jco/end-of-decl) (point))
+      (set (make-local-variable 'jco/end-of-decl) (point-marker))
       (goto-char jco/start-pos)
 
       (save-excursion (while (re-search-forward
