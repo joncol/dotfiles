@@ -106,14 +106,16 @@ vcs: _g_it _m_ercurial"
 
 (defhydra jco/hydra-app (:color teal :hint nil)
   "
-app: _c_irce _e_rc _m_u4e e_s_hell _v_im e_w_w s_x_"
+app: _c_irce _e_rc _m_u4e e_s_hell _v_im e_w_w s_x_ _S_lack"
   ("c" (circe "Freenode"))
   ("e" (erc :server "irc.freenode.net" :port 6667))
   ("m" mu4e)
   ("s" jco/eshell-here)
   ("v" jco/vim)
   ("w" eww)
-  ("x" sx-tab-all-questions))
+  ("x" sx-tab-all-questions)
+  ("S" (progn (slack-start)
+              (slack-select-rooms))))
 
 ;;; Help menu
 
