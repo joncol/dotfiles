@@ -13,6 +13,7 @@
                                     mu4e-action-view-in-browser) t)
 
   (setq mu4e-compose-context-policy 'always-ask)
+  (setq mu4e-save-multiple-attachments-without-asking t)
 
   (defun compl-fun (prompt maildirs predicate require-match initial-input)
     (helm-comp-read prompt maildirs
