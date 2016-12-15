@@ -21,6 +21,7 @@
 (global-font-lock-mode)
 (show-paren-mode)
 (global-hl-line-mode)
+(winner-mode)
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
 
