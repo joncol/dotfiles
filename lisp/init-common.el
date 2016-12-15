@@ -159,7 +159,10 @@
 
 (windmove-default-keybindings)
 
-(define-key package-menu-mode-map "\C-w" 'evil-window-map)
+(require 'ibuffer)
+
+(dolist (map (list ibuffer-mode-map package-menu-mode-map))
+  (define-key map "\C-w" 'evil-window-map))
 
 (setq compilation-scroll-output t)
 
