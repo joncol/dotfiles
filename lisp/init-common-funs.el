@@ -214,9 +214,9 @@ CMakeLists.txt file."
         ((s-contains-p "fish" sh)
          (format "_build ;and cmake --build . %s -- -j4" target))
         ((eq system-type 'windows-nt)
-         (format "_build_vs && cmake --build . %s" target))
+         (format "_build && cmake --build . %s" target))
         (t (format
-            "_build_vs && cmake --build . %s -- -j4" target)))))))
+            "_build && cmake --build . %s -- -j4" target)))))))
 
 (provide 'init-common-funs)
 
