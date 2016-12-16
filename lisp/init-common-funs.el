@@ -148,6 +148,13 @@ Example: `helloWorld` becomes `Hello world`."
       (cons (car lines) (cadr lines)))
     '("" . "")))
 
+(defun jco/cmake-target-string ()
+  "Get target string for CMake."
+  (let ((proj (jco/cmake-project-name)))
+    (if (string= proj "src")
+        ""
+      (concat "--target " proj))))
+
 (require 'f)
 
 (defun jco/cmake-project-name ()
@@ -199,19 +206,17 @@ CMakeLists.txt file."
 (defun jco/cmake-compile-command ()
   "Return compile command for building a project using CMake."
   (when (stringp (buffer-file-name))
-    (let ((sh (getenv "SHELL")))
+    (let ((sh (getenv "SHELL"))
+          (target (jco/cmake-target-string)))
       (concat
        "cd " (projectile-project-root)
        (cond
         ((s-contains-p "fish" sh)
-         (format "_build ;and cmake --build . --target %s -- -j4"
-                 (jco/cmake-project-name)))
+         (format "_build ;and cmake --build . %s -- -j4" target))
         ((eq system-type 'windows-nt)
-         (format "_build_vs && cmake --build . --target %s"
-                 (jco/cmake-project-name)))
+         (format "_build_vs && cmake --build . %s" target))
         (t (format
-            "_build_vs && cmake --build . --target %s -- -j4"
-            (jco/cmake-project-name))))))))
+            "_build_vs && cmake --build . %s -- -j4" target)))))))
 
 (provide 'init-common-funs)
 
