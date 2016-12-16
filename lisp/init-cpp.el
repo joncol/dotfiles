@@ -219,21 +219,8 @@
 
 (add-hook 'c++-mode-hook
           (lambda ()
-            (when (stringp (buffer-file-name))
-              (let ((sh (getenv "SHELL")))
-                (set (make-local-variable 'compile-command)
-                     (concat
-                      "cd " (projectile-project-root)
-                      (cond
-                       ((s-contains-p "fish" sh)
-                        (format "_build ;and cmake --build . --target %s -- -j4"
-                                (jco/cmake-project-name)))
-                       ((eq system-type 'windows-nt)
-                        (format "_build_vs && cmake --build . --target %s"
-                                (jco/cmake-project-name)))
-                       (t (format
-                           "_build_vs && cmake --build . --target %s -- -j4"
-                           (jco/cmake-project-name))))))))
+            (set (make-local-variable 'compile-command)
+                 jco/cmake-compile-command)
 
             (jco/define-bindings c++-mode-map '(("<f6>" . compile)))
 

@@ -196,6 +196,23 @@ CMakeLists.txt file."
         (setq pos (match-end 0)))
       (nreverse matches))))
 
+(defun jco/cmake-compile-command ()
+  "Return compile command for building a project using CMake."
+  (when (stringp (buffer-file-name))
+    (let ((sh (getenv "SHELL")))
+      (concat
+       "cd " (projectile-project-root)
+       (cond
+        ((s-contains-p "fish" sh)
+         (format "_build ;and cmake --build . --target %s -- -j4"
+                 (jco/cmake-project-name)))
+        ((eq system-type 'windows-nt)
+         (format "_build_vs && cmake --build . --target %s"
+                 (jco/cmake-project-name)))
+        (t (format
+            "_build_vs && cmake --build . --target %s -- -j4"
+            (jco/cmake-project-name))))))))
+
 (provide 'init-common-funs)
 
 ;;; init-common-funs.el ends here
