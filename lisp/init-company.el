@@ -32,6 +32,14 @@
 
   :diminish company-mode)
 
+(use-package company-quickhelp
+  :config
+  (setq company-quickhelp-delay 0)
+  (with-eval-after-load 'company
+    (define-key company-active-map
+      (kbd "M-h") #'company-quickhelp-manual-begin))
+  )
+
 (defun jco/turn-off-fci-during-company-complete(command)
   "Fixes the issue where the first item is shown far off to the right."
   (when (string= "show" command)
