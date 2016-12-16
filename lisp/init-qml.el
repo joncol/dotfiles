@@ -1,3 +1,11 @@
+;;; #init-qml.el --- QML config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
 
 (add-hook 'qml-mode-hook
@@ -9,3 +17,5 @@
                   comment-end "")))
 
 (provide 'init-qml)
+
+;;; init-qml.el ends here
