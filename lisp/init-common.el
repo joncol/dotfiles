@@ -164,6 +164,10 @@
 (dolist (map (list ibuffer-mode-map package-menu-mode-map))
   (define-key map "\C-w" 'evil-window-map))
 
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (nlinum-mode -1)))
+
 (setq compilation-scroll-output t)
 
 (use-package volatile-highlights
