@@ -6,6 +6,26 @@
 
 ;;; Code:
 
+(defun jco/bind-exit-insert-mode (first-key second-key)
+    "Add binding to exit insert mode using FIRST-KEY followed by SECOND-KEY."
+    (define-key evil-insert-state-map (char-to-string first-key)
+      #'jco/maybe-exit)
+    (evil-define-command jco/maybe-exit ()
+      :repeat change
+      (interactive)
+      (let ((modified (buffer-modified-p)))
+        (insert (char-to-string first-key))
+        (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
+                               nil 0.5)))
+          (cond
+           ((null evt) (message ""))
+           ((and (integerp evt) (char-equal evt second-key))
+            (delete-char -1)
+            (set-buffer-modified-p modified)
+            (push 'escape unread-command-events))
+           (t (setq unread-command-events (append unread-command-events
+                                                  (list evt)))))))))
+
 (use-package evil-leader
   :init
   ;; Enable global-evil-leader-mode before evil-mode, to make leader key work
@@ -63,23 +83,7 @@
                          ("C-k" . windmove-up)
                          ("C-l" . windmove-right)))
 
-                                        ; make "kj" exit out of insert mode
-  (define-key evil-insert-state-map "k" #'jco/maybe-exit)
-  (evil-define-command jco/maybe-exit ()
-    :repeat change
-    (interactive)
-    (let ((modified (buffer-modified-p)))
-      (insert "k")
-      (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-                             nil 0.5)))
-        (cond
-         ((null evt) (message ""))
-         ((and (integerp evt) (char-equal evt ?j))
-          (delete-char -1)
-          (set-buffer-modified-p modified)
-          (push 'escape unread-command-events))
-         (t (setq unread-command-events (append unread-command-events
-                                                (list evt))))))))
+  (jco/bind-exit-insert-mode ?k ?j)
 
   (setq evil-flash-delay 3600))
 
