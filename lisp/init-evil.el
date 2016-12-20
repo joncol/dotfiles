@@ -84,6 +84,7 @@
                          ("C-l" . windmove-right)))
 
   (jco/bind-exit-insert-mode ?k ?j)
+  (jco/bind-exit-insert-mode ?l ?h)
 
   (setq evil-flash-delay 3600))
 
