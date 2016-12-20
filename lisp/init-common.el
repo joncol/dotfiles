@@ -22,6 +22,7 @@
 (show-paren-mode)
 (global-hl-line-mode)
 (winner-mode)
+(setq jco/use-colemak t)
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
 
@@ -223,6 +224,9 @@
 
 (use-package avy
   :config
+  (when jco/use-colemak
+    (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o)))
+
   (eval-after-load "evil"
     '(progn (evil-leader/set-key "f" 'evil-avy-goto-char)
             (evil-leader/set-key "#" 'evil-avy-goto-line)

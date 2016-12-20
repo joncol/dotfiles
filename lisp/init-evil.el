@@ -83,8 +83,9 @@
                          ("C-k" . windmove-up)
                          ("C-l" . windmove-right)))
 
-  (jco/bind-exit-insert-mode ?k ?j)
-  (jco/bind-exit-insert-mode ?l ?h)
+  (if jco/use-colemak
+      (jco/bind-exit-insert-mode ?l ?h)
+    (jco/bind-exit-insert-mode ?k ?j))
 
   (setq evil-flash-delay 3600))
 
