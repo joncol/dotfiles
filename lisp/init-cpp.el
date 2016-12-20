@@ -220,7 +220,7 @@
 (add-hook 'c++-mode-hook
           (lambda ()
             (set (make-local-variable 'compile-command)
-                 jco/cmake-compile-command)
+                 (jco/cmake-compile-command))
 
             (jco/define-bindings c++-mode-map '(("<f6>" . compile)))
 
