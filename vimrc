@@ -121,6 +121,7 @@ inoremap <s-space> <space>
 
 " inoremap <expr> kj (pumvisible())?("kj") : ("\<c-c>")
 inoremap kj <c-c>
+inoremap lh <c-c>
 inoremap <c-g> <esc>
 
 " nnoremap <s-enter> O<esc>
