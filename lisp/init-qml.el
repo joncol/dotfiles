@@ -12,8 +12,10 @@
   :bind (:map qml-mode-map
               ([f6] . compile))
   :config
-  (set (make-local-variable 'compile-command)
-       (jco/cmake-compile-command))
+  (add-hook 'qml-mode-hook
+            (lambda ()
+              (set (make-local-variable 'compile-command)
+                   (jco/cmake-compile-command))))
   (setq comment-start "//"
         comment-end ""))
 
