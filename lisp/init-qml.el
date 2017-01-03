@@ -15,9 +15,9 @@
   (add-hook 'qml-mode-hook
             (lambda ()
               (set (make-local-variable 'compile-command)
-                   (jco/cmake-compile-command))))
-  (setq comment-start "//"
-        comment-end ""))
+                   (jco/cmake-compile-command))
+              (setq comment-start "//"
+                    comment-end ""))))
 
 (provide 'init-qml)
 
