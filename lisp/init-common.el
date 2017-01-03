@@ -29,6 +29,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq auto-save-default nil)
 
+(use-package ahk-mode)
+
 (use-package buffer-move
   :config
   (global-set-key (kbd "<C-S-up>") 'buf-move-up)
