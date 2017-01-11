@@ -254,9 +254,9 @@
   :init
   (flycheck-pos-tip-mode))
 
-(use-package bookmark+)
+(use-package bookmark+ :disabled t)
 
-(use-package dired+)
+(use-package dired+ :disabled t)
 
 (use-package desktop
   :config
