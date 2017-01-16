@@ -60,11 +60,12 @@ find: _f_un _l_ib _v_ar"
 "
 _f_lyspell
 
-_l_angtool _c_orrect _d_one"
+_l_angtool _c_orrect _d_one _s_dcv"
   ("f" flyspell-mode)
   ("l" langtool-check)
   ("c" langtool-correct-buffer)
-  ("d" langtool-check-done))
+  ("d" langtool-check-done)
+  ("s" sdcv-search))
 
 (defhydra jco/hydra-org (:color teal :hint nil)
   "

@@ -15,4 +15,7 @@
 (setq langtool-autoshow-message-function
       'langtool-autoshow-detail-popup)
 
+(require 'sdcv-mode)
+(global-set-key (kbd "C-c d") 'sdcv-search)
+
 (provide 'init-lang)
