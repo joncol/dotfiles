@@ -54,6 +54,7 @@
                       (git-rebase-mode          . emacs)
                       ;; (paradox-menu-mode        . emacs)
                       (rtags-mode               . emacs)
+                      (sdcv-mode                . emacs)
                       (sx-question-list-mode    . emacs)
                       (sx-question-mode         . emacs)
                       (term-mode                . emacs)
