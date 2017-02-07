@@ -8,7 +8,7 @@
 
 ;;; Change this to whatever theme you want.
 (defvar jco/theme)
-(set (make-local-variable 'jco/theme) 'organic-green)
+(set (make-local-variable 'jco/theme) 'cyberpunk)
 
 (defvar jco/theme-pkg)
 ;; (set (make-local-variable 'jco/theme-pkg) 'solarized-theme)
@@ -67,6 +67,10 @@
 (set (make-local-variable 'jco/cursor-color) "green")
 
 (cl-case jco/theme
+  (cyberpunk
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "RoyalBlue4"))
+
   (darkane
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "midnightblue")
@@ -159,18 +163,19 @@
              ediff-odd-diff-C))
   (set-face-foreground f "black"))
 
-(let ((info-bg "gray16"))
-  (dolist (f '(info-command-ref-item
-               info-constant-ref-item
-               info-file
-               info-function-ref-item
-               info-macro-ref-item
-               info-reference-item
-               info-special-form-ref-item
-               info-syntax-class-item
-               info-user-option-ref-item
-               info-variable-ref-item))
-    (set-face-background f info-bg)))
+(when (not (eq jco/theme 'cyberpunk))
+  (let ((info-bg "gray16"))
+    (dolist (f '(info-command-ref-item
+                 info-constant-ref-item
+                 info-file
+                 info-function-ref-item
+                 info-macro-ref-item
+                 info-reference-item
+                 info-special-form-ref-item
+                 info-syntax-class-item
+                 info-user-option-ref-item
+                 info-variable-ref-item))
+      (set-face-background f info-bg))))
 
 (set-face-background 'helm-buffer-directory "gray60")
 
