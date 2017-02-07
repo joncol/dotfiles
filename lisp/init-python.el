@@ -10,7 +10,7 @@
   (setq python-shell-prompt-detect-failure-warning nil))
 
 (use-package elpy
-  ;; :defer 2
+  :if (not (eq system-type 'windows-nt))
   :diminish elpy-mode
   :diminish highlight-indentation-mode
 
@@ -25,14 +25,14 @@
   :config
   (setq elpy-rpc-backend "jedi"))
 
-(use-package company-jedi
-  :init
-  (with-eval-after-load 'python
-    (add-to-list 'company-backends '(company-jedi company-files))))
-
 (require 'jedi-core)
 
-(add-hook 'python-mode-hook #'jedi-mode)
+(use-package company-jedi
+  :if (not (eq system-type 'windows-nt))
+  :init
+  (add-hook 'python-mode-hook #'jedi-mode)
+  (with-eval-after-load 'python
+    (add-to-list 'company-backends '(company-jedi company-files))))
 
 (provide 'init-python)
 
