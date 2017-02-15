@@ -218,6 +218,11 @@ CMakeLists.txt file."
         (t (format
             "_build && cmake --build . %s -- -j4" target)))))))
 
+(defun jco/display-ansi-colors ()
+  "Display ansi color codes in buffer."
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
 (provide 'init-common-funs)
 
 ;;; init-common-funs.el ends here
