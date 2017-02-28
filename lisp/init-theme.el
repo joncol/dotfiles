@@ -113,6 +113,10 @@
    (set-face-background 'helm-selection "#a0f0a0")
    (set-face-background 'show-paren-match "#c0c060"))
 
+  (prassee
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "VioletRed4"))
+
   ((sanityinc-tomorrow-bright sanityinc-tomorrow-day
                               sanityinc-tomorrow-eighties
                               sanityinc-tomorrow-night)
