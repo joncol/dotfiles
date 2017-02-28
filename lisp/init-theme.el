@@ -8,22 +8,23 @@
 
 ;;; Change this to whatever theme you want.
 (defvar jco/theme)
-(set (make-local-variable 'jco/theme) 'cyberpunk)
+(set (make-local-variable 'jco/theme)
+     'prassee)
 
-(defvar jco/theme-pkg)
-;; (set (make-local-variable 'jco/theme-pkg) 'solarized-theme)
+;; (defvar jco/theme-pkg)
+;; ;; (set (make-local-variable 'jco/theme-pkg) 'solarized-theme)
 
 ;;; Previously used themes:
 
 ;; afternoon-theme
 ;; ample-theme
-;; airline-themes
 ;; ample-zen-theme
 ;; assemblage-theme
 ;; borland-blue-theme
 ;; cherry-blossom-theme
 ;; color-theme-sanityinc-tomorrow
 ;; cyberpunk-theme
+;; darkane-theme
 ;; darktooth-theme
 ;; doom-themes
 ;; espresso-theme
@@ -41,6 +42,7 @@
 ;; molokai-theme
 ;; monokai-theme
 ;; organic-green-theme
+;; prassee-theme
 ;; reykjavik-theme
 ;; solarized-theme
 ;; soothe-theme
@@ -54,12 +56,12 @@
   (setq powerline-default-separator 'utf-8)
   (spaceline-spacemacs-theme))
 
-(unless (boundp 'jco/theme-pkg)
-  (setq jco/theme-pkg (intern (concat (symbol-name jco/theme) "-theme"))))
+;; (unless (boundp 'jco/theme-pkg)
+;;   (setq jco/theme-pkg (intern (concat (symbol-name jco/theme) "-theme"))))
 
-(unless (package-installed-p jco/theme-pkg)
-  (package-refresh-contents)
-  (package-install jco/theme-pkg))
+;; (unless (package-installed-p jco/theme-pkg)
+;;   (package-refresh-contents)
+;;   (package-install jco/theme-pkg))
 
 (load-theme jco/theme t)
 
