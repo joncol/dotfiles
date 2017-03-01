@@ -9,7 +9,7 @@
 ;;; Change this to whatever theme you want.
 (defvar jco/theme)
 (set (make-local-variable 'jco/theme)
-     'prassee)
+     'reykjavik)
 
 ;; (defvar jco/theme-pkg)
 ;; ;; (set (make-local-variable 'jco/theme-pkg) 'solarized-theme)
@@ -114,6 +114,10 @@
    (set-face-background 'show-paren-match "#c0c060"))
 
   (prassee
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "VioletRed4"))
+
+  (reykjavik
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "VioletRed4"))
 
