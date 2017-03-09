@@ -9,7 +9,8 @@
 ;;; Change this to whatever theme you want.
 (defvar jco/theme)
 (set (make-local-variable 'jco/theme)
-     'reykjavik)
+     ;; 'sanityinc-tomorrow-night)
+     'darktooth)
 
 ;; (defvar jco/theme-pkg)
 ;; ;; (set (make-local-variable 'jco/theme-pkg) 'solarized-theme)
@@ -68,20 +69,17 @@
 (defvar jco/cursor-color)
 (set (make-local-variable 'jco/cursor-color) "green")
 
-(cl-case jco/theme
-  (cyberpunk
-   (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "RoyalBlue4"))
+(set-face-background 'evil-search-highlight-persist-highlight-face
+                     "RoyalBlue4")
 
+(cl-case jco/theme
   (darkane
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "midnightblue")
    (set-face-background 'hl-line "#041040"))
 
   (gotham
-   (setq jco/cursor-color "lightblue")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "RoyalBlue4"))
+   (setq jco/cursor-color "lightblue"))
 
   (material
    (set-face-background 'hl-line "#37474f")
@@ -103,10 +101,7 @@
                         "DarkOrange4"))
 
   (molokai
-   (set-face-foreground 'font-lock-comment-face "azure4")
-   (set-face-background
-    'evil-search-highlight-persist-highlight-face "RoyalBlue4")
-   )
+   (set-face-foreground 'font-lock-comment-face "azure4"))
 
   (organic-green
    (setq jco/cursor-color "gray25")
