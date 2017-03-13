@@ -10,9 +10,10 @@
 (defvar jco/theme)
 (set (make-local-variable 'jco/theme)
      ;; Change this to whatever theme you want.
-     'adwaita
+     ;; 'adwaita
+     'darktooth
+     ;; 'organic-green
      ;; 'sanityinc-tomorrow-eighties
-     ;; 'darktooth
      )
 
 ;; (defvar jco/theme-pkg)
