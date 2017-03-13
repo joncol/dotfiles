@@ -11,9 +11,19 @@
   (setq mu4e-view-show-addresses t)
   (add-to-list 'mu4e-view-actions '("ViewInBrowser" .
                                     mu4e-action-view-in-browser) t)
+  (setq mu4e-view-show-addresses t)
 
   (setq mu4e-compose-context-policy 'always-ask)
+  (setq mu4e-compose-in-new-frame t)
   (setq mu4e-save-multiple-attachments-without-asking t)
+  (setq mu4e-compose-format-flowed t)
+
+  (setq mu4e-headers-date-format "%Y-%m-%d %H:%M")
+  (setq mu4e-headers-fields
+        '((:date    . 25)
+          (:flags   .  6)
+          (:from    . 22)
+          (:subject . nil)))
 
   (defun compl-fun (prompt maildirs predicate require-match initial-input)
     (helm-comp-read prompt maildirs
