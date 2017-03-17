@@ -11,8 +11,11 @@
 (set (make-local-variable 'jco/theme)
      ;; Change this to whatever theme you want.
      ;; 'adwaita
-     'darktooth
+     ;; 'darktooth
+     ;; 'gotham
+     ;; 'molokai
      ;; 'organic-green
+     'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      )
 
@@ -131,6 +134,7 @@
 
   (sanityinc-tomorrow-blue
    (setq jco/cursor-color "snow")
+   (set-face-background 'helm-selection "VioletRed4")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "RoyalBlue")
    (set-face-background 'company-tooltip-selection "snow")
