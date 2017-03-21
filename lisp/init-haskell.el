@@ -37,7 +37,7 @@
   (setq haskell-process-type 'auto)
 
   ;; (setq haskell-tags-on-save t) ;; doesn't work for Fish
-  (haskell-doc-mode)
+  ;; (haskell-doc-mode)
 
   (diminish 'haskell-doc-mode)
 

@@ -13,9 +13,9 @@
      ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
-     ;; 'molokai
+     'molokai
      ;; 'organic-green
-     'sanityinc-tomorrow-blue
+     ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      )
 

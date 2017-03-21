@@ -25,7 +25,8 @@
   :config
   (setq elpy-rpc-backend "jedi"))
 
-(require 'jedi-core)
+(use-package jedi-core
+  :diminish jedi-mode)
 
 (use-package company-jedi
   :if (not (eq system-type 'windows-nt))
