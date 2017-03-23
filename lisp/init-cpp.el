@@ -230,6 +230,9 @@
 
             (setq flycheck-clang-language-standard "c++14")
 
+            (when (string-equal system-name "joule-Broxton-M")
+              (flycheck-mode -1))
+
             (c-set-offset 'innamespace 0)
             (c-set-offset 'label '-)
             (jco/fix-enum-class)
