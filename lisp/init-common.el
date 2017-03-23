@@ -39,6 +39,13 @@
   (global-set-key (kbd "<C-S-left>") 'buf-move-left)
   (global-set-key (kbd "<C-S-right>") 'buf-move-right))
 
+(use-package evil-leader
+  :init
+  ;; Enable global-evil-leader-mode before evil-mode, to make leader key work
+  ;; in *Messages* and *scratch* buffers.
+  (global-evil-leader-mode)
+  (evil-leader/set-leader ","))
+
 (use-package esup)
 
 (use-package nlinum

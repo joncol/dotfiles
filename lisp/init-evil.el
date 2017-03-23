@@ -26,13 +26,6 @@
            (t (setq unread-command-events (append unread-command-events
                                                   (list evt)))))))))
 
-(use-package evil-leader
-  :init
-  ;; Enable global-evil-leader-mode before evil-mode, to make leader key work
-  ;; in *Messages* and *scratch* buffers.
-  (global-evil-leader-mode)
-  (evil-leader/set-leader ","))
-
 (use-package evil
   :init
   (evil-mode)
