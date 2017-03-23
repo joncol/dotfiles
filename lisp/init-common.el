@@ -28,6 +28,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq auto-save-default nil)
+(setq make-backup-files nil)
 
 (use-package ahk-mode)
 
