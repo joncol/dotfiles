@@ -13,10 +13,13 @@
      ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
-     'molokai
-     ;; 'organic-green
+     ;; 'molokai
+     'organic-green
+     ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
+     ;; 'sanityinc-tomorrow-night
+     ;; 'solarized
      )
 
 ;; (defvar jco/theme-pkg)
