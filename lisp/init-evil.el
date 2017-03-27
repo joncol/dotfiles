@@ -83,6 +83,10 @@
 
   (setq evil-flash-delay 3600))
 
+(use-package evil-exchange
+  :init
+  (evil-exchange-cx-install))
+
 (use-package evil-matchit
   :init
   (global-evil-matchit-mode))
