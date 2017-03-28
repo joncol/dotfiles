@@ -304,7 +304,7 @@
   :config
   (evil-leader/set-key "z" 'zeal-at-point)
   (setq zeal-at-point-docsets '(c cpp))
-  (add-to-list 'zeal-at-point-mode-alist '(c++-mode . "cpp")))
+  (add-to-list 'zeal-at-point-mode-alist '(c++-mode . ("cpp" "qt"))))
 
 (provide 'init-common)
 
