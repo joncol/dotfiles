@@ -238,11 +238,10 @@
   (when jco/use-colemak
     (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o)))
 
-  (eval-after-load "evil"
-    '(progn (evil-leader/set-key "f" 'evil-avy-goto-char)
-            (evil-leader/set-key "#" 'evil-avy-goto-line)
-            (evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
-            (avy-setup-default)))
+  (evil-leader/set-key "f" 'evil-avy-goto-char)
+  (evil-leader/set-key "#" 'evil-avy-goto-line)
+  (evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
+  (avy-setup-default)
 
   (setq avy-case-fold-search nil))
 
@@ -300,6 +299,12 @@
 (use-package rainbow-mode :diminish rainbow-mode)
 
 (use-package rainbow-delimiters :diminish rainbow-delimiters-mode)
+
+(use-package zeal-at-point
+  :config
+  (evil-leader/set-key "z" 'zeal-at-point)
+  (setq zeal-at-point-docsets '(c cpp))
+  (add-to-list 'zeal-at-point-mode-alist '(c++-mode . "cpp")))
 
 (provide 'init-common)
 
