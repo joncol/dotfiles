@@ -21,6 +21,7 @@
 (global-font-lock-mode)
 (show-paren-mode)
 (global-hl-line-mode)
+(global-whitespace-mode)
 (winner-mode)
 (setq jco/use-colemak t)
 

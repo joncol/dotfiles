@@ -47,7 +47,6 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
 (defun jco/common-prog ()
   "Common setup for programming modes."
   (ethan-wspace-mode)
-  (whitespace-mode)
 
   (rainbow-delimiters-mode)
   (rainbow-mode t)
