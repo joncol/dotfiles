@@ -116,11 +116,12 @@
   "Return non-nil value if TYPE should be `const ref' when used for parameter."
   (cond ((s-ends-with? "*" type) nil)
         ((string= type "bool") nil)
-        ((string= type "int") nil)
-        ((string= type "float") nil)
         ((string= type "double") nil)
+        ((string= type "float") nil)
+        ((string= type "int") nil)
         ((string= type "long") nil)
         ((string= type "short") nil)
+        ((string= type "uint") nil)
         (t t)))
 
 (defun jco/cpp-decl-to-def ()
