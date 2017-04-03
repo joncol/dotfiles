@@ -1,3 +1,11 @@
+;;; #init-cc.el --- C/C++ config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (not (eq system-type 'gnu/linux))
@@ -40,6 +48,9 @@
             (evil-leader/set-key "A"
               (lambda ()
                 (interactive)
-                (ff-find-other-file t t)))))
+                (ff-find-other-file t t)))
+            ))
 
 (provide 'init-cc)
+
+;;; init-cc.el ends here
