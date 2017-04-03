@@ -33,6 +33,7 @@
                 (push 'company-rtags company-backends)
 
                 (bind-key "M-." 'rtags-find-symbol-at-point c-mode-base-map)
+                (bind-key "M-," 'pop-tag-mark c-mode-base-map)
 
                 (add-hook 'rtags-jump-hook 'evil-set-jump)
 
@@ -74,10 +75,8 @@
                   "g S" 'rtags-display-summary
                   "g O" 'rtags-goto-offset
                   "g ;" 'rtags-find-file
-                  "g f" 'rtags-fixit
-                  "g F" 'rtags-find-symbol-current-dir
+                  "g f" 'rtags-fix-fixit-at-point
                   "g L" 'rtags-copy-and-print-current-location
-                  "g X" 'rtags-fix-fixit-at-point
                   "g B" 'rtags-show-rtags-buffer
                   "g I" 'rtags-imenu
                   "g T" 'rtags-taglist
