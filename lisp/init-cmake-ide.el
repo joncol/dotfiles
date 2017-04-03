@@ -9,9 +9,9 @@
             (lambda ()
               (use-package cmake-ide)
 
-              (when (not (boundp 'cmake-ide-build-dir))
-                (defvar cmake-ide-build-dir
-                  (concat (projectile-project-root) "_build")))
+              (setq cmake-ide-build-dir
+                (concat (projectile-project-root) "_build"))
+
               (cmake-ide-setup)
               (setq cmake-ide-header-search-other-file nil)
               (setq cmake-ide-flags-c++ (append '("-std=c++14")))
