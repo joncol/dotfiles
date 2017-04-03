@@ -9,6 +9,12 @@
             (lambda ()
               (use-package cmake-ide)
 
+              (use-package irony
+                :if (eq system-type 'gnu/linux))
+
+              (use-package company-irony
+                :if (eq system-type 'gnu/linux))
+
               (setq cmake-ide-build-dir
                 (concat (projectile-project-root) "_build"))
 
@@ -30,7 +36,10 @@
                 (require 'company)
                 (require 'projectile)
 
-                (push 'company-rtags company-backends)
+                (irony-mode)
+
+                (eval-after-load 'company
+                  '(add-to-list 'company-backends 'company-irony))
 
                 (bind-key "M-." 'rtags-find-symbol-at-point c-mode-base-map)
                 (bind-key "M-," 'pop-tag-mark c-mode-base-map)
