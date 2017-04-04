@@ -25,6 +25,10 @@
 (winner-mode)
 (setq jco/use-colemak t)
 
+(when (eq system-type 'gnu/linux)
+  (setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "google-chrome-stable"))
+
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
 
 (defalias 'yes-or-no-p 'y-or-n-p)
