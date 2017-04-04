@@ -113,7 +113,7 @@ let g:go_fmt_autosave = 0
 
 let mapleader=","
 
-nnoremap <leader>ev :vsplit ~/.vim/vimrc<cr>
+nnoremap <leader>ev :e ~/.vim/vimrc<cr>
 nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 nnoremap <leader>es :UltiSnipsEdit<cr>
@@ -283,7 +283,12 @@ set encoding=utf-8
 set showmode
 set showcmd
 set wildmenu
-set t_vb=
+
+" Turn off beep.
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+set belloff=all
+
 set list
 set listchars=trail:·,precedes:«,extends:»,tab:»·
 
