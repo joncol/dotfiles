@@ -7,6 +7,15 @@
 ;;; Code:
 
 (use-package inf-ruby)
+(use-package robe)
+(use-package rubocop)
+(use-package ruby-end)
+
+(use-package rvm
+  :init
+  (setq rvm-executable "~/.rvm/bin/rvm"))
+
+(use-package yard-mode)
 
 (dolist (fp '("\\.rb$"
               "\\.ru$"
@@ -34,6 +43,8 @@
 
 (defadvice rvm-use-default (after rvm-use-default-after activate compile)
   (setq jco/rvm-use-default-called t))
+
+(rvm-use-default)
 
 (add-hook 'ruby-mode-hook
           (lambda ()
