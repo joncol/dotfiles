@@ -71,7 +71,8 @@
   :if (not (eq system-type 'windows-nt))
   :after spaceline
   :config
-  (spaceline-all-the-icons-theme))
+  (spaceline-all-the-icons-theme)
+  (setq spaceline-all-the-icons-separator-type 'arrow))
 
 ;; (unless (boundp 'jco/theme-pkg)
 ;;   (setq jco/theme-pkg (intern (concat (symbol-name jco/theme) "-theme"))))
