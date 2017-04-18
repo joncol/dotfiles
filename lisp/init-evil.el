@@ -46,6 +46,7 @@
                       (git-commit-mode          . insert)
                       (git-rebase-mode          . emacs)
                       ;; (paradox-menu-mode        . emacs)
+                      (profiler-report-mode     . emacs)
                       (rtags-mode               . emacs)
                       (sdcv-mode                . emacs)
                       (sx-question-list-mode    . emacs)
