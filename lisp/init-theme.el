@@ -13,8 +13,8 @@
      ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
-     ;; 'molokai
-     'organic-green
+     'molokai
+     ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
@@ -121,7 +121,11 @@
                         "DarkOrange4"))
 
   (molokai
-   (set-face-foreground 'font-lock-comment-face "azure4"))
+   (set-face-foreground 'font-lock-comment-face "azure4")
+
+   (when (not (eq system-type 'windows-nt))
+     (setq spaceline-all-the-icons-separator-type 'none))
+   )
 
   (organic-green
    (setq jco/cursor-color "gray25")
