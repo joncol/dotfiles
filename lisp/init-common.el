@@ -67,8 +67,13 @@
 (use-package f)
 
 (use-package git-gutter+
+  :if (not (eq system-type 'windows-nt))
   :init
   (global-git-gutter+-mode))
+
+(use-package git-gutter-fringe+
+  :if (not (eq system-type 'windows-nt))
+  :after nlinum)
 
 (use-package google-this)
 
