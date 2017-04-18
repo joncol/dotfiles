@@ -65,8 +65,7 @@
     init-scheme
     init-semantic
     init-standard-ml
-    init-tex
-    init-yaml))
+    init-tex))
 
 (defvar jco/init-last-files
   '(init-evil

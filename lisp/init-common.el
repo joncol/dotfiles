@@ -314,6 +314,13 @@
 
 (use-package rainbow-delimiters :diminish rainbow-delimiters-mode)
 
+(use-package yaml-mode
+  :init
+
+  (add-hook 'yaml-mode-hook
+            (lambda ()
+              (setq evil-shift-width 2))))
+
 (use-package zeal-at-point
   :config
   (evil-leader/set-key "z" 'zeal-at-point)
