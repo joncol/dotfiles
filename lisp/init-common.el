@@ -66,6 +66,10 @@
 
 (use-package f)
 
+(use-package git-gutter+
+  :init
+  (global-git-gutter+-mode))
+
 (use-package google-this)
 
 (require 'server)
