@@ -121,11 +121,7 @@
                         "DarkOrange4"))
 
   (molokai
-   (set-face-foreground 'font-lock-comment-face "azure4")
-
-   (when (not (eq system-type 'windows-nt))
-     (setq spaceline-all-the-icons-separator-type 'none))
-   )
+   (set-face-foreground 'font-lock-comment-face "azure4"))
 
   (organic-green
    (setq jco/cursor-color "gray25")
