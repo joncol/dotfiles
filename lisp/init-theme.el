@@ -68,6 +68,7 @@
   (spaceline-spacemacs-theme))
 
 (use-package spaceline-all-the-icons
+  :if (not (eq system-type 'windows-nt))
   :after spaceline
   :config
   (spaceline-all-the-icons-theme))
