@@ -67,6 +67,11 @@
   (setq powerline-default-separator 'utf-8)
   (spaceline-spacemacs-theme))
 
+(use-package spaceline-all-the-icons
+  :after spaceline
+  :config
+  (spaceline-all-the-icons-theme))
+
 ;; (unless (boundp 'jco/theme-pkg)
 ;;   (setq jco/theme-pkg (intern (concat (symbol-name jco/theme) "-theme"))))
 
