@@ -1,7 +1,6 @@
 " Vundle
 
 set nocompatible
-filetype off
 
 if $SHELL =~ 'bin/fish'
 set shell=/bin/sh
@@ -395,6 +394,9 @@ call tcomment#DefineType('coffeescript_block', '###%s###')
 call tcomment#DefineType('cpp_block', '/*%s*/')
 call tcomment#DefineType('qml_block', '/*%s*/')
 
+nnoremap <A-;> :TComment<cr>
+vnoremap <A-;> :TComment<cr>
+
 if has("win32") || has("win16")
   set grepprg=grep\ -n
 endif
@@ -447,6 +449,7 @@ augroup filetypes
   autocmd FileType jade setlocal tabstop=2 shiftwidth=2
   autocmd FileType stylus setlocal tabstop=2 shiftwidth=2
   autocmd FileType scss setlocal tabstop=2 shiftwidth=2
+  autocmd FileType spdlog setlocal nonumber
   autocmd FileType haskell setlocal tabstop=8 shiftwidth=2
   autocmd FileType tex setlocal tabstop=2 shiftwidth=2
   autocmd FileType plaintex setlocal tabstop=2 shiftwidth=2
@@ -468,8 +471,8 @@ augroup filetypes
 
   autocmd FileType haskell nnoremap <leader>r :call RunGhc()<cr>
   autocmd FileType haskell nnoremap <leader>g :call RunGhci()<cr>
-  autocmd FileType haskell map <silent> tu :call GHC_BrowseAll()<CR>
-  autocmd FileType haskell map <silent> tw :call GHC_ShowType(1)<CR>
+  autocmd FileType haskell map <silent> tu :call GHC_BrowseAll()<cr>
+  autocmd FileType haskell map <silent> tw :call GHC_ShowType(1)<cr>
 augroup END
 
 augroup autocommands
@@ -487,7 +490,7 @@ augroup autocommands
   autocmd Syntax cs setlocal foldmethod=syntax
   autocmd Syntax c,cpp,vim,xml,xsd,html,xhtml,ruby,python,lua,objc,cs normal zR
 
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.md setfiletype markdown
   autocmd BufRead,BufNewFile *.cif,*.cif.txt setfiletype cmb_cif
   autocmd BufRead,BufNewFile managed_*.log,global_*.log setfiletype cmb_managed_log
   autocmd BufRead,BufNewFile *-xgsos.*.log,horizon_*.log setfiletype cmb_xgsos_log
@@ -495,8 +498,8 @@ augroup autocommands
   autocmd BufRead,BufNewFile *.log setfiletype cmb_log
   autocmd BufRead,BufNewFile *.xaml,*.msbuild,*.targets,*.plist setfiletype xml
   autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setfiletype glsl
-  autocmd BufRead,BufNewFile *.as set filetype=actionscript
-  autocmd BufRead,BufNewFile *_log.txt setfiletype orz_log
+  autocmd BufRead,BufNewFile *.as setfiletype actionscript
+  autocmd BufRead,BufNewFile *_log.txt setfiletype spdlog
   autocmd BufRead,BufNewFile *.asd setfiletype lisp
 
   autocmd WinEnter * set number
