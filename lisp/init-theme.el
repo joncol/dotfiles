@@ -13,8 +13,8 @@
      ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
-     'molokai
-     ;; 'organic-green
+     ;; 'molokai
+     'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
@@ -125,6 +125,8 @@
 
   (organic-green
    (setq jco/cursor-color "gray25")
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "#7ceece")
    (set-face-background 'helm-selection "#a0f0a0")
    (set-face-background 'show-paren-match "#c0c060"))
 
