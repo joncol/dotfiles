@@ -129,6 +129,9 @@ inoremap <c-g> <esc>
 
 inoremap <s-tab> <c-d>
 
+vnoremap <leader>p "0p
+nnoremap <leader>P viw"0p
+
 " Simplify navigation of the results of quickfix commands such as :helpgrep
 nnoremap <s-f1> :cc<cr>
 "nnoremap <f3> :cnfile<cr>
