@@ -92,6 +92,10 @@
   :init
   (global-evil-matchit-mode))
 
+(use-package evil-goggles
+  :config
+  (evil-goggles-mode))
+
 (use-package evil-search-highlight-persist
   :init
   (global-evil-search-highlight-persist t))
