@@ -270,6 +270,7 @@
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
   :config
+  (setq flycheck-pos-tip-timeout 0)
   :diminish 'flycheck-mode)
 
 (use-package flycheck-pos-tip
