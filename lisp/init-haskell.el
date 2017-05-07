@@ -44,8 +44,6 @@
   (setq tab-stop-list
         (loop for i from 0 upto 120 by 2 collect i))
 
-  (setq evil-shift-width 2)
-
   (setq-local yas-indent-line 'fixed)
   (use-package helm-hayoo
     :config
@@ -68,6 +66,8 @@
                        (not (s-contains? "org-src" (buffer-name)))
                        (not (s-contains? "*temp" (buffer-name))))
               (intero-mode))
+
+            (setq evil-shift-width 2)
 
             (bind-keys :map haskell-mode-map
                        ("<f8>" . haskell-navigate-imports)
