@@ -45,7 +45,6 @@
        hemisu-theme
        leuven-theme
        material-theme
-       meacupla-theme
        minimal-theme
        molokai-theme
        monokai-theme
