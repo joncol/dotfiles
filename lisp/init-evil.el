@@ -93,6 +93,7 @@
   (global-evil-matchit-mode))
 
 (use-package evil-goggles
+  :diminish evil-goggles-mode
   :config
   (evil-goggles-mode))
 
