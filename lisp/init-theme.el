@@ -14,50 +14,51 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
-     'organic-green
+     ;; 'organic-green
      ;; 'reykjavik
-     ;; 'sanityinc-tomorrow-blue
+     'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized
      )
 
-;; (defvar jco/theme-pkg)
-;; ;; (set (make-local-variable 'jco/theme-pkg) 'solarized-theme)
+(defvar jco/theme-packages)
 
-;;; Previously used themes:
+(set (make-local-variable 'jco/theme-packages)
+     '(afternoon-theme
+       ample-theme
+       ample-zen-theme
+       borland-blue-theme
+       cherry-blossom-theme
+       color-theme-sanityinc-tomorrow
+       cyberpunk-theme
+       darkane-theme
+       darktooth-theme
+       doom-themes
+       espresso-theme
+       flatland-theme
+       flatui-theme
+       gotham-theme
+       grandshell-theme
+       gruber-darker-theme
+       gruvbox-theme
+       hemisu-theme
+       leuven-theme
+       material-theme
+       meacupla-theme
+       minimal-theme
+       molokai-theme
+       monokai-theme
+       organic-green-theme
+       prassee-theme
+       reykjavik-theme
+       solarized-theme
+       soothe-theme
+       tao-theme))
 
-;; afternoon-theme
-;; ample-theme
-;; ample-zen-theme
-;; assemblage-theme
-;; borland-blue-theme
-;; cherry-blossom-theme
-;; color-theme-sanityinc-tomorrow
-;; cyberpunk-theme
-;; darkane-theme
-;; darktooth-theme
-;; doom-themes
-;; espresso-theme
-;; flatland-theme
-;; flatui-theme
-;; gotham-theme
-;; grandshell-theme
-;; gruber-darker-theme
-;; gruvbox-theme
-;; hemisu-theme
-;; leuven-theme
-;; material-theme
-;; meacupla-theme
-;; minimal-theme
-;; molokai-theme
-;; monokai-theme
-;; organic-green-theme
-;; prassee-theme
-;; reykjavik-theme
-;; solarized-theme
-;; soothe-theme
-;; tao-theme
+(dolist (p jco/theme-packages)
+  (unless (package-installed-p p)
+    (package-install p)))
 
 (use-package powerline)
 
@@ -73,13 +74,6 @@
   :config
   (spaceline-all-the-icons-theme)
   (setq spaceline-all-the-icons-separator-type 'arrow))
-
-;; (unless (boundp 'jco/theme-pkg)
-;;   (setq jco/theme-pkg (intern (concat (symbol-name jco/theme) "-theme"))))
-
-;; (unless (package-installed-p jco/theme-pkg)
-;;   (package-refresh-contents)
-;;   (package-install jco/theme-pkg))
 
 (load-theme jco/theme t)
 
