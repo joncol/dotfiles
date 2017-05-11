@@ -76,6 +76,8 @@
   :if (not (eq system-type 'windows-nt))
   :after nlinum)
 
+(use-package glsl-mode)
+
 (use-package google-this)
 
 (require 'server)
