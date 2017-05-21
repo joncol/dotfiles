@@ -191,6 +191,8 @@
   (evil-leader/set-key "b" 'ivy-switch-buffer)
   (evil-leader/set-key "r" 'ivy-resume)
 
+  (evil-declare-not-repeat 'swiper)
+
   (ivy-add-actions 'counsel-find-file
                    '(("F" (lambda (x)
                             (with-ivy-window (insert (file-relative-name x))))
