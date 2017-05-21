@@ -35,14 +35,49 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+(use-package ace-isearch
+  :disabled t
+  :diminish ace-isearch-mode
+  :config
+  (global-ace-isearch-mode))
+
+(use-package ace-jump-helm-line
+  :diminish ace-jump-helm-line-mode
+  :bind (:map helm-map
+              ("M-f" . ace-jump-helm-line)))
+
+(use-package ace-link
+  :init
+  (ace-link-setup-default "f"))
+
 (use-package ace-window
   :init
   (global-set-key [remap other-window] 'ace-window)
-  (custom-set-faces
-   '(aw-leading-char-face
-     ((t (:inherit avy-lead-face :height 1.5))))))
+  ;; (custom-set-faces
+  ;;  '(aw-leading-char-face
+  ;;    ((t (:inherit avy-lead-face :height 1.5)))))
+  )
 
 (use-package ahk-mode)
+
+(use-package anzu
+  :diminish anzu-mode
+  :config
+  (global-anzu-mode))
+
+(use-package avy
+  :config
+  (when jco/use-colemak
+    (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o)))
+
+  (evil-leader/set-key "f" 'evil-avy-goto-char)
+  (evil-leader/set-key "#" 'evil-avy-goto-line)
+  (evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
+  (avy-setup-default)
+
+  (setq avy-case-fold-search nil))
+
+(use-package bookmark+ :disabled t)
 
 (use-package buffer-move
   :config
@@ -51,11 +86,23 @@
   (global-set-key (kbd "<C-S-left>") 'buf-move-left)
   (global-set-key (kbd "<C-S-right>") 'buf-move-right))
 
-(use-package esup)
+(use-package cider
+  :config
+  (setq cider-show-error-buffer 'nil))
 
-(use-package nlinum
+(use-package desktop
+  :config
+  (push ".*" desktop-clear-preserve-buffers))
+
+(use-package dired+ :disabled t)
+
+(use-package ecb
+  :config
+  (setq ecb-tip-of-the-day nil))
+
+(use-package edit-server
   :init
-  (global-nlinum-mode))
+  (edit-server-start))
 
 (use-package elec-pair
   :init
@@ -64,7 +111,37 @@
   (setq electric-pair-preserve-balance nil)
   (setq electric-pair-skip-whitespace nil))
 
+(use-package esup)
+
+(use-package evil-numbers
+  :bind (("C-c +" . evil-numbers/inc-at-pt)
+         ("C-c -" . evil-numbers/dec-at-pt)))
+
 (use-package f)
+
+(use-package flycheck
+  :init
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  :config
+  (setq flycheck-pos-tip-timeout 0)
+  :diminish 'flycheck-mode)
+
+(use-package flycheck-pos-tip
+  :init
+  (flycheck-pos-tip-mode))
+
+(use-package fortune
+  :config
+  (setq fortune-dir "/usr/share/games/fortunes")
+  (setq fortune-file "/usr/share/games/fortunes"))
+
+(use-package fuzzy
+  :config
+  (turn-on-fuzzy-isearch))
+
+(use-package nlinum
+  :init
+  (global-nlinum-mode))
 
 (use-package git-gutter+
   :if (not (eq system-type 'windows-nt))
@@ -79,13 +156,77 @@
 
 (use-package google-this)
 
+(use-package guide-key
+  :diminish guide-key-mode
+  :config
+  (guide-key-mode)
+  ;; (setq guide-key/popup-window-position "right")
+  (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
+
+(use-package magit
+  :config
+  ;; Needed for success status message to be shown.
+  (setq magit-auto-revert-mode nil)
+
+  (setq magit-display-buffer-function
+        #'magit-display-buffer-fullframe-status-v1))
+
+(use-package monky)
+
+(use-package outline
+  :init
+  (if (version< emacs-version "25.1")
+      (add-hook 'ediff-prepare-buffer-hook #'show-all)
+    (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)))
+
+(use-package package-utils)
+
+(use-package rainbow-mode :diminish rainbow-mode)
+
+(use-package rainbow-delimiters :diminish rainbow-delimiters-mode)
+
+(use-package recentf
+  :config
+  (recentf-mode)
+  (setq recentf-max-menu-items 25))
+
+(use-package string-inflection
+  :config
+  (global-unset-key (kbd "C-q"))
+  (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle))
+
+(use-package sx
+  :config
+  (with-eval-after-load "sx-question-mode"
+    (bind-keys :map sx-question-mode-map
+               ("j" . scroll-up-line)
+               ("k" . scroll-down-line))))
+
+(use-package unkillable-scratch
+  :init
+  (unkillable-scratch))
+
+(use-package volatile-highlights
+  :diminish volatile-highlights-mode
+  :config
+  (volatile-highlights-mode))
+
+(use-package yaml-mode
+  :init
+
+  (add-hook 'yaml-mode-hook
+            (lambda ()
+              (setq evil-shift-width 2))))
+
+(use-package zeal-at-point
+  :config
+  (evil-leader/set-key "z" 'zeal-at-point)
+  (setq zeal-at-point-docsets '(c cpp))
+  (add-to-list 'zeal-at-point-mode-alist '(c++-mode . ("cpp" "qt"))))
+
 (require 'server)
 (when (not (server-running-p))
   (server-start))
-
-(use-package edit-server
-  :init
-  (edit-server-start))
 
 (setq inhibit-startup-message t)
 (setq sentence-end-double-space nil)
@@ -154,34 +295,9 @@
   (setenv "PATH" (concat (getenv "PATH") ":" my-bin-path))
   (add-to-list 'exec-path my-bin-path t))
 
-(use-package cider
-  :config
-  (setq cider-show-error-buffer 'nil))
-
-(use-package ecb
-  :config
-  (setq ecb-tip-of-the-day nil))
-
 (setq large-file-warning-threshold nil)
 (setq safe-local-variable-values
       '((org-archive-location . "::* Archived Tasks")))
-
-(use-package recentf
-  :config
-  (recentf-mode)
-  (setq recentf-max-menu-items 25))
-
-(use-package fortune
-  :config
-  (setq fortune-dir "/usr/share/games/fortunes")
-  (setq fortune-file "/usr/share/games/fortunes"))
-
-(use-package guide-key
-  :diminish guide-key-mode
-  :config
-  (guide-key-mode)
-  ;; (setq guide-key/popup-window-position "right")
-  (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
 
 (put 'erase-buffer 'disabled nil)
 
@@ -198,29 +314,6 @@
 
 (setq compilation-scroll-output t)
 
-(use-package volatile-highlights
-  :diminish volatile-highlights-mode
-  :config
-  (volatile-highlights-mode))
-
-(use-package anzu
-  :diminish anzu-mode
-  :config
-  (global-anzu-mode))
-
-(use-package string-inflection
-  :config
-  (global-unset-key (kbd "C-q"))
-  (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle))
-
-(use-package ace-link
-  :init
-  (ace-link-setup-default "f"))
-
-(use-package fuzzy
-  :config
-  (turn-on-fuzzy-isearch))
-
 (require 'qmake-mode)
 
 (use-package iedit)
@@ -236,97 +329,6 @@
 (eval-after-load "info" '(require 'info+))
 
 (diminish 'abbrev-mode)
-
-(use-package ace-isearch
-  :diminish ace-isearch-mode
-  :config
-  (global-ace-isearch-mode))
-
-(use-package ace-jump-helm-line
-  :diminish ace-jump-helm-line-mode
-  :bind (:map helm-map
-              ("M-f" . ace-jump-helm-line)))
-
-(use-package avy
-  :config
-  (when jco/use-colemak
-    (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o)))
-
-  (evil-leader/set-key "f" 'evil-avy-goto-char)
-  (evil-leader/set-key "#" 'evil-avy-goto-line)
-  (evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
-  (avy-setup-default)
-
-  (setq avy-case-fold-search nil))
-
-(use-package sx
-  :config
-  (with-eval-after-load "sx-question-mode"
-    (bind-keys :map sx-question-mode-map
-               ("j" . scroll-up-line)
-               ("k" . scroll-down-line))))
-
-(use-package flycheck
-  :init
-  (add-hook 'after-init-hook #'global-flycheck-mode)
-  :config
-  (setq flycheck-pos-tip-timeout 0)
-  :diminish 'flycheck-mode)
-
-(use-package flycheck-pos-tip
-  :init
-  (flycheck-pos-tip-mode))
-
-(use-package bookmark+ :disabled t)
-
-(use-package dired+ :disabled t)
-
-(use-package desktop
-  :config
-  (push ".*" desktop-clear-preserve-buffers))
-
-(use-package evil-numbers
-  :bind (("C-c +" . evil-numbers/inc-at-pt)
-         ("C-c -" . evil-numbers/dec-at-pt)))
-
-(use-package unkillable-scratch
-  :init
-  (unkillable-scratch))
-
-(use-package magit
-  :config
-  ;; Needed for success status message to be shown.
-  (setq magit-auto-revert-mode nil)
-
-  (setq magit-display-buffer-function
-        #'magit-display-buffer-fullframe-status-v1))
-
-(use-package monky)
-
-(use-package outline
-  :init
-  (if (version< emacs-version "25.1")
-      (add-hook 'ediff-prepare-buffer-hook #'show-all)
-    (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)))
-
-(use-package package-utils)
-
-(use-package rainbow-mode :diminish rainbow-mode)
-
-(use-package rainbow-delimiters :diminish rainbow-delimiters-mode)
-
-(use-package yaml-mode
-  :init
-
-  (add-hook 'yaml-mode-hook
-            (lambda ()
-              (setq evil-shift-width 2))))
-
-(use-package zeal-at-point
-  :config
-  (evil-leader/set-key "z" 'zeal-at-point)
-  (setq zeal-at-point-docsets '(c cpp))
-  (add-to-list 'zeal-at-point-mode-alist '(c++-mode . ("cpp" "qt"))))
 
 (provide 'init-common)
 
