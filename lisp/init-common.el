@@ -106,7 +106,9 @@
   :config
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done))
 
-(use-package counsel-projectile)
+(use-package counsel-projectile
+  :init
+  (counsel-projectile-on))
 
 (use-package ecb
   :config
