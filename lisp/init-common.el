@@ -35,6 +35,13 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+(use-package ace-window
+  :init
+  (global-set-key [remap other-window] 'ace-window)
+  (custom-set-faces
+   '(aw-leading-char-face
+     ((t (:inherit avy-lead-face :height 1.5))))))
+
 (use-package ahk-mode)
 
 (use-package buffer-move
@@ -232,8 +239,6 @@
   :config
   (setq undo-tree-visualizer-diff t)
   (setq undo-tree-visualizer-timestamps t))
-
-(global-set-key (kbd "C-x o") 'ace-window)
 
 (eval-after-load "info" '(require 'info+))
 
