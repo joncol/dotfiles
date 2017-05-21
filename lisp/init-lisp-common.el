@@ -17,9 +17,6 @@
   :defer t
   :diminish paredit-mode)
 
-(use-package evil-paredit
-  :defer t)
-
 (use-package evil-lispy
   :commands evil-lispy-mode
   :defer t)
@@ -31,7 +28,6 @@
   (modify-syntax-entry ?- "w")
 
   (paredit-mode)
-  (evil-paredit-mode)
   (evil-lispy-mode)
   ;; (redshank-mode)
   )
