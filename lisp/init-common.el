@@ -24,7 +24,6 @@
 (global-whitespace-mode)
 (diminish 'global-whitespace-mode)
 (winner-mode)
-(setq jco/use-colemak t)
 
 (when (eq system-type 'gnu/linux)
   (setq browse-url-browser-function 'browse-url-generic

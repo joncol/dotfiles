@@ -5,12 +5,15 @@
 
 ;;; Code:
 
+(setq jco/use-colemak t)
+
 (let ((lisp-dir (expand-file-name "lisp" user-emacs-directory)))
   (add-to-list 'load-path lisp-dir))
 
 (defvar jco/init-base-files
   '(init-packages
     init-common-funs
+    init-evil
     init-common
     ;; init-circe
     init-erc
@@ -29,6 +32,7 @@
     init-rotate
     init-slack
     init-tab
+    init-theme
     init-utils
     init-wspace
     init-yas))
@@ -67,13 +71,8 @@
     init-standard-ml
     init-tex))
 
-(defvar jco/init-last-files
-  '(init-evil
-    init-theme))
-
 (defvar jco/init-files (append jco/init-base-files
-                               jco/init-prg-files
-                               jco/init-last-files))
+                               jco/init-prg-files))
 
 (defvar jco/init-errors nil
   "If there are any initialization errors, they will be appended to this list.")

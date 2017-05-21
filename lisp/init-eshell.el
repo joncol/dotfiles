@@ -48,10 +48,11 @@ git repo (or the git command is not found)."
             (define-key eshell-mode-map "\C-w" 'evil-window-map)
 
             ;; Make helm work in eshell.
-            (eshell-cmpl-initialize)
-            (define-key eshell-mode-map [remap eshell-pcomplete]
-              'helm-esh-pcomplete)
-            (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))
+            (when helm-mode
+              (eshell-cmpl-initialize)
+              (define-key eshell-mode-map [remap eshell-pcomplete]
+                'helm-esh-pcomplete)
+              (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history))))
 
 (defun jco/eshell-here ()
   "Open up a new shell in the directory associated with the current buffer's

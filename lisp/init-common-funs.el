@@ -52,7 +52,6 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
   (rainbow-mode t)
 
   (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
-  (local-set-key (kbd "C-c p s a") 'helm-ag-project-root)
   (fci-mode))
 
 (defun jco/insert-date (arg)
@@ -162,9 +161,6 @@ Traverses the directory hierarchy upwards and looks for the first
 CMakeLists.txt file."
   (let ((dir (locate-dominating-file (buffer-file-name) "CMakeLists.txt")))
     (car (last (f-split dir)))))
-
-(require 'monky)
-(require 'projectile)
 
 (defun jco/vcs-status ()
   "Run either monky-status or magit-status, depending on the kind of repo."
