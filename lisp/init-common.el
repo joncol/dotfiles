@@ -96,6 +96,16 @@
 
 (use-package dired+ :disabled t)
 
+(use-package counsel
+  :bind
+  ("M-x" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file)
+  ("C-x C-r" . counsel-recentf)
+  ("C-c p s a" . counsel-ag)
+  )
+
+(use-package counsel-projectile)
+
 (use-package ecb
   :config
   (setq ecb-tip-of-the-day nil))
@@ -162,6 +172,33 @@
   (guide-key-mode)
   ;; (setq guide-key/popup-window-position "right")
   (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
+
+(use-package ivy
+  :diminish ivy-mode
+
+  :bind
+  ("C-s" . swiper)
+  ("C-x C-b" . ivy-switch-buffer)
+
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (evil-leader/set-key "b" 'ivy-switch-buffer)
+  (evil-leader/set-key "r" 'ivy-resume)
+
+  (ivy-add-actions 'counsel-find-file
+                   '(("F" (lambda (x)
+                            (with-ivy-window (insert (file-relative-name x))))
+                      "insert relative file name")
+
+                     ("B" (lambda (x)
+                            (with-ivy-window
+                              (insert
+                               (file-name-nondirectory
+                                (replace-regexp-in-string "/\\'" "" x)))))
+                      "insert file name without any directory information")))
+  )
 
 (use-package magit
   :config

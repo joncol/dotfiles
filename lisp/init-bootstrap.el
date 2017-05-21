@@ -22,7 +22,7 @@
     init-font
     init-company
     init-ext-apps
-    init-helm
+    ;; init-helm
     init-hydras
     init-id
     init-ido
