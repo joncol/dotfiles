@@ -22,6 +22,9 @@
   (add-hook 'snippet-mode-hook (lambda ()
                                  (ethan-wspace-mode -1)))
 
+  (evil-leader/set-key "TAB" 'yas-insert-snippet)
+
+
   :diminish yas-minor-mode)
 
 (use-package helm-c-yasnippet
