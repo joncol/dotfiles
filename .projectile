@@ -1,9 +1,14 @@
+-*~
+-*.cache
+-/.python-environments
+-/.sx
+-/elpa
+-/emojis
+-/xslt-relax-ng
+-.goutputstream*
 -auto-save-list
 -backups
--/elpa
 -eshell
 -semanticdb
 -session.*
--*.cache
 -url/cache
--/xslt-relax-ng
