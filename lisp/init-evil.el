@@ -201,41 +201,6 @@ invokation."
     "cp" 'evilnc-comment-or-uncomment-paragraphs
     "cv" 'evilnc-toggle-invert-comment-line-by-line))
 
-
-;;; helm-swoop
-
-(use-package helm-swoop)
-(global-set-key (kbd "M-i") 'helm-swoop)
-(evil-leader/set-key "s" 'helm-swoop)
-(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
-(global-set-key (kbd "C-M-i") 'helm-multi-swoop)
-;; (evil-leader/set-key "m s" 'helm-multi-swoop)
-(global-set-key (kbd "C-M-S-i") 'helm-multi-swoop-all)
-;; (evil-leader/set-key "m S" 'helm-multi-swoop-all)
-
-(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
-(define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
-(define-key evil-motion-state-map (kbd "M-i") 'helm-swoop-from-evil-search)
-(define-key helm-swoop-map
-  (kbd "M-m") 'helm-multi-swoop-current-mode-from-helm-swoop)
-
-(define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
-(define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
-(define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
-(define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
-
-(setq helm-multi-swoop-edit-save t)
-(setq helm-swoop-split-with-multiple-windows nil)
-(setq helm-swoop-split-direction 'split-window-vertically)
-(setq helm-swoop-speed-or-color t)
-(setq helm-swoop-move-to-line-cycle t)
-(setq helm-swoop-use-line-number-face t)
-
-(setq helm-multi-swoop-ignore-buffers-match
-      (concat helm-multi-swoop-ignore-buffers-match "\\|TAGS"))
-
-(evil-leader/set-key "x f" 'jco/xmllint-format-buffer)
-
 (evil-leader/set-key "v" 'jco/vcs-status)
 
 (evil-leader/set-key "n n" 'narrow-to-defun)
@@ -252,9 +217,6 @@ invokation."
                               (insert user-mail-address)))
 
 ;; (evil-leader/set-key "m m" 'mu4e)
-
-;;; yasnippet
-(evil-leader/set-key "TAB" 'yas-insert-snippet)
 
 (evil-leader/set-key "e f" 'jco/what-face)
 (evil-leader/set-key "e w" 'ace-window)
