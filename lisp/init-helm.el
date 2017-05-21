@@ -12,21 +12,22 @@
   :init
   (helm-mode)
 
+  :bind
+  ("M-x" . helm-M-x)
+  ("M-m" . helm-semantic-or-imenu)
+  ("C-x b" . helm-buffers-list)
+  ("C-x C-f" . helm-find-files)
+  ("C-x C-r" . helm-recentf)
+
   :config
   (require 'helm-buffers)
   (require 'helm-files)
   (require 'helm-net)
 
-  (global-set-key (kbd "C-c h") 'helm-command-prefix)
   (global-unset-key (kbd "C-x c"))
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "M-m") 'helm-semantic-or-imenu)
+
   (when (executable-find "curl")
     (setq helm-net-prefer-curl t))
-
-  (global-set-key (kbd "C-x b") 'helm-buffers-list)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (global-set-key (kbd "C-x C-r") 'helm-recentf)
 
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
