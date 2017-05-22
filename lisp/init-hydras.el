@@ -28,7 +28,8 @@ menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_w
   ("l" jco/hydra-lang/body)
   ("o" jco/hydra-org/body)
   ("p" jco/hydra-packages/body)
-  ("s" jco/hydra-swoop/body)
+  ;; ("s" jco/hydra-swoop/body)
+  ("s" jco/hydra-swiper/body)
   ("S" jco/hydra-snippets/body)
   ("v" jco/hydra-vcs/body))
 
@@ -95,6 +96,13 @@ swoop: _m_ulti multi-_a_ll _s_woop"
   ("m" helm-multi-swoop)
   ("a" helm-multi-swoop-all)
   ("s" helm-swoop))
+
+(defhydra jco/hydra-swiper (:color teal :hint nil)
+  "
+swiper: _s_wiper _a_ll _m_ulti"
+  ("s" swiper)
+  ("a" swiper-all)
+  ("m" swiper-multi))
 
 (defhydra jco/hydra-vcs (:color teal :hint nil)
   "
