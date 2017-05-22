@@ -106,7 +106,7 @@
   :config
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
 
-  ;; No Debian package currently available of ripgrep.
+  ;; No Debian package currently available for ripgrep.
   (define-key global-map (kbd "C-c p s a")
     (if (eq system-type 'windows-nt)
         'counsel-rg
