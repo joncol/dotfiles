@@ -13,7 +13,8 @@
 
               (setq company-backends (delete 'company-clang company-backends))
 
-              (helm-gtags-mode)
+              (when helm-mode
+                (helm-gtags-mode))
 
               (global-set-key "\M-." 'ggtags-find-tag-dwim)
 
