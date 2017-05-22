@@ -16,10 +16,10 @@
      ;; 'molokai
      ;; 'organic-green
      ;; 'reykjavik
-     'sanityinc-tomorrow-blue
+     ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
-     ;; 'solarized
+     'solarized-light
      )
 
 (defvar jco/theme-packages)
@@ -147,7 +147,12 @@
    (set-face-foreground 'company-tooltip-common-selection "VioletRed4")
    (set-face-background 'company-scrollbar-fg "LightBlue"))
 
-  (soothe
+(solarized-light
+   (setq jco/cursor-color "gray25")
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "#c0c060"))
+
+(soothe
    (require 'linum)
    (set-face-foreground 'linum "gray35"))
 
