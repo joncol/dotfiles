@@ -104,7 +104,14 @@
   ("C-c p s a" . counsel-ag)
 
   :config
-  (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done))
+  (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
+
+  ;; No Debian package currently available of ripgrep.
+  (define-key global-map (kbd "C-c p s a")
+    (if (eq system-type 'windows-nt)
+        'counsel-rg
+      'counsel-ag))
+  )
 
 (use-package counsel-projectile
   :init
