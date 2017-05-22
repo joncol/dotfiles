@@ -182,7 +182,14 @@ invokation."
 (evil-leader/set-key "d" 'vc-diff)
 (evil-leader/set-key "D" 'ediff-current-file)
 
-(global-set-key (kbd "C-x C-SPC") 'evil-search-highlight-persist-remove-all)
+(defun jco/remove-search-highlights ()
+  "Remove any persisted search highlights."
+  (interactive)
+  (evil-search-highlight-persist-remove-all))
+
+(jco/define-bindings evil-search-highlight-persist-map
+                     '(("C-x SPC" . jco/remove-search-highlights)
+                       ("C-x C-SPC" . jco/remove-search-highlights)))
 
 (evil-leader/set-key "g g" 'ggtags-find-tag-dwim)
 (evil-leader/set-key "g o" 'google-this)
