@@ -6,6 +6,18 @@
 
 ;;; Code:
 
+(use-package evil-lispy
+  :commands evil-lispy-mode
+  :defer t)
+
+(use-package paredit
+  :defer t
+  :diminish paredit-mode)
+
+(use-package paxedit
+  :defer t
+  :diminish paxedit-mode)
+
 (use-package redshank
   :disabled t
   :defer t
@@ -13,21 +25,13 @@
   (setq redshank-prefix-key "C-c C-r")
   :diminish redshank-mode)
 
-(use-package paredit
-  :defer t
-  :diminish paredit-mode)
-
-(use-package evil-lispy
-  :commands evil-lispy-mode
-  :defer t)
-
 (defun init-lisp-common ()
   "Common configuration options for all Lisp modes."
 
   ;; do not treat "-" as a word separator
   (modify-syntax-entry ?- "w")
 
-  (paredit-mode)
+  (paxedit-mode)
   (evil-lispy-mode)
   ;; (redshank-mode)
   )
