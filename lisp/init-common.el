@@ -143,6 +143,10 @@
   :bind (("C-c +" . evil-numbers/inc-at-pt)
          ("C-c -" . evil-numbers/dec-at-pt)))
 
+(use-package expand-region
+  :config
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
 (use-package f)
 
 (use-package flycheck
@@ -323,8 +327,6 @@
 (setq display-time-string-forms '(24-hours ":" minutes))
 
 (display-time-mode)
-
-(global-set-key (kbd "C-=") 'er/expand-region)
 
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (defadvice align-regexp (around align-regexp-with-spaces activate compile)
