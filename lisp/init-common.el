@@ -65,6 +65,11 @@
   :config
   (global-anzu-mode))
 
+(use-package auto-yasnippet
+  :config
+  (evil-leader/set-key "y c" #'aya-create)
+  (evil-leader/set-key "y x" #'aya-expand))
+
 (use-package avy
   :config
   (when jco/use-colemak
