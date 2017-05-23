@@ -183,7 +183,7 @@ invokation."
 (evil-leader/set-key "D" 'ediff-current-file)
 
 (defun jco/remove-search-highlights ()
-  "Remove any persisted search highlights."
+  "Remove any persisted highlighted search results."
   (interactive)
   (evil-search-highlight-persist-remove-all))
 
