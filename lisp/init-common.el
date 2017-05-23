@@ -273,6 +273,13 @@
   (recentf-mode)
   (setq recentf-max-menu-items 25))
 
+(use-package smartparens
+  :config
+  (sp-use-paredit-bindings)
+  (jco/define-bindings smartparens-mode-map
+                       '(("M-?" . sp-convolute-sexp)))
+  )
+
 (use-package string-inflection
   :config
   (global-unset-key (kbd "C-q"))

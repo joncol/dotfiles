@@ -52,6 +52,8 @@
               (lambda ()
                 (interactive)
                 (ff-find-other-file t t)))
+
+            (smartparens-mode)
             ))
 
 (provide 'init-cc)
