@@ -14,10 +14,6 @@
   :defer t
   :diminish paredit-mode)
 
-(use-package paxedit
-  :defer t
-  :diminish paxedit-mode)
-
 (use-package redshank
   :disabled t
   :defer t
@@ -31,7 +27,7 @@
   ;; do not treat "-" as a word separator
   (modify-syntax-entry ?- "w")
 
-  (paxedit-mode)
+  (paredit-mode)
   (evil-lispy-mode)
   ;; (redshank-mode)
   )
