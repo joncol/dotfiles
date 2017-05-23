@@ -228,7 +228,8 @@
 
   (setq ivy-virtual-abbreviate 'full)
   (setq ivy-rich-switch-buffer-align-virtual-buffer t)
-  (setq ivy-rich-abbreviate-paths t))
+  (setq ivy-rich-abbreviate-paths t)
+  (setq ivy-rich-switch-buffer-name-max-length 64))
 
 (use-package magit
   :config
