@@ -238,6 +238,8 @@
                                 (replace-regexp-in-string "/\\'" "" x)))))
                       "insert file name without any directory information"))))
 
+(use-package ivy-hydra)
+
 (use-package ivy-rich
   :config
   (ivy-set-display-transformer 'ivy-switch-buffer
