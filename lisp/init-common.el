@@ -280,6 +280,8 @@
   (setq recentf-max-menu-items 25))
 
 (use-package smartparens
+  :diminish smartparens-mode
+
   :config
   (sp-use-paredit-bindings)
   (jco/define-bindings smartparens-mode-map
