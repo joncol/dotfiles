@@ -162,6 +162,8 @@
 
 (use-package f)
 
+(use-package fireplace)
+
 (use-package flycheck
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -283,6 +285,8 @@
   (jco/define-bindings smartparens-mode-map
                        '(("M-?" . sp-convolute-sexp)))
   )
+
+(use-package speed-type)
 
 (use-package string-inflection
   :config
