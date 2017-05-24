@@ -401,12 +401,14 @@
 
 (require 'ibuffer)
 
-(dolist (map (list ibuffer-mode-map package-menu-mode-map))
+(dolist (map (list dashboard-mode-map ibuffer-mode-map package-menu-mode-map))
   (define-key map "\C-w" 'evil-window-map))
+
+(global-set-key (kbd "C-x b") 'ibuffer)
 
 (add-hook 'ibuffer-mode-hook
           (lambda ()
-            (nlinum-mode -1)))
+            (fci-mode -1)))
 
 (setq compilation-scroll-output t)
 
