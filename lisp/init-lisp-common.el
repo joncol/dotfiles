@@ -7,6 +7,7 @@
 ;;; Code:
 
 (use-package evil-lispy
+  :disabled t
   :commands evil-lispy-mode
   :defer t)
 
@@ -28,7 +29,7 @@
   (modify-syntax-entry ?- "w")
 
   (paredit-mode)
-  (evil-lispy-mode)
+  ;; (evil-lispy-mode)
   ;; (redshank-mode)
   )
 
