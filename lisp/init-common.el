@@ -184,7 +184,7 @@
 
 (use-package nlinum
   :init
-  (global-nlinum-mode))
+  (nlinum-mode))
 
 (use-package git-gutter+
   :if (not (eq system-type 'windows-nt))
