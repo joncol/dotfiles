@@ -131,7 +131,7 @@
                           (projects . 5)
                           (agenda . 5)))
 
-  (setq dashboard-banner-logo-title "Emacs Master Race")
+  (setq dashboard-banner-logo-title "Welcome to Emacs")
   (setq dashboard-startup-banner 'logo)
   (dashboard-setup-startup-hook))
 
