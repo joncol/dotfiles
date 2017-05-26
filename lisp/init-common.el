@@ -102,6 +102,8 @@
 (use-package dired+ :disabled t)
 
 (use-package counsel
+  :after ivy
+
   :bind
   ("M-x" . counsel-M-x)
   ("C-x C-f" . counsel-find-file)
@@ -110,12 +112,9 @@
 
   :config
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
-
-  ;; No Debian package currently available for ripgrep.
-  (define-key global-map (kbd "C-c p s a")
-    (if (eq system-type 'windows-nt)
-        'counsel-rg
-      'counsel-ag))
+  (when (eq system-type 'windows-nt)
+        (setq-default counsel-ag-base-command
+                      "ag --vimgrep --nocolor --nogroup %s"))
   )
 
 (use-package counsel-projectile
