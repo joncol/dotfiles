@@ -410,7 +410,7 @@
 
 (add-hook 'ibuffer-mode-hook
           (lambda ()
-            (fci-mode -1)))
+            (turn-off-fci-mode)))
 
 (setq compilation-scroll-output t)
 
