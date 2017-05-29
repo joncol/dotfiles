@@ -9,7 +9,8 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (not (eq system-type 'gnu/linux))
-              (use-package ggtags)
+              (use-package ggtags
+                :diminish ggtags-mode)
 
               (setq company-backends (delete 'company-clang company-backends))
 
