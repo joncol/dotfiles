@@ -113,8 +113,8 @@
   :config
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
   (when (eq system-type 'windows-nt)
-        (setq-default counsel-ag-base-command
-                      "ag --vimgrep --nocolor --nogroup %s"))
+    (setq-default counsel-ag-base-command
+                  "ag --vimgrep --nocolor --nogroup %s"))
   )
 
 (use-package counsel-projectile
