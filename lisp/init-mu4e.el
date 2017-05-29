@@ -18,6 +18,7 @@
   (setq mu4e-compose-in-new-frame t)
   (setq mu4e-save-multiple-attachments-without-asking t)
   (setq mu4e-compose-format-flowed t)
+  (setq mu4e-compose-dont-reply-to-self t)
 
   (setq mu4e-headers-date-format "%Y-%m-%d %H:%M")
   (setq mu4e-headers-fields
