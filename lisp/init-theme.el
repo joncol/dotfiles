@@ -119,7 +119,8 @@
    (set-face-foreground 'font-lock-comment-face "azure4"))
 
   (nubox-dark
-   (set-face-background 'hl-line "gray25"))
+   (set-face-background 'hl-line "gray25")
+   (set-face-background 'region "#8e44ad"))
 
   (organic-green
    (setq jco/cursor-color "gray25")
