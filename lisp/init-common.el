@@ -108,7 +108,7 @@
   ("M-x" . counsel-M-x)
   ("C-x C-f" . counsel-find-file)
   ("C-x C-r" . counsel-recentf)
-  ("C-c p s a" . counsel-ag)
+  ("C-c p s a" . counsel-projectile-ag)
 
   :config
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
