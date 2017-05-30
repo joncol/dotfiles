@@ -118,6 +118,9 @@
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4"))
 
+  (nubox-dark
+   (set-face-background 'hl-line "gray25"))
+
   (organic-green
    (setq jco/cursor-color "gray25")
    (set-face-background 'evil-search-highlight-persist-highlight-face
