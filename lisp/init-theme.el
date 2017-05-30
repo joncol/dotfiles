@@ -120,7 +120,7 @@
 
   (nubox-dark
    (set-face-background 'hl-line "gray25")
-   (set-face-background 'region "#8e44ad"))
+   (set-face-background 'region "#582c6b"))
 
   (organic-green
    (setq jco/cursor-color "gray25")
