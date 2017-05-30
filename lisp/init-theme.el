@@ -14,12 +14,13 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
+     'nubox-dark
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
-     'solarized-light
+     ;; 'solarized-light
      )
 
 (defvar jco/theme-packages)
@@ -48,6 +49,7 @@
        minimal-theme
        molokai-theme
        monokai-theme
+       nubox
        organic-green-theme
        prassee-theme
        reykjavik-theme
