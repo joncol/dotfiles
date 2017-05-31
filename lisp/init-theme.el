@@ -14,7 +14,8 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
-     'nubox-light
+     'nubox-dark
+     ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
@@ -119,13 +120,13 @@
    (set-face-foreground 'font-lock-comment-face "azure4"))
 
   (nubox-dark
-   (set-face-background 'hl-line "gray25")
+   (set-face-background 'hl-line "#2a2d2e")
    (set-face-background 'region "#582c6b"))
 
   (nubox-light
    (setq jco/cursor-color "#101f24")
-   (set-face-background 'hl-line "#E0DCBE")
-   (set-face-background 'region "#FFC3FF")
+   (set-face-background 'hl-line "#e0dcbe")
+   (set-face-background 'region "#ffc3ff")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#7ceece"))
 
