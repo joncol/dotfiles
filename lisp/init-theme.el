@@ -14,7 +14,7 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
-     'nubox-dark
+     'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
@@ -122,6 +122,13 @@
    (set-face-background 'hl-line "gray25")
    (set-face-background 'region "#582c6b"))
 
+  (nubox-light
+   (setq jco/cursor-color "#101f24")
+   (set-face-background 'hl-line "#E0DCBE")
+   (set-face-background 'region "#FFC3FF")
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "#7ceece"))
+
   (organic-green
    (setq jco/cursor-color "gray25")
    (set-face-background 'evil-search-highlight-persist-highlight-face
@@ -171,6 +178,9 @@
    (set-face-foreground 'linum "gray25")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "MidnightBlue")))
+
+;;; Make syntax highlighting work also for current line.
+(set-face-foreground 'highlight nil)
 
 (set-face-foreground 'minibuffer-prompt "#263238")
 (set-face-background 'minibuffer-prompt "#afd700")
