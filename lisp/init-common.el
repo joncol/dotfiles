@@ -224,7 +224,9 @@
   (setq enable-recursive-minibuffers t)
   (evil-leader/set-key "b" 'ivy-switch-buffer)
   (evil-leader/set-key "r" 'ivy-resume)
+
   (define-key ivy-minibuffer-map (kbd "S-SPC") nil)
+  (define-key ivy-minibuffer-map [tab] 'ivy-partial)
 
   (evil-declare-not-repeat 'swiper)
 
