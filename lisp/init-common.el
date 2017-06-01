@@ -252,6 +252,8 @@
   (setq ivy-rich-abbreviate-paths t)
   (setq ivy-rich-switch-buffer-name-max-length 64))
 
+(use-package json-mode)
+
 (use-package magit
   :config
   ;; Needed for success status message to be shown.
