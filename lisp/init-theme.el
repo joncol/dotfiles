@@ -14,8 +14,8 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
-     ;; 'nubox-dark
-     'nubox-light
+     'nubox-dark
+     ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
@@ -121,7 +121,8 @@
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
-   (set-face-background 'region "#582c6b"))
+   (set-face-background 'region "#582c6b")
+   (set-face-background 'ivy-minibuffer-match-face-2 "#444748"))
 
   (nubox-light
    (setq jco/cursor-color "#101f24")
