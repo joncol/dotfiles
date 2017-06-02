@@ -186,6 +186,9 @@
 ;;; Make syntax highlighting work also for current line.
 (set-face-foreground 'highlight nil)
 
+;;; ... And selected region.
+(set-face-foreground 'region nil)
+
 (set-face-foreground 'minibuffer-prompt "#263238")
 (set-face-background 'minibuffer-prompt "#afd700")
 
