@@ -211,6 +211,8 @@
   :config
   (global-set-key (kbd "M-m") #'imenu-anywhere))
 
+(global-set-key (kbd "M-M") #'imenu)
+
 (use-package ivy
   :diminish ivy-mode
 
