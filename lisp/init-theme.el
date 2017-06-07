@@ -123,6 +123,7 @@
    (set-face-background 'hl-line "#2a2d2e")
    (set-face-background 'swiper-line-face "#2a2d2e")
    (set-face-background 'vhl/default-face "#2a2d2e")
+   (set-face-background 'sp-pair-overlay-face "#444748")
    (set-face-background 'region "#582c6b")
    (set-face-background 'ivy-minibuffer-match-face-2 "#444748"))
 
