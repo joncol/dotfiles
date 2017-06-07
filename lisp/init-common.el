@@ -292,7 +292,8 @@
   (sp-use-paredit-bindings)
   (jco/define-bindings smartparens-mode-map
                        '(("M-?" . sp-convolute-sexp)
-                         ("C-k" . sp-kill-hybrid-sexp)))
+                         ("C-k" . sp-kill-hybrid-sexp)
+                         ("M-j" . sp-join-sexp)))
 
   (with-eval-after-load "smartparens-mode"
     ;; To make inserting " at end of strings not insert """.
