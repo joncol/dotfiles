@@ -294,10 +294,7 @@
                        '(("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
                          ("M-j" . sp-join-sexp)))
-
-  (with-eval-after-load "smartparens-mode"
-    ;; To make inserting " at end of strings not insert """.
-    (electric-pair-mode -1)))
+  )
 
 (use-package speed-type)
 
