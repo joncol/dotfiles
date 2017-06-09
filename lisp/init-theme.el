@@ -140,7 +140,7 @@
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#7ceece")
 
-   (when (boundp 'mu4e-mode)
+   (when (featurep 'mu4e)
      (set-face-background 'mu4e-highlight-face "#7ceece")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24"))
    )
