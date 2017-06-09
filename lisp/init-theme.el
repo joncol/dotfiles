@@ -95,7 +95,10 @@
    (set-face-background 'hl-line "#041040"))
 
   (gotham
-   (setq jco/cursor-color "lightblue"))
+   (setq jco/cursor-color "lightblue")
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
+   (set-face-foreground 'evil-search-highlight-persist-highlight-face "#101f24")
+   )
 
   (material
    (set-face-background 'hl-line "#37474f")
