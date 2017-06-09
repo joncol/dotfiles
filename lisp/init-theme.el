@@ -135,7 +135,8 @@
    (set-face-background 'sp-pair-overlay-face "#c7c3a5")
    (set-face-background 'region "#ffc3ff")
    (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "#7ceece"))
+                        "#7ceece")
+   (set-face-background 'mu4e-highlight-face "#7ceece"))
 
   (organic-green
    (setq jco/cursor-color "gray25")
