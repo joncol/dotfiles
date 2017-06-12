@@ -30,7 +30,7 @@
     init-neotree
     init-projectile
     init-rotate
-    init-slack
+    ;; init-slack
     init-tab
     init-theme
     init-utils
