@@ -291,6 +291,7 @@
 
   :config
   (sp-use-paredit-bindings)
+  (sp-pair "\"" nil :actions :rem)
   (jco/define-bindings smartparens-mode-map
                        '(("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
@@ -301,8 +302,7 @@
 
 (use-package string-inflection
   :config
-  (global-unset-key (kbd "C-q"))
-  (global-set-key (kbd "C-q C-u") 'string-inflection-all-cycle))
+  (evil-leader/set-key "s i" 'string-inflection-all-cycle))
 
 (use-package sx
   :config
