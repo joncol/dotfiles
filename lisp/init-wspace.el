@@ -42,8 +42,11 @@ ethan-wspace."
               (set-face-background 'whitespace-trailing "#ff0000"))))
 
 (global-set-key (kbd "M-S-<backspace>") 'jco/collapse-multiple-empty-lines)
+(evil-leader/set-key "s m" 'jco/collapse-multiple-empty-lines)
 
 (global-set-key (kbd "C-M-S-<backspace>") 'jco/spaces-before-braces)
+(evil-leader/set-key "s b" 'jco/spaces-before-braces)
+
 
 (provide 'init-wspace)
 
