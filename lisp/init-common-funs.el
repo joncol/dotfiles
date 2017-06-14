@@ -226,12 +226,25 @@ CMakeLists.txt file."
       (replace-match "\n\n"))))
 
 (defun jco/spaces-before-braces ()
-  "Add a space (if needed) before left braces."
+  "Fix formatting of braces.
+Add a space (if needed) before left braces, and remove empty lines after opening
+brace and before closing brace."
   (interactive)
   (save-excursion
+    ;; Single space before opening brace.
     (goto-char (point-min))
     (while (re-search-forward "\\([^ ]\\)\\s-*{" nil t)
-      (replace-match "\\1 {"))))
+      (replace-match "\\1 {"))
+
+    ;; Remove empty line(s) after opening brace.
+    (goto-char (point-min))
+    (while (re-search-forward "{\n\n+" nil t)
+      (replace-match "{\n"))
+
+    ;; Remove empty line(s) before closing brace.
+    (goto-char (point-min))
+    (while (re-search-forward "\n\n+\\(\\s-*\\)}" nil t)
+      (replace-match "\n\\1}"))))
 
 (provide 'init-common-funs)
 
