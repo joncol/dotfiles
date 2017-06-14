@@ -230,7 +230,7 @@ CMakeLists.txt file."
   (interactive)
   (save-excursion
     (goto-char (point-min))
-    (while (re-search-forward "\\([^ ]\\){" nil t)
+    (while (re-search-forward "\\([^ ]\\)\\s-*{" nil t)
       (replace-match "\\1 {"))))
 
 (provide 'init-common-funs)
