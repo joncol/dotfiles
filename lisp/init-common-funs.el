@@ -217,6 +217,20 @@ CMakeLists.txt file."
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
 
+(defun jco/collapse-multiple-empty-lines ()
+  "Replace multiple consecutive empty lines with one empty line."
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward "\n\n+" nil t)
+    (replace-match "\n\n")))
+
+(defun jco/spaces-before-braces ()
+  "Add a space (if needed) before left braces."
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward "\\([^ ]\\){" nil t)
+    (replace-match "\\1 {")))
+
 (provide 'init-common-funs)
 
 ;;; init-common-funs.el ends here

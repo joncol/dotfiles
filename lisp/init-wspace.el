@@ -41,6 +41,10 @@ ethan-wspace."
             (lambda ()
               (set-face-background 'whitespace-trailing "#ff0000"))))
 
+(global-set-key (kbd "M-S-<backspace>") 'jco/collapse-multiple-empty-lines)
+
+(global-set-key (kbd "C-M-S-<backspace>") 'jco/spaces-before-braces)
+
 (provide 'init-wspace)
 
 ;;; init-wspace.el ends here
