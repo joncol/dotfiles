@@ -21,7 +21,7 @@
   "
 menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs"
   ("a" jco/hydra-app/body)
-  ("b" helm-bookmarks)
+  ("b" counsel-bookmark)
   ("B" helm-chrome-bookmarks)
   ("c" jco/hydra-config/body)
   ("f" jco/hydra-find/body)
@@ -42,7 +42,7 @@ edit cfg: _i_nit _b_ootstrap _c_ommon _f_ile _h_ydras _p_ackages _t_heme _u_pdat
   ("i" (open-config-file "init.el"))
   ("b" (open-config-file "lisp/init-bootstrap.el"))
   ("c" (open-config-file "lisp/init-common.el"))
-  ("f" (helm-find-files-1 (expand-file-name "~/.emacs.d/lisp/")))
+  ("f" (counsel-find-file (expand-file-name "~/.emacs.d/lisp/")))
   ("h" (open-config-file "lisp/init-hydras.el"))
   ("p" (open-config-file "lisp/init-packages.el"))
   ("t" (open-config-file "lisp/init-theme.el"))
