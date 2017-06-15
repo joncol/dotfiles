@@ -44,8 +44,8 @@ ethan-wspace."
 (global-set-key (kbd "M-S-<backspace>") 'jco/collapse-multiple-empty-lines)
 (evil-leader/set-key "s m" 'jco/collapse-multiple-empty-lines)
 
-(global-set-key (kbd "C-M-S-<backspace>") 'jco/spaces-before-braces)
-(evil-leader/set-key "s b" 'jco/spaces-before-braces)
+(global-set-key (kbd "C-M-S-<backspace>") 'jco/tighten-braces)
+(evil-leader/set-key "s b" 'jco/tighten-braces)
 
 
 (provide 'init-wspace)
