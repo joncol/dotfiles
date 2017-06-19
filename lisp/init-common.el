@@ -152,6 +152,8 @@
 
 (use-package esup)
 
+(use-package evil-magit)
+
 (use-package evil-numbers
   :bind (("C-c +" . evil-numbers/inc-at-pt)
          ("C-c -" . evil-numbers/dec-at-pt)))
