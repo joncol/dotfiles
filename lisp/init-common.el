@@ -148,7 +148,8 @@
   (electric-pair-mode)
   :config
   (setq electric-pair-preserve-balance nil)
-  (setq electric-pair-skip-whitespace nil))
+  (setq electric-pair-skip-whitespace nil)
+  (setq electric-pair-delete-adjacent-pairs nil))
 
 (use-package esup)
 
