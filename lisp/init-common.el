@@ -147,7 +147,7 @@
   :init
   (electric-pair-mode)
   :config
-  (setq electric-pair-preserve-balance nil)
+  ;; (setq electric-pair-preserve-balance nil)
   (setq electric-pair-skip-whitespace nil)
   (setq electric-pair-delete-adjacent-pairs nil))
 
@@ -294,7 +294,7 @@
 
   :config
   (sp-use-paredit-bindings)
-  (sp-pair "\"" nil :actions :rem)
+  ;; (sp-pair "\"" nil :actions :rem)
   (jco/define-bindings smartparens-mode-map
                        '(("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
