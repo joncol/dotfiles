@@ -14,8 +14,8 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
-     'nubox-dark
-     ;; 'nubox-light
+     ;; 'nubox-dark
+     'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
@@ -86,7 +86,7 @@
                      "RoyalBlue4")
 
 (set-face-foreground 'show-paren-match "#101f24")
-(set-face-background 'show-paren-match "#1bbc9b")
+(set-face-background 'show-paren-match "#a2ded0")
 
 (cl-case jco/theme
   (adwaita
