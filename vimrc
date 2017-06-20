@@ -349,7 +349,7 @@ if has("gui_running")
   autocmd ColorScheme * highlight TrailingWhitespace ctermbg=red guibg=red
 end
 
-if s:uname != "Windows" && !has("gui_running")
+if s:uname != "Windows" && !has("gui_running") && !has("nvim")
   set term=screen-256color
 endif
 
