@@ -103,14 +103,15 @@
            (ttype (if (jco/cpp-type-should-be-const-ref-p type)
                       (format "const %s&" type)
                     type))
-           (tname (if (string= type "bool")
-                      (concat "is" uname)
-                    lname)))
+           ;; (tname (if (string= type "bool")
+           ;;            (concat "is" uname)
+           ;;          lname))
+           )
       (end-of-line)
       (newline)
       (insert (format "%svoid set%s(%s %s);\n%s%s %s() const;"
                       spc uname ttype name
-                      spc type tname)))))
+                      spc type lname)))))
 
 (defun jco/cpp-type-should-be-const-ref-p (type)
   "Return non-nil value if TYPE should be `const ref' when used for parameter."
