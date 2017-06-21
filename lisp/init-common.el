@@ -79,6 +79,7 @@
   (evil-leader/set-key "#" 'evil-avy-goto-line)
   (evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
   (evil-leader/set-key "/" 'avy-goto-char-timer)
+  (evil-declare-not-repeat 'avy-goto-char-timer)
   (avy-setup-default)
 
   (setq avy-case-fold-search nil))
