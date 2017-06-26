@@ -203,11 +203,12 @@ invokation."
   :config
   (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
   (evil-leader/set-key
-    "ci" 'evilnc-comment-or-uncomment-lines
-    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-    "cc" 'evilnc-copy-and-comment-lines
-    "cp" 'evilnc-comment-or-uncomment-paragraphs
-    "cv" 'evilnc-toggle-invert-comment-line-by-line))
+    "c i" 'evilnc-comment-or-uncomment-lines
+    "c l" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "c c" 'evilnc-copy-and-comment-lines
+    "c p" 'evilnc-comment-or-uncomment-paragraphs
+    "c v" 'evilnc-toggle-invert-comment-line-by-line
+    "c b" 'comment-box))
 
 (evil-leader/set-key "v" 'jco/vcs-status)
 
