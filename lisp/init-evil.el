@@ -210,7 +210,7 @@ invokation."
     "c v" 'evilnc-toggle-invert-comment-line-by-line
     "c b" 'comment-box))
 
-(evil-leader/set-key "v" 'jco/vcs-status)
+(evil-leader/set-key "V" 'jco/vcs-status)
 
 (evil-leader/set-key "n n" 'narrow-to-defun)
 (evil-leader/set-key "n r" 'narrow-to-region)
