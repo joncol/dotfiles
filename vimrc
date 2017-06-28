@@ -359,7 +359,7 @@ if has("gui_running")
   colorscheme molokai
   set background=dark
   set cursorline
-else
+elseif s:uname != "Windows" || !has("nvim")
   colorscheme summerfruit256
   autocmd InsertEnter * set cul
   autocmd InsertLeave * set nocul
