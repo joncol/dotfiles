@@ -139,6 +139,11 @@ nnoremap <s-f1> :cc<cr>
 nnoremap <f4> :cnext<cr>
 nnoremap <s-f4> :cprev<cr>
 
+" Copy paste to global register.
+vnoremap <C-insert> "+y
+nnoremap <S-insert> "+p<esc>
+inoremap <S-insert> <C-r>+
+
 " Ack
 nnoremap <f12> "zyiw :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"\\b" . @z . "\\b\"" <cr> :cope <cr>
 vnoremap <f12> "zy :exe "Ack --type-set=this=." . fnamemodify(@%, ":e") . " --this \"" . @z . "\"" <cr> :cope <cr>
