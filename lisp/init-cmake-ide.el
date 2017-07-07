@@ -26,9 +26,9 @@
 
                 (use-package rtags
                   :config
-                  (require 'rtags-helm)
                   (require 'flycheck-rtags) ;; Needed to make flycheck work.
-                  (setq rtags-use-helm t)
+                  ;; (require 'rtags-helm)
+                  ;; (setq rtags-use-helm t)
 
                   (setq rtags-completions-enabled t)
                   (setq rtags-autostart-diagnostics t)

@@ -179,6 +179,8 @@
   :init
   (flycheck-pos-tip-mode))
 
+(use-package flycheck-rtags)
+
 (use-package fortune
   :config
   (setq fortune-dir "/usr/share/games/fortunes")
@@ -260,6 +262,10 @@
   (setq ivy-rich-switch-buffer-align-virtual-buffer t)
   (setq ivy-rich-abbreviate-paths t)
   (setq ivy-rich-switch-buffer-name-max-length 64))
+
+(use-package ivy-rtags
+  :config
+  (setq rtags-display-result-backend 'ivy))
 
 (use-package json-mode)
 
