@@ -402,15 +402,18 @@
 (global-set-key (kbd "C-c C-b") 'help-go-back)
 (global-set-key (kbd "C-c C-f") 'help-go-forward)
 
-(use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
-  :config
-  (setq exec-path-from-shell-arguments '("-l"))
-  (exec-path-from-shell-initialize))
-
 (let ((my-bin-path (expand-file-name "~/.local/bin")))
   (setenv "PATH" (concat (getenv "PATH") ":" my-bin-path))
   (add-to-list 'exec-path my-bin-path t))
+
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns x))
+  :config
+  (setq exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-initialize)
+  (add-hook 'eshell-mode-hook
+            (lambda ()
+              (exec-path-from-shell-initialize))))
 
 (setq large-file-warning-threshold nil)
 (setq safe-local-variable-values
