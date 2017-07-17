@@ -2,4 +2,4 @@
 # name: Require (clojure.string)
 # key: req
 # --
-:require [${1:clojure.string} :as ${2:str}]
+(:require [${1:clojure.string} :as ${2:str}])
