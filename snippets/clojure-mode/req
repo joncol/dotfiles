@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Require (clojure.string)
+# key: req
+# --
+:require [clojure.string :as str]
