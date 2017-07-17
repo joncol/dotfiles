@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Namespace for file
+# key: ns
+# --
+(ns ${1:`(replace-regexp-in-string "_" "-" (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`})
