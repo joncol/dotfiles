@@ -123,19 +123,6 @@
   :init
   (counsel-projectile-on))
 
-(use-package dashboard
-  :diminish dashboard-mode
-
-  :config
-  (setq dashboard-items '((recents . 5)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 5)))
-
-  (setq dashboard-banner-logo-title "Welcome to Emacs")
-  (setq dashboard-startup-banner 'logo)
-  (dashboard-setup-startup-hook))
-
 (use-package ecb
   :config
   (setq ecb-tip-of-the-day nil))
