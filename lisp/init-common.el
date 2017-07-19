@@ -412,7 +412,7 @@
 
 (require 'ibuffer)
 
-(dolist (map (list dashboard-mode-map ibuffer-mode-map package-menu-mode-map))
+(dolist (map (list ibuffer-mode-map package-menu-mode-map))
   (define-key map "\C-w" 'evil-window-map))
 
 (global-set-key (kbd "C-x b") 'ibuffer)
