@@ -17,7 +17,8 @@
 
 (add-hook 'clojure-mode-hook
           (lambda ()
-            (init-lisp-common)))
+            (init-lisp-common)
+            (setq-local evil-move-beyond-eol t)))
 
 (setq evil-motion-state-modes
       (append '(cider-docview-mode
