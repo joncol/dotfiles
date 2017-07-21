@@ -26,6 +26,11 @@
                 cider-stacktrace-mode)
               evil-motion-state-modes))
 
+(add-hook 'cider-repl-mode-hook
+          (lambda ()
+            ;; do not treat "-" as a word separator
+            (modify-syntax-entry ?- "w")))
+
 (provide 'init-clojure)
 
 ;;; init-clojure.el ends here
