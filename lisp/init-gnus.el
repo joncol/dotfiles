@@ -1,3 +1,11 @@
+;;; #init-gnus.el --- Gnus config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 
 (setq gnus-select-method
@@ -7,11 +15,10 @@
                (nnimap-stream ssl)))
 
 (setq gnus-secondary-select-methods
-      '((nnimap "orzone.com"
+      '((nnimap "zimpler.com"
                (nnimap-address "imap.gmail.com")
                (nnimap-server-port 993)
-               (nnimap-stream ssl))
-        (nntp "news.newshosting.com")))
+               (nnimap-stream ssl))))
 
 (setq smtpmail-smtp-service 587)
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
@@ -22,18 +29,6 @@
       smtpmail-stream-type  'starttls
       smtpmail-smtp-service 587)
 
-;; (require 'smtpmail)
-;; (require 'smtpmail-multi)
-;; (setq smtpmail-auth-credentials "~/.authinfo")
-;; (setq smtpmail-multi-accounts '((orzone . '("jonas.collberg@orzone.com" "smtp.gmail.com"
-;;                                             587 "jonas.collberg@orzone.com"
-;;                                             ssl nil nil nil))
-;;                                 (gmail . '("jonas.collberg@gmail.com" "smtp.gmail.com"
-;;                                            587 "jonas.collberg@gmail.com"
-;;                                            ssl nil nil nil))))
-;; (setq smtpmail-multi-associations
-;;       '(("jonas.collberg@orzone.com" orzone)
-;;         ("jonas.collberg@gmail.com" gmail)))
+(provide 'init-gnus)
 
-;; (setq smtpmail-multi-default-account 'orzone)
-;; (setq message-send-mail-function 'smtpmail-multi-send-it)
+;;; init-gnus.el ends here

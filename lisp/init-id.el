@@ -13,7 +13,7 @@
   (setq user-mail-address
         (concat (s-replace " " "." (downcase user-full-name)) "@"
                 (if (jco/at-office-p)
-                    "orzone.com"
+                    "zimpler.com"
                   "mykolab.com"))))
 
 (provide 'init-id)

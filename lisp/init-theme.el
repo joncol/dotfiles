@@ -71,6 +71,7 @@
   (spaceline-spacemacs-theme))
 
 (use-package spaceline-all-the-icons
+  :disabled t
   :if (not (eq system-type 'windows-nt))
   :after spaceline
   :config

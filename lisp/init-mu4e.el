@@ -34,7 +34,7 @@
 
   (defun jco/smtp-server ()
     (cond ((or (s-contains? "gmail.com" user-mail-address)
-               (s-contains? "orzone.com" user-mail-address)) "smtp.gmail.com")
+               (s-contains? "zimpler.com" user-mail-address)) "smtp.gmail.com")
           ((s-contains? "kolab" user-mail-address) "smtp.kolabnow.com")))
 
   (defun jco/my-send-it ()
@@ -105,9 +105,9 @@
              :match-func (lambda (msg)
                            (if msg
                                (mu4e-message-contact-field-matches
-                                msg :to "jonas.collberg@orzone.com")
+                                msg :to "jonas.collberg@zimpler.com")
                              (jco/at-office-p)))
-             :vars '((user-mail-address . "jonas.collberg@orzone.com")
+             :vars '((user-mail-address . "jonas.collberg@zimpler.com")
                      ;; (mu4e-compose-signature . (concat
                      ;;                             "Kind regards,\n"
                      ;;                             user-full-name))
