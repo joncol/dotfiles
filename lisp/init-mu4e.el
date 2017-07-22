@@ -99,8 +99,9 @@
                      (mu4e-completing-read-function . compl-fun)
                      ))
            ,(make-mu4e-context
-             :name "Work"
-             :enter-func (lambda () (mu4e-message "Switch to the Work context"))
+             :name "Zimpler"
+             :enter-func (lambda () (mu4e-message
+                                     "Switch to the Zimpler context"))
              ;; leave-fun not defined
              :match-func (lambda (msg)
                            (if msg
@@ -111,14 +112,14 @@
                      ;; (mu4e-compose-signature . (concat
                      ;;                             "Kind regards,\n"
                      ;;                             user-full-name))
-                     (mu4e-drafts-folder . "/work_gmail/[Gmail].Drafts")
-                     (mu4e-sent-folder . "/work_gmail/[Gmail].Sent Mail")
-                     (mu4e-trash-folder . "/work_gmail/[Gmail].Trash")
+                     (mu4e-drafts-folder . "/zimpler_gmail/[Gmail].Drafts")
+                     (mu4e-sent-folder . "/zimpler_gmail/[Gmail].Sent Mail")
+                     (mu4e-trash-folder . "/zimpler_gmail/[Gmail].Trash")
                      (mu4e-maildir-shortcuts .
-                      (("/work_gmail/INBOX" . ?i)
-                       ("/work_gmail/[Gmail].Sent Mail" . ?s)
-                       ("/work_gmail/[Gmail].Trash" . ?t)
-                       ("/work_gmail/[Gmail].All Mail" . ?a)))
+                      (("/zimpler_gmail/INBOX" . ?i)
+                       ("/zimpler_gmail/[Gmail].Sent Mail" . ?s)
+                       ("/zimpler_gmail/[Gmail].Trash" . ?t)
+                       ("/zimpler_gmail/[Gmail].All Mail" . ?a)))
                      (mu4e-completing-read-function . compl-fun)
                      ))))
 
