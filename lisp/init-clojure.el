@@ -13,19 +13,21 @@
   (add-hook 'clojure-mode-hook
             (lambda ()
               (clj-refactor-mode)
-              (cljr-add-keybindings-with-prefix "C-c C-m"))))
+              (cljr-add-keybindings-with-prefix "C-c C-m")))
+
+  (setq evil-motion-state-modes
+        (append '(cider-docview-mode
+                  cider-popup-buffer-mode
+                  cider-stacktrace-mode
+                  cider-inspector-mode)
+                evil-motion-state-modes)))
 
 (add-hook 'clojure-mode-hook
           (lambda ()
             (init-lisp-common)
             (setq-local evil-move-beyond-eol t)))
 
-(setq evil-motion-state-modes
-      (append '(cider-docview-mode
-                cider-popup-buffer-mode
-                cider-stacktrace-mode
-                cider-inspector-mode)
-              evil-motion-state-modes))
+(use-package clojure-snippets)
 
 (add-hook 'cider-repl-mode-hook
           (lambda ()
