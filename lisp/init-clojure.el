@@ -23,13 +23,19 @@
 (setq evil-motion-state-modes
       (append '(cider-docview-mode
                 cider-popup-buffer-mode
-                cider-stacktrace-mode)
+                cider-stacktrace-mode
+                cider-inspector-mode)
               evil-motion-state-modes))
 
 (add-hook 'cider-repl-mode-hook
           (lambda ()
             ;; do not treat "-" as a word separator
             (modify-syntax-entry ?- "w")))
+
+(add-hook 'cider--debug-mode-hook
+          (lambda ()
+            (evil-make-overriding-map cider--debug-mode-map 'normal)
+            (evil-normalize-keymaps)))
 
 (provide 'init-clojure)
 
