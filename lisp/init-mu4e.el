@@ -1,3 +1,11 @@
+;;; #init-mu4e.el --- mu4e config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (when (and (not (eq system-type 'windows-nt))
            (not (string-equal system-name "joule-Broxton-M")))
   (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
@@ -99,9 +107,9 @@
                      (mu4e-completing-read-function . compl-fun)
                      ))
            ,(make-mu4e-context
-             :name "Zimpler"
+             :name "Work"
              :enter-func (lambda () (mu4e-message
-                                     "Switch to the Zimpler context"))
+                                     "Switch to the Work context"))
              ;; leave-fun not defined
              :match-func (lambda (msg)
                            (if msg
@@ -121,19 +129,8 @@
                        ("/zimpler_gmail/[Gmail].Trash" . ?t)
                        ("/zimpler_gmail/[Gmail].All Mail" . ?a)))
                      (mu4e-completing-read-function . compl-fun)
-                     ))))
-
-  ;; set `mu4e-context-policy` and `mu4e-compose-policy` to tweak when mu4e
-  ;; should guess or ask the correct context, e.g.
-
-  ;; start with the first (default) context;
-  ;; default is to ask-if-none (ask when there's no context yet, and none match)
-  ;; (setq mu4e-context-policy 'pick-first)
-
-  ;; compose with the current context is no context matches;
-  ;; default is to ask
-  ;; '(setq mu4e-compose-context-policy nil)
-
-  )
+                     )))))
 
 (provide 'init-mu4e)
+
+;;; init-mu4e.el ends here
