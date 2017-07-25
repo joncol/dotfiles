@@ -7,7 +7,8 @@
 ;;; Code:
 
 (when (and (not (eq system-type 'windows-nt))
-           (not (string-equal system-name "joule-Broxton-M")))
+           (not (string-equal system-name "joule-Broxton-M"))
+           (not (string-equal system-name "jco")))
   (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
   (require 'mu4e)
