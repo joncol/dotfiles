@@ -266,6 +266,8 @@
 
 (use-package monky)
 
+(use-package nginx-mode)
+
 (use-package outline
   :init
   (if (version< emacs-version "25.1")
