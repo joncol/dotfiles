@@ -31,8 +31,9 @@
 
 (add-hook 'cider-repl-mode-hook
           (lambda ()
-            ;; do not treat "-" as a word separator
-            (modify-syntax-entry ?- "w")))
+            ;; Do not treat "-" and "_" as word separators.
+            (modify-syntax-entry ?- "w")
+            (modify-syntax-entry ?_ "w")))
 
 (add-hook 'cider--debug-mode-hook
           (lambda ()
