@@ -18,6 +18,10 @@
   (setq lua-indent-level 2)
   (add-to-list 'company-backends 'company-lua))
 
+(add-hook 'lua-mode-hook
+          (lambda ()
+            (smartparens-mode)))
+
 (provide 'init-lua)
 
 ;;; init-lua.el ends here
