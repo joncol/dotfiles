@@ -12,6 +12,7 @@
   (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
   (require 'mu4e)
+  (require 'imapfilter)
 
   (setq mu4e-get-mail-command "offlineimap")
   (setq mu4e-update-interval 120)
@@ -62,6 +63,9 @@
 
   ;; don't keep message buffers around
   (setq message-kill-buffer-on-exit t)
+
+  (add-hook 'mu4e-update-pre-hook
+            #'imapfilter)
 
   (add-hook 'mu4e-view-mode-hook
             (lambda ()
