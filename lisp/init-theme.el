@@ -67,7 +67,7 @@
 (use-package spaceline
   :init
   (require 'spaceline-config)
-  (setq powerline-default-separator 'utf-8)
+  (setq powerline-default-separator 'arrow)
   (spaceline-spacemacs-theme))
 
 (use-package spaceline-all-the-icons
