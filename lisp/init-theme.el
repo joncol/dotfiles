@@ -87,7 +87,7 @@
                      "RoyalBlue4")
 
 (set-face-foreground 'show-paren-match "#101f24")
-(set-face-background 'show-paren-match "#a2ded0")
+(set-face-background 'show-paren-match "#89C5B7")
 
 (cl-case jco/theme
   (adwaita
