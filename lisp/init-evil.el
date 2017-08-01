@@ -120,12 +120,12 @@
               (lambda ()
                 (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))))
 
-;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over
-;; a '('
-(add-hook 'slime-repl-mode-hook
-          (lambda ()
-            (define-key slime-repl-mode-map
-              (read-kbd-macro paredit-backward-delete-key) nil)))
+;; ;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over
+;; ;; a '('
+;; (add-hook 'slime-repl-mode-hook
+;;           (lambda ()
+;;             (define-key slime-repl-mode-map
+;;               (read-kbd-macro paredit-backward-delete-key) nil)))
 
 (defun jco/run-process (program &rest args)
   "Start process PROGRAM with arguments ARGS."

@@ -11,10 +11,6 @@
   :commands evil-lispy-mode
   :defer t)
 
-(use-package paredit
-  :defer t
-  :diminish paredit-mode)
-
 (use-package redshank
   :disabled t
   :defer t
@@ -28,9 +24,7 @@
   ;; do not treat "-" as a word separator
   (modify-syntax-entry ?- "w")
 
-  (paredit-mode)
-  ;; (evil-lispy-mode)
-  ;; (redshank-mode)
+  (smartparens-mode)
   )
 
 (provide 'init-lisp-common)

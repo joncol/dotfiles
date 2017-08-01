@@ -19,7 +19,6 @@
 (tool-bar-mode -1)
 (global-auto-revert-mode)
 (global-font-lock-mode)
-(show-paren-mode)
 (global-hl-line-mode)
 (global-whitespace-mode)
 (diminish 'global-whitespace-mode)
@@ -291,11 +290,17 @@
   :config
   (sp-use-paredit-bindings)
   ;; (sp-pair "\"" nil :actions :rem)
+  (show-smartparens-global-mode)
   (jco/define-bindings smartparens-mode-map
-                       '(("M-?" . sp-convolute-sexp)
+                       '(("M-(" . (lambda (&optional arg)
+                                    (interactive "P") (sp-wrap-with-pair "(")))
+                         ("M-[" . (lambda (&optional arg)
+                                    (interactive "P") (sp-wrap-with-pair "[")))
+                         ("M-{" . (lambda (&optional arg)
+                                    (interactive "P") (sp-wrap-with-pair "{")))
+                         ("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
-                         ("M-j" . sp-join-sexp)))
-  )
+                         ("M-j" . sp-join-sexp))))
 
 (use-package speed-type)
 
