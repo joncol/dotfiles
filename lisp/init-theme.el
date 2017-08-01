@@ -80,8 +80,8 @@
 
 (load-theme jco/theme t)
 
-(defvar jco/cursor-color)
-(set (make-local-variable 'jco/cursor-color) "green")
+;; (defvar jco/cursor-color)
+;; (set (make-local-variable 'jco/cursor-color) "green")
 
 (set-face-background 'evil-search-highlight-persist-highlight-face
                      "RoyalBlue4")
@@ -245,9 +245,11 @@
 
 (set-face-background 'helm-buffer-directory "gray60")
 
-(require 'evil-states)
-(setq evil-normal-state-cursor `(,jco/cursor-color box))
-(setq evil-insert-state-cursor `(,jco/cursor-color bar))
+(when (boundp 'jco/cursor-color)
+  (require 'evil-states)
+  (setq evil-normal-state-cursor `(,jco/cursor-color box))
+  (setq evil-insert-state-cursor `(,jco/cursor-color bar)))
+
 (blink-cursor-mode -1)
 
 (provide 'init-theme)
