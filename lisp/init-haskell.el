@@ -12,12 +12,12 @@
   :config
   (fset 'jco/align-last-eq
         [?\C-u ?\C-x ?a ?r ?= ?\[ ?^ ?= ?\] ?* ?$ return return return ?n])
-  (evil-leader/set-key "q a" 'jco/align-last-eq)
+  ;; (evil-leader/set-key "q a" 'jco/align-last-eq)
 
   (fset 'jco/haskell-list-to-multiline
         [?0 ?f ?\[ ?c ?s ?\] ?\[ ?: ?s ?/ ?, ?  ?/ ?\\ ?n ?, ?  ?/ ?g return
             ?\C-o])
-  (evil-leader/set-key "q l" 'jco/haskell-list-to-multiline)
+  ;; (evil-leader/set-key "q l" 'jco/haskell-list-to-multiline)
 
   (let* ((paths (split-string (shell-command-to-string
                                "stack path --local-install-root 2> /dev/null")
