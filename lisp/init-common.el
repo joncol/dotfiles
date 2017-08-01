@@ -146,6 +146,10 @@
   :bind (("C-c +" . evil-numbers/inc-at-pt)
          ("C-c -" . evil-numbers/dec-at-pt)))
 
+(use-package evil-smartparens
+  :config
+  (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
+
 (use-package expand-region
   :config
   (global-set-key (kbd "C-=") 'er/expand-region))
@@ -300,7 +304,17 @@
                                     (interactive "P") (sp-wrap-with-pair "{")))
                          ("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
-                         ("M-j" . sp-join-sexp))))
+                         ("M-j" . sp-join-sexp)))
+  (sp-with-modes sp--lisp-modes
+    (sp-local-pair "'" nil :actions nil)
+    (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))
+    (sp-local-pair "`" nil
+                   :skip-match (lambda (ms mb me)
+                                 (cond
+                                  ((equal ms "'")
+                                   (or (sp--org-skip-markup ms mb me)
+                                       (not (sp-point-in-string-or-comment))))
+                                  (t (not (sp-point-in-string-or-comment))))))))
 
 (use-package speed-type)
 

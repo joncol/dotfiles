@@ -24,8 +24,7 @@
   ;; do not treat "-" as a word separator
   (modify-syntax-entry ?- "w")
 
-  (smartparens-mode)
-  )
+  (smartparens-strict-mode))
 
 (provide 'init-lisp-common)
 
