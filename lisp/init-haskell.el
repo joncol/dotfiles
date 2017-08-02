@@ -47,11 +47,15 @@
   (setq-local yas-indent-line 'fixed)
   (use-package helm-hayoo
     :config
-    (evil-leader/set-key "h H" 'helm-hayoo))
+    (add-hook 'haskell-mode-hook
+              (lambda ()
+                (evil-leader/set-key "h H" 'helm-hayoo))))
 
   (use-package helm-hoogle
     :config
-    (evil-leader/set-key "h h" 'helm-hoogle)))
+    (add-hook 'haskell-mode-hook
+              (lambda ()
+                (evil-leader/set-key "h h" 'helm-hoogle)))))
 
 (use-package ebal
   :config
