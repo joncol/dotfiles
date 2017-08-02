@@ -25,7 +25,17 @@
 (add-hook 'clojure-mode-hook
           (lambda ()
             (init-lisp-common)
-            (setq-local evil-move-beyond-eol t)))
+            (setq-local evil-move-beyond-eol t)
+
+            (defadvice cider-create-grimoire-buffer
+                (after grimoire-buffer-after activate compile)
+              "Enables closing the Grimoire buffer with q, for instance."
+
+              (with-current-buffer "*cider-grimoire*"
+                (evil-motion-state)))
+
+            (evil-leader/set-key "h g" 'cider-grimoire)
+            (evil-leader/set-key "h G" 'cider-grimoire-web)))
 
 (use-package clojure-snippets)
 
