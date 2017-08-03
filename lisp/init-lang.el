@@ -3,6 +3,9 @@
   (setq langtool-language-tool-jar
         "/opt/LanguageTool-3.5/languagetool-commandline.jar"))
 
+(when (eq system-type 'darwin)
+  (setenv "STARDICT_DATA_DIR" (expand-file-name "~/dictionaries")))
+
 (defun langtool-autoshow-detail-popup (overlays)
   (when (require 'popup nil t)
     ;; Do not interrupt current popup.
