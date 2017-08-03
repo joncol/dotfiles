@@ -288,6 +288,15 @@
   (recentf-mode)
   (setq recentf-max-menu-items 25))
 
+(defun sp--org-skip-markup (ms mb me)
+  (save-excursion
+    (and (progn
+           (goto-char mb)
+           (save-match-data (looking-back "\\sw\\|\\s_\\|\\s.")))
+         (progn
+           (goto-char me)
+           (save-match-data (looking-at "\\sw\\|\\s_\\|\\s."))))))
+
 (use-package smartparens
   :diminish smartparens-mode
 
