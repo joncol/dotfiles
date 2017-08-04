@@ -146,10 +146,6 @@
   :bind (("C-c +" . evil-numbers/inc-at-pt)
          ("C-c -" . evil-numbers/dec-at-pt)))
 
-(use-package evil-smartparens
-  :config
-  (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
-
 (use-package expand-region
   :config
   (global-set-key (kbd "C-=") 'er/expand-region))
