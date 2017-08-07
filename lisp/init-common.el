@@ -222,6 +222,7 @@
 
   (define-key ivy-minibuffer-map (kbd "S-SPC") nil)
   (define-key ivy-minibuffer-map [tab] 'ivy-partial)
+  (setq ivy-on-del-error-function nil)
 
   (evil-declare-not-repeat 'swiper)
 
