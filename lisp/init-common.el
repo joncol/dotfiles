@@ -310,7 +310,8 @@
                                     (interactive "P") (sp-wrap-with-pair "{")))
                          ("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
-                         ("M-j" . sp-join-sexp)))
+                         ("M-j" . sp-join-sexp)
+                         ("M-C" . sp-clone-sexp)))
   (sp-with-modes sp--lisp-modes
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))
