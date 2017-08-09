@@ -134,7 +134,8 @@
    (set-face-background 'sp-pair-overlay-face "#444748")
    (set-face-background 'region "#582c6b")
    (set-face-background 'ivy-minibuffer-match-face-2 "#444748")
-   (set-face-background 'ffap "#582c6b"))
+   (set-face-background 'ffap "#582c6b")
+   (set-face-background 'highlight "#582c6b"))
 
   (nubox-light
    (setq jco/cursor-color "#101f24")
