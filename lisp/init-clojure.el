@@ -8,10 +8,6 @@
 
 (require 'init-lisp-common)
 
-(use-package cider-hydra
-  :config
-  (add-hook 'cider-mode-hook #'cider-hydra-mode))
-
 (use-package clj-refactor
   :config
   (add-hook 'clojure-mode-hook
@@ -44,9 +40,11 @@
             (evil-leader/set-key "h g" 'cider-grimoire)
             (evil-leader/set-key "h G" 'cider-grimoire-web)
             (evil-leader/set-key "h n" 'cider-browse-ns)
+            ))
 
-            ;; For some reason, `windmove-default-keybindings' doesn't work
-            ;; for cider-browse-ns-mode-map.
+(add-hook 'cider-browse-ns-mode-hook
+          (lambda ()
+            ;; For some reason, `windmove-default-keybindings' doesn't work.
             (bind-keys :map cider-browse-ns-mode-map
                        ("C-w h"   . windmove-left)
                        ("C-w j"   . windmove-down)
@@ -57,7 +55,18 @@
                        ("C-w C-k" . windmove-up)
                        ("C-w C-l" . windmove-right))))
 
-(add-hook 'cider-test-report-mode-hook #'windmove-default-keybindings)
+(add-hook 'cider-test-report-mode-hook
+          (lambda ()
+            ;; For some reason, `windmove-default-keybindings' doesn't work.
+            (bind-keys :map cider-test-report-mode-map
+                       ("C-w h"   . windmove-left)
+                       ("C-w j"   . windmove-down)
+                       ("C-w k"   . windmove-up)
+                       ("C-w l"   . windmove-right)
+                       ("C-w C-h" . windmove-left)
+                       ("C-w C-j" . windmove-down)
+                       ("C-w C-k" . windmove-up)
+                       ("C-w C-l" . windmove-right))))
 
 (use-package clojure-snippets)
 

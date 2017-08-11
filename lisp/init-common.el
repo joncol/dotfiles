@@ -463,6 +463,10 @@
   (setq undo-tree-visualizer-diff t)
   (setq undo-tree-visualizer-timestamps t))
 
+(use-package which-key
+  :config
+  (which-key-mode))
+
 (eval-after-load "info" '(require 'info+))
 
 (diminish 'abbrev-mode)

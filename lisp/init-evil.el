@@ -45,6 +45,7 @@
   ;; Set other modes than evil-mode for the following modes.
   (dolist (mode-map '((ag-mode                  . emacs)
                       (comint-mode              . emacs)
+                      (cider-browse-ns-mode     . emacs)
                       (cider-test-report-mode   . emacs)
                       (dashboard-mode           . emacs)
                       (diff-mode                . emacs)
