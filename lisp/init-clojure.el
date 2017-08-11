@@ -40,12 +40,24 @@
               (with-current-buffer "*cider-grimoire*"
                 (evil-motion-state)))
 
+            (evil-leader/set-key "h d" 'cider-doc)
             (evil-leader/set-key "h g" 'cider-grimoire)
-            (evil-leader/set-key "h G" 'cider-grimoire-web)))
+            (evil-leader/set-key "h G" 'cider-grimoire-web)
+            (evil-leader/set-key "h n" 'cider-browse-ns)
 
-(add-hook 'cider-test-report-mode-hook
-          (lambda ()
-            (windmove-default-keybindings)))
+            ;; For some reason, `windmove-default-keybindings' doesn't work
+            ;; for cider-browse-ns-mode-map.
+            (bind-keys :map cider-browse-ns-mode-map
+                       ("C-w h"   . windmove-left)
+                       ("C-w j"   . windmove-down)
+                       ("C-w k"   . windmove-up)
+                       ("C-w l"   . windmove-right)
+                       ("C-w C-h" . windmove-left)
+                       ("C-w C-j" . windmove-down)
+                       ("C-w C-k" . windmove-up)
+                       ("C-w C-l" . windmove-right))))
+
+(add-hook 'cider-test-report-mode-hook #'windmove-default-keybindings)
 
 (use-package clojure-snippets)
 
