@@ -29,7 +29,10 @@
     ("IN" "OUT")
     ("client" "server")
     ("Client" "Server")
-    ("CLIENT" "SERVER"))
+    ("CLIENT" "SERVER")
+    ("left" "right")
+    ("Left" "Right")
+    ("LEFT" "RIGHT"))
   "List of text rotation sets.")
 
 (defun rotate-word-at-point ()
