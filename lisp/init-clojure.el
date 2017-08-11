@@ -20,7 +20,8 @@
                   cider-popup-buffer-mode
                   cider-stacktrace-mode
                   cider-inspector-mode
-                  cider-classpath-mode)
+                  cider-classpath-mode
+                  cider-test-report-mode)
                 evil-motion-state-modes)))
 
 (add-hook 'clojure-mode-hook
