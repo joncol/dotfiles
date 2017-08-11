@@ -19,7 +19,8 @@
         (append '(cider-docview-mode
                   cider-popup-buffer-mode
                   cider-stacktrace-mode
-                  cider-inspector-mode)
+                  cider-inspector-mode
+                  cider-classpath-mode)
                 evil-motion-state-modes)))
 
 (add-hook 'clojure-mode-hook
