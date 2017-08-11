@@ -8,6 +8,10 @@
 
 (require 'init-lisp-common)
 
+(use-package cider-hydra
+  :config
+  (add-hook 'cider-mode-hook #'cider-hydra-mode))
+
 (use-package clj-refactor
   :config
   (add-hook 'clojure-mode-hook
