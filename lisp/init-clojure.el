@@ -21,8 +21,7 @@
                   cider-popup-buffer-mode
                   cider-stacktrace-mode
                   cider-inspector-mode
-                  cider-classpath-mode
-                  cider-test-report-mode)
+                  cider-classpath-mode)
                 evil-motion-state-modes)))
 
 (add-hook 'clojure-mode-hook
@@ -39,6 +38,10 @@
 
             (evil-leader/set-key "h g" 'cider-grimoire)
             (evil-leader/set-key "h G" 'cider-grimoire-web)))
+
+(add-hook 'cider-test-report-mode-hook
+          (lambda ()
+            (windmove-default-keybindings)))
 
 (use-package clojure-snippets)
 
