@@ -28,7 +28,6 @@
           (lambda ()
             (init-lisp-common)
             (setq-local evil-move-beyond-eol t)
-            (add-to-list 'guide-key/guide-key-sequence "C-c RET")
 
             (defadvice cider-create-grimoire-buffer
                 (after grimoire-buffer-after activate compile)
