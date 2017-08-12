@@ -35,6 +35,7 @@
 (add-hook 'nxml-mode-hook
           (lambda ()
             (setq evil-shift-width 2)
+            (smartparens-mode)
             (evil-leader/set-key "x f" 'jco/xmllint-format-buffer)))
 
 (provide 'init-nxml)
