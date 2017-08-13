@@ -9,6 +9,7 @@
 (require 'init-lisp-common)
 
 (use-package clj-refactor
+  :diminish clj-refactor-mode
   :config
   (add-hook 'clojure-mode-hook
             (lambda ()
@@ -28,6 +29,8 @@
           (lambda ()
             (init-lisp-common)
             (setq-local evil-move-beyond-eol t)
+
+            (diminish 'cider-mode)
 
             (defadvice cider-create-grimoire-buffer
                 (after grimoire-buffer-after activate compile)

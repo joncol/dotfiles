@@ -181,6 +181,7 @@
   (nlinum-mode))
 
 (use-package git-gutter+
+  :diminish git-gutter+-mode
   :if (not (eq system-type 'windows-nt))
   :init
   (global-git-gutter+-mode))
@@ -464,6 +465,7 @@
   (setq undo-tree-visualizer-timestamps t))
 
 (use-package which-key
+  :diminish which-key-mode
   :config
   (which-key-mode))
 
