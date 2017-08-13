@@ -309,6 +309,8 @@
                                     (interactive "P") (sp-wrap-with-pair "[")))
                          ("M-{" . (lambda (&optional arg)
                                     (interactive "P") (sp-wrap-with-pair "{")))
+                         ("M-\"" . (lambda (&optional arg)
+                                    (interactive "P") (sp-wrap-with-pair "\"")))
                          ("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
                          ("M-j" . sp-join-sexp)
