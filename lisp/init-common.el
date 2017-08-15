@@ -142,7 +142,10 @@
 
 (use-package esup)
 
-(use-package evil-magit)
+(use-package evil-magit
+  :config
+  (setq evil-motion-state-modes
+        (append '(magit-submodule-list-mode) evil-motion-state-modes)))
 
 (use-package evil-numbers
   :bind (("C-c +" . evil-numbers/inc-at-pt)
