@@ -6,16 +6,24 @@
 
 ;;; Code:
 
-(use-package inf-ruby)
-(use-package robe)
-(use-package rubocop)
-(use-package ruby-end)
+(use-package inf-ruby
+  :diminish inf-ruby-mode)
+
+(use-package robe
+  :diminish robe-mode)
+
+(use-package rubocop
+  :diminish rubocop-mode)
+
+(use-package ruby-end
+  :diminish ruby-end-mode)
 
 (use-package rvm
   :init
   (setq rvm-executable "~/.rvm/bin/rvm"))
 
-(use-package yard-mode)
+(use-package yard-mode
+  :diminish yard-mode)
 
 (dolist (fp '("\\.rb$"
               "\\.ru$"

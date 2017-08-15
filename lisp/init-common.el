@@ -22,6 +22,8 @@
 (global-hl-line-mode)
 (global-whitespace-mode)
 (diminish 'global-whitespace-mode)
+(with-eval-after-load "hideshow"
+  (diminish 'hs-minor-mode))
 (winner-mode)
 
 (when (eq system-type 'gnu/linux)
