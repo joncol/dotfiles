@@ -13,8 +13,8 @@
      ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
-     ;; 'molokai
-     'nubox-dark
+     'molokai
+     ;; 'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
@@ -124,7 +124,8 @@
                         "DarkOrange4"))
 
   (molokai
-   (set-face-foreground 'font-lock-comment-face "azure4"))
+   (set-face-foreground 'font-lock-comment-face "azure4")
+   (set-face-background 'sp-pair-overlay-face "#582c6b"))
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
