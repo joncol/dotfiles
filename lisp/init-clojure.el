@@ -25,6 +25,10 @@
                   cider-classpath-mode)
                 evil-motion-state-modes)))
 
+(use-package clojure-snippets)
+
+(use-package kibit-helper)
+
 (add-hook 'clojure-mode-hook
           (lambda ()
             (init-lisp-common)
@@ -70,8 +74,6 @@
                        ("C-w C-j" . windmove-down)
                        ("C-w C-k" . windmove-up)
                        ("C-w C-l" . windmove-right))))
-
-(use-package clojure-snippets)
 
 (add-hook 'cider-repl-mode-hook
           (lambda ()
