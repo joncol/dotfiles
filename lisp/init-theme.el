@@ -13,8 +13,8 @@
      ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
-     'molokai
-     ;; 'nubox-dark
+     ;; 'molokai
+     'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
@@ -126,7 +126,11 @@
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
    (set-face-background 'sp-pair-overlay-face "#582c6b")
-   (set-face-background 'swiper-line-face "#582c6b"))
+   (set-face-background 'swiper-line-face "#582c6b")
+   (when (featurep 'mu4e)
+     (set-face-background 'mu4e-highlight-face "#582c6b")
+     (set-face-foreground 'mu4e-header-highlight-face "#101f24"))
+   )
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
@@ -146,13 +150,11 @@
    (set-face-background 'vhl/default-face "#e0dcbe")
    (set-face-background 'sp-pair-overlay-face "#c7c3a5")
    (set-face-background 'region "#ffc3ff")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "#7ceece")
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#7ceece")
 
    (when (featurep 'mu4e)
      (set-face-background 'mu4e-highlight-face "#7ceece")
-     (set-face-foreground 'mu4e-header-highlight-face "#101f24"))
-   )
+     (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
   (organic-green
    (setq jco/cursor-color "gray25")
