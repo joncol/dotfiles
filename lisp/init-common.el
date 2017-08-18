@@ -124,6 +124,8 @@
   :init
   (counsel-projectile-on))
 
+(use-package dockerfile-mode)
+
 (use-package ecb
   :config
   (setq ecb-tip-of-the-day nil))
