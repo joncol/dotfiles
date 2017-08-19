@@ -124,6 +124,8 @@
   :init
   (counsel-projectile-on))
 
+(use-package docker-compose-mode)
+
 (use-package dockerfile-mode)
 
 (use-package ecb
