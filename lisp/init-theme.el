@@ -190,7 +190,8 @@
 
   (solarized-dark
    (set-face-background 'region "#1a4550")
-   (set-face-background 'swiper-line-face "#335e69"))
+   (set-face-background 'swiper-line-face "#335e69")
+   (set-face-background 'ivy-current-match "#335e69"))
 
   (solarized-light
    (setq jco/cursor-color "gray25")
