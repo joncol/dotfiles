@@ -1,4 +1,4 @@
-#+TAGS: work(w) math(m) code(c) read(r) learn (l) bug(b) meta(M)
+#+TAGS: bug(b) code(c) learn(l) math(m) meta(M) read(r) work(w)
 #+SEQ_TODO: TODO(t) IN-PROGRESS(i) MAYBE(m) WAITING(w) NEXT(n) CANCELED(c) DONE(d)
 #+STARTUP: overview
 #+STARTUP: showstars
