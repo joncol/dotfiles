@@ -188,12 +188,16 @@
    (set-face-foreground 'company-tooltip-common-selection "VioletRed4")
    (set-face-background 'company-scrollbar-fg "LightBlue"))
 
-(solarized-light
+  (solarized-dark
+   (set-face-background 'region "#1a4550")
+   (set-face-background 'swiper-line-face "#335e69"))
+
+  (solarized-light
    (setq jco/cursor-color "gray25")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#c0c060"))
 
-(soothe
+  (soothe
    (require 'linum)
    (set-face-foreground 'linum "gray35"))
 
