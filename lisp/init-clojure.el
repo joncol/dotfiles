@@ -33,6 +33,7 @@
           (lambda ()
             (init-lisp-common)
             (setq-local evil-move-beyond-eol t)
+            (setq cider-prompt-for-symbol nil)
 
             (diminish 'cider-mode)
 
