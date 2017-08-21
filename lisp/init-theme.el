@@ -14,13 +14,14 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
-     'nubox-dark
+     ;; 'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
+     'solarized-dark
      ;; 'solarized-light
      )
 
