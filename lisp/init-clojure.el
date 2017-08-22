@@ -44,11 +44,14 @@
               (with-current-buffer "*cider-grimoire*"
                 (evil-motion-state)))
 
+            (put-clojure-indent 'GET 2)
+            (put-clojure-indent 'POST 2)
+            (put-clojure-indent 'PUT 2)
+
             (evil-leader/set-key "h d" 'cider-doc)
             (evil-leader/set-key "h g" 'cider-grimoire)
             (evil-leader/set-key "h G" 'cider-grimoire-web)
-            (evil-leader/set-key "h n" 'cider-browse-ns)
-            ))
+            (evil-leader/set-key "h n" 'cider-browse-ns)))
 
 (add-hook 'cider-browse-ns-mode-hook
           (lambda ()
