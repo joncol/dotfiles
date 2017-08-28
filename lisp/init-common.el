@@ -420,6 +420,11 @@
             ;; do not treat "-" as a word separator
             (modify-syntax-entry ?- "w")))
 
+(add-hook 'sql-mode-hook
+          (lambda ()
+            ;; do not treat "-" as a word separator
+            (modify-syntax-entry ?- "w")))
+
 (use-package info+
   :config
   (bind-keys :map Info-mode-map
