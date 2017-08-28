@@ -272,7 +272,8 @@
   (setq magit-auto-revert-mode nil)
 
   (setq magit-display-buffer-function
-        #'magit-display-buffer-fullframe-status-v1))
+        #'magit-display-buffer-fullframe-status-v1)
+  (evil-leader/set-key "v l" 'magit-log-buffer-file))
 
 (use-package monky)
 
