@@ -6,8 +6,14 @@
 
 ;;; Code:
 
+(use-package flymake-ruby)
+
 (use-package inf-ruby
   :diminish inf-ruby-mode)
+
+(use-package rb-env
+  :config
+  (global-rbenv-mode))
 
 (use-package robe
   :diminish robe-mode)
@@ -17,10 +23,6 @@
 
 (use-package ruby-end
   :diminish ruby-end-mode)
-
-(use-package rvm
-  :init
-  (setq rvm-executable "~/.rvm/bin/rvm"))
 
 (use-package yard-mode
   :diminish yard-mode)
@@ -47,13 +49,6 @@
                 yard-mode))
   (add-hook 'ruby-mode-hook mode))
 
-(defvar jco/rvm-use-default-called nil)
-
-(defadvice rvm-use-default (after rvm-use-default-after activate compile)
-  (setq jco/rvm-use-default-called t))
-
-(rvm-use-default)
-
 (add-hook 'ruby-mode-hook
           (lambda ()
             (unless (display-graphic-p)
@@ -62,9 +57,6 @@
             (jco/common-prog)
 
             (eval-after-load "evil" '(setq evil-shift-width 2))
-
-            (unless jco/rvm-use-default-called
-              (rvm-use-default))
 
             (add-to-list 'company-backends 'company-robe)
             (flymake-ruby-load)
@@ -91,9 +83,7 @@
                      ((string-match ruby-block-end-re (current-word))
                       (ruby-beginning-of-block count))
                      (t
-                      (evil-jump-item count)))))
-
-          (bind-keys :map ruby-mode-map ("C-c r a" . rvm-activate-corresponding-ruby)))
+                      (evil-jump-item count))))))
 
 (provide 'init-ruby)
 
