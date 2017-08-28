@@ -273,7 +273,8 @@
 
   (setq magit-display-buffer-function
         #'magit-display-buffer-fullframe-status-v1)
-  (evil-leader/set-key "v l" 'magit-log-buffer-file))
+  (evil-leader/set-key "v l" 'magit-log-buffer-file)
+  (evil-leader/set-key "v b" 'magit-blame))
 
 (use-package monky)
 
