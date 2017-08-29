@@ -29,6 +29,14 @@
 
 (use-package kibit-helper)
 
+(defun nrepl-reset ()
+  "Helper function to call the (Reloaded workflow) reset function."
+  (interactive)
+  (set-buffer (cider-current-repl-buffer))
+  (goto-char (point-max))
+  (insert "(reset)")
+  (cider-repl-return))
+
 (add-hook 'clojure-mode-hook
           (lambda ()
             (init-lisp-common)
@@ -51,7 +59,8 @@
             (evil-leader/set-key "h d" 'cider-doc)
             (evil-leader/set-key "h g" 'cider-grimoire)
             (evil-leader/set-key "h G" 'cider-grimoire-web)
-            (evil-leader/set-key "h n" 'cider-browse-ns)))
+            (evil-leader/set-key "h n" 'cider-browse-ns)
+            (evil-leader/set-key "x r" 'nrepl-reset)))
 
 (add-hook 'cider-browse-ns-mode-hook
           (lambda ()
