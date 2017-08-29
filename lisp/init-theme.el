@@ -10,7 +10,7 @@
 (defvar jco/theme)
 (set (make-local-variable 'jco/theme)
      ;; Change this to whatever theme you want.
-     ;; 'adwaita
+     'adwaita
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
@@ -21,7 +21,7 @@
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
-     'solarized-dark
+     ;; 'solarized-dark
      ;; 'solarized-light
      )
 
@@ -92,6 +92,8 @@
 
 (cl-case jco/theme
   (adwaita
+   (set-face-background 'hl-line "#dadfe1")
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
    (setq jco/cursor-color  "#101f24"))
 
   (darkane
