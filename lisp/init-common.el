@@ -496,6 +496,9 @@
 (eval-after-load "info" '(require 'info+))
 
 (diminish 'abbrev-mode)
+(diminish 'footnote-mode)
+(diminish 'auto-fill-mode)
+
 
 (provide 'init-common)
 
