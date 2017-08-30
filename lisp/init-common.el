@@ -499,6 +499,7 @@
 (diminish 'footnote-mode)
 (diminish 'auto-fill-mode)
 
+(evil-leader/set-key "x o" 'occur)
 
 (provide 'init-common)
 
