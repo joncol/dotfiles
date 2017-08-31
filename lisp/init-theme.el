@@ -10,7 +10,7 @@
 (defvar jco/theme)
 (set (make-local-variable 'jco/theme)
      ;; Change this to whatever theme you want.
-     'adwaita
+     ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
@@ -20,7 +20,7 @@
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
-     ;; 'sanityinc-tomorrow-night
+     'sanityinc-tomorrow-night
      ;; 'solarized-dark
      ;; 'solarized-light
      )
@@ -182,7 +182,7 @@
                               sanityinc-tomorrow-eighties
                               sanityinc-tomorrow-night)
    (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "RoyalBlue"))
+                        "RoyalBlue4"))
 
   (sanityinc-tomorrow-blue
    (setq jco/cursor-color "snow")
