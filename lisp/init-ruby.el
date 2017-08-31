@@ -11,7 +11,7 @@
 (use-package inf-ruby
   :diminish inf-ruby-mode)
 
-(use-package rb-env
+(use-package rbenv
   :config
   (global-rbenv-mode))
 
