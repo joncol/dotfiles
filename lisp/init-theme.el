@@ -94,6 +94,7 @@
   (adwaita
    (set-face-background 'hl-line "#dadfe1")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
+   (set-face-background 'sp-pair-overlay-face "LightBlue")
    (setq jco/cursor-color  "#101f24"))
 
   (darkane
