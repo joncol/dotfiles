@@ -95,7 +95,10 @@
    (set-face-background 'hl-line "#dadfe1")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
    (set-face-background 'sp-pair-overlay-face "LightBlue")
-   (setq jco/cursor-color  "#101f24"))
+   (setq jco/cursor-color  "#101f24")
+   (when (featurep 'mu4e)
+     (set-face-background 'mu4e-highlight-face "#7ceece")
+     (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
   (darkane
    (set-face-background 'evil-search-highlight-persist-highlight-face
