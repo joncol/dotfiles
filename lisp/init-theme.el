@@ -147,7 +147,8 @@
                         "#e0dcbe")
    (set-face-foreground 'evil-search-highlight-persist-highlight-face
                         "#101f24")
-   (set-face-foreground 'font-lock-warning-face nil))
+   (set-face-foreground 'font-lock-warning-face "#ff6523"))
+   (set-face-background 'font-lock-warning-face nil))
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
