@@ -14,13 +14,14 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
+     'mustang
      ;; 'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
-     'sanityinc-tomorrow-night
+     ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
      ;; 'solarized-light
      )
@@ -51,6 +52,7 @@
        minimal-theme
        molokai-theme
        monokai-theme
+       mustang-theme
        nubox
        organic-green-theme
        prassee-theme
@@ -136,8 +138,15 @@
    (set-face-background 'swiper-line-face "#582c6b")
    (when (featurep 'mu4e)
      (set-face-background 'mu4e-highlight-face "#582c6b")
-     (set-face-foreground 'mu4e-header-highlight-face "#101f24"))
-   )
+     (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
+
+  (mustang
+   (setq jco/cursor-color "#ffc3ff")
+   (set-face-background 'lazy-highlight "VioletRed3")
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "#e0dcbe")
+   (set-face-foreground 'evil-search-highlight-persist-highlight-face
+                        "#101f24"))
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
