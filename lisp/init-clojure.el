@@ -11,11 +11,12 @@
 (use-package clj-refactor
   :diminish clj-refactor-mode
   :config
+  (setq cljr-warn-on-eval nil)
+  (setq cljr-auto-clean-ns nil)
   (add-hook 'clojure-mode-hook
             (lambda ()
               (clj-refactor-mode)
-              (cljr-add-keybindings-with-prefix "C-c C-m")
-              (setq cljr-warn-on-eval nil)))
+              (cljr-add-keybindings-with-prefix "C-c C-m")))
 
   (setq evil-motion-state-modes
         (append '(cider-docview-mode
