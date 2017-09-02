@@ -142,6 +142,7 @@
 
   (mustang
    (setq jco/cursor-color "#ececec")
+   (set-face-background 'region "#582c6b")
    (set-face-background 'lazy-highlight "VioletRed3")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#e0dcbe")
