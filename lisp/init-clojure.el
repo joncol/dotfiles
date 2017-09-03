@@ -93,7 +93,8 @@
           (lambda ()
             ;; Do not treat "-" and "_" as word separators.
             (modify-syntax-entry ?- "w")
-            (modify-syntax-entry ?_ "w")))
+            (modify-syntax-entry ?_ "w")
+            (smartparens-mode)))
 
 (add-hook 'cider--debug-mode-hook
           (lambda ()
