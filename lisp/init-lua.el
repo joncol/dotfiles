@@ -20,6 +20,7 @@
 
 (add-hook 'lua-mode-hook
           (lambda ()
+            (modify-syntax-entry ?_ "w")
             (smartparens-mode)))
 
 (provide 'init-lua)
