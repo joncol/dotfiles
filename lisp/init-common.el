@@ -342,7 +342,10 @@
 
 (use-package string-inflection
   :config
-  (evil-leader/set-key "s i" 'string-inflection-all-cycle))
+  (evil-leader/set-key "s i" 'string-inflection-all-cycle)
+  (evil-leader/set-key "s s" 'string-inflection-underscore)
+  (evil-leader/set-key "s k" 'string-inflection-kebab-case)
+  (evil-leader/set-key "s c" 'string-inflection-camelcase))
 
 (use-package sx
   :config
