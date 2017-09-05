@@ -136,6 +136,7 @@
    (set-face-foreground 'font-lock-comment-face "azure4")
    (set-face-background 'sp-pair-overlay-face "#582c6b")
    (set-face-background 'swiper-line-face "#582c6b")
+   (set-face-background 'region "#582c6b")
    (when (featurep 'mu4e)
      (set-face-background 'mu4e-highlight-face "#582c6b")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
