@@ -14,9 +14,9 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
-     'mustang
+     ;; 'mustang
      ;; 'nubox-dark
-     ;; 'nubox-light
+     'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
@@ -170,6 +170,7 @@
    (set-face-background 'vhl/default-face "#e0dcbe")
    (set-face-background 'sp-pair-overlay-face "#c7c3a5")
    (set-face-background 'region "#ffc3ff")
+   (set-face-background 'ffap "#ffc3ff")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#7ceece")
 
    (when (featurep 'mu4e)
