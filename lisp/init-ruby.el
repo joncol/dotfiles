@@ -56,6 +56,8 @@
 
             (jco/common-prog)
 
+            (smartparens-mode)
+
             (eval-after-load "evil" '(setq evil-shift-width 2))
 
             (add-to-list 'company-backends 'company-robe)
