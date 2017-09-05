@@ -44,6 +44,8 @@
             (setq-local evil-move-beyond-eol t)
             (setq cider-prompt-for-symbol nil)
 
+            (modify-syntax-entries)
+
             (diminish 'cider-mode)
 
             (defadvice cider-create-grimoire-buffer
@@ -89,11 +91,17 @@
                        ("C-w C-k" . windmove-up)
                        ("C-w C-l" . windmove-right))))
 
+(defun modify-syntax-entries ()
+  "Do not treat valid identifier symbols as word separators."
+  (modify-syntax-entry ?- "w")
+  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?< "w")
+  (modify-syntax-entry ?> "w")
+  (modify-syntax-entry ?? "w"))
+
 (add-hook 'cider-repl-mode-hook
           (lambda ()
-            ;; Do not treat "-" and "_" as word separators.
-            (modify-syntax-entry ?- "w")
-            (modify-syntax-entry ?_ "w")
+            (modify-syntax-entries)
             (smartparens-mode)))
 
 (add-hook 'cider--debug-mode-hook
