@@ -199,6 +199,12 @@
   :if (not (eq system-type 'windows-nt))
   :after nlinum)
 
+(use-package git-link
+  :config
+  (setq git-link-open-in-browser t)
+  (evil-leader/set-key "v g" 'git-link-homepage)
+  (evil-leader/set-key "v G" 'git-link))
+
 (use-package glsl-mode)
 
 (use-package google-this)
