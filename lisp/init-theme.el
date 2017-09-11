@@ -14,9 +14,9 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
-     ;; 'mustang
+     'mustang
      ;; 'nubox-dark
-     'nubox-light
+     ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
@@ -151,6 +151,7 @@
                         "#101f24")
    (set-face-foreground 'font-lock-warning-face "#ff6523")
    (set-face-background 'font-lock-warning-face nil)
+   (set-face-background 'ivy-minibuffer-match-face-2 "#582c6b")
    (set-face-background 'vhl/default-face "#582c6b"))
 
   (nubox-dark
