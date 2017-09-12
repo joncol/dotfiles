@@ -510,6 +510,11 @@
 
 (evil-leader/set-key "x o" 'occur)
 
+;; Remove after installing Emacs 25.3.
+(eval-after-load "enriched"
+  '(defun enriched-decode-display-prop (start end &optional param)
+     (list start end)))
+
 (provide 'init-common)
 
 ;;; init-common.el ends here
