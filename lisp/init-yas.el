@@ -18,9 +18,10 @@
   ;; Needed to unload snippets in elpa dir.
   (yas-reload-all)
 
-  ;; Turn off ethan-wspace-mode when editing snippets.
-  (add-hook 'snippet-mode-hook (lambda ()
-                                 (ethan-wspace-mode -1)))
+  (add-hook 'snippet-mode-hook
+            (lambda ()
+              (modify-syntax-entry ?- "w")
+              (ethan-wspace-mode -1)))
 
   (evil-leader/set-key "TAB" 'yas-insert-snippet)
 
