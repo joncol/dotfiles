@@ -231,7 +231,7 @@
 
   :config
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
+  (setq ivy-use-virtual-buffers nil)
   (setq enable-recursive-minibuffers t)
   (evil-leader/set-key "b" 'ivy-switch-buffer)
   (evil-leader/set-key "r" 'ivy-resume)
