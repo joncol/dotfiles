@@ -63,7 +63,13 @@
             (evil-leader/set-key "h g" 'cider-grimoire)
             (evil-leader/set-key "h G" 'cider-grimoire-web)
             (evil-leader/set-key "h n" 'cider-browse-ns)
-            (evil-leader/set-key "x r" 'nrepl-reset)))
+            (evil-leader/set-key "x r" 'nrepl-reset)
+
+            (evil-leader/set-key "t c" 'cider-test-clear-highlights)
+            (evil-leader/set-key "t t" 'cider-test-run-test)
+            (evil-leader/set-key "t n" 'cider-test-run-ns-tests)
+            (evil-leader/set-key "t p" 'cider-test-run-project-tests)
+            (evil-leader/set-key "t f" 'cider-test-rerun-failed-tests)))
 
 (add-hook 'cider-browse-ns-mode-hook
           (lambda ()
