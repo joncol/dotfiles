@@ -18,12 +18,12 @@
      ;; 'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
-     ;; 'reykjavik
+     'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
-     'solarized-light
+     ;; 'solarized-light
      )
 
 (defvar jco/theme-packages)
@@ -191,8 +191,10 @@
                         "VioletRed4"))
 
   (reykjavik
+   (setq jco/cursor-color  "#7ceece")
+   (set-face-background 'region "#1a4550")
    (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "VioletRed4"))
+                        "#821800"))
 
   ((sanityinc-tomorrow-bright sanityinc-tomorrow-day
                               sanityinc-tomorrow-eighties
@@ -217,6 +219,7 @@
 
   (solarized-light
    (setq jco/cursor-color "gray25")
+   (set-face-background 'region "#e0dcbe")
    (set-face-background 'cider-deprecated-face "#e0dcbe")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#c0c060"))
