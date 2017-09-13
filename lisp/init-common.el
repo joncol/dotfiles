@@ -510,6 +510,9 @@
 
 (evil-leader/set-key "x o" 'occur)
 
+(when (display-graphic-p)
+  (global-unset-key (kbd "C-x C-z")))
+
 ;; Remove after installing Emacs 25.3.
 (eval-after-load "enriched"
   '(defun enriched-decode-display-prop (start end &optional param)
