@@ -239,6 +239,17 @@ Remove empty lines after opening brace and before closing brace."
     (while (re-search-forward "\n\n+\\(\\s-*\\)}" nil t)
       (replace-match "\n\\1}"))))
 
+(defun jco/run-process (program &rest args)
+  "Start process PROGRAM with arguments ARGS."
+  (apply 'start-process program nil program args))
+
+(defun jco/run-on-current-buffer (program &rest args)
+  "Start process PROGRAM with arguments ARGS on current buffer.
+The filename of the current buffer is passed as the last argument to the process
+invokation."
+  (apply 'start-process program nil program
+         (append args (list (buffer-file-name)))))
+
 (provide 'init-common-funs)
 
 ;;; init-common-funs.el ends here

@@ -122,67 +122,7 @@
               (lambda ()
                 (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))))
 
-;; ;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over
-;; ;; a '('
-;; (add-hook 'slime-repl-mode-hook
-;;           (lambda ()
-;;             (define-key slime-repl-mode-map
-;;               (read-kbd-macro paredit-backward-delete-key) nil)))
-
-(defun jco/run-process (program &rest args)
-  "Start process PROGRAM with arguments ARGS."
-  (apply 'start-process program nil program args))
-
-(defun jco/run-on-current-buffer (program &rest args)
-  "Start process PROGRAM with arguments ARGS on current buffer.
-The filename of the current buffer is passed as the last argument to the process
-invokation."
-  (apply 'start-process program nil program
-         (append args (list (buffer-file-name)))))
-
-(evil-leader/set-key "t a"
-  (lambda ()
-    (interactive)
-    (jco/run-on-current-buffer "thg" "annotate")))
-
-(evil-leader/set-key "t c"
-  (lambda ()
-    (interactive)
-    (jco/run-process "thg" "ci")))
-
-(evil-leader/set-key "t C"
-  (lambda ()
-    (interactive)
-    (jco/run-on-current-buffer "thg" "ci")))
-
-(evil-leader/set-key "t l"
-  (lambda ()
-    (interactive)
-    (jco/run-on-current-buffer "thg" "log")))
-
-(evil-leader/set-key "t L"
-  (lambda ()
-    (interactive)
-    (jco/run-process "thg" "log")))
-
-(evil-leader/set-key "t d"
-  (lambda ()
-    (interactive)
-    (if (eq system-type 'darwin)
-        (jco/run-on-current-buffer "hg" "opendiff")
-      (jco/run-on-current-buffer "thg" "vdiff"))))
-
-(evil-leader/set-key "t s"
-  (lambda ()
-    (interactive)
-    (jco/run-process "thg" "st")))
-
-(evil-leader/set-key "t S"
-  (lambda ()
-    (interactive)
-    (jco/run-on-current-buffer "thg" "shelve")))
-
-(evil-leader/set-key "d" 'vc-diff)
+(evil-leader/set-key "v d" 'vc-diff)
 (evil-leader/set-key "D" 'ediff-current-file)
 
 (defun jco/remove-search-highlights ()
