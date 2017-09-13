@@ -429,6 +429,8 @@
 
 (put 'narrow-to-region 'disabled nil)
 
+(setq help-window-select t)
+
 (add-hook 'help-mode-hook
           (lambda ()
             ;; do not treat "-" as a word separator
