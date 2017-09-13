@@ -14,7 +14,7 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'molokai
-     'mustang
+     ;; 'mustang
      ;; 'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
@@ -23,7 +23,7 @@
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
-     ;; 'solarized-light
+     'solarized-light
      )
 
 (defvar jco/theme-packages)
@@ -217,6 +217,7 @@
 
   (solarized-light
    (setq jco/cursor-color "gray25")
+   (set-face-background 'cider-deprecated-face "#e0dcbe")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#c0c060"))
 
