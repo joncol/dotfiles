@@ -221,8 +221,8 @@
    (setq jco/cursor-color "gray25")
    (set-face-background 'region "#e0dcbe")
    (set-face-background 'cider-deprecated-face "#e0dcbe")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "#c0c060"))
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+   (set-face-background 'lazy-highlight "#f9bf3b"))
 
   (soothe
    (require 'linum)
