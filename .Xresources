@@ -23,7 +23,7 @@ Rxvt.saveLines: 65535
 *.color12:      #a94f8f
 *.color5:       #610064
 *.color13:      #b080b2
-*.color6:       #252b4f
+*.color6:       #72789C
 *.color14:      #9295a7
 *.color7:       #feeeca
 *.color15:      #fffce9
