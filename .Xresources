@@ -8,6 +8,9 @@ URxvt*letterSpace: -2
 Rxvt.scrollBar: false
 Rxvt.saveLines: 65535
 
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+
 ! ! special
 ! *.foreground:   #666699
 ! *.background:   #000000
