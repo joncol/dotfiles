@@ -527,6 +527,8 @@
 (when (display-graphic-p)
   (global-unset-key (kbd "C-x C-z")))
 
+(setq vc-follow-symlinks nil)
+
 ;; Remove after installing Emacs 25.3.
 (eval-after-load "enriched"
   '(defun enriched-decode-display-prop (start end &optional param)
