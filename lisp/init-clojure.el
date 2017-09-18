@@ -48,6 +48,8 @@
 
             (diminish 'cider-mode)
 
+            (cider-auto-test-mode)
+
             (defadvice cider-create-grimoire-buffer
                 (after grimoire-buffer-after activate compile)
               "Enables closing the Grimoire buffer with q, for instance."
