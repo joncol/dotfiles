@@ -105,7 +105,8 @@
 (use-package evil-goggles
   :diminish evil-goggles-mode
   :config
-  (evil-goggles-mode))
+  (evil-goggles-mode)
+  (setq evil-goggles-pulse t))
 
 (use-package evil-search-highlight-persist
   :init
