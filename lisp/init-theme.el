@@ -13,12 +13,12 @@
      ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
-     ;; 'molokai
+     'molokai
      ;; 'mustang
      ;; 'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
-     'reykjavik
+     ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
@@ -137,6 +137,9 @@
    (set-face-background 'sp-pair-overlay-face "#582c6b")
    (set-face-background 'swiper-line-face "#582c6b")
    (set-face-background 'region "#582c6b")
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+   (set-face-foreground 'evil-search-highlight-persist-highlight-face "#465457")
+   (set-face-background 'lazy-highlight "#f9bf3b")
    (when (featurep 'mu4e)
      (set-face-background 'mu4e-highlight-face "#582c6b")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
