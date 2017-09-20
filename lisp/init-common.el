@@ -25,6 +25,10 @@
 (with-eval-after-load "hideshow"
   (diminish 'hs-minor-mode))
 (winner-mode)
+(global-set-key (kbd "C-x C-j")
+                (lambda ()
+                  (interactive)
+                  (dired ".")))
 
 (when (eq system-type 'gnu/linux)
   (setq browse-url-browser-function 'browse-url-generic
