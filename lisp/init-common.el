@@ -53,11 +53,7 @@
 
 (use-package ace-window
   :init
-  (global-set-key [remap other-window] 'ace-window)
-  ;; (custom-set-faces
-  ;;  '(aw-leading-char-face
-  ;;    ((t (:inherit avy-lead-face :height 1.5)))))
-  )
+  (global-set-key [remap other-window] 'ace-window))
 
 (use-package ahk-mode)
 
