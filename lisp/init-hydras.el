@@ -19,12 +19,13 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs"
+menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _k_urecolor _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs"
   ("a" jco/hydra-app/body)
   ("b" counsel-bookmark)
   ("B" helm-chrome-bookmarks)
   ("c" jco/hydra-config/body)
   ("f" jco/hydra-find/body)
+  ("k" jco/hydra-kurecolor/body)
   ("l" jco/hydra-lang/body)
   ("o" jco/hydra-org/body)
   ("p" jco/hydra-packages/body)
@@ -55,13 +56,29 @@ find: _f_un _l_ib _v_ar"
   ("l" find-library)
   ("v" find-variable))
 
+(defvar jco/global-hl-line-mode-hydra-temp)
+(set (make-local-variable 'jco/global-hl-line-mode-hydra-temp) nil)
+
+(defhydra jco/hydra-kurecolor
+  (:color pink :hint nil
+   :pre (progn (set 'jco/global-hl-line-mode-hydra-temp (global-hl-line-mode))
+               (global-hl-line-mode -1))
+   :post (global-hl-line-mode jco/global-hl-line-mode-hydra-temp))
+"
+kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_rightness(-)"
+  ("H" kurecolor-increase-hue-by-step)
+  ("h" kurecolor-decrease-hue-by-step)
+  ("S" kurecolor-increase-saturation-by-step)
+  ("s" kurecolor-decrease-saturation-by-step)
+  ("B" kurecolor-increase-brightness-by-step)
+  ("b" kurecolor-decrease-brightness-by-step)
+  ("q" nil "quit" :color blue))
+
 (require 'langtool)
 
 (defhydra jco/hydra-lang (:color teal :hint nil)
 "
-_f_lyspell
-
-_l_angtool _c_orrect _d_one _s_dcv"
+lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("f" flyspell-mode)
   ("l" langtool-check)
   ("c" langtool-correct-buffer)
@@ -70,7 +87,7 @@ _l_angtool _c_orrect _d_one _s_dcv"
 
 (defhydra jco/hydra-org (:color teal :hint nil)
   "
-Org: _a_genda _p_omodoro"
+org: _a_genda _p_omodoro"
   ("a" (org-agenda nil "d"))
   ("p" (org-pomodoro)))
 

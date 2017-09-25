@@ -272,6 +272,8 @@
 
 (use-package json-mode)
 
+(use-package kurecolor)
+
 (use-package magit
   :config
   ;; Needed for success status message to be shown.
