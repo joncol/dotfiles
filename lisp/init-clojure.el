@@ -60,6 +60,7 @@
             (put-clojure-indent 'GET 2)
             (put-clojure-indent 'POST 2)
             (put-clojure-indent 'PUT 2)
+            (put-clojure-indent 'defstate nil)
 
             (evil-leader/set-key "h d" 'cider-doc)
             (evil-leader/set-key "h g" 'cider-grimoire)
