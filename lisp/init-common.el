@@ -85,7 +85,7 @@
 
   (setq avy-case-fold-search nil))
 
-(use-package bookmark+ :disabled t)
+(use-package bookmark+)
 
 (use-package buffer-move
   :config
@@ -102,7 +102,7 @@
   :config
   (push ".*" desktop-clear-preserve-buffers))
 
-(use-package dired+ :disabled t)
+(use-package dired+)
 
 (use-package counsel
   :after ivy
