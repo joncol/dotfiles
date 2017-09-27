@@ -194,6 +194,14 @@
   (setq fortune-dir "/usr/share/games/fortunes")
   (setq fortune-file "/usr/share/games/fortunes"))
 
+(setq inhibit-startup-message t)
+
+(use-package fortune-cookie
+  :config
+  (setq fortune-cookie-cowsay-enable t)
+  (setq fortune-cookie-cowsay-args "-f turtle")
+  (fortune-cookie-mode))
+
 (use-package fuzzy
   :config
   (turn-on-fuzzy-isearch))
