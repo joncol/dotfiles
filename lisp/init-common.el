@@ -229,6 +229,8 @@
   ;; (setq guide-key/popup-window-position "right")
   (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
 
+(use-package help-fns+)
+
 (use-package imenu-anywhere
   :config
   (global-set-key (kbd "M-m") #'imenu-anywhere))
