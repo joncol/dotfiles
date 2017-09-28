@@ -199,7 +199,7 @@
 (use-package fortune-cookie
   :config
   (setq fortune-cookie-cowsay-enable t)
-  (setq fortune-cookie-cowsay-args "-f turtle")
+  (setq fortune-cookie-cowsay-args "-f tux")
   (fortune-cookie-mode))
 
 (use-package fuzzy
