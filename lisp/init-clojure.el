@@ -62,6 +62,10 @@
             (put-clojure-indent 'PUT 2)
             (put-clojure-indent 'defstate nil)
 
+            (define-clojure-indent
+              (alet 'defun)
+              (mlet 'defun))
+
             (evil-leader/set-key "h d" 'cider-doc)
             (evil-leader/set-key "h g" 'cider-grimoire)
             (evil-leader/set-key "h G" 'cider-grimoire-web)
