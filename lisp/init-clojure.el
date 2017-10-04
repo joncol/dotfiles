@@ -66,6 +66,9 @@
               (alet 'defun)
               (mlet 'defun))
 
+            (add-to-list 'clojure-align-binding-forms "m/mlet")
+            (add-to-list 'clojure-align-binding-forms "m/alet")
+
             (evil-leader/set-key "h d" 'cider-doc)
             (evil-leader/set-key "h g" 'cider-grimoire)
             (evil-leader/set-key "h G" 'cider-grimoire-web)
