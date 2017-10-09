@@ -256,6 +256,7 @@
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers nil)
   (setq enable-recursive-minibuffers t)
+  (setq ivy-use-selectable-prompt t)
   (evil-leader/set-key "b" 'ivy-switch-buffer)
   (evil-leader/set-key "r" 'ivy-resume)
 
@@ -527,6 +528,14 @@
 (require 'qmake-mode)
 
 (use-package iedit)
+
+(use-package s
+  :config
+  (setq user-mail-address
+        (concat (s-replace " " "." (downcase user-full-name)) "@"
+                (if (jco/at-office-p)
+                    "zimpler.com"
+                  "mykolab.com"))))
 
 (use-package undo-tree
   :diminish undo-tree-mode

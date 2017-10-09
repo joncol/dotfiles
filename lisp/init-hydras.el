@@ -128,7 +128,6 @@ vcs: _g_it _m_ercurial"
   ("m" monky-status))
 
 (require 'init-eshell)
-(require 'init-ext-apps)
 
 (defhydra jco/hydra-app (:color teal :hint nil)
   "

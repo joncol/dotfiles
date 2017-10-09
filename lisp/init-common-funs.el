@@ -250,6 +250,14 @@ invokation."
   (apply 'start-process program nil program
          (append args (list (buffer-file-name)))))
 
+(defun jco/vim ()
+  "Open current buffer in Vim."
+  (interactive)
+  (start-process "gvim" nil
+                 "gvim"
+                 (format "+%d" (line-number-at-pos))
+                 (buffer-file-name)))
+
 (provide 'init-common-funs)
 
 ;;; init-common-funs.el ends here

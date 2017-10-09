@@ -6,12 +6,12 @@
 
 ;;; Code:
 
-(defun yank-current-filename ()
+(defun jco/yank-current-filename ()
   "Yank the name of the current file to the kill ring."
   (interactive)
   (kill-new (buffer-file-name)))
 
-(global-set-key (kbd "S-<f6>") 'yank-current-filename)
+(global-set-key (kbd "S-<f6>") 'jco/yank-current-filename)
 
 (let ((init-file (concat user-emacs-directory "init.el")))
   (global-set-key (kbd "<f9>")

@@ -16,15 +16,13 @@
     init-evil
     init-common
     ;; init-circe
-    init-erc
+    ;; init-erc
     init-eshell
     init-fci
     init-font
     init-company
-    init-ext-apps
     ;; init-helm
     init-hydras
-    init-id
     init-ido
     init-mu4e
     init-neotree
