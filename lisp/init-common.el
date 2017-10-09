@@ -424,7 +424,6 @@
 (when (not (server-running-p))
   (server-start))
 
-(setq inhibit-startup-message t)
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
 
