@@ -567,6 +567,8 @@
   '(defun enriched-decode-display-prop (start end &optional param)
      (list start end)))
 
+;; (require 'ivy_buffer_extend)
+
 (provide 'init-common)
 
 ;;; init-common.el ends here
