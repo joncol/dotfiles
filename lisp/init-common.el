@@ -408,10 +408,10 @@
   (volatile-highlights-mode))
 
 (use-package yaml-mode
-  :init
-
+  :config
   (add-hook 'yaml-mode-hook
             (lambda ()
+              (modify-syntax-entry ?- "w")
               (setq evil-shift-width 2))))
 
 (use-package zeal-at-point
