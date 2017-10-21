@@ -17,6 +17,7 @@
     init-common
     ;; init-circe
     ;; init-erc
+    init-elfeed
     init-eshell
     init-fci
     init-font

@@ -157,29 +157,6 @@
   (setq electric-pair-skip-whitespace nil)
   (setq electric-pair-delete-adjacent-pairs nil))
 
-(use-package elfeed
-  :bind (("U" . elfeed-update))
-  :config
-  (add-to-list 'evil-motion-state-modes 'elfeed-show-mode)
-  (add-hook 'elfeed-search-mode-hook
-            (lambda ()
-              (turn-off-fci-mode)))
-  (add-hook 'elfeed-show-mode-hook
-            (lambda ()
-              (turn-off-fci-mode)
-              (visual-line-mode)
-              (visual-fill-column-mode)))
-  (setq shr-use-fonts nil))
-
-(use-package elfeed-goodies
-  :config
-  (elfeed-goodies/setup))
-
-(use-package elfeed-org
-  :config
-  (elfeed-org)
-  (setq rmh-elfeed-org-files '("~/Dropbox/elfeed.org")))
-
 (use-package esup)
 
 (use-package evil-magit
