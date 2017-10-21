@@ -157,6 +157,17 @@
   (setq electric-pair-skip-whitespace nil)
   (setq electric-pair-delete-adjacent-pairs nil))
 
+(use-package elfeed
+  :config
+  (global-set-key (kbd "C-x w") 'elfeed))
+
+(use-package elfeed-goodies)
+
+(use-package elfeed-org
+  :config
+  (elfeed-org)
+  (setq rmh-elfeed-org-files '("~/Dropbox/shared/elfeed.org")))
+
 (use-package esup)
 
 (use-package evil-magit
