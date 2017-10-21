@@ -7,7 +7,6 @@
 ;;; Code:
 
 (use-package elfeed
-  :bind (("U" . elfeed-update))
   :config
   (add-hook 'elfeed-search-mode-hook
             (lambda ()
