@@ -158,15 +158,27 @@
   (setq electric-pair-delete-adjacent-pairs nil))
 
 (use-package elfeed
+  :bind (("U" . elfeed-update))
   :config
-  (global-set-key (kbd "C-x w") 'elfeed))
+  (add-to-list 'evil-motion-state-modes 'elfeed-show-mode)
+  (add-hook 'elfeed-search-mode-hook
+            (lambda ()
+              (turn-off-fci-mode)))
+  (add-hook 'elfeed-show-mode-hook
+            (lambda ()
+              (turn-off-fci-mode)
+              (visual-line-mode)
+              (visual-fill-column-mode)))
+  (setq shr-use-fonts nil))
 
-(use-package elfeed-goodies)
+(use-package elfeed-goodies
+  :config
+  (elfeed-goodies/setup))
 
 (use-package elfeed-org
   :config
   (elfeed-org)
-  (setq rmh-elfeed-org-files '("~/Dropbox/shared/elfeed.org")))
+  (setq rmh-elfeed-org-files '("~/Dropbox/elfeed.org")))
 
 (use-package esup)
 
@@ -554,6 +566,8 @@
   :config
   (setq undo-tree-visualizer-diff t)
   (setq undo-tree-visualizer-timestamps t))
+
+(use-package visual-fill-column)
 
 (use-package which-key
   :diminish which-key-mode
