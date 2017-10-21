@@ -140,6 +140,7 @@
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (set-face-foreground 'evil-search-highlight-persist-highlight-face "#465457")
    (set-face-background 'lazy-highlight "#f9bf3b")
+   (set-face-background 'ffap "#582c6b")
    (when (featurep 'mu4e)
      (set-face-background 'mu4e-highlight-face "#582c6b")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
