@@ -22,6 +22,7 @@
   :config
   (elfeed-org)
   (setq rmh-elfeed-org-files '("~/Dropbox/emacs/elfeed.org")))
+
 (provide 'init-elfeed)
 
 ;;; init-elfeed.el ends here
