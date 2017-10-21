@@ -5,10 +5,10 @@
   (set-frame-size (selected-frame) 100 60))
 
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
+  (set-frame-font "Hack")
   (if (>= (x-display-pixel-height) 2160)
-      (set-frame-font "Hack")
-    (set-frame-font (if (jco/at-office-p) "Hack-11" "Hack-10")))
-  (set-face-attribute 'default nil :height 140)
+      (set-face-attribute 'default nil :height 140)
+    (set-face-attribute 'default nil :height 105))
   (set-frame-size (selected-frame) 93 64))
 
  ((eq system-type 'darwin)
