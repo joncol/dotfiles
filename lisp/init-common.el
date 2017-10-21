@@ -85,7 +85,9 @@
 
   (setq avy-case-fold-search nil))
 
-(use-package bookmark+)
+(use-package bookmark+
+  :config
+  (setq bookmark-default-file "~/Dropbox/emacs/bookmarks"))
 
 (use-package buffer-move
   :config
