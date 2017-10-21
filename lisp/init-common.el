@@ -137,6 +137,12 @@
     "Sort dired listings with directories first before adding marks."
     (mydired-sort)))
 
+(use-package dired-subtree
+  :config
+  (bind-keys :map dired-mode-map
+             ("i" . dired-subtree-insert)
+             (";" . dired-subtree-remove)))
+
 (use-package docker-compose-mode)
 
 (use-package dockerfile-mode)
