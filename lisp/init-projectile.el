@@ -14,13 +14,34 @@
   (when helm-mode
     (define-key projectile-command-map (kbd "s a") #'helm-ag-project-root)
     (setq projectile-completion-system 'helm))
-
   (when (not (eq system-type 'windows-nt))
     (setq projectile-indexing-method 'native))
-
   (setq projectile-enable-caching t)
+  (setq projectile-switch-project-action #'projectile-commander)
+  (evil-leader/set-key "x p" #'projectile-commander)
+  (def-projectile-commander-method ?F
+    "Git fetch."
+    (magit-status)
+    (if (fboundp 'magit-fetch-from-upstream)
+        (call-interactively #'magit-fetch-from-upstream)
+      (call-interactively #'magit-fetch-current)))
+  (def-projectile-commander-method ?j
+    "Jack-in."
+    (let* ((opts (projectile-current-project-files))
+           (file (ido-completing-read
+                  "Find file: "
+                  opts
+                  nil nil nil nil
+                  (car (cl-member-if
+                        (lambda (f)
+                          (string-match "core\\.clj\\'" f))
+                        opts)))))
+      (find-file (expand-file-name
+                  file (projectile-project-root)))
+      (run-hooks 'projectile-find-file-hook)
+      (cider-jack-in)))
 
-  :diminish projectile-mode)
+:diminish projectile-mode)
 
 (use-package helm-projectile
   :if helm-mode
