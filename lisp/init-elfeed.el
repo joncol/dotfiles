@@ -8,15 +8,19 @@
 
 (use-package elfeed
   :config
-  (add-hook 'elfeed-search-mode-hook
+  (setq shr-use-fonts nil))
+
+(add-hook 'elfeed-search-mode-hook
             (lambda ()
               (turn-off-fci-mode)))
-  (add-hook 'elfeed-show-mode-hook
-            (lambda ()
-              (turn-off-fci-mode)
-              (visual-line-mode)
-              (visual-fill-column-mode)))
-  (setq shr-use-fonts nil))
+
+(defadvice elfeed-show-entry
+    (after elfeed-show-refresh-after activate compile)
+  "Make text of message be correctly formatted in visual-fill-column-mode."
+  (visual-line-mode)
+  (visual-fill-column-mode)
+  (turn-off-fci-mode)
+  (elfeed-show-refresh))
 
 (use-package elfeed-org
   :config
