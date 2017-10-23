@@ -19,6 +19,8 @@
   (setq projectile-enable-caching t)
   (setq projectile-switch-project-action #'projectile-commander)
   (evil-leader/set-key "x p" #'projectile-commander)
+  (evil-leader/set-key "x f" #'counsel-projectile-find-file)
+  (evil-leader/set-key "x a" #'counsel-projectile-ag)
   (def-projectile-commander-method ?F
     "Git fetch."
     (magit-status)
@@ -41,7 +43,7 @@
       (run-hooks 'projectile-find-file-hook)
       (cider-jack-in)))
 
-:diminish projectile-mode)
+  :diminish projectile-mode)
 
 (use-package helm-projectile
   :if helm-mode
