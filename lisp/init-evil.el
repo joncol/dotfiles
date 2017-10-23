@@ -156,7 +156,6 @@
 
 (evil-leader/set-key "V" 'jco/vcs-status)
 
-(evil-leader/set-key "q" 'kill-buffer)
 (evil-leader/set-key "n n" 'narrow-to-defun)
 (evil-leader/set-key "n r" 'narrow-to-region)
 (evil-leader/set-key "n s" 'org-narrow-to-subtree)
