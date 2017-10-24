@@ -334,6 +334,10 @@
 
 (use-package package-utils)
 
+(use-package pdf-tools
+  :config
+  (pdf-tools-install))
+
 (use-package rainbow-mode :diminish rainbow-mode)
 
 (use-package rainbow-delimiters :diminish rainbow-delimiters-mode)
