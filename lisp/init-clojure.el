@@ -99,14 +99,16 @@
           (lambda ()
             ;; For some reason, `windmove-default-keybindings' doesn't work.
             (bind-keys :map cider-test-report-mode-map
-                       ("C-w h"   . windmove-left)
-                       ("C-w j"   . windmove-down)
-                       ("C-w k"   . windmove-up)
-                       ("C-w l"   . windmove-right)
-                       ("C-w C-h" . windmove-left)
-                       ("C-w C-j" . windmove-down)
-                       ("C-w C-k" . windmove-up)
-                       ("C-w C-l" . windmove-right))))
+                       ("<tab>"     . forward-button)
+                       ("<backtab>" . backward-button)
+                       ("C-w h"     . windmove-left)
+                       ("C-w j"     . windmove-down)
+                       ("C-w k"     . windmove-up)
+                       ("C-w l"     . windmove-right)
+                       ("C-w C-h"   . windmove-left)
+                       ("C-w C-j"   . windmove-down)
+                       ("C-w C-k"   . windmove-up)
+                       ("C-w C-l"   . windmove-right))))
 
 (defun modify-syntax-entries ()
   "Do not treat valid identifier symbols as word separators."
