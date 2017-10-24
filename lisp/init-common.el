@@ -256,6 +256,8 @@
 
 (global-set-key (kbd "M-M") #'imenu)
 
+(use-package insert-shebang)
+
 (use-package ivy
   :diminish ivy-mode
 
