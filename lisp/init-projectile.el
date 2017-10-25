@@ -21,6 +21,9 @@
   (evil-leader/set-key "x p" #'projectile-commander)
   (evil-leader/set-key "x f" #'counsel-projectile-find-file)
   (evil-leader/set-key "x a" #'counsel-projectile-ag)
+  (def-projectile-commander-method ?a
+    "Ag."
+    (counsel-projectile-ag))
   (def-projectile-commander-method ?F
     "Git fetch."
     (magit-status)
