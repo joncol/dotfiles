@@ -36,6 +36,6 @@
           (lambda ()
             (setq evil-shift-width 2)
             (smartparens-mode)
-            (evil-leader/set-key "x f" 'jco/xmllint-format-buffer)))
+            (evil-leader/set-key "x l" 'jco/xmllint-format-buffer)))
 
 (provide 'init-nxml)
