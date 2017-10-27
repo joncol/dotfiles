@@ -824,7 +824,7 @@ if has("gui_running")
   set background=dark
   set cursorline
 elseif s:uname != "Windows" || !has("nvim")
-  " colorscheme BusyBee
+  colorscheme BusyBee
   autocmd InsertEnter * set cul
   autocmd InsertLeave * set nocul
 endif
