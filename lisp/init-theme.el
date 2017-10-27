@@ -13,14 +13,14 @@
      ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
-     'molokai
+     ;; 'molokai
      ;; 'mustang
      ;; 'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
-     ;; 'sanityinc-tomorrow-eighties
+     'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
      ;; 'solarized-light
@@ -203,6 +203,7 @@
   ((sanityinc-tomorrow-bright sanityinc-tomorrow-day
                               sanityinc-tomorrow-eighties
                               sanityinc-tomorrow-night)
+   (setq jco/cursor-color "snow")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "RoyalBlue4"))
 
