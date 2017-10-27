@@ -98,6 +98,9 @@ Plugin 'python.vim'
 Plugin 'tComment'
 Plugin 'visualrepeat'
 
+call vundle#end()
+filetype plugin indent on
+
 if has("unix")
   let s:uname=system("uname -s")
 else
@@ -359,16 +362,6 @@ if s:uname != "Windows" && !has("gui_running") && !has("nvim")
 endif
 
 set hlsearch
-"let g:solarized_bold=0
-if has("gui_running")
-  colorscheme molokai
-  set background=dark
-  set cursorline
-elseif s:uname != "Windows" || !has("nvim")
-  colorscheme summerfruit256
-  autocmd InsertEnter * set cul
-  autocmd InsertLeave * set nocul
-endif
 
 set guioptions-=m " no menu
 set guioptions-=T " no toolbar
@@ -809,7 +802,7 @@ endif
 nnoremap <a-g> <c-]>
 
 filetype off
-filetype plugin indent on
+"filetype plugin indent on
 syntax on
 
 " For some reason, this needs to be put here to have effect
@@ -824,5 +817,16 @@ augroup more_au
   " Disable automatic comment insertion
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
+
+"let g:solarized_bold=0
+if has("gui_running")
+  colorscheme molokai
+  set background=dark
+  set cursorline
+elseif s:uname != "Windows" || !has("nvim")
+  " colorscheme BusyBee
+  autocmd InsertEnter * set cul
+  autocmd InsertLeave * set nocul
+endif
 
 let g:vim_initialized = 1
