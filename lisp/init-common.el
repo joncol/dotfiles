@@ -116,7 +116,10 @@
 
 (use-package counsel-projectile
   :init
-  (counsel-projectile-on))
+  (counsel-projectile-on)
+  :config
+  (setq counsel-projectile-ag-initial-input
+        '(thing-at-point 'symbol t)))
 
 (use-package desktop
   :config
