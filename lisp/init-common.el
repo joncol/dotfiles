@@ -411,6 +411,20 @@
   (evil-leader/set-key "s k" 'string-inflection-kebab-case)
   (evil-leader/set-key "s c" 'string-inflection-camelcase))
 
+(defun jco/camel-case-to-sentence (text)
+  "Convert TEXT from camelCase to a sentence.
+Example: `helloWorld` becomes `Hello world`."
+  (interactive)
+  (let* ((snake (string-inflection-underscore-function text))
+         (words (replace-regexp-in-string "_" " " snake)))
+    (jco/capitalize-first-char words)))
+
+(defun jco/cpp-class-name ()
+  "Return the class name corresponding to the name of the current buffer."
+  (interactive)
+  (let* ((base-name (file-name-base buffer-file-name)))
+    (string-inflection-camelcase-function base-name)))
+
 (use-package sx
   :config
   (with-eval-after-load "sx-question-mode"
