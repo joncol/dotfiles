@@ -258,6 +258,12 @@ invokation."
                  (format "+%d" (line-number-at-pos))
                  (buffer-file-name)))
 
+(defmacro measure-time (&rest body)
+  "Measure the time it takes to evaluate BODY."
+  `(let ((time (current-time)))
+     ,@body
+     (message "%.06f" (float-time (time-since time)))))
+
 (provide 'init-common-funs)
 
 ;;; init-common-funs.el ends here
