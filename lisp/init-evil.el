@@ -64,7 +64,8 @@
                       (sx-question-list-mode    . emacs)
                       (sx-question-mode         . emacs)
                       (term-mode                . emacs)
-                      (xkcd-mode                . emacs)))
+                      (xkcd-mode                . emacs)
+                      (xref-mode                . emacs)))
     (evil-set-initial-state (car mode-map) (cdr mode-map)))
 
   (defadvice org-goto (around make-it-evil activate)
