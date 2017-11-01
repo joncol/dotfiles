@@ -13,6 +13,9 @@
      ;; 'adwaita
      ;; 'darktooth
      ;; 'gotham
+     ;; 'kaolin-dark
+     ;; 'kaolin-eclipse
+     ;; 'kaolin-ocean
      ;; 'molokai
      ;; 'mustang
      ;; 'nubox-dark
@@ -48,6 +51,7 @@
        gruber-darker-theme
        gruvbox-theme
        hemisu-theme
+       kaolin-themes
        leuven-theme
        material-theme
        minimal-theme
