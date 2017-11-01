@@ -17,7 +17,7 @@
   (when (not (eq system-type 'windows-nt))
     (setq projectile-indexing-method 'native))
   (setq projectile-enable-caching t)
-  (setq projectile-switch-project-action #'projectile-commander)
+  ;; (setq projectile-switch-project-action #'projectile-commander)
   (evil-leader/set-key "x p" #'projectile-commander)
   (evil-leader/set-key "x f" #'counsel-projectile-find-file)
   (evil-leader/set-key "x a" #'counsel-projectile-ag)
