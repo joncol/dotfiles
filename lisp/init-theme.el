@@ -20,10 +20,11 @@
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
-     'sanityinc-tomorrow-eighties
+     ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
      ;; 'solarized-light
+     'tao-yin
      )
 
 (defvar jco/theme-packages)
