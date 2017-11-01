@@ -242,6 +242,7 @@
    (setq jco/cursor-color "azure4"))
 
   (tao-yin
+   (set-face-background 'region "#4a3f51")
    (setq jco/cursor-color "gray50")
    (set-face-background 'hl-line "gray16")
    (set-face-foreground 'linum "gray25")
