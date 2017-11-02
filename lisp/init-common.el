@@ -369,7 +369,7 @@
   ;; (sp-pair "\"" nil :actions :rem)
   (show-smartparens-global-mode)
   (setq sp-navigate-interactive-always-progress-point t)
-  (jco/define-bindings smartparens-mode-map
+  (jco/define-bindings global-map
                        '(("M-(" . (lambda (&optional arg)
                                     (interactive "P")
                                     (sp-wrap-with-pair "(")))
@@ -381,8 +381,9 @@
                                     (sp-wrap-with-pair "{")))
                          ("M-\"" . (lambda (&optional arg)
                                      (interactive "P")
-                                     (sp-wrap-with-pair "\"")))
-                         ("M-?" . sp-convolute-sexp)
+                                     (sp-wrap-with-pair "\"")))))
+  (jco/define-bindings smartparens-mode-map
+                       '(("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
                          ("M-j" . sp-join-sexp)
                          ("M-C" . sp-clone-sexp)
