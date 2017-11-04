@@ -6,8 +6,6 @@
 
 ;;; Code:
 
-(require 'shell)
-
 (defun jco/update-config ()
   "Get the latest config from source control."
   (shell-process-pushd user-emacs-directory)
@@ -46,7 +44,6 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
 (defun jco/common-prog ()
   "Common setup for programming modes."
   (ethan-wspace-mode)
-  (nlinum-mode)
   (rainbow-delimiters-mode)
   (rainbow-mode t)
   (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
@@ -134,8 +131,6 @@ If PRINT-MESSAGE is non-nil, print a message"
     (if (string= proj "src")
         ""
       (concat "--target " proj))))
-
-(require 'f)
 
 (defun jco/cmake-project-name ()
   "Get name of CMake project.

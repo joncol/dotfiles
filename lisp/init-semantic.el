@@ -1,6 +1,14 @@
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (not (eq system-type 'gnu/linux))
+;;; #init-semantic.el --- Semantic config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
+(when (not (eq system-type 'gnu/linux))
+  (add-hook 'c-mode-common-hook
+            (lambda ()
               (flycheck-mode -1)
 
               (with-eval-after-load 'c++
@@ -21,3 +29,5 @@
                   ad-do-it)))))
 
 (provide 'init-semantic)
+
+;;; init-semantic.el ends here

@@ -6,14 +6,9 @@
 
 ;;; Code:
 
-(require 'init-common-funs)
-
 (when (jco/at-office-p)
     (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
     (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)))
-
-(require 'cc-align)
-(require 'cc-defs)
 
 (defun inside-class-enum-p (pos)
   "Check if POS is within the braces of a C++ \"enum class\"."
@@ -36,8 +31,6 @@
       '-
     '+))
 
-(require 'cc-vars)
-
 (defun jco/fix-enum-class ()
   "Setup `c++-mode' to better handle \"class enum\"."
   (add-to-list 'c-offsets-alist '(topmost-intro-cont . align-enum-class))
@@ -54,9 +47,6 @@
                      (looking-at ".*[(,][ \t]*\\[[^]]*\\][ \t]*[({][^}]*$"))))
             0
           ad-do-it)))
-
-(require 'cc-mode)
-(require 'flycheck)
 
 (fset 'jco/cpp-fix-constr-destr
       [?V ?j ?= ?\M-x ?j ?c ?o ?/ ?c ?p ?p ?- ?i ?n ?s ?e ?r ?t ?- ?c ?l ?a ?s

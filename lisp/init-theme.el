@@ -19,7 +19,7 @@
      ;; 'molokai
      ;; 'mustang
      ;; 'nubox-dark
-     ;; 'nubox-light
+     'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
@@ -27,7 +27,7 @@
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
      ;; 'solarized-light
-     'tao-yin
+     ;; 'tao-yin
      )
 
 (defvar jco/theme-packages)
@@ -40,7 +40,7 @@
        cherry-blossom-theme
        color-theme-sanityinc-tomorrow
        cyberpunk-theme
-       darkane-theme
+       ;; darkane-theme
        darktooth-theme
        doom-themes
        espresso-theme
@@ -70,21 +70,15 @@
   (unless (package-installed-p p)
     (package-install p)))
 
-(use-package powerline)
+(use-package powerline
+  :disabled t)
 
 (use-package spaceline
+  :disabled t
   :init
   (require 'spaceline-config)
   (setq powerline-default-separator 'arrow)
   (spaceline-spacemacs-theme))
-
-(use-package spaceline-all-the-icons
-  :disabled t
-  :if (not (eq system-type 'windows-nt))
-  :after spaceline
-  :config
-  (spaceline-all-the-icons-theme)
-  (setq spaceline-all-the-icons-separator-type 'arrow))
 
 (load-theme jco/theme t)
 
@@ -101,7 +95,9 @@
   (adwaita
    (set-face-background 'hl-line "#dadfe1")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
-   (set-face-background 'sp-pair-overlay-face "LightBlue")
+   (add-hook 'smartparens-mode-hook
+             #'(lambda ()
+                 (set-face-background 'sp-pair-overlay-face "LightBlue")))
    (setq jco/cursor-color  "#101f24")
    (when (featurep 'mu4e)
      (set-face-background 'mu4e-highlight-face "#7ceece")
@@ -139,7 +135,9 @@
 
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
-   (set-face-background 'sp-pair-overlay-face "#582c6b")
+   (add-hook 'smartparens-mode-hook
+             #'(lambda ()
+                 (set-face-background 'sp-pair-overlay-face "#582c6b")))
    (set-face-background 'swiper-line-face "#582c6b")
    (set-face-background 'region "#582c6b")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
@@ -168,7 +166,9 @@
    (set-face-background 'swiper-line-face "#2a2d2e")
    (set-face-background 'vhl/default-face "#2a2d2e")
    (set-face-background 'iedit-occurrence "#2a2d2e")
-   (set-face-background 'sp-pair-overlay-face "#444748")
+   (add-hook 'smartparens-mode-hook
+             #'(lambda ()
+                 (set-face-background 'sp-pair-overlay-face "#444748")))
    (set-face-background 'region "#582c6b")
    (set-face-background 'ivy-minibuffer-match-face-2 "#444748")
    (set-face-background 'ffap "#582c6b")
@@ -179,10 +179,12 @@
    (set-face-background 'swiper-line-face "#e0dcbe")
    (set-face-background 'hl-line "#e0dcbe")
    (set-face-background 'vhl/default-face "#e0dcbe")
-   (set-face-background 'sp-pair-overlay-face "#c7c3a5")
+   (add-hook 'smartparens-mode-hook
+             #'(lambda ()
+                 (set-face-background 'sp-pair-overlay-face "#c7c3a5")))
    (set-face-background 'region "#ffc3ff")
    (set-face-background 'ffap "#ffc3ff")
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#7ceece")
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
 
    (when (featurep 'mu4e)
      (set-face-background 'mu4e-highlight-face "#7ceece")
@@ -258,25 +260,15 @@
 (set-face-foreground 'minibuffer-prompt "#263238")
 (set-face-background 'minibuffer-prompt "#afd700")
 
-;; Fix ediff colors.
-(require 'ediff)
-(dolist (f '(ediff-current-diff-A
-             ediff-current-diff-Ancestor
-             ediff-current-diff-B
-             ediff-current-diff-C
-             ediff-even-diff-A
-             ediff-even-diff-Ancestor
-             ediff-even-diff-B
-             ediff-even-diff-C
-             ediff-fine-diff-A
-             ediff-fine-diff-Ancestor
-             ediff-fine-diff-B
-             ediff-fine-diff-C
-             ediff-odd-diff-A
-             ediff-odd-diff-Ancestor
-             ediff-odd-diff-B
-             ediff-odd-diff-C))
-  (set-face-foreground f "black"))
+;; Fix annoyingly dark backgrounds of dired-subtree faces.
+(add-hook 'dired-mode-hook
+          #'(lambda ()
+              (let* ((ns (number-sequence 1 5))
+                     (f  #'(lambda (x)
+                             (intern (format "dired-subtree-depth-%d-face" x))))
+                     (ss (map 'cons f ns)))
+                (dolist (f ss)
+                  (set-face-background f nil)))))
 
 (when (not (eq jco/theme 'cyberpunk))
   (let ((info-bg "gray16"))
@@ -292,14 +284,17 @@
                  info-variable-ref-item))
       (set-face-background f info-bg))))
 
-(set-face-background 'helm-buffer-directory "gray60")
-
 (when (boundp 'jco/cursor-color)
   (require 'evil-states)
   (setq evil-normal-state-cursor `(,jco/cursor-color box))
   (setq evil-insert-state-cursor `(,jco/cursor-color bar)))
 
 (blink-cursor-mode -1)
+
+(use-package smart-mode-line
+  :config
+  (setq sml/no-confirm-load-theme t)
+  (sml/setup))
 
 (provide 'init-theme)
 

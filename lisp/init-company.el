@@ -10,14 +10,16 @@
   :init
   (add-hook 'after-init-hook 'global-company-mode)
 
-  :bind (([C-iso-lefttab] . company-ispell))
+  :bind (([C-iso-lefttab] . company-ispell)
+         :map company-active-map
+         ("C-j" . company-select-next-or-abort)
+         ("C-k" . company-select-previous-or-abort)
+         ("C-n" . company-select-next-or-abort)
+         ("C-p" . company-select-previous-or-abort))
 
   :config
   (advice-add 'company-call-frontends :before
               #'jco/turn-off-fci-during-company-complete)
-  (jco/define-bindings company-active-map
-                       '(("C-j" . company-select-next-or-abort)
-                         ("C-k" . company-select-previous-or-abort)))
 
   ;; (setq tab-always-indent 'complete)
   (add-to-list 'completion-styles 'initials t)
@@ -33,12 +35,14 @@
   :diminish company-mode)
 
 (use-package company-quickhelp
+  :defer t
   :config
   (setq company-quickhelp-delay 0)
-  (with-eval-after-load 'company
-    (define-key company-active-map
-      (kbd "M-h") #'company-quickhelp-manual-begin))
-  )
+  (company-quickhelp-mode))
+
+(add-hook 'company-mode-hook
+          #'(lambda ()
+              (require 'company-quickhelp)))
 
 (defun jco/turn-off-fci-during-company-complete(command)
   "Fixes the issue where the first item is shown far off to the right."

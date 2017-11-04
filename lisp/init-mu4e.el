@@ -7,57 +7,55 @@
 ;;; Code:
 
 (when (and (not (eq system-type 'windows-nt))
-           (not (string-equal system-name "joule-Broxton-M"))
            (not (string-equal system-name "jco")))
 
-  ;; Useful for searching contacts.
-  (use-package helm-mu)
+  (require 'mu4e-context)
 
   (setq mu4e-contexts
         `( ,(make-mu4e-context
-             :name "Private"
-             :enter-func (lambda ()
-                           (mu4e-message "Switch to the Private context"))
-             ;; leave-func not defined
-             :match-func (lambda (msg)
-                           (if msg
-                               (mu4e-message-contact-field-matches
-                                msg :to "jonas.collberg@mykolab.com")
-                             (not (jco/at-office-p))))
-             :vars '((user-mail-address . "jonas.collberg@mykolab.com")
-                     ;; (mu4e-compose-signature . "Jonas\n")
-                     (mu4e-drafts-folder . "/personal_mykolab/Drafts")
-                     (mu4e-sent-folder . "/personal_mykolab/Sent")
-                     (mu4e-trash-folder . "/personal_mykolab/Trash")
-                     (mu4e-maildir-shortcuts .
-                                             (("/personal_mykolab/INBOX" . ?i)
-                                              ("/personal_mykolab/Sent" . ?s)
-                                              ("/personal_mykolab/Trash" . ?t)))
-                     (mu4e-completing-read-function . compl-fun)
-                     ))
-           ,(make-mu4e-context
-             :name "Work"
-             :enter-func (lambda () (mu4e-message
-                                     "Switch to the Work context"))
-             ;; leave-fun not defined
-             :match-func (lambda (msg)
-                           (if msg
-                               (mu4e-message-contact-field-matches
-                                msg :to "jonas.collberg@zimpler.com")
-                             (jco/at-office-p)))
-             :vars '((user-mail-address . "jonas.collberg@zimpler.com")
-                     ;; (mu4e-compose-signature . (concat
-                     ;;                             "Kind regards,\n"
-                     ;;                             user-full-name))
-                     (mu4e-drafts-folder . "/zimpler_gmail/[Gmail].Drafts")
-                     (mu4e-sent-folder . "/zimpler_gmail/[Gmail].Sent Mail")
-                     (mu4e-trash-folder . "/zimpler_gmail/[Gmail].Trash")
-                     (mu4e-maildir-shortcuts .
-                                             (("/zimpler_gmail/INBOX" . ?i)
-                                              ("/zimpler_gmail/[Gmail].Sent Mail" . ?s)
-                                              ("/zimpler_gmail/[Gmail].Trash" . ?t)
-                                              ("/zimpler_gmail/[Gmail].All Mail" . ?a)))
-                     (mu4e-completing-read-function . compl-fun)))))
+            :name "Private"
+            :enter-func (lambda ()
+                          (mu4e-message "Switch to the Private context"))
+            ;; leave-func not defined
+            :match-func (lambda (msg)
+                          (if msg
+                              (mu4e-message-contact-field-matches
+                               msg :to "jonas.collberg@mykolab.com")
+                            (not (jco/at-office-p))))
+            :vars '((user-mail-address . "jonas.collberg@mykolab.com")
+                    ;; (mu4e-compose-signature . "Jonas\n")
+                    (mu4e-drafts-folder . "/personal_mykolab/Drafts")
+                    (mu4e-sent-folder . "/personal_mykolab/Sent")
+                    (mu4e-trash-folder . "/personal_mykolab/Trash")
+                    (mu4e-maildir-shortcuts .
+                                            (("/personal_mykolab/INBOX" . ?i)
+                                             ("/personal_mykolab/Sent" . ?s)
+                                             ("/personal_mykolab/Trash" . ?t)))
+                    (mu4e-completing-read-function . compl-fun)
+                    ))
+          ,(make-mu4e-context
+            :name "Work"
+            :enter-func (lambda () (mu4e-message
+                                    "Switch to the Work context"))
+            ;; leave-fun not defined
+            :match-func (lambda (msg)
+                          (if msg
+                              (mu4e-message-contact-field-matches
+                               msg :to "jonas.collberg@zimpler.com")
+                            (jco/at-office-p)))
+            :vars '((user-mail-address . "jonas.collberg@zimpler.com")
+                    ;; (mu4e-compose-signature . (concat
+                    ;;                             "Kind regards,\n"
+                    ;;                             user-full-name))
+                    (mu4e-drafts-folder . "/zimpler_gmail/[Gmail].Drafts")
+                    (mu4e-sent-folder . "/zimpler_gmail/[Gmail].Sent Mail")
+                    (mu4e-trash-folder . "/zimpler_gmail/[Gmail].Trash")
+                    (mu4e-maildir-shortcuts .
+                                            (("/zimpler_gmail/INBOX" . ?i)
+                                             ("/zimpler_gmail/[Gmail].Sent Mail" . ?s)
+                                             ("/zimpler_gmail/[Gmail].Trash" . ?t)
+                                             ("/zimpler_gmail/[Gmail].All Mail" . ?a)))
+                    (mu4e-completing-read-function . compl-fun)))))
 
   (add-hook 'mu4e-main-mode-hook
             (lambda ()
@@ -88,11 +86,6 @@
                       (:flags   .  6)
                       (:from    . 22)
                       (:subject . nil)))
-
-              (defun compl-fun (prompt maildirs predicate require-match initial-input)
-                (helm-comp-read prompt maildirs
-                                :name prompt
-                                :must-match t))
 
               (defun jco/smtp-server ()
                 (cond ((or (s-contains? "gmail.com" user-mail-address)

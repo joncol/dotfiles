@@ -53,6 +53,7 @@
                       (elfeed-search-mode       . emacs)
                       (elfeed-show-mode         . emacs)
                       (eshell-mode              . emacs)
+                      (esup-mode                . emacs)
                       (eww-mode                 . emacs)
                       (fireplace-mode           . emacs)
                       (flycheck-error-list-mode . emacs)
@@ -83,18 +84,13 @@
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
   (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
 
-  ;; (require 'apropos)
-
   (jco/define-bindings 'evil-window-map
                        '(("C-h" . windmove-left)
                          ("C-j" . windmove-down)
                          ("C-k" . windmove-up)
                          ("C-l" . windmove-right)))
 
-  (if jco/use-colemak
-      (jco/bind-exit-insert-mode ?l ?h)
-    (jco/bind-exit-insert-mode ?k ?j))
-
+  (jco/bind-exit-insert-mode ?l ?h)
   (setq evil-flash-delay 3600))
 
 (use-package evil-exchange

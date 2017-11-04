@@ -6,9 +6,6 @@
 
 ;;; Code:
 
-;; (require 'use-package)
-;; (setq use-package-verbose t)
-
 ;;; Avoid the empty (custom-set-faces) at end of init.el.
 (setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
 
@@ -73,8 +70,7 @@
 
 (use-package avy
   :config
-  (when jco/use-colemak
-    (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o)))
+  (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o))
 
   (evil-leader/set-key "f" 'evil-avy-goto-char)
   (evil-leader/set-key "#" 'evil-avy-goto-line)
@@ -82,10 +78,10 @@
   (evil-leader/set-key "/" 'avy-goto-char-timer)
   (evil-declare-not-repeat 'avy-goto-char-timer)
   (avy-setup-default)
-
   (setq avy-case-fold-search nil))
 
-(use-package bookmark+)
+(use-package bookmark+
+  :defer t)
 
 (use-package buffer-move
   :config
@@ -95,12 +91,12 @@
   (global-set-key (kbd "<C-S-right>") 'buf-move-right))
 
 (use-package cider
+  :defer t
   :config
   (setq cider-show-error-buffer 'nil))
 
 (use-package counsel
   :after ivy
-
   :bind
   ("M-x" . counsel-M-x)
   ("C-x C-f" . counsel-find-file)
@@ -114,9 +110,9 @@
                   "ag --vimgrep --nocolor --nogroup %s")))
 
 (use-package counsel-projectile
-  :init
-  (counsel-projectile-on)
+  :after counsel
   :config
+  (counsel-projectile-on)
   (setq counsel-projectile-ag-initial-input
         '(thing-at-point 'symbol t)))
 
@@ -133,6 +129,7 @@
     (set-buffer-modified-p nil)))
 
 (use-package dired+
+  :defer 1
   :config
   (defadvice dired-readin
       (after dired-after-updating-hook first () activate)
@@ -140,21 +137,25 @@
     (mydired-sort)))
 
 (use-package dired-narrow
-  :ensure t
+  :after dired+
   :bind (:map dired-mode-map
               ("/" . dired-narrow)))
 
 (use-package dired-subtree
+  :after dired+
   :config
   (bind-keys :map dired-mode-map
              ("i" . dired-subtree-insert)
              (";" . dired-subtree-remove)))
 
-(use-package docker-compose-mode)
+(use-package docker-compose-mode
+  :defer t)
 
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :defer t)
 
 (use-package ecb
+  :defer t
   :config
   (setq ecb-tip-of-the-day nil))
 
@@ -170,9 +171,13 @@
   (setq electric-pair-skip-whitespace nil)
   (setq electric-pair-delete-adjacent-pairs nil))
 
-(use-package esup)
+(use-package esup
+  :defer t
+  :config
+  (define-key esup-mode-map "\C-w" 'evil-window-map))
 
 (use-package evil-magit
+  :after magit
   :config
   (setq evil-motion-state-modes
         (append '(magit-submodule-list-mode) evil-motion-state-modes)))
@@ -200,16 +205,19 @@
   :init
   (flycheck-pos-tip-mode))
 
-(use-package flycheck-rtags)
+(use-package flycheck-rtags
+  :defer t)
 
 (use-package fortune
+  :if (not (eq system-type 'windows-nt))
+  :disabled t
   :config
   (setq fortune-dir "/usr/share/games/fortunes")
   (setq fortune-file "/usr/share/games/fortunes"))
 
-(setq inhibit-startup-message t)
-
 (use-package fortune-cookie
+  :if (not (eq system-type 'windows-nt))
+  :disabled t
   :config
   (setq fortune-cookie-cowsay-enable t)
   (setq fortune-cookie-cowsay-args "-f tux")
@@ -221,19 +229,22 @@
 
 (use-package nlinum
   :init
-  (nlinum-mode))
+  (global-nlinum-mode))
 
 (use-package git-gutter+
+  :disabled t
   :diminish git-gutter+-mode
   :if (not (eq system-type 'windows-nt))
-  :init
+  :config
   (global-git-gutter+-mode))
 
 (use-package git-gutter-fringe+
-  :if (not (eq system-type 'windows-nt))
-  :after nlinum)
+  :disabled t
+  :after nlinum
+  :if (not (eq system-type 'windows-nt)))
 
 (use-package git-link
+  :defer t
   :config
   (setq git-link-open-in-browser t)
   (evil-leader/set-key "v g" 'git-link-homepage)
@@ -241,7 +252,8 @@
 
 (use-package glsl-mode)
 
-(use-package google-this)
+(use-package google-this
+  :defer t)
 
 (use-package guide-key
   :diminish guide-key-mode
@@ -250,7 +262,8 @@
   ;; (setq guide-key/popup-window-position "right")
   (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
 
-(use-package help-fns+)
+(use-package help-fns+
+  :defer 1)
 
 (use-package imenu-anywhere
   :config
@@ -258,15 +271,11 @@
 
 (global-set-key (kbd "M-M") #'imenu)
 
-(use-package insert-shebang)
-
 (use-package ivy
   :diminish ivy-mode
-
   :bind
   ("C-s" . swiper)
   ("C-x C-b" . ivy-switch-buffer)
-
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers nil)
@@ -274,13 +283,10 @@
   (setq ivy-use-selectable-prompt t)
   (evil-leader/set-key "b" 'ivy-switch-buffer)
   (evil-leader/set-key "r" 'ivy-resume)
-
   (define-key ivy-minibuffer-map (kbd "S-SPC") nil)
   (define-key ivy-minibuffer-map [tab] 'ivy-partial)
   (setq ivy-on-del-error-function nil)
-
   (evil-declare-not-repeat 'swiper)
-
   (ivy-add-actions 'counsel-find-file
                    '(("F" (lambda (x)
                             (with-ivy-window (insert (file-relative-name x))))
@@ -293,27 +299,28 @@
                                 (replace-regexp-in-string "/\\'" "" x)))))
                       "insert file name without any directory information"))))
 
-(use-package ivy-hydra)
-
 (use-package ivy-rich
   :config
   (ivy-set-display-transformer 'ivy-switch-buffer
                                'ivy-rich-switch-buffer-transformer)
-
   (setq ivy-virtual-abbreviate 'full)
   (setq ivy-rich-switch-buffer-align-virtual-buffer t)
   (setq ivy-rich-abbreviate-paths t)
   (setq ivy-rich-switch-buffer-name-max-length 64))
 
 (use-package ivy-rtags
+  :after rtags
   :config
   (setq rtags-display-result-backend 'ivy))
 
-(use-package json-mode)
+(use-package json-mode
+  :defer t)
 
-(use-package kurecolor)
+(use-package kurecolor
+  :defer t)
 
 (use-package magit
+  :defer t
   :config
   ;; Needed for success status message to be shown.
   (setq magit-auto-revert-mode nil)
@@ -324,7 +331,8 @@
   (evil-leader/set-key "v b" 'magit-blame)
   (setq magit-blame-disabled-modes '(fci-mode)))
 
-(use-package monky)
+(use-package monky
+  :defer t)
 
 (use-package nginx-mode)
 
@@ -337,6 +345,8 @@
 (use-package package-utils)
 
 (use-package pdf-tools
+  :if (not (eq system-type 'windows-nt))
+  :defer t
   :config
   (pdf-tools-install)
   (setq-default pdf-view-display-size 'fit-page)
@@ -348,6 +358,7 @@
 (use-package rainbow-delimiters :diminish rainbow-delimiters-mode)
 
 (use-package recentf
+  :defer t
   :config
   (recentf-mode)
   (setq recentf-max-menu-items 25))
@@ -362,8 +373,8 @@
            (save-match-data (looking-at "\\sw\\|\\s_\\|\\s."))))))
 
 (use-package smartparens
+  :defer t
   :diminish smartparens-mode
-
   :config
   (sp-use-paredit-bindings)
   ;; (sp-pair "\"" nil :actions :rem)
@@ -405,7 +416,8 @@
                                        (not (sp-point-in-string-or-comment))))
                                   (t (not (sp-point-in-string-or-comment))))))))
 
-(use-package speed-type)
+(use-package speed-type
+  :defer t)
 
 (use-package string-inflection
   :config
@@ -514,10 +526,14 @@ Example: `helloWorld` becomes `Hello world`."
             (modify-syntax-entry ?- "w")))
 
 (use-package info+
-  :config
-  (bind-keys :map Info-mode-map
-             ("<tab>"     . Info-next-reference)
-             ("<backtab>" . Info-prev-reference)))
+  :defer t
+  :bind (:map Info-mode-map
+              ("<tab>"     . Info-next-reference)
+              ("<backtab>" . Info-prev-reference)))
+
+(add-hook 'Info-mode-hook
+          #'(lambda ()
+              (require 'info+)))
 
 (require 'help-mode)
 (bind-keys :map help-mode-map
@@ -533,6 +549,7 @@ Example: `helloWorld` becomes `Hello world`."
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
+  :defer t
   :config
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize)
@@ -561,8 +578,6 @@ Example: `helloWorld` becomes `Hello world`."
 
 (setq compilation-scroll-output t)
 
-(require 'qmake-mode)
-
 (use-package iedit)
 
 (use-package s
@@ -587,8 +602,6 @@ Example: `helloWorld` becomes `Hello world`."
   :diminish which-key-mode
   :config
   (which-key-mode))
-
-(eval-after-load "info" '(require 'info+))
 
 (diminish 'abbrev-mode)
 (diminish 'footnote-mode)

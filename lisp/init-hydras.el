@@ -34,9 +34,6 @@ menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _k_urecolor _l_ang _o_rg
   ("S" jco/hydra-snippets/body)
   ("v" jco/hydra-vcs/body))
 
-(require 'helm-files)
-(require 'init-common-funs)
-
 (defhydra jco/hydra-config (:color teal :hint nil)
   "
 edit cfg: _i_nit _b_ootstrap _c_ommon _f_ile _h_ydras _p_ackages _t_heme _u_pdate"
@@ -74,8 +71,6 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
   ("b" kurecolor-decrease-brightness-by-step)
   ("q" nil "quit" :color blue))
 
-(require 'langtool)
-
 (defhydra jco/hydra-lang (:color teal :hint nil)
 "
 lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
@@ -97,8 +92,6 @@ packages: _l_ist _n_o-fetch _u_pgrade-all"
   ("l" list-packages)
   ("n" package-list-packages-no-fetch)
   ("u" package-utils-upgrade-all))
-
-(require 'yasnippet)
 
 (defhydra jco/hydra-snippets (:color teal :hint nil)
   "
@@ -126,8 +119,6 @@ swiper: _s_wiper _a_ll _m_ulti"
 vcs: _g_it _m_ercurial"
   ("g" magit-status)
   ("m" monky-status))
-
-(require 'init-eshell)
 
 (defhydra jco/hydra-app (:color teal :hint nil)
   "

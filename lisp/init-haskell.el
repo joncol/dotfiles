@@ -6,9 +6,12 @@
 
 ;;; Code:
 
-(use-package intero :diminish intero-mode)
+(use-package intero
+  :defer t
+  :diminish intero-mode)
 
 (use-package haskell-mode
+  :defer t
   :config
   (fset 'jco/align-last-eq
         [?\C-u ?\C-x ?a ?r ?= ?\[ ?^ ?= ?\] ?* ?$ return return return ?n])

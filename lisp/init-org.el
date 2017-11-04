@@ -61,7 +61,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                           path
                                           (or desc "video"))))))))
 
-(use-package ox-reveal)
+(use-package ox-reveal
+  :after org)
 
 (use-package org
   :defer t

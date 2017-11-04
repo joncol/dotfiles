@@ -1,3 +1,11 @@
+;;; #init-font.el --- Initialize font -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
   (set-frame-font "Hack-10")
@@ -20,3 +28,5 @@
     (set-face-attribute 'default nil :height 145))))
 
 (provide 'init-font)
+
+;;; init-font.el ends here

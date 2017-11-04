@@ -1,21 +1,16 @@
-(require 'nxml-mode)
+;;; #init-nxml.el --- nxml config -*- lexical-binding: t; -*-
 
-(setq rnc-indent-level 2)
+;;; Commentary:
 
-(define-key nxml-mode-map (kbd "C-c C-p") 'rng-previous-error)
+;;
+
+;;; Code:
 
 (add-to-list 'auto-mode-alist '("\\.qrc\\'" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.rnc\\'" . rnc-mode))
-(add-to-list 'rng-schema-locating-files
-             (expand-file-name (concat user-emacs-directory
-                                       "xslt-relax-ng/schemas.xml")))
-
-(when (eq system-type 'windows-nt)
-  (setq rnc-jing-jar-file "c:/tools/jing/bin"))
-
-(define-key nxml-mode-map (kbd "C-c C-r") 'jco/rng-reload-schema)
 
 (defun jco/rng-reload-schema ()
+  "Reload current XML schema."
   (interactive)
   (let ((schema-filename rng-current-schema-file-name))
     (when schema-filename
@@ -26,6 +21,7 @@
       (rng-set-schema-and-validate))))
 
 (defun jco/xmllint-format-buffer ()
+  "Format XML buffer, using xmllint."
   (interactive)
   (save-restriction
     (widen)
@@ -36,6 +32,17 @@
           (lambda ()
             (setq evil-shift-width 2)
             (smartparens-mode)
+            (setq rnc-indent-level 2)
+            (jco/define-bindings nxml-mode-map
+                                 '(("C-c C-p" . rng-previous-error)
+                                   ("C-c C-r" . jco/rng-reload-schema)))
+            (add-to-list 'rng-schema-locating-files
+                         (expand-file-name (concat user-emacs-directory
+                                                   "xslt-relax-ng/schemas.xml")))
+            (when (eq system-type 'windows-nt)
+              (setq rnc-jing-jar-file "c:/tools/jing/bin"))
             (evil-leader/set-key "x l" 'jco/xmllint-format-buffer)))
 
 (provide 'init-nxml)
+
+;;; init-nxml.el ends here

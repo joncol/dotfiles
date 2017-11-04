@@ -7,6 +7,7 @@
 ;;; Code:
 
 (use-package elfeed
+  :defer t
   :config
   (setq shr-use-fonts nil))
 
@@ -23,6 +24,7 @@
   (elfeed-show-refresh))
 
 (use-package elfeed-org
+  :defer t
   :config
   (elfeed-org)
   (setq rmh-elfeed-org-files '("~/Dropbox/emacs/elfeed.org")))

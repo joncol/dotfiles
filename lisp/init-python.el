@@ -10,30 +10,42 @@
   (setq python-shell-prompt-detect-failure-warning nil))
 
 (use-package elpy
-  :if (not (eq system-type 'windows-nt))
-  :diminish elpy-mode
-  :diminish highlight-indentation-mode
-
-  :init
+  :defer t
+  :diminish (list elpy-mode highlight-indentation-mode)
+  ;; :init
+  ;; (elpy-enable)
+  :config
   (when (require 'flycheck nil t)
     (remove-hook 'elpy-modules 'elpy-module-flymake)
     (remove-hook 'elpy-modules 'elpy-module-yasnippet)
     (remove-hook 'elpy-mode-hook 'elpy-module-highlight-indentation))
-
-  (elpy-enable)
-
   :config
   (setq elpy-rpc-backend "jedi"))
 
 (use-package jedi-core
+  :defer t
   :diminish jedi-mode)
 
 (use-package company-jedi
   :if (not (eq system-type 'windows-nt))
-  :init
-  (add-hook 'python-mode-hook #'jedi-mode)
+  :defer t
+  :config
   (with-eval-after-load 'python
     (add-to-list 'company-backends '(company-jedi company-files))))
+
+(add-hook 'elpy-mode-hook
+          #'(lambda ()
+              (jco/define-bindings elpy-mode-map
+                                   '(("C-c C-k" . python-shell-send-buffer)
+                                     ("C-M-x" . python-shell-send-defun)))))
+
+(add-hook 'python-mode-hook
+          #'(lambda ()
+              (when (not (eq system-type 'windows-nt))
+                (require 'jedi-core)
+                (jedi-mode)
+                (require 'elpy)
+                (elpy-mode))))
 
 (provide 'init-python)
 
