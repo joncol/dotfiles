@@ -332,7 +332,10 @@
                `("monthly expenses"
                  ,(concat "%(binary) -f %(ledger-file) balance expenses"
                           " --tree --no-total --row-total --average --monthly"))
-               t))
+               t)
+  (add-hook 'ledger-mode-hook
+            #'(lambda ()
+                (turn-off-fci-mode))))
 
 (use-package magit
   :defer t
