@@ -67,6 +67,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (use-package org
   :defer t
   :init
+  (setq org-directory "~/org")
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline "work.org" "_Incoming")
            "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
@@ -80,7 +81,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                 (setq org-src-fontify-natively t)
                 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
                 (setq org-log-done t)
-                (setq org-directory "~/org")
                 (setq org-default-notes-file "notes.org")
                 (setq org-reveal-hlevel 2)
                 (setq org-todo-keyword-faces
