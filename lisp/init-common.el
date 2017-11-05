@@ -159,10 +159,6 @@
   :config
   (setq ecb-tip-of-the-day nil))
 
-(use-package edit-server
-  :init
-  (edit-server-start))
-
 (use-package elec-pair
   :init
   (electric-pair-mode)
