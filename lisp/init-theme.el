@@ -186,6 +186,12 @@
    (set-face-background 'ffap "#ffc3ff")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
 
+   (add-hook 'ledger-mode-hook
+             #'(lambda ()
+                 (set-face-background 'ledger-font-xact-highlight-face
+                                      "#ffc3ff")
+                 (set-face-background 'ledger-occur-xact-face "#ffc3ff")))
+
    (when (featurep 'mu4e)
      (set-face-background 'mu4e-highlight-face "#7ceece")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
