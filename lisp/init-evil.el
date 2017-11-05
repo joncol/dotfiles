@@ -38,8 +38,9 @@
   (evil-mode)
 
   :config
-  ;; Want transpose-chars instead.
-  (unbind-key "C-t" evil-normal-state-map)
+  (unbind-key "C-n" evil-insert-state-map) ;; Want company-select-next-or-abort.
+  (unbind-key "C-p" evil-insert-state-map) ;; Want company-select-next-or-abort.
+  (unbind-key "C-t" evil-normal-state-map) ;; Want transpose-chars instead.
   (setq evil-want-C-w-in-emacs-state t)
 
   ;; Set other modes than evil-mode for the following modes.
