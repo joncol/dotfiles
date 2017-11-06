@@ -248,7 +248,7 @@
 
   (tao-yang
    (setq jco/cursor-color "azure4")
-   (set-face-background 'hl-line "#e4d9e4")
+   (set-face-background 'hl-line "#e1dcd3")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#b8d8e0")
    (when (featurep 'mu4e)
      (set-face-background 'mu4e-header-highlight-face "#b8d8e0")))
