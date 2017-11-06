@@ -246,7 +246,7 @@
   :if (not (eq system-type 'windows-nt)))
 
 (use-package git-link
-  :defer t
+  :after magit
   :config
   (setq git-link-open-in-browser t)
   (evil-leader/set-key "v g" 'git-link-homepage)
