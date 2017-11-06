@@ -247,7 +247,10 @@
    (set-face-foreground 'linum "gray35"))
 
   (tao-yang
-   (setq jco/cursor-color "azure4"))
+   (setq jco/cursor-color "azure4")
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#b8d8e0")
+   (when (featurep 'mu4e)
+     (set-face-background 'mu4e-header-highlight-face "#b8d8e0")))
 
   (tao-yin
    (set-face-background 'region "#4a3f51")
