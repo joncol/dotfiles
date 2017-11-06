@@ -19,7 +19,7 @@
      ;; 'molokai
      ;; 'mustang
      ;; 'nubox-dark
-     'nubox-light
+     ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
@@ -27,6 +27,7 @@
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
      ;; 'solarized-light
+     'tao-yang
      ;; 'tao-yin
      )
 
@@ -250,7 +251,7 @@
 
   (tao-yin
    (set-face-background 'region "#4a3f51")
-   (setq jco/cursor-color "gray50")
+   (setq jco/cursor-color "#e0dcbe")
    (set-face-background 'hl-line "gray16")
    (set-face-foreground 'linum "gray25")
    (set-face-background 'evil-search-highlight-persist-highlight-face
