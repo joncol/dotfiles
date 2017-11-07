@@ -12,8 +12,11 @@
   (setq shr-use-fonts nil))
 
 (add-hook 'elfeed-search-mode-hook
-            (lambda ()
-              (turn-off-fci-mode)))
+          (lambda ()
+            (turn-off-fci-mode)
+            (jco/define-bindings elfeed-search-mode-map
+                                 '(("j" . next-line)
+                                   ("k" . previous-line)))))
 
 (defadvice elfeed-show-entry
     (after elfeed-show-refresh-after activate compile)
