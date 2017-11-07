@@ -325,14 +325,14 @@
   :defer t
   :mode "\\.journal\\'"
   :config
-  (setq ledger-mode-should-check-version nil)
-  (setq ledger-report-links-in-register nil)
-  (setq ledger-binary-path "hledger")
-  (add-to-list 'ledger-reports
-               `("monthly expenses"
-                 ,(concat "%(binary) -f %(ledger-file) balance expenses"
-                          " --tree --no-total --row-total --average --monthly"))
-               t)
+  ;; (setq ledger-mode-should-check-version nil)
+  ;; (setq ledger-report-links-in-register nil)
+  ;; (setq ledger-binary-path "hledger")
+  ;; (add-to-list 'ledger-reports
+  ;;              `("monthly expenses"
+  ;;                ,(concat "%(binary) -f %(ledger-file) balance expenses"
+  ;;                         " --tree --no-total --row-total --average --monthly"))
+  ;;              t)
   (add-hook 'ledger-mode-hook
             #'(lambda ()
                 (turn-off-fci-mode))))
