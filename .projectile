@@ -2,7 +2,7 @@
 -*.cache
 -/.python-environments
 -/.sx
--/elpa
+-/elpa/
 -/emojis
 -/xslt-relax-ng
 -.goutputstream*
