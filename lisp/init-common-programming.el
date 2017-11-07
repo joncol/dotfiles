@@ -29,6 +29,6 @@
                 toml-mode-hook
                 yaml-mode-hook
                 ))
-  (add-hook hook 'jco/common-prog))
+  (add-hook hook #'jco/common-prog))
 
 (provide 'init-common-programming)
