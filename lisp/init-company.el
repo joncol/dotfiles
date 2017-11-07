@@ -49,7 +49,7 @@
 (defun jco/turn-off-fci-during-company-complete(command)
   "Fixes the issue where the first item is shown far off to the right."
   (when (string= "show" command)
-    (setq-local jco/prev-fci-status fci-mode)
+    (setq jco/prev-fci-status fci-mode)
     (turn-off-fci-mode))
   (when (string= "hide" command)
     (when jco/prev-fci-status
