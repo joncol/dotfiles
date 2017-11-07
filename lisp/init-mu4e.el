@@ -64,6 +64,11 @@
               (require 'mu4e)
               (require 'imapfilter)
 
+              (dolist (m (list mu4e-main-mode-map
+                               mu4e-headers-mode-map
+                               mu4e-view-mode-map))
+                (define-key m "\C-w" 'evil-window-map))
+
               (setq mu4e-get-mail-command "offlineimap")
               (setq mu4e-update-interval 120)
               (setq mu4e-sent-messages-behavior 'sent)
