@@ -44,7 +44,7 @@
           #'(lambda ()
               (require 'company-quickhelp)))
 
-(defvar jco/prev-fci-status)
+(defvar jco/prev-fci-status nil)
 
 (defun jco/turn-off-fci-during-company-complete(command)
   "Fixes the issue where the first item is shown far off to the right."
