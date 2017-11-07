@@ -100,7 +100,7 @@
              #'(lambda ()
                  (set-face-background 'sp-pair-overlay-face "LightBlue")))
    (setq jco/cursor-color  "#101f24")
-   (when (featurep 'mu4e)
+   (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#7ceece")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
@@ -145,7 +145,7 @@
    (set-face-foreground 'evil-search-highlight-persist-highlight-face "#465457")
    (set-face-background 'lazy-highlight "#f9bf3b")
    (set-face-background 'ffap "#582c6b")
-   (when (featurep 'mu4e)
+   (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#582c6b")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
@@ -192,7 +192,7 @@
                                       "#e0dcbe")
                  (set-face-background 'ledger-occur-xact-face "#e0dcbe")))
 
-   (when (featurep 'mu4e)
+   (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#7ceece")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
@@ -250,7 +250,7 @@
    (setq jco/cursor-color "azure4")
    (set-face-background 'hl-line "#e1dcd3")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#b8d8e0")
-   (when (featurep 'mu4e)
+   (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-header-highlight-face "#b8d8e0")))
 
   (tao-yin
