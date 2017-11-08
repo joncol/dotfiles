@@ -8,7 +8,9 @@
 
 (use-package intero
   :defer t
-  :diminish intero-mode)
+  :diminish intero-mode
+  :config
+  (evil-leader/set-key "x r" 'intero-restart))
 
 (use-package haskell-mode
   :defer t
