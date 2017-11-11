@@ -27,6 +27,13 @@
                   (interactive)
                   (dired ".")))
 
+(global-set-key (kbd "C-c j")
+                (lambda ()
+                  (interactive)
+                  (let* ((year (caddr (calendar-current-date)))
+                         (file-name (format "~/ledgers/%s.journal" year)))
+                    (find-file (expand-file-name file-name)))))
+
 (when (eq system-type 'gnu/linux)
   (setq browse-url-browser-function 'browse-url-generic
         browse-url-generic-program "google-chrome-stable"))
