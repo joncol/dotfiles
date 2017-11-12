@@ -167,8 +167,6 @@
                               (interactive)
                               (insert user-mail-address)))
 
-;; (evil-leader/set-key "m m" 'mu4e)
-
 (evil-leader/set-key "e f" 'jco/what-face)
 (evil-leader/set-key "e w" 'ace-window)
 
