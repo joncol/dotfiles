@@ -15,7 +15,7 @@
      ;; 'gotham
      ;; 'kaolin-dark
      ;; 'kaolin-eclipse
-     ;; 'kaolin-ocean
+     'kaolin-ocean
      ;; 'molokai
      ;; 'mustang
      ;; 'nubox-dark
@@ -27,7 +27,7 @@
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
      ;; 'solarized-light
-     'tao-yang
+     ;; 'tao-yang
      ;; 'tao-yin
      )
 
@@ -114,6 +114,10 @@
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
    (set-face-foreground 'evil-search-highlight-persist-highlight-face "#101f24")
    )
+
+  (kaolin-ocean
+   (set-face-background 'hl-line "#1A2631")
+   (set-face-background 'vhl/default-face "#2B2C40"))
 
   (material
    (set-face-background 'hl-line "#37474f")
