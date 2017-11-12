@@ -7,15 +7,34 @@
 ;;; Code:
 
 (when (and (not (eq system-type 'windows-nt))
-           (not (string-equal system-name "jco")))
+           (not (string-equal (system-name) "jco")))
 
   (require 'mu4e-context)
 
   (setq mu4e-contexts
-        `( ,(make-mu4e-context
-            :name "Private"
+        `(,(make-mu4e-context
+            :name "Gmail"
             :enter-func (lambda ()
-                          (mu4e-message "Switch to the Private context"))
+                          (mu4e-message "Switch to the Gmail context"))
+            ;; leave-func not defined
+            :match-func (lambda (msg)
+                          (if msg
+                              (mu4e-message-contact-field-matches
+                               msg :to "jonas.collberg@gmail.com")
+                            (not (jco/at-office-p))))
+            :vars '((user-mail-address . "jonas.collberg@gmail.com")
+                    ;; (mu4e-compose-signature . "Jonas\n")
+                    (mu4e-drafts-folder . "/gmail/Drafts")
+                    (mu4e-sent-folder . "/gmail/Sent")
+                    (mu4e-trash-folder . "/gmail/Trash")
+                    (mu4e-maildir-shortcuts . (("/gmail/Inbox" . ?i)
+                                               ("/gmail/Sent" . ?s)
+                                               ("/gmail/Trash" . ?t)))
+                    (mu4e-completing-read-function . compl-fun)))
+          ,(make-mu4e-context
+            :name "Kolab Now"
+            :enter-func (lambda ()
+                          (mu4e-message "Switch to the Kolabnow context"))
             ;; leave-func not defined
             :match-func (lambda (msg)
                           (if msg
@@ -24,19 +43,16 @@
                             (not (jco/at-office-p))))
             :vars '((user-mail-address . "jonas.collberg@mykolab.com")
                     ;; (mu4e-compose-signature . "Jonas\n")
-                    (mu4e-drafts-folder . "/personal_mykolab/Drafts")
-                    (mu4e-sent-folder . "/personal_mykolab/Sent")
-                    (mu4e-trash-folder . "/personal_mykolab/Trash")
-                    (mu4e-maildir-shortcuts .
-                                            (("/personal_mykolab/INBOX" . ?i)
-                                             ("/personal_mykolab/Sent" . ?s)
-                                             ("/personal_mykolab/Trash" . ?t)))
-                    (mu4e-completing-read-function . compl-fun)
-                    ))
+                    (mu4e-drafts-folder . "/kolabnow/Drafts")
+                    (mu4e-sent-folder . "/kolabnow/Sent")
+                    (mu4e-trash-folder . "/kolabnow/Trash")
+                    (mu4e-maildir-shortcuts . (("/kolabnow/Inbox" . ?i)
+                                               ("/kolabnow/Sent" . ?s)
+                                               ("/kolabnow/Trash" . ?t)))
+                    (mu4e-completing-read-function . compl-fun)))
           ,(make-mu4e-context
             :name "Work"
-            :enter-func (lambda () (mu4e-message
-                                    "Switch to the Work context"))
+            :enter-func (lambda () (mu4e-message "Switch to the Work context"))
             ;; leave-fun not defined
             :match-func (lambda (msg)
                           (if msg
@@ -47,30 +63,29 @@
                     ;; (mu4e-compose-signature . (concat
                     ;;                             "Kind regards,\n"
                     ;;                             user-full-name))
-                    (mu4e-drafts-folder . "/zimpler_gmail/[Gmail].Drafts")
-                    (mu4e-sent-folder . "/zimpler_gmail/[Gmail].Sent Mail")
-                    (mu4e-trash-folder . "/zimpler_gmail/[Gmail].Trash")
+                    (mu4e-drafts-folder . "/zimpler/[Gmail].Drafts")
+                    (mu4e-sent-folder . "/zimpler/[Gmail].Sent Mail")
+                    (mu4e-trash-folder . "/zimpler/[Gmail].Trash")
                     (mu4e-maildir-shortcuts .
-                                            (("/zimpler_gmail/INBOX" . ?i)
-                                             ("/zimpler_gmail/[Gmail].Sent Mail" . ?s)
-                                             ("/zimpler_gmail/[Gmail].Trash" . ?t)
-                                             ("/zimpler_gmail/[Gmail].All Mail" . ?a)))
+                                            (("/zimpler/Inbox" . ?i)
+                                             ("/zimpler/[Gmail].Sent Mail" . ?s)
+                                             ("/zimpler/[Gmail].Trash" . ?t)
+                                             ("/zimpler/[Gmail].All Mail" . ?a)))
                     (mu4e-completing-read-function . compl-fun)))))
 
   (add-hook 'mu4e-main-mode-hook
             (lambda ()
               (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-
               (require 'mu4e)
+              ;; (require 'mu4e-vars)
               (require 'imapfilter)
-
+              (setq mu4e-maildir "~/.mail")
               (dolist (m (list mu4e-main-mode-map
                                mu4e-headers-mode-map
                                mu4e-view-mode-map))
                 (define-key m "\C-w" 'evil-window-map))
-
-              (setq mu4e-get-mail-command "offlineimap")
-              (setq mu4e-update-interval 120)
+              (setq mu4e-get-mail-command "mbsync -a")
+              (setq mu4e-update-interval nil)
               (setq mu4e-sent-messages-behavior 'sent)
               (setq mu4e-html2text-command "w3m -T text/html")
               (setq mu4e-view-show-images t)
@@ -78,19 +93,22 @@
               (add-to-list 'mu4e-view-actions '("ViewInBrowser" .
                                                 mu4e-action-view-in-browser) t)
               (setq mu4e-view-show-addresses t)
-
               (setq mu4e-compose-context-policy 'always-ask)
               (setq mu4e-compose-in-new-frame t)
               (setq mu4e-save-multiple-attachments-without-asking t)
               (setq mu4e-compose-format-flowed t)
               (setq mu4e-compose-dont-reply-to-self t)
-
               (setq mu4e-headers-date-format "%Y-%m-%d %H:%M")
               (setq mu4e-headers-fields
                     '((:date    . 25)
                       (:flags   .  6)
                       (:from    . 22)
                       (:subject . nil)))
+
+              (defun compl-fun (prompt maildirs predicate require-match initial-input)
+                (helm-comp-read prompt maildirs
+                                :name prompt
+                                :must-match t))
 
               (defun jco/smtp-server ()
                 (cond ((or (s-contains? "gmail.com" user-mail-address)
