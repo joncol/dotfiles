@@ -88,8 +88,9 @@
             #'(lambda ()
                 (when (derived-mode-p 'c-mode 'c++-mode)
                   (require 'rtags)
-                  (setq cmake-ide-build-dir
-                        (concat (projectile-project-root) "_build"))
+                  (when (projectile-project-p)
+                    (setq cmake-ide-build-dir
+                          (concat (projectile-project-root) "_build")))
                   (cmake-ide-setup)
                   (setq cmake-ide-header-search-other-file nil)
                   (setq cmake-ide-flags-c++ (append '("-std=c++14")))

@@ -177,7 +177,8 @@ CMakeLists.txt file."
 
 (defun jco/cmake-compile-command ()
   "Return compile command for building a project using CMake."
-  (when (stringp (buffer-file-name))
+  (when (and (stringp (buffer-file-name))
+             (projectile-project-p))
     (let ((sh (getenv "SHELL"))
           (target (jco/cmake-target-string)))
       (concat
