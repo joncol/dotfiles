@@ -278,6 +278,9 @@
 (use-package help-fns+
   :defer 1)
 
+;; To get colors in html export of org-mode code snippets.
+(use-package htmlize)
+
 (use-package imenu-anywhere
   :config
   (global-set-key (kbd "M-m") #'imenu-anywhere))
