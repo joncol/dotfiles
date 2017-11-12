@@ -44,6 +44,9 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+(setq evil-motion-state-modes
+      (append '(debugger-mode) evil-motion-state-modes))
+
 (use-package ace-isearch
   :disabled t
   :diminish ace-isearch-mode
