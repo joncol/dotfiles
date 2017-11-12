@@ -65,6 +65,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 (use-package org
   :defer t
+  :ensure org-plus-contrib
   :init
   (setq org-directory "~/org")
   (setq org-capture-templates

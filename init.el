@@ -7,8 +7,9 @@
                                ;; Restore after startup.
                                (setq gc-cons-threshold 800000)))
 (setq package-archives
-      '(("elpa" . "https://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")))
+      '(("elpa"  . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("org"   . "http://orgmode.org/elpa/")))
 
 (package-initialize) ;; Don't delete this. It will be readded automatically.
 
