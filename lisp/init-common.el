@@ -46,7 +46,7 @@
 (setq make-backup-files nil)
 
 (setq evil-motion-state-modes
-      (append '(debugger-mode) evil-motion-state-modes))
+      (append '(debugger-mode doc-view-mode) evil-motion-state-modes))
 
 (use-package ace-isearch
   :disabled t
