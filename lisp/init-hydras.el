@@ -36,13 +36,11 @@ menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _k_urecolor _l_ang _o_rg
 
 (defhydra jco/hydra-config (:color teal :hint nil)
   "
-edit cfg: _i_nit _b_ootstrap _c_ommon _f_ile _h_ydras _p_ackages _t_heme _u_pdate"
+edit cfg: _i_nit _c_ommon _f_ile _h_ydras _t_heme _u_pdate"
   ("i" (open-config-file "init.el"))
-  ("b" (open-config-file "lisp/init-bootstrap.el"))
   ("c" (open-config-file "lisp/init-common.el"))
   ("f" (counsel-find-file (expand-file-name "~/.emacs.d/lisp/")))
   ("h" (open-config-file "lisp/init-hydras.el"))
-  ("p" (open-config-file "lisp/init-packages.el"))
   ("t" (open-config-file "lisp/init-theme.el"))
   ("u" (jco/update-config)))
 
