@@ -50,7 +50,8 @@
 
 (add-hook 'doc-view-mode-hook
           #'(lambda ()
-              (nlinum-mode -1)))
+              (nlinum-mode -1)
+              (define-key doc-view-mode-map "\C-w" 'evil-window-map)))
 
 (use-package ace-isearch
   :disabled t
@@ -601,7 +602,7 @@ Example: `helloWorld` becomes `Hello world`."
 
 (require 'ibuffer)
 
-(dolist (map (list doc-view-mode-map ibuffer-mode-map package-menu-mode-map))
+(dolist (map (list ibuffer-mode-map package-menu-mode-map))
   (define-key map "\C-w" 'evil-window-map))
 
 (global-set-key (kbd "C-x b") 'ibuffer)
