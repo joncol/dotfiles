@@ -11,11 +11,11 @@
 (set (make-local-variable 'jco/theme)
      ;; Change this to whatever theme you want.
      ;; 'adwaita
-     'cyberpunk
+     ;; 'cyberpunk
      ;; 'darktooth
      ;; 'gotham
      ;; 'kaolin-dark
-     ;; 'kaolin-eclipse
+     'kaolin-eclipse
      ;; 'kaolin-ocean
      ;; 'molokai
      ;; 'mustang
@@ -115,6 +115,13 @@
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
    (set-face-foreground 'evil-search-highlight-persist-highlight-face "#101f24")
    )
+
+  (kaolin-eclipse
+   (set-face-background 'hl-line "#3E2A3E")
+   (set-face-background 'vhl/default-face "#3E2A3E")
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face "#101f24")
+     (set-face-background 'mu4e-highlight-face "#7ceece")))
 
   (kaolin-ocean
    (set-face-background 'hl-line "#1A2631")
