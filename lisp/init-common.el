@@ -283,9 +283,7 @@
 
 (use-package imenu-anywhere
   :config
-  (global-set-key (kbd "M-m") #'imenu-anywhere))
-
-(global-set-key (kbd "M-M") #'imenu)
+  (evil-leader/set-key "x m" #'imenu-anywhere))
 
 (use-package ivy
   :diminish ivy-mode
