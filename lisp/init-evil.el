@@ -51,6 +51,7 @@
                       (dashboard-mode           . emacs)
                       (diff-mode                . emacs)
                       (dired-mode               . emacs)
+                      (doc-view-mode            . emacs)
                       (elfeed-search-mode       . emacs)
                       (elfeed-show-mode         . emacs)
                       (eshell-mode              . emacs)

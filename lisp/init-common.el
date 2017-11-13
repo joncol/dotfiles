@@ -46,7 +46,11 @@
 (setq make-backup-files nil)
 
 (setq evil-motion-state-modes
-      (append '(debugger-mode doc-view-mode) evil-motion-state-modes))
+      (append '(debugger-mode) evil-motion-state-modes))
+
+(add-hook 'doc-view-mode-hook
+          #'(lambda ()
+              (nlinum-mode -1)))
 
 (use-package ace-isearch
   :disabled t
@@ -597,7 +601,7 @@ Example: `helloWorld` becomes `Hello world`."
 
 (require 'ibuffer)
 
-(dolist (map (list ibuffer-mode-map package-menu-mode-map))
+(dolist (map (list doc-view-mode-map ibuffer-mode-map package-menu-mode-map))
   (define-key map "\C-w" 'evil-window-map))
 
 (global-set-key (kbd "C-x b") 'ibuffer)
