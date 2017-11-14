@@ -15,8 +15,8 @@
      ;; 'darktooth
      ;; 'gotham
      ;; 'kaolin-dark
-     'kaolin-eclipse
-     ;; 'kaolin-ocean
+     ;; 'kaolin-eclipse
+     'kaolin-ocean
      ;; 'molokai
      ;; 'mustang
      ;; 'nubox-dark
@@ -118,6 +118,7 @@
 
   (kaolin-eclipse
    (set-face-background 'hl-line "#3E2A3E")
+   (set-face-background 'region "#582c6b")
    (set-face-background 'vhl/default-face "#3E2A3E")
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "#101f24")
