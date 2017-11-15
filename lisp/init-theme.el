@@ -16,12 +16,12 @@
      ;; 'gotham
      ;; 'kaolin-dark
      ;; 'kaolin-eclipse
-     'kaolin-ocean
+     ;; 'kaolin-ocean
      ;; 'molokai
      ;; 'mustang
      ;; 'nubox-dark
      ;; 'nubox-light
-     ;; 'organic-green
+     'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
@@ -216,7 +216,6 @@
    (setq jco/cursor-color "gray25")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#7ceece")
-   (set-face-background 'helm-selection "#a0f0a0")
    (set-face-background 'show-paren-match "#c0c060"))
 
   (prassee
@@ -238,7 +237,6 @@
 
   (sanityinc-tomorrow-blue
    (setq jco/cursor-color "snow")
-   (set-face-background 'helm-selection "VioletRed4")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "RoyalBlue")
    (set-face-background 'company-tooltip-selection "snow")
