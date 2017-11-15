@@ -54,7 +54,6 @@
                       (doc-view-mode            . emacs)
                       (elfeed-search-mode       . emacs)
                       (elfeed-show-mode         . emacs)
-                      (eshell-mode              . emacs)
                       (esup-mode                . emacs)
                       (eww-mode                 . emacs)
                       (fireplace-mode           . emacs)
