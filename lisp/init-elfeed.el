@@ -27,7 +27,7 @@
   (elfeed-show-refresh))
 
 (use-package elfeed-org
-  :defer t
+  :after elfeed
   :config
   (elfeed-org)
   (setq rmh-elfeed-org-files '("~/Dropbox/emacs/elfeed.org")))
