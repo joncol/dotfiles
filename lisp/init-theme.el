@@ -21,13 +21,13 @@
      ;; 'mustang
      ;; 'nubox-dark
      ;; 'nubox-light
-     'organic-green
+     ;; 'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
-     ;; 'solarized-light
+     'solarized-light
      ;; 'tao-yang
      ;; 'tao-yin
      )
@@ -252,7 +252,8 @@
   (solarized-light
    (setq jco/cursor-color "gray25")
    (set-face-background 'region "#e0dcbe")
-   (set-face-background 'cider-deprecated-face "#e0dcbe")
+   (with-eval-after-load 'clojure-mode
+     (set-face-background 'cider-deprecated-face "#e0dcbe"))
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (set-face-background 'lazy-highlight "#f9bf3b"))
 
