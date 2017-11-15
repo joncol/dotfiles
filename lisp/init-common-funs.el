@@ -244,6 +244,11 @@ invokation."
      ,@body
      (message "%.06f" (float-time (time-since time)))))
 
+(defun display-ansi-colors ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
 (provide 'init-common-funs)
 
 ;;; init-common-funs.el ends here

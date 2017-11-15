@@ -54,6 +54,8 @@
               (nlinum-mode -1)
               (define-key doc-view-mode-map "\C-w" 'evil-window-map)))
 
+(add-hook 'messages-buffer-mode-hook 'ansi-color-for-comint-mode-on)
+
 (use-package ace-isearch
   :disabled t
   :diminish ace-isearch-mode
