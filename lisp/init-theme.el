@@ -14,6 +14,8 @@
      ;; 'cyberpunk
      ;; 'darktooth
      ;; 'gotham
+     ;; 'hemisu-dark
+     ;; 'hemisu-light
      ;; 'kaolin-dark
      ;; 'kaolin-eclipse
      ;; 'kaolin-ocean
@@ -27,8 +29,8 @@
      ;; 'sanityinc-tomorrow-eighties
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
-     'solarized-light
-     ;; 'tao-yang
+     ;; 'solarized-light
+     'tao-yang
      ;; 'tao-yin
      )
 
