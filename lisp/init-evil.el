@@ -81,6 +81,7 @@
 
   (define-key evil-normal-state-map (kbd "+") 'rotate-word-at-point)
   (define-key evil-normal-state-map (kbd "M-.") nil)
+  (define-key evil-insert-state-map (kbd "C-k") nil) ;; Conflicts with Company.
 
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
   (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
