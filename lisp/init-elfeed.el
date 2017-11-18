@@ -21,6 +21,7 @@
 (defadvice elfeed-show-entry
     (after elfeed-show-refresh-after activate compile)
   "Make text of message be correctly formatted in visual-fill-column-mode."
+  (nlinum-mode -1)
   (visual-line-mode)
   (visual-fill-column-mode)
   (turn-off-fci-mode)
