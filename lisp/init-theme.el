@@ -241,10 +241,11 @@
    (setq jco/cursor-color "snow")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "RoyalBlue")
-   (set-face-background 'company-tooltip-selection "snow")
-   (set-face-foreground 'company-tooltip-selection "gray8")
-   (set-face-foreground 'company-tooltip-common-selection "VioletRed4")
-   (set-face-background 'company-scrollbar-fg "LightBlue"))
+   (with-eval-after-load 'company-mode
+     (set-face-background 'company-tooltip-selection "snow")
+     (set-face-foreground 'company-tooltip-selection "gray8")
+     (set-face-foreground 'company-tooltip-common-selection "VioletRed4")
+     (set-face-background 'company-scrollbar-fg "LightBlue")))
 
   (solarized-dark
    (set-face-background 'region "#1a4550")
