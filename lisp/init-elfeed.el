@@ -18,7 +18,7 @@
   "Wrapper to save the elfeed db to disk before quitting."
   (interactive)
   (elfeed-db-save)
-  (quit-window))
+  (quit-window t))
 
 (use-package elfeed
   :defer t
