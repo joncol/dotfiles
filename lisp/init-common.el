@@ -383,7 +383,8 @@
 (use-package package-utils)
 
 (use-package pdf-tools
-  :if (not (eq system-type 'windows-nt))
+  :if (and (not (eq system-type 'windows-nt))
+           (display-graphic-p))
   :defer t
   :config
   (pdf-tools-install)
