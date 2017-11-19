@@ -26,7 +26,8 @@
   (interactive)
   (elfeed-db-load)
   (elfeed-search-update--force)
-  (elfeed-update))
+  (elfeed-update)
+  (elfeed-db-save))
 
 (use-package elfeed
   :defer t
@@ -62,7 +63,7 @@
   :config
   (setq http-port 8080)
   (elfeed-web-start)
-  (run-with-timer 0 (* 1 60) 'jco/elfeed-db-update))
+  (run-with-timer 0 (* 5 60) 'jco/elfeed-db-update))
 
 (provide 'init-elfeed)
 
