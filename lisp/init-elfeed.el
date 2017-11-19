@@ -52,12 +52,12 @@
 
 (defun jco/elfeed-db-updater ()
   "Update the elfeed db."
-  (require 'elfeed)
   (elfeed-db-unload))
 
 (use-package elfeed-web
   :if (and (jco/at-digitalocean-p) (daemonp))
   :init
+  (require 'elfeed)
   (run-with-timer 0 (* 5 60) #'jco/elfeed-db-updater)
   (setq http-port 8080)
   (elfeed-web-start))
