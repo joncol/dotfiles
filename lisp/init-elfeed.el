@@ -24,7 +24,6 @@
 (defun jco/elfeed-db-update ()
   "Update the elfeed db."
   (interactive)
-  (elfeed-db-save)
   (elfeed-db-load)
   (elfeed-search-update--force)
   (elfeed-update))
