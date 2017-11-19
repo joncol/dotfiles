@@ -1,10 +1,21 @@
-;;; #init-common-funs.el --- Common functions -*- lexical-binding: t; -*-
+;;; #init-common-functions.el --- Common functions -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
 ;;
 
 ;;; Code:
+
+(defun apply-ansi-colors ()
+  "Apply ANSI colors on region."
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
+(defun get-ip-address (&optional dev)
+  "Get the IP-address for device DEV (default: eth0)."
+  (let ((dev (if dev dev "eth0")))
+    (format-network-address (car (network-interface-info dev)) t)))
 
 (defun jco/update-config ()
   "Get the latest config from source control."
@@ -13,15 +24,25 @@
   (shell-process-popd "1"))
 
 (defun jco/at-office-p (&optional print-message)
-  "Check whether I'm at the office.
+  "Check whether at the office.
 If PRINT-MESSAGE is true, a message will be printed indicating the result."
   (interactive "P")
-  (let ((at-office (member system-name '("jco-debian-zimpler"))))
+  (let ((result (member system-name '("jco-debian-zimpler"))))
     (if print-message
-        (message (if at-office
+        (message (if result
                      "You're at the office"
                    "You're not at the office"))
-      at-office)))
+      result)))
+
+(defun jco/at-digitalocean-p (&optional print-message)
+  "Check whether on the DigitalOcean server."
+  (interactive "P")
+  (let ((result (string-equal "162.243.220.203" (get-ip-address))))
+    (if print-message
+        (message (if result
+                     "You're on DigitalOcean"
+                   "You're not on DigitalOcean"))
+      result)))
 
 (defun jco/read-lines (filePath)
   "Return a list of lines of a file at FILEPATH."
@@ -244,11 +265,6 @@ invokation."
      ,@body
      (message "%.06f" (float-time (time-since time)))))
 
-(defun display-ansi-colors ()
-  (interactive)
-  (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region (point-min) (point-max))))
+(provide 'init-common-functions)
 
-(provide 'init-common-funs)
-
-;;; init-common-funs.el ends here
+;;; init-common-functions.el ends here

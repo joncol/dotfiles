@@ -28,7 +28,7 @@
 (defvar evil-want-C-i-jump nil)
 
 ;; Base initialization
-(require 'init-common-funs)
+(require 'init-common-functions)
 (require 'init-evil)
 (require 'init-common)
 (require 'init-elfeed)
