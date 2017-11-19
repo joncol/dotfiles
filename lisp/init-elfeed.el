@@ -6,8 +6,24 @@
 
 ;;; Code:
 
+(defun jco/elfeed-load-db-and-open ()
+  "Wrapper to load the elfeed db from disk before opening."
+  (interactive)
+  (require 'elfeed)
+  (elfeed-db-load)
+  (elfeed)
+  (elfeed-search-update--force))
+
+(defun jco/elfeed-save-db-and-bury ()
+  "Wrapper to save the elfeed db to disk before quitting."
+  (interactive)
+  (elfeed-db-save)
+  (quit-window))
+
 (use-package elfeed
   :defer t
+  :bind (:map elfeed-search-mode-map
+              ("q" . jco/elfeed-save-db-and-bury))
   :config
   (setq shr-use-fonts nil))
 
