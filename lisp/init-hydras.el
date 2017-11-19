@@ -123,7 +123,7 @@ vcs: _g_it _m_ercurial"
 app: _c_irce _e_rc el_f_eed _m_u4e e_s_hell _v_im e_w_w s_x_"
   ("c" (circe "Freenode"))
   ("e" (erc :server "irc.freenode.net" :port 6667))
-  ("f" (progn (elfeed) (elfeed-update)))
+  ("f" (jco/elfeed-load-db-and-open))
   ("m" mu4e)
   ("s" jco/eshell-here)
   ("v" jco/vim)
