@@ -134,7 +134,8 @@
 (add-hook 'cider-repl-mode-hook
           (lambda ()
             (modify-syntax-entries)
-            (smartparens-mode)))
+            (smartparens-mode)
+            (turn-off-fci-mode)))
 
 (add-hook 'cider--debug-mode-hook
           (lambda ()
