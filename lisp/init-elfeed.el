@@ -31,7 +31,7 @@
   :after elfeed
   :config
   (elfeed-org)
-  (setq rmh-elfeed-org-files '("~/Dropbox/emacs/elfeed.org")))
+  (setq rmh-elfeed-org-files '("~/.elfeed/elfeed.org")))
 
 (provide 'init-elfeed)
 
