@@ -56,6 +56,10 @@
 
 (add-hook 'messages-buffer-mode-hook 'ansi-color-for-comint-mode-on)
 
+(add-hook 'conf-mode-hook
+          #'(lambda ()
+              (modify-syntax-entry ?_ "w")))
+
 (use-package ace-isearch
   :disabled t
   :diminish ace-isearch-mode
