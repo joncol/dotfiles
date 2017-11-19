@@ -35,7 +35,8 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
       result)))
 
 (defun jco/at-digitalocean-p (&optional print-message)
-  "Check whether on the DigitalOcean server."
+  "Check whether on the DigitalOcean server.
+If PRINT-MESSAGE is true, a message will be printed indicating the result."
   (interactive "P")
   (let ((result (string-equal "162.243.220.203" (get-ip-address))))
     (if print-message
