@@ -12,13 +12,22 @@
   (require 'elfeed)
   (elfeed-db-load)
   (elfeed)
-  (elfeed-search-update--force))
+  (elfeed-search-update--force)
+  (elfeed-update))
 
 (defun jco/elfeed-save-db-and-quit ()
   "Wrapper to save the elfeed db to disk before quitting."
   (interactive)
   (elfeed-db-save)
   (quit-window t))
+
+(defun jco/elfeed-db-update ()
+  "Update the elfeed db."
+  (interactive)
+  (elfeed-db-save)
+  (elfeed-db-load)
+  (elfeed-search-update--force)
+  (elfeed-update))
 
 (use-package elfeed
   :defer t
@@ -53,7 +62,8 @@
   :if (and (jco/at-digitalocean-p) (daemonp))
   :config
   (setq http-port 8080)
-  (elfeed-web-start))
+  (elfeed-web-start)
+  (run-with-timer 0 (* 1 60) 'jco/elfeed-db-update))
 
 (provide 'init-elfeed)
 
