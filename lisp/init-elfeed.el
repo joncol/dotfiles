@@ -24,10 +24,12 @@
 (defun jco/elfeed-db-update ()
   "Update the elfeed db."
   (interactive)
+  (elfeed-db-save)
+  (quit-window)
   (elfeed-db-load)
+  (elfeed)
   (elfeed-search-update--force)
-  (elfeed-update)
-  (elfeed-db-save))
+  (elfeed-update))
 
 (use-package elfeed
   :defer t
