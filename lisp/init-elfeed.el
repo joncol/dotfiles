@@ -33,6 +33,12 @@
   (elfeed-org)
   (setq rmh-elfeed-org-files '("~/.elfeed/elfeed.org")))
 
+(use-package elfeed-web
+   :if (jco/at-digitalocean-p)
+   :config
+   (setq http-port 8080)
+   (elfeed-web-start))
+
 (provide 'init-elfeed)
 
 ;;; init-elfeed.el ends here
