@@ -6,7 +6,7 @@
 
 ;;; Code:
 
-;;; Change this to whatever theme you want.
+;; Change this to whatever theme you want.
 (defvar jco/theme)
 (set (make-local-variable 'jco/theme)
      ;; Change this to whatever theme you want.
@@ -19,9 +19,10 @@
      ;; 'kaolin-dark
      ;; 'kaolin-eclipse
      ;; 'kaolin-ocean
+     ;; 'minimal
      ;; 'molokai
      ;; 'mustang
-     ;; 'nubox-dark
+     'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
@@ -30,7 +31,7 @@
      ;; 'sanityinc-tomorrow-night
      ;; 'solarized-dark
      ;; 'solarized-light
-     'tao-yang
+     ;; 'tao-yang
      ;; 'tao-yin
      )
 
@@ -135,7 +136,8 @@
 
   (material
    (set-face-background 'hl-line "#37474f")
-   (set-face-background 'org-todo nil))
+   (with-eval-after-load 'org-mode
+     (set-face-background 'org-todo nil)))
 
   (material-light
    (setq jco/cursor-color "azure4")
@@ -148,9 +150,10 @@
 
   (minimal
    (set-face-background 'hl-line "#101f24")
-   (set-face-background 'org-todo nil)
-   (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "DarkOrange4"))
+   (with-eval-after-load 'org-mode
+     (set-face-background 'org-todo nil)
+     (set-face-background 'evil-search-highlight-persist-highlight-face
+                          "DarkOrange4")))
 
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
@@ -280,10 +283,18 @@
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "MidnightBlue")))
 
-;;; Make syntax highlighting work also for current line.
+(when (not (display-graphic-p))
+  ;; Transparent background in console mode.
+  (set-face-background 'default "unspecified-bg")
+  (global-hl-line-mode -1)
+  (global-nlinum-mode -1)
+  (with-eval-after-load 'magit
+    (set-face-background 'magit-section-highlight nil)))
+
+;; Make syntax highlighting work also for current line.
 (set-face-foreground 'highlight nil)
 
-;;; ... And selected region.
+;; ... And selected region.
 (set-face-foreground 'region nil)
 
 (set-face-foreground 'minibuffer-prompt "#263238")
