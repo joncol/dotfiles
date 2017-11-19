@@ -18,18 +18,8 @@
 (defun jco/elfeed-save-db-and-quit ()
   "Wrapper to save the elfeed db to disk before quitting."
   (interactive)
-  (elfeed-db-save)
+  (elfeed-db-unload)
   (quit-window t))
-
-(defun jco/elfeed-db-update ()
-  "Update the elfeed db."
-  (interactive)
-  (elfeed-db-save)
-  (quit-window)
-  (elfeed-db-load)
-  (elfeed)
-  (elfeed-search-update--force)
-  (elfeed-update))
 
 (use-package elfeed
   :defer t
@@ -60,12 +50,17 @@
   (elfeed-org)
   (setq rmh-elfeed-org-files '("~/.elfeed/elfeed.org")))
 
+(defun jco/elfeed-db-updater ()
+  "Update the elfeed db."
+  (require 'elfeed)
+  (elfeed-db-unload))
+
 (use-package elfeed-web
   :if (and (jco/at-digitalocean-p) (daemonp))
-  :config
+  :init
+  (run-with-timer 0 (* 5 60) #'jco/elfeed-db-updater)
   (setq http-port 8080)
-  (elfeed-web-start)
-  (run-with-timer 0 (* 5 60) 'jco/elfeed-db-update))
+  (elfeed-web-start))
 
 (provide 'init-elfeed)
 
