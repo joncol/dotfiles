@@ -84,7 +84,8 @@
   (define-key evil-insert-state-map (kbd "C-k") nil) ;; Conflicts with Company.
 
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
+  (when (display-graphic-p)
+    (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward))
 
   (jco/define-bindings 'evil-window-map
                        '(("C-h" . windmove-left)
