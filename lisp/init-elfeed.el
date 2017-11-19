@@ -14,7 +14,7 @@
   (elfeed)
   (elfeed-search-update--force))
 
-(defun jco/elfeed-save-db-and-bury ()
+(defun jco/elfeed-save-db-and-quit ()
   "Wrapper to save the elfeed db to disk before quitting."
   (interactive)
   (elfeed-db-save)
@@ -23,7 +23,7 @@
 (use-package elfeed
   :defer t
   :bind (:map elfeed-search-mode-map
-              ("q" . jco/elfeed-save-db-and-bury))
+              ("q" . jco/elfeed-save-db-and-quit))
   :config
   (setq shr-use-fonts nil))
 
