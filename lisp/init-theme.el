@@ -119,6 +119,10 @@
    (set-face-foreground 'evil-search-highlight-persist-highlight-face "#101f24")
    )
 
+  (hemisu-light
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "LightBlue"))
+
   (kaolin-eclipse
    (set-face-background 'hl-line "#3E2A3E")
    (set-face-background 'region "#582c6b")
