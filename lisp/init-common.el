@@ -125,8 +125,10 @@
   ("C-x C-f" . counsel-find-file)
   ("C-x C-r" . counsel-recentf)
   ("C-c p s a" . counsel-projectile-ag)
-
   :config
+  (global-set-key (kbd "C-h f") 'counsel-describe-function)
+  (global-set-key (kbd "C-h v") 'counsel-describe-variable)
+  (global-set-key (kbd "C-h S") 'counsel-info-lookup-symbol)
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
   (when (eq system-type 'windows-nt)
     (setq-default counsel-ag-base-command
