@@ -130,6 +130,7 @@
   (global-set-key (kbd "C-h v") 'counsel-describe-variable)
   (global-set-key (kbd "C-h S") 'counsel-info-lookup-symbol)
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
+  (evil-leader/set-key "x z" 'counsel-fzf)
   (when (eq system-type 'windows-nt)
     (setq-default counsel-ag-base-command
                   "ag --vimgrep --nocolor --nogroup %s")))
@@ -280,7 +281,9 @@
 (use-package glsl-mode)
 
 (use-package google-this
-  :defer t)
+  :defer t
+  :init
+  (evil-leader/set-key "x g" 'google-this))
 
 (use-package guide-key
   :diminish guide-key-mode
