@@ -643,6 +643,8 @@ Example: `helloWorld` becomes `Hello world`."
 
 (use-package visual-fill-column)
 
+(use-package wgrep)
+
 (use-package which-key
   :diminish which-key-mode
   :config
