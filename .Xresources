@@ -1,15 +1,20 @@
-URxvt*font: xft:Hack:antialias=true:size=12.5
-URxvt*boldFont: xft:Hack:style=bold:antialias=true:size=12.5
-URxvt*italicFont: xft:Hack:style=italic:antialias=true:size=12.5
-URxvt*boldItalicFont: xft:Hack:style=bolditalic:antialias=true:size=12.5
+URxvt*font: xft:Hack:antialias=true:size=16.5
+URxvt*boldFont: xft:Hack:style=bold:antialias=true:size=16.5
+URxvt*italicFont: xft:Hack:style=italic:antialias=true:size=16.5
+URxvt*boldItalicFont: xft:Hack:style=bolditalic:antialias=true:size=16.5
 
 URxvt*letterSpace: -2
+
+Xcursor.size: 16
 
 Rxvt.scrollBar: false
 Rxvt.saveLines: 65535
 
 URxvt.keysym.Shift-Up: command:\033]720;1\007
 URxvt.keysym.Shift-Down: command:\033]721;1\007
+
+URxvt.transparent: true
+URxvt.shading:20
 
 ! ! special
 ! *.foreground:   #666699
