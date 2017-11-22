@@ -218,7 +218,8 @@
             (set (make-local-variable 'compile-command)
                  (jco/cmake-compile-command))
 
-            (jco/define-bindings c++-mode-map '(("<f6>" . compile)))
+            (jco/define-bindings c++-mode-map '(("<f6>" . compile)
+                                                ("C-c C-k" . compile)))
 
             (setq flycheck-clang-language-standard "c++14")
 
