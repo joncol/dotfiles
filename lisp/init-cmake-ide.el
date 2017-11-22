@@ -28,7 +28,7 @@
       '(add-to-list 'company-backends 'company-irony))
 
     (bind-key "M-." 'rtags-find-symbol-at-point c-mode-base-map)
-    (bind-key "M-," 'pop-tag-mark c-mode-base-map)
+    (bind-key "M-," 'rtags-location-stack-back c-mode-base-map)
 
     (add-hook 'rtags-jump-hook 'evil-set-jump)
 
