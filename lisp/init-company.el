@@ -15,7 +15,9 @@
          ("C-j" . company-select-next-or-abort)
          ("C-k" . company-select-previous-or-abort)
          ("C-n" . company-select-next-or-abort)
-         ("C-p" . company-select-previous-or-abort))
+         ("C-p" . company-select-previous-or-abort)
+         ("C-d" . company-show-doc-buffer)
+         ("M-." . company-show-location))
 
   :config
   (advice-add 'company-call-frontends :before
