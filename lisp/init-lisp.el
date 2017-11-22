@@ -14,11 +14,15 @@
   (setq slime-description-autofocus t)
   (add-hook 'slime-popup-buffer-mode-hook
             #'(lambda ()
-                (evil-motion-state))))
+                (evil-motion-state)))
+  (add-hook 'slime-repl-mode-hook
+            #'(lambda ()
+                (turn-off-fci-mode))))
 
 (add-hook 'lisp-mode-hook
           #'(lambda ()
               (init-lisp-common)
+              (setq-local evil-move-beyond-eol t)
               (setq inferior-lisp-program "sbcl")
               (setq slime-contribs '(slime-fancy))
               (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)))
