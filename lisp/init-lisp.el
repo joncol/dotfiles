@@ -9,7 +9,12 @@
 (require 'init-lisp-common)
 
 (use-package slime
-  :after lisp-mode)
+  :after lisp-mode
+  :config
+  (setq slime-description-autofocus t)
+  (add-hook 'slime-popup-buffer-mode-hook
+            #'(lambda ()
+                (evil-motion-state))))
 
 (add-hook 'lisp-mode-hook
           #'(lambda ()
