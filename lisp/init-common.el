@@ -594,9 +594,11 @@ Example: `helloWorld` becomes `Hello world`."
 (global-set-key (kbd "C-c C-b") 'help-go-back)
 (global-set-key (kbd "C-c C-f") 'help-go-forward)
 
-(let ((my-bin-path (expand-file-name "~/.local/bin")))
+(let ((my-bin-path (expand-file-name "~/.local/bin"))
+      (fzf-bin-path (expand-file-name "~/.fzf/bin")))
   (setenv "PATH" (concat (getenv "PATH") ":" my-bin-path))
-  (add-to-list 'exec-path my-bin-path t))
+  (add-to-list 'exec-path my-bin-path t)
+  (add-to-list 'exec-path fzf-bin-path t))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
