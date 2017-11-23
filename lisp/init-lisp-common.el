@@ -6,10 +6,13 @@
 
 ;;; Code:
 
-(use-package evil-lispy
-  :disabled t
-  :commands evil-lispy-mode
-  :defer t)
+(defun jco/lisp-comment-dwim ()
+  "Comments Lisp sexps smartly."
+  (interactive)
+  (if (eq (char-after) ?\()
+      (progn (mark-sexp)
+             (comment-dwim nil))
+    (call-interactively #'evilnc-comment-or-uncomment-lines)))
 
 (use-package redshank
   :disabled t
@@ -20,10 +23,9 @@
 
 (defun init-lisp-common ()
   "Common configuration options for all Lisp modes."
-
   ;; do not treat "-" as a word separator
+  (define-key lisp-mode-shared-map (kbd "M-;") #'jco/lisp-comment-dwim)
   (modify-syntax-entry ?- "w")
-
   (smartparens-strict-mode))
 
 (provide 'init-lisp-common)
