@@ -24,6 +24,12 @@
                 (evil-normal-state)
                 (turn-off-fci-mode))))
 
+(add-hook 'slime-connected-hook
+          #'(lambda ()
+              (with-selected-window (get-buffer-window (slime-output-buffer t))
+                (let ((height (if (jco/at-office-p) 20 10)))
+                  (evil-window-set-height height)))))
+
 (add-hook 'lisp-mode-hook
           #'(lambda ()
               (init-lisp-common)
