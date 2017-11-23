@@ -114,6 +114,7 @@
             (bind-keys :map cider-test-report-mode-map
                        ("<tab>"     . forward-button)
                        ("<backtab>" . backward-button)
+                       ("TAB"       . forward-button)
                        ("C-w h"     . windmove-left)
                        ("C-w j"     . windmove-down)
                        ("C-w k"     . windmove-up)
