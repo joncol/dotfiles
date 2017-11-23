@@ -37,6 +37,7 @@
   :diminish company-mode)
 
 (use-package company-quickhelp
+  :if (display-graphic-p)
   :defer t
   :config
   (setq company-quickhelp-delay 0)
