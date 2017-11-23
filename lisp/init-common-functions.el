@@ -266,6 +266,10 @@ invokation."
      ,@body
      (message "%.06f" (float-time (time-since time)))))
 
+(defun jco/find-buffers-by-regex (re)
+  "Find the first buffer with a name matching RE."
+  (seq-filter #'(lambda(b) (string-match re (buffer-name b))) (buffer-list)))
+
 (provide 'init-common-functions)
 
 ;;; init-common-functions.el ends here
