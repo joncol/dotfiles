@@ -21,6 +21,7 @@
                 (evil-motion-state)))
   (add-hook 'slime-repl-mode-hook
             #'(lambda ()
+                (evil-normal-state)
                 (turn-off-fci-mode))))
 
 (add-hook 'lisp-mode-hook
@@ -30,6 +31,7 @@
               (setq inferior-lisp-program "sbcl")
               (require 'slime-company)
               (slime-setup '(slime-fancy slime-company))
+              (slime-company-maybe-enable)
               (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)))
 
 (use-package slime-company
