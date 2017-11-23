@@ -91,9 +91,7 @@
                (evil-leader/set-key-for-mode m (car kv) (cdr kv))))))
 
 (add-hook 'nrepl-connected-hook
-          #'(lambda ()
-              (evil-window-move-very-bottom)
-              (evil-window-set-height 20)))
+          #'jco/move-window-to-bottom)
 
 (add-hook 'cider-browse-ns-mode-hook
           (lambda ()
