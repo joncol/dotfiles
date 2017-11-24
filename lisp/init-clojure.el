@@ -42,7 +42,6 @@
 (add-hook 'clojure-mode-hook
           (lambda ()
             (init-lisp-common)
-            (setq evil-shift-width 2)
             (setq-local evil-move-beyond-eol t)
             (setq cider-prompt-for-symbol nil)
 

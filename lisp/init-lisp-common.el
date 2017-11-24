@@ -24,6 +24,7 @@
 (defun init-lisp-common ()
   "Common configuration options for all Lisp modes."
   ;; do not treat "-" as a word separator
+  (setq evil-shift-width 2)
   (define-key lisp-mode-shared-map (kbd "M-;") #'jco/lisp-comment-dwim)
   (modify-syntax-entry ?- "w")
   (smartparens-strict-mode))
