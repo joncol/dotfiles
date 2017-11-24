@@ -35,8 +35,9 @@
               (init-lisp-common)
               (setq-local evil-move-beyond-eol t)
               (setq inferior-lisp-program "sbcl")
-              (require 'slime-company)
-              (slime-setup '(slime-fancy slime-company))
+              (slime-setup '(slime-asdf slime-company slime-fancy))
+              (slime-asdf-init) ;; Required for `slime-load-system'.
+              (evil-leader/set-key "x l" #'slime-load-system)
               (slime-company-maybe-enable)
               (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)))
 
