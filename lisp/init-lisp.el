@@ -27,8 +27,8 @@
 (add-hook 'slime-connected-hook
           #'(lambda ()
               (with-selected-window (get-buffer-window (slime-output-buffer t))
-                (let ((height (if (jco/at-office-p) 20 10)))
-                  (evil-window-set-height height)))))
+                (let ((height (if (jco/at-office-p) 15 10)))
+                  (jco/move-window-to-bottom height)))))
 
 (add-hook 'lisp-mode-hook
           #'(lambda ()
