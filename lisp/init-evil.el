@@ -50,7 +50,7 @@
                       (cider-test-report-mode   . emacs)
                       (dashboard-mode           . emacs)
                       (diff-mode                . emacs)
-                      (dired-mode               . emacs)
+                      (dired-mode               . motion)
                       (doc-view-mode            . emacs)
                       (elfeed-search-mode       . emacs)
                       (elfeed-show-mode         . emacs)
