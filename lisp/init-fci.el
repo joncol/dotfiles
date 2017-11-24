@@ -55,6 +55,7 @@ called.")
       (when fci-was-initially-on
         (fci-mode 1)))))
 
+(advice-add 'evil-paste-before :around #'disable-fci-temporarily)
 (advice-add 'shell-command :around #'disable-fci-temporarily)
 (advice-add 'shell-command-on-region :around #'disable-fci-temporarily)
 
