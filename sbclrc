@@ -1,0 +1,11 @@
+; -*- mode: Lisp; -*-
+
+;;; The following lines added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+;;; Added by me (JCO 2017-11-24).
+(push *default-pathname-defaults* asdf:*central-registry*)
