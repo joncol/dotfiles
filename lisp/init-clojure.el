@@ -53,6 +53,8 @@
             (cider-auto-test-mode)
             (diminish 'cider-auto-test-mode)
 
+            (define-key clojure-mode-map (kbd "M-;") #'jco/lisp-comment-dwim)
+
             (defadvice cider-create-grimoire-buffer
                 (after grimoire-buffer-after activate compile)
               "Enables closing the Grimoire buffer with q, for instance."
