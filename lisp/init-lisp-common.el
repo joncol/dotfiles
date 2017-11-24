@@ -14,13 +14,6 @@
              (comment-dwim nil))
     (call-interactively #'evilnc-comment-or-uncomment-lines)))
 
-(use-package redshank
-  :disabled t
-  :defer t
-  :init
-  (setq redshank-prefix-key "C-c C-r")
-  :diminish redshank-mode)
-
 (defun init-lisp-common ()
   "Common configuration options for all Lisp modes."
   ;; do not treat "-" as a word separator

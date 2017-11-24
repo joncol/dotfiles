@@ -33,7 +33,21 @@
 (add-hook 'lisp-mode-hook
           #'(lambda ()
               (init-lisp-common)
+
+              (require 'redshank-loader)
+
+              (with-eval-after-load 'redshank-loader
+                (redshank-setup '(lisp-mode-hook
+                                  slime-repl-mode-hook) t))
+              (diminish 'redshank-mode)
+              (redshank-mode)
+
               (setq-local evil-move-beyond-eol t)
+
+              (modify-syntax-entry ?: "w")
+              (modify-syntax-entry ?< "w")
+              (modify-syntax-entry ?> "w")
+              (modify-syntax-entry ?= "w")
               (setq inferior-lisp-program "sbcl")
               (slime-setup '(slime-asdf slime-company slime-fancy))
               (slime-asdf-init) ;; Required for `slime-load-system'.
