@@ -11,6 +11,7 @@
 (set (make-local-variable 'jco/theme)
      ;; Change this to whatever theme you want.
      ;; 'adwaita
+     ;; 'borland-blue
      ;; 'cyberpunk
      ;; 'darktooth
      ;; 'gotham
