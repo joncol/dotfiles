@@ -33,6 +33,7 @@
 (add-hook 'lisp-mode-hook
           #'(lambda ()
               (init-lisp-common)
+              (evil-leader/set-key "h h" 'hyperspec-lookup)
               (require 'redshank-loader)
               (with-eval-after-load 'redshank-loader
                 (redshank-setup '(lisp-mode-hook
