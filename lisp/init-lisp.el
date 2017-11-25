@@ -45,6 +45,7 @@
               (modify-syntax-entry ?< "w")
               (modify-syntax-entry ?> "w")
               (modify-syntax-entry ?= "w")
+              (modify-syntax-entry ?* "w")
               (setq inferior-lisp-program "sbcl")
               (slime-setup '(slime-asdf slime-company slime-fancy))
               (slime-asdf-init) ;; Required for `slime-load-system'.
