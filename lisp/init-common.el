@@ -32,6 +32,7 @@
 (global-set-key (kbd "C-c j")
                 (lambda ()
                   (interactive)
+                  (require 'calendar)
                   (let* ((year (caddr (calendar-current-date)))
                          (file-name (format "~/ledgers/%s.journal" year)))
                     (find-file (expand-file-name file-name)))))
