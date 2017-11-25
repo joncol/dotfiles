@@ -12,7 +12,6 @@
   :after lisp-mode
   :config
   (setq slime-description-autofocus t)
-  (setq evil-motion-state-modes (append '(sldb-mode) evil-motion-state-modes))
   (add-hook 'lisp-mode-hook
             #'(lambda ()
                 (evil-leader/set-key "x s" 'slime)))
@@ -34,17 +33,13 @@
 (add-hook 'lisp-mode-hook
           #'(lambda ()
               (init-lisp-common)
-
               (require 'redshank-loader)
-
               (with-eval-after-load 'redshank-loader
                 (redshank-setup '(lisp-mode-hook
                                   slime-repl-mode-hook) t))
               (diminish 'redshank-mode)
               (redshank-mode)
-
               (setq-local evil-move-beyond-eol t)
-
               (modify-syntax-entry ?: "w")
               (modify-syntax-entry ?< "w")
               (modify-syntax-entry ?> "w")
@@ -54,7 +49,8 @@
               (slime-asdf-init) ;; Required for `slime-load-system'.
               (evil-leader/set-key "x l" #'slime-load-system)
               (slime-company-maybe-enable)
-              (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)))
+              (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)
+              (define-key sldb-mode-map "\C-w" 'evil-window-map)))
 
 (use-package slime-company
   :defer t)

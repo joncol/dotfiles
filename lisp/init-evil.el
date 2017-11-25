@@ -48,6 +48,7 @@
                       ;; (comint-mode              . emacs)
                       (cider-browse-ns-mode     . emacs)
                       (cider-test-report-mode   . emacs)
+                      (compilation-mode         . motion)
                       (dashboard-mode           . emacs)
                       (diff-mode                . emacs)
                       (dired-mode               . motion)
