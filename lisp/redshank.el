@@ -688,9 +688,9 @@ involves macro-expanding code, and as such might have side effects."
                                   ,(or package (slime-pretty-package-name
                                                 (slime-current-package))))
                                 package)))
-    (flet ((princ-to-string (o)
-             (with-output-to-string
-               (princ (if (null o) "()" o)))))
+    (cl-flet ((princ-to-string (o)
+                (with-output-to-string
+                  (princ (if (null o) "()" o)))))
       (with-temp-buffer
         (lisp-mode)                     ; for proper indentation
         (insert "(defun " name " " (princ-to-string free-vars) "\n")
@@ -734,10 +734,10 @@ Example:
 (defun redshank-condify-form ()
   "Transform a Common Lisp IF form into an equivalent COND form."
   (interactive "*")
-  (flet ((redshank--frob-cond-branch ()
-            (paredit-wrap-sexp +2)
-            (forward-sexp)
-            (redshank-maybe-splice-progn)))
+  (cl-flet ((redshank--frob-cond-branch ()
+               (paredit-wrap-sexp +2)
+               (forward-sexp)
+               (redshank-maybe-splice-progn)))
     (save-excursion
       (unless (redshank--looking-at-or-inside "if")
         (error "Cowardly refusing to mutilate other forms than IF"))
@@ -770,12 +770,12 @@ With optional numeric argument, wrap N top-level forms."
   "Rewrite the negated predicate of a WHEN or UNLESS form at point."
   (interactive "*")
   (save-excursion
-    (flet ((redshank--frob-form (new-head)
-             (paredit-forward-kill-word)
-             (insert new-head)
-             (paredit-forward-kill-word)
-             (paredit-splice-sexp-killing-backward)
-             (just-one-space)))
+    (cl-flet ((redshank--frob-form (new-head)
+                (paredit-forward-kill-word)
+                (insert new-head)
+                (paredit-forward-kill-word)
+                (paredit-splice-sexp-killing-backward)
+                (just-one-space)))
       ;; Okay, I am cheating here...
       (cond ((redshank--looking-at-or-inside "when\\s-+(not")
              (redshank--frob-form "unless"))
