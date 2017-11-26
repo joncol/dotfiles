@@ -14,7 +14,8 @@
   (setq slime-description-autofocus t)
   (add-hook 'lisp-mode-hook
             #'(lambda ()
-                (evil-leader/set-key "x s" 'slime)))
+                (evil-leader/set-key "x s" 'slime)
+                (evil-leader/set-key "x r" 'slime-restart-inferior-lisp)))
   (add-hook 'slime-popup-buffer-mode-hook
             #'(lambda ()
                 (evil-motion-state)))
