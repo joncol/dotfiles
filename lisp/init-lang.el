@@ -1,7 +1,7 @@
 (use-package langtool
   :init
   (setq langtool-language-tool-jar
-        "/opt/LanguageTool-3.5/languagetool-commandline.jar"))
+        "/opt/LanguageTool-3.9/languagetool-commandline.jar"))
 
 (when (eq system-type 'darwin)
   (setenv "STARDICT_DATA_DIR" (expand-file-name "~/dictionaries")))
