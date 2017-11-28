@@ -1,7 +1,18 @@
+;;; #init-lang.el --- Language config -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (use-package langtool
+  :defer t
   :init
   (setq langtool-language-tool-jar
-        "/opt/LanguageTool-3.9/languagetool-commandline.jar"))
+        "/opt/LanguageTool-3.9/languagetool-commandline.jar")
+  (setq langtool-autoshow-message-function
+      'langtool-autoshow-detail-popup))
 
 (when (eq system-type 'darwin)
   (setenv "STARDICT_DATA_DIR" (expand-file-name "~/dictionaries")))
@@ -15,10 +26,8 @@
       (let ((msg (langtool-details-error-message overlays)))
         (popup-tip msg)))))
 
-(setq langtool-autoshow-message-function
-      'langtool-autoshow-detail-popup)
-
-(require 'sdcv-mode)
 (global-set-key (kbd "C-c d") 'sdcv-search)
 
 (provide 'init-lang)
+
+;;; init-lang.el ends here
