@@ -33,6 +33,8 @@
 
 (add-hook 'lisp-mode-hook
           #'(lambda ()
+              (when (file-exists-p "~/quicklisp/slime-helper.el")
+                (load (expand-file-name "~/quicklisp/slime-helper.el")))
               (init-lisp-common)
               (evil-leader/set-key "h h" 'hyperspec-lookup)
               (require 'redshank-loader)
@@ -57,9 +59,6 @@
 
 (use-package slime-company
   :defer t)
-
-(when (file-exists-p "~/quicklisp/slime-helper.el")
-  (load (expand-file-name "~/quicklisp/slime-helper.el")))
 
 (provide 'init-lisp)
 
