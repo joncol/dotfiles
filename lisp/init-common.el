@@ -574,6 +574,7 @@ Example: `helloWorld` becomes `Hello world`."
 
 (add-hook 'sql-mode-hook
           (lambda ()
+            (fci-mode)
             ;; do not treat "-" as a word separator
             (modify-syntax-entry ?- "w")))
 
