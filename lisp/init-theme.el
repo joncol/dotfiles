@@ -293,8 +293,10 @@
   (set-face-background 'default "unspecified-bg")
   (global-hl-line-mode -1)
   (global-nlinum-mode -1)
-  (with-eval-after-load 'magit
-    (set-face-background 'magit-section-highlight nil)))
+  (if (boundp 'magit-mode)
+      (set-face-background 'magit-section-highlight nil)
+    (with-eval-after-load 'magit
+      (set-face-background 'magit-section-highlight nil))))
 
 ;; Make syntax highlighting work also for current line.
 (set-face-foreground 'highlight nil)
