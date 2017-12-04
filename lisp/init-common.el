@@ -69,6 +69,10 @@
           #'(lambda ()
               (modify-syntax-entry ?_ "w")))
 
+(defadvice view-emacs-news (after evil-motion-state-in-news-view activate compile)
+  "Enable evil motion state."
+  (evil-motion-state))
+
 (use-package ace-isearch
   :disabled t
   :diminish ace-isearch-mode
