@@ -36,17 +36,6 @@
 
   :diminish company-mode)
 
-(use-package company-quickhelp
-  :disabled t
-  :defer t
-  :config
-  (setq company-quickhelp-delay 0)
-  (company-quickhelp-mode))
-
-(add-hook 'company-mode-hook
-          #'(lambda ()
-              (require 'company-quickhelp)))
-
 (defvar jco/prev-fci-status nil)
 
 (defun jco/turn-off-fci-during-company-complete(command)

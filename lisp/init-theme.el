@@ -165,7 +165,8 @@
    (add-hook 'smartparens-mode-hook
              #'(lambda ()
                  (set-face-background 'sp-pair-overlay-face "#582c6b")))
-   (set-face-background 'swiper-line-face "#582c6b")
+   (with-eval-after-load 'swiper-mode
+     (set-face-background 'swiper-line-face "#582c6b"))
    (set-face-background 'region "#582c6b")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (set-face-foreground 'evil-search-highlight-persist-highlight-face "#465457")
@@ -190,7 +191,8 @@
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
-   (set-face-background 'swiper-line-face "#2a2d2e")
+   (with-eval-after-load 'swiper-mode
+     (set-face-background 'swiper-line-face "#2a2d2e"))
    (set-face-background 'vhl/default-face "#2a2d2e")
    (set-face-background 'iedit-occurrence "#2a2d2e")
    (add-hook 'smartparens-mode-hook
@@ -203,7 +205,8 @@
 
   (nubox-light
    (setq jco/cursor-color "#101f24")
-   (set-face-background 'swiper-line-face "#e0dcbe")
+   (with-eval-after-load 'swiper-mode
+     (set-face-background 'swiper-line-face "#e0dcbe"))
    (set-face-background 'hl-line "#e0dcbe")
    (set-face-background 'vhl/default-face "#e0dcbe")
    (add-hook 'smartparens-mode-hook
@@ -257,7 +260,8 @@
 
   (solarized-dark
    (set-face-background 'region "#1a4550")
-   (set-face-background 'swiper-line-face "#335e69")
+   (with-eval-after-load 'swiper-mode
+     (set-face-background 'swiper-line-face "#335e69"))
    (set-face-background 'ivy-current-match "#335e69"))
 
   (solarized-light
@@ -292,7 +296,8 @@
   ;; Transparent background in console mode.
   (set-face-background 'default "unspecified-bg")
   (global-hl-line-mode -1)
-  (global-nlinum-mode -1)
+  (when (fboundp 'nlinum-mode)
+    (global-nlinum-mode -1))
   (if (boundp 'magit-mode)
       (set-face-background 'magit-section-highlight nil)
     (with-eval-after-load 'magit

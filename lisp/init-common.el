@@ -11,6 +11,10 @@
 
 (setq ad-redefinition-action 'accept)
 
+(use-package diminish)
+
+(when (version<= "26" emacs-version)
+  (global-display-line-numbers-mode))
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -55,7 +59,8 @@
 
 (add-hook 'doc-view-mode-hook
           #'(lambda ()
-              (nlinum-mode -1)
+              (when (fboundp 'nlinum-mode)
+                (nlinum-mode -1))
               (define-key doc-view-mode-map "\C-w" 'evil-window-map)))
 
 (add-hook 'messages-buffer-mode-hook 'ansi-color-for-comint-mode-on)
@@ -260,6 +265,7 @@
   (turn-on-fuzzy-isearch))
 
 (use-package nlinum
+  :disabled (version< "26" emacs-version)
   :init
   (global-nlinum-mode))
 
