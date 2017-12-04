@@ -221,7 +221,11 @@
   :after magit
   :config
   (setq evil-motion-state-modes
-        (append '(magit-submodule-list-mode) evil-motion-state-modes)))
+        (append '(magit-submodule-list-mode) evil-motion-state-modes))
+  (add-hook 'magit-mode-hook
+            #'(lambda ()
+                (when (version<= "26" emacs-version)
+                  (display-line-numbers-mode -1)))))
 
 (use-package evil-numbers
   :bind (("C-c +" . evil-numbers/inc-at-pt)
