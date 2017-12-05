@@ -334,6 +334,11 @@
   (setq ivy-use-virtual-buffers nil)
   (setq enable-recursive-minibuffers t)
   (setq ivy-use-selectable-prompt t)
+
+  ;; Seems needed to be able to select different options in ivy completion
+  ;; window.
+  (setq ivy-do-completion-in-region nil)
+
   (evil-leader/set-key "b" 'ivy-switch-buffer)
   (evil-leader/set-key "r" 'ivy-resume)
   (define-key ivy-minibuffer-map (kbd "S-SPC") nil)
