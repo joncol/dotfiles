@@ -23,7 +23,7 @@
      ;; 'minimal
      ;; 'molokai
      ;; 'mustang
-     'nubox-dark
+     ;; 'nubox-dark
      ;; 'nubox-light
      ;; 'organic-green
      ;; 'reykjavik
@@ -33,7 +33,7 @@
      ;; 'solarized-dark
      ;; 'solarized-light
      ;; 'tao-yang
-     ;; 'tao-yin
+     'tao-yin
      )
 
 (defvar jco/theme-packages)
@@ -272,10 +272,6 @@
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (set-face-background 'lazy-highlight "#f9bf3b"))
 
-  (soothe
-   (require 'linum)
-   (set-face-foreground 'linum "gray35"))
-
   (tao-yang
    (setq jco/cursor-color "azure4")
    (set-face-background 'hl-line "#e1dcd3")
@@ -288,7 +284,6 @@
    (set-face-background 'region "#4a3f51")
    (setq jco/cursor-color "#e0dcbe")
    (set-face-background 'hl-line "gray16")
-   (set-face-foreground 'linum "gray25")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "MidnightBlue")))
 
