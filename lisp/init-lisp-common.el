@@ -9,7 +9,8 @@
 (defun jco/lisp-comment-dwim ()
   "Comments Lisp sexps smartly."
   (interactive)
-  (if (member (char-after) '(?\( ?{ ?\[))
+  (if (and (not (hlt-nonempty-region-p))
+           (member (char-after) '(?\( ?{ ?\[)))
       (progn (mark-sexp)
              (comment-dwim nil))
     (call-interactively #'evilnc-comment-or-uncomment-lines)))
