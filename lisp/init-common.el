@@ -137,11 +137,10 @@
 
 (use-package counsel
   :after ivy
-  :bind
-  ("M-x" . counsel-M-x)
-  ("C-x C-f" . counsel-find-file)
-  ("C-x C-r" . counsel-recentf)
-  ("C-c p s a" . counsel-projectile-ag)
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-x C-r" . counsel-recentf)
+         ("C-c p s a" . counsel-projectile-ag))
   :config
   (global-set-key (kbd "C-h f") 'counsel-describe-function)
   (global-set-key (kbd "C-h v") 'counsel-describe-variable)
@@ -153,7 +152,6 @@
                   "ag --vimgrep --nocolor --nogroup %s")))
 
 (use-package counsel-projectile
-  :after counsel
   :config
   (counsel-projectile-on)
   (setq counsel-projectile-ag-initial-input
@@ -326,9 +324,8 @@
 
 (use-package ivy
   :diminish ivy-mode
-  :bind
-  ("C-s" . swiper)
-  ("C-x C-b" . ivy-switch-buffer)
+  :bind (("C-s" . swiper)
+         ("C-x C-b" . ivy-switch-buffer))
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers nil)
