@@ -73,6 +73,10 @@
   "Enable evil motion state."
   (evil-motion-state))
 
+(defadvice view-emacs-problems (after evil-motion-state-in-problems-view activate compile)
+  "Enable evil motion state."
+  (evil-motion-state))
+
 (use-package ace-isearch
   :disabled t
   :diminish ace-isearch-mode
