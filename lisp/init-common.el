@@ -483,7 +483,8 @@
                                        (not (sp-point-in-string-or-comment))))
                                   (t (not (sp-point-in-string-or-comment)))))))
   (sp-with-modes sp-clojure-modes
-    (sp-local-pair "'" nil :actions nil)))
+    (sp-local-pair "'" nil :actions nil)
+    (sp-local-pair "`" nil :actions nil)))
 
 (use-package speed-type
   :defer t)
