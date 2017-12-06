@@ -56,6 +56,7 @@
   (elfeed-db-unload))
 
 (use-package elfeed-web
+  :disabled t
   :if (and (jco/at-digitalocean-p) (daemonp))
   :init
   (require 'elfeed)
