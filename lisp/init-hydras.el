@@ -126,6 +126,7 @@ app: _c_irce _e_rc _m_u4e e_s_hell _v_im e_w_w s_x_"
   ;; ("f" (jco/elfeed-load-db-and-open))
   ("m" #'(lambda ()
            (interactive)
+           (jco/init-mu4e-contexts)
            (require 'mu4e)
            (mu4e)))
   ("s" jco/eshell-here)
