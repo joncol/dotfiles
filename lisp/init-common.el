@@ -13,8 +13,8 @@
 
 (use-package diminish)
 
-;; (when (version<= "26" emacs-version)
-;;   (global-display-line-numbers-mode))
+(when (version<= "26" emacs-version)
+  (global-display-line-numbers-mode))
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
