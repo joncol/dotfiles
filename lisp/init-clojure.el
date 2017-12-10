@@ -88,7 +88,8 @@
                             ("t p" . cider-test-run-project-tests)
                             ("t r" . cider-test-rerun-test)
                             ("t f" . cider-test-rerun-failed-tests)
-                            ("x r" . nrepl-reset)))
+                            ("x r" . nrepl-reset)
+                            ("x e" . cider-pprint-eval-last-sexp-to-repl)))
                (evil-leader/set-key-for-mode m (car kv) (cdr kv))))))
 
 (add-hook 'nrepl-connected-hook
