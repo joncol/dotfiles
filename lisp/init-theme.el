@@ -12,6 +12,7 @@
      ;; Change this to whatever theme you want.
      ;; 'adwaita
      ;; 'borland-blue
+     'challenger-deep
      ;; 'cyberpunk
      ;; 'darktooth
      ;; 'gotham
@@ -33,7 +34,7 @@
      ;; 'solarized-dark
      ;; 'solarized-light
      ;; 'tao-yang
-     'tao-yin
+     ;; 'tao-yin
      )
 
 (defvar jco/theme-packages)
@@ -43,6 +44,7 @@
        ample-theme
        ample-zen-theme
        borland-blue-theme
+       challenger-deep-theme
        cherry-blossom-theme
        color-theme-sanityinc-tomorrow
        cyberpunk-theme
@@ -108,6 +110,12 @@
    (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#7ceece")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
+
+  (challenger-deep
+   (set-face-background 'hl-line "#352E5A")
+   (set-face-background 'line-number-current-line nil)
+   (set-face-foreground 'line-number-current-line nil)
+   (face-attribute 'default :background))
 
   (darkane
    (set-face-background 'evil-search-highlight-persist-highlight-face
