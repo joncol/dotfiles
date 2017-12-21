@@ -77,6 +77,10 @@
   "Enable evil motion state."
   (evil-motion-state))
 
+(jco/define-bindings minibuffer-inactive-mode-map
+                     '(("C-n" . ido-next-match)
+                       ("C-p" . ido-prev-match)))
+
 (use-package ace-isearch
   :disabled t
   :diminish ace-isearch-mode
