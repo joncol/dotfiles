@@ -112,9 +112,10 @@
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
   (challenger-deep
-   (set-face-background 'hl-line "#352E5A")
+   (set-face-background 'hl-line "#352e5a")
    (set-face-background 'line-number-current-line nil)
-   (set-face-foreground 'line-number-current-line nil))
+   (set-face-foreground 'line-number-current-line nil)
+   (set-face-background 'vhl/default-face "#2f333c"))
 
   (darkane
    (set-face-background 'evil-search-highlight-persist-highlight-face
