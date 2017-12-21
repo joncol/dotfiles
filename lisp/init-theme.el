@@ -114,8 +114,7 @@
   (challenger-deep
    (set-face-background 'hl-line "#352E5A")
    (set-face-background 'line-number-current-line nil)
-   (set-face-foreground 'line-number-current-line nil)
-   (face-attribute 'default :background))
+   (set-face-foreground 'line-number-current-line nil))
 
   (darkane
    (set-face-background 'evil-search-highlight-persist-highlight-face
