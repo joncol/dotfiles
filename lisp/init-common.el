@@ -157,7 +157,7 @@
 
 (use-package counsel-projectile
   :config
-  (counsel-projectile-on)
+  (counsel-projectile-mode)
   (setq counsel-projectile-ag-initial-input
         '(thing-at-point 'symbol t)))
 
