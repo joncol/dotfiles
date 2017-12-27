@@ -115,7 +115,10 @@
    (set-face-background 'hl-line "#352e5a")
    (set-face-background 'line-number-current-line nil)
    (set-face-foreground 'line-number-current-line nil)
-   (set-face-background 'vhl/default-face "#2f333c"))
+   (set-face-background 'vhl/default-face "#2f333c")
+   (set-face-background 'ivy-highlight-face "#352e5a")
+   (set-face-background 'ivy-current-match "#e0dcbe")
+   (set-face-foreground 'ivy-current-match "#1b182c"))
 
   (darkane
    (set-face-background 'evil-search-highlight-persist-highlight-face
