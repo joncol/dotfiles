@@ -132,7 +132,8 @@
   (modify-syntax-entry ?< "w")
   (modify-syntax-entry ?> "w")
   (modify-syntax-entry ?? "w")
-  (modify-syntax-entry ?! "w"))
+  (modify-syntax-entry ?! "w")
+  (modify-syntax-entry ?* "w"))
 
 (add-hook 'cider-repl-mode-hook
           (lambda ()
