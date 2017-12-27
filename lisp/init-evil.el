@@ -47,6 +47,7 @@
   (dolist (mode-map '((ag-mode                  . emacs)
                       ;; (comint-mode              . emacs)
                       (cider-browse-ns-mode     . emacs)
+                      (cider-repl-history-mode  . emacs)
                       (cider-test-report-mode   . emacs)
                       (compilation-mode         . motion)
                       (dashboard-mode           . emacs)
