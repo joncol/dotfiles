@@ -39,6 +39,42 @@
   (insert "(reset)")
   (cider-repl-return))
 
+(defun point-at-pos-rel-line-offset (pos rel-line-offset)
+  "Return position of point at POS with REL-LINE-OFFSET relative line offset."
+  (save-excursion
+    (goto-char pos)
+    (forward-line rel-line-offset)
+    (point)))
+
+(defun disassemble-clojure-fn ()
+  "Helper function to disassemble a Clojure function.
+Opens a new buffer with the result."
+  (interactive)
+  (let* ((fn-name  (read-string "Disassemble Clojure function: "
+                                (thing-at-point 'symbol t)))
+         (buf-name (concat fn-name "-disassembly")))
+    (set-buffer (cider-current-repl-buffer))
+    (goto-char (point-max))
+    (insert "(use 'no.disassemble)")
+    (cider-repl-return)
+    (sleep-for 0 100)
+    (goto-char (point-max))
+    (insert (concat "(println (disassemble " fn-name "))"))
+    (save-excursion
+      (cider-repl-return))
+    (sleep-for 0 100)
+    (forward-line)
+    (if (not (re-search-forward "CompilerException" (line-end-position) t))
+        (progn (copy-to-buffer buf-name (point)
+                               (point-at-pos-rel-line-offset (point-max) -1))
+               (goto-char (point-max))
+               (pop-to-buffer buf-name)
+               (delete-trailing-whitespace)
+               (java-mode))
+      (progn
+        (goto-char (point-max))
+        (message (concat "No function named '" fn-name "' found"))))))
+
 (add-hook 'clojure-mode-hook
           (lambda ()
             (init-lisp-common)
@@ -88,6 +124,7 @@
                             ("t p" . cider-test-run-project-tests)
                             ("t r" . cider-test-rerun-test)
                             ("t f" . cider-test-rerun-failed-tests)
+                            ("x d" . disassemble-clojure-fn)
                             ("x r" . nrepl-reset)
                             ("x e" . cider-pprint-eval-last-sexp-to-repl)))
                (evil-leader/set-key-for-mode m (car kv) (cdr kv))))))
