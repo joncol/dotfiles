@@ -26,7 +26,9 @@
       (let ((msg (langtool-details-error-message overlays)))
         (popup-tip msg)))))
 
-(global-set-key (kbd "C-c d") 'sdcv-search)
+(use-package sdcv
+  :config
+  (global-set-key (kbd "C-c d") 'sdcv-search-input))
 
 (provide 'init-lang)
 
