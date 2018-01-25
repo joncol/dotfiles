@@ -24,7 +24,9 @@
 (global-font-lock-mode)
 (global-hl-line-mode)
 (global-whitespace-mode)
+(diminish 'eldoc-mode)
 (diminish 'global-whitespace-mode)
+(diminish 'smerge-mode)
 (with-eval-after-load "hideshow"
   (diminish 'hs-minor-mode))
 (winner-mode)
