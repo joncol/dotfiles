@@ -80,6 +80,7 @@ Opens a new buffer with the result."
             (init-lisp-common)
             (setq-local evil-move-beyond-eol t)
             (setq cider-prompt-for-symbol nil)
+            (cider-repl-toggle-pretty-printing)
 
             (modify-syntax-entries)
 
