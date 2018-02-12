@@ -23,9 +23,14 @@
 (add-to-list 'revert-without-query ".*\\.pdf\\'")
 (global-font-lock-mode)
 (global-hl-line-mode)
-(global-whitespace-mode)
 (diminish 'eldoc-mode)
+
+(global-whitespace-mode)
 (diminish 'global-whitespace-mode)
+
+(defun prevent-whitespace-mode-for-magit ()
+  (not (derived-mode-p 'magit-mode)))
+
 (diminish 'smerge-mode)
 (with-eval-after-load "hideshow"
   (diminish 'hs-minor-mode))
@@ -394,6 +399,11 @@
 (use-package magit
   :defer t
   :config
+  ;; Fix regression where error message is shown when using magit-status while
+  ;; having global-whitespace-mode enabled.
+  (add-function :before-while whitespace-enable-predicate
+                'prevent-whitespace-mode-for-magit)
+
   ;; Needed for success status message to be shown.
   (setq magit-auto-revert-mode nil)
 
