@@ -16,7 +16,8 @@
 (when (version<= "26" emacs-version)
   (global-display-line-numbers-mode))
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+(when (display-graphic-p)
+  (scroll-bar-mode -1))
 (tool-bar-mode -1)
 (global-auto-revert-mode)
 (diminish 'auto-revert-mode)
@@ -132,6 +133,7 @@
   (setq avy-case-fold-search nil))
 
 (use-package bookmark+
+  :disabled t
   :defer t)
 
 (use-package buffer-move
@@ -181,6 +183,7 @@
     (set-buffer-modified-p nil)))
 
 (use-package dired+
+  :disabled t
   :defer 1
   :config
   (defadvice dired-readin
@@ -324,6 +327,7 @@
   (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
 
 (use-package help-fns+
+  :disabled t
   :defer 1)
 
 ;; To get colors in html export of org-mode code snippets.
@@ -612,6 +616,7 @@ Example: `helloWorld` becomes `Hello world`."
             (modify-syntax-entry ?- "w")))
 
 (use-package info+
+  :disabled t
   :defer t
   :bind (:map Info-mode-map
               ("<tab>"     . Info-next-reference)
