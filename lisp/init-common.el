@@ -174,6 +174,9 @@
   :config
   (push ".*" desktop-clear-preserve-buffers))
 
+(with-eval-after-load 'dired
+  (require 'dired+))
+
 (defun mydired-sort ()
   "Sort dired listings with directories first."
   (save-excursion
@@ -182,14 +185,10 @@
       (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
     (set-buffer-modified-p nil)))
 
-(use-package dired+
-  :disabled t
-  :defer 1
-  :config
-  (defadvice dired-readin
-      (after dired-after-updating-hook first () activate)
-    "Sort dired listings with directories first before adding marks."
-    (mydired-sort)))
+(defadvice dired-readin
+    (after dired-after-updating-hook first () activate)
+  "Sort dired listings with directories first before adding marks."
+  (mydired-sort))
 
 (use-package dired-narrow
   :after dired+

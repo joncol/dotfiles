@@ -319,14 +319,13 @@
 (set-face-background 'minibuffer-prompt "#afd700")
 
 ;; Fix annoyingly dark backgrounds of dired-subtree faces.
-(add-hook 'dired-mode-hook
-          #'(lambda ()
-              (let* ((ns (number-sequence 1 5))
-                     (f  #'(lambda (x)
-                             (intern (format "dired-subtree-depth-%d-face" x))))
-                     (ss (map 'cons f ns)))
-                (dolist (f ss)
-                  (set-face-background f nil)))))
+(with-eval-after-load 'dired+
+  (let* ((ns (number-sequence 1 5))
+         (f  #'(lambda (x)
+                 (intern (format "dired-subtree-depth-%d-face" x))))
+         (ss (map 'cons f ns)))
+    (dolist (f ss)
+      (set-face-background f nil))))
 
 (when (not (eq jco/theme 'cyberpunk))
   (let ((info-bg "gray16"))
