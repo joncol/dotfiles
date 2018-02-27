@@ -615,16 +615,13 @@ Example: `helloWorld` becomes `Hello world`."
             ;; do not treat "-" as a word separator
             (modify-syntax-entry ?- "w")))
 
-(use-package info+
-  :disabled t
-  :defer t
-  :bind (:map Info-mode-map
-              ("<tab>"     . Info-next-reference)
-              ("<backtab>" . Info-prev-reference)))
-
 (add-hook 'Info-mode-hook
           #'(lambda ()
               (require 'info+)))
+
+(jco/define-bindings Info-mode-map
+                     '(("<tab>"     . Info-next-reference)
+                       ("<backtab>" . Info-prev-reference)))
 
 (require 'help-mode)
 (bind-keys :map help-mode-map

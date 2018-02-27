@@ -328,19 +328,20 @@
                 (dolist (f ss)
                   (set-face-background f nil)))))
 
-;; (when (not (eq jco/theme 'cyberpunk))
-;;   (let ((info-bg "gray16"))
-;;     (dolist (f '(info-command-ref-item
-;;                  info-constant-ref-item
-;;                  info-file
-;;                  info-function-ref-item
-;;                  info-macro-ref-item
-;;                  info-reference-item
-;;                  info-special-form-ref-item
-;;                  info-syntax-class-item
-;;                  info-user-option-ref-item
-;;                  info-variable-ref-item))
-;;       (set-face-background f info-bg))))
+(when (not (eq jco/theme 'cyberpunk))
+  (let ((info-bg "gray16"))
+    (with-eval-after-load 'info+
+      (dolist (f '(info-command-ref-item
+                   info-constant-ref-item
+                   info-file
+                   info-function-ref-item
+                   info-macro-ref-item
+                   info-reference-item
+                   info-special-form-ref-item
+                   info-syntax-class-item
+                   info-user-option-ref-item
+                   info-variable-ref-item))
+        (set-face-background f info-bg)))))
 
 (when (boundp 'jco/cursor-color)
   (require 'evil-states)
