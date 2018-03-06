@@ -46,6 +46,7 @@
        borland-blue-theme
        challenger-deep-theme
        cherry-blossom-theme
+       chyla-theme
        color-theme-sanityinc-tomorrow
        cyberpunk-theme
        ;; darkane-theme
