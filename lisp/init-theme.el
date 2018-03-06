@@ -122,10 +122,18 @@
    (set-face-background 'ivy-current-match "#e0dcbe")
    (set-face-foreground 'ivy-current-match "#1b182c"))
 
+  (chyla
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "LightBlue"))
+
   (darkane
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "midnightblue")
    (set-face-background 'hl-line "#041040"))
+
+  (eink
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "LightBlue"))
 
   (gotham
    (setq jco/cursor-color "lightblue")
