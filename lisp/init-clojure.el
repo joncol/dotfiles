@@ -36,7 +36,7 @@
   (interactive)
   (set-buffer (cider-current-repl-buffer))
   (goto-char (point-max))
-  (insert "(reset)")
+  (insert "(in-ns 'dev) (reset)")
   (cider-repl-return))
 
 (defun point-at-pos-rel-line-offset (pos rel-line-offset)
