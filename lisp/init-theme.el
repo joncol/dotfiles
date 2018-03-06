@@ -12,9 +12,11 @@
      ;; Change this to whatever theme you want.
      ;; 'adwaita
      ;; 'borland-blue
-     'challenger-deep
+     ;; 'challenger-deep
+     ;; 'chyla
      ;; 'cyberpunk
      ;; 'darktooth
+     ;; 'eink
      ;; 'gotham
      ;; 'hemisu-dark
      ;; 'hemisu-light
@@ -26,7 +28,7 @@
      ;; 'mustang
      ;; 'nubox-dark
      ;; 'nubox-light
-     ;; 'organic-green
+     'organic-green
      ;; 'reykjavik
      ;; 'sanityinc-tomorrow-blue
      ;; 'sanityinc-tomorrow-eighties
