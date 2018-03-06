@@ -52,6 +52,7 @@
        ;; darkane-theme
        darktooth-theme
        doom-themes
+       eink-theme
        espresso-theme
        flatland-theme
        flatui-theme
