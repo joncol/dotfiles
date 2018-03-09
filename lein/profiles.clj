@@ -3,7 +3,6 @@
                        [spyscope "0.1.7-SNAPSHOT"]]
         :injections [(require 'spyscope.core)
                      (use 'clojure.repl)
-                     (use 'clojure.tools.trace)
                      (use 'no.disassemble)]
         :plugins [[lein-nodisassemble "0.1.3"]
                   [lein-ancient "0.6.15"]
