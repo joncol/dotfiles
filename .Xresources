@@ -1,7 +1,7 @@
-URxvt*font: xft:Hack:antialias=true:size=16.5
-URxvt*boldFont: xft:Hack:style=bold:antialias=true:size=16.5
-URxvt*italicFont: xft:Hack:style=italic:antialias=true:size=16.5
-URxvt*boldItalicFont: xft:Hack:style=bolditalic:antialias=true:size=16.5
+URxvt*font: xft:Hack:antialias=true:size=15.5
+URxvt*boldFont: xft:Hack:style=bold:antialias=true:size=15.5
+URxvt*italicFont: xft:Hack:style=italic:antialias=true:size=15.5
+URxvt*boldItalicFont: xft:Hack:style=bolditalic:antialias=true:size=15.5
 
 URxvt*letterSpace: -2
 
