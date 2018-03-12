@@ -177,6 +177,10 @@
 (with-eval-after-load 'dired
   (require 'dired+))
 
+(use-package direnv
+  :config
+  (direnv-mode))
+
 (defun mydired-sort ()
   "Sort dired listings with directories first."
   (save-excursion
