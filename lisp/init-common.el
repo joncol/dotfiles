@@ -212,6 +212,10 @@
 (use-package dockerfile-mode
   :defer t)
 
+(use-package dumb-jump
+  :config
+  (dumb-jump-mode))
+
 (use-package ecb
   :defer t
   :config
