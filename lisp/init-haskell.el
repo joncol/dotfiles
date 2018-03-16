@@ -47,7 +47,7 @@
   (diminish 'haskell-doc-mode)
 
   (setq tab-stop-list
-        (loop for i from 0 upto 120 by 2 collect i))
+        (loop for i from 0 upto 120 by 4 collect i))
 
   (setq-local yas-indent-line 'fixed)
   (use-package helm-hayoo
@@ -76,7 +76,7 @@
                          (not (s-contains? "*temp" (buffer-name))))
                 (intero-mode))
 
-              (setq evil-shift-width 2)
+              (setq evil-shift-width 4)
 
               (evil-leader/set-key "x s" 'haskell-sort-imports)
 
