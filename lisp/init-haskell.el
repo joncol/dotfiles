@@ -65,8 +65,10 @@
 (use-package ebal
   :config
   (setq ebal-operation-mode 'stack)
-  (evil-leader/set-key "e i" 'ebal-init)
-  (evil-leader/set-key "e e" 'ebal-execute))
+  (add-hook 'haskell-mode-hook
+            #'(lambda ()
+                (evil-leader/set-key "e i" 'ebal-init)
+                (evil-leader/set-key "e e" 'ebal-execute))))
 
 (add-hook 'haskell-mode-hook
           #'(lambda ()
