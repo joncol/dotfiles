@@ -13,6 +13,8 @@
 
 (use-package diminish)
 
+(setq-default explicit-shell-file-name "/bin/bash")
+
 (when (version<= "26" emacs-version)
   (global-display-line-numbers-mode))
 (menu-bar-mode -1)
@@ -220,6 +222,33 @@
   :defer t
   :config
   (setq ecb-tip-of-the-day nil))
+
+(use-package eclim
+  :config
+  (setq eclimd-autostart t)
+  (setq eclimd-autostart-with-default-workspace t)
+  (setq eclim-eclipse-dirs "~/eclipse/java-oxygen/eclipse")
+  (setq eclim-executable
+        (expand-file-name "~/.p2/pool/plugins/org.eclim_2.7.2/bin/eclim"))
+  (setq eclimd-default-workspace (expand-file-name "~/eclipse-workspace"))
+  (evil-set-initial-state 'eclim-problems-mode 'emacs)
+  (evil-set-initial-state 'eclim-project-mode 'emacs)
+  (add-hook 'java-mode-hook
+            #'(lambda ()
+                (eclim-mode)
+                (evil-leader/set-key "e b" 'eclim-project-build)
+                (evil-leader/set-key "e c" 'eclim-project-create)
+                (evil-leader/set-key "e r" 'eclim-run-class)
+                (setq help-at-pt-display-when-idle t)
+                (setq help-at-pt-timer-delay 0.1)
+                (help-at-pt-set-timer)
+                (jco/define-bindings
+                 java-mode-map
+                 '(("M-g M-n" . eclim-problems-next-same-file)
+                   ("M-g n" . eclim-problems-next-same-file)
+                   ("M-g M-p" . eclim-problems-prev-same-file)
+                   ("M-g p" . eclim-problems-prev-same-file))))))
+
 
 (use-package elec-pair
   :init

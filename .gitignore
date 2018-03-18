@@ -54,3 +54,6 @@ xkcd/
 *.orig
 
 .goutputstream*
+
+/lisp/workbench.xmi
+
