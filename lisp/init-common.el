@@ -249,6 +249,21 @@
                    ("M-g M-p" . eclim-problems-prev-same-file)
                    ("M-g p" . eclim-problems-prev-same-file))))))
 
+(use-package gradle-mode
+  :config
+  (add-hook 'java-mode-hook
+            #'(lambda ()
+                (setq gradle-executable-path "/opt/gradle-4.6/bin/gradle")
+                (gradle-mode)
+                (evil-leader/set-key "g r"
+                  #'(lambda ()
+                      (interactive)
+                      (gradle-run "run")))
+                (evil-leader/set-key "t t"
+                  #'(lambda ()
+                      (interactive)
+                      (gradle-run "test --info")))
+                (evil-leader/set-key "t s" 'gradle-single-test))))
 
 (use-package elec-pair
   :init
