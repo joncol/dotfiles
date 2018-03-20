@@ -468,6 +468,11 @@
   (evil-leader/set-key "v b" 'magit-blame)
   (setq magit-blame-disabled-modes '(fci-mode)))
 
+(use-package magit-org-todos
+  :after magit
+  :config
+  (magit-org-todos-autoinsert))
+
 (use-package monky
   :defer t)
 
