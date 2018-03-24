@@ -1,4 +1,4 @@
-;;; init-org.el --- summary
+;;; init-org.el --- Org Mode config -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;
@@ -63,6 +63,13 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (use-package ox-reveal
   :after org)
 
+(defun current-org-files ()
+  "Get list of any currently open org files."
+  (delq nil
+        (mapcar #'(lambda (buffer)
+                    (buffer-file-name buffer))
+                (org-buffer-list 'files t))))
+
 (use-package org
   :defer t
   :ensure org-plus-contrib
@@ -89,7 +96,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
           ("MAYBE" . "gray60")))
   (setq org-agenda-files (concat org-directory "/agenda-files"))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
-                             ("notes.org" :maxlevel . 9)))
+                             ("notes.org" :maxlevel . 9)
+                             (current-org-files :maxlevel . 9)))
   ;; (setq org-outline-path-complete-in-steps nil)
   ;; (setq org-refile-use-outline-path t)
   (setq org-use-fast-todo-selection t)
