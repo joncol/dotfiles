@@ -466,7 +466,11 @@
         #'magit-display-buffer-fullframe-status-v1)
   (evil-leader/set-key "v l" 'magit-log-buffer-file)
   (evil-leader/set-key "v b" 'magit-blame)
-  (setq magit-blame-disabled-modes '(fci-mode)))
+  (setq magit-blame-disabled-modes '(fci-mode))
+  (add-hook 'git-commit-setup-hook
+            #'(lambda ()
+                (setq fill-column 72)
+                (fci-mode))))
 
 (use-package magit-org-todos
   :after magit
