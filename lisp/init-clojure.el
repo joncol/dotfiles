@@ -27,8 +27,6 @@
                   cider-classpath-mode)
                 evil-motion-state-modes)))
 
-(use-package clojure-snippets)
-
 (use-package kibit-helper)
 
 (defun nrepl-reset ()
