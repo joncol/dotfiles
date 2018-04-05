@@ -79,11 +79,13 @@
           #'(lambda ()
               (modify-syntax-entry ?_ "w")))
 
-(defadvice view-emacs-news (after evil-motion-state-in-news-view activate compile)
+(defadvice view-emacs-news (after evil-motion-state-in-news-view
+                                  activate compile)
   "Enable evil motion state."
   (evil-motion-state))
 
-(defadvice view-emacs-problems (after evil-motion-state-in-problems-view activate compile)
+(defadvice view-emacs-problems (after evil-motion-state-in-problems-view
+                                      activate compile)
   "Enable evil motion state."
   (evil-motion-state))
 
@@ -186,9 +188,8 @@
       (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
     (set-buffer-modified-p nil)))
 
-(defadvice dired-readin
-    (after dired-after-updating-hook first () activate)
-  "Sort dired listings with directories first before adding marks."
+(defadvice dired-readin (after dired-after-updating-hook first () activate)
+  "Sort dired listings with directories first, before adding marks."
   (mydired-sort))
 
 (use-package dired-narrow
@@ -760,13 +761,6 @@ Example: `helloWorld` becomes `Hello world`."
   (global-unset-key (kbd "C-x C-z")))
 
 (setq vc-follow-symlinks nil)
-
-;; Remove after installing Emacs 25.3.
-(eval-after-load "enriched"
-  '(defun enriched-decode-display-prop (start end &optional param)
-     (list start end)))
-
-;; (require 'ivy_buffer_extend)
 
 (provide 'init-common)
 
