@@ -97,11 +97,6 @@
   :config
   (global-ace-isearch-mode))
 
-(use-package ace-jump-helm-line
-  :diminish ace-jump-helm-line-mode
-  :bind (:map helm-map
-              ("M-f" . ace-jump-helm-line)))
-
 (use-package ace-link
   :init
   (ace-link-setup-default "f"))
