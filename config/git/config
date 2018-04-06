@@ -12,9 +12,13 @@ last = "log -1 HEAD"
 st = status
 sta = status
 unstage = "reset HEAD --"
+lola = "log --graph --decorate --pretty=lola --abbrev-commit --branches --remotes"
 
 [magit]
 hideCampaign = true
 
 [github]
 user = joncol
+
+[pretty]
+lola = %h%C(red)%d%Creset% s
