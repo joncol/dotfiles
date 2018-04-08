@@ -107,6 +107,15 @@
   :init
   (global-set-key [remap other-window] 'ace-window))
 
+(use-package aggressive-indent
+  :config
+  (global-aggressive-indent-mode)
+  (add-to-list
+   'aggressive-indent-dont-indent-if
+   '(and (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+         (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
+                             (thing-at-point 'line))))))
+
 (use-package ahk-mode)
 
 (use-package anzu
