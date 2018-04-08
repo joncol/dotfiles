@@ -56,4 +56,4 @@ xkcd/
 .goutputstream*
 
 /lisp/workbench.xmi
-
+/lisp/my-theme.el

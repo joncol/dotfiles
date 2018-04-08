@@ -41,7 +41,7 @@ edit cfg: _i_nit _c_ommon _f_ile _h_ydras _t_heme _u_pdate"
   ("c" (open-config-file "lisp/init-common.el"))
   ("f" (counsel-find-file (expand-file-name "~/.emacs.d/lisp/")))
   ("h" (open-config-file "lisp/init-hydras.el"))
-  ("t" (open-config-file "lisp/init-theme.el"))
+  ("t" (open-config-file "lisp/my-theme.el"))
   ("u" (jco/update-config)))
 
 (defhydra jco/hydra-find (:color teal :hint nil)

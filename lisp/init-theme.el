@@ -6,39 +6,6 @@
 
 ;;; Code:
 
-;; Change this to whatever theme you want.
-(defvar jco/theme)
-(set (make-local-variable 'jco/theme)
-     ;; Change this to whatever theme you want.
-     ;; 'adwaita
-     ;; 'borland-blue
-     ;; 'challenger-deep
-     ;; 'chyla
-     ;; 'cyberpunk
-     ;; 'darktooth
-     ;; 'eink
-     ;; 'gotham
-     ;; 'hemisu-dark
-     ;; 'hemisu-light
-     ;; 'kaolin-dark
-     ;; 'kaolin-eclipse
-     ;; 'kaolin-ocean
-     ;; 'minimal
-     ;; 'molokai
-     ;; 'mustang
-     ;; 'nubox-dark
-     ;; 'nubox-light
-     'organic-green
-     ;; 'reykjavik
-     ;; 'sanityinc-tomorrow-blue
-     ;; 'sanityinc-tomorrow-eighties
-     ;; 'sanityinc-tomorrow-night
-     ;; 'solarized-dark
-     ;; 'solarized-light
-     ;; 'tao-yang
-     ;; 'tao-yin
-     )
-
 (defvar jco/theme-packages)
 
 (set (make-local-variable 'jco/theme-packages)
@@ -92,6 +59,7 @@
   (setq powerline-default-separator 'arrow)
   (spaceline-spacemacs-theme))
 
+(require 'my-theme)
 (load-theme jco/theme t)
 
 (set-face-background 'evil-search-highlight-persist-highlight-face
