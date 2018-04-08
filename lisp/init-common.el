@@ -283,6 +283,11 @@
   :config
   (define-key esup-mode-map "\C-w" 'evil-window-map))
 
+(use-package evil-god-state
+  :config
+  (evil-define-key 'normal global-map (kbd "SPC") 'evil-execute-in-god-state)
+  (evil-define-key 'god global-map [escape] 'evil-god-state-bail))
+
 (use-package evil-ledger
   :after ledger-mode
   :config
