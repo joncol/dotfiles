@@ -94,9 +94,6 @@
 
 (load-theme jco/theme t)
 
-;; (defvar jco/cursor-color)
-;; (set (make-local-variable 'jco/cursor-color) "green")
-
 (set-face-background 'evil-search-highlight-persist-highlight-face
                      "RoyalBlue4")
 
