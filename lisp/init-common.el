@@ -126,7 +126,7 @@
 (use-package auto-yasnippet
   :config
   (evil-leader/set-key "y c" #'aya-create)
-  (evil-leader/set-key "y x" #'aya-expand))
+  (evil-leader/set-key "y e" #'aya-expand))
 
 (use-package avy
   :config
