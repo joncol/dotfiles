@@ -76,7 +76,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :init
   (setq org-directory "~/org")
   (setq org-capture-templates
-        '(("t" "Task" entry (file+headline "work.org" "_Incoming")
+        '(("a" "Appointment" entry (file  "~/Sync/gcal_zimpler.org" )
+           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
+          ("t" "Task" entry (file+headline "work.org" "_Incoming")
            "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
            :empty-lines-before 0)
           ("n" "Note" entry (file+headline "notes.org" "Notes")

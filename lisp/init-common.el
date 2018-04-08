@@ -151,6 +151,14 @@
   (global-set-key (kbd "<C-S-left>") 'buf-move-left)
   (global-set-key (kbd "<C-S-right>") 'buf-move-right))
 
+(use-package calfw
+  :commands cfw:open-org-calendar
+  :config
+  (setq cfw:display-calendar-holidays nil))
+
+(use-package calfw-org
+  :after calfw)
+
 (use-package cider
   :defer t
   :config
@@ -491,6 +499,13 @@
   :defer t)
 
 (use-package nginx-mode)
+
+(use-package org-gcal
+  :after calfw
+  :config
+  (require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg")
+  (setq org-gcal-file-alist
+        '(("jonas.collberg@zimpler.com" . "~/Sync/gcal_zimpler.org"))))
 
 (use-package outline
   :init

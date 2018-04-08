@@ -87,7 +87,11 @@
    (set-face-background 'vhl/default-face "#2f333c")
    (set-face-background 'ivy-highlight-face "#352e5a")
    (set-face-background 'ivy-current-match "#e0dcbe")
-   (set-face-foreground 'ivy-current-match "#1b182c"))
+   (set-face-foreground 'ivy-current-match "#1b182c")
+   (with-eval-after-load 'calfw
+     (set-face-background 'cfw:face-toolbar-button-on "Steelblue4")
+     (set-face-background 'cfw:face-toolbar-button-off "Steelblue4")
+     (set-face-foreground 'cfw:face-toolbar-button-off "#dadfe1")))
 
   (chyla
    (set-face-background 'evil-search-highlight-persist-highlight-face
