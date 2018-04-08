@@ -743,6 +743,8 @@ Example: `helloWorld` becomes `Hello world`."
                     "zimpler.com"
                   "mykolab.com"))))
 
+(use-package try)
+
 (use-package undo-tree
   :diminish undo-tree-mode
   :init
