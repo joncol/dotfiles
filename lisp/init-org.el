@@ -100,8 +100,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
                              ("notes.org" :maxlevel . 9)
                              (current-org-files :maxlevel . 9)))
-  ;; (setq org-outline-path-complete-in-steps nil)
-  ;; (setq org-refile-use-outline-path t)
   (setq org-use-fast-todo-selection t)
   (setq org-log-into-drawer t)
   (setq org-enforce-todo-dependencies t)
