@@ -74,59 +74,59 @@ Opens a new buffer with the result."
         (message (concat "No function named '" fn-name "' found"))))))
 
 (add-hook 'clojure-mode-hook
-          (lambda ()
-            (init-lisp-common)
-            (setq-local evil-move-beyond-eol t)
-            (setq cider-prompt-for-symbol nil)
-            (cider-repl-toggle-pretty-printing)
+          #'(lambda ()
+              (init-lisp-common)
+              (setq-local evil-move-beyond-eol t)
+              (setq cider-prompt-for-symbol nil)
+              (cider-repl-toggle-pretty-printing)
 
-            (modify-syntax-entries)
+              (modify-syntax-entries)
 
-            (diminish 'cider-mode)
+              (diminish 'cider-mode)
 
-            (cider-auto-test-mode)
-            (diminish 'cider-auto-test-mode)
+              (cider-auto-test-mode)
+              (diminish 'cider-auto-test-mode)
 
-            (define-key clojure-mode-map (kbd "M-;") #'jco/lisp-comment-dwim)
+              (define-key clojure-mode-map (kbd "M-;") #'jco/lisp-comment-dwim)
 
-            (defadvice cider-create-grimoire-buffer
-                (after grimoire-buffer-after activate compile)
-              "Enables closing the Grimoire buffer with q, for instance."
+              (defadvice cider-create-grimoire-buffer
+                  (after grimoire-buffer-after activate compile)
+                "Enables closing the Grimoire buffer with q, for instance."
 
-              (with-current-buffer "*cider-grimoire*"
-                (evil-motion-state)))
+                (with-current-buffer "*cider-grimoire*"
+                  (evil-motion-state)))
 
-            (put-clojure-indent 'GET 2)
-            (put-clojure-indent 'POST 2)
-            (put-clojure-indent 'PUT 2)
-            (put-clojure-indent 'defstate nil)
+              (put-clojure-indent 'GET 2)
+              (put-clojure-indent 'POST 2)
+              (put-clojure-indent 'PUT 2)
+              (put-clojure-indent 'defstate nil)
 
-            (define-clojure-indent
-              (alet 'defun)
-              (mlet 'defun))
+              (define-clojure-indent
+                (alet 'defun)
+                (mlet 'defun))
 
-            (add-to-list 'clojure-align-binding-forms "m/mlet")
-            (add-to-list 'clojure-align-binding-forms "m/alet")
+              (add-to-list 'clojure-align-binding-forms "m/mlet")
+              (add-to-list 'clojure-align-binding-forms "m/alet")
 
-            (dolist (m (list 'cider-repl-mode
-                             'cider-test-report-mode-hook
-                             'clojure-mode))
-              (dolist (kv '(("h d" . cider-doc)
-                            ("h g" . cider-grimoire)
-                            ("h d" . cider-doc)
-                            ("h g" . cider-grimoire)
-                            ("h G" . cider-grimoire-web)
-                            ("h n" . cider-browse-ns)
-                            ("t c" . cider-test-clear-highlights)
-                            ("t t" . cider-test-run-test)
-                            ("t n" . cider-test-run-ns-tests)
-                            ("t p" . cider-test-run-project-tests)
-                            ("t r" . cider-test-rerun-test)
-                            ("t f" . cider-test-rerun-failed-tests)
-                            ("x d" . disassemble-clojure-fn)
-                            ("x r" . nrepl-reset)
-                            ("x e" . cider-pprint-eval-last-sexp-to-repl)))
-               (evil-leader/set-key-for-mode m (car kv) (cdr kv))))))
+              (dolist (m (list 'cider-repl-mode
+                               'cider-test-report-mode-hook
+                               'clojure-mode))
+                (dolist (kv '(("h d" . cider-doc)
+                              ("h g" . cider-grimoire)
+                              ("h d" . cider-doc)
+                              ("h g" . cider-grimoire)
+                              ("h G" . cider-grimoire-web)
+                              ("h n" . cider-browse-ns)
+                              ("t c" . cider-test-clear-highlights)
+                              ("t t" . cider-test-run-test)
+                              ("t n" . cider-test-run-ns-tests)
+                              ("t p" . cider-test-run-project-tests)
+                              ("t r" . cider-test-rerun-test)
+                              ("t f" . cider-test-rerun-failed-tests)
+                              ("x d" . disassemble-clojure-fn)
+                              ("x r" . nrepl-reset)
+                              ("x e" . cider-pprint-eval-last-sexp-to-repl)))
+                  (evil-leader/set-key-for-mode m (car kv) (cdr kv))))))
 
 (add-hook 'nrepl-connected-hook
           #'jco/move-window-to-bottom)
