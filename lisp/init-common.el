@@ -34,6 +34,8 @@
 (defun prevent-whitespace-mode-for-magit ()
   (not (derived-mode-p 'magit-mode)))
 
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
 (diminish 'smerge-mode)
 (with-eval-after-load "hideshow"
   (diminish 'hs-minor-mode))
