@@ -63,12 +63,25 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (use-package ox-reveal
   :after org)
 
-(defun current-org-files ()
-  "Get list of any currently open org files."
-  (delq nil
-        (mapcar #'(lambda (buffer)
-                    (buffer-file-name buffer))
-                (org-buffer-list 'files t))))
+(defun goto-current-project-todo (headline)
+  "Go to project's todo.org, section: HEADLINE."
+  (set-buffer (org-capture-target-buffer (concat (projectile-project-root)
+                                                 "todo.org")))
+  (org-capture-put-target-region-and-position)
+  (widen)
+  (goto-char (point-min))
+  (when (zerop (buffer-size))
+    (insert (concat "#+SEQ_TODO: TODO(t) IN-PROGRESS(i) DONE(d)\n"
+                    "#+STARTUP: showall\n\n")))
+
+  (if (re-search-forward (format org-complex-heading-regexp-format
+                                 (regexp-quote headline))
+                         nil t)
+      (beginning-of-line)
+    (goto-char (point-max))
+    (unless (bolp) (insert "\n"))
+    (insert "* " headline "\n")
+    (beginning-of-line 0)))
 
 (use-package org
   :defer t
@@ -76,14 +89,18 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :init
   (setq org-directory "~/org")
   (setq org-capture-templates
-        '(("a" "Appointment" entry (file  "~/Sync/gcal_zimpler.org" )
-           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-          ("t" "Task" entry (file+headline "work.org" "_Incoming")
+        '(("t" "Task" entry (file+headline "work.org" "_Incoming")
+           "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+           :empty-lines-before 0)
+          ("p" "Project TODO" entry
+           (function (lambda () (goto-current-project-todo "Todos")))
            "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
            :empty-lines-before 0)
           ("n" "Note" entry (file+headline "notes.org" "Notes")
            "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
-           :empty-lines-before 0)))
+           :empty-lines-before 0)
+          ("a" "Appointment" entry (file  "~/Sync/gcal_zimpler.org" )
+           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")))
   :config
   (setq org-src-fontify-natively t)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -98,8 +115,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
           ("MAYBE" . "gray60")))
   (setq org-agenda-files (concat org-directory "/agenda-files"))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
-                             ("notes.org" :maxlevel . 9)
-                             (current-org-files :maxlevel . 9)))
+                             ("notes.org" :maxlevel . 9)))
   (setq org-use-fast-todo-selection t)
   (setq org-log-into-drawer t)
   (setq org-enforce-todo-dependencies t)
