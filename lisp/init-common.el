@@ -496,7 +496,8 @@
   (add-hook 'git-commit-setup-hook
             #'(lambda ()
                 (setq fill-column 72)
-                (fci-mode))))
+                (fci-mode)
+                (modify-syntax-entry ?- "w"))))
 
 (use-package magit-org-todos
   :after magit
