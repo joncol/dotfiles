@@ -17,9 +17,10 @@
 
 (defun init-lisp-common ()
   "Common configuration options for all Lisp modes."
-  ;; do not treat "-" as a word separator
+  (aggressive-indent-mode)
   (setq evil-shift-width 2)
   (define-key lisp-mode-shared-map (kbd "M-;") #'jco/lisp-comment-dwim)
+  ;; do not treat "-" as a word separator
   (modify-syntax-entry ?- "w")
   (smartparens-strict-mode))
 

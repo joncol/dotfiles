@@ -109,7 +109,6 @@
 
 (use-package aggressive-indent
   :config
-  (global-aggressive-indent-mode)
   (add-to-list
    'aggressive-indent-dont-indent-if
    '(and (derived-mode-p 'c-mode 'c++-mode 'java-mode)
