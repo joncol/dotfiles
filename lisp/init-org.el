@@ -224,19 +224,21 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                        ("C-c c"   . org-capture)
                        ("C-c l"   . org-store-link)
                        ("C-c M-w" . org-copy)
-                       ("C-c C-w" . org-refile)
-                       ("C-c g"   . (lambda ()
-                                      (interactive)
-                                      (find-file
-                                       (concat org-directory "/gtd.org"))))
-                       ("C-c n" . (lambda ()
-                                    (interactive)
-                                    (find-file
-                                     (concat org-directory "/notes.org"))))
-                       ("C-c w" . (lambda ()
-                                    (interactive)
-                                    (find-file
-                                     (concat org-directory "/work.org"))))))
+                       ("C-c C-w" . org-refile)))
+
+
+(defmacro jco/find-org-file (filename &optional dir)
+  "Open file FILENAME in the directory DIR (default: `org-directory')."
+  `(lambda ()
+     (interactive)
+     (find-file (concat (or ,dir org-directory) "/" ,filename))
+     (jco/ensure-todo-org-header)))
+
+(evil-leader/set-key "o g" (jco/find-org-file "gtd.org"))
+(evil-leader/set-key "o n" (jco/find-org-file "notes.org"))
+(evil-leader/set-key "o w" (jco/find-org-file "work.org"))
+(evil-leader/set-key "o t" (jco/find-org-file "todo.org"
+                                              (projectile-project-root)))
 
 (provide 'init-org)
 
