@@ -134,13 +134,6 @@
   :config
   (global-anzu-mode))
 
-(use-package atomic-chrome
-  :config
-  (setq atomic-chrome-buffer-open-style 'frame)
-  (setq atomic-chrome-default-major-mode 'markdown-mode)
-  (unless (atomic-chrome-server-running-p)
-    (atomic-chrome-start-server)))
-
 (use-package auto-yasnippet
   :config
   (evil-leader/set-key "y c" #'aya-create)
