@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(defun my/org-inline-css-hook (exporter)
+(defun jco/org-inline-css-hook (exporter)
   "Fix colors of snippets when EXPORTER is 'html.
 Insert custom inline css to automatically set the foreground and background of
 code, to the current theme's colors."
@@ -69,7 +69,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     (insert (concat "#+SEQ_TODO: TODO(t) IN-PROGRESS(i) DONE(d)\n"
                     "#+STARTUP: showall\n\n"))))
 
-(defun goto-current-project-todo (headline)
+(defun jco/goto-current-project-todo-org (headline)
   "Go to project's todo.org, section: HEADLINE."
   (set-buffer (org-capture-target-buffer (concat (projectile-project-root)
                                                  "todo.org")))
@@ -96,7 +96,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
            :empty-lines-before 0)
           ("p" "Project TODO" entry
-           (function (lambda () (goto-current-project-todo "Todos")))
+           (function (lambda () (jco/goto-current-project-todo-org "Todos")))
            "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
            :empty-lines-before 0)
           ("n" "Note" entry (file+headline "notes.org" "Notes")
@@ -215,7 +215,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                    (match-end 1) "•"))))))
   (setq org-clock-persist 'history)
   (add-hook 'org-mode-hook 'org-clock-persistence-insinuate)
-  (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+  (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (add-hook 'message-mode-hook 'turn-on-orgstruct++)
   (require 'ob-clojure))
 
