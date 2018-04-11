@@ -6,6 +6,11 @@
 
 ;;; Code:
 
+(use-package flyspell-correct-ivy
+  :after flyspell
+  :bind (:map flyspell-mode-map
+              ("C-;" . flyspell-correct-previous-word-generic)))
+
 (use-package langtool
   :defer t
   :init
