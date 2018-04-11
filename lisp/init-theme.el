@@ -133,7 +133,7 @@
 
   (material
    (set-face-background 'hl-line "#37474f")
-   (with-eval-after-load 'org-mode
+   (with-eval-after-load 'org
      (set-face-background 'org-todo nil)))
 
   (material-light
@@ -147,7 +147,7 @@
 
   (minimal
    (set-face-background 'hl-line "#101f24")
-   (with-eval-after-load 'org-mode
+   (with-eval-after-load 'org
      (set-face-background 'org-todo nil)
      (set-face-background 'evil-search-highlight-persist-highlight-face
                           "DarkOrange4")))
@@ -157,7 +157,7 @@
    (add-hook 'smartparens-mode-hook
              #'(lambda ()
                  (set-face-background 'sp-pair-overlay-face "#582c6b")))
-   (with-eval-after-load 'swiper-mode
+   (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#582c6b"))
    (set-face-background 'region "#582c6b")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
@@ -183,7 +183,7 @@
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
-   (with-eval-after-load 'swiper-mode
+   (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#2a2d2e"))
    (set-face-background 'vhl/default-face "#2a2d2e")
    (set-face-background 'iedit-occurrence "#2a2d2e")
@@ -197,7 +197,7 @@
 
   (nubox-light
    (setq jco/cursor-color "#101f24")
-   (with-eval-after-load 'swiper-mode
+   (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#e0dcbe"))
    (set-face-background 'hl-line "#e0dcbe")
    (set-face-background 'vhl/default-face "#e0dcbe")
@@ -244,7 +244,7 @@
    (setq jco/cursor-color "snow")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "RoyalBlue")
-   (with-eval-after-load 'company-mode
+   (with-eval-after-load 'company
      (set-face-background 'company-tooltip-selection "snow")
      (set-face-foreground 'company-tooltip-selection "gray8")
      (set-face-foreground 'company-tooltip-common-selection "VioletRed4")
@@ -252,7 +252,7 @@
 
   (solarized-dark
    (set-face-background 'region "#1a4550")
-   (with-eval-after-load 'swiper-mode
+   (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#335e69"))
    (set-face-background 'ivy-current-match "#335e69"))
 
