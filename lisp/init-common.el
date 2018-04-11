@@ -15,6 +15,17 @@
 
 (setq-default explicit-shell-file-name "/bin/bash")
 
+(define-minor-mode jco/my-keys-mode
+  "Minor mode for my personal keybindings."
+  :global t
+  :keymap (make-sparse-keymap))
+
+(add-hook 'jco/my-keys-mode-hook
+          #'(lambda ()
+              (evil-normal-state)))
+
+(jco/my-keys-mode)
+
 (when (version<= "26" emacs-version)
   (global-display-line-numbers-mode))
 (menu-bar-mode -1)
@@ -40,18 +51,17 @@
 (with-eval-after-load "hideshow"
   (diminish 'hs-minor-mode))
 (winner-mode)
-(global-set-key (kbd "C-x C-j")
-                (lambda ()
-                  (interactive)
-                  (dired ".")))
+(define-key jco/my-keys-mode-map (kbd "C-x C-j") #'(lambda ()
+                                                     (interactive)
+                                                     (dired ".")))
 
-(global-set-key (kbd "C-c j")
-                (lambda ()
-                  (interactive)
-                  (require 'calendar)
-                  (let* ((year (caddr (calendar-current-date)))
-                         (file-name (format "~/ledgers/%s.journal" year)))
-                    (find-file (expand-file-name file-name)))))
+(define-key jco/my-keys-mode-map (kbd "C-c j")
+  (lambda ()
+    (interactive)
+    (require 'calendar)
+    (let* ((year (caddr (calendar-current-date)))
+           (file-name (format "~/ledgers/%s.journal" year)))
+      (find-file (expand-file-name file-name)))))
 
 (evil-leader/set-key "x b" 'browse-url)
 (evil-leader/set-key "x w" 'woman)
@@ -154,10 +164,11 @@
 
 (use-package buffer-move
   :config
-  (global-set-key (kbd "<C-S-up>") 'buf-move-up)
-  (global-set-key (kbd "<C-S-down>") 'buf-move-down)
-  (global-set-key (kbd "<C-S-left>") 'buf-move-left)
-  (global-set-key (kbd "<C-S-right>") 'buf-move-right))
+  (jco/define-bindings jco/my-keys-mode-map
+                       '(("<C-S-up>"    . buf-move-up)
+                         ("<C-S-down>"  . buf-move-down)
+                         ("<C-S-left>"  . buf-move-left)
+                         ("<C-S-right>" . buf-move-right))))
 
 (use-package calfw
   :commands cfw:open-org-calendar
@@ -179,9 +190,10 @@
          ("C-x C-r" . counsel-recentf)
          ("C-c p s a" . counsel-projectile-ag))
   :config
-  (global-set-key (kbd "C-h f") 'counsel-describe-function)
-  (global-set-key (kbd "C-h v") 'counsel-describe-variable)
-  (global-set-key (kbd "C-h S") 'counsel-info-lookup-symbol)
+  (jco/define-bindings jco/my-keys-mode-map
+                       '(("C-h f" . counsel-describe-function)
+                         ("C-h v" . counsel-describe-variable)
+                         ("C-h S" . counsel-info-lookup-symbol)))
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
   (evil-leader/set-key "x z" 'counsel-fzf)
   (when (eq system-type 'windows-nt)
@@ -327,7 +339,7 @@
 
 (use-package expand-region
   :config
-  (global-set-key (kbd "C-=") 'er/expand-region))
+  (define-key jco/my-keys-mode-map (kbd "C-=") 'er/expand-region))
 
 (use-package f)
 
@@ -666,11 +678,11 @@ Example: `helloWorld` becomes `Hello world`."
 (setq-default tab-width 4)
 (electric-indent-mode)
 (global-set-key (kbd "RET")
-                (lambda ()
-                  (interactive)
-                  (delete-trailing-whitespace (line-beginning-position)
-                                              (line-end-position))
-                  (newline-and-indent)))
+                #'(lambda ()
+                    (interactive)
+                    (delete-trailing-whitespace (line-beginning-position)
+                                                (line-end-position))
+                    (newline-and-indent)))
 
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
@@ -686,7 +698,7 @@ Example: `helloWorld` becomes `Hello world`."
 
 (display-time-mode)
 
-(global-set-key (kbd "C-x a r") 'align-regexp)
+(define-key jco/my-keys-mode-map (kbd "C-x a r") 'align-regexp)
 (defadvice align-regexp (around align-regexp-with-spaces activate compile)
   "Never use tabs for alignment."
   (let ((indent-tabs-mode nil))
@@ -724,8 +736,8 @@ Example: `helloWorld` becomes `Hello world`."
            ("<tab>"     . forward-button)
            ("<backtab>" . backward-button))
 
-(global-set-key (kbd "C-c C-b") 'help-go-back)
-(global-set-key (kbd "C-c C-f") 'help-go-forward)
+(jco/define-bindings jco/my-keys-mode-map '(("C-c C-b" . help-go-back)
+                                            ("C-c C-f" . help-go-forward)))
 
 (let ((my-bin-path (expand-file-name "~/.local/bin"))
       (fzf-bin-path (expand-file-name "~/.fzf/bin")))
@@ -756,7 +768,7 @@ Example: `helloWorld` becomes `Hello world`."
 (dolist (map (list ibuffer-mode-map package-menu-mode-map))
   (define-key map "\C-w" 'evil-window-map))
 
-(global-set-key (kbd "C-x b") 'ibuffer)
+(define-key jco/my-keys-mode-map (kbd "C-x b") 'ibuffer)
 
 (add-hook 'ibuffer-mode-hook
           (lambda ()
