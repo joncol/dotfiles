@@ -62,8 +62,7 @@
 (require 'my-theme)
 (load-theme jco/theme t)
 
-(set-face-background 'evil-search-highlight-persist-highlight-face
-                     "RoyalBlue4")
+(set-face-background 'evil-search-highlight-persist-highlight-face "RoyalBlue4")
 
 (set-face-foreground 'show-paren-match "#101f24")
 (set-face-background 'show-paren-match "#89C5B7")
