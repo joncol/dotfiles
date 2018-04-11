@@ -76,7 +76,6 @@
 (require 'init-python)
 (require 'init-qml)
 (require 'init-racket)
-(require 'init-rfc)
 (require 'init-ruby)
 (require 'init-scheme)
 (require 'init-semantic)
