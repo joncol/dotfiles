@@ -63,6 +63,12 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (use-package ox-reveal
   :after org)
 
+(defun jco/ensure-todo-org-header ()
+  "If the current buffer is empty, insert an org header."
+  (when (zerop (buffer-size))
+    (insert (concat "#+SEQ_TODO: TODO(t) IN-PROGRESS(i) DONE(d)\n"
+                    "#+STARTUP: showall\n\n"))))
+
 (defun goto-current-project-todo (headline)
   "Go to project's todo.org, section: HEADLINE."
   (set-buffer (org-capture-target-buffer (concat (projectile-project-root)
@@ -70,10 +76,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (org-capture-put-target-region-and-position)
   (widen)
   (goto-char (point-min))
-  (when (zerop (buffer-size))
-    (insert (concat "#+SEQ_TODO: TODO(t) IN-PROGRESS(i) DONE(d)\n"
-                    "#+STARTUP: showall\n\n")))
-
+  (jco/ensure-todo-org-header)
   (if (re-search-forward (format org-complex-heading-regexp-format
                                  (regexp-quote headline))
                          nil t)
