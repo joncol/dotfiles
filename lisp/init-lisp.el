@@ -8,6 +8,9 @@
 
 (require 'init-lisp-common)
 
+(use-package redshank
+  :defer t)
+
 (use-package slime
   :after lisp-mode
   :config
@@ -37,10 +40,6 @@
                 (load (expand-file-name "~/quicklisp/slime-helper.el")))
               (init-lisp-common)
               (evil-leader/set-key "h h" 'hyperspec-lookup)
-              (require 'redshank-loader)
-              (with-eval-after-load 'redshank-loader
-                (redshank-setup '(lisp-mode-hook
-                                  slime-repl-mode-hook) t))
               (diminish 'redshank-mode)
               (redshank-mode)
               (setq-local evil-move-beyond-eol t)

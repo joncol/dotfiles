@@ -86,9 +86,42 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     (insert "* " headline "\n")
     (beginning-of-line 0)))
 
+;; Copied from:
+;; https://github.com/raxod502/straight.el#installing-org-with-straightel
+
+(require 'subr-x)
+(straight-use-package 'git)
+
+(defun org-git-version ()
+  "The Git version of org-mode.
+Inserted by installing org-mode or when a release is made."
+  (require 'git)
+  (let ((git-repo (expand-file-name
+                   "straight/repos/org/" user-emacs-directory)))
+    (string-trim
+     (git-run "describe"
+              "--match=release\*"
+              "--abbrev=6"
+              "HEAD"))))
+
+(defun org-release ()
+  "The release version of org-mode.
+Inserted by installing org-mode or when a release is made."
+  (require 'git)
+  (let ((git-repo (expand-file-name
+                   "straight/repos/org/" user-emacs-directory)))
+    (string-trim
+     (string-remove-prefix
+      "release_"
+      (git-run "describe"
+               "--match=release\*"
+               "--abbrev=0"
+               "HEAD")))))
+
+(provide 'org-version)
+
 (use-package org
   :defer t
-  :ensure org-plus-contrib
   :init
   (setq org-directory "~/org")
   (setq org-capture-templates
@@ -103,121 +136,126 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
            :empty-lines-before 0)
           ("a" "Appointment" entry (file  "~/Sync/gcal_zimpler.org" )
-           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")))
-  :config
-  (setq org-src-fontify-natively t)
-  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-  (setq org-log-done t)
-  (setq org-default-notes-file "notes.org")
-  (setq org-reveal-hlevel 2)
-  (setq org-todo-keyword-faces
-        '(("TODO" . "deep pink")
-          ("IN-PROGRESS" . "orange")
-          ("NEXT" . "green2")
-          ("WAITING" . "purple")
-          ("MAYBE" . "gray60")))
-  (setq org-agenda-files (concat org-directory "/agenda-files"))
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
-                             ("notes.org" :maxlevel . 9)))
-  (setq org-use-fast-todo-selection t)
-  (setq org-log-into-drawer t)
-  (setq org-enforce-todo-dependencies t)
-  (setq org-agenda-dim-blocked-tasks t)
-  (setq org-enforce-todo-checkbox-dependencies t)
-  (setq org-agenda-custom-commands
-        '(("d" "Daily agenda view"
-           ((tags "PRIORITY=\"A\""
-                  ((org-agenda-skip-function
-                    '(org-agenda-skip-entry-if 'todo 'done))
-                   (org-agenda-overriding-header
-                    "High-priority unfinished tasks:")))
-            (agenda "" ((org-agenda-ndays 1)))
-            (tags-todo "work"
-                       ((org-agenda-skip-function
-                         '(or (jco/org-skip-subtree-if-habit)
-                              (jco/org-skip-subtree-if-priority ?A)
-                              (org-agenda-skip-if nil '(scheduled deadline))))
-                        (org-agenda-overriding-header
-                         "All normal priority tasks, tagged with `work':"))))
-           ((org-agenda-compact-blocks nil)
-            (org-agenda-files '("~/org/work.org"))))))
-  (add-to-list 'org-modules 'org-habit)
-  (setq org-habit-show-all-today t)
-  (setq org-habit-show-habits-only-for-today t)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((ditaa . t)
-     (dot . t)
-     (latex . t)
-     (plantuml . t)))
-  (setq org-confirm-babel-evaluate nil)
-  (if (eq system-type 'windows-nt)
-      (setq org-ditaa-jar-path "c:/tools/misc/ditaa.jar"
-            org-plantuml-jar-path "c:/tools/misc/plantuml.jar")
-    (setq org-ditaa-jar-path "/usr/local/bin/ditaa.jar"
-          org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar"))
-  (require 'ox-latex)
-  (add-to-list 'org-latex-packages-alist '("" "minted"))
-  (add-to-list 'org-latex-inputenc-alist '("utf8" . "utf8x"))
-  (setq org-latex-default-packages-alist
-        (cons '("mathletters" "ucs" nil)
-              org-latex-default-packages-alist))
-  (setq org-latex-listings 'minted)
-  (setq org-latex-custom-lang-environments
-        '((emacs-lisp "common-lispcode")))
-  (setq org-latex-minted-options
-        '(("frame" "lines")
-          ("fontsize" "\\normalsize")
-          ;; ("fontsize" "\\scriptsize")
-          ("mathescape" "")
-          ("samepage" "")
-          ("xrightmargin" "0.5cm")
-          ("xleftmargin"  "0.5cm")))
-  (setq org-latex-pdf-process
-        '("pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
-          "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
-          "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
-  (setq org-latex-table-caption-above nil)
-  (setq org-latex-default-figure-position "!htb")
-  (setq org-mobile-directory (concat org-directory "/mobile"))
-  (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
-  (setq org-mobile-force-id-on-agenda-items nil)
-  (load-library "ox-reveal")
-  (auto-fill-mode)
-  (global-unset-key (kbd "C-x C-v"))
-  (jco/define-bindings org-mode-map
-                       '(("<f5>" . (lambda ()
-                                     (interactive)
-                                     (org-remove-inline-images)
-                                     (org-ctrl-c-ctrl-c)
-                                     (org-display-inline-images)))
-                         ("M-o" . helm-org-in-buffer-headings)))
-  (require 'org-agenda)
-  (bind-keys :map org-agenda-mode-map
-             ("j"       . org-agenda-next-item)
-             ("k"       . org-agenda-previous-item)
-             ("C-w h"   . windmove-left)
-             ("C-w j"   . windmove-down)
-             ("C-w k"   . windmove-up)
-             ("C-w l"   . windmove-right)
-             ("C-w C-h" . windmove-left)
-             ("C-w C-j" . windmove-down)
-             ("C-w C-k" . windmove-up)
-             ("C-w C-l" . windmove-right))
-  (jco/add-youtube-link-type "yt")
-  (jco/add-youtube-link-type "ytnc" "&controls=0")
-  (define-key org-mode-map (kbd "M-o") 'ace-link-org)
-  (setq org-hide-emphasis-markers t)
-  (font-lock-add-keywords
-   'org-mode
-   '(("^ +\\([-*]\\) "
-      (0 (prog1 () (compose-region (match-beginning 1)
-                                   (match-end 1) "•"))))))
-  (setq org-clock-persist 'history)
-  (add-hook 'org-mode-hook 'org-clock-persistence-insinuate)
-  (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
-  (add-hook 'message-mode-hook 'turn-on-orgstruct++)
-  (require 'ob-clojure))
+           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n"))))
+
+(straight-use-package 'org-plus-contrib)
+
+(add-hook 'org-mode-hook
+          #'(lambda ()
+              (message "Configuring org-plus-contrib")
+              (setq org-src-fontify-natively t)
+              (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+              (setq org-log-done t)
+              (setq org-default-notes-file "notes.org")
+              (setq org-reveal-hlevel 2)
+              (setq org-todo-keyword-faces
+                    '(("TODO" . "deep pink")
+                      ("IN-PROGRESS" . "orange")
+                      ("NEXT" . "green2")
+                      ("WAITING" . "purple")
+                      ("MAYBE" . "gray60")))
+              (setq org-agenda-files (concat org-directory "/agenda-files"))
+              (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
+                                         ("notes.org" :maxlevel . 9)))
+              (setq org-use-fast-todo-selection t)
+              (setq org-log-into-drawer t)
+              (setq org-enforce-todo-dependencies t)
+              (setq org-agenda-dim-blocked-tasks t)
+              (setq org-enforce-todo-checkbox-dependencies t)
+              (setq org-agenda-custom-commands
+                    '(("d" "Daily agenda view"
+                       ((tags "PRIORITY=\"A\""
+                              ((org-agenda-skip-function
+                                '(org-agenda-skip-entry-if 'todo 'done))
+                               (org-agenda-overriding-header
+                                "High-priority unfinished tasks:")))
+                        (agenda "" ((org-agenda-ndays 1)))
+                        (tags-todo "work"
+                                   ((org-agenda-skip-function
+                                     '(or (jco/org-skip-subtree-if-habit)
+                                          (jco/org-skip-subtree-if-priority ?A)
+                                          (org-agenda-skip-if nil '(scheduled deadline))))
+                                    (org-agenda-overriding-header
+                                     "All normal priority tasks, tagged with `work':"))))
+                       ((org-agenda-compact-blocks nil)
+                        (org-agenda-files '("~/org/work.org"))))))
+              (add-to-list 'org-modules 'org-habit)
+              (setq org-habit-show-all-today t)
+              (setq org-habit-show-habits-only-for-today t)
+              (org-babel-do-load-languages
+               'org-babel-load-languages
+               '((ditaa . t)
+                 (dot . t)
+                 (latex . t)
+                 (plantuml . t)))
+              (setq org-confirm-babel-evaluate nil)
+              (if (eq system-type 'windows-nt)
+                  (setq org-ditaa-jar-path "c:/tools/misc/ditaa.jar"
+                        org-plantuml-jar-path "c:/tools/misc/plantuml.jar")
+                (setq org-ditaa-jar-path "/usr/local/bin/ditaa.jar"
+                      org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar"))
+              (require 'ox-latex)
+              (add-to-list 'org-latex-packages-alist '("" "minted"))
+              (add-to-list 'org-latex-inputenc-alist '("utf8" . "utf8x"))
+              (setq org-latex-default-packages-alist
+                    (cons '("mathletters" "ucs" nil)
+                          org-latex-default-packages-alist))
+              (setq org-latex-listings 'minted)
+              (setq org-latex-custom-lang-environments
+                    '((emacs-lisp "common-lispcode")))
+              (setq org-latex-minted-options
+                    '(("frame" "lines")
+                      ("fontsize" "\\normalsize")
+                      ;; ("fontsize" "\\scriptsize")
+                      ("mathescape" "")
+                      ("samepage" "")
+                      ("xrightmargin" "0.5cm")
+                      ("xleftmargin"  "0.5cm")))
+              (setq org-latex-pdf-process
+                    '("pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+                      "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+                      "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
+              (setq org-latex-table-caption-above nil)
+              (setq org-latex-default-figure-position "!htb")
+              (setq org-mobile-directory (concat org-directory "/mobile"))
+              (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
+              (setq org-mobile-force-id-on-agenda-items nil)
+              (load-library "ox-reveal")
+              (auto-fill-mode)
+              (global-unset-key (kbd "C-x C-v"))
+              (jco/define-bindings org-mode-map
+                                   '(("<f5>" . (lambda ()
+                                                 (interactive)
+                                                 (org-remove-inline-images)
+                                                 (org-ctrl-c-ctrl-c)
+                                                 (org-display-inline-images)))
+                                     ("M-o" . helm-org-in-buffer-headings)))
+              (require 'org-agenda)
+              (bind-keys :map org-agenda-mode-map
+                         ("j"       . org-agenda-next-item)
+                         ("k"       . org-agenda-previous-item)
+                         ("C-w h"   . windmove-left)
+                         ("C-w j"   . windmove-down)
+                         ("C-w k"   . windmove-up)
+                         ("C-w l"   . windmove-right)
+                         ("C-w C-h" . windmove-left)
+                         ("C-w C-j" . windmove-down)
+                         ("C-w C-k" . windmove-up)
+                         ("C-w C-l" . windmove-right))
+              (jco/add-youtube-link-type "yt")
+              (jco/add-youtube-link-type "ytnc" "&controls=0")
+              (define-key org-mode-map (kbd "M-o") 'ace-link-org)
+              (setq org-hide-emphasis-markers t)
+              (font-lock-add-keywords
+               'org-mode
+               '(("^ +\\([-*]\\) "
+                  (0 (prog1 () (compose-region (match-beginning 1)
+                                               (match-end 1) "•"))))))
+              (setq org-clock-persist 'history)
+              (add-hook 'org-mode-hook 'org-clock-persistence-insinuate)
+              (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
+              (add-hook 'message-mode-hook 'turn-on-orgstruct++)
+              (require 'ob-clojure)))
 
 (jco/define-bindings global-map
                      '(("C-c a"   . org-agenda)

@@ -203,8 +203,9 @@
   :config
   (push ".*" desktop-clear-preserve-buffers))
 
-(with-eval-after-load 'dired
-  (require 'dired+)
+(use-package dired+
+  :after dired
+  :config
   (diredp-toggle-find-file-reuse-dir 1))
 
 (use-package direnv
@@ -720,10 +721,6 @@ Example: `helloWorld` becomes `Hello world`."
             ;; do not treat "-" as a word separator
             (modify-syntax-entry ?- "w")))
 
-(add-hook 'Info-mode-hook
-          #'(lambda ()
-              (require 'info+)))
-
 (jco/define-bindings Info-mode-map
                      '(("<tab>"     . Info-next-reference)
                        ("<backtab>" . Info-prev-reference)))
@@ -774,6 +771,9 @@ Example: `helloWorld` becomes `Hello world`."
 (setq compilation-scroll-output t)
 
 (use-package iedit)
+
+(use-package info+
+  :after info)
 
 (use-package s
   :config

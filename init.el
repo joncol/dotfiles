@@ -13,14 +13,24 @@
 
 (package-initialize) ;; Don't delete this. It will be readded automatically.
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(let ((bootstrap-file (concat user-emacs-directory
+                              "straight/repos/straight.el/bootstrap.el"))
+      (bootstrap-version 3))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         (concat "https://raw.githubusercontent.com/raxod502/"
+                 "straight.el/develop/install.el")
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 (eval-when-compile
   (require 'use-package))
-
-(setq use-package-always-ensure t)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (setq-default flycheck-emacs-lisp-load-path load-path)

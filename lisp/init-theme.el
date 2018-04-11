@@ -6,58 +6,49 @@
 
 ;;; Code:
 
-(defvar jco/theme-packages)
+(defmacro install-themes ()
+  "Install commonly used theme packages using `use-package'."
+  (let ((theme-pkgs
+         '(afternoon-theme
+           ample-theme
+           ample-zen-theme
+           borland-blue-theme
+           challenger-deep-theme
+           cherry-blossom-theme
+           chyla-theme
+           color-theme-sanityinc-tomorrow
+           cyberpunk-theme
+           ;; darkane-theme
+           darktooth-theme
+           doom-themes
+           eink-theme
+           espresso-theme
+           flatland-theme
+           flatui-theme
+           gotham-theme
+           grandshell-theme
+           gruber-darker-theme
+           gruvbox-theme
+           hemisu-theme
+           kaolin-themes
+           leuven-theme
+           material-theme
+           minimal-theme
+           molokai-theme
+           monokai-theme
+           mustang-theme
+           nubox
+           organic-green-theme
+           prassee-theme
+           reykjavik-theme
+           solarized-theme
+           soothe-theme
+           tao-theme)))
+    `(progn ,@(mapcar #'(lambda (p)
+                          `(use-package ,p :defer t))
+                      theme-pkgs))))
 
-(set (make-local-variable 'jco/theme-packages)
-     '(afternoon-theme
-       ample-theme
-       ample-zen-theme
-       borland-blue-theme
-       challenger-deep-theme
-       cherry-blossom-theme
-       chyla-theme
-       color-theme-sanityinc-tomorrow
-       cyberpunk-theme
-       ;; darkane-theme
-       darktooth-theme
-       doom-themes
-       eink-theme
-       espresso-theme
-       flatland-theme
-       flatui-theme
-       gotham-theme
-       grandshell-theme
-       gruber-darker-theme
-       gruvbox-theme
-       hemisu-theme
-       kaolin-themes
-       leuven-theme
-       material-theme
-       minimal-theme
-       molokai-theme
-       monokai-theme
-       mustang-theme
-       nubox
-       organic-green-theme
-       prassee-theme
-       reykjavik-theme
-       solarized-theme
-       soothe-theme
-       tao-theme))
-
-(dolist (p jco/theme-packages)
-  (unless (package-installed-p p)
-    (package-install p)))
-
-(use-package powerline
-  :disabled t)
-
-(use-package spaceline
-  :disabled t
-  :init
-  (require 'spaceline-config)
-  (setq powerline-default-separator 'arrow)
-  (spaceline-spacemacs-theme))
+(install-themes)
 
 (require 'my-theme)
 (load-theme jco/theme t)
