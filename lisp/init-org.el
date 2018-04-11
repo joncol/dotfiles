@@ -7,8 +7,8 @@
 
 (defun my/org-inline-css-hook (exporter)
   "Fix colors of snippets when EXPORTER is 'html.
-Insert custom inline css to automatically set the
-foreground and background of code, to the current theme's colors."
+Insert custom inline css to automatically set the foreground and background of
+code, to the current theme's colors."
   (when (eq exporter 'html)
     (let* ((my-pre-bg (face-background 'default))
            (my-pre-fg (face-foreground 'default)))

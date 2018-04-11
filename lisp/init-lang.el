@@ -16,8 +16,7 @@
   :init
   (setq langtool-language-tool-jar
         "/opt/LanguageTool-3.9/languagetool-commandline.jar")
-  (setq langtool-autoshow-message-function
-      'langtool-autoshow-detail-popup))
+  (setq langtool-autoshow-message-function 'langtool-autoshow-detail-popup))
 
 (when (eq system-type 'darwin)
   (setenv "STARDICT_DATA_DIR" (expand-file-name "~/dictionaries")))
