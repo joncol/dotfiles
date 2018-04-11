@@ -498,7 +498,8 @@
             #'(lambda ()
                 (setq fill-column 72)
                 (fci-mode)
-                (modify-syntax-entry ?- "w"))))
+                (modify-syntax-entry ?- "w")
+                (flyspell-mode))))
 
 (use-package magit-org-todos
   :after magit
