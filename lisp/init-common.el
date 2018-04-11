@@ -211,7 +211,8 @@
   (push ".*" desktop-clear-preserve-buffers))
 
 (with-eval-after-load 'dired
-  (require 'dired+))
+  (require 'dired+)
+  (diredp-toggle-find-file-reuse-dir 1))
 
 (use-package direnv
   :config
