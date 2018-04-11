@@ -314,8 +314,9 @@
 
 (use-package evil-god-state
   :config
-  (evil-define-key 'normal global-map (kbd "SPC") 'evil-execute-in-god-state)
-  (evil-define-key 'god global-map [escape] 'evil-god-state-bail))
+  (evil-define-key 'normal jco/my-keys-mode-map (kbd "SPC")
+    'evil-execute-in-god-state)
+  (evil-define-key 'god jco/my-keys-mode-map [escape] 'evil-god-state-bail))
 
 (use-package evil-ledger
   :after ledger-mode
@@ -331,6 +332,8 @@
         (append '(magit-submodule-list-mode) evil-motion-state-modes))
   (add-hook 'magit-mode-hook
             #'(lambda ()
+                (evil-local-set-key 'normal (kbd "SPC")
+                                    'magit-diff-show-or-scroll-up)
                 (when (version<= "26" emacs-version)
                   (display-line-numbers-mode -1)))))
 
