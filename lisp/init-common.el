@@ -157,6 +157,7 @@
   :defer t)
 
 (use-package buffer-move
+  :if (not (eq system-type 'windows-nt))
   :config
   (jco/define-bindings jco/my-keys-mode-map
                        '(("<C-S-up>"    . buf-move-up)
