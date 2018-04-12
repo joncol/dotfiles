@@ -31,6 +31,8 @@
         (popup-tip msg)))))
 
 (use-package sdcv
+  :straight t
+  :ensure nil
   :config
   (global-set-key (kbd "C-c d") 'sdcv-search-input))
 

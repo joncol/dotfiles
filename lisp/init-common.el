@@ -152,7 +152,8 @@
   (setq avy-case-fold-search nil))
 
 (use-package bookmark+
-  :disabled t
+  :straight t
+  :ensure nil
   :defer t)
 
 (use-package buffer-move
@@ -204,6 +205,8 @@
   (push ".*" desktop-clear-preserve-buffers))
 
 (use-package dired+
+  :straight t
+  :ensure nil
   :after dired
   :config
   (diredp-toggle-find-file-reuse-dir 1))
@@ -773,6 +776,8 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package iedit)
 
 (use-package info+
+  :straight t
+  :ensure nil
   :after info)
 
 (use-package s
