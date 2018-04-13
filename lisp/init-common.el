@@ -42,6 +42,8 @@
 (global-whitespace-mode)
 (diminish 'global-whitespace-mode)
 
+(setq calendar-week-start-day 1)
+
 (defun prevent-whitespace-mode-for-magit ()
   (not (derived-mode-p 'magit-mode)))
 
