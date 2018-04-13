@@ -660,6 +660,7 @@ Example: `helloWorld` becomes `Hello world`."
   (volatile-highlights-mode))
 
 (use-package yaml-mode
+  :mode "\\.yml\\'"
   :config
   (add-hook 'yaml-mode-hook
             #'(lambda ()
