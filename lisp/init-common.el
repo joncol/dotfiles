@@ -58,12 +58,12 @@
                                                      (dired ".")))
 
 (define-key jco/my-keys-mode-map (kbd "C-c j")
-  (lambda ()
-    (interactive)
-    (require 'calendar)
-    (let* ((year (caddr (calendar-current-date)))
-           (file-name (format "~/ledgers/%s.journal" year)))
-      (find-file (expand-file-name file-name)))))
+  #'(lambda ()
+      (interactive)
+      (require 'calendar)
+      (let* ((year (caddr (calendar-current-date)))
+             (file-name (format "~/ledgers/%s.journal" year)))
+        (find-file (expand-file-name file-name)))))
 
 (evil-leader/set-key "x b" 'browse-url)
 (evil-leader/set-key "x w" 'woman)
@@ -447,15 +447,15 @@
   (setq ivy-on-del-error-function nil)
   (evil-declare-not-repeat 'swiper)
   (ivy-add-actions 'counsel-find-file
-                   '(("F" (lambda (x)
-                            (with-ivy-window (insert (file-relative-name x))))
+                   '(("F" #'(lambda (x)
+                              (with-ivy-window (insert (file-relative-name x))))
                       "insert relative file name")
 
-                     ("B" (lambda (x)
-                            (with-ivy-window
-                              (insert
-                               (file-name-nondirectory
-                                (replace-regexp-in-string "/\\'" "" x)))))
+                     ("B" #'(lambda (x)
+                              (with-ivy-window
+                                (insert
+                                 (file-name-nondirectory
+                                  (replace-regexp-in-string "/\\'" "" x)))))
                       "insert file name without any directory information"))))
 
 (use-package ivy-rich
@@ -580,18 +580,18 @@
   (show-smartparens-global-mode)
   (setq sp-navigate-interactive-always-progress-point t)
   (jco/define-bindings global-map
-                       '(("M-(" . (lambda (&optional arg)
-                                    (interactive "P")
-                                    (sp-wrap-with-pair "(")))
-                         ("M-[" . (lambda (&optional arg)
-                                    (interactive "P")
-                                    (sp-wrap-with-pair "[")))
-                         ("M-{" . (lambda (&optional arg)
-                                    (interactive "P")
-                                    (sp-wrap-with-pair "{")))
-                         ("M-\"" . (lambda (&optional arg)
-                                     (interactive "P")
-                                     (sp-wrap-with-pair "\"")))))
+                       '(("M-(" . #'(lambda (&optional arg)
+                                      (interactive "P")
+                                      (sp-wrap-with-pair "(")))
+                         ("M-[" . #'(lambda (&optional arg)
+                                      (interactive "P")
+                                      (sp-wrap-with-pair "[")))
+                         ("M-{" . #'(lambda (&optional arg)
+                                      (interactive "P")
+                                      (sp-wrap-with-pair "{")))
+                         ("M-\"" . #'(lambda (&optional arg)
+                                       (interactive "P")
+                                       (sp-wrap-with-pair "\"")))))
   (jco/define-bindings smartparens-mode-map
                        '(("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
@@ -608,12 +608,13 @@
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))
     (sp-local-pair "`" nil
-                   :skip-match (lambda (ms mb me)
-                                 (cond
-                                  ((equal ms "'")
-                                   (or (sp--org-skip-markup ms mb me)
-                                       (not (sp-point-in-string-or-comment))))
-                                  (t (not (sp-point-in-string-or-comment)))))))
+                   :skip-match
+                   #'(lambda (ms mb me)
+                       (cond
+                        ((equal ms "'")
+                         (or (sp--org-skip-markup ms mb me)
+                             (not (sp-point-in-string-or-comment))))
+                        (t (not (sp-point-in-string-or-comment)))))))
   (sp-with-modes sp-clojure-modes
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" nil :actions nil)))
@@ -661,9 +662,9 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package yaml-mode
   :config
   (add-hook 'yaml-mode-hook
-            (lambda ()
-              (modify-syntax-entry ?- "w")
-              (setq evil-shift-width 2))))
+            #'(lambda ()
+                (modify-syntax-entry ?- "w")
+                (setq evil-shift-width 2))))
 
 (use-package zeal-at-point
   :config
@@ -713,19 +714,19 @@ Example: `helloWorld` becomes `Hello world`."
 (setq help-window-select t)
 
 (add-hook 'help-mode-hook
-          (lambda ()
-            ;; do not treat "-" as a word separator
-            (modify-syntax-entry ?- "w")))
+          #'(lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w")))
 
 (add-hook 'makefile-gmake-mode-hook
-          (lambda ()
-            ;; do not treat "-" as a word separator
-            (modify-syntax-entry ?- "w")))
+          #'(lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w")))
 
 (add-hook 'sql-mode-hook
-          (lambda ()
-            ;; do not treat "-" as a word separator
-            (modify-syntax-entry ?- "w")))
+          #'(lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w")))
 
 (jco/define-bindings Info-mode-map
                      '(("<tab>"     . Info-next-reference)
@@ -752,8 +753,8 @@ Example: `helloWorld` becomes `Hello world`."
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize)
   (add-hook 'eshell-mode-hook
-            (lambda ()
-              (exec-path-from-shell-initialize))))
+            #'(lambda ()
+                (exec-path-from-shell-initialize))))
 
 (setq large-file-warning-threshold nil)
 (setq safe-local-variable-values
@@ -771,8 +772,8 @@ Example: `helloWorld` becomes `Hello world`."
 (define-key jco/my-keys-mode-map (kbd "C-x b") 'ibuffer)
 
 (add-hook 'ibuffer-mode-hook
-          (lambda ()
-            (turn-off-fci-mode)))
+          #'(lambda ()
+              (turn-off-fci-mode)))
 
 (setq compilation-scroll-output t)
 
