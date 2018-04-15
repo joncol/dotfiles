@@ -99,8 +99,8 @@
   (gotham
    (setq jco/cursor-color "lightblue")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
-   (set-face-foreground 'evil-search-highlight-persist-highlight-face "#101f24")
-   )
+   (set-face-foreground 'evil-search-highlight-persist-highlight-face
+                        "#101f24"))
 
   (hemisu-light
    (set-face-background 'evil-search-highlight-persist-highlight-face
