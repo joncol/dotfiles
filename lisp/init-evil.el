@@ -31,7 +31,8 @@
   ;; Enable global-evil-leader-mode before evil-mode, to make leader key work
   ;; in *Messages* and *scratch* buffers.
   (global-evil-leader-mode)
-  (evil-leader/set-leader ","))
+  (evil-leader/set-leader ",")
+  (setq evil-leader/in-all-states t))
 
 (use-package evil
   :init
