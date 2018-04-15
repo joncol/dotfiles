@@ -11,4 +11,7 @@
 -eshell
 -semanticdb
 -session.*
+-/SessionDesktop.el
+-/snippets/
+-/straight/
 -url/cache
