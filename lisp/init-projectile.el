@@ -41,9 +41,7 @@
       (find-file (expand-file-name
                   file (projectile-project-root)))
       (run-hooks 'projectile-find-file-hook)
-      (cider-jack-in)))
-
-  :diminish projectile-mode)
+      (cider-jack-in))))
 
 (provide 'init-projectile)
 

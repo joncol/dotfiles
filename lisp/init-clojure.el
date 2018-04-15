@@ -10,7 +10,6 @@
 
 (use-package clj-refactor
   :after clojure-mode
-  :diminish clj-refactor-mode
   :config
   (setq cljr-warn-on-eval nil)
   (setq cljr-auto-clean-ns nil)
@@ -82,10 +81,7 @@ Opens a new buffer with the result."
 
               (modify-syntax-entries)
 
-              (diminish 'cider-mode)
-
               (cider-auto-test-mode)
-              (diminish 'cider-auto-test-mode)
 
               (define-key clojure-mode-map (kbd "M-;") #'jco/lisp-comment-dwim)
 

@@ -11,7 +11,6 @@
 
 (use-package elpy
   :defer t
-  :diminish (list elpy-mode highlight-indentation-mode)
   ;; :init
   ;; (elpy-enable)
   :config
@@ -23,8 +22,7 @@
   (setq elpy-rpc-backend "jedi"))
 
 (use-package jedi-core
-  :defer t
-  :diminish jedi-mode)
+  :defer t)
 
 (use-package company-jedi
   :if (not (eq system-type 'windows-nt))

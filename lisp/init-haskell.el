@@ -8,7 +8,6 @@
 
 (use-package intero
   :defer t
-  :diminish intero-mode
   :config
   (evil-leader/set-key "x r" 'intero-restart))
 
@@ -43,8 +42,6 @@
 
   ;; (setq haskell-tags-on-save t) ;; doesn't work for Fish
   ;; (haskell-doc-mode)
-
-  (diminish 'haskell-doc-mode)
 
   (setq tab-stop-list
         (loop for i from 0 upto 120 by 4 collect i))

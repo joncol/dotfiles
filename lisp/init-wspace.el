@@ -14,8 +14,6 @@
   (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
 
 (use-package ethan-wspace
-  :diminish ethan-wspace-mode
-
   :config
   (jco/no-final-newline)
   (global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
@@ -31,8 +29,6 @@ ethan-wspace."
     (jco/no-final-newline)))
 
 (use-package whitespace
-  :diminish whitespace-mode
-
   :config
   (setq-default whitespace-style '(face tabs trailing
                                         space-before-tab indentation

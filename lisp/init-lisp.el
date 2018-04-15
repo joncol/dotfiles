@@ -40,7 +40,6 @@
                 (load (expand-file-name "~/quicklisp/slime-helper.el")))
               (init-lisp-common)
               (evil-leader/set-key "h h" 'hyperspec-lookup)
-              (diminish 'redshank-mode)
               (redshank-mode)
               (setq-local evil-move-beyond-eol t)
               (modify-syntax-entry ?: "w")

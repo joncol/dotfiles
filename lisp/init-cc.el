@@ -9,9 +9,7 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (not (eq system-type 'gnu/linux))
-              (use-package ggtags
-                :diminish ggtags-mode)
-
+              (use-package ggtags)
               (setq company-backends (delete 'company-clang company-backends))
 
               (when helm-mode
@@ -21,7 +19,6 @@
 
               (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
                 (ggtags-mode)
-                (diminish 'ggtags-mode)
                 (jco/define-bindings ggtags-mode-map
                                      '(("C-c t s" . ggtags-find-other-symbol)
                                        ("C-c t h" . ggtags-view-tag-history)

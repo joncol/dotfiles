@@ -11,8 +11,6 @@
 
 (setq ad-redefinition-action 'accept)
 
-(use-package diminish)
-
 (setq-default explicit-shell-file-name "/bin/bash")
 
 (define-minor-mode jco/my-keys-mode
@@ -34,14 +32,11 @@
   (scroll-bar-mode -1))
 (tool-bar-mode -1)
 (global-auto-revert-mode)
-(diminish 'auto-revert-mode)
 (add-to-list 'revert-without-query ".*\\.pdf\\'")
 (global-font-lock-mode)
 (global-hl-line-mode)
-(diminish 'eldoc-mode)
 
 (global-whitespace-mode)
-(diminish 'global-whitespace-mode)
 
 (setq calendar-week-start-day 1)
 
@@ -50,9 +45,6 @@
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
-(diminish 'smerge-mode)
-(with-eval-after-load "hideshow"
-  (diminish 'hs-minor-mode))
 (winner-mode)
 (define-key jco/my-keys-mode-map (kbd "C-x C-j") #'(lambda ()
                                                      (interactive)
@@ -110,7 +102,6 @@
 
 (use-package ace-isearch
   :disabled t
-  :diminish ace-isearch-mode
   :config
   (global-ace-isearch-mode))
 
@@ -133,7 +124,6 @@
 (use-package ahk-mode)
 
 (use-package anzu
-  :diminish anzu-mode
   :config
   (global-anzu-mode))
 
@@ -354,8 +344,7 @@
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
   :config
-  (setq flycheck-pos-tip-timeout 0)
-  :diminish 'flycheck-mode)
+  (setq flycheck-pos-tip-timeout 0))
 
 (use-package flycheck-pos-tip
   :init
@@ -390,7 +379,6 @@
 
 (use-package git-gutter+
   :disabled t
-  :diminish git-gutter+-mode
   :if (not (eq system-type 'windows-nt))
   :config
   (global-git-gutter+-mode))
@@ -415,7 +403,6 @@
   (evil-leader/set-key "x g" 'google-this))
 
 (use-package guide-key
-  :diminish guide-key-mode
   :config
   (guide-key-mode)
   ;; (setq guide-key/popup-window-position "right")
@@ -433,7 +420,6 @@
   (evil-leader/set-key "x m" #'imenu-anywhere))
 
 (use-package ivy
-  :diminish ivy-mode
   :bind (("C-s" . swiper)
          ("C-x C-b" . ivy-switch-buffer))
   :config
@@ -523,6 +509,11 @@
   :config
   (magit-org-todos-autoinsert))
 
+(use-package minions
+  :config
+  (minions-mode)
+  (setq minions-mode-line-lighter "#"))
+
 (use-package monky
   :defer t)
 
@@ -553,9 +544,9 @@
   (setq pdf-annot-activate-created-annotations t)
   (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
 
-(use-package rainbow-mode :diminish rainbow-mode)
+(use-package rainbow-mode)
 
-(use-package rainbow-delimiters :diminish rainbow-delimiters-mode)
+(use-package rainbow-delimiters)
 
 (use-package recentf
   :defer t
@@ -574,7 +565,6 @@
 
 (use-package smartparens
   :defer t
-  :diminish smartparens-mode
   :config
   (sp-use-paredit-bindings)
   ;; (sp-pair "\"" nil :actions :rem)
@@ -656,7 +646,6 @@ Example: `helloWorld` becomes `Hello world`."
   (unkillable-scratch))
 
 (use-package volatile-highlights
-  :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode))
 
@@ -797,7 +786,6 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package try)
 
 (use-package undo-tree
-  :diminish undo-tree-mode
   :init
   (global-undo-tree-mode)
   :config
@@ -809,13 +797,8 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package wgrep)
 
 (use-package which-key
-  :diminish which-key-mode
   :config
   (which-key-mode))
-
-(diminish 'abbrev-mode)
-(diminish 'footnote-mode)
-(diminish 'auto-fill-mode)
 
 (evil-leader/set-key "x o" 'occur)
 

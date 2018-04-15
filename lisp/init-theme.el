@@ -320,6 +320,11 @@
 
 (blink-cursor-mode -1)
 
+(use-package rich-minority
+  :config
+  (setq rm-blacklist ".")
+  (rich-minority-mode))
+
 (use-package smart-mode-line
   :config
   (setq sml/no-confirm-load-theme t)

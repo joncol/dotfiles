@@ -47,9 +47,7 @@
         helm-gtags-use-input-at-cursor t
         helm-gtags-pulse-at-cursor t
         helm-gtags-suggested-key-mapping t
-        helm-gtags-path-style 'absolute)
-
-  :diminish helm-mode)
+        helm-gtags-path-style 'absolute))
 
 (use-package helm-ag
   :config
@@ -78,9 +76,7 @@
   :config
   (add-hook 'dired-mode-hook 'helm-gtags-mode)
   (add-hook 'eshell-mode-hook 'helm-gtags-mode)
-  (add-hook 'asm-mode-hook 'helm-gtags-mode)
-
-  :diminish helm-gtags-mode)
+  (add-hook 'asm-mode-hook 'helm-gtags-mode))
 
 (use-package helm-swoop
   :config

@@ -17,8 +17,7 @@
             (lambda ()
               (modify-syntax-entry ?- "w")
               (ethan-wspace-mode -1)))
-  (evil-leader/set-key "TAB" 'yas-insert-snippet)
-  :diminish yas-minor-mode)
+  (evil-leader/set-key "TAB" 'yas-insert-snippet))
 
 (use-package helm-c-yasnippet
   :bind (([C-tab] . helm-yas-complete))

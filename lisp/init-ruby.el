@@ -10,8 +10,7 @@
   :defer t)
 
 (use-package inf-ruby
-  :defer t
-  :diminish inf-ruby-mode)
+  :defer t)
 
 (use-package rbenv
   :config
@@ -20,21 +19,17 @@
 
 (use-package robe
   :defer t
-  :diminish robe-mode
   :bind (:map robe-mode-map
               ("C-c C-k" . ruby-send-buffer)))
 
 (use-package rubocop
-  :defer t
-  :diminish rubocop-mode)
+  :defer t)
 
 (use-package ruby-end
-  :defer t
-  :diminish ruby-end-mode)
+  :defer t)
 
 (use-package yard-mode
-  :defer t
-  :diminish yard-mode)
+  :defer t)
 
 (dolist (fp '("\\.rb$"
               "\\.ru$"

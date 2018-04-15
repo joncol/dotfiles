@@ -32,9 +32,7 @@
   (setq company-tooltip-limit 20)
   (setq company-idle-delay .3)
   (setq company-echo-delay 0)
-  (setq company-begin-commands '(self-insert-command))
-
-  :diminish company-mode)
+  (setq company-begin-commands '(self-insert-command)))
 
 (defvar jco/prev-fci-status nil)
 
