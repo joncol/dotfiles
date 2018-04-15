@@ -274,6 +274,26 @@
                  ("M-g M-p" . eclim-problems-prev-same-file)
                  ("M-g p" . eclim-problems-prev-same-file))))))
 
+(defmacro jco/set-eyebrowse-win-bindings ()
+  "Generate evil-leader bindings for switching eyebrowse windows."
+  `(progn ,@(mapcar
+             (lambda (i)
+               (let ((sym (intern
+                           (format "eyebrowse-switch-to-window-config-%d" i))))
+                 (evil-leader/set-key (format "w %d" i) sym)))
+             (number-sequence 0 9))))
+
+(use-package eyebrowse
+  :init
+  (setq eyebrowse-keymap-prefix "")
+  :config
+  (eyebrowse-mode)
+  (setq eyebrowse-mode-line-separator " ")
+  (setq eyebrowse-new-workspace t)
+  (jco/set-eyebrowse-win-bindings)
+  (evil-leader/set-key "w c" 'eyebrowse-close-window-config)
+  (set-face-foreground 'mode-line-emphasis "Red"))
+
 (use-package gradle-mode
   :config
   (add-hook 'java-mode-hook
