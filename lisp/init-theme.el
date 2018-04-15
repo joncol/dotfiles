@@ -44,8 +44,8 @@
            solarized-theme
            soothe-theme
            tao-theme)))
-    `(progn ,@(mapcar #'(lambda (p)
-                          `(use-package ,p :defer t))
+    `(progn ,@(mapcar (lambda (p)
+                        `(use-package ,p :defer t))
                       theme-pkgs))))
 
 (install-themes)
@@ -63,8 +63,8 @@
    (set-face-background 'hl-line "#dadfe1")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
    (add-hook 'smartparens-mode-hook
-             #'(lambda ()
-                 (set-face-background 'sp-pair-overlay-face "LightBlue")))
+             (lambda ()
+               (set-face-background 'sp-pair-overlay-face "LightBlue")))
    (setq jco/cursor-color  "#101f24")
    (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#7ceece")
@@ -145,8 +145,8 @@
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
    (add-hook 'smartparens-mode-hook
-             #'(lambda ()
-                 (set-face-background 'sp-pair-overlay-face "#582c6b")))
+             (lambda ()
+               (set-face-background 'sp-pair-overlay-face "#582c6b")))
    (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#582c6b"))
    (set-face-background 'region "#582c6b")
@@ -178,8 +178,8 @@
    (set-face-background 'vhl/default-face "#2a2d2e")
    (set-face-background 'iedit-occurrence "#2a2d2e")
    (add-hook 'smartparens-mode-hook
-             #'(lambda ()
-                 (set-face-background 'sp-pair-overlay-face "#444748")))
+             (lambda ()
+               (set-face-background 'sp-pair-overlay-face "#444748")))
    (set-face-background 'region "#582c6b")
    (set-face-background 'ivy-minibuffer-match-face-2 "#444748")
    (set-face-background 'ffap "#582c6b")
@@ -192,16 +192,16 @@
    (set-face-background 'hl-line "#e0dcbe")
    (set-face-background 'vhl/default-face "#e0dcbe")
    (add-hook 'smartparens-mode-hook
-             #'(lambda ()
-                 (set-face-background 'sp-pair-overlay-face "#c7c3a5")))
+             (lambda ()
+               (set-face-background 'sp-pair-overlay-face "#c7c3a5")))
    (set-face-background 'region "#ffc3ff")
    (set-face-background 'ffap "#ffc3ff")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (add-hook 'ledger-mode-hook
-             #'(lambda ()
-                 (set-face-background 'ledger-font-xact-highlight-face
-                                      "#e0dcbe")
-                 (set-face-background 'ledger-occur-xact-face "#e0dcbe")))
+             (lambda ()
+               (set-face-background 'ledger-font-xact-highlight-face
+                                    "#e0dcbe")
+               (set-face-background 'ledger-occur-xact-face "#e0dcbe")))
 
    (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#7ceece")
@@ -292,8 +292,8 @@
 ;; Fix annoyingly dark backgrounds of dired-subtree faces.
 (with-eval-after-load 'dired+
   (let* ((ns (number-sequence 1 5))
-         (f  #'(lambda (x)
-                 (intern (format "dired-subtree-depth-%d-face" x))))
+         (f  (lambda (x)
+               (intern (format "dired-subtree-depth-%d-face" x))))
          (ss (map 'cons f ns)))
     (dolist (f ss)
       (set-face-background f nil))))

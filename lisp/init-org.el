@@ -48,17 +48,17 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                  " frameborder=\"0\""
                  " allowfullscreen>%s</iframe>")))
     (org-add-link-type name
-                       #'(lambda (handle)
-                           (browse-url
-                            (concat "https://www.youtube.com/embed/"
-                                    handle)))
-                       #'(lambda (path desc backend)
-                           (cl-case backend
-                             (html (format yt-iframe-format
-                                           path (or desc "")))
-                             (latex (format "\href{%s}{%s}"
-                                            path
-                                            (or desc "video"))))))))
+                       (lambda (handle)
+                         (browse-url
+                          (concat "https://www.youtube.com/embed/"
+                                  handle)))
+                       (lambda (path desc backend)
+                         (cl-case backend
+                           (html (format yt-iframe-format
+                                         path (or desc "")))
+                           (latex (format "\href{%s}{%s}"
+                                          path
+                                          (or desc "video"))))))))
 
 (use-package ox-reveal
   :after org)

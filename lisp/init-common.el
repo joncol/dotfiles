@@ -19,8 +19,8 @@
   :keymap (make-sparse-keymap))
 
 (add-hook 'jco/my-keys-mode-hook
-          #'(lambda ()
-              (evil-normal-state)))
+          (lambda ()
+            (evil-normal-state)))
 
 (jco/my-keys-mode)
 
@@ -46,17 +46,17 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (winner-mode)
-(define-key jco/my-keys-mode-map (kbd "C-x C-j") #'(lambda ()
-                                                     (interactive)
-                                                     (dired ".")))
+(define-key jco/my-keys-mode-map (kbd "C-x C-j") (lambda ()
+                                                   (interactive)
+                                                   (dired ".")))
 
 (define-key jco/my-keys-mode-map (kbd "C-c j")
-  #'(lambda ()
-      (interactive)
-      (require 'calendar)
-      (let* ((year (caddr (calendar-current-date)))
-             (file-name (format "~/ledgers/%s.journal" year)))
-        (find-file (expand-file-name file-name)))))
+  (lambda ()
+    (interactive)
+    (require 'calendar)
+    (let* ((year (caddr (calendar-current-date)))
+           (file-name (format "~/ledgers/%s.journal" year)))
+      (find-file (expand-file-name file-name)))))
 
 (evil-leader/set-key "x b" 'browse-url)
 (evil-leader/set-key "x w" 'woman)
@@ -75,16 +75,16 @@
       (append '(debugger-mode) evil-motion-state-modes))
 
 (add-hook 'doc-view-mode-hook
-          #'(lambda ()
-              (when (fboundp 'nlinum-mode)
-                (nlinum-mode -1))
-              (define-key doc-view-mode-map "\C-w" 'evil-window-map)))
+          (lambda ()
+            (when (fboundp 'nlinum-mode)
+              (nlinum-mode -1))
+            (define-key doc-view-mode-map "\C-w" 'evil-window-map)))
 
 (add-hook 'messages-buffer-mode-hook 'ansi-color-for-comint-mode-on)
 
 (add-hook 'conf-mode-hook
-          #'(lambda ()
-              (modify-syntax-entry ?_ "w")))
+          (lambda ()
+            (modify-syntax-entry ?_ "w")))
 
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
@@ -259,36 +259,36 @@
   (evil-set-initial-state 'eclim-problems-mode 'emacs)
   (evil-set-initial-state 'eclim-project-mode 'emacs)
   (add-hook 'java-mode-hook
-            #'(lambda ()
-                (eclim-mode)
-                (evil-leader/set-key "e b" 'eclim-project-build)
-                (evil-leader/set-key "e c" 'eclim-project-create)
-                (evil-leader/set-key "e r" 'eclim-run-class)
-                (setq help-at-pt-display-when-idle t)
-                (setq help-at-pt-timer-delay 0.1)
-                (help-at-pt-set-timer)
-                (jco/define-bindings
-                 java-mode-map
-                 '(("M-g M-n" . eclim-problems-next-same-file)
-                   ("M-g n" . eclim-problems-next-same-file)
-                   ("M-g M-p" . eclim-problems-prev-same-file)
-                   ("M-g p" . eclim-problems-prev-same-file))))))
+            (lambda ()
+              (eclim-mode)
+              (evil-leader/set-key "e b" 'eclim-project-build)
+              (evil-leader/set-key "e c" 'eclim-project-create)
+              (evil-leader/set-key "e r" 'eclim-run-class)
+              (setq help-at-pt-display-when-idle t)
+              (setq help-at-pt-timer-delay 0.1)
+              (help-at-pt-set-timer)
+              (jco/define-bindings
+               java-mode-map
+               '(("M-g M-n" . eclim-problems-next-same-file)
+                 ("M-g n" . eclim-problems-next-same-file)
+                 ("M-g M-p" . eclim-problems-prev-same-file)
+                 ("M-g p" . eclim-problems-prev-same-file))))))
 
 (use-package gradle-mode
   :config
   (add-hook 'java-mode-hook
-            #'(lambda ()
-                (setq gradle-executable-path "/opt/gradle-4.6/bin/gradle")
-                (gradle-mode)
-                (evil-leader/set-key "g r"
-                  #'(lambda ()
-                      (interactive)
-                      (gradle-run "run")))
-                (evil-leader/set-key "t t"
-                  #'(lambda ()
-                      (interactive)
-                      (gradle-run "test --info")))
-                (evil-leader/set-key "t s" 'gradle-single-test))))
+            (lambda ()
+              (setq gradle-executable-path "/opt/gradle-4.6/bin/gradle")
+              (gradle-mode)
+              (evil-leader/set-key "g r"
+                (lambda ()
+                  (interactive)
+                  (gradle-run "run")))
+              (evil-leader/set-key "t t"
+                (lambda ()
+                  (interactive)
+                  (gradle-run "test --info")))
+              (evil-leader/set-key "t s" 'gradle-single-test))))
 
 (use-package elec-pair
   :init
@@ -322,11 +322,11 @@
   (setq evil-motion-state-modes
         (append '(magit-submodule-list-mode) evil-motion-state-modes))
   (add-hook 'magit-mode-hook
-            #'(lambda ()
-                (evil-local-set-key 'normal (kbd "SPC")
-                                    'magit-diff-show-or-scroll-up)
-                (when (version<= "26" emacs-version)
-                  (display-line-numbers-mode -1)))))
+            (lambda ()
+              (evil-local-set-key 'normal (kbd "SPC")
+                                  'magit-diff-show-or-scroll-up)
+              (when (version<= "26" emacs-version)
+                (display-line-numbers-mode -1)))))
 
 (use-package evil-numbers
   :bind (("C-c +" . evil-numbers/inc-at-pt)
@@ -434,15 +434,15 @@
   (setq ivy-on-del-error-function nil)
   (evil-declare-not-repeat 'swiper)
   (ivy-add-actions 'counsel-find-file
-                   '(("F" #'(lambda (x)
-                              (with-ivy-window (insert (file-relative-name x))))
+                   '(("F" (lambda (x)
+                            (with-ivy-window (insert (file-relative-name x))))
                       "insert relative file name")
 
-                     ("B" #'(lambda (x)
-                              (with-ivy-window
-                                (insert
-                                 (file-name-nondirectory
-                                  (replace-regexp-in-string "/\\'" "" x)))))
+                     ("B" (lambda (x)
+                            (with-ivy-window
+                              (insert
+                               (file-name-nondirectory
+                                (replace-regexp-in-string "/\\'" "" x)))))
                       "insert file name without any directory information"))))
 
 (use-package ivy-rich
@@ -478,8 +478,8 @@
                           " --tree --no-total --row-total --average --monthly"))
                t)
   (add-hook 'ledger-mode-hook
-            #'(lambda ()
-                (turn-off-fci-mode))))
+            (lambda ()
+              (turn-off-fci-mode))))
 
 (use-package magit
   :defer t
@@ -498,11 +498,11 @@
   (evil-leader/set-key "v b" 'magit-blame)
   (setq magit-blame-disabled-modes '(fci-mode))
   (add-hook 'git-commit-setup-hook
-            #'(lambda ()
-                (setq fill-column 72)
-                (fci-mode)
-                (modify-syntax-entry ?- "w")
-                (git-commit-turn-on-flyspell))))
+            (lambda ()
+              (setq fill-column 72)
+              (fci-mode)
+              (modify-syntax-entry ?- "w")
+              (git-commit-turn-on-flyspell))))
 
 (use-package magit-org-todos
   :after magit
@@ -571,18 +571,18 @@
   (show-smartparens-global-mode)
   (setq sp-navigate-interactive-always-progress-point t)
   (jco/define-bindings global-map
-                       '(("M-(" . #'(lambda (&optional arg)
-                                      (interactive "P")
-                                      (sp-wrap-with-pair "(")))
-                         ("M-[" . #'(lambda (&optional arg)
-                                      (interactive "P")
-                                      (sp-wrap-with-pair "[")))
-                         ("M-{" . #'(lambda (&optional arg)
-                                      (interactive "P")
-                                      (sp-wrap-with-pair "{")))
-                         ("M-\"" . #'(lambda (&optional arg)
-                                       (interactive "P")
-                                       (sp-wrap-with-pair "\"")))))
+                       '(("M-(" . (lambda (&optional arg)
+                                    (interactive "P")
+                                    (sp-wrap-with-pair "(")))
+                         ("M-[" . (lambda (&optional arg)
+                                    (interactive "P")
+                                    (sp-wrap-with-pair "[")))
+                         ("M-{" . (lambda (&optional arg)
+                                    (interactive "P")
+                                    (sp-wrap-with-pair "{")))
+                         ("M-\"" . (lambda (&optional arg)
+                                     (interactive "P")
+                                     (sp-wrap-with-pair "\"")))))
   (jco/define-bindings smartparens-mode-map
                        '(("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
@@ -600,12 +600,12 @@
     (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))
     (sp-local-pair "`" nil
                    :skip-match
-                   #'(lambda (ms mb me)
-                       (cond
-                        ((equal ms "'")
-                         (or (sp--org-skip-markup ms mb me)
-                             (not (sp-point-in-string-or-comment))))
-                        (t (not (sp-point-in-string-or-comment)))))))
+                   (lambda (ms mb me)
+                     (cond
+                      ((equal ms "'")
+                       (or (sp--org-skip-markup ms mb me)
+                           (not (sp-point-in-string-or-comment))))
+                      (t (not (sp-point-in-string-or-comment)))))))
   (sp-with-modes sp-clojure-modes
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" nil :actions nil)))
@@ -653,9 +653,9 @@ Example: `helloWorld` becomes `Hello world`."
   :mode "\\.yml\\'"
   :config
   (add-hook 'yaml-mode-hook
-            #'(lambda ()
-                (modify-syntax-entry ?- "w")
-                (setq evil-shift-width 2))))
+            (lambda ()
+              (modify-syntax-entry ?- "w")
+              (setq evil-shift-width 2))))
 
 (use-package zeal-at-point
   :config
@@ -674,11 +674,11 @@ Example: `helloWorld` becomes `Hello world`."
 (setq-default tab-width 4)
 (electric-indent-mode)
 (global-set-key (kbd "RET")
-                #'(lambda ()
-                    (interactive)
-                    (delete-trailing-whitespace (line-beginning-position)
-                                                (line-end-position))
-                    (newline-and-indent)))
+                (lambda ()
+                  (interactive)
+                  (delete-trailing-whitespace (line-beginning-position)
+                                              (line-end-position))
+                  (newline-and-indent)))
 
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
@@ -705,19 +705,19 @@ Example: `helloWorld` becomes `Hello world`."
 (setq help-window-select t)
 
 (add-hook 'help-mode-hook
-          #'(lambda ()
-              ;; do not treat "-" as a word separator
-              (modify-syntax-entry ?- "w")))
+          (lambda ()
+            ;; do not treat "-" as a word separator
+            (modify-syntax-entry ?- "w")))
 
 (add-hook 'makefile-gmake-mode-hook
-          #'(lambda ()
-              ;; do not treat "-" as a word separator
-              (modify-syntax-entry ?- "w")))
+          (lambda ()
+            ;; do not treat "-" as a word separator
+            (modify-syntax-entry ?- "w")))
 
 (add-hook 'sql-mode-hook
-          #'(lambda ()
-              ;; do not treat "-" as a word separator
-              (modify-syntax-entry ?- "w")))
+          (lambda ()
+            ;; do not treat "-" as a word separator
+            (modify-syntax-entry ?- "w")))
 
 (jco/define-bindings Info-mode-map
                      '(("<tab>"     . Info-next-reference)
@@ -744,8 +744,8 @@ Example: `helloWorld` becomes `Hello world`."
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize)
   (add-hook 'eshell-mode-hook
-            #'(lambda ()
-                (exec-path-from-shell-initialize))))
+            (lambda ()
+              (exec-path-from-shell-initialize))))
 
 (setq large-file-warning-threshold nil)
 (setq safe-local-variable-values
@@ -763,8 +763,8 @@ Example: `helloWorld` becomes `Hello world`."
 (define-key jco/my-keys-mode-map (kbd "C-x b") 'ibuffer)
 
 (add-hook 'ibuffer-mode-hook
-          #'(lambda ()
-              (turn-off-fci-mode)))
+          (lambda ()
+            (turn-off-fci-mode)))
 
 (setq compilation-scroll-output t)
 

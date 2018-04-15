@@ -268,7 +268,7 @@ invokation."
 
 (defun jco/find-buffers-by-regex (re)
   "Find the first buffer with a name matching RE."
-  (seq-filter #'(lambda(b) (string-match re (buffer-name b))) (buffer-list)))
+  (seq-filter (lambda(b) (string-match re (buffer-name b))) (buffer-list)))
 
 (provide 'init-common-functions)
 

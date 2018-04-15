@@ -3,9 +3,9 @@
 ;;
 ;;; Code:
 (setq gc-cons-threshold 64000000)
-(add-hook 'after-init-hook #'(lambda ()
-                               ;; Restore after startup.
-                               (setq gc-cons-threshold 800000)))
+(add-hook 'after-init-hook (lambda ()
+                             ;; Restore after startup.
+                             (setq gc-cons-threshold 800000)))
 (setq package-archives
       '(("elpa"  . "https://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")

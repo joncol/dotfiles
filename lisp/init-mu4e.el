@@ -77,68 +77,68 @@
   (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
   (add-hook 'mu4e-main-mode-hook
-            #'(lambda ()
-                (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-                (require 'mu4e)
-                (require 'imapfilter)
-                (setq mu4e-maildir "~/.mail")
-                (dolist (m (list mu4e-main-mode-map
-                                 mu4e-headers-mode-map
-                                 mu4e-view-mode-map))
-                  (define-key m "\C-w" 'evil-window-map))
-                (setq mu4e-get-mail-command "mbsync -a")
-                (setq mu4e-update-interval nil)
-                (setq mu4e-sent-messages-behavior 'sent)
-                (setq mu4e-html2text-command "w3m -T text/html")
-                (setq mu4e-view-show-images t)
-                (setq mu4e-view-show-addresses t)
-                (add-to-list 'mu4e-view-actions '("ViewInBrowser" .
-                                                  mu4e-action-view-in-browser) t)
-                (setq mu4e-view-show-addresses t)
-                (setq mu4e-compose-context-policy 'always-ask)
-                (setq mu4e-compose-in-new-frame t)
-                (setq mu4e-save-multiple-attachments-without-asking t)
-                (setq mu4e-compose-format-flowed t)
-                (setq mu4e-compose-dont-reply-to-self t)
-                (setq mu4e-headers-date-format "%Y-%m-%d %H:%M")
-                (setq mu4e-headers-fields
-                      '((:date    . 25)
-                        (:flags   .  6)
-                        (:from    . 22)
-                        (:subject . nil)))
+            (lambda ()
+              (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+              (require 'mu4e)
+              (require 'imapfilter)
+              (setq mu4e-maildir "~/.mail")
+              (dolist (m (list mu4e-main-mode-map
+                               mu4e-headers-mode-map
+                               mu4e-view-mode-map))
+                (define-key m "\C-w" 'evil-window-map))
+              (setq mu4e-get-mail-command "mbsync -a")
+              (setq mu4e-update-interval nil)
+              (setq mu4e-sent-messages-behavior 'sent)
+              (setq mu4e-html2text-command "w3m -T text/html")
+              (setq mu4e-view-show-images t)
+              (setq mu4e-view-show-addresses t)
+              (add-to-list 'mu4e-view-actions '("ViewInBrowser" .
+                                                mu4e-action-view-in-browser) t)
+              (setq mu4e-view-show-addresses t)
+              (setq mu4e-compose-context-policy 'always-ask)
+              (setq mu4e-compose-in-new-frame t)
+              (setq mu4e-save-multiple-attachments-without-asking t)
+              (setq mu4e-compose-format-flowed t)
+              (setq mu4e-compose-dont-reply-to-self t)
+              (setq mu4e-headers-date-format "%Y-%m-%d %H:%M")
+              (setq mu4e-headers-fields
+                    '((:date    . 25)
+                      (:flags   .  6)
+                      (:from    . 22)
+                      (:subject . nil)))
 
-                (defun compl-fun (prompt maildirs predicate require-match initial-input)
-                  (helm-comp-read prompt maildirs
-                                  :name prompt
-                                  :must-match t))
+              (defun compl-fun (prompt maildirs predicate require-match initial-input)
+                (helm-comp-read prompt maildirs
+                                :name prompt
+                                :must-match t))
 
-                (defun jco/smtp-server ()
-                  (cond ((or (s-contains? "gmail.com" user-mail-address)
-                             (s-contains? "zimpler.com" user-mail-address)) "smtp.gmail.com")
-                        ((s-contains? "kolab" user-mail-address) "smtp.kolabnow.com")))
+              (defun jco/smtp-server ()
+                (cond ((or (s-contains? "gmail.com" user-mail-address)
+                           (s-contains? "zimpler.com" user-mail-address)) "smtp.gmail.com")
+                      ((s-contains? "kolab" user-mail-address) "smtp.kolabnow.com")))
 
-                (defun jco/my-send-it ()
-                  (setq smtpmail-starttls-credentials `((,(jco/smtp-server) 587 nil nil))
-                        smtpmail-auth-credentials
-                        `((,(jco/smtp-server) 587 user-mail-address nil))
-                        smtpmail-default-smtp-server (jco/smtp-server)
-                        smtpmail-smtp-server (jco/smtp-server))
-                  (smtpmail-send-it))
+              (defun jco/my-send-it ()
+                (setq smtpmail-starttls-credentials `((,(jco/smtp-server) 587 nil nil))
+                      smtpmail-auth-credentials
+                      `((,(jco/smtp-server) 587 user-mail-address nil))
+                      smtpmail-default-smtp-server (jco/smtp-server)
+                      smtpmail-smtp-server (jco/smtp-server))
+                (smtpmail-send-it))
 
-                (require 'smtpmail)
+              (require 'smtpmail)
 
-                (setq message-send-mail-function 'jco/my-send-it
-                      starttls-use-gnutls t
-                      smtpmail-smtp-service 587)
+              (setq message-send-mail-function 'jco/my-send-it
+                    starttls-use-gnutls t
+                    smtpmail-smtp-service 587)
 
-                ;; don't keep message buffers around
-                (setq message-kill-buffer-on-exit t)
+              ;; don't keep message buffers around
+              (setq message-kill-buffer-on-exit t)
 
-                (setq mu4e-org-contacts-file "~/.contacts")
-                (add-to-list 'mu4e-headers-actions
-                             '("org-contact-add" . mu4e-action-add-org-contact) t)
-                (add-to-list 'mu4e-view-actions
-                             '("org-contact-add" . mu4e-action-add-org-contact) t))))
+              (setq mu4e-org-contacts-file "~/.contacts")
+              (add-to-list 'mu4e-headers-actions
+                           '("org-contact-add" . mu4e-action-add-org-contact) t)
+              (add-to-list 'mu4e-view-actions
+                           '("org-contact-add" . mu4e-action-add-org-contact) t))))
 
 (add-hook 'mu4e-update-pre-hook
           #'imapfilter)
