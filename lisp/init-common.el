@@ -481,6 +481,13 @@
             (lambda ()
               (turn-off-fci-mode))))
 
+(defun jco/magit-kill-buffers ()
+  "Restore window configuration and kill all Magit buffers."
+  (interactive)
+  (let ((buffers (magit-mode-get-buffers)))
+    (magit-restore-window-configuration)
+    (mapc #'kill-buffer buffers)))
+
 (use-package magit
   :defer t
   :config
@@ -497,6 +504,7 @@
   (evil-leader/set-key "v l" 'magit-log-buffer-file)
   (evil-leader/set-key "v b" 'magit-blame)
   (setq magit-blame-disabled-modes '(fci-mode))
+  (bind-key "q" #'jco/magit-kill-buffers magit-status-mode-map)
   (add-hook 'git-commit-setup-hook
             (lambda ()
               (setq fill-column 72)
