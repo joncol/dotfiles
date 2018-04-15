@@ -147,7 +147,9 @@
 (use-package bookmark+
   :straight t
   :ensure nil
-  :defer t)
+  :defer t
+  :config
+  (bmkp-info-auto-bookmark-mode))
 
 (use-package buffer-move
   :if (not (eq system-type 'windows-nt))
