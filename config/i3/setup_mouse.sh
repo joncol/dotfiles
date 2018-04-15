@@ -1,5 +1,6 @@
 #!/bin/bash
-mouse=$(xinput list | grep -i "mouse" | head -1 | cut -f2 | sed s/id=//)
+mouse=$(xinput list | grep -iE "\⎜.*mouse" | tail -1 | cut -f2 | sed s/id=//)
+
 mouse_nat_scroll=$(xinput list-props $mouse | grep -i "natural scrolling enabled (" | sed "s/[^(]*(\(.*\)).*/\1/")
 echo "Mouse device: $mouse"
 echo "  Natural scrolling property ID: $mouse_nat_scroll"
