@@ -3,6 +3,7 @@
 .agignore
 .projectile
 todo.org
+todo.org_archive
 
 # Clojure
 
