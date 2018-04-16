@@ -16,8 +16,10 @@
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
+      ;; 'doom-molokai
       ;; 'eink
       ;; 'gotham
+      ;; 'gruvbox-dark-hard
       ;; 'hemisu-dark
       ;; 'hemisu-light
       ;; 'kaolin-dark
