@@ -8,7 +8,8 @@
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
-            (init-lisp-common)))
+            (init-lisp-common)
+            (redshank-mode)))
 
 (provide 'init-emacs-lisp)
 
