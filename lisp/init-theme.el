@@ -92,6 +92,10 @@
                         "midnightblue")
    (set-face-background 'hl-line "#041040"))
 
+  (doom-molokai
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face "#101f24")))
+
   (eink
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
