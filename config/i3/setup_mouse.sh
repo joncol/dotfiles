@@ -1,10 +1,13 @@
 #!/bin/bash
-mouse=$(xinput list | grep -iE "\⎜.*mouse" | tail -1 | cut -f2 | sed s/id=//)
+mice=$(xinput list | grep -iE "\⎜.*mouse" | cut -f2 | sed s/id=//)
 
-mouse_nat_scroll=$(xinput list-props $mouse | grep -i "natural scrolling enabled (" | sed "s/[^(]*(\(.*\)).*/\1/")
-echo "Mouse device: $mouse"
-echo "  Natural scrolling property ID: $mouse_nat_scroll"
-xinput set-prop $mouse $mouse_nat_scroll 1
+for mouse in $mice
+do
+    mouse_nat_scroll=$(xinput list-props $mouse | grep -i "natural scrolling enabled (" | sed "s/[^(]*(\(.*\)).*/\1/")
+    echo "Mouse device: $mouse"
+    echo "  Natural scrolling property ID: $mouse_nat_scroll"
+    xinput set-prop $mouse $mouse_nat_scroll 1
+done
 
 touchpad=$(xinput list | grep -i "synaptics touchpad" | cut -f2 | sed s/id=//)
 if [[ ! -z "${touchpad// }" ]]; then
