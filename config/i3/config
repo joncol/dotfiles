@@ -218,12 +218,7 @@ bindsym $mod+F3 exec --no-startup-id ~/.config/i3/mute.sh
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
-# At office
-# exec_always --no-startup-id "xrandr --output DP1-1 --auto --right-of eDP1"
-
-# At home
-exec_always --no-startup-id "xrandr --output HDMI2 --auto --right-of eDP1"
-# exec_always autorandr --change
+exec_always --no-startup-id ~/.config/i3/setup_screen.sh
 
 exec_always ~/.config/i3/setup_mouse.sh
 
