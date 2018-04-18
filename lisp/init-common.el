@@ -193,8 +193,8 @@
 (use-package counsel-projectile
   :config
   (counsel-projectile-mode)
-  (setq counsel-projectile-ag-initial-input
-        '(thing-at-point 'symbol t)))
+  (setq counsel-projectile-ag-initial-input '(thing-at-point 'symbol t))
+  (setq counsel-projectile-rg-initial-input '(thing-at-point 'symbol t)))
 
 (use-package desktop
   :config
