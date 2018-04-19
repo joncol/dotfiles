@@ -97,7 +97,7 @@
                          ("C-k" . windmove-up)
                          ("C-l" . windmove-right)))
 
-  (jco/bind-exit-insert-mode ?l ?h)
+  (jco/bind-exit-insert-mode ?l ?h) ;; Colemak specific
   (setq evil-flash-delay 3600))
 
 (use-package evil-exchange

@@ -134,7 +134,7 @@
 
 (use-package avy
   :config
-  (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o))
+  (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o)) ;; Colemak specific
 
   (evil-leader/set-key "f" 'evil-avy-goto-char)
   (evil-leader/set-key "#" 'evil-avy-goto-line)
