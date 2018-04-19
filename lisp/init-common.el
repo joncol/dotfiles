@@ -499,6 +499,9 @@
             (lambda ()
               (turn-off-fci-mode))))
 
+(use-package lorem-ipsum
+  :defer t)
+
 (defun jco/magit-kill-buffers ()
   "Restore window configuration and kill all Magit buffers."
   (interactive)
