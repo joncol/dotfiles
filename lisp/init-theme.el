@@ -63,9 +63,8 @@
   (adwaita
    (set-face-background 'hl-line "#dadfe1")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
-   (add-hook 'smartparens-mode-hook
-             (lambda ()
-               (set-face-background 'sp-pair-overlay-face "LightBlue")))
+   (with-eval-after-load 'smartparens
+     (set-face-background 'sp-pair-overlay-face "LightBlue"))
    (setq jco/cursor-color  "#101f24")
    (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#7ceece")
@@ -165,9 +164,8 @@
 
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
-   (add-hook 'smartparens-mode-hook
-             (lambda ()
-               (set-face-background 'sp-pair-overlay-face "#582c6b")))
+   (with-eval-after-load 'smartparens
+     (set-face-background 'sp-pair-overlay-face "#582c6b"))
    (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#582c6b"))
    (set-face-background 'region "#582c6b")
@@ -198,9 +196,8 @@
      (set-face-background 'swiper-line-face "#2a2d2e"))
    (set-face-background 'vhl/default-face "#2a2d2e")
    (set-face-background 'iedit-occurrence "#2a2d2e")
-   (add-hook 'smartparens-mode-hook
-             (lambda ()
-               (set-face-background 'sp-pair-overlay-face "#444748")))
+   (with-eval-after-load 'smartparens
+     (set-face-background 'sp-pair-overlay-face "#444748"))
    (set-face-background 'region "#582c6b")
    (set-face-background 'ivy-minibuffer-match-face-2 "#444748")
    (set-face-background 'ffap "#582c6b")
@@ -212,17 +209,15 @@
      (set-face-background 'swiper-line-face "#e0dcbe"))
    (set-face-background 'hl-line "#e0dcbe")
    (set-face-background 'vhl/default-face "#e0dcbe")
-   (add-hook 'smartparens-mode-hook
-             (lambda ()
-               (set-face-background 'sp-pair-overlay-face "#c7c3a5")))
+   (with-eval-after-load 'smartparens
+     (set-face-background 'sp-pair-overlay-face "#c7c3a5"))
    (set-face-background 'region "#ffc3ff")
    (set-face-background 'ffap "#ffc3ff")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
-   (add-hook 'ledger-mode-hook
-             (lambda ()
-               (set-face-background 'ledger-font-xact-highlight-face
-                                    "#e0dcbe")
-               (set-face-background 'ledger-occur-xact-face "#e0dcbe")))
+   (with-eval-after-load 'ledger-mode
+     (set-face-background 'ledger-font-xact-highlight-face
+                          "#e0dcbe")
+     (set-face-background 'ledger-occur-xact-face "#e0dcbe"))
 
    (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#7ceece")
