@@ -25,6 +25,7 @@
            espresso-theme
            flatland-theme
            flatui-theme
+           github-modern-theme
            gotham-theme
            grandshell-theme
            gruber-darker-theme
@@ -99,6 +100,22 @@
   (eink
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
+
+  (github-modern
+   (with-eval-after-load 'cider
+     (set-face-background 'cider-test-error-face "Red")
+     (set-face-background 'cider-test-failure-face "Red")
+     (set-face-background 'cider-test-success-face "Green"))
+   (with-eval-after-load 'company
+     (set-face-background 'company-preview-common "#e0dcbe")
+     (set-face-background 'company-preview-common "#e0dcbe")
+     (set-face-background 'company-tooltip-selection "LightBlue")
+     (set-face-background 'company-tooltip-annotation-selection "LightBlue"))
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
+   (set-face-background 'ivy-minibuffer-match-face-2 "#dadfe1")
+   (set-face-background 'region "LightBlue")
+   (with-eval-after-load 'smartparens
+     (set-face-background 'sp-show-pair-match-face "#FABE58")))
 
   (gotham
    (setq jco/cursor-color "lightblue")
