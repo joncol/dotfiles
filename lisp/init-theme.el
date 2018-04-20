@@ -215,8 +215,7 @@
    (set-face-background 'ffap "#ffc3ff")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (with-eval-after-load 'ledger-mode
-     (set-face-background 'ledger-font-xact-highlight-face
-                          "#e0dcbe")
+     (set-face-background 'ledger-font-xact-highlight-face "#e0dcbe")
      (set-face-background 'ledger-occur-xact-face "#e0dcbe"))
 
    (with-eval-after-load 'mu4e
@@ -225,8 +224,7 @@
 
   (organic-green
    (setq jco/cursor-color "gray25")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "#7ceece")
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#7ceece")
    (set-face-background 'show-paren-match "#c0c060"))
 
   (prassee
