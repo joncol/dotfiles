@@ -10,10 +10,6 @@
           (lambda ()
             (when (eq system-type 'windows-nt)
               (setq company-backends (delete 'company-clang company-backends))
-
-              (when helm-mode
-                (helm-gtags-mode))
-
               (global-set-key "\M-." 'ggtags-find-tag-dwim)
 
               (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
