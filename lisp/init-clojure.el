@@ -124,8 +124,7 @@ Opens a new buffer with the result."
                             ("x e" . cider-pprint-eval-last-sexp-to-repl)))
                 (evil-leader/set-key-for-mode m (car kv) (cdr kv))))))
 
-(add-hook 'nrepl-connected-hook
-          #'jco/move-window-to-bottom)
+(add-hook 'nrepl-connected-hook #'jco/move-window-to-bottom)
 
 (add-hook 'cider-browse-ns-mode-hook
           (lambda ()

@@ -11,7 +11,6 @@
             (when (eq system-type 'windows-nt)
               (setq company-backends (delete 'company-clang company-backends))
               (global-set-key "\M-." 'ggtags-find-tag-dwim)
-
               (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
                 (ggtags-mode)
                 (jco/define-bindings ggtags-mode-map
@@ -43,22 +42,17 @@
             (setq tab-width 4)
             (setq align-to-tab-stop nil)
             (c-set-offset 'substatement-open 0)
-
             (global-ede-mode t)
             (ede-enable-generic-projects)
-
             (evil-leader/set-key "a"
               (lambda ()
                 (interactive)
                 (ff-find-other-file nil t)))
-
             (evil-leader/set-key "A"
               (lambda ()
                 (interactive)
                 (ff-find-other-file t t)))
-
-            (smartparens-mode)
-            ))
+            (smartparens-mode)))
 
 (provide 'init-cc)
 
