@@ -61,6 +61,7 @@
 
 (cl-case jco/theme
   (adwaita
+   (setq sml/theme 'light)
    (set-face-background 'hl-line "#dadfe1")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
    (with-eval-after-load 'smartparens
@@ -84,6 +85,7 @@
      (set-face-foreground 'cfw:face-toolbar-button-off "#dadfe1")))
 
   (chyla
+   (setq sml/theme 'light)
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
 
@@ -101,6 +103,7 @@
                         "LightBlue"))
 
   (github-modern
+   (setq sml/theme 'light)
    (with-eval-after-load 'cider
      (set-face-background 'cider-test-error-face "Red")
      (set-face-background 'cider-test-failure-face "Red")
@@ -123,6 +126,7 @@
                         "#101f24"))
 
   (hemisu-light
+   (setq sml/theme 'light)
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
 
@@ -147,6 +151,7 @@
      (set-face-background 'org-todo nil)))
 
   (material-light
+   (setq sml/theme 'light)
    (setq jco/cursor-color "azure4")
    (set-face-background 'hl-line "Gray75"))
 
@@ -204,6 +209,7 @@
    (set-face-background 'highlight "#582c6b"))
 
   (nubox-light
+   (setq sml/theme 'light)
    (setq jco/cursor-color "#101f24")
    (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#e0dcbe"))
@@ -223,6 +229,7 @@
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
   (organic-green
+   (setq sml/theme 'light)
    (setq jco/cursor-color "gray25")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#7ceece")
    (set-face-background 'show-paren-match "#c0c060"))
@@ -261,6 +268,7 @@
    (set-face-background 'ivy-current-match "#335e69"))
 
   (solarized-light
+   (setq sml/theme 'light)
    (setq jco/cursor-color "gray25")
    (set-face-background 'region "#e0dcbe")
    (with-eval-after-load 'cider
@@ -269,6 +277,7 @@
    (set-face-background 'lazy-highlight "#f9bf3b"))
 
   (tao-yang
+   (setq sml/theme 'light)
    (setq jco/cursor-color "azure4")
    (set-face-background 'hl-line "#e1dcd3")
    (set-face-background 'region "#f1dddc")
