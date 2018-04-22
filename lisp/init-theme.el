@@ -104,20 +104,35 @@
 
   (github-modern
    (setq sml/theme 'light)
+   (set-face-foreground 'avy-lead-face "#f62459")
    (with-eval-after-load 'cider
      (set-face-background 'cider-test-error-face "Red")
+     (set-face-foreground 'cider-test-error-face "Black")
      (set-face-background 'cider-test-failure-face "Red")
+     (set-face-foreground 'cider-test-failure-face "Black")
      (set-face-background 'cider-test-success-face "Green"))
    (with-eval-after-load 'company
-     (set-face-background 'company-preview-common "#e0dcbe")
-     (set-face-background 'company-preview-common "#e0dcbe")
-     (set-face-background 'company-tooltip-selection "LightBlue")
-     (set-face-background 'company-tooltip-annotation-selection "LightBlue"))
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
+     (set-face-background 'company-tooltip-selection "#dcc6e0")
+     (set-face-background 'company-tooltip-annotation-selection "#dcc6e0")
+     (set-face-foreground 'company-preview-common "#f0f0f0"))
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#dcc6e0")
+   (set-face-background 'hl-line "#e4f1fe")
+   (set-face-foreground 'hydra-face-amaranth "#e0dcbe")
+   (set-face-foreground 'hydra-face-red "Red")
+   (set-face-foreground 'hydra-face-blue "Blue")
+   (set-face-foreground 'hydra-face-pink "#d2527f")
+   (set-face-background 'ivy-current-match "#e4f1fe")
    (set-face-background 'ivy-minibuffer-match-face-2 "#dadfe1")
-   (set-face-background 'region "LightBlue")
+   (set-face-background 'region "#c0cbd8")
+   (with-eval-after-load 'magit
+     (set-face-background 'magit-diff-hunk-heading "#f0f0f0")
+     (set-face-background 'magit-diff-hunk-heading-highlight "#c0c0c0"))
+   (with-eval-after-load 'mu4e
+     (set-face-background 'mu4e-highlight-face "#e4f1fe"))
    (with-eval-after-load 'smartparens
-     (set-face-background 'sp-show-pair-match-face "#FABE58")))
+     (set-face-background 'sp-show-pair-match-face "#dcc6e0"))
+   (with-eval-after-load 'smart-mode-line
+     (set-face-foreground 'sml/modified "Blue")))
 
   (gotham
    (setq jco/cursor-color "LightBlue")
