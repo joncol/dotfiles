@@ -100,6 +100,8 @@
                      '(("C-n" . ido-next-match)
                        ("C-p" . ido-prev-match)))
 
+(setq compilation-scroll-output t)
+
 (use-package ace-isearch
   :disabled t
   :config
@@ -797,8 +799,6 @@ Example: `helloWorld` becomes `Hello world`."
 (add-hook 'ibuffer-mode-hook
           (lambda ()
             (turn-off-fci-mode)))
-
-(setq compilation-scroll-output t)
 
 (use-package iedit)
 

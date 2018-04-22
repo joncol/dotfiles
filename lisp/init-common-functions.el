@@ -270,6 +270,14 @@ invokation."
   "Find the first buffer with a name matching RE."
   (seq-filter (lambda(b) (string-match re (buffer-name b))) (buffer-list)))
 
+(defun jco/select-bottom-window ()
+  "Select the bottommost window."
+  (let ((bottom-window (selected-window))
+        window-below)
+    (while (setq window-below (window-in-direction 'below bottom-window))
+      (setq bottom-window window-below))
+    (select-window bottom-window)))
+
 (provide 'init-common-functions)
 
 ;;; init-common-functions.el ends here

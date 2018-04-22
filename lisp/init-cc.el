@@ -25,7 +25,18 @@
                                        ("C-c t c" . ggtags-create-tags)
                                        ("C-c t u" . ggtags-update-tags)
                                        ("M-,"     . pop-tag-mark)))))
-
+            (add-hook 'compilation-mode-hook
+                      (lambda ()
+                        (when (not (get-buffer-window "*compilation*"))
+                          (save-selected-window
+                            (save-excursion
+                              (jco/select-bottom-window)
+                              (let* ((w (split-window-vertically))
+                                     (h (window-height w)))
+                                (select-window w)
+                                (switch-to-buffer "*compilation*")
+                                (shrink-window
+                                 (- h (or compilation-window-height 20)))))))))
             (setq-default backward-delete-function nil)
             (c-add-style "my-c-style"
                          '((c-basic-offset . 4)
