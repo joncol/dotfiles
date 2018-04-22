@@ -292,6 +292,9 @@
   (evil-leader/set-key "w c" 'eyebrowse-close-window-config)
   (set-face-foreground 'mode-line-emphasis "Red"))
 
+(use-package ggtags
+  :if (eq system-type 'windows-nt))
+
 (use-package gradle-mode
   :config
   (add-hook 'java-mode-hook

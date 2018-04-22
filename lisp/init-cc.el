@@ -8,8 +8,7 @@
 
 (add-hook 'c-mode-common-hook
           (lambda ()
-            (when (not (eq system-type 'gnu/linux))
-              (use-package ggtags)
+            (when (eq system-type 'windows-nt)
               (setq company-backends (delete 'company-clang company-backends))
 
               (when helm-mode
