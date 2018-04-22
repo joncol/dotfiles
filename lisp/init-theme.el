@@ -120,7 +120,7 @@
      (set-face-background 'sp-show-pair-match-face "#FABE58")))
 
   (gotham
-   (setq jco/cursor-color "lightblue")
+   (setq jco/cursor-color "LightBlue")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
    (set-face-foreground 'evil-search-highlight-persist-highlight-face
                         "#101f24"))
