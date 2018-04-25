@@ -24,6 +24,7 @@
                 ruby-mode-hook
                 rust-mode-hook
                 scheme-mode-hook
+                scss-mode-hook
                 sml-mode-hook
                 sql-mode-hook
                 tex-mode-hook

@@ -86,6 +86,10 @@
           (lambda ()
             (modify-syntax-entry ?_ "w")))
 
+(add-hook 'scss-mode-hook
+          (lambda ()
+            (modify-syntax-entry ?- "w")))
+
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
   "Enable evil motion state."
