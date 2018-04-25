@@ -9,7 +9,9 @@
 (require 'init-lisp-common)
 
 (use-package redshank
-  :defer t)
+  :defer t
+  :init
+  (setq redshank-prefix-key "C-c RET"))
 
 (use-package slime
   :after lisp-mode
