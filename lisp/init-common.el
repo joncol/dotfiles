@@ -90,6 +90,10 @@
           (lambda ()
             (modify-syntax-entry ?- "w")))
 
+(add-hook 'sql-mode-hook
+          (lambda ()
+            (modify-syntax-entry ?- "w" sql-mode-syntax-table)))
+
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
   "Enable evil motion state."
