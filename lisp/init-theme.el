@@ -116,6 +116,8 @@
      (set-face-background 'company-tooltip-annotation-selection "#dcc6e0")
      (set-face-foreground 'company-preview-common "#f0f0f0"))
    (set-face-background 'evil-search-highlight-persist-highlight-face "#dcc6e0")
+   (set-face-background 'header-line "#e4f1fe")
+   (set-face-foreground 'header-line "Black")
    (set-face-background 'hl-line "#e4f1fe")
    (set-face-foreground 'hydra-face-amaranth "#e0dcbe")
    (set-face-foreground 'hydra-face-red "Red")
@@ -125,8 +127,14 @@
    (set-face-background 'ivy-minibuffer-match-face-2 "#dadfe1")
    (set-face-background 'region "#c0cbd8")
    (with-eval-after-load 'magit
+     (set-face-foreground 'magit-blame-name "White")
+     (set-face-foreground 'magit-blame-date "White")
+     (set-face-foreground 'magit-blame-hash "White")
+     (set-face-foreground 'magit-blame-summary "White")
+     (set-face-foreground 'magit-blame-heading "White")
      (set-face-background 'magit-diff-hunk-heading "#f0f0f0")
-     (set-face-background 'magit-diff-hunk-heading-highlight "#c0c0c0"))
+     (set-face-background 'magit-diff-hunk-heading-highlight "#c0c0c0")
+     (set-face-foreground 'magit-popup-argument "#22a7f0"))
    (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#e4f1fe"))
    (with-eval-after-load 'smartparens
