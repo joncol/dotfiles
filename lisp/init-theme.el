@@ -106,6 +106,7 @@
    (setq sml/theme 'light)
    (set-face-foreground 'avy-lead-face "#f62459")
    (with-eval-after-load 'cider
+     (set-face-background 'cider-deprecated-face "#f1a9a0")
      (set-face-background 'cider-test-error-face "Red")
      (set-face-foreground 'cider-test-error-face "Black")
      (set-face-background 'cider-test-failure-face "Red")
