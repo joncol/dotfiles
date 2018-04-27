@@ -126,6 +126,8 @@
    (set-face-foreground 'hydra-face-pink "#d2527f")
    (set-face-background 'ivy-current-match "#e4f1fe")
    (set-face-background 'ivy-minibuffer-match-face-2 "#dadfe1")
+   (set-face-background 'ivy-minibuffer-match-face-3 "#c0c5c7")
+   (set-face-background 'ivy-minibuffer-match-face-4 "#a6abad")
    (set-face-background 'region "#c0cbd8")
    (with-eval-after-load 'magit
      (set-face-foreground 'magit-blame-name "White")
