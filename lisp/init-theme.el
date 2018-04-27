@@ -105,17 +105,6 @@
   (github-modern
    (setq sml/theme 'light)
    (set-face-foreground 'avy-lead-face "#f62459")
-   (with-eval-after-load 'cider
-     (set-face-background 'cider-deprecated-face "#f1a9a0")
-     (set-face-background 'cider-test-error-face "Red")
-     (set-face-foreground 'cider-test-error-face "Black")
-     (set-face-background 'cider-test-failure-face "Red")
-     (set-face-foreground 'cider-test-failure-face "Black")
-     (set-face-background 'cider-test-success-face "Green"))
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#dcc6e0")
-     (set-face-background 'company-tooltip-annotation-selection "#dcc6e0")
-     (set-face-foreground 'company-preview-common "#f0f0f0"))
    (set-face-background 'evil-search-highlight-persist-highlight-face "#dcc6e0")
    (set-face-background 'header-line "#e4f1fe")
    (set-face-foreground 'header-line "Black")
@@ -129,6 +118,17 @@
    (set-face-background 'ivy-minibuffer-match-face-3 "#c0c5c7")
    (set-face-background 'ivy-minibuffer-match-face-4 "#a6abad")
    (set-face-background 'region "#c0cbd8")
+   (with-eval-after-load 'cider
+     (set-face-background 'cider-deprecated-face "#f1a9a0")
+     (set-face-background 'cider-test-error-face "Red")
+     (set-face-foreground 'cider-test-error-face "Black")
+     (set-face-background 'cider-test-failure-face "Red")
+     (set-face-foreground 'cider-test-failure-face "Black")
+     (set-face-background 'cider-test-success-face "Green"))
+   (with-eval-after-load 'company
+     (set-face-background 'company-tooltip-selection "#dcc6e0")
+     (set-face-background 'company-tooltip-annotation-selection "#dcc6e0")
+     (set-face-foreground 'company-preview-common "#f0f0f0"))
    (with-eval-after-load 'magit
      (set-face-foreground 'magit-blame-name "White")
      (set-face-foreground 'magit-blame-date "White")
