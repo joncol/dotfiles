@@ -236,14 +236,14 @@
 (use-package dired-narrow
   :after dired+
   :bind (:map dired-mode-map
-              ("/" . dired-narrow)))
+         ("/" . dired-narrow)))
 
 (use-package dired-subtree
   :after dired+
   :config
   (bind-keys :map dired-mode-map
-             ("i" . dired-subtree-insert)
-             (";" . dired-subtree-remove)))
+    ("i" . dired-subtree-insert)
+    (";" . dired-subtree-remove)))
 
 (use-package docker-compose-mode
   :defer t)
@@ -528,7 +528,7 @@
   ;; Fix regression where error message is shown when using magit-status while
   ;; having global-whitespace-mode enabled.
   (add-function :before-while whitespace-enable-predicate
-                'prevent-whitespace-mode-for-magit)
+    'prevent-whitespace-mode-for-magit)
 
   ;; Needed for success status message to be shown.
   (setq magit-auto-revert-mode nil)
@@ -681,8 +681,8 @@ Example: `helloWorld` becomes `Hello world`."
   :config
   (with-eval-after-load "sx-question-mode"
     (bind-keys :map sx-question-mode-map
-               ("j" . scroll-up-line)
-               ("k" . scroll-down-line))))
+      ("j" . scroll-up-line)
+      ("k" . scroll-down-line))))
 
 (use-package unkillable-scratch
   :init
@@ -770,8 +770,8 @@ Example: `helloWorld` becomes `Hello world`."
 
 (require 'help-mode)
 (bind-keys :map help-mode-map
-           ("<tab>"     . forward-button)
-           ("<backtab>" . backward-button))
+  ("<tab>"     . forward-button)
+  ("<backtab>" . backward-button))
 
 (jco/define-bindings jco/my-keys-mode-map '(("C-c C-b" . help-go-back)
                                             ("C-c C-f" . help-go-forward)))
