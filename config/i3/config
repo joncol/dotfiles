@@ -236,4 +236,6 @@ exec_always "setxkbmap -layout us,us -variant colemak, -option grp:win_space_tog
 exec_always "killall xcape"
 exec_always "xcape -t 150 -e 'Control_L=BackSpace'"
 
+exec_always unclutter
+
 # exec_always sleep 2 && xmodmap ~/.Xmodmap
