@@ -104,31 +104,33 @@
 
   (github-modern
    (setq sml/theme 'light)
-   (set-face-foreground 'avy-lead-face "#f62459")
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#dcc6e0")
+   (set-face-foreground 'avy-lead-face "#00b894")
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        (face-attribute 'highlight :background))
    (set-face-background 'header-line "#e4f1fe")
    (set-face-foreground 'header-line "Black")
-   (set-face-background 'hl-line "#e4f1fe")
+   (set-face-background 'hl-line "#f5f6fa")
    (set-face-foreground 'hydra-face-amaranth "#e0dcbe")
    (set-face-foreground 'hydra-face-red "Red")
    (set-face-foreground 'hydra-face-blue "Blue")
-   (set-face-foreground 'hydra-face-pink "#d2527f")
+   (set-face-foreground 'hydra-face-pink "#fd79a8")
+   (set-face-foreground 'isearch-fail "#d63031")
    (set-face-background 'ivy-current-match "#e4f1fe")
    (set-face-background 'ivy-minibuffer-match-face-2 "#dadfe1")
    (set-face-background 'ivy-minibuffer-match-face-3 "#c0c5c7")
    (set-face-background 'ivy-minibuffer-match-face-4 "#a6abad")
-   (set-face-background 'region "#c0cbd8")
+   (set-face-background 'region "#e4f1fe")
    (set-face-background 'whitespace-tab "#f0f0f0")
    (with-eval-after-load 'cider
-     (set-face-background 'cider-deprecated-face "#f1a9a0")
+     (set-face-background 'cider-deprecated-face "#d63031")
      (set-face-background 'cider-test-error-face "Red")
      (set-face-foreground 'cider-test-error-face "Black")
      (set-face-background 'cider-test-failure-face "Red")
      (set-face-foreground 'cider-test-failure-face "Black")
      (set-face-background 'cider-test-success-face "Green"))
    (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#dcc6e0")
-     (set-face-background 'company-tooltip-annotation-selection "#dcc6e0")
+     (set-face-background 'company-tooltip-selection "#fd79a8")
+     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
      (set-face-foreground 'company-preview-common "#f0f0f0"))
    (with-eval-after-load 'magit
      (set-face-foreground 'magit-blame-name "White")
@@ -142,7 +144,7 @@
    (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#e4f1fe"))
    (with-eval-after-load 'smartparens
-     (set-face-background 'sp-show-pair-match-face "#dcc6e0"))
+     (set-face-background 'sp-show-pair-match-face "#fda7df"))
    (with-eval-after-load 'smart-mode-line
      (set-face-foreground 'sml/modified "Blue")))
 
