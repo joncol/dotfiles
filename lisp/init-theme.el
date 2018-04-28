@@ -118,6 +118,7 @@
    (set-face-background 'ivy-minibuffer-match-face-3 "#c0c5c7")
    (set-face-background 'ivy-minibuffer-match-face-4 "#a6abad")
    (set-face-background 'region "#c0cbd8")
+   (set-face-background 'whitespace-tab "#f0f0f0")
    (with-eval-after-load 'cider
      (set-face-background 'cider-deprecated-face "#f1a9a0")
      (set-face-background 'cider-test-error-face "Red")
