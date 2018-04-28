@@ -97,6 +97,16 @@ Opens a new buffer with the result."
             (put-clojure-indent 'PUT 2)
             (put-clojure-indent 'defstate nil)
 
+            ;; Indentation for re-frame
+            (put-clojure-indent 'reg-cofx 0)
+            (put-clojure-indent 'reg-event-ctx 0)
+            (put-clojure-indent 'reg-event-db 0)
+            (put-clojure-indent 'reg-event-fx 0)
+            (put-clojure-indent 'reg-fx 0)
+            (put-clojure-indent 'reg-sub 0)
+            (put-clojure-indent 'reg-sub-raw 0)
+            (put-clojure-indent '->interceptor 0)
+
             (define-clojure-indent
               (alet 'defun)
               (mlet 'defun))
