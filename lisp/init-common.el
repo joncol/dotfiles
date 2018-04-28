@@ -523,7 +523,7 @@
     (mapc #'kill-buffer buffers)))
 
 (use-package magit
-  :defer t
+  :defer 1
   :config
   ;; Fix regression where error message is shown when using magit-status while
   ;; having global-whitespace-mode enabled.
