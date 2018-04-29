@@ -169,7 +169,6 @@ Opens a new buffer with the result."
   "Do not treat valid identifier symbols as word separators."
   (modify-syntax-entry ?- "w")
   (modify-syntax-entry ?_ "w")
-  (modify-syntax-entry ?. "w")
   (modify-syntax-entry ?< "w")
   (modify-syntax-entry ?> "w")
   (modify-syntax-entry ?? "w")
