@@ -95,8 +95,17 @@
    (set-face-background 'hl-line "#041040"))
 
   (doom-molokai
+   (set-face-background 'ivy-current-match "#582c6b")
+   (set-face-foreground 'ivy-minibuffer-match-face-1 "#f5f6fa")
+
+   ;; This is the color used in the ivy-switch-buffer window.
+   (set-face-foreground 'ivy-modified-buffer "#f5f6fa")
+   (set-face-attribute 'ivy-modified-buffer nil :weight 'normal)
+
    (with-eval-after-load 'mu4e
-     (set-face-foreground 'mu4e-highlight-face "#101f24")))
+     (set-face-foreground 'mu4e-highlight-face "#101f24"))
+   (with-eval-after-load 'smartparens
+     (set-face-background 'sp-show-pair-match-face "#6ab04c")))
 
   (eink
    (set-face-background 'evil-search-highlight-persist-highlight-face
