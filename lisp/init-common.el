@@ -560,6 +560,10 @@
 (use-package monky
   :defer t)
 
+(use-package mustache-mode
+  :mode "\\.mustache\\'"
+  :defer t)
+
 (use-package nginx-mode)
 
 (use-package org-gcal
