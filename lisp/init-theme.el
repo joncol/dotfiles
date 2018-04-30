@@ -129,6 +129,8 @@
    (set-face-background 'ivy-minibuffer-match-face-3 "#c0c5c7")
    (set-face-background 'ivy-minibuffer-match-face-4 "#a6abad")
    (set-face-background 'region "#e4f1fe")
+   (set-face-background 'whitespace-empty "#ffe9ec")
+   (set-face-background 'whitespace-trailing "#ffe9ec")
    (set-face-background 'whitespace-tab "#f0f0f0")
    (with-eval-after-load 'cider
      (set-face-background 'cider-deprecated-face "#d63031")
