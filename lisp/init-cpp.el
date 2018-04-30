@@ -218,8 +218,7 @@
             (set (make-local-variable 'compile-command)
                  (jco/cmake-compile-command))
             (setq compilation-read-command nil)
-            (jco/define-bindings c++-mode-map '(("<f6>" . compile)
-                                                ("C-c C-k" . compile)))
+            (bind-key "C-c C-c" #'compile c++-mode-map)
 
             (setq flycheck-clang-language-standard "c++14")
 
