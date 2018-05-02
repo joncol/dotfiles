@@ -1,0 +1,19 @@
+let configfile="/home/jco/.config/cvim/cvimrc"
+set localconfig
+set smoothscroll
+set noautofocus
+let scrollstep = 80
+set typelinkhints
+set linkanimations
+let hintcharacters = "arstdhneio"
+set nodefaultnewtabpage
+map J previousTab
+map K nextTab
+map q lastClosedTab
+map w closeTab
+map H goBack
+map L goForward
+map gb lastUsedTab
+let mapleader = ","
+command g tabnew google
+map <Leader>r :restore<Space>
