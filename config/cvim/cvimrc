@@ -21,3 +21,4 @@ map N :execute ^Nzz<CR>
 let mapleader = ","
 command g tabnew google
 map <Leader>r :restore<Space>
+unmap <C-6>
