@@ -19,6 +19,15 @@ map ^N previousSearchResult
 map n :execute ^nzz<CR>
 map N :execute ^Nzz<CR>
 let mapleader = ","
+let searchengine epguides = "http://www.epguides.com/"
+let searchengine reddit = ["http://www.reddit.com", "http://www.reddit.com/r/"]
+command a tabnew amazon
+command e tabnew epguides
 command g tabnew google
+command gi tabnew google-image
+command i tabnew imdb
+command r tabnew reddit
+command w tabnew wikipedia
+command yt tabnew youtube
 map <Leader>r :restore<Space>
 unmap <C-6>
