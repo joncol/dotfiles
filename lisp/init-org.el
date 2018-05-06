@@ -236,6 +236,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 (evil-leader/set-key "o g" (jco/find-org-file "gtd.org"))
 (evil-leader/set-key "o n" (jco/find-org-file "notes.org"))
+(evil-leader/set-key "o r" (jco/find-org-file "reading.org"))
 (evil-leader/set-key "o w" (jco/find-org-file "work.org"))
 (evil-leader/set-key "o p" (jco/find-org-file "todo.org"
                                               (projectile-project-root)))
