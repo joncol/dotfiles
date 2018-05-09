@@ -78,7 +78,6 @@
 (require 'init-emacs-lisp)
 (require 'init-haskell)
 (require 'init-lang)
-(require 'init-latex)
 (require 'init-lisp)
 (require 'init-lua)
 (require 'init-macros)
@@ -93,7 +92,6 @@
 (require 'init-scheme)
 (require 'init-semantic)
 (require 'init-standard-ml)
-(require 'init-tex)
 
 ;; Change for different username.
 (setq inhibit-startup-echo-area-message "jco")

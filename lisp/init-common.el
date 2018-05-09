@@ -94,6 +94,10 @@
           (lambda ()
             (modify-syntax-entry ?- "w" sql-mode-syntax-table)))
 
+(add-hook 'TeX-mode-hook
+          (lambda ()
+            (setq evil-shift-width 2)))
+
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
   "Enable evil motion state."
