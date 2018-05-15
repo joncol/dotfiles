@@ -552,6 +552,7 @@
               (git-commit-turn-on-flyspell))))
 
 (use-package magit-org-todos
+  :disabled t
   :after magit
   :config
   (magit-org-todos-autoinsert))
