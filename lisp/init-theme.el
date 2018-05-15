@@ -143,6 +143,11 @@
      (set-face-background 'company-tooltip-selection "#fd79a8")
      (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
      (set-face-foreground 'company-preview-common "#f0f0f0"))
+   (with-eval-after-load 'ediff
+     (set-face-foreground 'ediff-current-diff-Ancestor "white")
+     (set-face-foreground 'ediff-current-diff-C "white")
+     (set-face-foreground 'ediff-fine-diff-Ancestor "white")
+     (set-face-foreground 'ediff-fine-diff-C "white"))
    (with-eval-after-load 'magit
      (set-face-foreground 'magit-blame-name "White")
      (set-face-foreground 'magit-blame-date "White")
