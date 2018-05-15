@@ -685,6 +685,10 @@ Example: `helloWorld` becomes `Hello world`."
   (let* ((base-name (file-name-base buffer-file-name)))
     (string-inflection-camelcase-function base-name)))
 
+(use-package super-save
+  :config
+  (super-save-mode))
+
 (use-package sx
   :config
   (with-eval-after-load "sx-question-mode"
