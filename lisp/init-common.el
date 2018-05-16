@@ -34,7 +34,6 @@
 (global-auto-revert-mode)
 (add-to-list 'revert-without-query ".*\\.pdf\\'")
 (global-font-lock-mode)
-(global-hl-line-mode)
 
 (global-whitespace-mode)
 
