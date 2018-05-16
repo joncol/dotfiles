@@ -96,6 +96,7 @@ Opens a new buffer with the result."
             (put-clojure-indent 'POST 2)
             (put-clojure-indent 'PUT 2)
             (put-clojure-indent 'defstate nil)
+            (put-clojure-indent 'try* 0)
 
             ;; Indentation for re-frame
             (put-clojure-indent 'reg-cofx 0)
