@@ -17,6 +17,21 @@
   (let ((dev (if dev dev "eth0")))
     (format-network-address (car (network-interface-info dev)) t)))
 
+(defun disable-mode-temporarily (mode orig-fun &rest args)
+  "Disable MODE before calling ORIG-FUN with ARGS; re-enable afterwards."
+  (let ((was-initially-on (when (symbol-value mode)
+                            (prog1
+                                t
+                              (funcall mode -1)))))
+    (prog1
+        (apply orig-fun args)
+      (when was-initially-on
+        (funcall mode 1)))))
+
+(defun disable-fci-temporarily (orig-fun &rest args)
+  "Disable fci-mode before calling ORIG-FUN with ARGS; re-enable afterwards."
+  (apply #'disable-mode-temporarily 'fci-mode orig-fun args))
+
 (defun jco/update-config ()
   "Get the latest config from source control."
   (shell-process-pushd user-emacs-directory)

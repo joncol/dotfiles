@@ -44,17 +44,6 @@ called.")
 
 (add-hook 'htmlize-after-hook #'modi/htmlize-after-hook-fn)
 
-(defun disable-fci-temporarily (orig-fun &rest args)
-  "Disable `fci-mode' before calling ORIG-FUN; re-enable afterwards."
-  (let ((fci-was-initially-on (when fci-mode
-                                (prog1
-                                    fci-mode
-                                  (fci-mode -1)))))
-    (prog1
-        (apply orig-fun args)
-      (when fci-was-initially-on
-        (fci-mode 1)))))
-
 (advice-add 'evil-paste-before :around #'disable-fci-temporarily)
 (advice-add 'shell-command :around #'disable-fci-temporarily)
 (advice-add 'shell-command-on-region :around #'disable-fci-temporarily)
