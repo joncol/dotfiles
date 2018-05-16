@@ -65,7 +65,6 @@
 
 (global-set-key [tab] 'jco/tab-indent-or-complete)
 (global-set-key (kbd "TAB") 'jco/tab-indent-or-complete)
-(global-set-key [(control return)] 'company-complete-common)
 
 (with-eval-after-load 'company
   (define-key company-active-map [tab] 'jco/expand-snippet-or-complete-selection)
