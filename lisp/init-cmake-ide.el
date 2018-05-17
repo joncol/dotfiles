@@ -86,7 +86,8 @@
 (when (eq system-type 'gnu/linux)
   (add-hook 'c-mode-common-hook
             (lambda ()
-              (when (derived-mode-p 'c-mode 'c++-mode)
+              (when (and (derived-mode-p 'c-mode 'c++-mode)
+                         (not (eq major-mode 'arduino-mode)))
                 (require 'rtags)
                 (when (projectile-project-p)
                   (setq cmake-ide-build-dir
@@ -94,8 +95,7 @@
                 (cmake-ide-setup)
                 (setq cmake-ide-header-search-other-file nil)
                 (setq cmake-ide-flags-c++ (append '("-std=c++14")))
-                (global-set-key (kbd "C-c m") 'cmake-ide-run-cmake)
-                (irony-mode)))))
+                (global-set-key (kbd "C-c m") 'cmake-ide-run-cmake)))))
 
 (provide 'init-cmake-ide)
 

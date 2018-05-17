@@ -50,6 +50,7 @@
 (require 'init-fci)
 (require 'init-font)
 (require 'init-company)
+(require 'init-arduino)
 (require 'init-hydras)
 (require 'init-ido)
 (require 'init-mu4e)

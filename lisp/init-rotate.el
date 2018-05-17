@@ -32,7 +32,9 @@
     ("CLIENT" "SERVER")
     ("left" "right")
     ("Left" "Right")
-    ("LEFT" "RIGHT"))
+    ("LEFT" "RIGHT")
+    ("high" "low")
+    ("HIGH" "LOW"))
   "List of text rotation sets.")
 
 (defun rotate-word-at-point ()
