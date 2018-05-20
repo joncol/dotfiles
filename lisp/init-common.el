@@ -181,11 +181,6 @@
 (use-package calfw-org
   :after calfw)
 
-(use-package cider
-  :defer t
-  :config
-  (setq cider-show-error-buffer 'nil))
-
 (use-package counsel
   :after ivy
   :bind (("M-x" . counsel-M-x)

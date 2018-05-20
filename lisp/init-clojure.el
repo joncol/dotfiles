@@ -8,6 +8,11 @@
 
 (require 'init-lisp-common)
 
+(use-package cider
+  :defer t
+  :config
+  (setq cider-show-error-buffer 'nil))
+
 (use-package clj-refactor
   :after clojure-mode
   :config
