@@ -8,4 +8,4 @@
                   [lein-ancient "0.6.15"]
                   [lein-cljfmt "0.5.7"]
                   [lein-kibit "0.1.6"]
-                  [venantius/ultra "0.5.2"]]}}
+                  #_[venantius/ultra "0.5.2"]]}}
