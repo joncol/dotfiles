@@ -197,7 +197,7 @@ bar {
 }
 
 # i3-gaps
-gaps inner 10
+gaps inner 20
 gaps outer 0
 smart_gaps on
 new_window 1pixel
