@@ -19,7 +19,7 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _k_urecolor _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs"
+menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _k_urecolor _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs _w_indow"
   ("a" jco/hydra-app/body)
   ("b" counsel-bookmark)
   ("B" helm-chrome-bookmarks)
@@ -32,7 +32,8 @@ menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _k_urecolor _l_ang _o_rg
   ;; ("s" jco/hydra-swoop/body)
   ("s" jco/hydra-swiper/body)
   ("S" jco/hydra-snippets/body)
-  ("v" jco/hydra-vcs/body))
+  ("v" jco/hydra-vcs/body)
+  ("w" jco/hydra-window/body))
 
 (defhydra jco/hydra-config (:color teal :hint nil)
   "
@@ -117,6 +118,11 @@ swiper: _s_wiper _a_ll _m_ulti"
 vcs: _g_it _m_ercurial"
   ("g" magit-status)
   ("m" monky-status))
+
+(defhydra jco/hydra-window (:color teal :hint nil)
+  "
+window: move-to-_b_ottom"
+  ("b" jco/move-window-to-bottom))
 
 (defhydra jco/hydra-app (:color teal :hint nil)
   "
