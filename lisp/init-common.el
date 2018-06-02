@@ -256,7 +256,7 @@
 
 (use-package eclim
   :config
-  (setq eclimd-autostart t)
+  ;; (setq eclimd-autostart t)
   (setq eclimd-autostart-with-default-workspace t)
   (setq eclim-eclipse-dirs "~/eclipse/java-oxygen/eclipse")
   (setq eclim-executable
