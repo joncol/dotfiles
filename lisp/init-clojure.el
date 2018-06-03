@@ -119,6 +119,7 @@ Opens a new buffer with the result."
 
             (add-to-list 'clojure-align-binding-forms "m/mlet")
             (add-to-list 'clojure-align-binding-forms "m/alet")
+            (add-to-list 'clojure-align-binding-forms "with-disposable")
 
             (dolist (m (list 'cider-repl-mode
                              'cider-test-report-mode-hook
