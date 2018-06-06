@@ -1,0 +1,1 @@
+/home/jco/.config/fisherman/fnm/functions/npm.fish

@@ -1,0 +1,1 @@
+/home/jco/.config/fisherman/shark/functions/shark.fish

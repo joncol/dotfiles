@@ -1,0 +1,1 @@
+/home/jco/.config/fisherman/thefuck/functions/__tf_updt.fish

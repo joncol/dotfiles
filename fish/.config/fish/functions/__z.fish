@@ -1,0 +1,1 @@
+/home/jco/.config/fisherman/z/functions/__z.fish
