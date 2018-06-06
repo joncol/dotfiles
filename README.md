@@ -27,6 +27,12 @@ locking to work:
 sudo ln -sf ~/.dotfiles/bin/.local/bin/i3lock /usr/local/bin/i3lock
 ```
 
+Also you need to enable bitmap fonts by removing (or renaming) the file:
+
+```bash
+sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf
+```
+
 ## License
 
 Copyright © 2018 Jonas Collberg

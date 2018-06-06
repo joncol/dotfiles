@@ -17,6 +17,7 @@ foreground-alt = #55aa55
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
+gray = #6c7a89
 
 [bar/mybar]
 monitor = ${env:MONITOR}
@@ -42,10 +43,10 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;
-font-2 = "-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
-font-3 = fontawesome:pixelsize=12
+font-0 = fixed:pixelsize=10;0
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;1
+font-2 = siji:pixelsize=10;2
+font-3 = fontawesome:pixelsize=12;3
 
 modules-left = i3
 modules-center = github
@@ -210,7 +211,7 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.gray}
 format-underline = ;#f90000
 label = %percentage:2%%
 
@@ -218,7 +219,7 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.gray}
 format-underline = ;#4bffdc
 label = %percentage_used%%
 
@@ -270,7 +271,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ;#0a6cf5
 
@@ -280,7 +281,7 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = %percentage%%
+label-volume = %{T2} %{T-}%percentage%
 label-volume-foreground = ${root.foreground}
 
 label-muted = 🔇 muted
@@ -340,7 +341,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/avg-battery]
 type = custom/script
-exec = "count=$(acpi -b | wc -l); sum=$(acpi -b | egrep -o '[0-9]{1,3}%' | tr -d '%' | awk '{s+=$1} END {print s}'); echo : $(( sum / count ))"
+exec = "count=$(acpi -b | wc -l); sum=$(acpi -b | egrep -o '[0-9]{1,3}%' | tr -d '%' | awk '{s+=$1} END {print s}'); echo : $(( sum / count ))"
 format-underline=;#ffb52a
 interval = 5
 
@@ -370,9 +371,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
+label-open = 
 label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-close =  cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
