@@ -206,7 +206,7 @@ exec_always ~/.config/i3/setup_mouse.sh
 
 exec_always compton -f --unredir-if-possible
 
-exec_always feh --bg-fill ~/Pictures/wallpapers/radpack_14.jpg
+exec_always sleep 1 && ~/.local/bin/betterlockscreen -w
 
 exec --no-startup-id nm-applet
 
