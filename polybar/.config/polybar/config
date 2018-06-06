@@ -211,7 +211,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-underline = ;#f90000
 label = %percentage:2%%
 
 [module/memory]
@@ -219,7 +219,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-underline = ;#4bffdc
 label = %percentage_used%%
 
 [module/wlan]
@@ -272,7 +272,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = ;#0a6cf5
 
 label = %date% %time%
 
@@ -341,7 +341,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 [module/avg-battery]
 type = custom/script
 exec = "count=$(acpi -b | wc -l); sum=$(acpi -b | egrep -o '[0-9]{1,3}%' | tr -d '%' | awk '{s+=$1} END {print s}'); echo : $(( sum / count ))"
-format-underline=#ffb52a
+format-underline=;#ffb52a
 interval = 5
 
 [module/temperature]
