@@ -16,7 +16,7 @@
     (let ((modified (buffer-modified-p)))
       (insert (char-to-string first-key))
       (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-                             nil 0.5)))
+                             nil 0.25)))
         (cond
          ((null evt) (message ""))
          ((and (integerp evt) (char-equal evt second-key))
