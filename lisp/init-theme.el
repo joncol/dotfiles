@@ -227,7 +227,8 @@
    (set-face-background 'ffap "#582c6b")
    (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-highlight-face "#582c6b")
-     (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
+     (set-face-foreground 'mu4e-highlight-face "#ececec")
+     (set-face-foreground 'mu4e-header-highlight-face "#ececec")))
 
   (mustang
    (setq jco/cursor-color "#ececec")
