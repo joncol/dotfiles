@@ -356,16 +356,16 @@ format-spacing = 1
 
 label-open = 
 label-open-foreground = ${colors.secondary}
-label-close =  Cancel
+label-close =  %{T2}Cancel%{T-}
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
-menu-0-0 = Logout
+menu-0-0 = %{T2}Logout%{T-}
 menu-0-0-exec = exit
-menu-0-1 = Reboot
+menu-0-1 = %{T2}Reboot%{T-}
 menu-0-1-exec = systemctl reboot
-menu-0-2 = Shutdown
+menu-0-2 = %{T2}Shutdown%{T-}
 menu-0-2-exec = systemctl poweroff
 
 [module/github]
