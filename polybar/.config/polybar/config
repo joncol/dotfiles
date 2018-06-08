@@ -1,8 +1,6 @@
 [colors]
-;background = ${xrdb:color0:#222}
 background = #aa222222
 background-alt = #555
-;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #55aa55
 primary = #ffb52a
@@ -18,8 +16,6 @@ battery-full = #88aa88
 monitor = ${env:MONITOR}
 width = 100%
 height = 27
-;offset-x = 1%
-;offset-y = 1%
 radius = 0
 fixed-center = false
 
@@ -50,19 +46,6 @@ modules-right = filesystem xbacklight pulseaudio memory cpu eth eth battery0 bat
 
 tray-position = right
 tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -116,9 +99,6 @@ label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
-
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
@@ -136,7 +116,6 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
 label-focused-background = ${module/bspwm.label-focused-background}
-; label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
@@ -146,17 +125,12 @@ label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
-; label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
-
-; Separator in between workspaces
-; label-separator = |
-
 
 ws-icon-default = 
 ws-icon-0 = 1;
@@ -208,7 +182,6 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.gray}
-format-underline = ;#f90000
 label = %percentage:2%%
 
 [module/memory]
@@ -216,7 +189,6 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.gray}
-format-underline = ;#4bffdc
 label = %percentage_used%%
 
 [module/wlan]
@@ -229,10 +201,6 @@ format-connected-underline = #9f78e1
 label-connected = %essid%
 
 format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -252,10 +220,6 @@ format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
 format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
@@ -270,7 +234,6 @@ time-alt = %H:%M:%S
 
 format-prefix = " "
 format-prefix-foreground = ${colors.clock}
-format-underline = ;#0a6cf5
 
 label = %date% %time%
 
@@ -339,7 +302,6 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 [module/avg-battery]
 type = custom/script
 exec = "count=$(acpi -b | wc -l); sum=$(acpi -b | egrep -o '[0-9]{1,3}%' | tr -d '%' | awk '{s+=$1} END {print s}'); echo : $(( sum / count ))"
-format-underline=;#ffb52a
 interval = 5
 
 [module/battery0]
