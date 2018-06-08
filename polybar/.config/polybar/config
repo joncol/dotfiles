@@ -19,6 +19,10 @@ secondary = #e60053
 alert = #bd2c40
 gray = #6c7a89
 
+clock = #6c7a89
+battery-charging = #ffb52a
+battery-full = #88aa88
+
 [bar/mybar]
 monitor = ${env:MONITOR}
 width = 100%
@@ -47,11 +51,11 @@ module-margin-right = 2
 font-0 = "Montserrat:size=14;4"
 font-1 = "unifont:fontformat=truetype:size=8;1"
 font-2 = "siji:pixelsize=10:antialias=false:hinting=false;6"
-font-3 = "fontawesome:pixelsize=16;3"
+font-3 = "fontawesome:pixelsize=16;4"
 
 modules-left = i3
 modules-center = github
-modules-right = filesystem xbacklight pulseaudio memory cpu eth eth avg-battery date powermenu
+modules-right = filesystem xbacklight pulseaudio memory cpu eth eth battery0 battery1 date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -98,7 +102,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{F#0a81f5}%{F-} %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -211,7 +215,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.gray}
 format-underline = ;#f90000
 label = %percentage:2%%
@@ -219,7 +223,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.gray}
 format-underline = ;#4bffdc
 label = %percentage_used%%
@@ -272,8 +276,8 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " "
+format-prefix-foreground = ${colors.clock}
 format-underline = ;#0a6cf5
 
 label = %date% %time%
@@ -282,7 +286,7 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = %{T2} %{T-}%percentage%
+label-volume =  %percentage%
 label-volume-foreground = ${root.foreground}
 
 label-muted = 🔇 muted
@@ -346,6 +350,30 @@ exec = "count=$(acpi -b | wc -l); sum=$(acpi -b | egrep -o '[0-9]{1,3}%' | tr -d
 format-underline=;#ffb52a
 interval = 5
 
+[module/battery0]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging-prefix = " "
+format-charging-prefix-foreground = ${colors.battery-charging}
+format-charging = <label-charging>
+
+format-discharging = <label-discharging>
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.battery-full}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+[module/battery1]
+inherit = module/battery0
+battery = BAT1
+
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
@@ -372,9 +400,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
+label-open = 
 label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-close =  Cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
