@@ -371,6 +371,7 @@ menu-0-2-exec = systemctl poweroff
 [module/github]
 type = internal/github
 label-font = 2
+format-prefix = " "
 
 ; Accessing an access token stored in file
 token = ${file:/home/jco/.config/polybar/github_access_token}
