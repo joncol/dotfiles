@@ -13,99 +13,49 @@ Rxvt.saveLines: 65535
 URxvt.keysym.Shift-Up: command:\033]720;1\007
 URxvt.keysym.Shift-Down: command:\033]721;1\007
 
-URxvt.transparent: true
-URxvt.shading:20
+! ! Fake transparency
+! URxvt.transparent: true
+! URxvt.shading:20
+! URxvt.inheritPixmap: true
 
-! ! special
-! *.foreground:   #666699
-! *.background:   #000000
-! *.cursorColor:  #666699
+! Real transparency
+urxvt*depth: 32
+urxvt*background: rgba:ff00/0000/0200/c800
 
-! ! black
-! *.color0:       #333366
-! *.color8:       #333399
-
-! ! red
-! *.color1:       #6666cc
-! *.color9:       #9999ff
-
-! ! green
-! *.color2:       #0099cc
-! *.color10:      #00ccff
-
-! ! yellow
-! *.color3:       #3366cc
-! *.color11:      #6699ff
-
-! ! blue
-! *.color4:       #006699
-! *.color12:      #0099cc
-
-! ! magenta
-! *.color5:       #0066ff
-! *.color13:      #0099ff
-
-! ! cyan
-! *.color6:       #669999
-! *.color14:      #66cccc
-
-! ! white
-! *.color7:       #99cccc
-! *.color15:      #ccffff
-
-! *.foreground:   #fffce9
-! *.background:   #020002
-! *.cursorColor:  #fffce9
-! *.color0:       #020002
-! *.color8:       #220211
-! *.color1:       #b52f6a
-! *.color9:       #ff7c87
-! *.color2:       #6c60aa
-! *.color10:      #aa96dd
-! *.color3:       #a68189
-! *.color11:      #ff9d80
-! *.color4:       #ac428a
-! *.color12:      #a94f8f
-! *.color5:       #610064
-! *.color13:      #b080b2
-! *.color6:       #72789C
-! *.color14:      #9295a7
-! *.color7:       #feeeca
-! *.color15:      #fffce9
-
+! google.light
 ! special
-*.foreground:   #e8dfd6
-*.background:   #021b21
-*.cursorColor:  #e8dfd6
+*.foreground:   #373b41
+*.background:   #ffffff
+*.cursorColor:  #373b41
 
 ! black
-*.color0:       #032c36
-*.color8:       #065f73
+*.color0:       #1d1f21
+*.color8:       #969896
 
 ! red
-*.color1:       #c2454e
-*.color9:       #ef5847
+*.color1:       #cc342b
+*.color9:       #cc342b
 
 ! green
-*.color2:       #7cbf9e
-*.color10:      #a2d9b1
+*.color2:       #198844
+*.color10:      #198844
 
 ! yellow
-*.color3:       #8a7a63
-*.color11:      #beb090
+*.color3:       #fba922
+*.color11:      #fba922
 
 ! blue
-*.color4:       #2e3340
-*.color12:      #61778d
+*.color4:       #3971ed
+*.color12:      #3971ed
 
 ! magenta
-*.color5:       #ff5879
-*.color13:      #ff99a1
+*.color5:       #a36ac7
+*.color13:      #a36ac7
 
 ! cyan
-*.color6:       #44b5b1
-*.color14:      #9ed9d8
+*.color6:       #3971ed
+*.color14:      #3971ed
 
 ! white
-*.color7:       #f2f1b9
-*.color15:      #f6f6c9
+*.color7:       #c5c8c6
+*.color15:      #ffffff
