@@ -205,6 +205,12 @@
   (material
    (set-face-background 'hl-line "#37474f")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
+   (with-eval-after-load 'company
+     (set-face-background 'company-tooltip (jco/current-bg 0.25))
+     (set-face-foreground 'company-tooltip-common (jco/current-fg))
+     (set-face-background 'company-tooltip-selection "#fd79a8")
+     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
+     (set-face-foreground 'company-preview-common "#f0f0f0"))
    (with-eval-after-load 'org
      (set-face-background 'org-todo nil)))
 
