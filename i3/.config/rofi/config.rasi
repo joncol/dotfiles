@@ -6,6 +6,7 @@ configuration {
 /*     lines: 15;*/
 /*     columns: 1;*/
     font: "montserrat 14";
+    /* font: "Iosevka 16"; */
 /*    bw: 1;*/
 /*     location: 0;*/
 /*     padding: 5;*/

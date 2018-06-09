@@ -1,14 +1,21 @@
 [colors]
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+light-gray = #6c7a89
+dark-gray = #1e272e
+
 background = #aa222222
 background-alt = #555
 foreground = #dfdfdf
 foreground-alt = #55aa55
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
-gray = #6c7a89
 
-clock = #6c7a89
+focused-bg = ${self.primary}
+focused-fg = ${self.dark-gray}
+unfocused-bg = #80ffb52a
+unfocused-fg = #a01e272e
+
+clock = ${self.light-gray}
 battery-charging = #ffb52a
 battery-full = #88aa88
 wifi = ${self.light-gray}
@@ -39,7 +46,7 @@ font-0 = "Iosevka:pixelsize=14;4"
 font-1 = "Montserrat:size=14;4"
 font-2 = "unifont:fontformat=truetype:size=8;1"
 font-3 = "siji:pixelsize=10:antialias=false:hinting=false;6"
-font-4 = "fontawesome:pixelsize=16;4"
+font-4 = "fontawesome:pixelsize=14;4"
 
 modules-left = i3
 modules-center = github
@@ -85,7 +92,7 @@ label-unmounted-foreground = ${colors.foreground-alt}
 type = internal/bspwm
 
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
+label-focused-background = ${colors.focused-bg}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
@@ -116,6 +123,7 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
+label-focused-foreground = ${colors.focused-fg}
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
@@ -125,7 +133,8 @@ label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
-label-visible-background = ${self.label-focused-background}
+label-visible-foreground = ${colors.unfocused-fg}
+label-visible-background = ${colors.unfocused-bg}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
@@ -182,14 +191,14 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.gray}
+format-prefix-foreground = ${colors.light-gray}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.gray}
+format-prefix-foreground = ${colors.light-gray}
 label = %percentage_used%%
 
 [module/wlan]
