@@ -128,8 +128,6 @@ bindsym $mod+Delete mode "$mode_system"
 
 bindsym $mod+shift+x exec $locker
 
-bindsym $mod+shift+v exec xrdb ~/.Xresources
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -197,6 +195,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 exec_always --no-startup-id ~/.config/i3/setup_screen.sh
+
 
 exec_always ~/.config/i3/setup_mouse.sh
 

@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+DIM=$(xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
+W=$(echo $DIM | sed -r 's/^([0-9]+)x[0-9]+.*$/\1/')
+H=$(echo $DIM | sed -r 's/^[0-9]+x([0-9]+).*$/\1/')
+printf "#define WIDTH $W\n#define HEIGHT $H\n" > ~/.dimensions.h
+xrdb ~/.Xresources
+
 xrandr | grep -zoq -A1 "DP1-1 connected.*3840x2160"
 if [ $? -eq 0 ]; then
     echo Found work screen

@@ -1,7 +1,17 @@
-URxvt*font: xft:Hack:antialias=true:size=15.5
-URxvt*boldFont: xft:Hack:style=bold:antialias=true:size=15.5
-URxvt*italicFont: xft:Hack:style=italic:antialias=true:size=15.5
-URxvt*boldItalicFont: xft:Hack:style=bolditalic:antialias=true:size=15.5
+#include ".dimensions.h"
+
+#ifndef HEIGHT
+#define FONT_SIZE 14
+#elif HEIGHT >= 2160
+#define FONT_SIZE 15.5
+#else
+#define FONT_SIZE 12
+#endif
+
+URxvt*font: xft:Hack:antialias=true:size=FONT_SIZE
+URxvt*boldFont: xft:Hack:style=bold:antialias=true:size=FONT_SIZE
+URxvt*italicFont: xft:Hack:style=italic:antialias=true:size=FONT_SIZE
+URxvt*boldItalicFont: xft:Hack:style=bolditalic:antialias=true:size=FONT_SIZE
 
 URxvt*letterSpace: -2
 
