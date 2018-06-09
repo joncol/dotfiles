@@ -194,6 +194,7 @@
 
   (material
    (set-face-background 'hl-line "#37474f")
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
    (with-eval-after-load 'org
      (set-face-background 'org-todo nil)))
 
