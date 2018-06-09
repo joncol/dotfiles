@@ -205,7 +205,7 @@ exec_always killall redshift && redshift
 
 exec_always sleep 1 && ~/.local/bin/betterlockscreen -w
 
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 exec_always "xset r rate 300 30"
 

@@ -11,6 +11,7 @@ gray = #6c7a89
 clock = #6c7a89
 battery-charging = #ffb52a
 battery-full = #88aa88
+wifi = ${self.light-gray}
 
 [bar/mybar]
 monitor = ${env:MONITOR}
@@ -42,7 +43,7 @@ font-4 = "fontawesome:pixelsize=16;4"
 
 modules-left = i3
 modules-center = github
-modules-right = filesystem xbacklight pulseaudio memory cpu eth eth battery0 battery1 date powermenu
+modules-right = filesystem xbacklight pulseaudio memory cpu eth eth battery0 battery1 date rofi-wifi powermenu
 
 tray-position = right
 tray-padding = 2
@@ -346,6 +347,12 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+[module/rofi-wifi]
+type = custom/text
+content = ""
+content-foreground = ${colors.wifi}
+click-left = exec ~/.config/rofi/rofi-wifi-menu.sh -config ~/.config/rofi/config.rofi-wifi-menu
 
 [module/powermenu]
 type = custom/menu
