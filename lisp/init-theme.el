@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(require 'kurecolor)
+
 (defmacro install-themes ()
   "Install commonly used theme packages using `use-package'."
   (let ((theme-pkgs
@@ -58,6 +60,14 @@
 
 (set-face-foreground 'show-paren-match "#101f24")
 (set-face-background 'show-paren-match "#89C5B7")
+
+(cl-defun jco/current-fg (&optional (adj 0.0))
+  "Get the current foreground color, optionally adjusting brightness by ADJ."
+  (kurecolor-adjust-brightness (face-attribute 'default :foreground) adj))
+
+(cl-defun jco/current-bg (&optional (adj 0.0))
+  "Get the current background color, optionally adjusting brightness by ADJ."
+  (kurecolor-adjust-brightness (face-attribute 'default :background) adj))
 
 (cl-case jco/theme
   (adwaita
