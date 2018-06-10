@@ -29,8 +29,8 @@ URxvt.keysym.Shift-Down: command:\033]721;1\007
 ! URxvt.inheritPixmap: true
 
 ! Real transparency
-urxvt*depth: 32
-urxvt*background: rgba:ff00/0000/0200/c800
+! urxvt*depth: 32
+! urxvt*background: rgba:ff00/0000/0200/c800
 
 ! ! google.light
 
