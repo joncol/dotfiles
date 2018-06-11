@@ -14,6 +14,7 @@ focused-bg = ${self.primary}
 focused-fg = ${self.dark-gray}
 unfocused-bg = #80ffb52a
 unfocused-fg = #a01e272e
+inactive-fg = ${self.light-gray}
 
 clock = ${self.light-gray}
 battery-charging = #ffb52a
@@ -129,6 +130,7 @@ label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon%
+label-unfocused-foreground = ${colors.inactive-fg}
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
