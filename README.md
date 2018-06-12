@@ -8,16 +8,18 @@ GNU Stow (https://www.gnu.org/software/stow/manual/stow.html).
 
 ## Usage
 
-To install symbolic links to all configuration files (assuming you've cloned
-this repo to `~/.dotfiles`):
+To install symbolic links to all home directory configuration files (assuming
+you've cloned this repo to `~/code/dotfiles`):
 
 ```bash
-stow *
+cd ~/code/dotfiles/homedir
+stow -t ~ *
 ```
-To uninstall all symbolic links:
+To uninstall all symbolic links to home directory configuration files:
 
 ```bash
-stow -D *
+cd ~/code/dotfiles/homedir
+stow -t ~ -D *
 ```
 
 Note that the custom `i3lock-color` needs to be available on the PATH for the
@@ -25,12 +27,6 @@ locking to work:
 
 ```bash
 sudo ln -sf ~/.dotfiles/bin/.local/bin/i3lock /usr/local/bin/i3lock
-```
-
-Also you need to enable bitmap fonts by removing (or renaming) the file:
-
-```bash
-sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf
 ```
 
 ## License
