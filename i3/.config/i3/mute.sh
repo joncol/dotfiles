@@ -1,3 +1,6 @@
-#!/bin/bash
-sink_name=0
-pactl set-sink-mute $sink_name toggle
+#!/usr/bin/env sh
+
+for SINK in `pacmd list-sinks | grep 'index:' | cut -b12-`
+do
+    pactl set-sink-mute $SINK toggle
+done

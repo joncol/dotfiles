@@ -1,3 +1,6 @@
-#!/bin/bash
-sink_name=0
-pactl set-sink-volume $sink_name -4% && pactl set-sink-mute $sink_name 0
+#!/usr/bin/env sh
+
+for SINK in `pacmd list-sinks | grep 'index:' | cut -b12-`
+do
+    pactl set-sink-volume $SINK -4% && pactl set-sink-mute $SINK 0
+done
