@@ -195,8 +195,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 exec_always --no-startup-id ~/.config/i3/setup_screen.sh
-
-
 exec_always ~/.config/i3/setup_mouse.sh
 
 exec_always compton --unredir-if-possible
