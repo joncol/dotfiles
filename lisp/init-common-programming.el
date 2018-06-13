@@ -5,6 +5,7 @@
                 conf-unix-mode-hook
                 cmake-mode-hook
                 csharp-mode-hook
+                dockerfile-mode-hook
                 emacs-lisp-mode-hook
                 fsharp-mode-hook
                 graphviz-dot-mode-hook
