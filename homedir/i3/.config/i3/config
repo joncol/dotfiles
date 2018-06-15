@@ -189,6 +189,7 @@ bindsym $mod+F2 exec --no-startup-id ~/.config/i3/raise_volume.sh
 bindsym $mod+F3 exec --no-startup-id ~/.config/i3/mute.sh
 bindsym $mod+F4 exec --no-startup-id "xrandr --output eDP1 --auto --primary && xrandr --output DP1 --auto --right-of eDP1 && xrandr --output HDMI2 --auto --right-of DP1"
 bindsym $mod+Shift+F4 exec --no-startup-id "xrandr --output eDP1 --off"
+bindsym $mod+grave exec fish -c "urxvt -e ranger"
 
 # Screen brightness.
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
