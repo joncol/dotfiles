@@ -187,8 +187,8 @@ bindsym XF86AudioMute        exec --no-startup-id ~/.config/i3/mute.sh
 bindsym $mod+F1 exec --no-startup-id ~/.config/i3/lower_volume.sh
 bindsym $mod+F2 exec --no-startup-id ~/.config/i3/raise_volume.sh
 bindsym $mod+F3 exec --no-startup-id ~/.config/i3/mute.sh
-bindsym $mod+F4 exec --no-startup-id "xrandr --output eDP1 --auto --primary && xrandr --output DP1 --auto --right-of eDP1 && xrandr --output HDMI2 --auto --right-of DP1"
-bindsym $mod+Shift+F4 exec --no-startup-id "xrandr --output eDP1 --off"
+bindsym $mod+F4 exec --no-startup-id "xrandr --output eDP-1 --auto --primary && xrandr --output DP-1-1 --auto --right-of eDP-1 && xrandr --output HDMI-2 --auto --right-of DP-1-1"
+bindsym $mod+Shift+F4 exec --no-startup-id "xrandr --output eDP-1 --off"
 bindsym $mod+grave exec fish -c "urxvt -e ranger"
 
 # Screen brightness.
