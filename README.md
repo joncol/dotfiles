@@ -22,12 +22,7 @@ cd ~/code/dotfiles/homedir
 stow -t ~ -D *
 ```
 
-Note that the custom `i3lock-color` needs to be available on the PATH for the
-locking to work:
-
-```bash
-sudo ln -sf ~/.dotfiles/bin/.local/bin/i3lock /usr/local/bin/i3lock
-```
+Note that `i3lock-color` needs to be installed. It replaces `i3lock`.
 
 ## License
 
