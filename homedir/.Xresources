@@ -25,9 +25,13 @@ Rxvt.saveLines: 65535
 URxvt.keysym.Shift-Up: command:\033]720;1\007
 URxvt.keysym.Shift-Down: command:\033]721;1\007
 
-URxvt.perl-ext-common: default,matcher
+URxvt.perl-ext-common: default,matcher,resize-font
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
+
+! Disable ctrl+shift dialog
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 ! ! Fake transparency
 ! URxvt.transparent: true
