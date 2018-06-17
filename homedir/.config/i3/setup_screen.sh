@@ -16,7 +16,7 @@ fi
 xrandr | grep -q "^HDMI-2 connected "
 if [ $? -eq 0 ]; then
     echo Found left home screen
-    xrandr --output HDMI2 --mode 1920x1200 --right-of eDP-1
+    xrandr --output HDMI-2 --mode 1920x1200 --right-of eDP-1
     xrandr --output eDP-1 --off
 fi
 
