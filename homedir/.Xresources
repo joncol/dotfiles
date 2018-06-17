@@ -25,13 +25,16 @@ Rxvt.saveLines: 65535
 URxvt.keysym.Shift-Up: command:\033]720;1\007
 URxvt.keysym.Shift-Down: command:\033]721;1\007
 
-URxvt.perl-ext-common: default,matcher,resize-font
+URxvt.perl-ext-common: default,matcher,resize-font,keyboard-select
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
 ! Disable ctrl+shift dialog
 URxvt.iso14755: false
 URxvt.iso14755_52: false
+
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
 
 ! ! Fake transparency
 ! URxvt.transparent: true
