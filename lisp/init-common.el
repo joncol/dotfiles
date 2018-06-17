@@ -35,6 +35,7 @@
 (add-to-list 'revert-without-query ".*\\.pdf\\'")
 (global-font-lock-mode)
 
+(setq select-enable-primary t)
 (global-whitespace-mode)
 
 (setq calendar-week-start-day 1)
