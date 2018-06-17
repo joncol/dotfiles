@@ -829,9 +829,9 @@ if has("gui_running")
   set background=dark
   set cursorline
 elseif s:uname != "Windows" || !has("nvim")
-  colorscheme summerfruit256
-  autocmd InsertEnter * set cul
-  autocmd InsertLeave * set nocul
+  " colorscheme summerfruit256
+  " autocmd InsertEnter * set cul
+  " autocmd InsertLeave * set nocul
 endif
 
 let g:vim_initialized = 1
