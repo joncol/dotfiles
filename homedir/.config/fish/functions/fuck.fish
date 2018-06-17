@@ -1,1 +1,0 @@
-/home/jco/.config/fisherman/thefuck/functions/fuck.fish

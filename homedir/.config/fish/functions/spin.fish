@@ -1,1 +1,0 @@
-/home/jco/.config/fisherman/spin/spin.fish

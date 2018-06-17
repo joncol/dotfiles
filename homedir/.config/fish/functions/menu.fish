@@ -1,1 +1,0 @@
-/home/jco/.config/fisherman/menu/menu.fish

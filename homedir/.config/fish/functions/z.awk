@@ -1,1 +1,0 @@
-/home/jco/.config/fisherman/z/functions/z.awk

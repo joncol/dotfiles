@@ -1,1 +1,0 @@
-/home/jco/.config/fisherman/await/functions/await.fish
