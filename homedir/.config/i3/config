@@ -207,11 +207,10 @@ exec_always sleep 1 && ~/.local/bin/betterlockscreen -w
 
 exec_always "xset r rate 300 30"
 
-# exec_always "autocutsel -fork -s PRIMARY"
+# exec_always "killall autocutsel && autocutsel -fork -s PRIMARY"
 
 exec_always "setxkbmap -layout us,us -variant colemak, -option grp:win_space_toggle -option ctrl:nocaps"
-exec_always "killall xcape"
-exec_always "xcape -t 150 -e 'Control_L=BackSpace'"
+exec_always "killall xcape && xcape -t 150 -e 'Control_L=BackSpace'"
 
 exec_always unclutter
 
