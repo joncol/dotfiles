@@ -1,6 +1,6 @@
 set -x PATH ~/.local/bin $PATH
 set -x EDITOR vim
-set -x LESS " -R"
+set -x LESS "-Ri"
 
 eval (python -m virtualfish)
 
