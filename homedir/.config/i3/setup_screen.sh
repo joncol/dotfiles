@@ -4,7 +4,6 @@ DIM=$(xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
 W=$(echo $DIM | sed -r 's/^([0-9]+)x[0-9]+.*$/\1/')
 H=$(echo $DIM | sed -r 's/^[0-9]+x([0-9]+).*$/\1/')
 printf "#define WIDTH $W\n#define HEIGHT $H\n" > ~/.dimensions.h
-xrdb -m ~/.Xresources
 
 xrandr | grep -q "eDP-1 connected.*1920x1080"
 if [ $? -eq 0 ]; then
