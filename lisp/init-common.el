@@ -191,7 +191,6 @@
                        '(("C-h f" . counsel-describe-function)
                          ("C-h v" . counsel-describe-variable)
                          ("C-h S" . counsel-info-lookup-symbol)))
-  (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
   (evil-leader/set-key "x z" 'counsel-fzf)
   (when (eq system-type 'windows-nt)
     (setq-default counsel-ag-base-command
