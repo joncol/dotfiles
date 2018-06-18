@@ -81,10 +81,10 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
 (defun jco/common-prog ()
   "Common setup for programming modes."
   (when (display-graphic-p)
-    (hl-line-mode))
+    (hl-line-mode)
+    (rainbow-delimiters-mode)
+    (rainbow-mode t))
   (ethan-wspace-mode)
-  (rainbow-delimiters-mode)
-  (rainbow-mode t)
   (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
   (fci-mode))
 
