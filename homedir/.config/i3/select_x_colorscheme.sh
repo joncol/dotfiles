@@ -15,5 +15,5 @@ if [ -e "${schemes["$sel_scheme"]}" ]; then
     cp "${schemes["$sel_scheme"]}" $tmp_file
     xrdb -m $tmp_file
     rm "$tmp_file"
-    urxvt
+    urxvt -e $SHELL -c "neofetch;$SHELL -i"
 fi
