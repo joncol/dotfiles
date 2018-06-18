@@ -6,10 +6,17 @@ H=$(echo $DIM | sed -r 's/^[0-9]+x([0-9]+).*$/\1/')
 printf "#define WIDTH $W\n#define HEIGHT $H\n" > ~/.dimensions.h
 xrdb -m ~/.Xresources
 
-xrandr | grep -zoq -A1 "DP-1-1 connected.*3840x2160"
+xrandr | grep -q "eDP-1 connected.*1920x1080"
+if [ $? -eq 0 ]; then
+    echo Found laptop screen
+    xrandr --output eDP-1 --auto
+fi
+
+xrandr | grep -q "DP-1-1 connected.*3840x2160"
 if [ $? -eq 0 ]; then
     echo Found work screen
     xrandr --output DP-1-1 --auto --right-of eDP-1
+    xrandr --output eDP-1 --off
     exit 0
 fi
 
