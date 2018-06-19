@@ -19,6 +19,12 @@ local zimpler_account = IMAP {
   ssl = 'tls'
 }
 
+github_zimpler_lists =
+  zimpler_account.INBOX
+  :contain_to("noreply.github.com")
+  :match_to("(?i)Zimpler/(\\w+) <\\1@noreply\\.github\\.com>")
+github_zimpler_lists:delete_messages()
+
 daily_reports = zimpler_account.INBOX:contain_from("notifier@zimpler.com")
 daily_reports:delete_messages()
 
