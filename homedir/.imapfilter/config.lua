@@ -13,10 +13,10 @@ function decrypt_password(account)
 end
 
 local zimpler_account = IMAP {
-    server = 'imap.gmail.com',
-    username = 'jonas.collberg@zimpler.com',
-    password = decrypt_password("zimpler"),
-    ssl = 'tls'
+  server = 'imap.gmail.com',
+  username = 'jonas.collberg@zimpler.com',
+  password = decrypt_password("zimpler"),
+  ssl = 'tls'
 }
 
 daily_reports = zimpler_account.INBOX:contain_from("notifier@zimpler.com")
