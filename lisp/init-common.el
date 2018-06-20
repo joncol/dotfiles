@@ -568,7 +568,7 @@
   :config
   (require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg")
   (setq org-gcal-file-alist
-        '(("jonas.collberg@zimpler.com" . "~/Sync/gcal_zimpler.org"))))
+        '(("jonas.collberg@zimpler.com" . "~/Sync/emacs/gcal_zimpler.org"))))
 
 (use-package outline
   :init

@@ -102,7 +102,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
           ("n" "Note" entry (file+headline "notes.org" "Notes")
            "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
            :empty-lines-before 0)
-          ("a" "Appointment" entry (file  "~/Sync/gcal_zimpler.org" )
+          ("a" "Appointment" entry (file  "~/Sync/emacs/gcal_zimpler.org" )
            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")))
   :config
   (setq org-src-fontify-natively t)
