@@ -711,11 +711,14 @@ Example: `helloWorld` becomes `Hello world`."
   (setq zeal-at-point-docsets '(c cpp))
   (add-to-list 'zeal-at-point-mode-alist '(c++-mode . ("cpp" "qt"))))
 
+(require 'server)
+
 (use-package server
+  :if (and (not (server-running-p))
+           (not (daemonp)))
   :defer 1
   :config
-  (when (not (server-running-p))
-    (server-start)))
+  (server-start))
 
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
