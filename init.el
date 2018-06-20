@@ -45,7 +45,7 @@
 (require 'init-common-functions)
 (require 'init-evil)
 (require 'init-common)
-;; (require 'init-elfeed)
+(require 'init-elfeed)
 (require 'init-eshell)
 (require 'init-fci)
 (require 'init-font)

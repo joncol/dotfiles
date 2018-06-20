@@ -49,7 +49,7 @@
   :after elfeed
   :config
   (elfeed-org)
-  (setq rmh-elfeed-org-files '("~/.elfeed/elfeed.org")))
+  (setq rmh-elfeed-org-files '("~/Sync/emacs/elfeed.org")))
 
 (defun jco/elfeed-db-updater ()
   "Update the elfeed db."

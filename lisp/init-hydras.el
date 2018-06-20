@@ -126,10 +126,10 @@ window: move-to-_b_ottom"
 
 (defhydra jco/hydra-app (:color teal :hint nil)
   "
-app: _c_alendar _e_rc _m_u4e e_s_hell _v_im e_w_w s_x_"
+app: _c_alendar _e_rc el_f_eed _m_u4e e_s_hell _v_im e_w_w s_x_"
   ("c" (cfw:open-org-calendar))
   ("e" (erc :server "irc.freenode.net" :port 6667))
-  ;; ("f" (jco/elfeed-load-db-and-open))
+  ("f" (jco/elfeed-load-db-and-open))
   ("m" (lambda ()
          (interactive)
          (jco/init-mu4e-contexts)
