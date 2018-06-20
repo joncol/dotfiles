@@ -24,8 +24,8 @@
 
 (jco/my-keys-mode)
 
-(when (version<= "26" emacs-version)
-  (global-display-line-numbers-mode))
+;; (when (version<= "26" emacs-version)
+;;   (global-display-line-numbers-mode))
 (column-number-mode)
 (menu-bar-mode -1)
 (when (display-graphic-p)
