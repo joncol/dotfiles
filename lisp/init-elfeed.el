@@ -56,12 +56,11 @@
   (elfeed-db-unload))
 
 (use-package elfeed-web
-  :disabled t
   :if (and (jco/at-digitalocean-p) (daemonp))
   :init
   (require 'elfeed)
-  (run-with-timer t (* 5 60) #'jco/elfeed-db-updater)
   (setq http-port 8080)
+  (run-with-timer t (* 5 60) #'jco/elfeed-db-updater)
   (elfeed-web-start))
 
 (provide 'init-elfeed)
