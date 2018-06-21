@@ -194,8 +194,8 @@ bindsym $mod+c exec ~/.config/i3/select_x_colorscheme.sh
 bindsym $mod+p exec ~/.config/i3/goto_project.sh
 
 # Screen brightness.
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec light -A 3
+bindsym XF86MonBrightnessDown exec light -U 3
 
 exec_always --no-startup-id ~/.config/i3/setup_screen.sh
 exec_always ~/.config/i3/setup_mouse.sh
