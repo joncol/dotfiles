@@ -7,7 +7,7 @@ eval (python -m virtualfish)
 set -x PROXY_SSH_AUTH_SOCK $SSH_AUTH_SOCK
 
 if status --is-interactive
-  keychain --eval --quiet -Q id_rsa | source
+    keychain --eval --quiet -Q id_rsa | source
 end
 
 eval (direnv hook fish)
