@@ -1,4 +1,10 @@
 set -x PATH ~/.local/bin $PATH
+
+if test -d ~/Android
+    set -x ANDROID_HOME ~/Android/Sdk
+    set -x PATH $PATH $ANDROID_HOME/tools $ANDROID_HOME/platform-tools
+end
+
 set -x EDITOR vim
 set -x LESS "-Ri"
 
