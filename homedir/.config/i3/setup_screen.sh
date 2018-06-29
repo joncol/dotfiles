@@ -31,3 +31,17 @@ if [ $? -eq 0 ]; then
     echo Found right home screen
     xrandr --output DP-1-1 --mode 1920x1200 --right-of HDMI-2
 fi
+
+# Home desktop computer
+
+xrandr | grep -q "^DP-1 connected.*1920x1200"
+if [ $? -eq 0 ]; then
+    echo Found left home screen
+    xrandr --output DP-1 --mode 1920x1200
+fi
+
+xrandr | grep -q "^DVI-D-1 connected.*1920x1200"
+if [ $? -eq 0 ]; then
+    echo Found right home screen
+    xrandr --output DVI-D-1 --mode 1920x1200 --right-of DP-1
+fi
