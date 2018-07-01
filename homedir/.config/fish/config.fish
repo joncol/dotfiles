@@ -5,6 +5,10 @@ if test -d ~/Android
     set -x PATH $PATH $ANDROID_HOME/tools $ANDROID_HOME/platform-tools
 end
 
+if test -d /usr/share/logstash/bin
+    set -x PATH $PATH /usr/share/logstash/bin
+end
+
 set -x EDITOR vim
 set -x LESS "-Ri"
 
