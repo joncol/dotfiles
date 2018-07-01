@@ -269,7 +269,7 @@ if !exists("*InsertTabWrapper")
 end
 
 set hidden
-set modelines=0
+set modelines=5
 
 set tabstop=4
 set shiftwidth=4
