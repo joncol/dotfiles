@@ -189,8 +189,8 @@ bindsym XF86AudioMute        exec --no-startup-id ~/.config/i3/mute.sh
 bindsym $mod+F1 exec --no-startup-id ~/.config/i3/lower_volume.sh
 bindsym $mod+F2 exec --no-startup-id ~/.config/i3/raise_volume.sh
 bindsym $mod+F3 exec --no-startup-id ~/.config/i3/mute.sh
-bindsym $mod+F4 exec --no-startup-id "xrandr --output eDP-1 --auto --primary && xrandr --output DP-1-1 --auto --right-of eDP-1 && xrandr --output HDMI-2 --auto --right-of DP-1-1"
-bindsym $mod+Shift+F4 exec --no-startup-id "xrandr --output eDP-1 --off"
+bindsym $mod+F4 exec --no-startup-id "~/.local/bin/toggle_laptop_screen.pl 1"
+bindsym $mod+Shift+F4 exec --no-startup-id "~/.local/bin/toggle_laptop_screen.pl 0"
 bindsym $mod+grave exec fish -c "urxvt -e ranger"
 bindsym $mod+c exec ~/.config/i3/select_x_colorscheme.sh
 bindsym $mod+p exec ~/.config/i3/goto_project.sh
@@ -199,7 +199,8 @@ bindsym $mod+p exec ~/.config/i3/goto_project.sh
 bindsym XF86MonBrightnessUp exec light -A 3
 bindsym XF86MonBrightnessDown exec light -U 3
 
-exec_always --no-startup-id ~/.local/bin/setup_screen
+exec_always --no-startup-id ~/.local/bin/init_dimensions
+exec_always --no-startup-id ~/.local/bin/setup_screen.pl
 exec_always ~/.local/bin/setup_mouse
 exec_always ~/.config/i3/apply_xrdb_settings.sh
 
