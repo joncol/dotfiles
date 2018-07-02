@@ -17,6 +17,7 @@
                 markdown-mode-hook
                 nxml-mode-hook
                 org-mode-hook
+                perl-mode-hook
                 python-mode-hook
                 qmake-mode-hook
                 qml-mode-hook
