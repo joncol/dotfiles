@@ -10,6 +10,7 @@
 
 (use-package cider
   :defer t
+  :bind (("M-." . cider-find-dwim))
   :config
   (setq cider-show-error-buffer 'nil))
 
