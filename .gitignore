@@ -1,3 +1,7 @@
 /fonts/.fonts/.uuid
 /fish/.config/fish/fishd.jco-arch
 /homedir/.config/polybar/github_access_token
+/homedir/.config/fish/fishd.jco-core2duo
+/homedir/.config/fish/functions/fish_prompt.fish
+/homedir/.local/bin/virtualenv
+/homedir/.config/fish/conf.d/omf.fish
