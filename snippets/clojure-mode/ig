@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Integrant init/halt defmethods
+# key: ig
+# --
+(defmethod ig/init-key :${1:key} [_ opts]
+  (log/debug "Starting")
+  opts)
+
+(defmethod ig/halt-key! :$1 [_ ${2:component}]
+  (log/debug "Stopping"))
