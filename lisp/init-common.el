@@ -202,6 +202,8 @@
   (setq counsel-projectile-ag-initial-input '(thing-at-point 'symbol t))
   (setq counsel-projectile-rg-initial-input '(thing-at-point 'symbol t)))
 
+(use-package cypher-mode)
+
 (use-package desktop
   :config
   (push ".*" desktop-clear-preserve-buffers))
