@@ -332,6 +332,8 @@
   :config
   (define-key esup-mode-map "\C-w" 'evil-window-map))
 
+(use-package evil-ediff)
+
 (use-package evil-god-state
   :config
   (evil-define-key 'normal jco/my-keys-mode-map (kbd "SPC")
