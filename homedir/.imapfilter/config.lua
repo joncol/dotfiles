@@ -51,8 +51,8 @@ gandi:delete_messages()
 viper_prod = zimpler_account.INBOX:contain_from("viper-production@zimpler.com")
 viper_prod:delete_messages()
 
-pingdom = zimpler_account.INBOX:contain_from("support@pingdom.com")
-pingdom:delete_messages()
+-- pingdom = zimpler_account.INBOX:contain_from("support@pingdom.com")
+-- pingdom:delete_messages()
 
 skylight_trends = zimpler_account.INBOX:contain_from("trends@skylight.io")
 skylight_trends:delete_messages()
