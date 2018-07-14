@@ -211,7 +211,7 @@ exec_always sleep 2 && ~/.local/bin/betterlockscreen -w
 
 exec_always "xset r rate 300 30"
 
-exec_always "killall xcape && sleep 2 && xcape -t 150 -e 'Control_L=BackSpace'"
+exec_always ~/.config/i3/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
 
 exec_always unclutter
 
