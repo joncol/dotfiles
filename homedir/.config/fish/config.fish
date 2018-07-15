@@ -10,7 +10,7 @@ if test -d /usr/share/logstash/bin
 end
 
 set -x EDITOR vim
-set -x LESS "-Ri"
+set -x LESS "-NRi"
 
 eval (python -m virtualfish)
 
