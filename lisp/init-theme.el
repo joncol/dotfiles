@@ -23,6 +23,7 @@
            ;; darkane-theme
            darktooth-theme
            doom-themes
+           dracula-theme
            eink-theme
            espresso-theme
            flatland-theme
@@ -118,6 +119,9 @@
      (set-face-foreground 'mu4e-highlight-face "#101f24"))
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-show-pair-match-face "#6ab04c")))
+
+  (dracula
+   (set-face-background 'region "#582c6b"))
 
   (eink
    (set-face-background 'evil-search-highlight-persist-highlight-face
