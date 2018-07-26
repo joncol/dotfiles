@@ -12,13 +12,16 @@
 (setq jco/theme
       ;; 'adwaita
       ;; 'borland-blue
-      'challenger-deep
+      ;; 'challenger-deep
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
       ;; 'doom-molokai
+      ;; 'doom-vibrant
+      'dracula
       ;; 'eink
       ;; 'gotham
+      ;; 'github-modern
       ;; 'gruvbox-dark-hard
       ;; 'hemisu-dark
       ;; 'hemisu-light
