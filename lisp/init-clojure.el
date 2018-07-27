@@ -113,6 +113,7 @@ Opens a new buffer with the result."
             (put-clojure-indent 'reg-sub 0)
             (put-clojure-indent 'reg-sub-raw 0)
             (put-clojure-indent '->interceptor 0)
+            (put-clojure-indent 'fn-traced 1)
 
             (define-clojure-indent
               (alet 'defun)
