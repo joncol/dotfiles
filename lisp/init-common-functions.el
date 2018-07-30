@@ -60,10 +60,10 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
                    "You're not on DigitalOcean"))
       result)))
 
-(defun jco/read-lines (filePath)
-  "Return a list of lines of a file at FILEPATH."
+(defun jco/read-lines (file-path)
+  "Return a list of lines of a file at FILE-PATH."
   (with-temp-buffer
-    (insert-file-contents filePath)
+    (insert-file-contents file-path)
     (split-string (buffer-string) "\n" t)))
 
 (defun jco/define-bindings (keymap binding-alist)
