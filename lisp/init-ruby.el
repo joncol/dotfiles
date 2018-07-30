@@ -13,6 +13,7 @@
   :defer t)
 
 (use-package rbenv
+  :if (not (eq system-type 'windows-nt))
   :config
   (setq rbenv-show-active-ruby-in-modeline nil)
   (global-rbenv-mode))
