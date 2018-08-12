@@ -197,6 +197,8 @@
                   "ag --vimgrep --nocolor --nogroup %s")))
 
 (use-package counsel-projectile
+  :init
+  (setq projectile-keymap-prefix (kbd "C-c p"))
   :config
   (counsel-projectile-mode)
   (setq counsel-projectile-ag-initial-input '(thing-at-point 'symbol t))
