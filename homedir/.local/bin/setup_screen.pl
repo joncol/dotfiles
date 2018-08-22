@@ -25,26 +25,26 @@ my ($dvid1_name, undef) = get_screen "DVI-D-1";
 # Laptop setup
 
 if ($laptop_name) {
-    say "Found laptop screen";
+    say "Found laptop screen: " . $laptop_name;
     `xrandr --output $laptop_name --auto`;
 }
 
 if ($dp1_name && $dp1_res eq "3840x2160") {
-    say "Found work screen";
+    say "Found work screen: " . $dp1_name;
     `xrandr --output $dp1_name --mode 3840x2160 --right-of $laptop_name`;
     $turn_off_laptop_screen = 1;
     goto FINISH;
 }
 
 if ($hdmi2_name) {
-    say "Found left home screen";
+    say "Found left home screen: " . $hdmi2_name;
     `xrandr --output $hdmi2_name --auto`;
     $left_home_screen = 1;
     $turn_off_laptop_screen = 1;
 }
 
 if ($dp1_name && $dp1_res eq "1920x1200") {
-    say "Found right home screen";
+    say "Found right home screen: " . $dp1_name;
     if ($left_home_screen) {
         `xrandr --output $dp1_name --auto --right-of $hdmi2_name`;
     } else {
@@ -56,13 +56,13 @@ if ($dp1_name && $dp1_res eq "1920x1200") {
 # Desktop setup
 
 if ($dp_1_name) {
-    say "Found left home screen";
+    say "Found left home screen" . $dp_1_name;
     `xrandr --output $dp_1_name --auto`;
     $left_home_screen = 1;
 }
 
 if ($dvid1_name) {
-    say "Found right home screen";
+    say "Found right home screen: " . $dvid1_name;
     if ($left_home_screen) {
         `xrandr --output $dvid1_name --auto --right-of $dp_1_name`;
     } else {
@@ -72,6 +72,6 @@ if ($dvid1_name) {
 
 FINISH:
 
-if ($laptop_name && $turn_off_laptop_screen) {
-    `xrandr --output $laptop_name --off`;
-}
+# if ($laptop_name && $turn_off_laptop_screen) {
+#     `xrandr --output $laptop_name --off`;
+# }
