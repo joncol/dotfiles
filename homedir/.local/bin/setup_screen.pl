@@ -4,7 +4,7 @@ use 5.012;
 
 sub get_screen {
     my ($re) = @_;
-    my $t = `xrandr | grep -EA1 "^$re connected"`;
+    my $t = `xrandr | grep -PA1 "^$re connected"`;
     my ($l1, $l2) = split "\n", $t;
     $l2 =~ s/^\s+//;
     my ($name) = split /\s/, $l1;
@@ -19,9 +19,10 @@ my $left_home_screen = 0;
 my ($laptop_name, undef) = get_screen "eDP-?1";
 my ($dp1_name, $dp1_res) = get_screen "DP-?1-1";
 my ($hdmi2_name, undef) = get_screen "HDMI2";
-my ($dp_1_name, undef) = get_screen "DP-1";
-my ($dvid1_name, undef) = get_screen "DVI-D-1";
+my ($dp_n_name, undef) = get_screen "DP-\\d";
+my ($dvid_n_name, undef) = get_screen "DVI-D-\\d";
 
+say "Trying to identify screens...";
 # Laptop setup
 
 if ($laptop_name) {
@@ -55,18 +56,18 @@ if ($dp1_name && $dp1_res eq "1920x1200") {
 
 # Desktop setup
 
-if ($dp_1_name) {
-    say "Found left home screen" . $dp_1_name;
-    `xrandr --output $dp_1_name --auto`;
+if ($dp_n_name) {
+    say "Found left home screen: " . $dp_n_name;
+    `xrandr --output $dp_n_name --auto`;
     $left_home_screen = 1;
 }
 
-if ($dvid1_name) {
-    say "Found right home screen: " . $dvid1_name;
+if ($dvid_n_name) {
+    say "Found right home screen: " . $dvid_n_name;
     if ($left_home_screen) {
-        `xrandr --output $dvid1_name --auto --right-of $dp_1_name`;
+        `xrandr --output $dvid_n_name --auto --right-of $dp_n_name`;
     } else {
-        `xrandr --output $dvid1_name --auto`;
+        `xrandr --output $dvid_n_name --auto`;
     }
 }
 
