@@ -33,3 +33,10 @@ set -x fish_color_search_match --background='eee'
 # bobthefish theme settings
 set -g theme_display_date no
 set -g theme_display_cmd_duration no
+
+# if type -q rbenv
+#     status --is-interactive; and source (rbenv init -|psub)
+#     set PATH $HOME/.rbenv/bin $PATH
+#     set PATH $HOME/.rbenv/shims $PATH
+#     rbenv rehash >/dev/null ^&1
+# end
