@@ -115,6 +115,9 @@ Opens a new buffer with the result."
             (put-clojure-indent '->interceptor 0)
             (put-clojure-indent 'fn-traced 1)
 
+            (put-clojure-indent 'extend-freeze 2)
+            (put-clojure-indent 'extend-thaw 1)
+
             (define-clojure-indent
               (alet 'defun)
               (mlet 'defun))
