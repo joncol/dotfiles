@@ -9,7 +9,7 @@
 (use-package flyspell-correct-ivy
   :after flyspell
   :bind (:map flyspell-mode-map
-              ("C-;" . flyspell-correct-previous-word-generic)))
+         ("C-;" . flyspell-correct-wrapper)))
 
 (use-package langtool
   :defer t
