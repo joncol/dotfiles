@@ -13,6 +13,7 @@
   :defer t)
 
 (use-package rbenv
+  :disabled t
   :if (not (eq system-type 'windows-nt))
   :config
   (setq rbenv-show-active-ruby-in-modeline nil)
@@ -27,6 +28,9 @@
   :defer t)
 
 (use-package ruby-end
+  :defer t)
+
+(use-package rvm
   :defer t)
 
 (use-package yard-mode
@@ -53,6 +57,7 @@
             (rubocop-mode)
             (robe-mode)
             (ruby-end-mode)
+            (rvm-activate-corresponding-ruby)
             (yard-mode)
             (unless (display-graphic-p)
               (show-paren-mode -1))
