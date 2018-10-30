@@ -427,8 +427,8 @@
   :after magit
   :config
   (setq git-link-open-in-browser t)
-  (evil-leader/set-key "v g" 'git-link-homepage)
-  (evil-leader/set-key "v G" 'git-link))
+  (evil-leader/set-key "g h" 'git-link-homepage)
+  (evil-leader/set-key "g l" 'git-link))
 
 (use-package glsl-mode)
 
