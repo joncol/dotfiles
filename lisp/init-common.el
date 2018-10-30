@@ -204,6 +204,8 @@
   (setq counsel-projectile-ag-initial-input '(thing-at-point 'symbol t))
   (setq counsel-projectile-rg-initial-input '(thing-at-point 'symbol t)))
 
+(use-package csv-mode)
+
 (use-package cypher-mode)
 
 (use-package desktop
