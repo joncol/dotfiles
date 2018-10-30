@@ -1,6 +1,7 @@
 # Emacs
 
 .agignore
+.ignore
 .projectile
 todo.org
 todo.org_archive
