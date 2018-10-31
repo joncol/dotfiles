@@ -10,7 +10,8 @@
 
 (use-package cider
   :defer t
-  :bind (("M-." . cider-find-dwim))
+  :bind (:map clojure-mode-map
+         ("M-." . cider-find-dwim))
   :config
   (setq cider-show-error-buffer 'nil))
 
