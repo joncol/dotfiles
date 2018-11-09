@@ -111,7 +111,7 @@ bindsym $mod+Shift+r restart
 
 bindsym $mod+F5 exec --no-startup-id xrandr --auto
 
-set $locker ~/.local/bin/betterlockscreen --lock dim
+set $locker xset dpms force off && ~/.local/bin/betterlockscreen --lock dim
 set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (S) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $locker, mode "default"
