@@ -75,7 +75,7 @@
       "g B" 'rtags-show-rtags-buffer
       "g I" 'rtags-imenu
       "g T" 'rtags-taglist
-      "g h" 'rtags-print-class-hierarchy
+      "g H" 'rtags-print-class-hierarchy
       "g a" 'rtags-print-source-arguments)))
 
 (use-package rtags
