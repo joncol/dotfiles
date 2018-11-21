@@ -43,21 +43,11 @@
   ;; (setq haskell-tags-on-save t) ;; doesn't work for Fish
   ;; (haskell-doc-mode)
 
-  (setq tab-stop-list
-        (loop for i from 0 upto 120 by 4 collect i))
+  ;; (setq tab-stop-list
+  ;;       (loop for i from 0 upto 120 by 4 collect i))
 
-  (setq-local yas-indent-line 'fixed)
-  (use-package helm-hayoo
-    :config
-    (add-hook 'haskell-mode-hook
-              (lambda ()
-                (evil-leader/set-key "h H" 'helm-hayoo))))
-
-  (use-package helm-hoogle
-    :config
-    (add-hook 'haskell-mode-hook
-              (lambda ()
-                (evil-leader/set-key "h h" 'helm-hoogle)))))
+  ;; (setq-local yas-indent-line 'fixed)
+  )
 
 (use-package ebal
   :config
