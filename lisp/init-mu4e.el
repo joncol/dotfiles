@@ -28,26 +28,7 @@
                     (mu4e-maildir-shortcuts . (("/gmail/Inbox" . ?i)
                                                ("/gmail/Sent" . ?s)
                                                ("/gmail/Trash" . ?t)))
-                    (mu4e-completing-read-function . compl-fun)))
-          ,(make-mu4e-context
-            :name "Kolab Now"
-            :enter-func (lambda ()
-                          (mu4e-message "Switch to the Kolabnow context"))
-            ;; leave-func not defined
-            :match-func (lambda (msg)
-                          (if msg
-                              (mu4e-message-contact-field-matches
-                               msg :to "jonas.collberg@mykolab.com")
-                            (not (jco/at-office-p))))
-            :vars '((user-mail-address . "jonas.collberg@mykolab.com")
-                    ;; (mu4e-compose-signature . "Jonas\n")
-                    (mu4e-drafts-folder . "/kolabnow/Drafts")
-                    (mu4e-sent-folder . "/kolabnow/Sent")
-                    (mu4e-trash-folder . "/kolabnow/Trash")
-                    (mu4e-maildir-shortcuts . (("/kolabnow/Inbox" . ?i)
-                                               ("/kolabnow/Sent" . ?s)
-                                               ("/kolabnow/Trash" . ?t)))
-                    (mu4e-completing-read-function . compl-fun)))
+                    (mu4e-completing-read-function . jco/compl-fun)))
           ,(make-mu4e-context
             :name "Work"
             :enter-func (lambda () (mu4e-message "Switch to the Work context"))
@@ -69,7 +50,7 @@
                                              ("/zimpler/[Gmail].Sent Mail" . ?s)
                                              ("/zimpler/[Gmail].Trash" . ?t)
                                              ("/zimpler/[Gmail].All Mail" . ?a)))
-                    (mu4e-completing-read-function . compl-fun))))))
+                    (mu4e-completing-read-function . jco/compl-fun))))))
 
 (when (and (not (eq system-type 'windows-nt))
            (not (string-equal (system-name) "jco")))
@@ -107,18 +88,20 @@
                       (:from    . 22)
                       (:subject . nil)))
 
-              (defun compl-fun (prompt maildirs predicate require-match initial-input)
+              (defun jco/compl-fun (prompt maildirs predicate require-match
+                                           initial-input)
                 (helm-comp-read prompt maildirs
                                 :name prompt
                                 :must-match t))
 
               (defun jco/smtp-server ()
                 (cond ((or (s-contains? "gmail.com" user-mail-address)
-                           (s-contains? "zimpler.com" user-mail-address)) "smtp.gmail.com")
-                      ((s-contains? "kolab" user-mail-address) "smtp.kolabnow.com")))
+                           (s-contains? "zimpler.com" user-mail-address))
+                       "smtp.gmail.com")))
 
               (defun jco/my-send-it ()
-                (setq smtpmail-starttls-credentials `((,(jco/smtp-server) 587 nil nil))
+                (setq smtpmail-starttls-credentials
+                      `((,(jco/smtp-server) 587 nil nil))
                       smtpmail-auth-credentials
                       `((,(jco/smtp-server) 587 user-mail-address nil))
                       smtpmail-default-smtp-server (jco/smtp-server)

@@ -840,7 +840,7 @@ Example: `helloWorld` becomes `Hello world`."
         (concat (s-replace " " "." (downcase user-full-name)) "@"
                 (if (jco/at-office-p)
                     "zimpler.com"
-                  "mykolab.com"))))
+                  "gmail.com"))))
 
 (use-package try)
 
