@@ -208,6 +208,15 @@
 
 (use-package cypher-mode)
 
+(use-package deadgrep
+  :bind (:map deadgrep-mode-map
+         ("j" . deadgrep-forward)
+         ("k" . deadgrep-backward))
+  :init
+  (evil-leader/set-key "d g" 'deadgrep)
+  :config
+  (evil-set-initial-state 'deadgrep-mode 'emacs))
+
 (use-package desktop
   :config
   (push ".*" desktop-clear-preserve-buffers))
