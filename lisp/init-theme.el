@@ -418,9 +418,15 @@
   (rich-minority-mode))
 
 (use-package smart-mode-line
+  :disabled t
   :config
   (setq sml/no-confirm-load-theme t)
   (sml/setup))
+
+(use-package doom-modeline
+  :ensure t
+  :defer t
+  :hook (after-init . doom-modeline-init))
 
 (provide 'init-theme)
 
