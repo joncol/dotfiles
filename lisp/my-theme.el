@@ -16,9 +16,11 @@
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
+      ;; 'doom-dracula
       ;; 'doom-molokai
+      ;; 'doom-opera-light
+      'doom-solarized-light
       ;; 'doom-vibrant
-      'dracula
       ;; 'eink
       ;; 'gotham
       ;; 'github-modern
@@ -29,7 +31,6 @@
       ;; 'kaolin-eclipse
       ;; 'kaolin-ocean
       ;; 'minimal
-      ;; 'molokai
       ;; 'mustang
       ;; 'nubox-dark
       ;; 'nubox-light
@@ -39,7 +40,6 @@
       ;; 'sanityinc-tomorrow-eighties
       ;; 'sanityinc-tomorrow-night
       ;; 'solarized-dark
-      ;; 'solarized-light
       ;; 'tao-yang
       ;; 'tao-yin
       )
