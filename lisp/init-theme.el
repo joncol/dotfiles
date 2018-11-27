@@ -127,6 +127,17 @@
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
 
+  ((doom-solarized-light solarized-light)
+   (setq sml/theme 'light)
+   (set-face-background 'region "#e0dcbe")
+   (with-eval-after-load 'cider
+     (set-face-background 'cider-deprecated-face "#e0dcbe"))
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+   (set-face-background 'lazy-highlight "#f9bf3b")
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face "#101f24")
+     (set-face-background 'mu4e-highlight-face "#7ceece")))
+
   (github-modern
    (setq sml/theme 'light)
    (set-face-foreground 'avy-lead-face "#00b894")
@@ -335,15 +346,6 @@
    (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#335e69"))
    (set-face-background 'ivy-current-match "#335e69"))
-
-  (solarized-light
-   (setq sml/theme 'light)
-   (setq jco/cursor-color "gray25")
-   (set-face-background 'region "#e0dcbe")
-   (with-eval-after-load 'cider
-     (set-face-background 'cider-deprecated-face "#e0dcbe"))
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
-   (set-face-background 'lazy-highlight "#f9bf3b"))
 
   (tao-yang
    (setq sml/theme 'light)
