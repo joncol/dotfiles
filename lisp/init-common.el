@@ -8,6 +8,7 @@
 
 ;;; Avoid the empty (custom-set-faces) at end of init.el.
 (setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
+(load custom-file)
 
 (setq ad-redefinition-action 'accept)
 
