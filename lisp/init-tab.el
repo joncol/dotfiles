@@ -15,10 +15,6 @@
         (backward-char 1)
         (if (looking-at "->") t nil)))))
 
-(defun jco/do-yas-expand ()
-  (let ((yas/fallback-behavior 'return-nil))
-    (yas/expand)))
-
 (require 'minibuffer)
 
 (defun jco/tab-indent-or-complete ()
@@ -28,7 +24,7 @@
     (minibuffer-complete))
    (t
     (if (or (not yas/minor-mode)
-            (null (jco/do-yas-expand)))
+            (null (yas-expand)))
         (if (jco/check-expansion)
             (progn
               (company-manual-begin)
@@ -38,7 +34,7 @@
 (defun jco/tab-complete-or-next-field ()
   (interactive)
   (if (or (not yas/minor-mode)
-          (null (jco/do-yas-expand)))
+          (null (yas-expand)))
       (if company-candidates
           (company-complete-selection)
         (if (jco/check-expansion)
@@ -53,7 +49,7 @@
 (defun jco/expand-snippet-or-complete-selection ()
   (interactive)
   (if (or (not yas/minor-mode)
-          (null (jco/do-yas-expand))
+          (null (yas-expand))
           (company-abort))
       (company-complete-selection)))
 

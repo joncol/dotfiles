@@ -46,8 +46,7 @@
   ;; (setq tab-stop-list
   ;;       (loop for i from 0 upto 120 by 4 collect i))
 
-  ;; (setq-local yas-indent-line 'fixed)
-  )
+  (setq yas-indent-line 'fixed))
 
 (use-package ebal
   :config
