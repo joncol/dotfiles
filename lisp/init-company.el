@@ -20,9 +20,6 @@
          ("M-." . company-show-location))
 
   :config
-  (advice-add 'company-call-frontends :before
-              #'jco/turn-off-fci-during-company-complete)
-
   (add-to-list 'completion-styles 'initials t)
   (setq company-dabbrev-ignore-case 'keep-prefix)
   (setq company-dabbrev-code-ignore-case nil)
@@ -33,16 +30,23 @@
   (setq company-echo-delay 0)
   (setq company-begin-commands '(self-insert-command)))
 
-(defvar jco/prev-fci-status nil)
+(defvar-local jco/prev-fci-status nil)
 
-(defun jco/turn-off-fci-during-company-complete(command)
-  "Fixes the issue where the first item is shown far off to the right."
-  (when (string= "show" command)
+;; Fixes the issue where the first item is shown far off to the right.
+
+(defun jco/turn-off-fci(&rest ignore)
+  (when (boundp 'fci-mode)
     (setq jco/prev-fci-status fci-mode)
-    (turn-off-fci-mode))
-  (when (string= "hide" command)
-    (when jco/prev-fci-status
-      (turn-on-fci-mode))))
+    (when fci-mode (fci-mode -1))))
+
+(defun jco/maybe-turn-on-fci(&rest ignore)
+  (when jco/prev-fci-status
+    (fci-mode 1)))
+
+(add-hook 'company-completion-started-hook 'jco/turn-off-fci)
+(add-hook 'company-completion-finished-hook 'jco/maybe-turn-on-fci)
+(add-hook 'company-completion-cancelled-hook 'jco/maybe-turn-on-fci)
+(add-hook 'evil-insert-state-exit-hook 'jco/maybe-turn-on-fci)
 
 (provide 'init-company)
 
