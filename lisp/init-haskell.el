@@ -31,7 +31,6 @@
     (add-to-list 'exec-path bin-path))
 
   (subword-mode -1)
-  ;; (setq flycheck-check-syntax-automatically '(save new-line))
 
   (flycheck-mode -1)
   (setq haskell-interactive-popup-errors nil)
@@ -41,10 +40,6 @@
   (setq haskell-process-type 'auto)
 
   ;; (setq haskell-tags-on-save t) ;; doesn't work for Fish
-  ;; (haskell-doc-mode)
-
-  ;; (setq tab-stop-list
-  ;;       (loop for i from 0 upto 120 by 4 collect i))
 
   (setq yas-indent-line 'fixed))
 

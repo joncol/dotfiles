@@ -23,7 +23,6 @@
   (advice-add 'company-call-frontends :before
               #'jco/turn-off-fci-during-company-complete)
 
-  ;; (setq tab-always-indent 'complete)
   (add-to-list 'completion-styles 'initials t)
   (setq company-dabbrev-ignore-case 'keep-prefix)
   (setq company-dabbrev-code-ignore-case nil)
