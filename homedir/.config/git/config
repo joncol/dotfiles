@@ -2,7 +2,12 @@
 
 [user]
 name = Jonas Collberg
-email = jonas.collberg@gmail.com
+
+[includeIf "gitdir:/home/jco/code/"]
+path = config.code
+
+[includeIf "gitdir:/home/jco/work/"]
+path = config.work
 
 [alias]
 br = branch
