@@ -11,13 +11,15 @@
   (interactive)
   (kill-new (buffer-file-name)))
 
-(global-set-key (kbd "S-<f6>") 'jco/yank-current-filename)
+(defun jco/insert-current-filename (arg)
+  "Insert filename of the current buffer at point.
+If ARG is given, only the basename (no path and no extension) of the file is
+inserted."
+  (interactive "P")
+  (insert (if arg
+              (file-name-base (buffer-file-name))
+            (buffer-file-name))))
 
-(let ((init-file (concat user-emacs-directory "init.el")))
-  (global-set-key (kbd "<f9>")
-                  (lambda ()
-                    (interactive)
-                    (find-file init-file)))
 (defun jco/insert-date (arg)
   "Insert date at current point, in format 2016-11-23.
 If ARG is given, dots are used instead of dashes."
@@ -44,16 +46,10 @@ timestamp is 2016-11-23T00:00:00 (in accordance with ISO 8601)."
     (shell-command-on-region (point-min) (point-max) "python -m json.tool"
                              t t)))
 
-  (global-set-key (kbd "S-<f9>")
-                  (lambda ()
-                    (interactive)
-                    (load-file init-file))))
 
 (global-set-key (kbd "<f12>") (lambda ()
                                 (interactive)
                                 (message "Current major mode: %s" major-mode)))
-
-(global-set-key (kbd "C-c t f") 'toggle-frame-fullscreen)
 
 (provide 'init-utils)
 

@@ -19,19 +19,18 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-menu: _a_pp _b_ookmarks chrome-_B_ookmarks _c_fg _f_ind _k_urecolor _l_ang _o_rg _p_kgs _s_woop _S_nippets _v_cs _w_indow"
+menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _u_til _v_cs _w_indow"
   ("a" jco/hydra-app/body)
   ("b" counsel-bookmark)
-  ("B" helm-chrome-bookmarks)
   ("c" jco/hydra-config/body)
   ("f" jco/hydra-find/body)
-  ("k" jco/hydra-kurecolor/body)
   ("l" jco/hydra-lang/body)
   ("o" jco/hydra-org/body)
   ("p" jco/hydra-packages/body)
   ;; ("s" jco/hydra-swoop/body)
   ("s" jco/hydra-swiper/body)
   ("S" jco/hydra-snippets/body)
+  ("u" jco/hydra-util/body)
   ("v" jco/hydra-vcs/body)
   ("w" jco/hydra-window/body))
 
@@ -55,23 +54,8 @@ find: _f_un _l_ib _v_ar"
 (defvar jco/global-hl-line-mode-hydra-temp)
 (set (make-local-variable 'jco/global-hl-line-mode-hydra-temp) nil)
 
-(defhydra jco/hydra-kurecolor
-  (:color pink :hint nil
-   :pre (progn (set 'jco/global-hl-line-mode-hydra-temp (global-hl-line-mode))
-               (global-hl-line-mode -1))
-   :post (global-hl-line-mode jco/global-hl-line-mode-hydra-temp))
-"
-kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_rightness(-)"
-  ("H" kurecolor-increase-hue-by-step)
-  ("h" kurecolor-decrease-hue-by-step)
-  ("S" kurecolor-increase-saturation-by-step)
-  ("s" kurecolor-decrease-saturation-by-step)
-  ("B" kurecolor-increase-brightness-by-step)
-  ("b" kurecolor-decrease-brightness-by-step)
-  ("q" nil "quit" :color blue))
-
 (defhydra jco/hydra-lang (:color teal :hint nil)
-"
+  "
 lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("f" flyspell-mode)
   ("l" langtool-check)
@@ -112,6 +96,31 @@ swiper: _s_wiper _a_ll _m_ulti"
   ("s" swiper)
   ("a" swiper-all)
   ("m" swiper-multi))
+
+(defhydra jco/hydra-util (:color teal :hint nil)
+  "
+util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate insert-_t_imestamp"
+  ("k" jco/hydra-kurecolor/body)
+  ("y" jco/yank-current-filename)
+  ("f" jco/insert-current-filename)
+  ("b" (lambda () (interactive) (jco/insert-current-filename t)))
+  ("d" jco/insert-date)
+  ("t" jco/insert-timestamp))
+
+(defhydra jco/hydra-kurecolor
+  (:color pink :hint nil
+   :pre (progn (set 'jco/global-hl-line-mode-hydra-temp (global-hl-line-mode))
+               (global-hl-line-mode -1))
+   :post (global-hl-line-mode jco/global-hl-line-mode-hydra-temp))
+  "
+kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_rightness(-)"
+  ("H" kurecolor-increase-hue-by-step)
+  ("h" kurecolor-decrease-hue-by-step)
+  ("S" kurecolor-increase-saturation-by-step)
+  ("s" kurecolor-decrease-saturation-by-step)
+  ("B" kurecolor-increase-brightness-by-step)
+  ("b" kurecolor-decrease-brightness-by-step)
+  ("q" nil "quit" :color blue))
 
 (defhydra jco/hydra-vcs (:color teal :hint nil)
   "
