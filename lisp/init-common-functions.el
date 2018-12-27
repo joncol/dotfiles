@@ -88,35 +88,6 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
   (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
   (fci-mode))
 
-(defun jco/insert-date (arg)
-  "Insert date at current point, in format 2016-11-23.
-If ARG is given, dots are used instead of dashes."
-  (interactive "P")
-  (insert (if arg
-              (format-time-string "%d.%m.%Y")
-            (format-time-string "%Y-%m-%d"))))
-
-(defun jco/insert-timestamp (arg)
-  "Insert timestamp at current point.
-The format of the timestamp is 00:00:00.
-If ARG is given, the date is also inserted, and the format of the
-timestamp is 2016-11-23T00:00:00 (in accordance with ISO 8601)."
-  (interactive "P")
-  (insert (if arg
-              (format-time-string "%Y-%m-%dT%H:%M:%S")
-            (format-time-string "%H:%M:%S"))))
-
-(global-set-key (kbd "C-c i d") 'jco/insert-date)
-(global-set-key (kbd "C-c i t") 'jco/insert-timestamp)
-
-(defun jco/json-lint ()
-  "Pretty format JSON."
-  (interactive)
-  (save-restriction
-    (widen)
-    (shell-command-on-region (point-min) (point-max) "python -m json.tool"
-                             t t)))
-
 (defun jco/underline-line (&optional char)
   "Underline the current line with a character CHAR (\"-\" is the default)."
   (interactive)
