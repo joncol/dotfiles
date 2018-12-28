@@ -428,7 +428,9 @@
 (use-package doom-modeline
   :ensure t
   :defer t
-  :hook (after-init . doom-modeline-init))
+  :hook (after-init . doom-modeline-init)
+  :config
+  (evil-leader/set-key "g n" 'doom-modeline--github-open-notifications))
 
 (provide 'init-theme)
 
