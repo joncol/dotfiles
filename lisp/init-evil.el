@@ -105,7 +105,7 @@
   (evil-exchange-cx-install))
 
 (use-package evil-matchit
-  :init
+  :config
   (global-evil-matchit-mode))
 
 (use-package evil-goggles
