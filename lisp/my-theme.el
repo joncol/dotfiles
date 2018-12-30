@@ -16,10 +16,11 @@
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
+      'doom-city-lights
       ;; 'doom-dracula
       ;; 'doom-molokai
       ;; 'doom-opera-light
-      'doom-solarized-light
+      ;; 'doom-solarized-light
       ;; 'doom-vibrant
       ;; 'eink
       ;; 'gotham
