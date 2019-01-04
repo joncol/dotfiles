@@ -317,6 +317,10 @@
 (use-package ggtags
   :if (eq system-type 'windows-nt))
 
+(use-package gist
+  :config
+  (setq gist-view-gist t))
+
 (use-package gradle-mode
   :config
   (add-hook 'java-mode-hook

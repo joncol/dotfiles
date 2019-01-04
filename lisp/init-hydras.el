@@ -99,13 +99,14 @@ swiper: _s_wiper _a_ll _m_ulti"
 
 (defhydra jco/hydra-util (:color teal :hint nil)
   "
-util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate insert-_t_imestamp"
+util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate insert-_t_imestamp _g_ist"
   ("k" jco/hydra-kurecolor/body)
   ("y" jco/yank-current-filename)
   ("f" jco/insert-current-filename)
   ("b" (lambda () (interactive) (jco/insert-current-filename t)))
   ("d" jco/insert-date)
-  ("t" jco/insert-timestamp))
+  ("t" jco/insert-timestamp)
+  ("g" gist-region-or-buffer))
 
 (defhydra jco/hydra-kurecolor
   (:color pink :hint nil
