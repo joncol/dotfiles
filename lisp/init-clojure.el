@@ -13,7 +13,7 @@
   :bind (:map clojure-mode-map
          ("M-." . cider-find-dwim))
   :config
-  (setq cider-show-error-buffer 'nil))
+  (setq cider-show-error-buffer nil))
 
 (use-package clj-refactor
   :after clojure-mode
