@@ -107,6 +107,9 @@
                         "midnightblue")
    (set-face-background 'hl-line "#041040"))
 
+  (doom-city-lights
+   (set-face-background 'ivy-current-match "#3f525b"))
+
   (doom-molokai
    (set-face-background 'ivy-current-match "#582c6b")
    (set-face-foreground 'ivy-minibuffer-match-face-1 "#f5f6fa")
