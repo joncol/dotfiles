@@ -66,23 +66,23 @@
             (evil-leader/set-key "x s" 'haskell-sort-imports)
 
             (bind-keys :map haskell-mode-map
-                       ("<f8>" . haskell-navigate-imports)
-                       ("C-c C-a" . haskell-align-imports)
-                       ("C-c C-l" . haskell-process-load-file)
-                       ("C-c C-z" . haskell-interactive-switch)
-                       ("C-c C-n C-t" . haskell-process-do-type)
-                       ("C-c C-n C-i" . haskell-process-do-info)
-                       ("C-c C-n C-c" . haskell-process-cabal-build)
-                       ("C-c C-n c" . haskell-process-cabal)
-                       ("C-c C-o" . haskell-compile)
-                       ("C-c C-k" . haskell-interactive-mode-clear))
+              ("<f8>" . haskell-navigate-imports)
+              ("C-c C-a" . haskell-align-imports)
+              ("C-c C-l" . haskell-process-load-file)
+              ("C-c C-z" . haskell-interactive-switch)
+              ("C-c C-n C-t" . haskell-process-do-type)
+              ("C-c C-n C-i" . haskell-process-do-info)
+              ("C-c C-n C-c" . haskell-process-cabal-build)
+              ("C-c C-n c" . haskell-process-cabal)
+              ("C-c C-o" . haskell-compile)
+              ("C-c C-k" . haskell-interactive-mode-clear))
 
             (bind-keys :map haskell-cabal-mode-map
-                       ("C-c C-z" . haskell-interactive-switch)
-                       ("C-c C-k" . haskell-interactive-mode-clear)
-                       ("C-c C-c" . haskell-process-cabal-build)
-                       ("C-c c" . haskell-process-cabal)
-                       ("C-c C-o" . haskell-compile))))
+              ("C-c C-z" . haskell-interactive-switch)
+              ("C-c C-k" . haskell-interactive-mode-clear)
+              ("C-c C-c" . haskell-process-cabal-build)
+              ("C-c c" . haskell-process-cabal)
+              ("C-c C-o" . haskell-compile))))
 
 (provide 'init-haskell)
 
