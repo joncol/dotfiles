@@ -317,6 +317,8 @@
 (use-package ggtags
   :if (eq system-type 'windows-nt))
 
+(use-package ghub)
+
 (use-package gist
   :config
   (setq gist-view-gist t))
