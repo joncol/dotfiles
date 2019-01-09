@@ -22,8 +22,5 @@ lola = "log --graph --decorate --pretty=lola --abbrev-commit --branches --remote
 [magit]
 hideCampaign = true
 
-[github]
-user = joncol
-
 [pretty]
 lola = %h%C(red)%d%Creset% s
