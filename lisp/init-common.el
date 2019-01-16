@@ -136,6 +136,10 @@
 
 (use-package ahk-mode)
 
+(use-package all-the-icons-ivy
+  :config
+  (all-the-icons-ivy-setup))
+
 (use-package anzu
   :config
   (global-anzu-mode))
