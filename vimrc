@@ -779,7 +779,7 @@ if has("gui_running")             " 'guifont' doesn't work in the console
     set columns=100
     set lines=60
 
-    if has("gui_gtk2")              " GTK+2 but not GTK+1
+    if has("gui_gtk") || has("gui_gtk2")
       let b:screen_height = system("xrandr | grep 'Screen 0' | cut -d ',' -f2 | cut -d 'x' -f2 | sed 's/^ //'")
       if b:screen_height > 2000
         set guifont=Hack\ 14
