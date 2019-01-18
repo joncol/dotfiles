@@ -868,6 +868,8 @@ Example: `helloWorld` becomes `Hello world`."
                     "zimpler.com"
                   "gmail.com"))))
 
+(use-package terraform-mode)
+
 (use-package try)
 
 (use-package undo-tree
