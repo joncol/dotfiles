@@ -427,6 +427,8 @@
   (setq fortune-cookie-cowsay-args "-f tux")
   (fortune-cookie-mode))
 
+(use-package fsharp-mode)
+
 (use-package fuzzy
   :config
   (turn-on-fuzzy-isearch))
