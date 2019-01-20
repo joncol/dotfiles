@@ -9,7 +9,9 @@
 (use-package intero
   :defer t
   :config
-  (evil-leader/set-key "x r" 'intero-restart))
+  (evil-leader/set-key "x r" 'intero-restart)
+  (with-eval-after-load 'intero
+    (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
 
 (use-package haskell-mode
   :defer t
