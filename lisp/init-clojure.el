@@ -118,6 +118,9 @@ Opens a new buffer with the result."
             (put-clojure-indent 'extend-freeze 2)
             (put-clojure-indent 'extend-thaw 1)
 
+            ;; Indentation for duct
+            (put-clojure-indent 'context 2)
+
             (define-clojure-indent
               (alet 'defun)
               (mlet 'defun))
