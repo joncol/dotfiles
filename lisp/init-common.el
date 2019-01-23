@@ -570,6 +570,7 @@
   (evil-leader/set-key "v b" 'magit-blame)
   (setq magit-blame-disabled-modes '(fci-mode))
   (bind-key "q" #'jco/magit-kill-buffers magit-status-mode-map)
+  (setq magit-fetch-arguments '("--prune"))
   (unless (display-graphic-p)
     (remove-hook 'magit-section-highlight-hook 'magit-section-highlight)
     (remove-hook 'magit-section-highlight-hook 'magit-diff-highlight))
