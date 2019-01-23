@@ -689,7 +689,11 @@
                       (t (not (sp-point-in-string-or-comment)))))))
   (sp-with-modes sp-clojure-modes
     (sp-local-pair "'" nil :actions nil)
-    (sp-local-pair "`" nil :actions nil)))
+    (sp-local-pair "`" nil :actions nil))
+  (evil-leader/set-key ")" 'sp-forward-slurp-sexp)
+  (evil-leader/set-key "(" 'sp-backward-slurp-sexp)
+  (evil-leader/set-key "}" 'sp-forward-barf-sexp)
+  (evil-leader/set-key "{" 'sp-backward-barf-sexp))
 
 (use-package speed-type
   :defer t)
