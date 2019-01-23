@@ -15,6 +15,13 @@ you've cloned this repo to `~/code/dotfiles`):
 cd ~/code/dotfiles/homedir
 stow -t ~ *
 ```
+
+Or, standing directly in the repository root:
+
+```bash
+stow -t ~ homedir
+```
+
 To uninstall all symbolic links to home directory configuration files:
 
 ```bash
