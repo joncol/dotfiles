@@ -137,10 +137,12 @@
 (use-package ahk-mode)
 
 (use-package all-the-icons-dired
+  :if (display-graphic-p)
   :config
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 (use-package all-the-icons-ivy
+  :if (display-graphic-p)
   :config
   (all-the-icons-ivy-setup))
 
