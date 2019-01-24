@@ -845,8 +845,11 @@ Example: `helloWorld` becomes `Hello world`."
               (exec-path-from-shell-initialize))))
 
 (setq large-file-warning-threshold nil)
+
 (setq safe-local-variable-values
-      '((org-archive-location . "::* Archived Tasks")))
+      '((cider-ns-refresh-after-fn . "integrant.repl/resume")
+        (cider-ns-refresh-before-fn . "integrant.repl/suspend")
+        (org-archive-location . "::* Archived Tasks")))
 
 (put 'erase-buffer 'disabled nil)
 
