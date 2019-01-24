@@ -60,6 +60,7 @@
 (require 'init-tab)
 (when (display-graphic-p)
   (require 'init-theme))
+(require 'init-modeline)
 (require 'init-utils)
 (require 'init-wspace)
 (require 'init-yas)
