@@ -19,7 +19,7 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _u_til _v_cs _w_indow"
+menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _t_ext _u_til _v_cs _w_indow"
   ("a" jco/hydra-app/body)
   ("b" counsel-bookmark)
   ("c" jco/hydra-config/body)
@@ -30,6 +30,7 @@ menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _u_t
   ;; ("s" jco/hydra-swoop/body)
   ("s" jco/hydra-swiper/body)
   ("S" jco/hydra-snippets/body)
+  ("t" jco/hydra-text/body)
   ("u" jco/hydra-util/body)
   ("v" jco/hydra-vcs/body)
   ("w" jco/hydra-window/body))
@@ -96,6 +97,11 @@ swiper: _s_wiper _a_ll _m_ulti"
   ("s" swiper)
   ("a" swiper-all)
   ("m" swiper-multi))
+
+(defhydra jco/hydra-text (:color teal :hint nil)
+  "
+text: _c_lean-trailing-ws"
+  ("c" ethan-wspace-clean-all))
 
 (defhydra jco/hydra-util (:color teal :hint nil)
   "
