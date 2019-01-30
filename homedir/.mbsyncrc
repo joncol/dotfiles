@@ -59,59 +59,6 @@ Channel gmail-trash
 # Channel gmail-all
 Channel gmail-starred
 
-# Kolab Now account
-
-IMAPAccount kolabnow
-Host imap.kolabnow.com
-User jonas.collberg@mykolab.com
-PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.passwd/kolabnow.gpg"
-AuthMechs LOGIN
-SSLType IMAPS
-SSLVersions TLSv1.2
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-IMAPStore kolabnow-remote
-Account kolabnow
-
-MaildirStore kolabnow-local
-Path ~/.mail/kolabnow/
-Inbox ~/.mail/kolabnow/Inbox
-
-Channel kolabnow-inbox
-Master :kolabnow-remote:
-Slave :kolabnow-local:
-Patterns "INBOX"
-Create Both
-Expunge Both
-SyncState *
-
-Channel kolabnow-trash
-Master :kolabnow-remote:"Trash"
-Slave :kolabnow-local:"Trash"
-Create Both
-Expunge Both
-SyncState *
-
-Channel kolabnow-spam
-Master :kolabnow-remote:"Spam"
-Slave :kolabnow-local:"Spam"
-Create Both
-Expunge Both
-SyncState *
-
-Channel kolabnow-sent
-Master :kolabnow-remote:"Sent"
-Slave :kolabnow-local:"Sent"
-Create Both
-Expunge Both
-SyncState *
-
-Group kolabnow
-Channel kolabnow-inbox
-Channel kolabnow-sent
-# Channel kolabnow-trash
-# Channel kolabnow-spam
-
 # Zimpler Gmail account
 
 IMAPAccount zimpler
