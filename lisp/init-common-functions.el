@@ -42,7 +42,7 @@
   "Check whether at the office.
 If PRINT-MESSAGE is true, a message will be printed indicating the result."
   (interactive "P")
-  (let ((result (member system-name '("jco-debian-zimpler"))))
+  (let ((result (member system-name '("jco-thinkpad"))))
     (if print-message
         (message (if result
                      "You're at the office"
