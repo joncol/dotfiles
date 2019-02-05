@@ -334,10 +334,6 @@
 
 (use-package ghub)
 
-(use-package gist
-  :config
-  (setq gist-view-gist t))
-
 (use-package gradle-mode
   :config
   (add-hook 'java-mode-hook
@@ -904,6 +900,10 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package which-key
   :config
   (which-key-mode))
+
+(use-package yagist
+  :config
+  (setq yagist-view-gist t))
 
 (evil-leader/set-key "x o" 'occur)
 

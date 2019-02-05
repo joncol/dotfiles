@@ -112,7 +112,7 @@ util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_
   ("b" (lambda () (interactive) (jco/insert-current-filename t)))
   ("d" jco/insert-date)
   ("t" jco/insert-timestamp)
-  ("g" gist-region-or-buffer))
+  ("g" yagist-region-or-buffer))
 
 (defhydra jco/hydra-kurecolor
   (:color pink :hint nil
