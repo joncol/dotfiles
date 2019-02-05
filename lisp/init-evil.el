@@ -172,12 +172,14 @@ Useful for REPL windows."
 
 (evil-leader/set-key "i n" '(lambda ()
                               (interactive)
-                              (forward-char)
+                              (when (eq evil-state 'normal)
+                                (forward-char))
                               (insert user-full-name)))
 
 (evil-leader/set-key "i m" '(lambda ()
                               (interactive)
-                              (forward-char)
+                              (when (eq evil-state 'normal)
+                                (forward-char))
                               (insert user-mail-address)))
 
 (evil-leader/set-key "e f" 'jco/what-face)
