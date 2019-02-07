@@ -30,9 +30,9 @@ if ($laptop_name) {
     `xrandr --output $laptop_name --auto`;
 }
 
-if ($dp1_name && $dp1_res eq "3840x2160") {
+if ($dp1_name && $dp1_res eq "3440x1440") {
     say "Found work screen: " . $dp1_name;
-    `xrandr --output $dp1_name --mode 3840x2160 --right-of $laptop_name`;
+    `xrandr --output $dp1_name --mode 3440x1440 --right-of $laptop_name`;
     $turn_off_laptop_screen = 1;
     goto FINISH;
 }

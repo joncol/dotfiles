@@ -2,8 +2,8 @@
 
 #ifndef HEIGHT
 #define FONT_SIZE 14
-#elif HEIGHT >= 2160
-#define FONT_SIZE 15.5
+#elif HEIGHT >= 1440
+#define FONT_SIZE 13
 #else
 #define FONT_SIZE 12
 #endif
