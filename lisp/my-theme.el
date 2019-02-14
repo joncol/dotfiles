@@ -16,21 +16,25 @@
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
-      'doom-city-lights
-      ;; 'doom-dracula
+      ;; 'doom-city-lights
+      'doom-dracula
       ;; 'doom-molokai
       ;; 'doom-opera-light
       ;; 'doom-solarized-light
       ;; 'doom-vibrant
+      ;; 'doom-sourcerer
       ;; 'eink
       ;; 'gotham
       ;; 'github-modern
       ;; 'gruvbox-dark-hard
       ;; 'hemisu-dark
       ;; 'hemisu-light
+      ;; 'kaolin-bubblegum
       ;; 'kaolin-dark
       ;; 'kaolin-eclipse
+      ;; 'kaolin-galaxy
       ;; 'kaolin-ocean
+      ;; 'kaolin-valley-dark
       ;; 'minimal
       ;; 'mustang
       ;; 'nubox-dark
