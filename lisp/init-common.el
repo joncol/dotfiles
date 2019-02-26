@@ -385,7 +385,6 @@
 (use-package evil-magit
   :after magit
   :config
-  (setq magit-rebase-arguments '("--autosquash" "--autostash"))
   (setq evil-motion-state-modes
         (append '(magit-submodule-list-mode) evil-motion-state-modes))
   (add-hook 'magit-mode-hook
