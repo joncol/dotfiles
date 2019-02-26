@@ -24,3 +24,7 @@ hideCampaign = true
 
 [pretty]
 lola = %h%C(red)%d%Creset% s
+
+[rebase]
+autosquash = true
+autostash = true
