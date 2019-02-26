@@ -707,6 +707,11 @@
 (use-package speed-type
   :defer t)
 
+(use-package sqlup-mode
+  :config
+  (add-hook 'sql-mode-hook 'sqlup-mode)
+  (add-hook 'sql-interactive-mode-hook 'sqlup-mode))
+
 (use-package string-inflection
   :config
   (evil-leader/set-key "s i" 'string-inflection-all-cycle)
