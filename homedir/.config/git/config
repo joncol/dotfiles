@@ -28,3 +28,6 @@ lola = %h%C(red)%d%Creset% s
 [rebase]
 autosquash = true
 autostash = true
+
+[remote "origin"]
+prune = true
