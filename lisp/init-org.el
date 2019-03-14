@@ -149,7 +149,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    '((ditaa . t)
      (dot . t)
      (latex . t)
-     (plantuml . t)))
+     (plantuml . t)
+     (shell . t)))
   (setq org-confirm-babel-evaluate nil)
   (if (eq system-type 'windows-nt)
       (setq org-ditaa-jar-path "c:/tools/misc/ditaa.jar"
