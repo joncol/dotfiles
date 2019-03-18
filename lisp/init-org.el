@@ -60,7 +60,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                           path
                                           (or desc "video"))))))))
 
-(use-package ox-reveal
+(use-package org-re-reveal
   :after org)
 
 (defun jco/ensure-todo-org-header ()
@@ -183,7 +183,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-mobile-directory (concat org-directory "/mobile"))
   (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
   (setq org-mobile-force-id-on-agenda-items nil)
-  (load-library "ox-reveal")
   (auto-fill-mode)
   (global-unset-key (kbd "C-x C-v"))
   (jco/define-bindings org-mode-map
