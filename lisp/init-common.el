@@ -527,6 +527,9 @@
   :config
   (setq rtags-display-result-backend 'ivy))
 
+(use-package ix
+  :defer t)
+
 (use-package json-mode
   :defer t)
 
