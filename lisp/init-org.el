@@ -216,7 +216,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-clock-persist 'history)
   (add-hook 'org-mode-hook 'org-clock-persistence-insinuate)
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
-  (add-hook 'message-mode-hook 'turn-on-orgstruct++)
   (require 'ob-clojure))
 
 (jco/define-bindings global-map
