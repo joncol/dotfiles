@@ -121,6 +121,8 @@ Opens a new buffer with the result."
             ;; Indentation for duct
             (put-clojure-indent 'context 2)
 
+            (put-clojure-indent 'wcar 1)
+
             (define-clojure-indent
               (alet 'defun)
               (mlet 'defun))
