@@ -3,6 +3,9 @@
 [user]
 name = Jonas Collberg
 
+[github]
+user = joncol
+
 [includeIf "gitdir:/home/jco/code/"]
 path = config.code
 
