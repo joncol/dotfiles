@@ -32,6 +32,7 @@
                 sh-mode-hook
                 sml-mode-hook
                 sql-mode-hook
+                terraform-mode-hook
                 tex-mode-hook
                 toml-mode-hook
                 yaml-mode-hook))
