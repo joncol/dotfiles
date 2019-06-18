@@ -76,3 +76,8 @@ dev_list = zimpler_account.INBOX:contain_to("dev@zimpler.net") +
            zimpler_account.INBOX:contain_to("dev@zimpler.com") +
            zimpler_account.INBOX:contain_to("dev@pugglepay.com")
 dev_list:mark_seen()
+
+signicat_errors = zimpler_account.INBOX:contain_from("noreply@signicat.com") *
+                  zimpler_account.INBOX:contain_subject("Incident: Signicat services unstable")
+
+signicat_errors:delete_messages()
