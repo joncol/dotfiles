@@ -251,6 +251,10 @@
      (set-face-background 'evil-search-highlight-persist-highlight-face
                           "DarkOrange4")))
 
+  (minimal-light
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "LightBlue"))
+
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
    (with-eval-after-load 'smartparens
