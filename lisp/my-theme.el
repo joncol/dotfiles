@@ -17,7 +17,7 @@
       ;; 'cyberpunk
       ;; 'darktooth
       ;; 'doom-city-lights
-      'doom-dracula
+      ;; 'doom-dracula
       ;; 'doom-molokai
       ;; 'doom-opera-light
       ;; 'doom-solarized-light
@@ -36,6 +36,7 @@
       ;; 'kaolin-ocean
       ;; 'kaolin-valley-dark
       ;; 'minimal
+      'minimal-light
       ;; 'mustang
       ;; 'nubox-dark
       ;; 'nubox-light
