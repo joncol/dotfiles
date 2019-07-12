@@ -645,6 +645,9 @@
   (recentf-mode)
   (setq recentf-max-menu-items 25))
 
+(use-package rust-mode
+  :defer t)
+
 (defun sp--org-skip-markup (ms mb me)
   (save-excursion
     (and (progn
