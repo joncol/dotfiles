@@ -252,6 +252,7 @@
                           "DarkOrange4")))
 
   (minimal-light
+   (set-face-background 'region "LightBlue")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
 
