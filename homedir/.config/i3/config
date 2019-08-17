@@ -201,7 +201,7 @@ bindsym $mod+p exec ~/.config/i3/goto_project.sh
 bindsym XF86MonBrightnessUp exec light -A 3
 bindsym XF86MonBrightnessDown exec light -U 3
 
-exec_always --no-startup-id ~/.local/bin/setup_screen.pl
+exec_always --no-startup-id sleep 2 && ~/.local/bin/setup_screen.pl
 exec_always ~/.local/bin/setup_mouse
 exec_always ~/.config/i3/apply_xrdb_settings.sh
 
