@@ -123,6 +123,8 @@
 
 (autoload 'rfcview-mode "rfcview" nil t)
 
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
+
 (use-package ace-isearch
   :disabled t
   :config
