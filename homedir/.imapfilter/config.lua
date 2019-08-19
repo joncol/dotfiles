@@ -39,6 +39,10 @@ honeybadger_invoices = zimpler_account.INBOX:contain_from("support@honeybadger.i
 
 honeybadger_invoices:delete_messages()
 
+honeybadger_digest = zimpler_account.INBOX:contain_from("support@honeybadger.io") *
+                     zimpler_account.INBOX:contain_subject("Digest from Honeybadger")
+honeybadger_digest:mark_seen()
+
 stackdriver_alerts = zimpler_account.INBOX:contain_from("Stackdriver Alerts")
 stackdriver_alerts:delete_messages()
 
@@ -81,3 +85,8 @@ signicat_errors = zimpler_account.INBOX:contain_from("noreply@signicat.com") *
                   zimpler_account.INBOX:contain_subject("Incident: Signicat services unstable")
 
 signicat_errors:delete_messages()
+
+tink_statuspage = zimpler_account.INBOX:contain_from("noreply@statuspage.io") *
+                  zimpler_account.INBOX:contain_subject("Tink Enterprise Incident")
+
+tink_statuspage:mark_seen()
