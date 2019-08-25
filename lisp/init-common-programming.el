@@ -18,6 +18,7 @@
                 lua-mode-hook
                 markdown-mode-hook
                 nxml-mode-hook
+                octave-mode-hook
                 org-mode-hook
                 perl-mode-hook
                 python-mode-hook
