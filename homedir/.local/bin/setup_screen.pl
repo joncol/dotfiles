@@ -17,7 +17,7 @@ my $left_home_screen = 0;
 
 # Laptop screen
 my ($laptop_name, undef) = get_screen "eDP-?1";
-my ($dp1_name, $dp1_res) = get_screen "DP-?1-1";
+my ($dp1_n_name, $dp1_n_res) = get_screen "DP-?1-[12]";
 my ($hdmi2_name, undef) = get_screen "HDMI2";
 my ($dp_n_name, undef) = get_screen "DP-\\d";
 my ($dvid_n_name, undef) = get_screen "DVI-D-\\d";
@@ -30,9 +30,9 @@ if ($laptop_name) {
     `xrandr --output $laptop_name --auto`;
 }
 
-if ($dp1_name && $dp1_res eq "3440x1440") {
-    say "Found work screen: " . $dp1_name;
-    `xrandr --output $dp1_name --mode 3440x1440 --right-of $laptop_name`;
+if ($dp1_n_name && $dp1_n_res eq "3440x1440") {
+    say "Found work screen: " . $dp1_n_name;
+    `xrandr --output $dp1_n_name --mode 3440x1440 --right-of $laptop_name`;
     $turn_off_laptop_screen = 1;
     goto FINISH;
 }
@@ -44,12 +44,12 @@ if ($hdmi2_name) {
     $turn_off_laptop_screen = 1;
 }
 
-if ($dp1_name && $dp1_res eq "1920x1200") {
-    say "Found right home screen: " . $dp1_name;
+if ($dp1_n_name && $dp1_n_res eq "1920x1200") {
+    say "Found right home screen: " . $dp1_n_name;
     if ($left_home_screen) {
-        `xrandr --output $dp1_name --auto --right-of $hdmi2_name`;
+        `xrandr --output $dp1_n_name --auto --right-of $hdmi2_name`;
     } else {
-        `xrandr --output $dp1_name --auto`;
+        `xrandr --output $dp1_n_name --auto`;
     }
     $turn_off_laptop_screen = 1;
 }
