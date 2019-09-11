@@ -102,6 +102,10 @@
           (lambda ()
             (setq evil-shift-width 2)))
 
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (setq evil-shift-width 2)))
+
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
   "Enable evil motion state."
