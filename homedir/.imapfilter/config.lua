@@ -90,3 +90,8 @@ tink_statuspage = zimpler_account.INBOX:contain_from("noreply@statuspage.io") *
                   zimpler_account.INBOX:contain_subject("Tink Enterprise Incident")
 
 tink_statuspage:mark_seen()
+
+aws = zimpler_account.INBOX:contain_from("Amazon Web Services") +
+      zimpler_account.INBOX:contain_from("no-reply-aws@amazon.com") +
+      zimpler_account.INBOX:contain_from("aws-marketing-email-replies@amazon.com")
+aws:mark_seen()
