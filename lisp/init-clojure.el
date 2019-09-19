@@ -8,9 +8,17 @@
 
 (require 'init-lisp-common)
 
+(defun my-switch-to-repl ()
+  "Switch to REPL buffer and move the window to the bottom."
+  (interactive)
+  (cider-switch-to-repl-buffer)
+  (jco/move-window-to-bottom))
+
 (use-package cider
   :defer t
-  :bind (:map clojure-mode-map
+  :bind (:map cider-mode-map
+         ("C-c C-z" . my-switch-to-repl)
+         :map clojure-mode-map
          ("M-." . cider-find-dwim))
   :config
   (setq cider-show-error-buffer nil))
