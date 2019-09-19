@@ -15,6 +15,7 @@ end
 
 set -x EDITOR vim
 set -x LESS "-Ri"
+set -U FZF_LEGACY_KEYBINDINGS 0
 
 eval (python -m virtualfish)
 
