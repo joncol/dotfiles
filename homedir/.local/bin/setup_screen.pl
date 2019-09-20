@@ -49,7 +49,8 @@ if ($dp1_n_name && $dp1_n_res eq "1920x1200") {
     if ($left_home_screen) {
         `xrandr --output $dp1_n_name --auto --right-of $hdmi2_name`;
     } else {
-        `xrandr --output $dp1_n_name --auto`;
+        `xrandr --output $dp1_n_name --off`;
+        `xrandr --output $dp1_n_name --auto --right-of $laptop_name`;
     }
     $turn_off_laptop_screen = 1;
 }
@@ -67,7 +68,7 @@ if ($dvid_n_name) {
     if ($left_home_screen) {
         `xrandr --output $dvid_n_name --auto --right-of $dp_n_name`;
     } else {
-        `xrandr --output $dvid_n_name --auto`;
+        `xrandr --output $dvid_n_name --auto --right-of $laptop_name`;
     }
 }
 
