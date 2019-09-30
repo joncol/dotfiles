@@ -651,6 +651,8 @@
 (use-package recentf
   :defer t
   :config
+  (add-to-list 'recentf-exclude "/\\.emacs\\.d/elpa/")
+  (add-to-list 'recentf-exclude "/\\.elfeed/index")
   (recentf-mode)
   (setq recentf-max-menu-items 25))
 
