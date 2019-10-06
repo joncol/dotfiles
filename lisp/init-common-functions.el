@@ -35,7 +35,7 @@
 (defun jco/update-config ()
   "Get the latest config from source control."
   (shell-process-pushd user-emacs-directory)
-  (magit-git-pull "origin/master" nil)
+  (magit-pull-from-pushremote nil)
   (shell-process-popd "1"))
 
 (defun jco/at-office-p (&optional print-message)
