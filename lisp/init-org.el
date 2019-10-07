@@ -149,6 +149,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    '((ditaa . t)
      (dot . t)
      (latex . t)
+     (octave . t)
      (plantuml . t)
      (shell . t)))
   (setq org-confirm-babel-evaluate nil)
