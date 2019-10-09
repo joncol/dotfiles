@@ -495,6 +495,9 @@
   :config
   (evil-leader/set-key "x m" #'imenu-anywhere))
 
+(use-package insert-shebang
+  :defer t)
+
 (use-package ivy
   :bind (("C-s" . swiper)
          ("C-x C-b" . ivy-switch-buffer))
