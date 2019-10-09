@@ -486,7 +486,7 @@
 
 (use-package help-fns+
   :disabled t
-  :defer 1)
+  :defer t)
 
 ;; To get colors in html export of org-mode code snippets.
 (use-package htmlize)
