@@ -24,6 +24,9 @@
 (use-package jedi-core
   :defer t)
 
+(use-package ein
+  :defer t)
+
 (use-package company-jedi
   :if (not (eq system-type 'windows-nt))
   :defer t

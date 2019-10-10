@@ -55,10 +55,12 @@ xkcd/
 
 .goutputstream*
 
+/.org-id-locations
+/elpy/
 /lisp/my-theme.el
 /lisp/workbench.xmi
 /org-gcal/
+/request/
 /straight/
 /transient/
 /var/pcache/gh/gh-gist-api/joncol
-/.org-id-locations
