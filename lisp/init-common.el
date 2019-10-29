@@ -186,6 +186,7 @@
   (setq avy-case-fold-search nil))
 
 (use-package bookmark+
+  :disabled t
   :straight t
   :ensure nil
   :defer t
@@ -251,6 +252,7 @@
   (push ".*" desktop-clear-preserve-buffers))
 
 (use-package dired+
+  :disabled t
   :straight t
   :ensure nil
   :after dired
@@ -898,6 +900,7 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package iedit)
 
 (use-package info+
+  :disabled t
   :straight t
   :ensure nil
   :after info)
