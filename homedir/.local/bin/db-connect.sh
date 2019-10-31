@@ -21,8 +21,16 @@ if [ -z "$DB_PASSWORD" ]; then
     exit 1
 fi
 
+DB_USER=$(ze-read $1 $2 DB_USER | awk '{print $4}')
+if [ -z "$DB_USER" ]; then
+    DB_USER=$(ze-read $1 $2 POSTGRES_USER | awk '{print $4}')
+fi
+
+if [ -z "$DB_USER" ]; then
+    DB_USER=$1_$2
+fi
+
 DB_PORT=5432
-DB_USER=$1_$2
 LOCAL_PORT=9004
 
 ssh -f -L $LOCAL_PORT:$DB_HOST:$DB_PORT $TUNNEL_HOST sleep 10
