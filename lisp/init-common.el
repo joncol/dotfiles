@@ -913,7 +913,11 @@ Example: `helloWorld` becomes `Hello world`."
                     "zimpler.com"
                   "gmail.com"))))
 
-(use-package terraform-mode)
+(use-package terraform-mode
+  :config
+  (add-hook 'terraform-mode-hook
+            (lambda ()
+              (setq evil-shift-width terraform-indent-level))))
 
 (use-package try)
 
