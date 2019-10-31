@@ -103,7 +103,10 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
            :empty-lines-before 0)
           ("a" "Appointment" entry (file  "~/Sync/emacs/gcal_zimpler.org" )
-           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")))
+           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
+          ("w" "Web" entry (file+headline "web.org" "_Incoming")
+           "* %:description\n  %:initial\n\n  Source: %:link\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+           :empty-lines-before 0)))
   :config
   (setq org-src-fontify-natively t)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -237,6 +240,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (evil-leader/set-key "o n" (jco/find-org-file "notes.org"))
 (evil-leader/set-key "o r" (jco/find-org-file "reading.org"))
 (evil-leader/set-key "o w" (jco/find-org-file "work.org"))
+(evil-leader/set-key "o W" (jco/find-org-file "web.org"))
 (evil-leader/set-key "o p" (jco/find-org-file "todo.org"
                                               (projectile-project-root)))
 

@@ -793,7 +793,8 @@ Example: `helloWorld` becomes `Hello world`."
            (not (daemonp)))
   :defer 1
   :config
-  (server-start))
+  (server-start)
+  (require 'org-protocol))
 
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
