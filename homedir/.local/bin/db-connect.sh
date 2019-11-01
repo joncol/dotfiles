@@ -6,7 +6,7 @@ if [ "$#" -ne 2 ]; then
 fi
 
 set -euo pipefail
-TUNNEL_HOST="$USER@bastion.zimpler.net"
+TUNNEL_HOST="bastion.zimpler.net"
 
 DB_DATABASE=$1_$2
 DB_HOST=$1-$2-db-replica.czldyizapuwt.eu-central-1.rds.amazonaws.com
