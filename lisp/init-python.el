@@ -18,7 +18,6 @@
     (remove-hook 'elpy-modules 'elpy-module-flymake)
     (remove-hook 'elpy-modules 'elpy-module-yasnippet)
     (remove-hook 'elpy-mode-hook 'elpy-module-highlight-indentation))
-  :config
   (setq elpy-rpc-backend "jedi"))
 
 (use-package jedi-core
