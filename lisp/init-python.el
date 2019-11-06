@@ -9,6 +9,9 @@
 (with-eval-after-load 'python
   (setq python-shell-prompt-detect-failure-warning nil))
 
+(use-package py-autopep8
+  :defer t)
+
 (use-package elpy
   :defer t
   ;; :init
@@ -41,6 +44,8 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
+            (py-autopep8-enable-on-save)
+            (evil-leader/set-key "ap" 'py-autopep8-buffer)
             (when (not (eq system-type 'windows-nt))
               (require 'jedi-core)
               (jedi-mode)
