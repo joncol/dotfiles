@@ -13,6 +13,10 @@ if test -d ~/.cargo/bin
     set -x PATH $PATH ~/.cargo/bin
 end
 
+if test -d ~/.luarocks/bin
+    set -x PATH $PATH ~/.luarocks/bin
+end
+
 set -x EDITOR vim
 set -x LESS "-Ri"
 set -U FZF_LEGACY_KEYBINDINGS 0
