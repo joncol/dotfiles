@@ -414,6 +414,8 @@
 
 (use-package f)
 
+(use-package fennel-mode)
+
 (use-package fireplace)
 
 (use-package flycheck
