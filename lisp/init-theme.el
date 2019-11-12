@@ -364,14 +364,20 @@
    (set-face-background 'region "#f1dddc")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#b8d8e0")
    (with-eval-after-load 'mu4e
-     (set-face-background 'mu4e-header-highlight-face "#b8d8e0")))
+     (set-face-background 'mu4e-header-highlight-face "#b8d8e0"))
+   (custom-set-faces
+    '(sp-show-pair-match-face ((t (:box nil))))
+    '(font-lock-function-name-face ((t (:weight bold :box nil))))))
 
   (tao-yin
    (set-face-background 'region "#4a3f51")
    (setq jco/cursor-color "#e0dcbe")
    (set-face-background 'hl-line "gray16")
    (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "MidnightBlue")))
+                        "MidnightBlue")
+   (custom-set-faces
+    '(sp-show-pair-match-face ((t (:box nil))))
+    '(font-lock-function-name-face ((t (:weight bold :box nil)))))))
 
 (when (not (display-graphic-p))
   ;; Transparent background in console mode.
