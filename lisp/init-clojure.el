@@ -21,6 +21,7 @@
          :map clojure-mode-map
          ("M-." . cider-find-dwim))
   :config
+  (setq cider-repl-display-help-banner nil)
   (setq cider-show-error-buffer nil)
   (setq cider-auto-select-test-report-buffer nil))
 
