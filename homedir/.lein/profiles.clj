@@ -1,6 +1,7 @@
 {:user {:dependencies [#_[org.clojure/clojure "1.9.0"]
                        #_[org.clojure/tools.trace "0.7.9"]
-                       #_[spyscope "0.1.7-SNAPSHOT"]]
+                       #_[spyscope "0.1.7-SNAPSHOT"]
+                       [vvvvalvalval/scope-capture "0.3.2"]]
         :injections [#_(require 'spyscope.core)
                      #_(use 'clojure.repl)
                      #_(use 'no.disassemble)]
