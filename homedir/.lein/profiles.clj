@@ -6,6 +6,6 @@
                      #_(use 'no.disassemble)]
         :plugins [#_[lein-nodisassemble "0.1.3"]
                   [lein-ancient "0.6.15"]
-                  [lein-cljfmt "0.5.7"]
-                  [lein-kibit "0.1.6"]
+                  [lein-cljfmt "0.6.5"]
+                  [lein-kibit "0.1.8"]
                   #_[venantius/ultra "0.5.2"]]}}
