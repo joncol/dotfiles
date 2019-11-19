@@ -41,6 +41,8 @@
                   cider-classpath-mode)
                 evil-motion-state-modes)))
 
+(use-package flycheck-clj-kondo)
+
 (use-package kibit-helper)
 
 (defun nrepl-reset ()
