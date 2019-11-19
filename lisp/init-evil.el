@@ -61,6 +61,7 @@
                       (eww-mode                 . emacs)
                       (fireplace-mode           . emacs)
                       (flycheck-error-list-mode . emacs)
+                      (forge-pullreq-list-mode  . emacs)
                       (git-commit-mode          . insert)
                       (git-rebase-mode          . emacs)
                       (ivy-occur-mode           . emacs)

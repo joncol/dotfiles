@@ -57,6 +57,7 @@ xkcd/
 
 /.org-id-locations
 /elpy/
+/forge-database.sqlite
 /lisp/my-theme.el
 /lisp/workbench.xmi
 /org-gcal/

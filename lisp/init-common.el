@@ -431,6 +431,16 @@
 (use-package flycheck-rtags
   :defer t)
 
+(use-package forge
+  :config
+  (add-hook 'forge-post-mode-hook
+            (lambda ()
+              (fci-mode)
+              (ethan-wspace-mode -1)
+              (turn-off-auto-fill)
+              (setq truncate-lines nil)
+              (setq word-wrap t))))
+
 (use-package fortune
   :if (not (eq system-type 'windows-nt))
   :disabled t
