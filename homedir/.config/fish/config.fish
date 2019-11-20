@@ -17,6 +17,14 @@ if test -d ~/.luarocks/bin
     set -x PATH $PATH ~/.luarocks/bin
 end
 
+if test -d /usr/lib/jvm/java-8-graalvm/lib/installer/bin
+    set -x PATH $PATH /usr/lib/jvm/java-8-graalvm/lib/installer/bin
+end
+
+if test -d /usr/lib/jvm/java-8-graalvm/bin
+    set -x PATH /usr/lib/jvm/java-8-graalvm/bin $PATH
+end
+
 set -x EDITOR vim
 set -x LESS "-Ri"
 set -U FZF_LEGACY_KEYBINDINGS 0
