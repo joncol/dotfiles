@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name:Joker header
+# key: joker
+# --
+#!/usr/bin/env joker
+;; #-*- mode: clojure -*-
