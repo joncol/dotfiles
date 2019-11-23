@@ -1,3 +1,7 @@
 {:width 80
- :fn-map {"fn" [:fn {:style :respect-nl}]
-          "use-fixtures" :arg1}}
+ :fn-map {"apply" :none
+          "testing" :arg1-body
+          "use-fixtures" [:arg1 {:style :respect-nl}]}
+ :map {:comma? true
+       :indent-only? true}
+ :search-config? true}
