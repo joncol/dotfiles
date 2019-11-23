@@ -1,0 +1,3 @@
+{:width 80
+ :fn-map {"fn" [:fn {:style :respect-nl}]
+          "use-fixtures" :arg1}}
