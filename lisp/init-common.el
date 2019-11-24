@@ -186,8 +186,8 @@
   (setq avy-case-fold-search nil))
 
 (use-package bookmark+
-  :disabled t
-  :straight t
+  :straight (bookmark-plus :type git :host github
+                           :repo "emacsmirror/bookmark-plus")
   :ensure nil
   :defer t
   :config
@@ -252,8 +252,7 @@
   (push ".*" desktop-clear-preserve-buffers))
 
 (use-package dired+
-  :disabled t
-  :straight t
+  :straight (dired-plus :type git :host github :repo "emacsmirror/dired-plus")
   :ensure nil
   :after dired
   :config
@@ -913,8 +912,7 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package iedit)
 
 (use-package info+
-  :disabled t
-  :straight t
+  :straight (info-plus :type git :host github :repo "emacsmirror/info-plus")
   :ensure nil
   :after info)
 
