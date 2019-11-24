@@ -142,6 +142,10 @@
   :init
   (global-set-key [remap other-window] 'ace-window))
 
+(use-package adoc-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode)))
+
 (use-package aggressive-indent
   :config
   (add-to-list

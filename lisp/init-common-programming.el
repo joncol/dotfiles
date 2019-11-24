@@ -1,6 +1,7 @@
 ;;; Common setup for various programming modes
 
-(dolist (hook '(c-mode-common-hook
+(dolist (hook '(adoc-mode-hook
+                c-mode-common-hook
                 clojure-mode-hook
                 conf-unix-mode-hook
                 cmake-mode-hook
