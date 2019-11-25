@@ -40,7 +40,6 @@ the namespace in the Clojure source buffer."
   (setq evil-motion-state-modes
         (append '(cider-docview-mode
                   cider-popup-buffer-mode
-                  cider-stacktrace-mode
                   cider-inspector-mode
                   cider-classpath-mode)
                 evil-motion-state-modes)))
@@ -178,34 +177,36 @@ Opens a new buffer with the result."
 
 (add-hook 'nrepl-connected-hook #'jco/move-window-to-bottom)
 
+(defun bind-windmove-keys (keymap)
+  "Apply windmove key bindings to KEYMAP."
+  (bind-keys :map keymap
+    ("C-w h"   . windmove-left)
+    ("C-w j"   . windmove-down)
+    ("C-w k"   . windmove-up)
+    ("C-w l"   . windmove-right)
+    ("C-w C-h" . windmove-left)
+    ("C-w C-j" . windmove-down)
+    ("C-w C-k" . windmove-up)
+    ("C-w C-l" . windmove-right)))
+
 (add-hook 'cider-browse-ns-mode-hook
           (lambda ()
             ;; For some reason, `windmove-default-keybindings' doesn't work.
-            (bind-keys :map cider-browse-ns-mode-map
-                       ("C-w h"   . windmove-left)
-                       ("C-w j"   . windmove-down)
-                       ("C-w k"   . windmove-up)
-                       ("C-w l"   . windmove-right)
-                       ("C-w C-h" . windmove-left)
-                       ("C-w C-j" . windmove-down)
-                       ("C-w C-k" . windmove-up)
-                       ("C-w C-l" . windmove-right))))
+            (bind-windmove-keys cider-browse-ns-mode-map)))
+
+(add-hook 'cider-stacktrace-mode-hook
+          (lambda ()
+            ;; For some reason, `windmove-default-keybindings' doesn't work.
+            (bind-windmove-keys cider-stacktrace-mode-map)))
 
 (add-hook 'cider-test-report-mode-hook
           (lambda ()
             ;; For some reason, `windmove-default-keybindings' doesn't work.
+            (bind-windmove-keys cider-test-report-mode-map)
             (bind-keys :map cider-test-report-mode-map
-                       ("<tab>"     . forward-button)
-                       ("<backtab>" . backward-button)
-                       ("TAB"       . forward-button)
-                       ("C-w h"     . windmove-left)
-                       ("C-w j"     . windmove-down)
-                       ("C-w k"     . windmove-up)
-                       ("C-w l"     . windmove-right)
-                       ("C-w C-h"   . windmove-left)
-                       ("C-w C-j"   . windmove-down)
-                       ("C-w C-k"   . windmove-up)
-                       ("C-w C-l"   . windmove-right))))
+              ("<tab>"     . forward-button)
+              ("<backtab>" . backward-button)
+              ("TAB"       . forward-button))))
 
 (defun modify-syntax-entries ()
   "Do not treat valid identifier symbols as word separators."
