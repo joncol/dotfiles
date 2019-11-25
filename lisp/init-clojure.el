@@ -8,10 +8,12 @@
 
 (require 'init-lisp-common)
 
-(defun my-switch-to-repl ()
-  "Switch to REPL buffer and move the window to the bottom."
-  (interactive)
-  (cider-switch-to-repl-buffer)
+(defun my-switch-to-repl (&optional set-namespace)
+  "Switch to REPL buffer and move the window to the bottom.
+With a prefix arg SET-NAMESPACE sets the namespace in the REPL buffer to that of
+the namespace in the Clojure source buffer."
+  (interactive "P")
+  (cider-switch-to-repl-buffer set-namespace)
   (jco/move-window-to-bottom))
 
 (use-package cider
