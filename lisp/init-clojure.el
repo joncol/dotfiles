@@ -217,8 +217,13 @@ Opens a new buffer with the result."
   (modify-syntax-entry ?! "w")
   (modify-syntax-entry ?* "w"))
 
+(add-hook 'cider-mode-hook
+          (lambda ()
+            (cider-company-enable-fuzzy-completion)))
+
 (add-hook 'cider-repl-mode-hook
           (lambda ()
+            (cider-company-enable-fuzzy-completion)
             (modify-syntax-entries)
             (smartparens-mode)
             (turn-off-fci-mode)))
