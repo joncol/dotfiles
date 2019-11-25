@@ -91,6 +91,15 @@ Opens a new buffer with the result."
         (goto-char (point-max))
         (message (concat "No function named '" fn-name "' found"))))))
 
+(defun cljfmt-buffer ()
+  "Run `cljfmt --fix' on current buffer, after saving it."
+  (interactive)
+  (when (or (eq major-mode 'clojure-mode)
+            (eq major-mode 'clojurescript-mode))
+    (save-buffer)
+    (shell-command-to-string (format "cljfmt --fix %s" buffer-file-name))
+    (revert-buffer :ignore-auto :noconfirm)))
+
 (add-hook 'clojure-mode-hook
           (lambda ()
             (init-lisp-common)
@@ -142,6 +151,8 @@ Opens a new buffer with the result."
             (add-to-list 'clojure-align-binding-forms "m/mlet")
             (add-to-list 'clojure-align-binding-forms "m/alet")
             (add-to-list 'clojure-align-binding-forms "with-disposable")
+
+            (evil-leader/set-key "l" 'cljfmt-buffer)
 
             (dolist (m (list 'cider-repl-mode
                              'cider-test-report-mode-hook
