@@ -8,6 +8,8 @@
 
 (require 'init-lisp-common)
 
+(global-set-key (kbd "C-c M-s") #'cider-selector)
+
 (defun my-switch-to-repl (&optional set-namespace)
   "Switch to REPL buffer and move the window to the bottom.
 With a prefix arg SET-NAMESPACE sets the namespace in the REPL buffer to that of
