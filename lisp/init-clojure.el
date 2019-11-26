@@ -120,13 +120,6 @@ Opens a new buffer with the result."
 
             (define-key clojure-mode-map (kbd "M-;") #'jco/lisp-comment-dwim)
 
-            (defadvice cider-create-grimoire-buffer
-                (after grimoire-buffer-after activate compile)
-              "Enables closing the Grimoire buffer with q, for instance."
-
-              (with-current-buffer "*cider-grimoire*"
-                (evil-motion-state)))
-
             (put-clojure-indent 'GET 2)
             (put-clojure-indent 'POST 2)
             (put-clojure-indent 'PUT 2)
@@ -166,10 +159,7 @@ Opens a new buffer with the result."
                              'cider-test-report-mode-hook
                              'clojure-mode))
               (dolist (kv '(("h d" . cider-doc)
-                            ("h g" . cider-grimoire)
                             ("h d" . cider-doc)
-                            ("h g" . cider-grimoire)
-                            ("h G" . cider-grimoire-web)
                             ("h n" . cider-browse-ns)
                             ("t c" . cider-test-clear-highlights)
                             ("t t" . cider-test-run-test)
