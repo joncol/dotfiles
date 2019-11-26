@@ -10,21 +10,13 @@
 
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 
-(defun my-switch-to-repl (&optional set-namespace)
-  "Switch to REPL buffer and move the window to the bottom.
-With a prefix arg SET-NAMESPACE sets the namespace in the REPL buffer to that of
-the namespace in the Clojure source buffer."
-  (interactive "P")
-  (cider-switch-to-repl-buffer set-namespace)
-  (jco/move-window-to-bottom))
 
 (use-package cider
   :defer t
-  :bind (:map cider-mode-map
-         ("C-c C-z" . my-switch-to-repl)
-         :map clojure-mode-map
+  :bind (:map clojure-mode-map
          ("M-." . cider-find-dwim))
   :config
+  (advice-add 'cider-switch-to-repl-buffer :after #'jco/move-window-to-bottom)
   (setq cider-repl-display-help-banner nil)
   (setq cider-show-error-buffer nil)
   (setq cider-auto-select-test-report-buffer t)
