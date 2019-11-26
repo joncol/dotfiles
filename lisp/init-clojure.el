@@ -10,6 +10,17 @@
 
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 
+(defun create-test-report-window (&rest _)
+  "Create window to show test report buffer, if one exists.
+Place it to the right of the current window."
+  (if-let* ((buf (get-buffer cider-test-report-buffer)))
+      (let ((buffer-window (split-window (selected-window)
+                                         (/ (window-width) 2)
+                                         'right)))
+        (set-window-buffer buffer-window buf)
+        (display-buffer-record-window 'window buffer-window buf)
+        (set-window-prev-buffers buffer-window nil)
+        (select-window buffer-window))))
 
 (use-package cider
   :defer t
@@ -17,6 +28,8 @@
          ("M-." . cider-find-dwim))
   :config
   (advice-add 'cider-switch-to-repl-buffer :after #'jco/move-window-to-bottom)
+  (advice-add 'cider-test-show-report :before #'create-test-report-window)
+  (advice-add 'cider-test-execute :before #'create-test-report-window)
   (setq cider-repl-display-help-banner nil)
   (setq cider-show-error-buffer nil)
   (setq cider-auto-select-test-report-buffer t)
