@@ -63,6 +63,11 @@ the namespace in the Clojure source buffer."
     (forward-line rel-line-offset)
     (point)))
 
+(defun close-repl-window ()
+  "Close the current REPL window."
+  (cider-switch-to-repl-buffer)
+  (delete-window))
+
 (defun disassemble-clojure-fn ()
   "Helper function to disassemble a Clojure function.
 Opens a new buffer with the result."
@@ -220,7 +225,8 @@ Opens a new buffer with the result."
 
 (add-hook 'cider-mode-hook
           (lambda ()
-            (cider-company-enable-fuzzy-completion)))
+            (cider-company-enable-fuzzy-completion)
+            (advice-add 'cider-quit :before #'close-repl-window)))
 
 (add-hook 'cider-repl-mode-hook
           (lambda ()
