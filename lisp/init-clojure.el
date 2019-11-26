@@ -25,7 +25,7 @@ the namespace in the Clojure source buffer."
   :config
   (setq cider-repl-display-help-banner nil)
   (setq cider-show-error-buffer nil)
-  (setq cider-auto-select-test-report-buffer nil))
+  (setq cider-auto-select-test-report-buffer t))
 
 (use-package clj-refactor
   :after clojure-mode
