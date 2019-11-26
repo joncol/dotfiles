@@ -161,6 +161,7 @@ Opens a new buffer with the result."
               (dolist (kv '(("h d" . cider-doc)
                             ("h d" . cider-doc)
                             ("h n" . cider-browse-ns)
+                            ("h s" . cider-browse-spec-all)
                             ("t c" . cider-test-clear-highlights)
                             ("t t" . cider-test-run-test)
                             ("t n" . cider-test-run-ns-tests)
