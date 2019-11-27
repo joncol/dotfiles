@@ -260,7 +260,8 @@
   :ensure nil
   :after dired
   :config
-  (diredp-toggle-find-file-reuse-dir 1))
+  (diredp-toggle-find-file-reuse-dir 1)
+  (define-key dired-mode-map "\C-w" 'evil-window-map))
 
 (use-package direnv
   :config
