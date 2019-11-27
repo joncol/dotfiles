@@ -35,7 +35,7 @@ buffer already exists, don't create a new one."
   (setq cider-repl-display-help-banner nil)
   (setq cider-show-error-buffer nil)
   (setq cider-auto-select-test-report-buffer t)
-  (setq cider-test-show-report-on-success t))
+  (setq cider-test-show-report-on-success nil))
 
 (use-package clj-refactor
   :after clojure-mode
