@@ -183,32 +183,20 @@ Opens a new buffer with the result."
 
 (add-hook 'nrepl-connected-hook #'jco/move-window-to-bottom)
 
-(defun bind-windmove-keys (keymap)
-  "Apply windmove key bindings to KEYMAP."
-  (bind-keys :map keymap
-    ("C-w h"   . windmove-left)
-    ("C-w j"   . windmove-down)
-    ("C-w k"   . windmove-up)
-    ("C-w l"   . windmove-right)
-    ("C-w C-h" . windmove-left)
-    ("C-w C-j" . windmove-down)
-    ("C-w C-k" . windmove-up)
-    ("C-w C-l" . windmove-right)))
-
 (add-hook 'cider-browse-ns-mode-hook
           (lambda ()
             ;; For some reason, `windmove-default-keybindings' doesn't work.
-            (bind-windmove-keys cider-browse-ns-mode-map)))
+            (bind-window-keys cider-browse-ns-mode-map)))
 
 (add-hook 'cider-stacktrace-mode-hook
           (lambda ()
             ;; For some reason, `windmove-default-keybindings' doesn't work.
-            (bind-windmove-keys cider-stacktrace-mode-map)))
+            (bind-window-keys cider-stacktrace-mode-map)))
 
 (add-hook 'cider-test-report-mode-hook
           (lambda ()
             ;; For some reason, `windmove-default-keybindings' doesn't work.
-            (bind-windmove-keys cider-test-report-mode-map)
+            (bind-window-keys cider-test-report-mode-map)
             (bind-keys :map cider-test-report-mode-map
               ("<tab>"     . forward-button)
               ("<backtab>" . backward-button)

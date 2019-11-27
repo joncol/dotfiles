@@ -26,6 +26,24 @@
          (t (setq unread-command-events (append unread-command-events
                                                 (list evt)))))))))
 
+(defun bind-window-keys (keymap)
+  "Apply windmove key bindings to KEYMAP."
+  (bind-keys :map keymap
+    ("C-w h"   . windmove-left)
+    ("C-w C-h" . windmove-left)
+    ("C-w j"   . windmove-down)
+    ("C-w C-j" . windmove-down)
+    ("C-w k"   . windmove-up)
+    ("C-w C-k" . windmove-up)
+    ("C-w l"   . windmove-right)
+    ("C-w C-l" . windmove-right)
+    ("C-w v"   . evil-window-vsplit)
+    ("C-w C-v" . evil-window-vsplit)
+    ("C-w s"   . evil-window-split)
+    ("C-w C-s" . evil-window-split)
+    ("C-w c"   . evil-window-delete)
+    ("C-w C-c" . evil-window-delete)))
+
 (use-package evil-leader
   :init
   ;; Enable global-evil-leader-mode before evil-mode, to make leader key work
