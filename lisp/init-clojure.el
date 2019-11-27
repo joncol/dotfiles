@@ -12,15 +12,17 @@
 
 (defun create-test-report-window (&rest _)
   "Create window to show test report buffer, if one exists.
-Place it to the right of the current window."
+Place it to the right of the current window. If a window for the test report
+buffer already exists, don't create a new one."
   (if-let* ((buf (get-buffer cider-test-report-buffer)))
-      (let ((buffer-window (split-window (selected-window)
-                                         (/ (window-width) 2)
-                                         'right)))
-        (set-window-buffer buffer-window buf)
-        (display-buffer-record-window 'window buffer-window buf)
-        (set-window-prev-buffers buffer-window nil)
-        (select-window buffer-window))))
+      (unless (get-buffer-window buf)
+        (let ((buffer-window (split-window (selected-window)
+                                           (/ (window-width) 2)
+                                           'right)))
+          (set-window-buffer buffer-window buf)
+          (display-buffer-record-window 'window buffer-window buf)
+          (set-window-prev-buffers buffer-window nil)
+          (select-window buffer-window)))))
 
 (use-package cider
   :defer t
