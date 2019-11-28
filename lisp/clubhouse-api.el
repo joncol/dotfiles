@@ -1,4 +1,4 @@
-;; Modified from org-clubhouse.el. https://github.com/urbint/org-clubhouse
+;; Based on https://github.com/candera/emacs/blob/master/clubhouse-api.el.
 
 (require 'dash)
 (require 'dash-functional)
@@ -224,6 +224,17 @@ of dotted pairs (an alist)."
                                              nil)))
     (clubhouse-api-find-pair-by-name epic-name epics)))
 
+(defun clubhouse-api-prompt-for-label ()
+  "Return an (id, name) pair for a label selected by the user."
+  (lexical-let* ((lbls (clubhouse-api-fetch-as-id-name-pairs "labels"))
+                 (label-name (completing-read
+                              "Select a label: "
+                              (-insert-at 0
+                                          "[None]"
+                                          (-map #'clubhouse-api-pair-name
+                                                lbls)))))
+    (clubhouse-api-find-pair-by-name label-name lbls)))
+
 (defun clubhouse-api-prompt-for-story (&optional project-id)
   "Returns an (id . name) pair for a story selected by the user."
   (lexical-let* ((project-id (or project-id (clubhouse-api-pair-id (clubhouse-api-prompt-for-project))))
@@ -242,7 +253,36 @@ of dotted pairs (an alist)."
 
 (defun clubhouse-api-prompt-for-story-name ()
   "Prompts for and returns a story name."
-  (read-string "Story name: "))
+  (read-string "Story name: " (org-entry-get nil "ITEM")))
+
+(defvar-local clubhouse-api-story-description "")
+
+(defun clubhouse-api-cache-description ()
+  "Get the text under the current headline."
+  (let ((end-of-contents (org-element-property
+                          :contents-end
+                          (org-element-at-point))))
+    (goto-char (org-element-property :contents-begin (org-element-at-point)))
+
+    ;; Point is now on the first character after the headline. Find out what
+    ;; type of element is here using org-element-at-point.
+    (let* ((first-element (org-element-at-point)))
+      ;; If this is a property drawer we need to skip over it. It will have an
+      ;; :end property containing the buffer location of the first character
+      ;; after the property drawer. Go there if necessary.
+      (when (eq 'property-drawer (car first-element))
+        (goto-char (org-element-property :end first-element))))
+
+    ;; We're now at the beginning of the section text.
+    ;; Cache the description for later use.
+    (setq clubhouse-api-story-description
+          (let ((s (s-replace-regexp "^\\s-+" ""
+                                     (buffer-substring-no-properties
+                                      (point)
+                                      (- end-of-contents 1)))))
+            (if (s-contains? ":LOGBOOK:" s)
+                (s-left (- (s-index-of ":LOGBOOK:" s) 1) s)
+              s)))))
 
 (defun clubhouse-api-prompt-for-story-type ()
   "Prompts for and returns a story type."
@@ -292,6 +332,8 @@ of dotted pairs (an alist)."
                                    (alist-get 'workflow_state_id)
                                    clubhouse-api-lookup-workflow-state
                                    (alist-get 'name)))
+    (org-set-property "Labels" (mapconcat (lambda (x) (alist-get 'name x))
+                                          (alist-get 'labels story) ", "))
     (org-set-property "LastUpdated" (alist-get 'updated_at story))))
 
 (defun clubhouse-api-populate-story-edit-buffer (story)
@@ -340,26 +382,42 @@ description ready for editing."
   (interactive "P")
   (lexical-let* ((story-id (if story-number
                                (read-number "Story number: ")
-                             (clubhouse-api-pair-id (clubhouse-api-prompt-for-story))))
+                             (or (->> (org-entry-get nil "ClubhouseUrl")
+                                      (s-split "/" )
+                                      last
+                                      car
+                                      string-to-number)
+                                 (clubhouse-api-pair-id (clubhouse-api-prompt-for-story)))))
                  (story (clubhouse-api-get-story-op story-id)))
     (clubhouse-api-edit-story* story)))
 
 (defun clubhouse-api-create-story ()
   "Creates a new story buffer and sets it up for saving."
   (interactive)
-  (lexical-let* ((project (clubhouse-api-prompt-for-project))
-                 (story-type (clubhouse-api-prompt-for-story-type))
-                 (story-name (clubhouse-api-prompt-for-story-name))
-                 (epic (clubhouse-api-prompt-for-epic))
-                 (estimate (read-number "Estimate: "))
-                 (created-story (clubhouse-api-create-story-op
-                                 (clubhouse-api-pair-id project)
-                                 story-name
-                                 :story_type story-type
-                                 :estimate estimate
-                                 :epic_id (clubhouse-api-pair-id epic))))
-    (message "Story %d created" (alist-get 'id created-story))
-    (clubhouse-api-edit-story* created-story)))
+  (save-excursion
+    (clubhouse-api-cache-description)
+    (lexical-let* ((story-name (clubhouse-api-prompt-for-story-name))
+                   (project (clubhouse-api-prompt-for-project))
+                   (story-type (clubhouse-api-prompt-for-story-type))
+                   (epic (clubhouse-api-prompt-for-epic))
+                   (lbls (clubhouse-api-create-label-params
+                          (org-get-tags nil t)))
+                   ;; (estimate (read-number "Estimate: "))
+                   (created-story (clubhouse-api-create-story-op
+                                   (clubhouse-api-pair-id project)
+                                   story-name
+                                   :story_type story-type
+                                   :description clubhouse-api-story-description
+                                   ;; :estimate estimate
+                                   :epic_id (clubhouse-api-pair-id epic)
+                                   :labels lbls)))
+      (message "Story %d created" (alist-get 'id created-story))
+      ;; (clubhouse-api-edit-story* created-story)
+      (org-set-property "ClubhouseUrl" (alist-get 'app_url created-story)))))
+
+(defun clubhouse-api-create-label-params (label-names)
+  "Create a list of alists for labels with names LABEL-NAMES."
+  (-map (lambda (x) (list->alist `(:name ,x))) label-names))
 
 (defun clubhouse-api-refresh-story (force?)
   "Update the current story buffer with the latest online version
@@ -406,9 +464,15 @@ description ready for editing."
   (let ((vals (org-property-values property-name)))
     (when vals (-> vals first s-trim))))
 
+(defun clubhouse-api-story-edit-get-header-values (property-name)
+  "Return the value of header PROPERTY-NAME."
+  (-map 's-trim
+        (when-let* ((prop-name (first (org-property-values property-name))))
+          (s-split "," prop-name))))
+
 ;; TODO: Also save the headers that make sense to save, like name and workflow state
-(defun clubhouse-api-save-story ()
-  "Saves a story by sending it to Clubhouse via their API."
+(defun clubhouse-api-save-story (&optional quit)
+  "Save a story by sending it to Clubhouse via their API, and optionally QUIT."
   (interactive)
   (lexical-let* ((story-id (-> "ID"
                                clubhouse-api-story-edit-get-header-value
@@ -417,7 +481,8 @@ description ready for editing."
                  (last-updated (clubhouse-api-story-edit-get-header-value "LastUpdated")))
     (if (string< last-updated (alist-get 'updated_at story))
         (message "Story has changed since loaded. Refusing to save. TODO: Give option to merge or whatever.")
-      (lexical-let* ((updated-story (clubhouse-api-update-story-op
+      (lexical-let* ((lbls (clubhouse-api-story-edit-get-header-values "Labels"))
+                     (updated-story (clubhouse-api-update-story-op
                                      story-id
                                      :description (clubhouse-api-story-edit-get-description)
                                      :story_type (clubhouse-api-story-edit-get-header-value "StoryType")
@@ -425,11 +490,14 @@ description ready for editing."
                                      :estimate (lexical-let ((estimate (clubhouse-api-story-edit-get-header-value "Estimate")))
                                                  (when estimate
                                                    (string-to-number estimate)))
+                                     :labels (clubhouse-api-create-label-params lbls)
                                      :workflow_state_id (lexical-let ((workflow-state-name (clubhouse-api-story-edit-get-header-value "State")))
                                                           (alist-get 'id (clubhouse-api-lookup-workflow-state-name workflow-state-name))))))
         (clubhouse-api-update-story-properties updated-story)
         (set-buffer-modified-p nil)
-        (message "Story successfully updated.")))))
+        (message "Story successfully updated.")
+        (when quit
+          (clubhouse-api-quit))))))
 
 (defun clubhouse-api-pop-to-stories-buffer (buffer-name stories)
   "Creates buffer `buffer-name` and populates it with org text
@@ -494,6 +562,13 @@ containing `stories`."
   (clubhouse-api-pop-to-stories-buffer (format "Clubhouse Search %s" query)
                                        (clubhouse-api-search-stories-op query)))
 
+(defun clubhouse-api-quit (&optional print-abort-message)
+  "Quit the editing of the current story, and optionally PRINT-ABORT-MESSAGE."
+  (interactive)
+  (quit-window t)
+  (when print-abort-message
+    (message "Story editing aborted.")))
+
 (defvar clubhouse-api-story-edit-minor-mode-map
   (let ((map (make-keymap)))
     map))
@@ -505,8 +580,13 @@ containing `stories`."
   ;; Because it's a global prefix, we have to set it locally rather
   ;; than putting it in the mode map
   (use-local-map (copy-keymap org-mode-map))
-  (local-set-key (kbd "C-c C-c") 'clubhouse-api-save-story)
+  (local-set-key (kbd "C-c C-c") (lambda ()
+                                   (interactive)
+                                   (clubhouse-api-save-story t)))
   (local-set-key (kbd "C-x C-s") 'clubhouse-api-save-story)
-  (local-set-key (kbd "C-c C-r") 'clubhouse-api-refresh-story))
+  (local-set-key (kbd "C-c C-r") 'clubhouse-api-refresh-story)
+  (local-set-key (kbd "C-c C-k") (lambda ()
+                                   (interactive)
+                                   (clubhouse-api-quit t))))
 
 (provide 'clubhouse-api)
