@@ -681,6 +681,13 @@
   (recentf-mode)
   (setq recentf-max-menu-items 25))
 
+(use-package restclient
+  :defer t
+  :config
+  (dolist (mode-map '((html-mode . motion)
+                      (js-mode   . motion)))
+    (evil-set-initial-state (car mode-map) (cdr mode-map))))
+
 (use-package rust-mode
   :defer t)
 
