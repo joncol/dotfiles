@@ -244,6 +244,9 @@
 
 (use-package cypher-mode)
 
+(use-package dash-functional
+  :defer t)
+
 (use-package deadgrep
   :bind (:map deadgrep-mode-map
          ("j" . deadgrep-forward)
