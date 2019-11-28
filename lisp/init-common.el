@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg")
+
 ;;; Avoid the empty (custom-set-faces) at end of init.el.
 (setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
 (load custom-file)
@@ -643,7 +645,6 @@
 (use-package org-gcal
   :after calfw
   :config
-  (require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg")
   (setq org-gcal-file-alist
         '(("jonas.collberg@zimpler.com" . "~/Sync/emacs/gcal_zimpler.org"))))
 
