@@ -35,7 +35,9 @@ buffer already exists, don't create a new one."
   (setq cider-repl-display-help-banner nil)
   (setq cider-show-error-buffer nil)
   (setq cider-auto-select-test-report-buffer t)
-  (setq cider-test-show-report-on-success nil))
+  (setq cider-test-show-report-on-success nil)
+  (setq eldoc-echo-area-use-multiline-p nil)
+  (setq cider-repl-result-prefix ";; => "))
 
 (use-package clj-refactor
   :after clojure-mode
@@ -200,7 +202,10 @@ Opens a new buffer with the result."
             (bind-keys :map cider-test-report-mode-map
               ("<tab>"     . forward-button)
               ("<backtab>" . backward-button)
-              ("TAB"       . forward-button))))
+              ("TAB"       . forward-button)
+              ("RET"       . (lambda ()
+                               (interactive)
+                               (cider-test-jump -1))))))
 
 (defun modify-syntax-entries ()
   "Do not treat valid identifier symbols as word separators."
