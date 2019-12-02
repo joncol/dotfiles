@@ -50,6 +50,7 @@
   ;; in *Messages* and *scratch* buffers.
   (global-evil-leader-mode)
   (evil-leader/set-leader ",")
+  (evil-leader/set-key "," 'evil-repeat-find-char-reverse)
   (setq evil-leader/in-all-states t))
 
 (use-package evil
