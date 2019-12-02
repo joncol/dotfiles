@@ -342,6 +342,11 @@
                  (evil-leader/set-key (format "w %d" i) sym)))
              (number-sequence 0 9))))
 
+(use-package eval-sexp-fu
+  :defer t
+  :config
+  (turn-on-eval-sexp-fu-flash-mode))
+
 (use-package eyebrowse
   :init
   (setq eyebrowse-keymap-prefix "")

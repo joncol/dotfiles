@@ -39,6 +39,9 @@ buffer already exists, don't create a new one."
   (setq eldoc-echo-area-use-multiline-p nil)
   (setq cider-repl-result-prefix ";; => "))
 
+(use-package cider-eval-sexp-fu
+  :after cider)
+
 (use-package clj-refactor
   :after clojure-mode
   :config
