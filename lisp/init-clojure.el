@@ -36,6 +36,7 @@ buffer already exists, don't create a new one."
   (setq cider-show-error-buffer nil)
   (setq cider-auto-select-test-report-buffer t)
   (setq cider-test-show-report-on-success nil)
+  (eldoc-mode)
   (setq eldoc-echo-area-use-multiline-p nil)
   (setq cider-jump-to-pop-to-buffer-actions
         '((display-buffer-reuse-window display-buffer-same-window)))
