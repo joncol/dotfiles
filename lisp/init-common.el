@@ -86,6 +86,10 @@
               (nlinum-mode -1))
             (define-key doc-view-mode-map "\C-w" 'evil-window-map)))
 
+(add-hook 'eww-mode-hook
+          (lambda ()
+            (define-key eww-mode-map "\C-w" 'evil-window-map)))
+
 (add-hook 'messages-buffer-mode-hook 'ansi-color-for-comint-mode-on)
 
 (add-hook 'conf-mode-hook
