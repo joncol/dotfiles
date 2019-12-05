@@ -208,10 +208,7 @@ Opens a new buffer with the result."
             (bind-keys :map cider-test-report-mode-map
               ("<tab>"     . forward-button)
               ("<backtab>" . backward-button)
-              ("TAB"       . forward-button)
-              ("RET"       . (lambda ()
-                               (interactive)
-                               (cider-test-jump -1))))))
+              ("TAB"       . forward-button))))
 
 (defun modify-syntax-entries ()
   "Do not treat valid identifier symbols as word separators."
