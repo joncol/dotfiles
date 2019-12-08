@@ -86,13 +86,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     (insert "* " headline "\n")
     (beginning-of-line 0)))
 
-(defun jco/init-clubhouse ()
-  (require 'clubhouse-api)
-  (setq clubhouse-api-team-name "Gringotts")
-  (setq clubhouse-api-default-project "Backend")
-  (evil-leader/set-key "x c" 'clubhouse-api-create-story)
-  (evil-leader/set-key "x e" 'clubhouse-api-edit-story))
-
 (use-package org
   :defer t
   :ensure org-plus-contrib
@@ -229,7 +222,14 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
 
-  (jco/init-clubhouse))
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (require 'clubhouse-api)
+              (require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg")
+              (setq clubhouse-api-team-name "Gringotts")
+              (setq clubhouse-api-default-project "Backend")
+              (evil-leader/set-key "x c" 'clubhouse-api-create-story)
+              (evil-leader/set-key "x e" 'clubhouse-api-edit-story))))
 
 (jco/define-bindings global-map
                      '(("C-c a"   . org-agenda)
