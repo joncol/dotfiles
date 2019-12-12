@@ -133,6 +133,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
+(use-package pretty-hydra
+  :defer t)
+
 (use-package ace-isearch
   :disabled t
   :config
