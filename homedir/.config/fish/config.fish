@@ -25,6 +25,8 @@ if test -d /usr/lib/jvm/java-8-graalvm/bin
     set -x PATH /usr/lib/jvm/java-8-graalvm/bin $PATH
 end
 
+set fish_user_paths (npm bin)
+
 set -x EDITOR vim
 set -x LESS "-Ri"
 set -U FZF_LEGACY_KEYBINDINGS 0
