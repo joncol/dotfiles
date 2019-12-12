@@ -125,6 +125,12 @@
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-show-pair-match-face "#6ab04c")))
 
+  (doom-dracula
+   (set-face-background 'ivy-current-match "#80409b")
+   (set-face-background 'ivy-minibuffer-match-face-2 nil)
+   (set-face-background 'hl-line "#3f525b")
+   (set-face-background 'region "#582c6b"))
+
   (dracula
    (set-face-background 'region "#582c6b"))
 
