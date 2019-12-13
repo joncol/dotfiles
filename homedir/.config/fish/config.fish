@@ -17,13 +17,13 @@ if test -d ~/.luarocks/bin
     set -x PATH $PATH ~/.luarocks/bin
 end
 
-if test -d /usr/lib/jvm/java-8-graalvm/lib/installer/bin
-    set -x PATH $PATH /usr/lib/jvm/java-8-graalvm/lib/installer/bin
-end
+# if test -d /usr/lib/jvm/java-8-graalvm/lib/installer/bin
+#     set -x PATH $PATH /usr/lib/jvm/java-8-graalvm/lib/installer/bin
+# end
 
-if test -d /usr/lib/jvm/java-8-graalvm/bin
-    set -x PATH /usr/lib/jvm/java-8-graalvm/bin $PATH
-end
+# if test -d /usr/lib/jvm/java-8-graalvm/bin
+#     set -x PATH /usr/lib/jvm/java-8-graalvm/bin $PATH
+# end
 
 set fish_user_paths (npm bin)
 
