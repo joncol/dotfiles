@@ -170,6 +170,8 @@ Opens a new buffer with the result."
             (add-to-list 'clojure-align-binding-forms "m/alet")
             (add-to-list 'clojure-align-binding-forms "with-disposable")
 
+            (put-clojure-indent 'in-terminal 1)
+
             (evil-leader/set-key "l" 'cljfmt-buffer)
 
             (dolist (m (list 'cider-repl-mode
