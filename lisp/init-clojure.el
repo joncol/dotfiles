@@ -36,8 +36,6 @@ buffer already exists, don't create a new one."
   (setq cider-show-error-buffer nil)
   (setq cider-auto-select-test-report-buffer t)
   (setq cider-test-show-report-on-success nil)
-  (eldoc-mode)
-  (setq eldoc-echo-area-use-multiline-p nil)
   (setq cider-jump-to-pop-to-buffer-actions
         '((display-buffer-reuse-window display-buffer-same-window)))
   ;; (setq cider-repl-result-prefix ";; => ")
@@ -225,6 +223,8 @@ Opens a new buffer with the result."
 
 (add-hook 'cider-mode-hook
           (lambda ()
+            (eldoc-mode)
+            (setq eldoc-echo-area-use-multiline-p nil)
             (cider-company-enable-fuzzy-completion)
             (advice-add 'cider-quit :before #'close-repl-window)))
 
