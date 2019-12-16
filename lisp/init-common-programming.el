@@ -14,6 +14,7 @@
                 graphviz-dot-mode-hook
                 haskell-mode-hook
                 haskell-cabal-mode-hook
+                java-mode-hook
                 TeX-mode-hook
                 lisp-mode-hook
                 lua-mode-hook
