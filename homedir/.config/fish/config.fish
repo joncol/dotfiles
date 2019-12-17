@@ -25,7 +25,7 @@ end
 #     set -x PATH /usr/lib/jvm/java-8-graalvm/bin $PATH
 # end
 
-set fish_user_paths (npm bin)
+set fish_user_paths (npm bin) (npm bin --global 2>/dev/null)
 
 set -x EDITOR vim
 set -x LESS "-Ri"
