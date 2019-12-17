@@ -150,6 +150,7 @@
   (global-set-key [remap other-window] 'ace-window))
 
 (use-package adoc-mode
+  :disabled t
   :init
   (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode)))
 
@@ -214,11 +215,13 @@
                          ("<C-S-right>" . buf-move-right))))
 
 (use-package calfw
+  :disabled t
   :commands cfw:open-org-calendar
   :config
   (setq cfw:display-calendar-holidays nil))
 
 (use-package calfw-org
+  :disabled t
   :after calfw)
 
 (use-package counsel
@@ -477,9 +480,12 @@
   (setq fortune-cookie-cowsay-args "-f tux")
   (fortune-cookie-mode))
 
-(use-package fsharp-mode)
+(use-package fsharp-mode
+  :disabled t
+  :defer t)
 
 (use-package fuzzy
+  :disabled t
   :config
   (turn-on-fuzzy-isearch))
 
@@ -658,6 +664,7 @@
 (use-package nginx-mode)
 
 (use-package org-gcal
+  :disabled t
   :after calfw
   :config
   (require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg")
