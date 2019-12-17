@@ -1,6 +1,14 @@
+;;; #init-eshell.el --- Summary -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
 (defun create-scm-string (type branch)
-  "Create a string to be shown in prompt. TYPE is either \"git\" or \"hg\" and
-BRANCH is the branch name."
+  "Create a string to be shown in prompt.
+TYPE is either \"git\" or \"hg\" and BRANCH is the branch name."
   (propertize (concat "[" type ":"
                       (if (not (string-empty-p branch))
                           branch
@@ -8,9 +16,8 @@ BRANCH is the branch name."
                       "] ")
               'face `(:foreground "#f62459")))
 
-(defun curr-dir-scm-branch-string (dir)
-  "Return current git branch as a string, or the empty string if DIR is not in a
-git repo (or the git command is not found)."
+(defun get-scm-branch (dir)
+  "Return Git or Mercurial branch name of directory DIR."
   (interactive)
   (cond ((and (eshell-search-path "git")
               (locate-dominating-file dir ".git"))
@@ -33,7 +40,7 @@ git repo (or the git command is not found)."
 
 (setq eshell-prompt-function
       (lambda ()
-        (concat (curr-dir-scm-branch-string (eshell/pwd))
+        (concat (get-scm-branch (eshell/pwd))
                 (abbreviate-file-name (eshell/pwd)) "\n$ ")))
 
 (setq eshell-highlight-prompt t
@@ -55,8 +62,8 @@ git repo (or the git command is not found)."
               (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history))))
 
 (defun jco/eshell-here ()
-  "Open up a new shell in the directory associated with the current buffer's
-file. The eshell is renamed to match that directory to make multiple eshell
+  "Open up a new shell in the directory associated with the current buffer.
+The eshell buffer is renamed to match that directory to make multiple eshell
 windows easier."
   (interactive)
   (let* ((parent (if (buffer-file-name)
@@ -73,7 +80,10 @@ windows easier."
     (eshell-send-input)))
 
 (defun eshell/x ()
+  "Quit eshell and delete its window."
   (eshell-quit-process)
   (delete-window))
 
 (provide 'init-eshell)
+
+;;; init-eshell.el ends here
