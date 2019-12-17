@@ -752,7 +752,7 @@
                          ("C-M-a" . sp-backward-down-sexp)
                          ("C-S-d" . sp-beginning-of-sexp)
                          ("C-S-a" . sp-end-of-sexp)))
-  (sp-with-modes (set-difference sp--lisp-modes sp-clojure-modes)
+  (sp-with-modes (cl-set-difference sp-lisp-modes sp-clojure-modes)
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))
     (sp-local-pair "`" nil

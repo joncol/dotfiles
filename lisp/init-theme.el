@@ -410,7 +410,7 @@
   (let* ((ns (number-sequence 1 5))
          (f  (lambda (x)
                (intern (format "dired-subtree-depth-%d-face" x))))
-         (ss (map 'cons f ns)))
+         (ss (cl-map 'cons f ns)))
     (dolist (f ss)
       (set-face-background f nil))))
 
