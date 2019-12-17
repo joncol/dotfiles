@@ -80,7 +80,7 @@
                       (esup-mode                 . emacs)
                       (eww-mode                  . emacs)
                       (fireplace-mode            . emacs)
-                      (flycheck-error-list-mode  . emacs)
+                      (flycheck-error-list-mode  . motion)
                       (forge-pullreq-list-mode   . emacs)
                       (git-commit-mode           . insert)
                       (git-rebase-mode           . emacs)
