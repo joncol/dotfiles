@@ -79,6 +79,7 @@
                       (elfeed-show-mode          . emacs)
                       (esup-mode                 . emacs)
                       (eww-mode                  . emacs)
+                      (eww-history-mode          . emacs)
                       (fireplace-mode            . emacs)
                       (flycheck-error-list-mode  . motion)
                       (forge-pullreq-list-mode   . emacs)
