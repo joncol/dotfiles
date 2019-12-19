@@ -17,6 +17,12 @@ if test -d ~/.luarocks/bin
     set -x PATH $PATH ~/.luarocks/bin
 end
 
+set -x N_PREFIX ~/n
+
+if test -d ~/n/bin
+    set -x PATH ~/n/bin $PATH
+end
+
 # if test -d /usr/lib/jvm/java-8-graalvm/lib/installer/bin
 #     set -x PATH $PATH /usr/lib/jvm/java-8-graalvm/lib/installer/bin
 # end
