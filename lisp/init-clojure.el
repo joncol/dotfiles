@@ -187,7 +187,12 @@ Opens a new buffer with the result."
                             ("t f" . cider-test-rerun-failed-tests)
                             ("x d" . disassemble-clojure-fn)
                             ("x r" . nrepl-reset)
-                            ("x e" . cider-pprint-eval-last-sexp-to-repl)))
+                            ("x e" . cider-eval-last-sexp-to-repl)
+                            ("x E" . cider-pprint-eval-last-sexp-to-repl)
+                            ("x p" . cider-eval-print-last-sexp)
+                            ("x P" . (lambda ()
+                                       (interactive)
+                                       (cider-eval-print-last-sexp t)))))
                 (evil-leader/set-key-for-mode m (car kv) (cdr kv))))))
 
 (add-hook 'nrepl-connected-hook #'jco/move-window-to-bottom)
