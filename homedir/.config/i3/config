@@ -195,7 +195,8 @@ bindsym $mod+F4 exec --no-startup-id "~/.local/bin/toggle_laptop_screen.pl 1"
 bindsym $mod+Shift+F4 exec --no-startup-id "~/.local/bin/toggle_laptop_screen.pl 0"
 bindsym $mod+grave exec fish -c "urxvt -e ranger"
 bindsym $mod+c exec ~/.config/i3/select_x_colorscheme.sh
-bindsym $mod+p exec ~/.config/i3/goto_project.sh
+bindsym $mod+g exec ~/.config/i3/goto_project.sh
+bindsym $mod+p exec ~/.local/bin/toggle_touchpad.sh
 
 # Screen brightness.
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
