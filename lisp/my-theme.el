@@ -16,13 +16,19 @@
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
+      'doom-challenger-deep
       ;; 'doom-city-lights
       ;; 'doom-dracula
       ;; 'doom-molokai
+      ;; 'doom-nord-light
+      ;; 'doom-one
+      ;; 'doom-one-light
       ;; 'doom-opera-light
       ;; 'doom-solarized-light
       ;; 'doom-vibrant
+      ;; 'doom-snazzy
       ;; 'doom-sourcerer
+      ;; 'doom-spacegrey
       ;; 'eink
       ;; 'gotham
       ;; 'github-modern
@@ -36,7 +42,7 @@
       ;; 'kaolin-ocean
       ;; 'kaolin-valley-dark
       ;; 'minimal
-      'minimal-light
+      ;; 'minimal-light
       ;; 'mustang
       ;; 'nubox-dark
       ;; 'nubox-light
