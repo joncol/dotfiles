@@ -11,6 +11,7 @@
                 dockerfile-mode-hook
                 emacs-lisp-mode-hook
                 fsharp-mode-hook
+                go-mode-hook
                 graphviz-dot-mode-hook
                 haskell-mode-hook
                 haskell-cabal-mode-hook

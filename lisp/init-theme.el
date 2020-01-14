@@ -468,6 +468,8 @@
      ((((type x)) (:inherit company-tooltip-selection :weight bold))
       (t (:inherit company-tooltip-selection))))))
 
+(set-face-background 'whitespace-tab nil)
+
 (provide 'init-theme)
 
 ;;; init-theme.el ends here
