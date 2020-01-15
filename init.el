@@ -80,6 +80,7 @@
 (require 'init-csharp)
 (require 'init-ecb)
 (require 'init-emacs-lisp)
+(require 'init-go)
 (require 'init-haskell)
 (require 'init-lang)
 (require 'init-lisp)

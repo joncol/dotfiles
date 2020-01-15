@@ -85,6 +85,7 @@
                       (forge-pullreq-list-mode   . emacs)
                       (git-commit-mode           . insert)
                       (git-rebase-mode           . emacs)
+                      (godoc-mode                . motion)
                       (ivy-occur-mode            . emacs)
                       (profiler-report-mode      . emacs)
                       (rtags-mode                . emacs)

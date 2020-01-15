@@ -373,8 +373,6 @@
 
 (use-package ghub)
 
-(use-package go-mode)
-
 (use-package gradle-mode
   :config
   (add-hook 'java-mode-hook
