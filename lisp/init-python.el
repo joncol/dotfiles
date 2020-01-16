@@ -24,7 +24,10 @@
   (setq elpy-rpc-backend "jedi"))
 
 (use-package jedi-core
-  :defer t)
+  :defer t
+  :bind (:map jedi-mode-map
+         ("M-." . jedi:goto-definition)
+         ("M-," . jedi:goto-definition-pop-marker)))
 
 (use-package ein
   :defer t)
