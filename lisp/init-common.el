@@ -963,6 +963,9 @@ Example: `helloWorld` becomes `Hello world`."
 
 (use-package try)
 
+(use-package typescript-mode
+  :defer t)
+
 (use-package undo-tree
   :init
   (global-undo-tree-mode)
