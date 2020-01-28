@@ -101,6 +101,7 @@
 
   (chyla
    (setq sml/theme 'light)
+   (set-face-background 'ivy-current-match "#edf5dc")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
 
