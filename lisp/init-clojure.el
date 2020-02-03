@@ -68,7 +68,7 @@ buffer already exists, don't create a new one."
 (defun nrepl-reset ()
   "Helper function to call the (Reloaded workflow) reset function."
   (interactive)
-  (set-buffer (cider-current-repl-buffer))
+  (set-buffer (cider-current-repl))
   (goto-char (point-max))
   (insert "(reset)")
   (cider-repl-return))
