@@ -229,7 +229,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               (setq clubhouse-api-team-name "Gringotts")
               (setq clubhouse-api-default-project "Backend")
               (evil-leader/set-key "x c" 'clubhouse-api-create-story)
-              (evil-leader/set-key "x e" 'clubhouse-api-edit-story))))
+              (evil-leader/set-key "x e" 'clubhouse-api-edit-story)))
+  (add-hook 'org-capture-mode-hook 'evil-insert-state))
 
 (jco/define-bindings global-map
                      '(("C-c a"   . org-agenda)
