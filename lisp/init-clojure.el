@@ -160,9 +160,8 @@ Opens a new buffer with the result."
 
             (put-clojure-indent 'wcar 1)
 
-            (define-clojure-indent
-              (alet 'defun)
-              (mlet 'defun))
+            (put-clojure-indent 'alet 'defun)
+            (put-clojure-indent 'mlet 'defun)
 
             (add-to-list 'clojure-align-binding-forms "m/mlet")
             (add-to-list 'clojure-align-binding-forms "m/alet")
