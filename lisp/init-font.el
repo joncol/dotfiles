@@ -13,10 +13,10 @@
   (set-frame-size (selected-frame) 100 60))
 
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
-  (set-frame-font "Hack")
+  (set-frame-font "JetBrainsMono")
   (if (>= (x-display-pixel-height) 2160)
       (set-face-attribute 'default nil :height 140)
-    (set-face-attribute 'default nil :height 105))
+    (set-face-attribute 'default nil :height 110))
   (set-frame-size (selected-frame) 93 64))
 
  ((eq system-type 'darwin)
