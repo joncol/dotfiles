@@ -957,6 +957,7 @@ Example: `helloWorld` becomes `Hello world`."
 
 (use-package terraform-mode
   :config
+  (modify-syntax-entry ?- "w") ;; do not treat "-" as a word separator
   (add-hook 'terraform-mode-hook
             (lambda ()
               (setq evil-shift-width terraform-indent-level))))
