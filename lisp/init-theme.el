@@ -128,6 +128,13 @@
   (doom-city-lights
    (set-face-background 'ivy-current-match "#3f525b"))
 
+  (doom-laserwave
+   (set-face-background 'hl-line (jco/current-bg 0.10))
+   (set-face-background 'ivy-highlight-face "#352e5a")
+   (set-face-background 'ivy-current-match "#e0dcbe")
+   (set-face-foreground 'ivy-current-match "#1b182c")
+   (set-face-foreground 'eyebrowse-mode-line-active "#808080"))
+
   (doom-molokai
    (set-face-background 'ivy-current-match "#582c6b")
    (set-face-foreground 'ivy-minibuffer-match-face-1 "#f5f6fa")

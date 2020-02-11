@@ -16,9 +16,10 @@
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
-      'doom-challenger-deep
+      ;; 'doom-challenger-deep
       ;; 'doom-city-lights
       ;; 'doom-dracula
+      'doom-laserwave
       ;; 'doom-molokai
       ;; 'doom-nord-light
       ;; 'doom-one
