@@ -3,8 +3,8 @@
 # key: ig
 # --
 (defmethod ig/init-key :${1:key} [_ opts]
-  (log/debug "Starting")
+  (log/info "Starting $1")
   opts)
 
-(defmethod ig/halt-key! :$1 [_ ${2:component}]
-  (log/debug "Stopping"))
+(defmethod ig/halt-key! :$1 [_ opts]
+  (log/info "Stopping $1"))
