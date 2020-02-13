@@ -55,8 +55,9 @@ if [[ $# -ne 2 ]]; then
 fi
 
 SERVICE=$1
+SERVICE_SNAKE_CASE=$(echo $SERVICE | sed 's/-/_/g')
 ENVIRONMENT=$2
-DB_DATABASE=${SERVICE}_$ENVIRONMENT
+DB_DATABASE=$(printf "%s_%s" $SERVICE_SNAKE_CASE $ENVIRONMENT)
 DB_HOST=$SERVICE-$ENVIRONMENT-db-replica.czldyizapuwt.eu-central-1.rds.amazonaws.com
 TUNNEL_HOST="bastion.zimpler.net"
 
