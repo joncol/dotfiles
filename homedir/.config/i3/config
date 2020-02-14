@@ -206,7 +206,7 @@ exec_always --no-startup-id sleep 2 && ~/.local/bin/setup_screen.pl
 exec_always ~/.local/bin/setup_mouse.sh
 exec_always ~/.config/i3/apply_xrdb_settings.sh
 
-exec_always compton --unredir-if-possible
+exec_always compton --unredir-if-possible -b
 exec_always ~/.config/i3/start_redshift.sh
 
 exec_always sleep 2 && ~/.local/bin/betterlockscreen -w
