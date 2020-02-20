@@ -281,7 +281,7 @@ of dotted pairs (an alist)."
                                       (point)
                                       (- end-of-contents 1)))))
             (if (s-contains? ":LOGBOOK:" s)
-                (s-left (- (s-index-of ":LOGBOOK:" s) 1) s)
+                (s-left (s-index-of ":LOGBOOK:" s) s)
               s)))))
 
 (defun clubhouse-api-prompt-for-story-type ()
