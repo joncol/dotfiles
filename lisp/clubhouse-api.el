@@ -1,4 +1,10 @@
-;; Based on https://github.com/candera/emacs/blob/master/clubhouse-api.el.
+;;; clubhouse-api.el --- Clubhouse integration for org-mode
+
+
+;;; Commentary:
+;;
+;; Based on https://github.com/candera/emacs/blob/master/clubhouse-api.el, which
+;; in turn is based on https://github.com/glittershark/org-clubhouse.
 
 (require 'dash)
 (require 'dash-functional)
@@ -8,11 +14,14 @@
 
 (require 'ob-core)
 
-(defun ->list (vec) (append vec nil))
+;;; Code:
+
+(defun ->list (vec)
+  "Convert vector `VEC' to a list."
+  (append vec nil))
 
 (defun list->alist (list)
-  "Converts a flat list (presumably of even length) into a list
-of dotted pairs (an alist)."
+  "Convert `LIST' (of even length) into a list of dotted pairs (an alist)."
   (->> list (-partition 2) (-map (lambda (pair)
                                    `(,(car pair) . ,(cadr pair))))))
 
@@ -25,10 +34,9 @@ of dotted pairs (an alist)."
 (defvar clubhouse-api-auth-token nil)
 
 (defun decrypt-file-contents (path)
-  "Returns the contents of file at `path`, gpg-decrypted."
+  "Return the contents of file at `PATH', gpg-decrypted."
   (save-mark-and-excursion
     (lexical-let ((temp-file (make-temp-file "decrypt-file-contents")))
-      (message temp-file)
       (unwind-protect
           (progn
             (epa-decrypt-file path temp-file)
@@ -38,17 +46,18 @@ of dotted pairs (an alist)."
         (delete-file temp-file)))))
 
 (defun cached-clubhouse-api-auth-token ()
-  "Returns the Clubhouse API auth token. Caches the result."
+  "Return the Clubhouse API auth token. Caches the result."
   (or clubhouse-api-auth-token
       (setq clubhouse-api-auth-token (decrypt-file-contents clubhouse-api-auth-token-path))))
 
 (defvar clubhouse-api-base-url* "https://api.clubhouse.io/api/v2")
 
 (defun clubhouse-api-auth-url (url &optional params)
- (concat url
-         "?"
-         (url-build-query-string
-          (cons `("token" ,(cached-clubhouse-api-auth-token)) params))))
+  "Return AUTH url made up of `URL' and `PARAMS'."
+  (concat url
+          "?"
+          (url-build-query-string
+           (cons `("token" ,(cached-clubhouse-api-auth-token)) params))))
 
 (defun clubhouse-api-baseify-url (url)
  (if (s-starts-with? clubhouse-api-base-url* url) url
@@ -59,7 +68,6 @@ of dotted pairs (an alist)."
 (defvar clubhouse-api-dry-run-mode nil)
 
 (cl-defun clubhouse-api-request (method path &key data (params '()))
-  ;; (message "%s %s %s" method path (prin1-to-string data))
   (let* ((url-request-method method)
          (url-request-extra-headers
           '(("Content-Type" . "application/json")))
@@ -590,3 +598,7 @@ containing `stories`."
                                    (clubhouse-api-quit t))))
 
 (provide 'clubhouse-api)
+
+(provide 'clubhouse-api)
+
+;;; clubhouse-api.el ends here
