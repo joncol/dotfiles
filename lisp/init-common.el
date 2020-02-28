@@ -268,6 +268,13 @@
   :config
   (push ".*" desktop-clear-preserve-buffers))
 
+(use-package dhall-mode
+  :config
+  (add-hook 'dhall-mode-hook
+            (lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w"))))
+
 (use-package dired+
   :straight (dired-plus :type git :host github :repo "emacsmirror/dired-plus")
   :ensure nil

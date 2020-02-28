@@ -8,6 +8,7 @@
                 csharp-mode-hook
                 csv-mode-hook
                 cypher-mode-hook
+                dhall-mode-hook
                 dockerfile-mode-hook
                 emacs-lisp-mode-hook
                 fsharp-mode-hook
