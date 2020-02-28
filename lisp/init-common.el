@@ -94,10 +94,6 @@
           (lambda ()
             (modify-syntax-entry ?_ "w")))
 
-(add-hook 'scss-mode-hook
-          (lambda ()
-            (modify-syntax-entry ?- "w")))
-
 (add-hook 'sql-mode-hook
           (lambda ()
             (modify-syntax-entry ?- "w" sql-mode-syntax-table)))
@@ -882,20 +878,14 @@ Example: `helloWorld` becomes `Hello world`."
 
 (setq help-window-select t)
 
-(add-hook 'help-mode-hook
-          (lambda ()
-            ;; do not treat "-" as a word separator
-            (modify-syntax-entry ?- "w")))
-
-(add-hook 'makefile-gmake-mode-hook
-          (lambda ()
-            ;; do not treat "-" as a word separator
-            (modify-syntax-entry ?- "w")))
-
-(add-hook 'sql-mode-hook
-          (lambda ()
-            ;; do not treat "-" as a word separator
-            (modify-syntax-entry ?- "w")))
+(dolist (hook '(help-mode-hook
+                makefile-gmake-mode-hook
+                scss-mode-hook
+                sql-mode-hook))
+  (add-hook hook
+            (lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w"))))
 
 (jco/define-bindings Info-mode-map
                      '(("<tab>"     . Info-next-reference)
@@ -964,10 +954,11 @@ Example: `helloWorld` becomes `Hello world`."
 
 (use-package terraform-mode
   :config
-  (modify-syntax-entry ?- "w") ;; do not treat "-" as a word separator
   (add-hook 'terraform-mode-hook
             (lambda ()
-              (setq evil-shift-width terraform-indent-level))))
+              (setq evil-shift-width terraform-indent-level)
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w"))))
 
 (use-package try)
 
