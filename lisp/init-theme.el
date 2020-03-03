@@ -110,6 +110,15 @@
                         "midnightblue")
    (set-face-background 'hl-line "#041040"))
 
+  (doom-acario-light
+   (set-face-attribute 'font-lock-comment-face nil :slant 'normal)
+   (set-face-attribute 'font-lock-comment-face nil :inherit nil)
+   (with-eval-after-load 'magit
+     (set-face-background 'magit-diff-hunk-heading "#f0f0f0")
+     (set-face-background 'magit-diff-hunk-heading-highlight "#e0e0e0")
+     (set-face-background 'magit-diff-added-highlight "#e0e0e0")
+     (set-face-background 'magit-diff-removed-highlight "#e0e0e0")))
+
   (doom-challenger-deep
    (set-face-background 'hl-line "#352e5a")
    (set-face-background 'line-number-current-line nil)
