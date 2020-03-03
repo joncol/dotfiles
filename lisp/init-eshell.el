@@ -48,7 +48,7 @@ TYPE is either \"git\" or \"hg\" and BRANCH is the branch name."
 
 (add-hook 'eshell-mode-hook
           (lambda ()
-            (set-face-foreground 'eshell-prompt-face "#f39c12")
+            (set-face-foreground 'eshell-prompt "#f39c12")
             (defalias 'ff 'find-file)
             (defalias 'open 'find-file)
 
