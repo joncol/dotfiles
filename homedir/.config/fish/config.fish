@@ -55,6 +55,9 @@ set -x FZF_DEFAULT_OPTS '--bind ctrl-f:page-down,ctrl-b:page-up
 set -x fish_pager_color_prefix '444'
 set -x fish_color_search_match --background='eee'
 
+set -x FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {1..} | xsel -b)+abort' --header 'Press CTRL-Y to copy com
+mand into clipboard'"
+
 # bobthefish theme settings
 set -g theme_display_date no
 set -g theme_display_cmd_duration no
