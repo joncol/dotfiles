@@ -1,5 +1,5 @@
 #!/bin/bash
-mice=$(xinput list | grep -iE "\⎜.*mouse" | cut -f2 | sed s/id=//)
+mice=$(xinput list | grep -iE '\⎜.*(mouse[^ ]|Synaptics)' | cut -f2 | sed s/id=//)
 
 for mouse in $mice
 do
