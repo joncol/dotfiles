@@ -129,6 +129,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
+(use-package pkgbuild-mode
+  :defer t)
+
 (use-package pretty-hydra
   :defer t)
 
