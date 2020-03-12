@@ -138,6 +138,7 @@ Opens a new buffer with the result."
             (put-clojure-indent 'GET 2)
             (put-clojure-indent 'POST 2)
             (put-clojure-indent 'PUT 2)
+            (put-clojure-indent 'DELETE 2)
             (put-clojure-indent 'defstate nil)
             (put-clojure-indent 'try* 0)
 
