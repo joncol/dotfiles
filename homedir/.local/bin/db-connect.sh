@@ -72,6 +72,10 @@ fi
 
 DB_PASSWORD=$(ze-read $SERVICE $ENVIRONMENT DB_PASSWORD | awk '{print $4}')
 if [ -z "$DB_PASSWORD" ]; then
+    DB_PASSWORD=$(ze-read $SERVICE $ENVIRONMENT DB_PASS | \
+                      awk '{print $4}')
+fi
+if [ -z "$DB_PASSWORD" ]; then
     DB_PASSWORD=$(ze-read $SERVICE $ENVIRONMENT POSTGRES_PASSWORD | \
                       awk '{print $4}')
 fi
