@@ -820,6 +820,8 @@ Example: `helloWorld` becomes `Hello world`."
   :config
   (volatile-highlights-mode))
 
+(use-package xkcd)
+
 (use-package yaml-mode
   :mode "\\.yml\\'"
   :config
