@@ -669,6 +669,8 @@
 
 (use-package nginx-mode)
 
+(use-package ob-async)
+
 (use-package org-gcal
   :disabled t
   :after calfw
