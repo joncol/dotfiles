@@ -224,6 +224,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
   (add-hook 'org-mode-hook
             (lambda ()
+              (modify-syntax-entry ?\' " ")
               (require 'clubhouse-api)
               (require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg")
               (setq clubhouse-api-team-name "Gringotts")
