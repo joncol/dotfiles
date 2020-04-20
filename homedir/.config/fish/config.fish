@@ -68,3 +68,10 @@ set -g theme_display_cmd_duration no
 #     set PATH $HOME/.rbenv/shims $PATH
 #     rbenv rehash >/dev/null ^&1
 # end
+
+abbr -a -g -- a 'gcalcli agenda now tomorrow'
+abbr -a -g -- cu 'yay -Syy ;and yay -Pu'
+abbr -a -g -- gco 'git checkout'
+abbr -a -g -- gp 'git pull'
+abbr -a -g -- mo mimeopen
+abbr -a -g -- u 'yay -Syu --noconfirm'
