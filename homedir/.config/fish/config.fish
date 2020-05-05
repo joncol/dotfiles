@@ -75,3 +75,4 @@ abbr -a -g -- gco 'git checkout'
 abbr -a -g -- gp 'git pull'
 abbr -a -g -- mo mimeopen
 abbr -a -g -- u 'yay -Syu --noconfirm'
+abbr -a -g -- t 'todoist'
