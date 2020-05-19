@@ -222,6 +222,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
 
+  (eval-after-load "org"
+    '(require 'ox-gfm nil t))
+
   (add-hook 'org-mode-hook
             (lambda ()
               (modify-syntax-entry ?\' " ")

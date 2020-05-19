@@ -685,6 +685,8 @@
       (add-hook 'ediff-prepare-buffer-hook #'show-all)
     (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)))
 
+(use-package ox-gfm)
+
 (use-package package-utils)
 
 (use-package pdf-tools

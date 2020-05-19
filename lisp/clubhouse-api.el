@@ -265,11 +265,24 @@
 
 (defvar-local clubhouse-api-story-description "")
 
+(defun clubhouse-api-convert-org-mode-to-markdown (org-mode-string)
+  "Convert `ORG-MODE-STRING' to markdown."
+  (with-temp-buffer
+    (setq-local org-export-with-toc nil)
+    (setq-local org-export-show-temporary-export-buffer nil)
+
+    (insert org-mode-string)
+    (org-gfm-export-as-markdown)
+
+    (with-current-buffer "*Org GFM Export*"
+      (string-trim (buffer-string)))))
+
 (defun clubhouse-api-cache-description ()
   "Get the text under the current headline."
-  (let ((end-of-contents (org-element-property
-                          :contents-end
-                          (org-element-at-point))))
+  (let ((end-of-contents (or (org-element-property
+                              :contents-end
+                              (org-element-at-point))
+                             (point-max))))
     (goto-char (org-element-property :contents-begin (org-element-at-point)))
 
     ;; Point is now on the first character after the headline. Find out what
@@ -282,15 +295,15 @@
         (goto-char (org-element-property :end first-element))))
 
     ;; We're now at the beginning of the section text.
-    ;; Cache the description for later use.
+
+    ;; Convert the description to markdown format and cache it for later use.
     (setq clubhouse-api-story-description
-          (let ((s (s-replace-regexp "^\\s-+" ""
-                                     (buffer-substring-no-properties
-                                      (point)
-                                      (- end-of-contents 1)))))
-            (if (s-contains? ":LOGBOOK:" s)
-                (s-left (s-index-of ":LOGBOOK:" s) s)
-              s)))))
+          (let ((s (buffer-substring-no-properties (point)
+                                                   (- end-of-contents 1))))
+            (clubhouse-api-convert-org-mode-to-markdown
+             (if (s-contains? ":LOGBOOK:" s)
+                 (s-left (s-index-of ":LOGBOOK:" s) s)
+               s))))))
 
 (defun clubhouse-api-prompt-for-story-type ()
   "Prompts for and returns a story type."
