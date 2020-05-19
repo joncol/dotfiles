@@ -454,6 +454,11 @@
   :config
   (setq flycheck-pos-tip-timeout 0))
 
+(use-package flycheck-package
+  :config
+  (eval-after-load 'flycheck
+    '(flycheck-package-setup)))
+
 (use-package flycheck-pos-tip
   :init
   (flycheck-pos-tip-mode))
