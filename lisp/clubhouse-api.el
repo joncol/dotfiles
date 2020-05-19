@@ -1,8 +1,18 @@
 ;;; clubhouse-api.el --- Clubhouse integration for org-mode
 
+;; Copyright (C) 2020 Jonas Collberg
+
+;; Author: Jonas Collberg <jonas.collberg@gmail.com>
+;; Version: 1.0
+;; URL: https://github.com/joncol/clubhouse-api.el
+;; Package-Requires: ((emacs "25.1") (ox-gfm "20170628.2102"))
+;; Keywords: tools
 
 ;;; Commentary:
-;;
+
+;; This library enables integration with the Clubhouse project management
+;; platform (https://clubhouse.io/).
+
 ;; Based on https://github.com/candera/emacs/blob/master/clubhouse-api.el, which
 ;; in turn is based on https://github.com/glittershark/org-clubhouse.
 
