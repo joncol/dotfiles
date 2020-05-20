@@ -1,11 +1,11 @@
-;;; clubhouse-api.el --- Clubhouse integration for org-mode
+;;; clubhouse-api.el --- Clubhouse API integration for org-mode
 
 ;; Copyright (C) 2020 Jonas Collberg
 
 ;; Author: Jonas Collberg <jonas.collberg@gmail.com>
 ;; Version: 1.0
 ;; URL: https://github.com/joncol/clubhouse-api.el
-;; Package-Requires: ((emacs "25.1") (ox-gfm "20170628.2102"))
+;; Package-Requires: ((dash "2.17.0") (dash-functional "1.2.0") (emacs "25.1") (ox-gfm "20170628.2102"))
 ;; Keywords: tools
 
 ;;; Commentary:
