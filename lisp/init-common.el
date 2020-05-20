@@ -654,6 +654,13 @@
               (git-commit-turn-on-flyspell)))
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
+(use-package magit-delta
+  :straight (magit-delta :type git :host github
+                         :repo "dandavison/magit-delta")
+  :after magit
+  :config
+  (magit-delta-mode))
+
 (use-package magit-org-todos
   :disabled t
   :after magit
@@ -993,6 +1000,9 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package which-key
   :config
   (which-key-mode))
+
+(use-package xterm-color
+  :after magit-delta)
 
 (use-package yagist
   :config
