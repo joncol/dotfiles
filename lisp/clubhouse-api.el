@@ -129,8 +129,8 @@
   (->> seq
        (vec->list)
        (-map (lambda (resource)
-          (cons (alist-get id-attr   resource)
-                (alist-get name-attr resource))))))
+               (cons (alist-get id-attr   resource)
+                     (alist-get name-attr resource))))))
 
 (defun reject-archived (item-list)
   (-reject (lambda (item) (or (equal :json-true (alist-get 'archived item))
