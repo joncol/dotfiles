@@ -18,15 +18,13 @@
 
 (require 'dash)
 (require 'dash-functional)
-(require 's)
-
 (require 'cl-lib)
-
 (require 'ob-core)
+(require 's)
 
 ;;; Code:
 
-(defun ->list (vec)
+(defun vec->list (vec)
   "Convert vector `VEC' to a list."
   (append vec nil))
 
