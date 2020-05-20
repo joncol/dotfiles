@@ -117,7 +117,7 @@
 
 ;; TODO: This needs to support continuation in the form of the `nextToken` stuff in the search result
 (defun clubhouse-api-search-stories-op (query)
-  (->list
+  (vec->list
    (alist-get 'data
               (clubhouse-api-request "GET" "search/stories"
                                      :data (-> `((:query . ,query))
@@ -127,7 +127,7 @@
 (cl-defun to-id-name-pairs
     (seq &optional (id-attr 'id) (name-attr 'name))
   (->> seq
-       (->list)
+       (vec->list)
        (-map (lambda (resource)
           (cons (alist-get id-attr   resource)
                 (alist-get name-attr resource))))))
@@ -144,7 +144,7 @@
   "Returns the given resource from clubhouse as (id . name) pairs"
   (let ((resp-json (clubhouse-api-request "GET" resource)))
     (-> resp-json
-        (->list)
+        (vec->list)
         (reject-archived)
         (to-id-name-pairs id-attr name-attr))))
 
@@ -180,7 +180,7 @@
 (defun clubhouse-api-project-stories-full (project-id)
   "Retrieves the non-archived stories for a project, including all their attributes."
   (-> (clubhouse-api-request "GET" (format "projects/%d/stories" project-id))
-      (->list)
+      (vec->list)
       (reject-archived)))
 
 (defvar-local clubhouse-api-workflow-cache nil)
@@ -189,18 +189,18 @@
   "Retrieves the list of workflows."
   (or clubhouse-api-workflow-cache
       (setq-local clubhouse-api-workflow-cache
-                  (->list (clubhouse-api-request "GET" "workflows")))))
+                  (vec->list (clubhouse-api-request "GET" "workflows")))))
 
 (defun clubhouse-api-lookup-workflow-state (workflow-state-id)
   "Returns the workflow state given its ID."
   (->> (clubhouse-api-workflows)
-       (-mapcat (lambda (wf) (->list (alist-get 'states wf))))
+       (-mapcat (lambda (wf) (vec->list (alist-get 'states wf))))
        (-first (lambda (state) (= workflow-state-id (alist-get 'id state))))))
 
 (defun clubhouse-api-lookup-workflow-state-name (workflow-state-name)
   "Returns the workflow state given its name."
   (->> (clubhouse-api-workflows)
-       (-mapcat (lambda (wf) (->list (alist-get 'states wf))))
+       (-mapcat (lambda (wf) (vec->list (alist-get 'states wf))))
        (-first (lambda (state) (string= workflow-state-name (alist-get 'name state))))))
 
 (defun clubhouse-api-pair-name (x)
