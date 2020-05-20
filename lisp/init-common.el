@@ -699,6 +699,9 @@
 
 (use-package ox-gfm)
 
+(use-package package-build
+  :defer t)
+
 (use-package package-utils)
 
 (use-package pdf-tools
