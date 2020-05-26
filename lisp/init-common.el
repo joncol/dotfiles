@@ -349,6 +349,14 @@
                  ("M-g M-p" . eclim-problems-prev-same-file)
                  ("M-g p" . eclim-problems-prev-same-file))))))
 
+(use-package gif-screencast
+  :defer t
+  :bind (:map gif-screencast-mode-map
+         ("<f1>" . gif-screencast-stop)
+         ("<f2>" . gif-screencast-toggle-pause))
+  :config
+  (setq gif-screencast-args '("--quality" "75" "--focused")))
+
 (defmacro jco/set-eyebrowse-win-bindings ()
   "Generate evil-leader bindings for switching eyebrowse windows."
   `(progn ,@(mapcar
