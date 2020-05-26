@@ -659,6 +659,14 @@
                          :repo "dandavison/magit-delta")
   :after magit
   :config
+  (setq magit-delta-delta-args
+        `("--plus-color" "#016000"
+          "--plus-emph-color" "#02a000"
+          "--minus-color" "#840001"
+          "--minus-emph-color" "#b60004"
+          "--max-line-distance" "0.6"
+          "--24-bit-color" ,(if xterm-color--support-truecolor "always" "never")
+          "--color-only"))
   (magit-delta-mode))
 
 (use-package magit-org-todos
