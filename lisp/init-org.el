@@ -60,6 +60,17 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                           path
                                           (or desc "video"))))))))
 
+(use-package cha
+  :straight (cha :type git :host github :repo "joncol/cha")
+  :after org
+  :config
+  (setq cha-clubhouse-default-project "Backend")
+  (evil-leader/set-key "x c" 'cha-create-story)
+  (evil-leader/set-key "x e" 'cha-edit-story)
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg"))))
+
 (use-package org-re-reveal
   :after org)
 
@@ -227,13 +238,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
   (add-hook 'org-mode-hook
             (lambda ()
-              (modify-syntax-entry ?\' " ")
-              (require 'clubhouse-api)
-              (require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg")
-              (setq clubhouse-api-team-name "Gringotts")
-              (setq clubhouse-api-default-project "Backend")
-              (evil-leader/set-key "x c" 'clubhouse-api-create-story)
-              (evil-leader/set-key "x e" 'clubhouse-api-edit-story)))
+              (modify-syntax-entry ?\' " ")))
   (add-hook 'org-capture-mode-hook 'evil-insert-state))
 
 (jco/define-bindings global-map
