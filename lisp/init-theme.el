@@ -163,12 +163,6 @@
    (set-face-background 'hl-line "#3f525b")
    (set-face-background 'region "#582c6b"))
 
-  (dracula
-   (set-face-background 'region "#582c6b"))
-
-  (eink
-   (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "LightBlue"))
 
   ((doom-solarized-light solarized-light)
    (setq sml/theme 'light)
@@ -180,6 +174,13 @@
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "#101f24")
      (set-face-background 'mu4e-highlight-face "#7ceece")))
+
+  (dracula
+   (set-face-background 'region "#582c6b"))
+
+  (eink
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "LightBlue"))
 
   (github-modern
    (setq sml/theme 'light)
