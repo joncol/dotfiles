@@ -13,7 +13,7 @@ URxvt*boldFont: xft:Hack:style=bold:antialias=true:size=FONT_SIZE
 URxvt*italicFont: xft:Hack:style=italic:antialias=true:size=FONT_SIZE
 URxvt*boldItalicFont: xft:Hack:style=bolditalic:antialias=true:size=FONT_SIZE
 
-URxvt*letterSpace: -2
+URxvt*letterSpace: -1
 
 Xcursor.size: 16
 
