@@ -5,7 +5,7 @@
 #elif HEIGHT >= 1440
 #define FONT_SIZE 13
 #else
-#define FONT_SIZE 12
+#define FONT_SIZE 11
 #endif
 
 URxvt*font: xft:Hack:antialias=true:size=FONT_SIZE
@@ -13,7 +13,7 @@ URxvt*boldFont: xft:Hack:style=bold:antialias=true:size=FONT_SIZE
 URxvt*italicFont: xft:Hack:style=italic:antialias=true:size=FONT_SIZE
 URxvt*boldItalicFont: xft:Hack:style=bolditalic:antialias=true:size=FONT_SIZE
 
-URxvt*letterSpace: -1
+URxvt*letterSpace: 0
 
 Xcursor.size: 16
 
