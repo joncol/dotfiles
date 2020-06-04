@@ -19,6 +19,11 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 alias git=hub
+alias a="gcalcli agenda now tomorrow"
+alias cu="yay -Syy ;and yay -Pu"
+alias mo=mimeopen
+alias u="yay -Syu --noconfirm"
+alias t="todoist"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
