@@ -21,9 +21,8 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-source /usr/share/zsh/share/antigen.zsh
-
-antigen init ~/.antigenrc
+source <(antibody init)
+antibody bundle < ~/.config/zsh/zsh_plugins.txt
 
 export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up --color fg:124,hl:202,fg+:214,bg+:52,hl+:231 --color info:52,prompt:196,spinner:208,pointer:196,marker:208'
 
