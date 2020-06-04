@@ -12,7 +12,7 @@ font pango:FontAwesome 16
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -193,7 +193,7 @@ bindsym $mod+F2 exec --no-startup-id ~/.config/i3/raise_volume.sh
 bindsym $mod+F3 exec --no-startup-id ~/.config/i3/mute.sh
 bindsym $mod+F4 exec --no-startup-id "~/.local/bin/toggle_laptop_screen.pl 1"
 bindsym $mod+Shift+F4 exec --no-startup-id "~/.local/bin/toggle_laptop_screen.pl 0"
-bindsym $mod+grave exec fish -c "urxvt -e ranger"
+bindsym $mOd+grave exec sh -c "st -e ranger"
 bindsym $mod+c exec ~/.config/i3/select_x_colorscheme.sh
 bindsym $mod+g exec ~/.config/i3/goto_project.sh
 bindsym $mod+p exec ~/.local/bin/toggle_touchpad.sh
