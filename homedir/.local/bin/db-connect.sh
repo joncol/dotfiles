@@ -58,7 +58,7 @@ SERVICE=$1
 SERVICE_SNAKE_CASE=$(echo $SERVICE | sed 's/-/_/g')
 ENVIRONMENT=$2
 DB_DATABASE=$(printf "%s_%s" $SERVICE_SNAKE_CASE $ENVIRONMENT)
-DB_HOST=$SERVICE-$ENVIRONMENT-db-replica.czldyizapuwt.eu-central-1.rds.amazonaws.com
+DB_HOST=$SERVICE-$ENVIRONMENT-db.czldyizapuwt.eu-central-1.rds.amazonaws.com
 TUNNEL_HOST="bastion.zimpler.net"
 
 DB_USER=$(ze-read $SERVICE $ENVIRONMENT DB_USER | awk '{print $4}')
