@@ -185,17 +185,17 @@ gaps outer 0
 # smart_gaps on
 new_window 1pixel
 
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/lower_volume.sh
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/raise_volume.sh
-bindsym XF86AudioMute        exec --no-startup-id ~/.config/i3/mute.sh
-bindsym $mod+F1 exec --no-startup-id ~/.config/i3/lower_volume.sh
-bindsym $mod+F2 exec --no-startup-id ~/.config/i3/raise_volume.sh
-bindsym $mod+F3 exec --no-startup-id ~/.config/i3/mute.sh
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/lower_volume.sh
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/raise_volume.sh
+bindsym XF86AudioMute        exec --no-startup-id ~/.local/bin/mute.sh
+bindsym $mod+F1 exec --no-startup-id ~/.local/bin/lower_volume.sh
+bindsym $mod+F2 exec --no-startup-id ~/.local/bin/raise_volume.sh
+bindsym $mod+F3 exec --no-startup-id ~/.local/bin/mute.sh
 bindsym $mod+F4 exec --no-startup-id "~/.local/bin/toggle_laptop_screen.pl 1"
 bindsym $mod+Shift+F4 exec --no-startup-id "~/.local/bin/toggle_laptop_screen.pl 0"
 bindsym $mOd+grave exec sh -c "st -e ranger"
-bindsym $mod+c exec ~/.config/i3/select_x_colorscheme.sh
-bindsym $mod+g exec ~/.config/i3/goto_project.sh
+bindsym $mod+c exec ~/.local/bin/select_x_colorscheme.sh
+bindsym $mod+g exec ~/.local/bin/goto_project.sh
 bindsym $mod+p exec ~/.local/bin/toggle_touchpad.sh
 
 # Screen brightness.
@@ -204,16 +204,16 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 exec_always --no-startup-id sleep 2 && ~/.local/bin/setup_screen.pl
 exec_always ~/.local/bin/setup_mouse.sh
-exec_always ~/.config/i3/apply_xrdb_settings.sh
+exec_always ~/.local/bin/apply_xrdb_settings.sh
 
 exec_always compton --unredir-if-possible -b
-exec_always ~/.config/i3/start_redshift.sh
+exec_always ~/.local/bin/start_redshift.sh
 
 exec_always sleep 2 && ~/.local/bin/betterlockscreen -w
 
 exec_always "xset r rate 300 30"
 
-exec_always ~/.config/i3/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
+exec_always ~/.local/bin/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
 
 exec_always unclutter
 
