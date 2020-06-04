@@ -1,0 +1,3 @@
+auracle() {
+    /usr/bin/auracle -C ~/aur "$@"
+}
