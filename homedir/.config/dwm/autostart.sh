@@ -11,4 +11,6 @@ xset r rate 300 30
 
 ~/.local/bin/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
 
+~/.cargo/bin/dwm-status ~/.config/dwm/dwm-status.yml &
+
 unclutter &
