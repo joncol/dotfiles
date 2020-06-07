@@ -20,7 +20,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 alias git=hub
 alias a="gcalcli agenda now tomorrow"
-alias cu="yay -Syy ;and yay -Pu"
+alias cu="yay -Syy && yay -Pu"
 alias mo=mimeopen
 alias u="yay -Syu --noconfirm"
 alias t="todoist"
