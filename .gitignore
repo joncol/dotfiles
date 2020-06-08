@@ -1,3 +1,4 @@
+*.zwc
 /fish/.config/fish/fishd.jco-arch
 /fonts/.fonts/.uuid
 /homedir/.config/fish/conf.d/omf.fish
