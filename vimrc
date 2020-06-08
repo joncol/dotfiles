@@ -6,6 +6,9 @@ if $SHELL =~ 'bin/fish'
 set shell=/bin/sh
 endif
 
+if has('python3')
+endif
+
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
