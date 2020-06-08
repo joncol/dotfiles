@@ -34,7 +34,12 @@ if [[ -d "$HOME/n/bin" ]]; then
     export PATH=$PATH:$HOME/n/bin
 fi
 
-source /usr/share/zsh/share/antigen.zsh
+if [[ -f /usr/share/zsh/share/antigen.zsh ]]; then
+    source /usr/share/zsh/share/antigen.zsh
+elif [[ -f /usr/share/zsh-antigen/antigen.zsh ]]; then
+    source /usr/share/zsh-antigen/antigen.zsh
+fi
+
 antigen init ~/.antigenrc
 
 export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up --color fg:124,hl:202,fg+:214,bg+:52,hl+:231 --color info:52,prompt:196,spinner:208,pointer:196,marker:208'
