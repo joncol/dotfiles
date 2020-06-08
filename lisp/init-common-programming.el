@@ -5,6 +5,7 @@
                 clojure-mode-hook
                 conf-unix-mode-hook
                 cmake-mode-hook
+                crystal-mode-hook
                 csharp-mode-hook
                 csv-mode-hook
                 cypher-mode-hook

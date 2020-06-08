@@ -247,6 +247,9 @@
   (setq counsel-projectile-ag-initial-input '(thing-at-point 'symbol t))
   (setq counsel-projectile-rg-initial-input '(thing-at-point 'symbol t)))
 
+(use-package crystal-mode
+  :defer t)
+
 (use-package csv-mode
   :defer t)
 
