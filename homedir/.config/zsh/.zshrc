@@ -30,6 +30,10 @@ export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+if [[ -d "$HOME/n/bin" ]]; then
+    export PATH=$PATH:$HOME/n/bin
+fi
+
 source /usr/share/zsh/share/antigen.zsh
 antigen init ~/.antigenrc
 
