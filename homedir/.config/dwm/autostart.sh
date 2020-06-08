@@ -14,4 +14,6 @@ xset r rate 300 30
 
 ~/.cargo/bin/dwm-status ~/.config/dwm/dwm-status.yml &
 
+feh --bg-fill /usr/share/backgrounds/gnome/SeaSunset.jpg
+
 unclutter &
