@@ -13,7 +13,7 @@
   (set-frame-size (selected-frame) 100 60))
 
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
-  (set-frame-font "FiraCodeMedium-10")
+  (set-frame-font "FiraCodeMedium-11")
   ;; (if (>= (x-display-pixel-height) 2160)
   ;;     (set-face-attribute 'default nil :height 140)
   ;;   (set-face-attribute 'default nil :height 110))
