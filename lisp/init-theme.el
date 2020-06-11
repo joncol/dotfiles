@@ -61,7 +61,10 @@
       (set-face-background 'evil-search-highlight-persist-highlight-face
                            "RoyalBlue4")
       (set-face-foreground 'show-paren-match "#101f24")
-      (set-face-background 'show-paren-match "#89C5B7"))
+      (set-face-background 'show-paren-match "#89C5B7")
+      ;; (set-face-attribute 'font-lock-comment-face nil :slant 'normal)
+      (with-eval-after-load 'smartparens
+        (set-face-attribute 'sp-show-pair-match-face nil :weight 'normal)))
   (defvar jco/theme nil))
 
 (cl-defun jco/current-fg (&optional (adj 0.0))
