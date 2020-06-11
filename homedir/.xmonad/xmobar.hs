@@ -1,10 +1,11 @@
-Config { font = "xft:Montserrat:size=12" -- "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , additionalFonts = []
+Config { font = "xft:Montserrat:size=12:"
+       , additionalFonts = [ "xft:Montserrat:size=12:medium"
+                           , "xft:Hack:size=10" ]
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
        , fgColor = "grey"
-       , alpha = 255
+       , alpha = 192
        , position = Top
        , textOffset = -1
        , iconOffset = -1
@@ -15,23 +16,10 @@ Config { font = "xft:Montserrat:size=12" -- "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
-                                          "-L","18","-H","25",
-                                          "--normal","green",
-                                          "--high","red",
-                                          "--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Network "eth1" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Date "%Y-%m-%d %a %H:%M" "date" 10
+       , commands = [ Run Date "%Y-%m-%d %a %H:%M" "date" 10
+                    , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "}{ <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc>"
        }
