@@ -19,8 +19,10 @@ import XMonad.Util.Run ( hPutStrLn, spawnPipe )
 import XMonad.Util.SpawnOnce ( spawnOnce )
 
 gray = "#7f7f7f"
+darkGray = "#3f3f3f"
 red = "#900000"
 white = "#eeeeee"
+flamingoPink = "#f78fb3"
 
 main = do
   dbus <- D.connectSession
@@ -56,12 +58,12 @@ myConfig dbus = def
     , manageHook  = manageHook def <+> manageDocks
     , logHook     = dynamicLogWithPP (myLogHook dbus)
     , startupHook = myStartupHook
-    , focusedBorderColor = "#f78fb3"
+    , focusedBorderColor = flamingoPink
     , normalBorderColor = "#404040"
     , workspaces  = myWorkspaces
     } `additionalKeys`
     [ ((myModMask .|. shiftMask, xK_x), spawn "slock")
-    , ((myModMask, xK_p),               spawn "dmenu_run -fn 'Montserrat-12:medium:antialias=true'")]
+    , ((myModMask, xK_p),               spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' -x 4 -y 4 -h 27 -dim 0.6 -sf \"" ++ darkGray ++ "\"" ++ " -sb \"" ++ flamingoPink ++ "\"")]
 
 myStartupHook = do
   spawn "~/.local/bin/x-autostart.sh"
