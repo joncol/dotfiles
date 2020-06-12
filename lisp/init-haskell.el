@@ -7,11 +7,13 @@
 ;;; Code:
 
 (use-package intero
+  :disabled t
   :defer t
   :config
   (evil-leader/set-key "x r" 'intero-restart)
-  (with-eval-after-load 'intero
-    (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
+  ;; (with-eval-after-load 'intero
+  ;;   (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
+  )
 
 (use-package haskell-mode
   :defer t
@@ -58,10 +60,10 @@
             (smartparens-mode)
 
             ;; Don't use intero mode in org snippets.
-            (when (and (not (eq system-type 'windows-nt))
-                       (not (s-contains? "org-src" (buffer-name)))
-                       (not (s-contains? "*temp" (buffer-name))))
-              (intero-mode))
+            ;; (when (and (not (eq system-type 'windows-nt))
+            ;;            (not (s-contains? "org-src" (buffer-name)))
+            ;;            (not (s-contains? "*temp" (buffer-name))))
+            ;;   (intero-mode))
 
             (setq evil-shift-width 4)
 
