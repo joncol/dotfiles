@@ -217,6 +217,6 @@ exec_always ~/.local/bin/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
 
 exec_always unclutter
 
-exec_always --no-startup-id sleep 3 && ~/.config/polybar/launch_polybar.sh
+exec_always --no-startup-id sleep 3 && ~/.local/bin/launch_polybar.sh
 
 exec_always ~/.config/i3/fix_nvidia_tearing.sh
