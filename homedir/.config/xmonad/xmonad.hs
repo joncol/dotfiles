@@ -1,17 +1,19 @@
-import Control.Monad ( void )
+import           Control.Monad ( void )
 import qualified Codec.Binary.UTF8.String as UTF8
 import qualified DBus as D
 import qualified DBus.Client as D
 import qualified Data.Map as M
-import Graphics.X11.ExtraTypes.XF86
-import XMonad
-import XMonad.Hooks.DynamicBars as DynBars
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops (ewmh)
-import XMonad.Hooks.ManageDocks
-import XMonad.Layout
-import XMonad.Layout.Spacing
-import XMonad.Util.EZConfig ( additionalKeys )
+import           Graphics.X11.Xlib.Types ( Rectangle(..) )
+import           Graphics.X11.ExtraTypes.XF86
+import           XMonad
+import           XMonad.Hooks.DynamicBars as DynBars
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.EwmhDesktops (ewmh)
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Layout
+import           XMonad.Layout.Spacing
+import qualified XMonad.StackSet as W
+import           XMonad.Util.EZConfig ( additionalKeys )
 
 gray = "#7f7f7f"
 darkGray = "#3f3f3f"
@@ -60,7 +62,13 @@ myConfig dbus = def
 
 myKeys =
     [ ((myModMask .|. shiftMask, xK_x), spawn "slock")
-    , ((myModMask, xK_p), spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' -x 4 -y 4 -h 27 -dim 0.6 -sf \"" ++ darkGray ++ "\"" ++ " -sb \"" ++ flamingoPink ++ "\"")
+    , ((myModMask, xK_p), do
+          rect <- fmap (screenRect . W.screenDetail . W.current)
+                       (gets windowset)
+          let width = rect_width rect - 8
+          spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
+                  "-x 4 -y 4 -h 27 -dim 0.6 -w " ++ show width ++ " -sf \"" ++
+                  darkGray ++ "\" -sb \"" ++ flamingoPink ++ "\"")
     , ((0, xF86XK_AudioLowerVolume   ), spawn "~/.local/bin/lower_volume.sh")
     , ((myModMask, xK_F1),              spawn "~/.local/bin/lower_volume.sh")
     , ((0, xF86XK_AudioRaiseVolume   ), spawn "~/.local/bin/raise_volume.sh")
