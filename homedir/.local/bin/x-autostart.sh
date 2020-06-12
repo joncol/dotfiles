@@ -6,7 +6,7 @@
 ~/.local/bin/apply_xrdb_settings.sh
 
 picom --unredir-if-possible -b
-~/.local/bin/start_redshift.sh &
+~/.local/bin/launch.sh redshift
 
 xset r rate 300 30
 
@@ -16,4 +16,4 @@ xset r rate 300 30
 
 feh --bg-fill /usr/share/backgrounds/gnome/SeaSunset.jpg
 
-unclutter &
+~/.local/bin/launch.sh unclutter
