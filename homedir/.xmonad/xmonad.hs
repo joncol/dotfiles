@@ -50,6 +50,8 @@ myConfig xmprocs = def
                             { ppCurrent = \c -> "["++ c ++ "]"
                             , ppLayout = const ""
                             , ppOutput = hPutStrLn h }) xmprocs
+    , focusedBorderColor = "#f78fb3"
+    , normalBorderColor = "#404040"
     -- , workspaces  = myWorkspaces
     } `additionalKeys`
     [ ((myModMask .|. shiftMask, xK_x), spawn "slock")
