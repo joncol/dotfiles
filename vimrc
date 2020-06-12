@@ -787,10 +787,10 @@ if has("gui_running")             " 'guifont' doesn't work in the console
       if b:screen_height > 2000
         set guifont=Hack\ 14
       else
-        set guifont=Hack\ 10.5
+        set guifont=FiraCodeMedium\ 10
       endif
     else                            " non-X11 GUIs (Windows, Carbon, ...)
-      set guifont=Inconsolata:h12
+      set guifont=FiraCodeMedium\ 10
     endif
 
     if s:uname == "Windows"
