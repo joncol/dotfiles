@@ -85,7 +85,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%{F-} %percentage_used%%
+label-mounted = %{F#95afc0}%{F-} %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -260,13 +260,13 @@ label-muted =  muted
 label-muted-foreground = #666
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = #95afc0
+bar-volume-foreground-1 = #95afc0
+bar-volume-foreground-2 = #95afc0
+bar-volume-foreground-3 = #95afc0
+bar-volume-foreground-4 = #95afc0
+bar-volume-foreground-5 = #c7ecee
+bar-volume-foreground-6 = #dff9fb
 bar-volume-gradient = false
 bar-volume-indicator = ""
 bar-volume-indicator-font = 2
@@ -274,7 +274,7 @@ bar-volume-fill = ""
 bar-volume-fill-font = 2
 bar-volume-empty = ""
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.background}
 
 ramp-volume-0 = 🔈
 ramp-volume-1 = 🔉
