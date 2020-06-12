@@ -50,6 +50,7 @@ myConfig xmprocs = def
                             { ppCurrent = \c -> "["++ c ++ "]"
                             , ppLayout = const ""
                             , ppOutput = hPutStrLn h }) xmprocs
+    , startupHook = spawn "~/.local/bin/x-autostart.sh"
     , focusedBorderColor = "#f78fb3"
     , normalBorderColor = "#404040"
     -- , workspaces  = myWorkspaces
