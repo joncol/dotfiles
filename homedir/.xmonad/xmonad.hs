@@ -3,6 +3,7 @@ import qualified Codec.Binary.UTF8.String as UTF8
 import qualified DBus as D
 import qualified DBus.Client as D
 import qualified Data.Map as M
+import Graphics.X11.ExtraTypes.XF86
 import XMonad
 import XMonad.Hooks.DynamicBars as DynBars
 import XMonad.Hooks.DynamicLog
@@ -55,9 +56,17 @@ myConfig dbus = def
     , focusedBorderColor = flamingoPink
     , normalBorderColor = "#404040"
     , workspaces  = myWorkspaces
-    } `additionalKeys`
+    } `additionalKeys` myKeys
+
+myKeys =
     [ ((myModMask .|. shiftMask, xK_x), spawn "slock")
     , ((myModMask, xK_p), spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' -x 4 -y 4 -h 27 -dim 0.6 -sf \"" ++ darkGray ++ "\"" ++ " -sb \"" ++ flamingoPink ++ "\"")
+    , ((0, xF86XK_AudioLowerVolume   ), spawn "~/.local/bin/lower_volume.sh")
+    , ((myModMask, xK_F1),              spawn "~/.local/bin/lower_volume.sh")
+    , ((0, xF86XK_AudioRaiseVolume   ), spawn "~/.local/bin/raise_volume.sh")
+    , ((myModMask, xK_F2),              spawn "~/.local/bin/raise_volume.sh")
+    , ((0, xF86XK_AudioMute          ), spawn "~/.local/bin/mute.sh")
+    , ((myModMask, xK_F3),              spawn "~/.local/bin/mute.sh")
     ]
 
 myStartupHook = do
