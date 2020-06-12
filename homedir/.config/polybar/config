@@ -49,7 +49,7 @@ font-2 = "unifont:fontformat=truetype:size=8;1"
 font-3 = "siji:pixelsize=10:antialias=false:hinting=false;6"
 font-4 = "fontawesome:pixelsize=14;4"
 
-modules-left = i3
+modules-left = xmonad
 modules-center = github
 modules-right = filesystem xbacklight pulseaudio memory cpu eth eth battery0 battery1 date rofi-wifi powermenu
 
@@ -405,4 +405,9 @@ screenchange-reload = true
 
 [global/wm]
 margin-top = 5
-margin-bottom = 5
+margin-bottom = 0
+
+[module/xmonad]
+type = custom/script
+exec = xmonad-log
+tail = true
