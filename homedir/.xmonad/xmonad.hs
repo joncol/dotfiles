@@ -1,30 +1,38 @@
 import Control.Monad (void)
+import qualified Codec.Binary.UTF8.String as UTF8
+import qualified DBus as D
+import qualified DBus.Client as D
+import qualified Data.Map as M
 import XMonad
 import XMonad.Hooks.DynamicBars as DynBars
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout
 import XMonad.Layout.IndependentScreens (countScreens)
 import XMonad.Layout.Spacing
 import XMonad.Prompt ( greenXPConfig )
 import XMonad.Prompt.Shell ( safePrompt )
+import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig ( additionalKeys )
 import XMonad.Util.Run ( hPutStrLn, spawnPipe )
 import XMonad.Util.SpawnOnce ( spawnOnce )
 
+gray = "#7f7f7f"
+red = "#900000"
+white = "#eeeeee"
+
 main = do
-  spawnPipe "pkill -sig9 xmobar"
-  n <- countScreens
-  xmprocs <- mapM (\i -> spawnPipe $ "sleep 1 && xmobar -x " ++ show i ++
-                                     " /home/jco/.xmonad/xmobar.hs")
-               [0..n-1]
-  xmonad $ docks (myConfig xmprocs)
+  dbus <- D.connectSession
+  D.requestName dbus (D.busName_ "org.xmonad.Log")
+    [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
+  xmonad $ ewmh $ docks (myConfig dbus)
 
 myTerminal = "st -e tmux"
 myModMask = mod4Mask
 
 -- [ "", "", "", "", "", "", "", "" ]
-myWorkspaces  = [ "\xf269"
+myWorkspaces  = [ "\61728"
                 , "\61684"
                 , "\62056"
                 , "\61515"
@@ -37,7 +45,7 @@ myWorkspaces  = [ "\xf269"
 -- Key binding to toggle the gap for the bar.
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
-myConfig xmprocs = def
+myConfig dbus = def
     { terminal    = myTerminal
     , modMask     = myModMask
     , borderWidth = 2
@@ -46,14 +54,37 @@ myConfig xmprocs = def
                                (Border 0 10 0 10) True $
                                Tall 1 (3/100) (1/2) ||| Full
     , manageHook  = manageHook def <+> manageDocks
-    , logHook     = mapM_ (\h -> dynamicLogWithPP $ def
-                            { ppCurrent = \c -> "["++ c ++ "]"
-                            , ppLayout = const ""
-                            , ppOutput = hPutStrLn h }) xmprocs
-    , startupHook = spawn "~/.local/bin/x-autostart.sh"
+    , logHook     = dynamicLogWithPP (myLogHook dbus)
+    , startupHook = myStartupHook
     , focusedBorderColor = "#f78fb3"
     , normalBorderColor = "#404040"
-    -- , workspaces  = myWorkspaces
+    , workspaces  = myWorkspaces
     } `additionalKeys`
     [ ((myModMask .|. shiftMask, xK_x), spawn "slock")
     , ((myModMask, xK_p),               spawn "dmenu_run -fn 'Montserrat-12:medium:antialias=true'")]
+
+myStartupHook = do
+  spawn "~/.local/bin/x-autostart.sh"
+  spawn "~/.local/bin/launch_polybar.sh"
+
+myLogHook :: D.Client -> PP
+myLogHook dbus = def
+  { ppOutput  = dbusOutput dbus
+  , ppCurrent = wrap ("%{F" ++ white ++ "} ") " %{F-}"
+  , ppVisible = wrap ("%{F" ++ gray ++ "} ") " %{F-}"
+  , ppUrgent  = wrap ("%{F" ++ red ++ "} ") " %{F-}"
+  , ppHidden  = wrap ("%{F" ++ gray ++ "} ") " %{F-}"
+  , ppTitle   = wrap ("%{F" ++ white ++ "} ") " %{F-}"
+  , ppLayout  = const ""
+  }
+
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+    let signal = (D.signal objectPath interfaceName memberName) {
+          D.signalBody = [D.toVariant $ UTF8.decodeString str]
+        }
+    D.emit dbus signal
+  where
+    objectPath = D.objectPath_ "/org/xmonad/Log"
+    interfaceName = D.interfaceName_ "org.xmonad.Log"
+    memberName = D.memberName_ "Update"
