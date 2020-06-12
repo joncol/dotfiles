@@ -69,12 +69,12 @@ myKeys =
           spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
                   "-x 4 -y 4 -h 27 -dim 0.6 -w " ++ show width ++ " -sf \"" ++
                   darkGray ++ "\" -sb \"" ++ flamingoPink ++ "\"")
-    , ((0, xF86XK_AudioLowerVolume   ), spawn "~/.local/bin/lower_volume.sh")
-    , ((myModMask, xK_F1),              spawn "~/.local/bin/lower_volume.sh")
-    , ((0, xF86XK_AudioRaiseVolume   ), spawn "~/.local/bin/raise_volume.sh")
-    , ((myModMask, xK_F2),              spawn "~/.local/bin/raise_volume.sh")
-    , ((0, xF86XK_AudioMute          ), spawn "~/.local/bin/mute.sh")
-    , ((myModMask, xK_F3),              spawn "~/.local/bin/mute.sh")
+    , ((0, xF86XK_AudioLowerVolume ), spawn "~/.local/bin/lower_volume.sh")
+    , ((myModMask, xK_F1),            spawn "~/.local/bin/lower_volume.sh")
+    , ((0, xF86XK_AudioRaiseVolume ), spawn "~/.local/bin/raise_volume.sh")
+    , ((myModMask, xK_F2),            spawn "~/.local/bin/raise_volume.sh")
+    , ((0, xF86XK_AudioMute ),        spawn "~/.local/bin/mute.sh")
+    , ((myModMask, xK_F3),            spawn "~/.local/bin/mute.sh")
     ]
 
 myStartupHook = do
