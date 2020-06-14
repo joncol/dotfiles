@@ -11,7 +11,12 @@ import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops (ewmh)
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Layout
+import           XMonad.Layout.Grid
+import           XMonad.Layout.MultiToggle
+import           XMonad.Layout.MultiToggle.Instances
+import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Spacing
+import           XMonad.Layout.ThreeColumns
 import qualified XMonad.StackSet as W
 import           XMonad.Util.EZConfig ( additionalKeys )
 
@@ -26,6 +31,54 @@ main = do
   D.requestName dbus (D.busName_ "org.xmonad.Log")
     [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
   xmonad $ ewmh $ docks (myConfig dbus)
+
+myConfig dbus = def
+    { terminal    = myTerminal
+    , modMask     = myModMask
+    , borderWidth = 2
+    , layoutHook  = myLayouts
+    , manageHook  = manageHook def <+> manageDocks
+    , logHook     = dynamicLogWithPP (myLogHook dbus)
+    , startupHook = myStartupHook
+    , focusedBorderColor = flamingoPink
+    , normalBorderColor = "#404040"
+    , workspaces  = myWorkspaces
+    } `additionalKeys` myKeys
+
+myLayouts =
+  avoidStruts $ mySpacingRaw $ myToggles $
+        tallLayout
+    ||| threeColMidLayout
+    ||| gridLayout
+  where
+    mySpacingRaw = spacingRaw
+                     False -- smartBorder
+                     (Border 10 0 10 0) True -- screenBorder
+                     (Border 0 10 0 10) True -- windowBorder
+    myToggles = mkToggle (NOBORDERS ?? FULL ?? EOT)
+    tallLayout = Tall 1 (3/100) (1/2)
+    threeColMidLayout = ThreeColMid 1 (3/100) (1/2)
+    gridLayout = Grid
+    fullLayout = Full
+
+
+myKeys =
+    [ ((myModMask .|. shiftMask, xK_x), spawn "slock")
+    , ((myModMask, xK_p), do
+          rect <- fmap (screenRect . W.screenDetail . W.current)
+                       (gets windowset)
+          let width = rect_width rect - 8
+          spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
+                  "-x 4 -y 4 -h 27 -dim 0.6 -w " ++ show width ++ " -sf \"" ++
+                  darkGray ++ "\" -sb \"" ++ flamingoPink ++ "\"")
+    , ((myModMask, xK_m),             sendMessage $ Toggle FULL)
+    , ((0, xF86XK_AudioLowerVolume ), spawn "~/.local/bin/lower_volume.sh")
+    , ((myModMask, xK_F1),            spawn "~/.local/bin/lower_volume.sh")
+    , ((0, xF86XK_AudioRaiseVolume ), spawn "~/.local/bin/raise_volume.sh")
+    , ((myModMask, xK_F2),            spawn "~/.local/bin/raise_volume.sh")
+    , ((0, xF86XK_AudioMute ),        spawn "~/.local/bin/mute.sh")
+    , ((myModMask, xK_F3),            spawn "~/.local/bin/mute.sh")
+    ]
 
 myTerminal = "st -e tmux"
 myModMask = mod4Mask
@@ -43,39 +96,6 @@ myWorkspaces  = [ "\61728"
 
 -- Key binding to toggle the gap for the bar.
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-
-myConfig dbus = def
-    { terminal    = myTerminal
-    , modMask     = myModMask
-    , borderWidth = 2
-    , layoutHook  = avoidStruts $ spacingRaw False
-                               (Border 10 0 10 0) True
-                               (Border 0 10 0 10) True $
-                               Tall 1 (3/100) (1/2) ||| Full
-    , manageHook  = manageHook def <+> manageDocks
-    , logHook     = dynamicLogWithPP (myLogHook dbus)
-    , startupHook = myStartupHook
-    , focusedBorderColor = flamingoPink
-    , normalBorderColor = "#404040"
-    , workspaces  = myWorkspaces
-    } `additionalKeys` myKeys
-
-myKeys =
-    [ ((myModMask .|. shiftMask, xK_x), spawn "slock")
-    , ((myModMask, xK_p), do
-          rect <- fmap (screenRect . W.screenDetail . W.current)
-                       (gets windowset)
-          let width = rect_width rect - 8
-          spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
-                  "-x 4 -y 4 -h 27 -dim 0.6 -w " ++ show width ++ " -sf \"" ++
-                  darkGray ++ "\" -sb \"" ++ flamingoPink ++ "\"")
-    , ((0, xF86XK_AudioLowerVolume ), spawn "~/.local/bin/lower_volume.sh")
-    , ((myModMask, xK_F1),            spawn "~/.local/bin/lower_volume.sh")
-    , ((0, xF86XK_AudioRaiseVolume ), spawn "~/.local/bin/raise_volume.sh")
-    , ((myModMask, xK_F2),            spawn "~/.local/bin/raise_volume.sh")
-    , ((0, xF86XK_AudioMute ),        spawn "~/.local/bin/mute.sh")
-    , ((myModMask, xK_F3),            spawn "~/.local/bin/mute.sh")
-    ]
 
 myStartupHook = do
   spawn "~/.local/bin/x-autostart.sh"
