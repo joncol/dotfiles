@@ -1,3 +1,5 @@
+{-# LANGUAGE FlexibleContexts, NamedFieldPuns, PatternGuards #-}
+
 import           Control.Monad ( void )
 import qualified Codec.Binary.UTF8.String as UTF8
 import qualified DBus as D
@@ -6,12 +8,20 @@ import qualified Data.Map as M
 import           Graphics.X11.Xlib.Types ( Rectangle(..) )
 import           Graphics.X11.ExtraTypes.XF86
 import           XMonad
+import           XMonad.Config.Dmwit ( viewShift, withScreen )
 import           XMonad.Hooks.DynamicBars as DynBars
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops (ewmh)
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Layout
 import           XMonad.Layout.Grid
+import           XMonad.Layout.IndependentScreens ( countScreens
+                                                  , marshallPP
+                                                  , onCurrentScreen
+                                                  , withScreens
+                                                  , workspaces'
+                                                  )
+import           XMonad.Layout.LayoutModifier (ModifiedLayout)
 import           XMonad.Layout.MultiToggle
 import           XMonad.Layout.MultiToggle.Instances
 import           XMonad.Layout.NoBorders
@@ -19,40 +29,61 @@ import           XMonad.Layout.Spacing
 import           XMonad.Layout.ThreeColumns
 import qualified XMonad.StackSet as W
 import           XMonad.Util.EZConfig ( additionalKeys )
+import           XMonad.Util.Run ( hPutStrLn, safeSpawn, spawnPipe )
+import           XMonad.Util.CustomKeys (customKeys)
 
-gray = "#7f7f7f"
-darkGray = "#3f3f3f"
-red = "#900000"
-white = "#eeeeee"
-flamingoPink = "#f78fb3"
+gray          = "#7f7f7f"
+darkGray      = "#3f3f3f"
+red           = "#900000"
+white         = "#eeeeee"
+flamingoPink  = "#f78fb3"
+middleBlue    = "#7ed6df"
+hintOfIcePack = "#c7ecee"
+soaringEagle  = "#95afc0"
+turbo         = "#f9ca24"
 
-main = do
-  dbus <- D.connectSession
-  D.requestName dbus (D.busName_ "org.xmonad.Log")
-    [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
-  xmonad $ ewmh $ docks (myConfig dbus)
+main = xmonad =<< myStatusBar myConfig
 
-myConfig dbus = def
-    { terminal    = myTerminal
-    , modMask     = myModMask
-    , borderWidth = 2
-    , layoutHook  = myLayouts
-    , manageHook  = manageHook def <+> manageDocks
-    , logHook     = dynamicLogWithPP (myLogHook dbus)
-    , startupHook = myStartupHook
+myConfig = def
+    { terminal           = myTerminal
+    , modMask            = myModMask
+    , borderWidth        = 2
+    , layoutHook         = myLayoutHook
+    , manageHook         = manageHook def <+> manageDocks
+    , startupHook        = myStartupHook
     , focusedBorderColor = flamingoPink
-    , normalBorderColor = "#404040"
-    , workspaces  = myWorkspaces
+    , normalBorderColor  = darkGray
+    , keys               = customKeys delKeys insKeys
     } `additionalKeys` myKeys
+  where
+    delKeys = const []
+    insKeys = \conf -> let m = modMask conf in
+                [ ((m              , xK_Control_L), withScreen 1 W.view)
+                , ((m .|. shiftMask, xK_Control_L), withScreen 1 viewShift)
+                , ((m              , xK_Alt_L    ), withScreen 0 W.view)
+                , ((m .|. shiftMask, xK_Alt_L    ), withScreen 0 viewShift)
+                ] ++
+                [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace))
+                    | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
+                , (e, f) <- [(0, W.view), (shiftMask, viewShift)]
+                , i <- [0, controlMask, mod1Mask, controlMask .|. mod1Mask]
+                ]
 
-myLayouts =
-  avoidStruts $ mySpacingRaw $ myToggles $
-        tallLayout
-    ||| threeColMidLayout
-    ||| gridLayout
+myModMask = mod4Mask
+
+myTerminal = "st -e tmux"
+
+myStartupHook =
+  do
+    spawn "~/.local/bin/x-autostart.sh"
+
+myLayoutHook = mySpacingRaw $ myToggles
+                 $   tallLayout
+                 ||| threeColMidLayout
+                 ||| gridLayout
   where
     mySpacingRaw = spacingRaw
-                     False -- smartBorder
+                     False                   -- smartBorder
                      (Border 10 0 10 0) True -- screenBorder
                      (Border 0 10 0 10) True -- windowBorder
     myToggles = mkToggle (NOBORDERS ?? FULL ?? EOT)
@@ -61,64 +92,52 @@ myLayouts =
     gridLayout = Grid
     fullLayout = Full
 
+myStatusBar :: LayoutClass l Window
+            => XConfig l
+            -> IO (XConfig (ModifiedLayout AvoidStruts l))
+myStatusBar conf = do
+    screenCount <- countScreens
+    hs <- mapM (spawnPipe . xmobarCommand) [0..screenCount-1]
+    return $ docks $ conf
+      { layoutHook = avoidStruts (layoutHook conf)
+      , workspaces = withScreens screenCount (map show [1..9])
+      , logHook = do
+                    logHook conf
+                    mapM_ dynamicLogWithPP $ zipWith pp hs [0..screenCount]
+      }
 
-myKeys =
-    [ ((myModMask .|. shiftMask, xK_x), spawn "slock")
-    , ((myModMask, xK_p), do
+pp h s = marshallPP s defaultPP
+    { ppCurrent         = color "white"
+    , ppVisible         = color "white"
+    , ppHiddenNoWindows = const ""
+    , ppUrgent          = const red
+    , ppSep             = " | "
+    , ppTitle           = color middleBlue
+    , ppLayout          = color soaringEagle
+    , ppOutput          = hPutStrLn h
+    }
+  where color c = xmobarColor c ""
+
+xmobarCommand (S s) = unwords [ "xmobar"
+                              , "~/.xmonad/xmobar.hs"
+                              , "-x"
+                              , show s
+                              ]
+
+myKeys = let m = myModMask in
+    [ ((m .|. shiftMask, xK_x), spawn "slock")
+    , ((m, xK_p), do
           rect <- fmap (screenRect . W.screenDetail . W.current)
                        (gets windowset)
-          let width = rect_width rect - 8
+          let width = rect_width rect
           spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
-                  "-x 4 -y 4 -h 27 -dim 0.6 -w " ++ show width ++ " -sf \"" ++
-                  darkGray ++ "\" -sb \"" ++ flamingoPink ++ "\"")
-    , ((myModMask, xK_m),             sendMessage $ Toggle FULL)
+                  "-h 20 -dim 0.6 -y 2 -sf \"" ++ darkGray ++
+                  "\" -sb \"" ++ turbo ++ "\"")
+    , ((m, xK_m),                     sendMessage $ Toggle FULL)
     , ((0, xF86XK_AudioLowerVolume ), spawn "~/.local/bin/lower_volume.sh")
-    , ((myModMask, xK_F1),            spawn "~/.local/bin/lower_volume.sh")
+    , ((m, xK_F1),                    spawn "~/.local/bin/lower_volume.sh")
     , ((0, xF86XK_AudioRaiseVolume ), spawn "~/.local/bin/raise_volume.sh")
-    , ((myModMask, xK_F2),            spawn "~/.local/bin/raise_volume.sh")
+    , ((m, xK_F2),                    spawn "~/.local/bin/raise_volume.sh")
     , ((0, xF86XK_AudioMute ),        spawn "~/.local/bin/mute.sh")
-    , ((myModMask, xK_F3),            spawn "~/.local/bin/mute.sh")
+    , ((m, xK_F3),                    spawn "~/.local/bin/mute.sh")
     ]
-
-myTerminal = "st -e tmux"
-myModMask = mod4Mask
-
--- [ "", "", "", "", "", "", "", "" ]
-myWorkspaces  = [ "\61728"
-                , "\61684"
-                , "\62056"
-                , "\61515"
-                , "\61557"
-                , "\61749"
-                , "\61747"
-                , "\61664"
-                ]
-
--- Key binding to toggle the gap for the bar.
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-
-myStartupHook = do
-  spawn "~/.local/bin/x-autostart.sh"
-  spawn "~/.local/bin/launch_polybar.sh"
-
-myLogHook :: D.Client -> PP
-myLogHook dbus = def
-  { ppOutput  = dbusOutput dbus
-  , ppCurrent = wrap ("%{F" ++ white ++ "} ") " %{F-}"
-  , ppVisible = wrap ("%{F" ++ gray ++ "} ") " %{F-}"
-  , ppUrgent  = wrap ("%{F" ++ red ++ "} ") " %{F-}"
-  , ppHidden  = wrap ("%{F" ++ gray ++ "} ") " %{F-}"
-  , ppTitle   = wrap ("%{F" ++ white ++ "} ") " %{F-}"
-  , ppLayout  = const ""
-  }
-
-dbusOutput :: D.Client -> String -> IO ()
-dbusOutput dbus str = do
-    let signal = (D.signal objectPath interfaceName memberName) {
-          D.signalBody = [D.toVariant $ UTF8.decodeString str]
-        }
-    D.emit dbus signal
-  where
-    objectPath = D.objectPath_ "/org/xmonad/Log"
-    interfaceName = D.interfaceName_ "org.xmonad.Log"
-    memberName = D.memberName_ "Update"
