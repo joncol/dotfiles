@@ -47,6 +47,7 @@ soaringEagle  = "#95afc0"
 turbo         = "#f9ca24"
 
 main = do
+  countScreens >>= createXmobarPipes
   spawn "killall -q xmobar && sleep 1"
   xmonad =<< myStatusBar myConfig
 
@@ -111,6 +112,7 @@ myStatusBar conf = do
                         screenCount <- countScreens
                         refresh
                         mapM_ (spawnPipe . xmobarCommand) [0 .. screenCount-1]
+                        docksStartupHook
       , logHook = myPPs screenCount
       }
 
@@ -120,6 +122,15 @@ myPPs screenCount =
 
 -- Note that the pipes need to be created with `mkfifo`.
 pipeName n s = "/home/jco/.xmonad/pipe-" ++ n ++ "-" ++ show s
+
+createXmobarPipes screenCount =
+    sequence_ $ [ spawn $ cmd pn s | pn <- ["focus", "workspaces"]
+                                   , s <- [0..screenCount-1] ] ++
+                [ spawn "sleep 1" ]
+  where
+    cmd pn (S s) =
+      let filename = pipeName pn s
+      in "if [[ ! -p " ++ filename ++ " ]]; then mkfifo " ++ filename ++ "; fi"
 
 ppFocus s@(S s_) = whenCurrentOn s def {
       ppOrder  = \(_:_:windowTitle:_) -> [windowTitle]
