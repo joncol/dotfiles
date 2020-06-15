@@ -2,7 +2,7 @@ Config { font = "xft:Montserrat:Medium:size=12"
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
-       , fgColor = "grey"
+       , fgColor = "#a0a0a0"
        , alpha = 192
        , position = Top
        , textOffset = -1
@@ -16,7 +16,6 @@ Config { font = "xft:Montserrat:Medium:size=12"
        , overrideRedirect = True
        , commands = [ Run Weather "ESGG" ["-t","<station>: <tempC>C","-L","18","-H","25","--normal","#badc58","--high","#eb4d4b","--low","#686de0"] 36000
                     , Run Date "%Y-%m-%d %a %H:%M" "date" 10
-                    , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"

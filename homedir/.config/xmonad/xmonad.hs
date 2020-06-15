@@ -20,6 +20,7 @@ import           XMonad.Layout.Grid
 import           XMonad.Layout.IndependentScreens ( countScreens
                                                   , marshallPP
                                                   , onCurrentScreen
+                                                  , whenCurrentOn
                                                   , withScreens
                                                   , workspaces'
                                                   )
@@ -33,6 +34,7 @@ import qualified XMonad.StackSet as W
 import           XMonad.Util.EZConfig ( additionalKeys )
 import           XMonad.Util.Run ( hPutStrLn, safeSpawn, spawnPipe )
 import           XMonad.Util.CustomKeys (customKeys)
+import           XMonad.Util.SpawnOnce (spawnOnce)
 
 gray          = "#7f7f7f"
 darkGray      = "#3f3f3f"
@@ -44,7 +46,9 @@ hintOfIcePack = "#c7ecee"
 soaringEagle  = "#95afc0"
 turbo         = "#f9ca24"
 
-main = xmonad =<< myStatusBar myConfig
+main = do
+  spawn "killall -q xmobar && sleep 1"
+  xmonad =<< myStatusBar myConfig
 
 myConfig = def
     { terminal           = myTerminal
@@ -99,32 +103,59 @@ myStatusBar :: LayoutClass l Window
             -> IO (XConfig (ModifiedLayout AvoidStruts l))
 myStatusBar conf = do
     screenCount <- countScreens
-    hs <- mapM (spawnPipe . xmobarCommand) [0..screenCount-1]
     return $ docks $ conf
       { layoutHook = avoidStruts (layoutHook conf)
       , workspaces = withScreens screenCount (map show [1..9])
-      , logHook = do
-                    logHook conf
-                    mapM_ dynamicLogWithPP $ zipWith pp hs [0..screenCount]
+      , startupHook = do
+                        (startupHook conf)
+                        screenCount <- countScreens
+                        refresh
+                        mapM_ (spawnPipe . xmobarCommand) [0 .. screenCount-1]
+      , logHook = myPPs screenCount
       }
 
-pp h s = marshallPP s defaultPP
+myPPs screenCount =
+  sequence_ [ dynamicLogWithPP (pp s) | s <- [0..screenCount-1]
+            , pp <- [ppFocus, ppWorkspaces] ]
+
+-- Note that the pipes need to be created with `mkfifo`.
+pipeName n s = "/home/jco/.xmonad/pipe-" ++ n ++ "-" ++ show s
+
+ppFocus s@(S s_) = whenCurrentOn s def {
+      ppOrder  = \(_:_:windowTitle:_) -> [windowTitle]
+    , ppTitle  = color middleBlue
+    , ppLayout = color soaringEagle
+    , ppOutput = appendFile (pipeName "focus" s_) . (++"\n")
+    }
+
+ppWorkspaces s@(S s_) = marshallPP s defaultPP
     { ppCurrent         = color "white"
     , ppVisible         = color "white"
     , ppHiddenNoWindows = const ""
     , ppUrgent          = const red
     , ppSep             = " | "
-    , ppTitle           = color middleBlue
-    , ppLayout          = color soaringEagle
-    , ppOutput          = hPutStrLn h
+    , ppOrder           = \(wss:_layout:_title:_) -> [wss]
+    , ppOutput          = appendFile (pipeName "workspaces" s_) . (++"\n")
     }
-  where color c = xmobarColor c ""
+
+color c = xmobarColor c ""
 
 xmobarCommand (S s) = unwords [ "xmobar"
                               , "~/.xmonad/xmobar.hs"
                               , "-x"
                               , show s
+                              , "-t"
+                              , template s
+                              , "-C"
+                              , pipeReader
                               ]
+  where
+    template 0 = "%workspaces%}%focus%{%ESGG%"
+    template _ = "%workspaces%}%focus%{%date%"
+    pipeReader =
+      "'[ Run PipeReader \"" ++ pipeName "focus"      s ++ "\" \"focus\"\
+       \, Run PipeReader \"" ++ pipeName "workspaces" s ++ "\" \"workspaces\"\
+       \]'"
 
 myKeys = let m = myModMask in
     [ ((m .|. shiftMask, xK_x), spawn "slock")
