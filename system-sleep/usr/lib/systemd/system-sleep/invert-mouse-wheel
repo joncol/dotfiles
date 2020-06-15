@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+case $1 in
+    post)
+        setup_mouse.sh
+        ;;
+esac
