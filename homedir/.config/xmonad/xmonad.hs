@@ -4,10 +4,12 @@ import           Control.Monad ( void )
 import qualified Codec.Binary.UTF8.String as UTF8
 import qualified DBus as D
 import qualified DBus.Client as D
+import           Data.Default
 import qualified Data.Map as M
 import           Graphics.X11.Xlib.Types ( Rectangle(..) )
 import           Graphics.X11.ExtraTypes.XF86
 import           XMonad
+import           XMonad.Actions.PhysicalScreens
 import           XMonad.Config.Dmwit ( viewShift, withScreen )
 import           XMonad.Hooks.DynamicBars as DynBars
 import           XMonad.Hooks.DynamicLog
@@ -140,4 +142,8 @@ myKeys = let m = myModMask in
     , ((m, xK_F2),                    spawn "~/.local/bin/raise_volume.sh")
     , ((0, xF86XK_AudioMute ),        spawn "~/.local/bin/mute.sh")
     , ((m, xK_F3),                    spawn "~/.local/bin/mute.sh")
+    ] ++
+    [ ((m .|. mask, key), f sc)
+    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+    , (f, mask) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]
     ]
