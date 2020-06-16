@@ -87,6 +87,7 @@ myStartupHook =
 
 myLayoutHook = mySpacingRaw $ myToggles
                  $   tallLayout
+                 ||| threeColLayout
                  ||| threeColMidLayout
                  ||| gridLayout
   where
@@ -96,6 +97,7 @@ myLayoutHook = mySpacingRaw $ myToggles
                      (Border 0 10 0 10) True -- windowBorder
     myToggles = mkToggle (NOBORDERS ?? FULL ?? EOT)
     tallLayout = Tall 1 (3/100) (1/2)
+    threeColLayout = ThreeCol 1 (3/100) (1/2)
     threeColMidLayout = ThreeColMid 1 (3/100) (1/2)
     gridLayout = Grid
     fullLayout = Full
