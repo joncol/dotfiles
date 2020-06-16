@@ -15,6 +15,7 @@ import           XMonad.Hooks.DynamicBars as DynBars
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops (ewmh)
 import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout
 import           XMonad.Layout.Grid
 import           XMonad.Layout.IndependentScreens ( countScreens
@@ -56,7 +57,7 @@ myConfig = def
     , modMask            = myModMask
     , borderWidth        = 2
     , layoutHook         = myLayoutHook
-    , manageHook         = manageHook def <+> manageDocks
+    , manageHook         = myManageHook
     , startupHook        = myStartupHook
     , focusedBorderColor = flamingoPink
     , normalBorderColor  = darkGray
@@ -98,6 +99,15 @@ myLayoutHook = mySpacingRaw $ myToggles
     threeColMidLayout = ThreeColMid 1 (3/100) (1/2)
     gridLayout = Grid
     fullLayout = Full
+
+myManageHook =
+  composeOne
+    [ checkDock              -?> doIgnore -- equivalent to manageDocks
+    , isDialog               -?> doFloat
+    , className =? "Gimp"    -?> doFloat
+    , className =? "MPlayer" -?> doFloat
+    , return True -?> doF W.swapDown
+    ]
 
 myStatusBar :: LayoutClass l Window
             => XConfig l
