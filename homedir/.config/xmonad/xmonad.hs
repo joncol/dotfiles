@@ -177,7 +177,7 @@ myKeys = let m = myModMask in
           spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
                   "-h 20 -dim 0.6 -y 2 -sf \"" ++ darkGray ++
                   "\" -sb \"" ++ turbo ++ "\"")
-    , ((m, xK_m),                     sendMessage $ Toggle FULL)
+    , ((m, xK_f),                     sendMessage $ Toggle FULL)
     , ((0, xF86XK_AudioLowerVolume ), spawn "~/.local/bin/lower_volume.sh")
     , ((m, xK_F1),                    spawn "~/.local/bin/lower_volume.sh")
     , ((0, xF86XK_AudioRaiseVolume ), spawn "~/.local/bin/raise_volume.sh")
