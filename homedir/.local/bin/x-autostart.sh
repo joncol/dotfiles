@@ -5,7 +5,7 @@
 ~/.local/bin/setup_screen.pl
 ~/.local/bin/apply_xrdb_settings.sh
 
-picom --unredir-if-possible -b
+picom --unredir-if-possible --experimental-backends -b
 ~/.local/bin/launch.sh redshift &
 
 xset r rate 300 30
