@@ -94,8 +94,8 @@ myLayoutHook =
   where
     mySpacingRaw = spacingRaw
                      False                   -- smartBorder
-                     (Border 10 0 10 0) True -- screenBorder
-                     (Border 0 10 0 10) True -- windowBorder
+                     (Border 15 0 15 0) True -- screenBorder
+                     (Border 0 15 0 15) True -- windowBorder
     myToggles = mkToggle (NOBORDERS ?? FULL ?? EOT) .
                 mkToggle (single MIRROR)
     tallLayout = Tall 1 (3/100) (1/2)
@@ -107,6 +107,7 @@ myManageHook =
   composeOne
     [ checkDock              -?> doIgnore -- equivalent to manageDocks
     , isDialog               -?> doFloat
+    -- , isFullscreen           -?> doFullFloat
     , className =? "Gimp"    -?> doFloat
     , className =? "MPlayer" -?> doFloat
     , return True -?> doF W.swapDown
