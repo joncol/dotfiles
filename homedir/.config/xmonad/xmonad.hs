@@ -85,11 +85,12 @@ myStartupHook =
   do
     spawn "~/.local/bin/x-autostart.sh"
 
-myLayoutHook = mySpacingRaw $ myToggles
-                 $   tallLayout
-                 ||| threeColLayout
-                 ||| threeColMidLayout
-                 ||| gridLayout
+myLayoutHook =
+    myToggles $ avoidStruts $ mySpacingRaw
+              $   tallLayout
+              ||| threeColLayout
+              ||| threeColMidLayout
+              ||| gridLayout
   where
     mySpacingRaw = spacingRaw
                      False                   -- smartBorder
@@ -111,14 +112,10 @@ myManageHook =
     , return True -?> doF W.swapDown
     ]
 
-myStatusBar :: LayoutClass l Window
-            => XConfig l
-            -> IO (XConfig (ModifiedLayout AvoidStruts l))
 myStatusBar conf = do
     screenCount <- countScreens
     return $ docks $ conf
-      { layoutHook = avoidStruts (layoutHook conf)
-      , workspaces = withScreens screenCount (map show [1..9])
+      { workspaces = withScreens screenCount (map show [1..9])
       , startupHook = do
                         (startupHook conf)
                         screenCount <- countScreens
