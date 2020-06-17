@@ -95,7 +95,8 @@ myLayoutHook = mySpacingRaw $ myToggles
                      False                   -- smartBorder
                      (Border 10 0 10 0) True -- screenBorder
                      (Border 0 10 0 10) True -- windowBorder
-    myToggles = mkToggle (NOBORDERS ?? FULL ?? EOT)
+    myToggles = mkToggle (NOBORDERS ?? FULL ?? EOT) .
+                mkToggle (single MIRROR)
     tallLayout = Tall 1 (3/100) (1/2)
     threeColLayout = ThreeCol 1 (3/100) (1/2)
     threeColMidLayout = ThreeColMid 1 (3/100) (1/2)
@@ -190,6 +191,7 @@ myKeys = let m = myModMask in
                   "-h 20 -dim 0.6 -y 2 -sf \"" ++ darkGray ++
                   "\" -sb \"" ++ turbo ++ "\"")
     , ((m, xK_f),                     sendMessage $ Toggle FULL)
+    , ((m, xK_x),                     sendMessage $ Toggle MIRROR)
     , ((0, xF86XK_AudioLowerVolume ), spawn "~/.local/bin/lower_volume.sh")
     , ((m, xK_F1),                    spawn "~/.local/bin/lower_volume.sh")
     , ((0, xF86XK_AudioRaiseVolume ), spawn "~/.local/bin/raise_volume.sh")
