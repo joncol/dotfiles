@@ -13,7 +13,7 @@ import           XMonad.Actions.PhysicalScreens
 import           XMonad.Config.Dmwit ( viewShift, withScreen )
 import           XMonad.Hooks.DynamicBars as DynBars
 import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.EwmhDesktops (ewmh)
+import           XMonad.Hooks.EwmhDesktops ( ewmh, fullscreenEventHook )
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout
@@ -25,7 +25,7 @@ import           XMonad.Layout.IndependentScreens ( countScreens
                                                   , withScreens
                                                   , workspaces'
                                                   )
-import           XMonad.Layout.LayoutModifier (ModifiedLayout)
+import           XMonad.Layout.LayoutModifier ( ModifiedLayout )
 import           XMonad.Layout.MultiToggle
 import           XMonad.Layout.MultiToggle.Instances
 import           XMonad.Layout.NoBorders
@@ -34,8 +34,8 @@ import           XMonad.Layout.ThreeColumns
 import qualified XMonad.StackSet as W
 import           XMonad.Util.EZConfig ( additionalKeys )
 import           XMonad.Util.Run ( hPutStrLn, safeSpawn, spawnPipe )
-import           XMonad.Util.CustomKeys (customKeys)
-import           XMonad.Util.SpawnOnce (spawnOnce)
+import           XMonad.Util.CustomKeys ( customKeys )
+import           XMonad.Util.SpawnOnce ( spawnOnce )
 
 gray          = "#7f7f7f"
 darkGray      = "#3f3f3f"
