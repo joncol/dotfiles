@@ -86,17 +86,18 @@ myStartupHook =
     spawn "~/.local/bin/x-autostart.sh"
 
 myLayoutHook =
-    myToggles $ avoidStruts $ mySpacingRaw
-              $   tallLayout
-              ||| threeColLayout
-              ||| threeColMidLayout
-              ||| gridLayout
+    fullScreenToggle $ avoidStruts $ mirrorToggle $ mySpacingRaw
+      $   tallLayout
+      ||| threeColLayout
+      ||| threeColMidLayout
+      ||| gridLayout
   where
     mySpacingRaw = spacingRaw
                      False                   -- smartBorder
                      (Border 15 0 15 0) True -- screenBorder
                      (Border 0 15 0 15) True -- windowBorder
-    myToggles = mkToggle (single NBFULL) . mkToggle (single MIRROR)
+    fullScreenToggle = mkToggle (single NBFULL)
+    mirrorToggle = mkToggle (single MIRROR)
     tallLayout = Tall 1 (3/100) (1/2)
     threeColLayout = ThreeCol 1 (3/100) (1/2)
     threeColMidLayout = ThreeColMid 1 (3/100) (1/2)
