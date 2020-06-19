@@ -43,9 +43,11 @@ red           = "#900000"
 white         = "#eeeeee"
 flamingoPink  = "#f78fb3"
 middleBlue    = "#7ed6df"
+coastalBreeze = "#dff9fb"
 hintOfIcePack = "#c7ecee"
 soaringEagle  = "#95afc0"
 turbo         = "#f9ca24"
+blueberrySoda = "#7f8fa6"
 
 main = do
   countScreens >>= createXmobarPipes
@@ -144,7 +146,7 @@ createXmobarPipes screenCount =
 
 ppFocus s@(S s_) = whenCurrentOn s def {
       ppOrder  = \(_:_:windowTitle:_) -> [windowTitle]
-    , ppTitle  = color middleBlue
+    , ppTitle  = color blueberrySoda
     , ppLayout = color soaringEagle
     , ppOutput = appendFile (pipeName "focus" s_) . (++"\n")
     }
