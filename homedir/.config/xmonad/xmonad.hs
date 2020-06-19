@@ -195,6 +195,7 @@ myKeys = let m = myModMask in
     , ((m, xK_F2),                    spawn "~/.local/bin/raise_volume.sh")
     , ((0, xF86XK_AudioMute ),        spawn "~/.local/bin/mute.sh")
     , ((m, xK_F3),                    spawn "~/.local/bin/mute.sh")
+    , ((m, xK_F5),                    spawn "~/.local/bin/screenshot.sh")
     ] ++
     [ ((m .|. mask, key), f sc)
     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
