@@ -1,11 +1,13 @@
 {-# LANGUAGE FlexibleContexts, NamedFieldPuns, PatternGuards #-}
 
-import           Control.Monad ( void )
+import           Control.Monad
 import qualified Codec.Binary.UTF8.String as UTF8
 import qualified DBus as D
 import qualified DBus.Client as D
 import           Data.Default
+import           Data.List
 import qualified Data.Map as M
+import           Data.Maybe
 import           Graphics.X11.Xlib.Types ( Rectangle(..) )
 import           Graphics.X11.ExtraTypes.XF86
 import           XMonad
@@ -13,7 +15,9 @@ import           XMonad.Actions.PhysicalScreens
 import           XMonad.Config.Dmwit ( viewShift, withScreen )
 import           XMonad.Hooks.DynamicBars as DynBars
 import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.EwmhDesktops ( ewmh, fullscreenEventHook )
+import           XMonad.Hooks.EwmhDesktops ( ewmh
+                                           , fullscreenEventHook
+                                           )
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout
@@ -52,7 +56,7 @@ blueberrySoda = "#7f8fa6"
 main = do
   countScreens >>= createXmobarPipes
   spawn "killall -q xmobar && sleep 1"
-  xmonad =<< myStatusBar myConfig
+  xmonad . ewmh =<< myStatusBar myConfig
 
 myConfig = def
     { terminal           = myTerminal
@@ -64,6 +68,9 @@ myConfig = def
     , focusedBorderColor = flamingoPink
     , normalBorderColor  = darkGray
     , keys               = customKeys delKeys insKeys
+    , handleEventHook    = docksEventHook
+                         <+> handleEventHook def
+                         <+> fullscreenEventHook
     } `additionalKeys` myKeys
   where
     delKeys = const []
@@ -83,12 +90,29 @@ myModMask = mod4Mask
 
 myTerminal = "st -e tmux"
 
+setFullscreenSupported :: X ()
+setFullscreenSupported = addSupported [ "_NET_WM_STATE"
+                                      , "_NET_WM_STATE_FULLSCREEN"
+                                      ]
+
+addSupported :: [String] -> X ()
+addSupported props = withDisplay $ \dpy -> do
+    r <- asks theRoot
+    a <- getAtom "_NET_SUPPORTED"
+    newSupportedList <- mapM (fmap fromIntegral . getAtom) props
+    io $ do
+      supportedList <- fmap (join . maybeToList) $ getWindowProperty32 dpy a r
+      changeProperty32 dpy r a aTOM propModeReplace
+        (nub $ newSupportedList ++ supportedList)
+
 myStartupHook =
   do
+    setFullscreenSupported
     spawn "~/.local/bin/x-autostart.sh"
 
 myLayoutHook =
     fullScreenToggle $ avoidStruts $ mirrorToggle $ mySpacingRaw
+      $ lessBorders (Combine Union Screen OnlyLayoutFloat)
       $   tallLayout
       ||| threeColLayout
       ||| threeColMidLayout
