@@ -14,11 +14,11 @@ Config { font = "xft:Montserrat:Medium:size=12"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Weather "ESGG" ["-t","<station>: <tempC>C","-L","18","-H","25","--normal","#badc58","--high","#eb4d4b","--low","#686de0"] 36000
+       , commands = [ Run Weather "ESGG" ["-t", "<station>: <tempC>C", "-L", "18", "-H", "25", "--normal", "#badc58", "--high", "#eb4d4b", "--low", "#686de0"] 36000
                     , Run Date "%Y-%m-%d %a %H:%M" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc> | %ESGG%"
+       , template = "%StdinReader%"
        }
