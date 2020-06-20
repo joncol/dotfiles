@@ -211,7 +211,7 @@ myKeys = let m = myModMask in
                        (gets windowset)
           let width = rect_width rect
           spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
-                  "-h 20 -dim 0.6 -y 2 -sf \"" ++ darkGray ++
+                  "-h 20 -dim 0.4 -y 2 -sf \"" ++ darkGray ++
                   "\" -sb \"" ++ turbo ++ "\"")
     , ((m, xK_f),                     sendMessage $ Toggle NBFULL)
     , ((m, xK_x),                     sendMessage $ Toggle MIRROR)
