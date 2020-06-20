@@ -225,6 +225,7 @@ myKeys = let m = myModMask in
     , ((0, xF86XK_AudioMute ),        spawn "~/.local/bin/mute.sh")
     , ((m, xK_F3),                    spawn "~/.local/bin/mute.sh")
     , ((m, xK_F5),                    spawn "~/.local/bin/screenshot.sh")
+    , ((m, xK_F6),                    spawn "~/.local/bin/toggle-screenkey.sh")
     , ((m, xK_minus), namedScratchpadAction scratchpads "telegram")
     , ((m, xK_grave), namedScratchpadAction scratchpads "terminal")
     ] ++
