@@ -39,6 +39,7 @@ import qualified XMonad.StackSet as W
 import           XMonad.Util.EZConfig ( additionalKeys )
 import           XMonad.Util.Run ( hPutStrLn, safeSpawn, spawnPipe )
 import           XMonad.Util.CustomKeys ( customKeys )
+import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.SpawnOnce ( spawnOnce )
 
 gray          = "#7f7f7f"
@@ -63,7 +64,8 @@ myConfig = def
     , modMask            = myModMask
     , borderWidth        = 2
     , layoutHook         = myLayoutHook
-    , manageHook         = myManageHook
+    , manageHook         = namedScratchpadManageHook scratchpads <+>
+                             myManageHook
     , startupHook        = myStartupHook
     , focusedBorderColor = flamingoPink
     , normalBorderColor  = darkGray
@@ -112,7 +114,7 @@ myStartupHook =
 
 myLayoutHook =
     fullScreenToggle $ avoidStruts $ mirrorToggle $ mySpacingRaw
-      $ lessBorders OtherIndicated
+      $ lessBorders OnlyScreenFloat
       $   tallLayout
       ||| threeColLayout
       ||| threeColMidLayout
@@ -153,7 +155,8 @@ myStatusBar conf = do
       }
 
 myPPs screenCount =
-  sequence_ [ dynamicLogWithPP (pp s) | s <- [0..screenCount-1]
+  sequence_ [ dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP $ (pp s)
+            | s <- [0..screenCount-1]
             , pp <- [ppFocus, ppWorkspaces] ]
 
 -- Note that the pipes need to be created with `mkfifo`.
@@ -222,8 +225,14 @@ myKeys = let m = myModMask in
     , ((0, xF86XK_AudioMute ),        spawn "~/.local/bin/mute.sh")
     , ((m, xK_F3),                    spawn "~/.local/bin/mute.sh")
     , ((m, xK_F5),                    spawn "~/.local/bin/screenshot.sh")
+    , ((m, xK_minus), namedScratchpadAction scratchpads "telegram")
     ] ++
     [ ((m .|. mask, key), f sc)
     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
     , (f, mask) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]
     ]
+
+scratchpads =
+  [ NS "telegram" "telegram-desktop" (className =? "TelegramDesktop")
+         (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+  ]
