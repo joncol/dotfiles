@@ -226,6 +226,7 @@ myKeys = let m = myModMask in
     , ((m, xK_F3),                    spawn "~/.local/bin/mute.sh")
     , ((m, xK_F5),                    spawn "~/.local/bin/screenshot.sh")
     , ((m, xK_minus), namedScratchpadAction scratchpads "telegram")
+    , ((m, xK_grave), namedScratchpadAction scratchpads "terminal")
     ] ++
     [ ((m .|. mask, key), f sc)
     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
@@ -234,5 +235,8 @@ myKeys = let m = myModMask in
 
 scratchpads =
   [ NS "telegram" "telegram-desktop" (className =? "TelegramDesktop")
+         (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+  , NS "terminal" ("st -n scratchpad-terminal -e tmux")
+         (appName =? "scratchpad-terminal")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   ]
