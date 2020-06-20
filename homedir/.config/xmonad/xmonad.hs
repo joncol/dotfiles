@@ -112,7 +112,7 @@ myStartupHook =
 
 myLayoutHook =
     fullScreenToggle $ avoidStruts $ mirrorToggle $ mySpacingRaw
-      $ lessBorders (Combine Union Screen OnlyLayoutFloat)
+      $ lessBorders OtherIndicated
       $   tallLayout
       ||| threeColLayout
       ||| threeColMidLayout
