@@ -12,6 +12,7 @@ import           Graphics.X11.Xlib.Types ( Rectangle(..) )
 import           Graphics.X11.ExtraTypes.XF86
 import           XMonad
 import           XMonad.Actions.PhysicalScreens
+import           XMonad.Actions.UpdatePointer
 import           XMonad.Config.Dmwit ( viewShift, withScreen )
 import           XMonad.Hooks.DynamicBars as DynBars
 import           XMonad.Hooks.DynamicLog
@@ -73,6 +74,7 @@ myConfig = def
     , handleEventHook    = docksEventHook
                          <+> handleEventHook def
                          <+> fullscreenEventHook
+    , logHook            = updatePointer (0.5, 0.5) (0, 0)
     } `additionalKeys` myKeys
   where
     delKeys = const []
@@ -151,7 +153,7 @@ myStatusBar conf = do
                         refresh
                         mapM_ (spawnPipe . xmobarCommand) [0 .. screenCount-1]
                         docksStartupHook
-      , logHook = myPPs screenCount
+      , logHook = logHook conf >> myPPs screenCount
       }
 
 myPPs screenCount =
