@@ -203,8 +203,8 @@ xmobarCommand (S s) = unwords [ "xmobar"
                               , pipeReader
                               ]
   where
-    template 0 = "%workspaces%}%focus%{vol:\\ \\<fc=\"" ++ hintOfIcePack ++
-                 "\"\\>%vol%\\</fc\\>\\ \\|\\ \\<fc=\"" ++ soaringEagle ++
+    template 0 = "%workspaces%}%focus%{\\<fn=1\\>vol:\\ \\<fc=\"" ++ hintOfIcePack ++
+                 "\"\\>%vol%\\</fc\\>\\</fn\\>\\ \\|\\ \\<fc=\"" ++ soaringEagle ++
                  "\"\\>%ESGG%\\</fc\\>"
     template _ = "%workspaces%}%focus%{%date%"
     pipeReader =

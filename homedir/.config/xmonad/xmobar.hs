@@ -1,4 +1,5 @@
 Config { font = "xft:Montserrat:Medium:size=12"
+       , additionalFonts = [ "xft:iosevka:Medium:size=12" ]
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
