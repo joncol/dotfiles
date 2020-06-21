@@ -43,17 +43,18 @@ import           XMonad.Util.CustomKeys ( customKeys )
 import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.SpawnOnce ( spawnOnce )
 
-gray          = "#7f7f7f"
-darkGray      = "#3f3f3f"
-red           = "#900000"
-white         = "#eeeeee"
-flamingoPink  = "#f78fb3"
-middleBlue    = "#7ed6df"
-coastalBreeze = "#dff9fb"
-hintOfIcePack = "#c7ecee"
-soaringEagle  = "#95afc0"
-turbo         = "#f9ca24"
-blueberrySoda = "#7f8fa6"
+gray               = "#7f7f7f"
+darkGray           = "#3f3f3f"
+red                = "#900000"
+white              = "#eeeeee"
+flamingoPink       = "#f78fb3"
+middleBlue         = "#7ed6df"
+coastalBreeze      = "#dff9fb"
+hintOfIcePack      = "#c7ecee"
+soaringEagle       = "#95afc0"
+turbo              = "#f9ca24"
+blueberrySoda      = "#7f8fa6"
+lightBlueBallerina = "#c8d6e5"
 
 main = do
   countScreens >>= createXmobarPipes
@@ -175,7 +176,7 @@ createXmobarPipes screenCount =
 
 ppFocus s@(S s_) = whenCurrentOn s def {
       ppOrder  = \(_:_:windowTitle:_) -> [windowTitle]
-    , ppTitle  = color blueberrySoda
+    , ppTitle  = color lightBlueBallerina
     , ppLayout = color soaringEagle
     , ppOutput = appendFile (pipeName "focus" s_) . (++"\n")
     }
