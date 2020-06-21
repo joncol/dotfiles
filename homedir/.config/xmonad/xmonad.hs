@@ -194,7 +194,7 @@ ppWorkspaces s@(S s_) = marshallPP s defaultPP
 color c = xmobarColor c ""
 
 xmobarCommand (S s) = unwords [ "xmobar"
-                              , "~/.xmonad/xmobar.hs"
+                              , "/home/jco/.xmonad/xmobar.hs"
                               , "-x"
                               , show s
                               , "-t"
@@ -203,7 +203,9 @@ xmobarCommand (S s) = unwords [ "xmobar"
                               , pipeReader
                               ]
   where
-    template 0 = "%workspaces%}%focus%{%ESGG%"
+    template 0 = "%workspaces%}%focus%{vol:\\ \\<fc=\"" ++ hintOfIcePack ++
+                 "\"\\>%vol%\\</fc\\>\\ \\|\\ \\<fc=\"" ++ soaringEagle ++
+                 "\"\\>%ESGG%\\</fc\\>"
     template _ = "%workspaces%}%focus%{%date%"
     pipeReader =
       "'[ Run PipeReader \"" ++ pipeName "focus"      s ++ "\" \"focus\"\
