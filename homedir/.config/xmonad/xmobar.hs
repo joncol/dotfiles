@@ -19,6 +19,7 @@ Config { font = "xft:Montserrat:Medium:size=12"
                     , Run Date "%Y-%m-%d %a %H:%M" "date" 10
                     , Run StdinReader
                     , Run Com "/home/jco/.local/bin/get-pulse-volume.sh" [] "vol" 1
+                    , Run Com "uname" ["-r"] "" 0
                     ]
        , sepChar = "%"
        , alignSep = "}{"

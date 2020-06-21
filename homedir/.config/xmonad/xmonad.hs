@@ -55,6 +55,8 @@ soaringEagle       = "#95afc0"
 turbo              = "#f9ca24"
 blueberrySoda      = "#7f8fa6"
 lightBlueBallerina = "#c8d6e5"
+shyMoment          = "#a29bfe"
+prunusAvium        = "#e84393"
 
 main = do
   countScreens >>= createXmobarPipes
@@ -203,14 +205,18 @@ xmobarCommand (S s) = unwords [ "xmobar"
                               , pipeReader
                               ]
   where
-    template 0 = "%workspaces%}%focus%{\\<fn=1\\>vol:\\ \\<fc=\"" ++ hintOfIcePack ++
-                 "\"\\>%vol%\\</fc\\>\\</fn\\>\\ \\|\\ \\<fc=\"" ++ soaringEagle ++
-                 "\"\\>%ESGG%\\</fc\\>"
+    template 0 = "%workspaces%}%focus%{" ++
+                 font 1 ("vol:\\ " ++ color hintOfIcePack "%vol%") ++ sep ++
+                 color soaringEagle "%ESGG%" ++ sep ++
+                 color prunusAvium "%uname%"
     template _ = "%workspaces%}%focus%{%date%"
     pipeReader =
       "'[ Run PipeReader \"" ++ pipeName "focus"      s ++ "\" \"focus\"\
        \, Run PipeReader \"" ++ pipeName "workspaces" s ++ "\" \"workspaces\"\
        \]'"
+    color c msg = "\\<fc=\"" ++ c ++ "\"\\>" ++ msg ++ "\\</fc\\>"
+    font fn msg = "\\<fn=" ++ show fn ++ "\\>" ++ msg ++ "\\</fn\\>"
+    sep = "\\ \\|\\ "
 
 myKeys = let m = myModMask in
     [ ((m .|. shiftMask, xK_x), spawn "slock")
