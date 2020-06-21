@@ -12,6 +12,6 @@ xset r rate 300 30
 
 ~/.local/bin/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
 
-feh --bg-fill /usr/share/backgrounds/gnome/SeaSunset.jpg
+feh --bg-fill ~/Pictures/wallpapers/minimalist-blue-mountains-8k-2x-1920x1200.jpg
 
 ~/.local/bin/launch.sh unclutter &
