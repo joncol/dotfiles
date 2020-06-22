@@ -57,6 +57,7 @@ blueberrySoda      = "#7f8fa6"
 lightBlueBallerina = "#c8d6e5"
 shyMoment          = "#a29bfe"
 prunusAvium        = "#e84393"
+megaMan            = "#4bcffa"
 
 main = do
   countScreens >>= createXmobarPipes
@@ -209,7 +210,7 @@ xmobarCommand (S s) = unwords [ "xmobar"
                  font 1 ("vol:\\ " ++ color hintOfIcePack "%vol%") ++ sep ++
                  color soaringEagle "%ESGG%" ++ sep ++
                  color prunusAvium "%uname%"
-    template _ = "%workspaces%}%focus%{%date%"
+    template _ = "%workspaces%}%focus%{" ++ color megaMan "%date%"
     pipeReader =
       "'[ Run PipeReader \"" ++ pipeName "focus"      s ++ "\" \"focus\"\
        \, Run PipeReader \"" ++ pipeName "workspaces" s ++ "\" \"workspaces\"\
