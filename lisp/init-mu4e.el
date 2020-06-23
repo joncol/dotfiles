@@ -88,6 +88,10 @@
                       (:from    . 22)
                       (:subject . nil)))
 
+              (setq mu4e-view-fields '(:from :to :cc :bcc :subject :flags
+                                       :date :maildir :mailing-list :tags
+                                       :attachments :signature :decryption))
+
               (defun jco/compl-fun (prompt maildirs predicate require-match
                                            initial-input)
                 (helm-comp-read prompt maildirs
