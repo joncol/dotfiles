@@ -155,7 +155,8 @@ myStatusBar conf = do
                         (startupHook conf)
                         screenCount <- countScreens
                         refresh
-                        mapM_ (spawnPipe . xmobarCommand) [0 .. screenCount-1]
+                        forM_ [0 .. screenCount-1] $
+                           spawnPipe . xmobarCommand screenCount
                         docksStartupHook
       , logHook = logHook conf >> myPPs screenCount
       }
@@ -196,21 +197,26 @@ ppWorkspaces s@(S s_) = marshallPP s defaultPP
 
 color c = xmobarColor c ""
 
-xmobarCommand (S s) = unwords [ "xmobar"
-                              , "/home/jco/.xmonad/xmobar.hs"
-                              , "-x"
-                              , show s
-                              , "-t"
-                              , template s
-                              , "-C"
-                              , pipeReader
-                              ]
+xmobarCommand screenCount (S s) =
+    unwords [ "xmobar"
+            , "/home/jco/.xmonad/xmobar.hs"
+            , "-x"
+            , show s
+            , "-t"
+            , template screenCount s
+            , "-C"
+            , pipeReader
+            ]
   where
-    template 0 = "%workspaces%}%focus%{" ++
-                 font 1 ("vol:\\ " ++ color hintOfIcePack "%vol%") ++ sep ++
-                 color soaringEagle "%ESGG%" ++ sep ++
-                 color prunusAvium "%uname%"
-    template _ = "%workspaces%}%focus%{" ++ color megaMan "%date%"
+    template 1 _ = "%workspaces%}%focus%{" ++
+                   font 1 ("vol:\\ " ++ color hintOfIcePack "%vol%") ++ sep ++
+                   color megaMan "%date%" ++ sep ++
+                   color prunusAvium "%uname%"
+    template 2 0 = "%workspaces%}%focus%{" ++
+                   font 1 ("vol:\\ " ++ color hintOfIcePack "%vol%") ++ sep ++
+                   color soaringEagle "%ESGG%" ++ sep ++
+                   color prunusAvium "%uname%"
+    template 2 _ = "%workspaces%}%focus%{" ++ color megaMan "%date%"
     pipeReader =
       "'[ Run PipeReader \"" ++ pipeName "focus"      s ++ "\" \"focus\"\
        \, Run PipeReader \"" ++ pipeName "workspaces" s ++ "\" \"workspaces\"\
