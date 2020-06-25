@@ -209,11 +209,11 @@ xmobarCommand screenCount (S s) =
             ]
   where
     template 1 _ = "%workspaces%}%focus%{" ++
-                   font 1 ("vol:\\ " ++ color hintOfIcePack "%vol%") ++ sep ++
+                   "vol:\\ " ++ (font 1 $ color hintOfIcePack "%vol%") ++ sep ++
                    color megaMan "%date%" ++ sep ++
                    color prunusAvium "%uname%"
     template 2 0 = "%workspaces%}%focus%{" ++
-                   font 1 ("vol:\\ " ++ color hintOfIcePack "%vol%") ++ sep ++
+                   "vol:\\ " ++ (font 1 $ color hintOfIcePack "%vol%") ++ sep ++
                    color soaringEagle "%ESGG%" ++ sep ++
                    color prunusAvium "%uname%"
     template 2 _ = "%workspaces%}%focus%{" ++ color megaMan "%date%"
