@@ -83,11 +83,6 @@ myConfig = def
   where
     delKeys = const []
     insKeys = \conf -> let m = modMask conf in
-                [ ((m              , xK_Control_L), withScreen 1 W.view)
-                , ((m .|. shiftMask, xK_Control_L), withScreen 1 viewShift)
-                , ((m              , xK_Alt_L    ), withScreen 0 W.view)
-                , ((m .|. shiftMask, xK_Alt_L    ), withScreen 0 viewShift)
-                ] ++
                 [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace))
                 | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
                 , (e, f) <- [(0, W.view), (shiftMask, viewShift)]
