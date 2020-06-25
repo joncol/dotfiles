@@ -531,6 +531,11 @@
   (evil-leader/set-key "g h" 'git-link-homepage)
   (evil-leader/set-key "g l" 'git-link))
 
+(use-package github-notifier
+  :defer 2
+  :config
+  (github-notifier-mode))
+
 (use-package glsl-mode)
 
 (use-package google-this
