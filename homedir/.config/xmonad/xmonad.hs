@@ -11,9 +11,10 @@ import           Data.Maybe
 import           Graphics.X11.Xlib.Types ( Rectangle(..) )
 import           Graphics.X11.ExtraTypes.XF86
 import           XMonad
+import           XMonad.Actions.CopyWindow
 import           XMonad.Actions.PhysicalScreens
 import           XMonad.Actions.UpdatePointer
-import           XMonad.Config.Dmwit ( viewShift, withScreen )
+import           XMonad.Config.Dmwit ( withScreen )
 import           XMonad.Hooks.DynamicBars as DynBars
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops ( ewmh
@@ -83,10 +84,12 @@ myConfig = def
   where
     delKeys = const []
     insKeys = \conf -> let m = modMask conf in
-                [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace))
+                [ ((m .|. e, key), windows $ onCurrentScreen f workspace)
                 | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
-                , (e, f) <- [(0, W.view), (shiftMask, viewShift)]
-                , i <- [0, controlMask, mod1Mask, controlMask .|. mod1Mask]
+                , (e, f) <- [ (0, W.greedyView)
+                            , (shiftMask, W.shift)
+                            , (shiftMask .|. controlMask, copy)
+                            ]
                 ]
 
 myModMask = mod4Mask
@@ -243,6 +246,9 @@ myKeys = let m = myModMask in
     , ((0, xF86XK_MonBrightnessDown ), spawn "xbacklight -dec 10")
     , ((m, xK_minus), namedScratchpadAction scratchpads "telegram")
     , ((m, xK_grave), namedScratchpadAction scratchpads "terminal")
+    , ((m .|. shiftMask, xK_c ),       kill1)
+    , ((m, xK_v ),                     windows copyToAll)
+    , ((m .|. shiftMask, xK_v ),       killAllOtherCopies)
     ] ++
     [ ((m .|. mask, key), f sc)
     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
