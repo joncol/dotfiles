@@ -89,7 +89,7 @@ myConfig = def
                 , ((m .|. shiftMask, xK_Alt_L    ), withScreen 0 viewShift)
                 ] ++
                 [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace))
-                    | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
+                | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
                 , (e, f) <- [(0, W.view), (shiftMask, viewShift)]
                 , i <- [0, controlMask, mod1Mask, controlMask .|. mod1Mask]
                 ]
