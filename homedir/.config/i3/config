@@ -196,7 +196,7 @@ bindsym $mod+Shift+F4 exec --no-startup-id "~/.local/bin/toggle_laptop_screen.pl
 bindsym $mod+grave exec sh -c "st -e ranger"
 bindsym $mod+c exec ~/.local/bin/select_x_colorscheme.sh
 bindsym $mod+g exec ~/.local/bin/goto_project.sh
-bindsym $mod+p exec ~/.local/bin/toggle_touchpad.sh
+bindsym $mod+p exec ~/.local/bin/toggle-touchpad.sh
 
 # Screen brightness.
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
