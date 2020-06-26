@@ -9,7 +9,7 @@ do
     xinput set-prop $mouse $mouse_nat_scroll 1
 done
 
-touchpad=$(xinput list | grep -i "synaptics touchpad" | cut -f2 | sed s/id=//)
+touchpad=$(xinput list | grep -i "synaptics" | cut -f2 | sed s/id=//)
 if [[ ! -z "${touchpad// }" ]]; then
     tapping_enabled=$(xinput list-props $touchpad | grep -i "tapping enabled (" | sed "s/[^(]*(\(.*\)).*/\1/")
     touchpad_nat_scroll=$(xinput list-props $touchpad | grep -i "natural scrolling enabled (" | sed "s/[^(]*(\(.*\)).*/\1/")
