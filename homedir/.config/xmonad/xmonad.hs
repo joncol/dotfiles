@@ -12,6 +12,7 @@ import           Graphics.X11.Xlib.Types ( Rectangle(..) )
 import           Graphics.X11.ExtraTypes.XF86
 import           XMonad
 import           XMonad.Actions.CopyWindow
+import           XMonad.Actions.CycleRecentWS
 import           XMonad.Actions.PhysicalScreens
 import           XMonad.Actions.UpdatePointer
 import           XMonad.Config.Dmwit ( withScreen )
@@ -251,6 +252,7 @@ myKeys =
     , ("M-S-c", kill1)
     , ("M-v", windows copyToAll)
     , ("M-S-v", killAllOtherCopies)
+    , ("M1-<Tab>", cycleRecentWS [xK_Alt_L] xK_Tab xK_grave)
     ]
 
 scratchpads =
