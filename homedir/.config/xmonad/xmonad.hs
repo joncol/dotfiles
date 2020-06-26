@@ -243,6 +243,7 @@ myKeys =
     , ("M-<F3>", spawn "~/.local/bin/raise_volume.sh")
     , ("M-<F5>", spawn "~/.local/bin/screenshot.sh")
     , ("M-<F6>", spawn "~/.local/bin/toggle-screenkey.sh")
+    , ("M-<F7>", spawn "~/.local/bin/toggle-touchpad.sh")
     , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
     , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
     , ("M--", namedScratchpadAction scratchpads "telegram")
