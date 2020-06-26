@@ -11,12 +11,12 @@ fzf
 git
 history
 lein
-agkozak/zsh-z
 caarlos0/zsh-mkc
 mafredri/zsh-async
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
+agkozak/zsh-z
 
 EOBUNDLES
 
