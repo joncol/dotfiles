@@ -1,5 +1,5 @@
 #!/bin/bash
-touchpad=$(xinput list | grep -i "synaptics touchpad" | cut -f2 | sed s/id=//)
+touchpad=$(xinput list | grep -i "synaptics" | cut -f2 | sed s/id=//)
 if [[ ! -z "${touchpad// }" ]]; then
     device_enabled_pid=$(xinput list-props $touchpad | grep -i "device enabled" | sed "s/[^(]*(\(.*\)).*/\1/")
     device_enabled=$(xinput list-props $touchpad | grep -i "device enabled" | cut -f3)
