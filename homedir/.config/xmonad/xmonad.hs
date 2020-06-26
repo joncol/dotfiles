@@ -38,7 +38,7 @@ import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.ThreeColumns
 import qualified XMonad.StackSet as W
-import           XMonad.Util.EZConfig ( additionalKeys )
+import           XMonad.Util.EZConfig
 import           XMonad.Util.Run ( hPutStrLn, safeSpawn, spawnPipe )
 import           XMonad.Util.CustomKeys ( customKeys )
 import           XMonad.Util.NamedScratchpad
@@ -76,11 +76,12 @@ myConfig = def
     , focusedBorderColor = flamingoPink
     , normalBorderColor  = darkGray
     , keys               = customKeys delKeys insKeys
+    -- , keys               = \c -> mkKeymap c myKeymap
     , handleEventHook    = docksEventHook
                          <+> handleEventHook def
                          <+> fullscreenEventHook
     , logHook            = updatePointer (0.5, 0.5) (0, 0)
-    } `additionalKeys` myKeys
+    } `additionalKeysP` myKeys
   where
     delKeys = const []
     insKeys = \conf -> let m = modMask conf in
@@ -90,6 +91,10 @@ myConfig = def
                             , (shiftMask, W.shift)
                             , (shiftMask .|. controlMask, copy)
                             ]
+                ] ++
+                [ ((m .|. mask, key), f sc)
+                | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+                , (f, mask) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]
                 ]
 
 myModMask = mod4Mask
@@ -113,6 +118,8 @@ addSupported props = withDisplay $ \dpy -> do
 
 myStartupHook =
   do
+    return ()
+    checkKeymap myConfig myKeys
     setFullscreenSupported
     spawn "~/.local/bin/x-autostart.sh"
 
@@ -223,36 +230,26 @@ xmobarCommand screenCount (S s) =
     font fn msg = "\\<fn=" ++ show fn ++ "\\>" ++ msg ++ "\\</fn\\>"
     sep = "\\ \\|\\ "
 
-myKeys = let m = myModMask in
-    [ ((m .|. shiftMask, xK_x), spawn "slock")
-    , ((m, xK_p), do
-          rect <- fmap (screenRect . W.screenDetail . W.current)
-                       (gets windowset)
-          let width = rect_width rect
-          spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
-                  "-h 20 -dim 0.4 -y 2 -sf \"" ++ darkGray ++
-                  "\" -sb \"" ++ turbo ++ "\"")
-    , ((m, xK_f),                      sendMessage $ Toggle NBFULL)
-    , ((m, xK_x),                      sendMessage $ Toggle MIRROR)
-    , ((0, xF86XK_AudioMute ),         spawn "~/.local/bin/mute.sh")
-    , ((m, xK_F1),                     spawn "~/.local/bin/mute.sh")
-    , ((0, xF86XK_AudioLowerVolume ),  spawn "~/.local/bin/lower_volume.sh")
-    , ((m, xK_F2),                     spawn "~/.local/bin/lower_volume.sh")
-    , ((0, xF86XK_AudioRaiseVolume ),  spawn "~/.local/bin/raise_volume.sh")
-    , ((m, xK_F3),                     spawn "~/.local/bin/raise_volume.sh")
-    , ((m, xK_F5),                     spawn "~/.local/bin/screenshot.sh")
-    , ((m, xK_F6),                     spawn "~/.local/bin/toggle-screenkey.sh")
-    , ((0, xF86XK_MonBrightnessUp ),   spawn "xbacklight -inc 10")
-    , ((0, xF86XK_MonBrightnessDown ), spawn "xbacklight -dec 10")
-    , ((m, xK_minus), namedScratchpadAction scratchpads "telegram")
-    , ((m, xK_grave), namedScratchpadAction scratchpads "terminal")
-    , ((m .|. shiftMask, xK_c ),       kill1)
-    , ((m, xK_v ),                     windows copyToAll)
-    , ((m .|. shiftMask, xK_v ),       killAllOtherCopies)
-    ] ++
-    [ ((m .|. mask, key), f sc)
-    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-    , (f, mask) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]
+myKeys =
+    [ ("M-S-x", spawn "slock")
+    , ("M-p", dmenuRun)
+    , ("M-f", sendMessage $ Toggle NBFULL)
+    , ("M-x", sendMessage $ Toggle MIRROR)
+    , ("<XF86AudioMute>", spawn "~/.local/bin/mute.sh")
+    , ("M-<F1>", spawn "~/.local/bin/mute.sh")
+    , ("<XF86AudioLowerVolume>", spawn "~/.local/bin/lower_volume.sh")
+    , ("M-<F2>", spawn "~/.local/bin/lower_volume.sh")
+    , ("<XF86AudioRaiseVolume>", spawn "~/.local/bin/raise_volume.sh")
+    , ("M-<F3>", spawn "~/.local/bin/raise_volume.sh")
+    , ("M-<F5>", spawn "~/.local/bin/screenshot.sh")
+    , ("M-<F6>", spawn "~/.local/bin/toggle-screenkey.sh")
+    , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
+    , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
+    , ("M--", namedScratchpadAction scratchpads "telegram")
+    , ("M-`", namedScratchpadAction scratchpads "terminal")
+    , ("M-S-c", kill1)
+    , ("M-v", windows copyToAll)
+    , ("M-S-v", killAllOtherCopies)
     ]
 
 scratchpads =
@@ -262,3 +259,7 @@ scratchpads =
          (appName =? "scratchpad-terminal")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   ]
+
+dmenuRun = spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
+                   "-h 20 -dim 0.4 -y 2 -sf \"" ++ darkGray ++
+                   "\" -sb \"" ++ turbo ++ "\""
