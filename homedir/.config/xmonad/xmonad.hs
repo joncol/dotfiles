@@ -61,6 +61,8 @@ lightBlueBallerina = "#c8d6e5"
 shyMoment          = "#a29bfe"
 prunusAvium        = "#e84393"
 megaMan            = "#4bcffa"
+honeyGlow          = "#EAB543"
+fallingStar        = "#CAD3C8"
 
 main = do
   countScreens >>= createXmobarPipes
