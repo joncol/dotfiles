@@ -11,7 +11,7 @@ import           Data.Maybe
 import           Graphics.X11.Xlib.Types ( Rectangle(..) )
 import           Graphics.X11.ExtraTypes.XF86
 import           XMonad
-import           XMonad.Actions.CopyWindow
+import           XMonad.Actions.CopyWindow hiding ( copyToAll )
 import           XMonad.Actions.CycleRecentWS
 import           XMonad.Actions.DwmPromote
 import           XMonad.Actions.PhysicalScreens
@@ -171,10 +171,12 @@ myStatusBar conf = do
       , logHook = logHook conf >> myPPs screenCount
       }
 
-myPPs screenCount =
-  sequence_ [ dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP $ (pp s)
-            | s <- [0..screenCount-1]
-            , pp <- [ppFocus, ppWorkspaces] ]
+myPPs :: ScreenId -> X ()
+myPPs screenCount = do
+    copies <- wsContainingCopies
+    sequence_ [ dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP $ (pp s)
+              | s <- [0..screenCount-1]
+              , pp <- [ppFocus, ppWorkspaces copies] ]
 
 -- Note that the pipes need to be created with `mkfifo`.
 pipeName n s = "/home/jco/.xmonad/pipe-" ++ n ++ "-" ++ show s
@@ -188,6 +190,7 @@ createXmobarPipes screenCount =
       let filename = pipeName pn s
       in "if [[ ! -p " ++ filename ++ " ]]; then mkfifo " ++ filename ++ "; fi"
 
+ppFocus :: ScreenId -> PP
 ppFocus s@(S s_) = whenCurrentOn s def {
       ppOrder  = \(_:_:windowTitle:_) -> [windowTitle]
     , ppTitle  = color lightBlueBallerina
@@ -195,15 +198,27 @@ ppFocus s@(S s_) = whenCurrentOn s def {
     , ppOutput = appendFile (pipeName "focus" s_) . (++"\n")
     }
 
-ppWorkspaces s@(S s_) = marshallPP s defaultPP
+ppWorkspaces :: [WorkspaceId] -> ScreenId -> PP
+ppWorkspaces copies s@(S i) = marshallPP s defaultPP
     { ppCurrent         = color "white"
     , ppVisible         = color "white"
     , ppHiddenNoWindows = const ""
     , ppUrgent          = const red
+    , ppHidden          = checkCopies copies s
     , ppSep             = " | "
     , ppOrder           = \(wss:_layout:_title:_) -> [wss]
-    , ppOutput          = appendFile (pipeName "workspaces" s_) . (++"\n")
+    , ppOutput          = appendFile (pipeName "workspaces" i) . (++"\n")
     }
+
+-- | Copy the focused window to all workspaces on a specific screen.
+copyToAll screen s =
+  foldr copy s $ (filter (isPrefixOf $ show screen ++ "_"))
+               $ map W.tag (W.workspaces s)
+
+checkCopies :: [WorkspaceId] -> ScreenId -> WorkspaceId -> String
+checkCopies copies sid@(S i) ws
+  | (show i ++ "_" ++ ws) `elem` copies = color turbo $ ws
+  | otherwise = ws
 
 color c = xmobarColor c ""
 
@@ -254,7 +269,10 @@ myKeys =
     , ("M--", namedScratchpadAction scratchpads "telegram")
     , ("M-`", namedScratchpadAction scratchpads "terminal")
     , ("M-S-c", kill1)
-    , ("M-v", windows copyToAll)
+    , ("M-v", do
+          currentScreen <- (fromIntegral . W.screen . W.current) `fmap`
+            gets windowset :: X Int
+          windows $ copyToAll currentScreen)
     , ("M-S-v", killAllOtherCopies)
     -- , ("M1-<Tab>", cycleRecentWS [xK_Alt_L] xK_Tab xK_grave)
     , ("M-<Return>", dwmpromote)
