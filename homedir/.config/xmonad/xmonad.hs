@@ -134,6 +134,7 @@ myLayoutHook =
       ||| threeColLayout
       ||| threeColMidLayout
       ||| gridLayout
+      ||| fullLayout
   where
     mySpacingRaw = spacingRaw
                      False                   -- smartBorder
@@ -145,6 +146,7 @@ myLayoutHook =
     threeColLayout = ThreeCol 1 (3/100) (1/2)
     threeColMidLayout = ThreeColMid 1 (3/100) (1/2)
     gridLayout = Grid
+    fullLayout = Full
 
 myManageHook =
   composeOne
