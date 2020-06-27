@@ -98,7 +98,9 @@ myConfig = def
                 [ ((m .|. mask, key), f sc)
                 | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
                 , (f, mask) <- [ (viewScreen def, 0)
-                               , (sendToScreen def, shiftMask) ]
+                               , (\sc -> do sendToScreen def sc
+                                            viewScreen def sc, shiftMask)
+                               ]
                 ]
 
 myModMask = mod4Mask
