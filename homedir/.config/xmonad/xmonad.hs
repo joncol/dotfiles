@@ -256,7 +256,7 @@ myKeys =
     , ("M-S-c", kill1)
     , ("M-v", windows copyToAll)
     , ("M-S-v", killAllOtherCopies)
-    , ("M1-<Tab>", cycleRecentWS [xK_Alt_L] xK_Tab xK_grave)
+    -- , ("M1-<Tab>", cycleRecentWS [xK_Alt_L] xK_Tab xK_grave)
     , ("M-<Return>", dwmpromote)
     ]
 
