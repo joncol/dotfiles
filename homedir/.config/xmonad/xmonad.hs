@@ -200,7 +200,7 @@ ppFocus s@(S s_) = whenCurrentOn s def {
     }
 
 ppWorkspaces :: [WorkspaceId] -> ScreenId -> PP
-ppWorkspaces copies s@(S i) = marshallPP s defaultPP
+ppWorkspaces copies s@(S i) = marshallPP s def
     { ppCurrent         = color "white"
     , ppVisible         = color "white"
     , ppHiddenNoWindows = const ""
