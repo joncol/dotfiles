@@ -80,7 +80,6 @@ myConfig = def
     , focusedBorderColor = flamingoPink
     , normalBorderColor  = darkGray
     , keys               = customKeys delKeys insKeys
-    -- , keys               = \c -> mkKeymap c myKeymap
     , handleEventHook    = docksEventHook
                          <+> handleEventHook def
                          <+> fullscreenEventHook
