@@ -97,7 +97,8 @@ myConfig = def
                 ] ++
                 [ ((m .|. mask, key), f sc)
                 | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-                , (f, mask) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]
+                , (f, mask) <- [ (viewScreen def, 0)
+                               , (sendToScreen def, shiftMask) ]
                 ]
 
 myModMask = mod4Mask
@@ -217,7 +218,7 @@ copyToAll screen s =
 
 checkCopies :: [WorkspaceId] -> ScreenId -> WorkspaceId -> String
 checkCopies copies sid@(S i) ws
-  | (show i ++ "_" ++ ws) `elem` copies = color turbo $ ws
+  | show i ++ "_" ++ ws `elem` copies = color turbo $ ws
   | otherwise = ws
 
 color c = xmobarColor c ""
