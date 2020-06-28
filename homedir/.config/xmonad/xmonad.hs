@@ -152,11 +152,13 @@ myLayoutHook =
 
 myManageHook =
   composeOne
-    [ checkDock              -?> doIgnore -- equivalent to manageDocks
-    , isDialog               -?> doFloat
-    -- , isFullscreen           -?> doFullFloat
-    , className =? "Gimp"    -?> doFloat
-    , className =? "MPlayer" -?> doFloat
+    [ checkDock                  -?> doIgnore -- equivalent to manageDocks
+    , isDialog                   -?> doFloat
+    -- , isFullscreen            -?> doFullFloat
+    , className =? "Gimp"        -?> doFloat
+    , className =? "MPlayer"     -?> doFloat
+    , className =? "Pavucontrol" -?>
+        doRectFloat $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
     , return True -?> doF W.swapDown
     ]
 
