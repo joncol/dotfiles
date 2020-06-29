@@ -63,6 +63,7 @@ prunusAvium        = "#e84393"
 megaMan            = "#4bcffa"
 honeyGlow          = "#EAB543"
 fallingStar        = "#CAD3C8"
+desert             = "#ccae62"
 
 main = do
   countScreens >>= createXmobarPipes
@@ -222,7 +223,7 @@ copyToAll screen s =
 
 checkCopies :: [WorkspaceId] -> ScreenId -> WorkspaceId -> String
 checkCopies copies sid@(S i) ws
-  | show i ++ "_" ++ ws `elem` copies = color turbo $ ws
+  | show i ++ "_" ++ ws `elem` copies = color desert $ ws
   | otherwise = ws
 
 color c = xmobarColor c ""
