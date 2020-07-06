@@ -258,6 +258,7 @@ xmobarCommand screenCount (S s) =
 
 myKeys =
     [ ("M-S-x", spawn "slock")
+    , ("M-p", getCurrentScreen >>= dmenuRun)
     , ("M-f", sendMessage $ Toggle NBFULL)
     , ("M-x", sendMessage $ Toggle MIRROR)
     , ("<XF86AudioMute>", spawn "~/.local/bin/mute.sh")
@@ -292,6 +293,7 @@ scratchpads =
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   ]
 
-dmenuRun = spawn $ "dmenu_run -fn 'Montserrat-12:medium:antialias=true' " ++
-                   "-h 20 -dim 0.4 -y 2 -sf \"" ++ darkGray ++
-                   "\" -sb \"" ++ turbo ++ "\""
+dmenuRun s = spawn $ "dmenu_run -s " ++ show s ++
+                     " -fn 'Montserrat-12:medium:antialias=true' " ++
+                     "-h 20 -dim 0.4 -y 2 -sf \"" ++ darkGray ++
+                     "\" -sb \"" ++ turbo ++ "\""
