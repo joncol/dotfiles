@@ -258,7 +258,6 @@ xmobarCommand screenCount (S s) =
 
 myKeys =
     [ ("M-S-x", spawn "slock")
-    , ("M-p", dmenuRun)
     , ("M-f", sendMessage $ Toggle NBFULL)
     , ("M-x", sendMessage $ Toggle MIRROR)
     , ("<XF86AudioMute>", spawn "~/.local/bin/mute.sh")
@@ -275,14 +274,15 @@ myKeys =
     , ("M--", namedScratchpadAction scratchpads "telegram")
     , ("M-`", namedScratchpadAction scratchpads "terminal")
     , ("M-S-c", kill1)
-    , ("M-v", do
-          currentScreen <- (fromIntegral . W.screen . W.current) `fmap`
-            gets windowset :: X Int
-          windows $ copyToAll currentScreen)
+    , ("M-v", getCurrentScreen >>= windows . copyToAll)
     , ("M-S-v", killAllOtherCopies)
     -- , ("M1-<Tab>", cycleRecentWS [xK_Alt_L] xK_Tab xK_grave)
     , ("M-<Return>", dwmpromote)
     ]
+
+getCurrentScreen :: X Int
+getCurrentScreen =
+  (fromIntegral . W.screen . W.current) `fmap` gets windowset :: X Int
 
 scratchpads =
   [ NS "telegram" "telegram-desktop" (className =? "TelegramDesktop")
