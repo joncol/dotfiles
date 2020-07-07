@@ -155,7 +155,7 @@ myManageHook =
   composeOne
     [ checkDock                  -?> doIgnore -- equivalent to manageDocks
     , isDialog                   -?> doFloat
-    -- , isFullscreen            -?> doFullFloat
+    , className =? "TelegramDesktop" <&&> title =? "Media viewer" -?> doIgnore
     , className =? "Gimp"        -?> doFloat
     , className =? "MPlayer"     -?> doFloat
     , className =? "Pavucontrol" -?>
