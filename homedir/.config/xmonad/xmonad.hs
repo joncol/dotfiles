@@ -290,7 +290,7 @@ scratchpads =
   [ NS "telegram" "telegram-desktop" (className =? "TelegramDesktop")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   , NS "slack" "slack" (className =? "Slack")
-         (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+         (customFloating $ W.RationalRect (1/8) (1/8) (3/4) (3/4))
   , NS "terminal" ("st -n scratchpad-terminal -e tmux")
          (appName =? "scratchpad-terminal")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
