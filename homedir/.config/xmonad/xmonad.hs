@@ -273,6 +273,7 @@ myKeys =
     , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
     , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
     , ("M--", namedScratchpadAction scratchpads "telegram")
+    , ("M-S--", namedScratchpadAction scratchpads "slack")
     , ("M-`", namedScratchpadAction scratchpads "terminal")
     , ("M-S-c", kill1)
     , ("M-v", getCurrentScreen >>= windows . copyToAll)
@@ -287,6 +288,8 @@ getCurrentScreen =
 
 scratchpads =
   [ NS "telegram" "telegram-desktop" (className =? "TelegramDesktop")
+         (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+  , NS "slack" "slack" (className =? "Slack")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   , NS "terminal" ("st -n scratchpad-terminal -e tmux")
          (appName =? "scratchpad-terminal")
