@@ -1,0 +1,6 @@
+[submodule "homedir/.config/alacritty/base16-alacritty"]
+	path = homedir/.config/alacritty/base16-alacritty
+	url = git://github.com/aaron-williamson/base16-alacritty.git
+[submodule "homedir/.config/alacritty/alacritty-theme"]
+	path = homedir/.config/alacritty/alacritty-theme
+	url = git://github.com/eendroroy/alacritty-theme.git
