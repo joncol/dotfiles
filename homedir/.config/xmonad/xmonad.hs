@@ -106,7 +106,7 @@ myConfig = def
 
 myModMask = mod4Mask
 
-myTerminal = "st -e tmux"
+myTerminal = "alacritty -e tmux"
 
 setFullscreenSupported :: X ()
 setFullscreenSupported = addSupported [ "_NET_WM_STATE"
@@ -291,8 +291,8 @@ scratchpads =
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   , NS "slack" "slack" (className =? "Slack")
          (customFloating $ W.RationalRect (1/8) (1/8) (3/4) (3/4))
-  , NS "terminal" ("st -n scratchpad-terminal -e tmux")
-         (appName =? "scratchpad-terminal")
+  , NS "terminal" ("alacritty -t scratchpad-terminal -e tmux")
+         (title =? "scratchpad-terminal")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
   ]
 
