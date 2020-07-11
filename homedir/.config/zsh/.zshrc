@@ -26,12 +26,22 @@ alias u="yay -Syu --noconfirm"
 alias t="todoist"
 
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-if [[ -d "$HOME/n/bin" ]]; then
-    export PATH=$PATH:$HOME/n/bin
+# n/npm paths
+export N_PREFIX=$HOME/.n
+if [[ -d "$N_PREFIX/bin" ]]; then
+    export PATH=$N_PREFIX/bin:$PATH
+fi
+
+npm_bin=$(npm bin 2>/dev/null)
+if [[ -d ${npm_bin} ]]; then
+    export PATH=${npm_bin}:$PATH
+fi
+
+npm_global_bin=$(npm bin --global 2>/dev/null)
+if [[ -d ${npm_global_bin} ]]; then
+    export PATH=${npm_global_bin}:$PATH
 fi
 
 if [[ -f /usr/share/zsh/share/antigen.zsh ]]; then
