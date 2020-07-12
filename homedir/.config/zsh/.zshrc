@@ -72,3 +72,9 @@ bindkey '^x^e' edit-command-line
 export LC_ALL=C # To get rid of `xmessage` warning
 
 eval "$(direnv hook $SHELL)"
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+    eval "$("$BASE16_SHELL/profile_helper.sh")"
