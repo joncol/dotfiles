@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 declare -A themes
-theme_path=~/.config/alacritty/alacritty-theme/themes
+theme_path=$1
 theme_names=()
 while IFS= read -d $'\0' -r f; do
     name=$(basename ${f%.*})
@@ -15,7 +15,7 @@ sel_theme=$(echo -e "$theme_names" | \
 sel_theme_file="${themes["$sel_theme"]}"
 if [ -e "$sel_theme_file" ]; then
     ~/.local/bin/alacritty-colorscheme \
-        -C ~/.config/alacritty/alacritty-theme/themes \
+        -C $1 \
         -a $(basename $sel_theme_file)
     notify-send "Theme selected: $sel_theme"
 fi

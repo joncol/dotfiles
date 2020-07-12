@@ -272,7 +272,10 @@ myKeys =
     , ("M-<F7>", spawn "~/.local/bin/toggle-touchpad.sh")
     , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
     , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
-    , ("M-\\", spawn "~/.local/bin/select-alacritty-theme.sh")
+    , ("M-\\", spawn $ "~/.local/bin/select-alacritty-theme.sh " ++
+                       "~/.config/alacritty/alacritty-theme/themes")
+    , ("M-S-\\", spawn $ "~/.local/bin/select-alacritty-theme.sh " ++
+                         "~/.config/alacritty/base16-alacritty/colors")
     , ("M--", namedScratchpadAction scratchpads "telegram")
     , ("M-S--", namedScratchpadAction scratchpads "slack")
     , ("M-`", namedScratchpadAction scratchpads "terminal")
