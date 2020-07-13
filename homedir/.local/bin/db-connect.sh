@@ -60,49 +60,28 @@ environment=$2
 tunnel_host="bastion.zimpler.net"
 
 db_host=$(ze-read $service $environment POSTGRES_HOST | awk '{print $4}')
-if [ -z "$db_host" ]; then
-    db_host=$(ze-read $service $environment db_host | awk '{print $4}')
-fi
-if [ -z "$db_host" ]; then
-    db_host=$service-$environment-db.czldyizapuwt.eu-central-1.rds.amazonaws.com
-fi
+db_host=${db_host:-$(ze-read $service $environment db_host | awk '{print $4}')}
+db_host=${db_host:-$service-$environment-db.czldyizapuwt.eu-central-1.rds.amazonaws.com}
 
-db_database=$(ze-read $service $environment POSTGRES_DATABASE | \
-                  awk '{print $4}')
-if [ -z "$db_database" ]; then
-    db_database=$(printf "%s_%s" $service_snake_case $environment)
-fi
+db_database=$(ze-read $service $environment POSTGRES_DATABASE | awk '{print $4}')
+db_database=${db_database:-"${service_snake_case}_$environment"}
 
 db_user=$(ze-read $service $environment POSTGRES_USER | awk '{print $4}')
-if [ -z "$db_user" ]; then
-    db_user=$(ze-read $service $environment db_user | awk '{print $4}')
-fi
-
-if [ -z "$db_user" ]; then
-    db_user=${service}_$environment
-fi
+db_user=${db_user:-$(ze-read $service $environment db_user | awk '{print $4}')}
+db_user=${db_user:-${service}_$environment}
 
 db_password=$(ze-read $service $environment db_password | awk '{print $4}')
-if [ -z "$db_password" ]; then
-    db_password=$(ze-read $service $environment DB_PASS | \
-                      awk '{print $4}')
-fi
-if [ -z "$db_password" ]; then
-    db_password=$(ze-read $service $environment POSTGRES_PASSWORD | \
-                      awk '{print $4}')
-fi
-
-if [ -z "$db_password" ]; then
-    echo "Couldn't find db_password or POSTGRES_PASSWORD in parameter store"
-    exit 1
-fi
+db_password=${db_password:-$(ze-read $service $environment DB_PASS | \
+                                 awk '{print $4}')}
+db_password=${db_password:-$(ze-read $service $environment POSTGRES_PASSWORD | \
+                                 awk '{print $4}')}
 
 if [ $verbose = true ]; then
     echo "Local port:    $local_port"
     echo "Database host: $db_host"
     echo "Database name: $db_database"
     echo "Username:      $db_database"
-    echo "Password:      $db_password"
+    echo "Password:      ${db_password:?couldn\'t find DB_PASS or POSTGRES_PASSWORD in parameter store}"
     echo ""
 fi
 
