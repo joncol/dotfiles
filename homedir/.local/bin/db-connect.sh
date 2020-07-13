@@ -55,7 +55,7 @@ if [[ $# -ne 2 ]]; then
 fi
 
 service=$1
-service_snake_case=$(echo $service | sed 's/-/_/g')
+service_snake_case=${service//-/_}
 environment=$2
 tunnel_host="bastion.zimpler.net"
 
