@@ -735,6 +735,10 @@
   (setq pdf-annot-activate-created-annotations t)
   (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
 
+(use-package racer
+  :config
+  (add-hook 'rust-mode-hook #'racer-mode))
+
 (use-package rainbow-mode)
 
 (use-package rainbow-delimiters)

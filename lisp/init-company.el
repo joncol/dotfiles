@@ -21,6 +21,7 @@
 
   :config
   (add-to-list 'completion-styles 'initials t)
+  (setq company-tooltip-align-annotations t)
   (setq company-dabbrev-ignore-case 'keep-prefix)
   (setq company-dabbrev-code-ignore-case nil)
   (setq company-dabbrev-downcase nil)
