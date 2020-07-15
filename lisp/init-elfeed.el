@@ -30,7 +30,6 @@
 
 (add-hook 'elfeed-search-mode-hook
           (lambda ()
-            (turn-off-fci-mode)
             (jco/define-bindings elfeed-search-mode-map
                                  '(("j" . next-line)
                                    ("k" . previous-line)))))
@@ -42,7 +41,6 @@
     (nlinum-mode -1))
   (visual-line-mode)
   (visual-fill-column-mode)
-  (turn-off-fci-mode)
   (elfeed-show-refresh))
 
 (use-package elfeed-org

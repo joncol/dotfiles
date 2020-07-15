@@ -136,7 +136,6 @@
 
 (add-hook 'mu4e-compose-mode-hook
           (lambda ()
-            (fci-mode)
             (ethan-wspace-mode -1)
             (turn-off-auto-fill)
             (footnote-mode)

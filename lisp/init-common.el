@@ -39,6 +39,9 @@
 (global-whitespace-mode)
 (setq calendar-week-start-day 1)
 
+(setq-default fill-column 80)
+(global-display-fill-column-indicator-mode)
+
 (defun prevent-whitespace-mode-for-magit ()
   (not (derived-mode-p 'magit-mode)))
 
@@ -478,7 +481,6 @@
   :config
   (add-hook 'forge-post-mode-hook
             (lambda ()
-              (fci-mode)
               (ethan-wspace-mode -1)
               (turn-off-auto-fill)
               (setq truncate-lines nil)
@@ -623,10 +625,7 @@
                `("monthly expenses"
                  ,(concat "%(binary) -f %(ledger-file) balance expenses"
                           " --tree --no-total --row-total --average --monthly"))
-               t)
-  (add-hook 'ledger-mode-hook
-            (lambda ()
-              (turn-off-fci-mode))))
+               t))
 
 (use-package lorem-ipsum
   :defer t)
@@ -661,7 +660,6 @@
         #'magit-display-buffer-fullframe-status-v1)
   (evil-leader/set-key "v l" 'magit-log-buffer-file)
   (evil-leader/set-key "v b" 'magit-blame)
-  (setq magit-blame-disabled-modes '(fci-mode))
   (bind-key "q" #'jco/magit-kill-buffers magit-status-mode-map)
   (unless (display-graphic-p)
     (remove-hook 'magit-section-highlight-hook 'magit-section-highlight)
@@ -669,7 +667,6 @@
   (add-hook 'git-commit-setup-hook
             (lambda ()
               (setq fill-column 72)
-              (fci-mode)
               (modify-syntax-entry ?- "w")
               (git-commit-turn-on-flyspell)))
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
@@ -981,10 +978,6 @@ Example: `helloWorld` becomes `Hello world`."
   (define-key map "\C-w" 'evil-window-map))
 
 (define-key jco/my-keys-mode-map (kbd "C-x b") 'ibuffer)
-
-(add-hook 'ibuffer-mode-hook
-          (lambda ()
-            (turn-off-fci-mode)))
 
 (use-package iedit)
 

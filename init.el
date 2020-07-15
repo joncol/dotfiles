@@ -49,7 +49,6 @@
 (require 'init-common)
 (require 'init-elfeed)
 (require 'init-eshell)
-(require 'init-fci)
 (require 'init-font)
 (require 'init-company)
 (require 'init-arduino)

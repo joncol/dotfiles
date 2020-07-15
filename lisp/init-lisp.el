@@ -26,8 +26,7 @@
               (evil-motion-state)))
   (add-hook 'slime-repl-mode-hook
             (lambda ()
-              (evil-normal-state)
-              (turn-off-fci-mode))))
+              (evil-normal-state))))
 
 (add-hook 'slime-connected-hook
           (lambda ()

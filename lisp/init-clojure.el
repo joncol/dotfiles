@@ -237,8 +237,7 @@ Opens a new buffer with the result."
           (lambda ()
             (cider-company-enable-fuzzy-completion)
             (modify-syntax-entries)
-            (smartparens-mode)
-            (turn-off-fci-mode)))
+            (smartparens-mode)))
 
 (add-hook 'cider--debug-mode-hook
           (lambda ()
