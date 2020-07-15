@@ -6,20 +6,19 @@
 
 ;;; Code:
 
+(use-package cargo
+  :hook (rust-mode . cargo-minor-mode))
+
 (use-package flycheck-rust
   :config
   (with-eval-after-load 'rust-mode
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 (use-package racer
-  :config
-  (add-hook 'rust-mode-hook #'racer-mode))
+  :hook (rust-mode . racer-mode))
 
 (use-package rust-mode
-  :defer t
-  :bind (:map rust-mode-map
-         ("C-c C-c" . rust-compile)
-         ("C-u C-c C-c" . rust-run)))
+  :hook (rust-mode . lsp))
 
 (provide 'init-rust)
 

@@ -631,6 +631,13 @@
 (use-package lorem-ipsum
   :defer t)
 
+(use-package lsp-mode
+  :commands lsp
+  :config
+  (require 'lsp-clients))
+
+(use-package lsp-ui)
+
 (defun jco/magit-kill-buffers ()
   "Restore window configuration and kill all Magit buffers."
   (interactive)
@@ -1001,6 +1008,8 @@ Example: `helloWorld` becomes `Hello world`."
               (setq evil-shift-width terraform-indent-level)
               ;; do not treat "-" as a word separator
               (modify-syntax-entry ?- "w"))))
+
+(use-package toml-mode)
 
 (use-package try)
 

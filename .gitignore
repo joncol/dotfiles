@@ -55,6 +55,7 @@ xkcd/
 
 .goutputstream*
 
+/.lsp-session-v1
 /.org-id-locations
 /elpy/
 /forge-database.sqlite
