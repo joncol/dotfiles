@@ -474,11 +474,6 @@
 (use-package flycheck-rtags
   :defer t)
 
-(use-package flycheck-rust
-  :config
-  (with-eval-after-load 'rust-mode
-    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
-
 (use-package forge
   :config
   (add-hook 'forge-post-mode-hook
@@ -740,10 +735,6 @@
   (setq pdf-annot-activate-created-annotations t)
   (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
 
-(use-package racer
-  :config
-  (add-hook 'rust-mode-hook #'racer-mode))
-
 (use-package rainbow-mode)
 
 (use-package rainbow-delimiters)
@@ -762,9 +753,6 @@
   (dolist (mode-map '((html-mode . motion)
                       (js-mode   . motion)))
     (evil-set-initial-state (car mode-map) (cdr mode-map))))
-
-(use-package rust-mode
-  :defer t)
 
 (defun sp--org-skip-markup (ms mb me)
   (save-excursion
