@@ -18,7 +18,8 @@
 (use-package rust-mode
   :defer t
   :bind (:map rust-mode-map
-         ("C-c C-c" . rust-run)))
+         ("C-c C-c" . rust-compile)
+         ("C-u C-c C-c" . rust-run)))
 
 (provide 'init-rust)
 
