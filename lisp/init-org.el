@@ -232,13 +232,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (add-hook 'org-mode-hook 'org-clock-persistence-insinuate)
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
-
   (eval-after-load "org"
     '(require 'ox-gfm nil t))
-
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (modify-syntax-entry ?\' " ")))
   (add-hook 'org-capture-mode-hook 'evil-insert-state))
 
 (jco/define-bindings global-map
