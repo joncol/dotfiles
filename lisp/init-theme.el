@@ -493,6 +493,7 @@
       (t (:inherit company-tooltip-selection))))))
 
 (set-face-background 'whitespace-tab nil)
+(set-face-background 'whitespace-indentation nil)
 
 (provide 'init-theme)
 
