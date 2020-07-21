@@ -611,6 +611,9 @@
 (use-package ix
   :defer t)
 
+(use-package jinja2-mode
+  :defer t)
+
 (use-package json-mode
   :defer t)
 
