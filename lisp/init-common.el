@@ -178,6 +178,9 @@
   :config
   (all-the-icons-ivy-setup))
 
+(use-package ansible
+  :defer t)
+
 (use-package anzu
   :config
   (global-anzu-mode))
