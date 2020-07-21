@@ -2,8 +2,6 @@
 
 import           Control.Monad
 import qualified Codec.Binary.UTF8.String as UTF8
-import qualified DBus as D
-import qualified DBus.Client as D
 import           Data.Default
 import           Data.List
 import qualified Data.Map as M
