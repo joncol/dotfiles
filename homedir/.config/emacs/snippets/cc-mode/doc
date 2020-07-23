@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: doc
+# key: doc
+# --
+/**
+ * ${0:Description}
+ *
+ * @tparam T Description of T.
+ *
+ * @param[in] x Description of x.
+ *
+ * @return Description of return value.
+ */

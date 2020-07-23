@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anchor fill
+# key: af
+# --
+anchors.fill: ${1:parent}

@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: code macro
+# key: code
+# binding: direct-keybinding
+# --
+
+<ac:structured-macro ac:name="code"><ac:parameter ac:name="language">${1:xml}</ac:parameter><ac:plain-text-body><![CDATA[
+$0
+]]></ac:plain-text-body></ac:structured-macro>

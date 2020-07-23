@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anchor topMargin
+# key: atm
+# --
+anchors.topMargin: $1

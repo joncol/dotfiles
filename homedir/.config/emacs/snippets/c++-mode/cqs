@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: const QString&
+# key: cqs
+# --
+const QString&$1

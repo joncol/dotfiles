@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT function
+# key: fun
+# binding: direct-keybinding
+# --
+<xsl:function name="$1" as="$2">
+$0
+</xsl:function>

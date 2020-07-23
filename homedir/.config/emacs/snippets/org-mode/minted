@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: minted
+# key: minted
+# --
+#+SETUPFILE: ~/.emacs.d/org-templates/minted.org

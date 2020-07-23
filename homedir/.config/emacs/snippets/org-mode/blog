@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Blog post header
+# key: blog
+# --
+---
+title: ${1:title}
+---
+#+STARTUP: showall

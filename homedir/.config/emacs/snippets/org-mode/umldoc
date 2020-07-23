@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: org-mode header for UML doc
+# key: umldoc
+# binding: direct-keybinding
+# --
+#+SETUPFILE: ~/.emacs.d/org-templates/uml.org

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Error configuration
+# key: err
+# --
+set -o errexit -o pipefail -o noclobber -o nounset

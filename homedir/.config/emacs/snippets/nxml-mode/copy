@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT shallow copy
+# key: copy
+# binding: direct-keybinding
+# --
+<xsl:copy select="$1" />

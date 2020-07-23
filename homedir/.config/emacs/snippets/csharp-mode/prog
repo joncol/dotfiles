@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: program
+# key: prog
+# binding: direct-keybinding
+# --
+using System;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        ${1:Console.WriteLine("hello, world");}
+    }
+}

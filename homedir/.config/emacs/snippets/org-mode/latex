@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: LaTeX
+# key: latex
+# --
+#+SETUPFILE: ~/.emacs.d/org-templates/latex.org

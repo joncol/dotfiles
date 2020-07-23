@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: No colons in code block outputs
+# key: nocolon
+# --
+# -*- org-babel-min-lines-for-block-output: 0; -*-

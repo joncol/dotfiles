@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anchor rightMargin
+# key: arm
+# --
+anchors.rightMargin: $1

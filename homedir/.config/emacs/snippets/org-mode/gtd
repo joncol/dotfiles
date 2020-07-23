@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: GTD config
+# key: gtd
+# --
+#+SETUPFILE: ~/.emacs.d/org-templates/gtd.org

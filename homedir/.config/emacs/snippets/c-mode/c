@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: c
+# key: c
+# --
+#include "`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`.h"

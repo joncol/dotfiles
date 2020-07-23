@@ -1,0 +1,7 @@
+#+TAGS: bug(b) code(c) math(m) meta(M) research(r) work(w)
+#+SEQ_TODO: TODO(t) IN-PROGRESS(i) MAYBE(m) WAITING(w) NEXT(n) CANCELED(c) DONE(d)
+#+STARTUP: overview
+#+STARTUP: showstars
+#+OPTIONS: tags:nil num:0 d:t p:t ^:{}
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+SETUPFILE: ~/repos/org-html-themes/setup/theme-readtheorg.setup

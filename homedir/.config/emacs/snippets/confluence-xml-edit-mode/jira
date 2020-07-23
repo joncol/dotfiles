@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: JIRA issue
+# key: jira
+# binding: direct-keybinding
+# --
+<ac:structured-macro ac:name="jira">
+    <ac:parameter ac:name="columns">key,summary,type,created,updated,assignee,reporter,priority,status,resolution</ac:parameter>
+    <ac:parameter ac:name="server">Combination AB</ac:parameter>
+    <ac:parameter ac:name="serverId">6fcf5a0d-3678-3c1f-be7f-b9f52d4ef578</ac:parameter>
+    <ac:parameter ac:name="key">$0</ac:parameter>
+</ac:structured-macro>
+

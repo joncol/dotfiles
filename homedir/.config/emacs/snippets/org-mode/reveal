@@ -1,0 +1,26 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: reveal.js template
+# key: reveal
+# binding: direct-keybinding
+# --
+#+SETUPFILE: ~/.emacs.d/org-templates/reveal.org
+
+#+TITLE: ${Title}
+
+* Sample List
+
+Items appearing one by one:
+
+#+ATTR_REVEAL: :frag (appear)
+- apples
+- oranges
+- bananas
+
+#+REVEAL: split
+
+Another list, items appearing all at once:
+
+#+ATTR_REVEAL: :frag appear
+- cars
+- planes
+- bikes

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Tasty test group
+# key: tg
+# expand-env: ((yas-indent-line 'fixed))
+# --
+${1:name}Tests :: TestTree
+$1Tests = testGroup "$1 tests"
+  [ testCase "${2:First test}" $
+      ${3:actual} @?= ${4:expected}
+  ]

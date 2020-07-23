@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Anchor right
+# key: ar
+# --
+anchors.right: ${1:parent}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Doxygen (short) comment
+# key: /**
+# --
+/**
+ * $0
+ */

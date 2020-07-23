@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: make_shared
+# key: ms
+# binding: direct-keybinding
+# --
+std::make_shared<`yas/selected-text`$0>

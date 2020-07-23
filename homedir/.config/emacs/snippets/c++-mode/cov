@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: cov
+# key: cov
+# --
+std::cout << "${1:var}: " << $1 << "\n";

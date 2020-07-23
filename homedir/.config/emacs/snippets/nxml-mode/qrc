@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qrc skeleton
+# key: qrc
+# --
+<RCC>
+    <qresource prefix="/$1">
+        <file>$2</file>
+    </qresource>
+</RCC>

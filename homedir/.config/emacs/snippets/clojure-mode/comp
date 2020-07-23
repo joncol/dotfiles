@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: Component (Stuart Sierra's reloaded workflow)
+# key: comp
+# --
+(ns ${1:`(funcall clojure-expected-ns-function)`}
+  (:require [clojure.tools.logging :as log]
+            [com.stuartsierra.component :as component]))
+
+(defrecord ${2:`(string-inflection-camelcase-function (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`} [${3:field}]
+  component/Lifecycle
+  (start [this]
+    (if $3
+      this
+      (do
+        (log/info "Starting $2")
+        (assoc this :$3 ${4:value}))))
+  (stop [this]
+      (if $3
+      (do (log/info "Stopping $2")
+          (assoc this :$3 nil))
+      this)))

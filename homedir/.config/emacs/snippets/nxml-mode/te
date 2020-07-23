@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT text
+# key: te
+# binding: direct-keybinding
+# --
+<xsl:text>$1</xsl:text>

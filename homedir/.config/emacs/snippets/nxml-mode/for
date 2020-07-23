@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT for-each
+# key: for
+# binding: direct-keybinding
+# --
+<xsl:for-each select="$1">
+</xsl:for-each>

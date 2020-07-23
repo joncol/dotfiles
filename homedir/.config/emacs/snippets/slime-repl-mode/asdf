@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Load asdf project
+# key: asdf
+# --
+asdf:operate 'asdf:load-op '$1

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: componentComplete
+# key: comp
+# --
+Component.onCompleted: {
+    $0
+}

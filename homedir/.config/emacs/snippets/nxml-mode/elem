@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT element
+# key: elem
+# binding: direct-keybinding
+# --
+<xsl:element name="$1">
+</xsl:element>

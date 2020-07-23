@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: XSLT if
+# key: if
+# binding: direct-keybinding
+# --
+<xsl:if test="$1">
+</xsl:if>

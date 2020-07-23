@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Public access level specifier
+# key: pu
+# binding: direct-keybinding
+# --
+public:

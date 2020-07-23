@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Q_PROPERTY
+# key: qp
+# --
+Q_PROPERTY(${1:type} ${2:name} READ $2 WRITE set${2:$(jco/capitalize-first-char yas-text)} NOTIFY $2Changed)

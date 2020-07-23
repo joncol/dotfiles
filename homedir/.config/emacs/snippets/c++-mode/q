@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Qt include
+# key: q
+# --
+#include <Q$0>
