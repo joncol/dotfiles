@@ -1,0 +1,100 @@
+#!/usr/bin/env lua
+
+-- inspect = require "inspect"
+
+function decrypt_password(account)
+  local cmd = string.format("gpg2 --for-your-eyes-only --quiet --batch -d ~/.passwd/%s.gpg",
+                            account);
+
+  local handle = io.popen(cmd)
+  local result = handle:read("*a")
+  handle:close()
+  return result
+end
+
+local zimpler_account = IMAP {
+  server = 'imap.gmail.com',
+  username = 'jonas.collberg@zimpler.com',
+  password = decrypt_password("zimpler"),
+  ssl = 'tls'
+}
+
+github_zimpler_lists =
+  zimpler_account.INBOX
+  :contain_to("noreply.github.com")
+  :match_to("(?i)Zimpler/(\\w+) <\\1@noreply\\.github\\.com>")
+github_zimpler_lists:delete_messages()
+
+daily_reports = zimpler_account.INBOX:contain_from("notifier@zimpler.com")
+daily_reports:delete_messages()
+
+zimpler_sandbox = zimpler_account.INBOX:contain_from("sandbox+noreply@zimpler.com")
+zimpler_sandbox:delete_messages()
+
+honeybadger_notifications = zimpler_account.INBOX:contain_from("Honeybadger Notifications")
+honeybadger_notifications:delete_messages()
+
+honeybadger_invoices = zimpler_account.INBOX:contain_from("support@honeybadger.io") *
+                       zimpler_account.INBOX:contain_subject("Your Honeybadger invoice")
+
+honeybadger_invoices:delete_messages()
+
+honeybadger_digest = zimpler_account.INBOX:contain_from("support@honeybadger.io") *
+                     zimpler_account.INBOX:contain_subject("Digest from Honeybadger")
+honeybadger_digest:mark_seen()
+
+stackdriver_alerts = zimpler_account.INBOX:contain_from("Stackdriver Alerts")
+stackdriver_alerts:delete_messages()
+
+monit_alert = zimpler_account.INBOX:contain_subject("monit alert -- ")
+monit_alert:delete_messages()
+
+gandi = zimpler_account.INBOX:contain_from("gandi.net")
+gandi:delete_messages()
+
+viper_prod = zimpler_account.INBOX:contain_from("viper-production@zimpler.com")
+viper_prod:delete_messages()
+
+-- pingdom = zimpler_account.INBOX:contain_from("support@pingdom.com")
+-- pingdom:delete_messages()
+
+skylight_trends = zimpler_account.INBOX:contain_from("trends@skylight.io")
+skylight_trends:delete_messages()
+
+customer_io = zimpler_account.INBOX:contain_from("win@customer.io")
+customer_io:delete_messages()
+
+trello_receipts = zimpler_account.INBOX:contain_from("support@trello.com") *
+                  zimpler_account.INBOX:contain_subject("Your Trello Account")
+trello_receipts:delete_messages()
+
+bearcom_helpdesk = zimpler_account.INBOX:contain_from("helpdesk@bearcom.se")
+bearcom_helpdesk:mark_seen()
+
+accounts_list = zimpler_account.INBOX:contain_to("accounts@zimpler.com") +
+                zimpler_account.INBOX:contain_to("accounts@pugglepay.com") +
+                zimpler_account.INBOX:contain_to("berlin@zimpler.com")
+accounts_list:mark_seen()
+
+dev_list = zimpler_account.INBOX:contain_to("dev@zimpler.net") +
+           zimpler_account.INBOX:contain_to("dev@zimpler.com") +
+           zimpler_account.INBOX:contain_to("dev@pugglepay.com")
+dev_list:mark_seen()
+
+signicat_errors = zimpler_account.INBOX:contain_from("noreply@signicat.com") *
+                  zimpler_account.INBOX:contain_subject("Incident: Signicat services unstable")
+
+signicat_errors:delete_messages()
+
+tink_statuspage = zimpler_account.INBOX:contain_from("noreply@statuspage.io") *
+                  zimpler_account.INBOX:contain_subject("Tink Enterprise Incident")
+
+tink_statuspage:mark_seen()
+
+aws = zimpler_account.INBOX:contain_from("Amazon Web Services") +
+      zimpler_account.INBOX:contain_from("no-reply-aws@amazon.com") +
+      zimpler_account.INBOX:contain_from("aws-marketing-email-replies@amazon.com")
+aws:mark_seen()
+
+peakon = zimpler_account.INBOX:contain_from("app@peakon.com")
+peakon:delete_messages()

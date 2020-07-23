@@ -1,0 +1,121 @@
+# Gmail account
+
+IMAPAccount gmail
+Host imap.gmail.com
+User jonas.collberg@gmail.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.passwd/gmail.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/Inbox
+
+Channel gmail-inbox
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns "INBOX"
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-trash
+Master :gmail-remote:"[Gmail]/Trash"
+Slave :gmail-local:"[Gmail].Trash"
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-sent
+Master :gmail-remote:"[Gmail]/Sent Mail"
+Slave :gmail-local:"[Gmail].Sent Mail"
+Create Both
+Expunge Both
+SyncState *
+
+# Channel gmail-all
+# Master :gmail-remote:"[Gmail]/All Mail"
+# Slave :gmail-local:"[Gmail].All Mail"
+# Create Both
+# Expunge Both
+# SyncState *
+
+Channel gmail-starred
+Master :gmail-remote:"[Gmail]/Starred"
+Slave :gmail-local:"[Gmail].Starred"
+Create Both
+Expunge Both
+SyncState *
+
+Group gmail
+Channel gmail-inbox
+Channel gmail-sent
+Channel gmail-trash
+# Channel gmail-all
+Channel gmail-starred
+
+# Zimpler Gmail account
+
+IMAPAccount zimpler
+Host imap.gmail.com
+User jonas.collberg@zimpler.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.passwd/zimpler.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore zimpler-remote
+Account zimpler
+
+MaildirStore zimpler-local
+Path ~/.mail/zimpler/
+Inbox ~/.mail/zimpler/Inbox
+
+Channel zimpler-inbox
+Master :zimpler-remote:
+Slave :zimpler-local:
+Patterns "INBOX"
+Create Both
+Expunge Both
+SyncState *
+
+Channel zimpler-trash
+Master :zimpler-remote:"[Gmail]/Trash"
+Slave :zimpler-local:"[Gmail].Trash"
+Create Both
+Expunge Both
+SyncState *
+
+Channel zimpler-sent
+Master :zimpler-remote:"[Gmail]/Sent Mail"
+Slave :zimpler-local:"[Gmail].Sent Mail"
+Create Both
+Expunge Both
+SyncState *
+
+# Channel zimpler-all
+# Master :zimpler-remote:"[Gmail]/All Mail"
+# Slave :zimpler-local:"[Gmail].All Mail"
+# Create Both
+# Expunge Both
+# SyncState *
+
+Channel zimpler-starred
+Master :zimpler-remote:"[Gmail]/Starred"
+Slave :zimpler-local:"[Gmail].Starred"
+Create Both
+Expunge Both
+SyncState *
+
+Group zimpler
+Channel zimpler-inbox
+Channel zimpler-sent
+# Channel zimpler-trash
+# Channel zimpler-all
+Channel zimpler-starred
