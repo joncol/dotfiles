@@ -42,6 +42,8 @@
 (setq-default fill-column 80)
 (global-display-fill-column-indicator-mode)
 
+(global-hl-line-mode -1)
+
 (defun prevent-whitespace-mode-for-magit ()
   (not (derived-mode-p 'magit-mode)))
 
