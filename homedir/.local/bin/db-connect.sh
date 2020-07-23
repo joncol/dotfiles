@@ -67,7 +67,7 @@ db_database=$(ze-read $service $environment POSTGRES_DATABASE | awk '{print $4}'
 db_database=${db_database:-"${service_snake_case}_$environment"}
 
 db_user=$(ze-read $service $environment POSTGRES_USER | awk '{print $4}')
-db_user=${db_user:-$(ze-read $service $environment db_user | awk '{print $4}')}
+db_user=${db_user:-$(ze-read $service $environment DB_USER | awk '{print $4}')}
 db_user=${db_user:-${service}_$environment}
 
 db_password=$(ze-read $service $environment db_password | awk '{print $4}')
