@@ -55,17 +55,18 @@ xkcd/
 
 .goutputstream*
 
-/.lsp-session-v1
-/.org-id-locations
-/elpy/
-/forge-database.sqlite
-/lisp/my-theme.el
-/lisp/workbench.xmi
-/org-gcal/
-/request/
-/straight/
-/transient/
-/var/pcache/gh/gh-gist-api/joncol
+/homedir/.config/emacs/.lsp-session-v1
+/homedir/.config/emacs/.org-id-locations
+/homedir/.config/emacs/archives/
+/homedir/.config/emacs/elpy/
+/homedir/.config/emacs/forge-database.sqlite
+/homedir/.config/emacs/lisp/my-theme.el
+/homedir/.config/emacs/lisp/workbench.xmi
+/homedir/.config/emacs/org-gcal/
+/homedir/.config/emacs/request/
+/homedir/.config/emacs/straight/
+/homedir/.config/emacs/transient/
+/homedir/.config/emacs/var/pcache/gh/gh-gist-api/joncol
 
 *.zwc
 /fish/.config/fish/fishd.jco-arch
