@@ -25,6 +25,10 @@ alias mo=mimeopen
 alias u="yay -Syu --noconfirm"
 alias t="todoist"
 
+if [[ -f /opt/shell-color-scripts/colorscript.sh ]]; then
+    alias colorscript=/opt/shell-color-scripts/colorscript.sh
+fi
+
 if [[ -f /usr/share/zsh/share/antigen.zsh ]]; then
     source /usr/share/zsh/share/antigen.zsh
 elif [[ -f /usr/share/zsh-antigen/antigen.zsh ]]; then
