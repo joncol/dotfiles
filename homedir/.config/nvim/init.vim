@@ -1,5 +1,7 @@
 set nocompatible
 
+let g:go_version_warning = 0
+
 call plug#begin('~/.vim/plugged')
 Plug '29decibel/codeschool-vim-theme'
 Plug 'Lokaltog/vim-easymotion'
