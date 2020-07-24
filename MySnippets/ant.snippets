@@ -1,0 +1,101 @@
+snippet xml "XML declaration" b
+<?xml version="1.0" encoding="UTF-8"?>
+
+endsnippet
+
+snippet t "Simple tag" b
+<${1:tag}>
+	${2}
+</${1/([\w:._-]+).*/$1/}>
+endsnippet
+
+snippet ti "Inline tag" b
+<${1:tag}>${2}</${1/([\w:._-]+).*/$1/}>
+endsnippet
+
+snippet "pr(oj)?" "Project tag" !br
+<project name="${1:Project name}" default="run" basedir=".">
+    <property name="main.class" value="${2:Program}" />
+    <property name="build.dir" value="build" />
+    <property name="src.dir" value="src" />
+    <property name="test.src.dir" value="${src.dir}/test" />
+    <property name="reports.dir" value="reports" />
+    <property name="dist.dir" value="dist" />
+    <property name="libs.dir" value="../lib" />
+
+    <path id="build.class.path">
+        <fileset dir="${libs.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <path id="run.class.path">
+        <pathelement location="${build.dir}/classes" />
+        <pathelement location="${build.dir}/.." />
+        <pathelement location="." />
+
+        <fileset dir="${libs.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <pathconvert property="expanded.run.class.path" refid="run.class.path" />
+
+    <target description="Creates temporary directories" name="init">
+        <mkdir dir="${build.dir}/classes" />
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${reports.dir}" />
+    </target>
+
+    <target name="clean" depends="init" description="Removes temporary directories">
+        <delete dir="${build.dir}" />
+        <delete dir="bin" failonerror="false" />
+        <delete dir="${dist.dir}" failonerror="false" />
+        <delete dir="${reports.dir}" failonerror="false" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac debug="true" deprecation="true" includeantruntime="false"
+               srcdir="${src.dir}" destdir="${build.dir}/classes"
+               classpathref="build.class.path" />
+    </target>
+
+    <target name="compile.tests" depends="init">
+        <javac debug="true" deprecation="true" includeantruntime="false"
+               srcdir="${test.src.dir}" destdir="${build.dir}/classes"
+               classpathref="build.class.path" />
+    </target>
+
+    <target name="run" depends="compile" description="Run the program">
+        <java classname="${main.class}" failonerror="true" fork="true"
+              classpathref="run.class.path">
+            <arg value="${arg0}" />
+            <arg value="${arg1}" />
+            <arg value="${arg2}" />
+            <arg value="${arg3}" />
+            <arg value="${arg4}" />
+        </java>
+    </target>
+
+    <target name="test" depends="compile,compile.tests">
+        <junit haltonfailure="yes">
+            <classpath>
+                <path refid="run.class.path" />
+            </classpath>
+
+            <formatter type="plain" usefile="false" />
+            <formatter type="plain" />
+
+            <batchtest fork="yes" todir="${reports.dir}">
+                <fileset dir="${test.src.dir}">
+                    <include name="**/*Test*.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target description="Helper target for Vim Syntastic plugin" name="path">
+        <echo message="${expanded.run.class.path}" />
+    </target>
+</project>
+endsnippet
