@@ -6,34 +6,24 @@
 (add-hook 'after-init-hook (lambda ()
                              ;; Restore after startup.
                              (setq gc-cons-threshold 800000)))
-(setq package-archives
-      '(("elpa"  . "https://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")
-        ("org"   . "http://orgmode.org/elpa/")))
 
-(package-initialize) ;; Don't delete this. It will be readded automatically.
+(defvar bootstrap-version)
+(let ((bootstrap-file
+               (expand-file-name "straight/repos/straight.el/bootstrap.el"
+                                 user-emacs-directory))
+            (bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+          (with-current-buffer
+                    (url-retrieve-synchronously
+                               "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+                                        'silent 'inhibit-cookies)
+                          (goto-char (point-max))
+                                (eval-print-last-sexp)))
+      (load bootstrap-file nil 'nomessage))
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(straight-use-package 'use-package)
 
-(let ((bootstrap-file (concat user-emacs-directory
-                              "straight/repos/straight.el/bootstrap.el"))
-      (bootstrap-version 3))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         (concat "https://raw.githubusercontent.com/raxod502/"
-                 "straight.el/develop/install.el")
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(eval-when-compile
-  (require 'use-package))
-
-(setq use-package-always-ensure t)
+(setq straight-use-package-by-default t)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (setq-default flycheck-emacs-lisp-load-path load-path)
