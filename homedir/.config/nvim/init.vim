@@ -370,15 +370,6 @@ if !has("gui_running") && has("unix")
   endif
 endif
 
-call tcomment#DefineType('ant', g:tcommentInlineXML)
-call tcomment#DefineType('ant_block', g:tcommentBlockXML)
-call tcomment#DefineType('ant_inline', g:tcommentInlineXML)
-call tcomment#DefineType('java', '// %s')
-call tcomment#DefineType('glsl', '// %s')
-call tcomment#DefineType('coffeescript_block', '###%s###')
-call tcomment#DefineType('cpp_block', '/*%s*/')
-call tcomment#DefineType('qml_block', '/*%s*/')
-
 nnoremap <A-;> :TComment<cr>
 vnoremap <A-;> :TComment<cr>
 
