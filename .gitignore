@@ -21,7 +21,6 @@
 /homedir/.config/fish/fishd.jco-core2duo
 /homedir/.config/fish/functions/fish_prompt.fish
 /homedir/.config/polybar/github_access_token
-/homedir/.config/nvim/bundle
 /homedir/.config/xmonad/pipe-*
 /homedir/.imapfilter/certificates
 /homedir/.local/bin/virtualenv
@@ -29,3 +28,4 @@ xmonad-x86_64-linux
 xmonad.errors
 xmonad.hi
 xmonad.o
+/homedir/.config/nvim/autoload/
