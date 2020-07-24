@@ -16,10 +16,11 @@
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
-      'doom-acario-light
+      ;; 'doom-acario-light
       ;; 'doom-challenger-deep
       ;; 'doom-city-lights
       ;; 'doom-dracula
+      'doom-gruvbox
       ;; 'doom-laserwave
       ;; 'doom-manegarm
       ;; 'doom-molokai
