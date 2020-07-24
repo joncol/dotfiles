@@ -7,3 +7,6 @@
 [submodule "homedir/.config/base16-shell"]
 	path = homedir/.config/base16-shell
 	url = https://github.com/chriskempson/base16-shell.git
+[submodule "homedir/.config/nvim/bundle/Vundle.vim"]
+	path = homedir/.config/nvim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
