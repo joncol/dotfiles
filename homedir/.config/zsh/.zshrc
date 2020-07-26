@@ -23,7 +23,8 @@ alias a="gcalcli agenda now tomorrow"
 alias cu="yay -Syy && yay -Pu"
 alias mo=mimeopen
 alias u="yay -Syu --noconfirm"
-alias t="todoist"
+alias t=todoist
+alias vim=nvim
 
 if [[ -f /opt/shell-color-scripts/colorscript.sh ]]; then
     alias colorscript=/opt/shell-color-scripts/colorscript.sh
