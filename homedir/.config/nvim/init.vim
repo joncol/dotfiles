@@ -108,7 +108,7 @@ let g:go_fmt_autosave = 0
 let mapleader=","
 
 nnoremap <leader>ev :e ~/.config/nvim/init.vim<cr>
-nnoremap <leader>sv :source ~/config/nvim/init.vim<cr>
+nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 
 nnoremap <leader>es :UltiSnipsEdit<cr>
 
@@ -245,6 +245,7 @@ end
 let g:ctrlp_custom_ignore = {
   \ 'dir': '\v(release|debug|data|assets|node_modules|bower_components|dist)$'
   \ }
+let g:ctrlp_show_hidden = 1
 
 if !exists("*InsertTabWrapper")
   " Make tab work as indent in the beginning of lines, autocomplete otherwise
