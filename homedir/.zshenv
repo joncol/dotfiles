@@ -1,6 +1,6 @@
 ZDOTDIR=~/.config/zsh
 
-export EDITOR=vim
+export EDITOR=nvim
 
 export LC_ALL=C # To get rid of `xmessage` warning
 
