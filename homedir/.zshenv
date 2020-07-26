@@ -10,3 +10,7 @@ export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up --color fg:124,h
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | xsel -b)+abort' --header 'Press CTRL-Y to copy command into clipboard'"
 
 export ANSIBLE_NOCOWS=1
+
+if [[ -f /etc/profile.d/apps-bin-path.sh ]]; then
+    source /etc/profile.d/apps-bin-path.sh
+fi
