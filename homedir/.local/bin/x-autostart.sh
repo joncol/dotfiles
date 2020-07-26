@@ -2,7 +2,7 @@
 
 ~/.local/bin/setup_mouse.sh
 # ~/.local/bin/fix_nvidia_tearing.sh
-# ~/.local/bin/setup_screen.pl
+~/.local/bin/setup_screen.pl
 ~/.local/bin/apply_xrdb_settings.sh
 ~/.local/bin/setup-wacom.sh
 
