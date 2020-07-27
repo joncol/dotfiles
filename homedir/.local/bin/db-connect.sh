@@ -70,7 +70,7 @@ db_user=$(ze-read $service $environment POSTGRES_USER | awk '{print $4}')
 db_user=${db_user:-$(ze-read $service $environment DB_USER | awk '{print $4}')}
 db_user=${db_user:-${service}_$environment}
 
-db_password=$(ze-read $service $environment db_password | awk '{print $4}')
+db_password=$(ze-read $service $environment DB_PASSWORD | awk '{print $4}')
 db_password=${db_password:-$(ze-read $service $environment DB_PASS | \
                                  awk '{print $4}')}
 db_password=${db_password:-$(ze-read $service $environment POSTGRES_PASSWORD | \
