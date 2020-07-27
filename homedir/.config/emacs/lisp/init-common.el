@@ -953,11 +953,8 @@ Example: `helloWorld` becomes `Hello world`."
 (jco/define-bindings jco/my-keys-mode-map '(("C-c C-b" . help-go-back)
                                             ("C-c C-f" . help-go-forward)))
 
-(let ((my-bin-path (expand-file-name "~/.local/bin")))
-  (setenv "PATH" (concat (getenv "PATH") ":" my-bin-path))
-  (add-to-list 'exec-path my-bin-path t)
-  (add-to-list 'exec-path (expand-file-name "~/.fzf/bin") t)
-  (add-to-list 'exec-path (expand-file-name "~/n/bin") t))
+(add-to-list 'exec-path (expand-file-name "~/.asdf/shims") t)
+(setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/.asdf/shims")))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
