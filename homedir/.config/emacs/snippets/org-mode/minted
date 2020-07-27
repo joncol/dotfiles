@@ -2,4 +2,4 @@
 # name: minted
 # key: minted
 # --
-#+SETUPFILE: ~/.emacs.d/org-templates/minted.org
+#+SETUPFILE: ~/.config/emacs/org-templates/minted.org

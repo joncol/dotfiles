@@ -69,7 +69,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (evil-leader/set-key "x e" 'cha-edit-story)
   (add-hook 'org-mode-hook
             (lambda ()
-              (require 'my-secrets "~/.emacs.d/lisp/my-secrets.el.gpg"))))
+              (require 'my-secrets (concat user-emacs-directory
+                                           "lisp/my-secrets.el.gpg")))))
 
 (use-package org-re-reveal
   :after org)
