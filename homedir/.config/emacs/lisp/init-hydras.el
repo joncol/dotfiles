@@ -13,7 +13,7 @@
     (evil-leader/set-key "m" 'jco/hydra-main-menu/body)))
 
 (defun open-config-file (file-name)
-  "Open FILE-NAME in ~/.emacs.d/lisp."
+  "Open FILE-NAME in emacs configuration directory."
   (interactive)
   (find-file (concat user-emacs-directory file-name)))
 
@@ -40,7 +40,7 @@ menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _t_e
 edit cfg: _i_nit _c_ommon _f_ile _h_ydras _t_heme _u_pdate"
   ("i" (open-config-file "init.el"))
   ("c" (open-config-file "lisp/init-common.el"))
-  ("f" (counsel-find-file (expand-file-name "~/.emacs.d/lisp/")))
+  ("f" (counsel-find-file (concat user-emacs-directory "lisp/")))
   ("h" (open-config-file "lisp/init-hydras.el"))
   ("t" (open-config-file "lisp/my-theme.el"))
   ("u" (jco/update-config)))
