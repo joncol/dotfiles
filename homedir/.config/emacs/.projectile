@@ -1,0 +1,10 @@
+-*.cache
+-*~
+-/straight/
+-/xslt-relax-ng/
+-auto-save-list
+-backups
+-eshell
+-semanticdb
+-session.*
+-url/cache

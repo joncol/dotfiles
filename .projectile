@@ -1,5 +1,3 @@
--*.cache
--*~
 -/.projectile
 -/homedir/.config/alacritty/alacritty-theme
 -/homedir/.config/alacritty/base16-alacritty
@@ -11,10 +9,3 @@
 -/homedir/.config/xmonad/xmonad.hi
 -/homedir/.config/xmonad/xmonad.o
 -/homedir/.xmonad/
--/straight/
--auto-save-list
--backups
--eshell
--semanticdb
--session.*
--url/cache
