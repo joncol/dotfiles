@@ -17,7 +17,9 @@
   (evil-leader/set-key ". c" #'projectile-commander)
   (evil-leader/set-key ". f" #'counsel-projectile-find-file)
   (evil-leader/set-key ". a" #'counsel-projectile-ag)
-  (evil-leader/set-key ". r" #'counsel-projectile-rg)
+  (evil-leader/set-key ". r" (lambda ()
+                               (interactive)
+                               (counsel-projectile-rg "--hidden")))
   (def-projectile-commander-method ?a
     "Ag."
     (counsel-projectile-ag))
