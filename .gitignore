@@ -29,3 +29,4 @@ xmonad.errors
 xmonad.hi
 xmonad.o
 /homedir/.config/nvim/autoload/
+/homedir/.config/tmux/plugins/
