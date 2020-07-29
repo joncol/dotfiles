@@ -31,9 +31,7 @@
 (defvar evil-want-C-i-jump nil)
 
 ;; Base initialization
-(when (version< emacs-version "27")
-  (require 'init-security))
-
+(require 'init-security)
 (require 'init-common-functions)
 (require 'init-evil)
 (require 'init-common)
