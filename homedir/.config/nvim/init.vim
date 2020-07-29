@@ -264,7 +264,7 @@ end
 
 set hidden
 set modelines=5
-
+set relativenumber
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
