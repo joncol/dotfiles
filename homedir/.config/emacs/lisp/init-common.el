@@ -45,6 +45,8 @@
 
 (global-hl-line-mode -1)
 
+(setq epa-pinentry-mode 'loopback)
+
 (defun prevent-whitespace-mode-for-magit ()
   (not (derived-mode-p 'magit-mode)))
 
