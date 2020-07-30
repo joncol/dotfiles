@@ -686,6 +686,7 @@
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
 (use-package magit-delta
+  :if (locate-file "delta" exec-path exec-suffixes 1)
   :straight (magit-delta :type git :host github
                          :repo "dandavison/magit-delta")
   :after magit
