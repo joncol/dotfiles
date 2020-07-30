@@ -47,6 +47,8 @@
 
 (setq epa-pinentry-mode 'loopback)
 
+(setq-default sh-indent-after-continuation 'always)
+
 (defun prevent-whitespace-mode-for-magit ()
   (not (derived-mode-p 'magit-mode)))
 
