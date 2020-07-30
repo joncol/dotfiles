@@ -64,8 +64,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :straight (cha :type git :host github :repo "joncol/cha")
   :commands (cha-create-story cha-edit-story)
   :init
-  (evil-leader/set-key "x c" 'cha-create-story)
-  (evil-leader/set-key "x e" 'cha-edit-story)
+  (evil-leader/set-key "x c" #'cha-create-story)
+  (evil-leader/set-key "x e" #'cha-edit-story)
   :config
   (setq cha-clubhouse-default-project "Backend")
   (require 'my-secrets (concat user-emacs-directory "lisp/my-secrets.el.gpg")))
