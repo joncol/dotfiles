@@ -18,7 +18,9 @@
   :hook (rust-mode . racer-mode))
 
 (use-package rust-mode
-  :hook (rust-mode . lsp))
+  :hook (rust-mode . lsp)
+  :config
+  (evil-leader/set-key "x m" #'lsp-ui-imenu))
 
 (provide 'init-rust)
 

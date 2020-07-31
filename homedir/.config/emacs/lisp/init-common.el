@@ -649,7 +649,10 @@
   :config
   (require 'lsp-clients))
 
-(use-package lsp-ui)
+(use-package lsp-ui
+  :defer t
+  :bind (:map lsp-ui-mode-map
+         ("M-?" . lsp-ui-peek-find-references)))
 
 (defun jco/magit-kill-buffers ()
   "Restore window configuration and kill all Magit buffers."
