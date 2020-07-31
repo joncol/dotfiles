@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-~/.local/bin/setup_mouse.sh
-# ~/.local/bin/fix-nvidia-tearing.sh
+~/.local/bin/setup-mouse.sh
 ~/.local/bin/setup_screen.pl
-~/.local/bin/apply_xrdb_settings.sh
+# ~/.local/bin/apply-xrdb-settings.sh
 ~/.local/bin/setup-wacom.sh
 
 picom --unredir-if-possible --experimental-backends -b
