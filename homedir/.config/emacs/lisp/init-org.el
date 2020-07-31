@@ -101,6 +101,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :ensure org-plus-contrib
   :init
   (setq org-directory "~/org")
+  (setq org-startup-indented t)
+  (setq org-edit-src-content-indentation 0)
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline "work.org" "_Incoming")
            "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
