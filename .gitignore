@@ -5,6 +5,7 @@
 /homedir/.config/emacs/.org-id-locations
 /homedir/.config/emacs/archives/
 /homedir/.config/emacs/auto-save-list/
+/homedir/.config/emacs/custom.el
 /homedir/.config/emacs/elpa/
 /homedir/.config/emacs/elpy/
 /homedir/.config/emacs/forge-database.sqlite
