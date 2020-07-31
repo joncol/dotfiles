@@ -229,10 +229,15 @@ invokation."
 (defun jco/vim ()
   "Open current buffer in Vim."
   (interactive)
-  (start-process "gvim" nil
-                 "gvim"
-                 (format "+%d" (line-number-at-pos))
-                 (buffer-file-name)))
+  (when (display-graphic-p)
+    (start-process "nvim" nil
+                   "alacritty"
+                   "-e"
+                   "tmux"
+                   "new"
+                   "nvim"
+                   (format "+%d" (line-number-at-pos))
+                   (buffer-file-name))))
 
 (defmacro measure-time (&rest body)
   "Measure the time it takes to evaluate BODY."
