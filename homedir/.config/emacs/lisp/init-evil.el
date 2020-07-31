@@ -45,6 +45,7 @@
     ("C-w C-c" . evil-window-delete)))
 
 (use-package evil-leader
+  :after evil
   :init
   ;; Enable global-evil-leader-mode before evil-mode, to make leader key work
   ;; in *Messages* and *scratch* buffers.
@@ -54,7 +55,11 @@
   (setq evil-leader/in-all-states t))
 
 (use-package evil
+  :ensure t
   :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  :config
   (evil-mode)
 
   :config
@@ -124,6 +129,12 @@
 
   (jco/bind-exit-insert-mode ?l ?h) ;; Colemak specific
   (setq evil-flash-delay 3600))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
 
 (use-package evil-exchange
   :init
