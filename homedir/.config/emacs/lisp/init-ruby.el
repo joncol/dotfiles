@@ -62,7 +62,6 @@
             (unless (display-graphic-p)
               (show-paren-mode -1))
             (jco/common-prog)
-            (smartparens-mode)
             (setq evil-shift-width 2)
             (add-to-list 'company-backends 'company-robe)
             (flymake-ruby-load)

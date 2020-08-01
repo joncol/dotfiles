@@ -31,7 +31,6 @@
 (add-hook 'nxml-mode-hook
           (lambda ()
             (setq evil-shift-width 2)
-            (smartparens-mode)
             (setq rnc-indent-level 2)
             (jco/define-bindings nxml-mode-map
                                  '(("C-c C-p" . rng-previous-error)

@@ -57,8 +57,6 @@
 
 (add-hook 'haskell-mode-hook
           (lambda ()
-            (smartparens-mode)
-
             ;; Don't use intero mode in org snippets.
             ;; (when (and (not (eq system-type 'windows-nt))
             ;;            (not (s-contains? "org-src" (buffer-name)))

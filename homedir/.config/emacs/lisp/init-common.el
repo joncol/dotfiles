@@ -786,7 +786,10 @@
            (save-match-data (looking-at "\\sw\\|\\s_\\|\\s."))))))
 
 (use-package smartparens
-  :defer t
+  :commands smartparens-mode
+  :init
+  (add-hook 'prog-mode-hook #'smartparens-mode)
+  (add-hook 'text-mode-hook #'smartparens-mode)
   :config
   (sp-use-paredit-bindings)
   ;; (sp-pair "\"" nil :actions :rem)

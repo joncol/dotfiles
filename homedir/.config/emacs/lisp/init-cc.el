@@ -51,8 +51,7 @@
             (evil-leader/set-key "A"
               (lambda ()
                 (interactive)
-                (ff-find-other-file t t)))
-            (smartparens-mode)))
+                (ff-find-other-file t t)))))
 
 (provide 'init-cc)
 
