@@ -212,7 +212,6 @@
 (use-package bookmark+
   :straight (bookmark-plus :type git :host github
                            :repo "emacsmirror/bookmark-plus")
-  :ensure nil
   :defer t
   :config
   (bmkp-info-auto-bookmark-mode))
@@ -294,7 +293,6 @@
 
 (use-package dired+
   :straight (dired-plus :type git :host github :repo "emacsmirror/dired-plus")
-  :ensure nil
   :after dired
   :config
   (diredp-toggle-find-file-reuse-dir 1)
@@ -1000,7 +998,6 @@ Example: `helloWorld` becomes `Hello world`."
 
 (use-package info+
   :straight (info-plus :type git :host github :repo "emacsmirror/info-plus")
-  :ensure nil
   :after info)
 
 (use-package s
