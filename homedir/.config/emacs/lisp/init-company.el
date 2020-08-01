@@ -32,7 +32,9 @@
   (setq company-echo-delay 0)
   (setq company-begin-commands '(self-insert-command)))
 
-(use-package company-lsp)
+(use-package company-box
+  :if (display-graphic-p)
+  :hook (company-mode . company-box-mode))
 
 (provide 'init-company)
 
