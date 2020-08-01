@@ -2,8 +2,6 @@ ZDOTDIR=~/.config/zsh
 
 export EDITOR=nvim
 
-export LC_ALL=C # To get rid of `xmessage` warning
-
 export LESS="-FRX $LESS"
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
 
