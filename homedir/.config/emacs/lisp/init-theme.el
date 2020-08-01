@@ -32,7 +32,6 @@
            gotham-theme
            grandshell-theme
            gruber-darker-theme
-           gruvbox-theme
            hemisu-theme
            kaolin-themes
            leuven-theme
@@ -168,6 +167,8 @@
 
   (doom-gruvbox
    (set-face-background 'hl-line "#3e3c3a")
+   (with-eval-after-load 'company-box
+     (set-face-background 'company-box-scrollbar "#7ceece"))
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "black")))
 
