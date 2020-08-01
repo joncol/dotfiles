@@ -652,7 +652,9 @@
 (use-package lsp-ui
   :defer t
   :bind (:map lsp-ui-mode-map
-         ("M-?" . lsp-ui-peek-find-references)))
+         ("M-?" . lsp-ui-peek-find-references))
+  :config
+  (setq lsp-ui-doc-position 'bottom))
 
 (defun jco/magit-kill-buffers ()
   "Restore window configuration and kill all Magit buffers."
