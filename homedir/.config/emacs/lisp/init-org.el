@@ -105,19 +105,19 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-edit-src-content-indentation 0)
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline "work.org" "_Incoming")
-           "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+           "* TODO %^{Description}\n%?\n:LOGBOOK:\n- Added: %U\n:END:\n"
            :empty-lines-before 0)
           ("p" "Project TODO" entry
            (function (lambda () (jco/goto-current-project-todo-org "Todos")))
-           "* TODO %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+           "* TODO %^{Description}\n%?\n:LOGBOOK:\n- Added: %U\n:END:\n"
            :empty-lines-before 0)
           ("n" "Note" entry (file+headline "notes.org" "Notes")
-           "* %^{Description}\n%?\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+           "* %^{Description}\n%?\n:LOGBOOK:\n- Added: %U\n:END:\n"
            :empty-lines-before 0)
           ("a" "Appointment" entry (file  "~/Sync/emacs/gcal_zimpler.org" )
            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
           ("w" "Web" entry (file+headline "web.org" "_Incoming")
-           "* %:description\n  %:initial\n\n  Source: %:link\n  :LOGBOOK:\n  - Added: %U\n  :END:\n"
+           "* %:description\n%:initial\n\nSource: %:link\n:LOGBOOK:\n- Added: %U\n:END:\n"
            :empty-lines-before 0)))
   :config
   (setq org-src-fontify-natively t)
