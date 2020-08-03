@@ -20,7 +20,8 @@
 (use-package rust-mode
   :hook (rust-mode . lsp)
   :config
-  (evil-leader/set-key "x m" #'lsp-ui-imenu))
+  (evil-leader/set-key "x m" #'lsp-ui-imenu)
+  (sp-pair "\'" nil :actions :rem))
 
 (provide 'init-rust)
 
