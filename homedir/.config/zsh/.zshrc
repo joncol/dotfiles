@@ -12,6 +12,13 @@ fi
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 
+fpath+=~/.config/zsh/completions
+# The styles for completion descriptions and messages, zsh will hide them by default.
+zstyle ':completion:*:descriptions' format "%U%B%d%b%u"
+zstyle ':completion:*:messages' format "%F{green}%d%f"
+autoload -Uz compinit
+compinit -u
+
 # use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
