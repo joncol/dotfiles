@@ -214,6 +214,10 @@ nmap <f9> :TagbarToggle<cr>
 "   autocmd VimEnter * NERDTree
 " endif
 
+if has("nvim")
+  set inccommand=split
+endif
+
 " emacs compatibility
 
 nnoremap <C-a> <Nop>
