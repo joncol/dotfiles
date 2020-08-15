@@ -50,6 +50,7 @@
   ;; Enable global-evil-leader-mode before evil-mode, to make leader key work
   ;; in *Messages* and *scratch* buffers.
   (global-evil-leader-mode)
+  :config
   (evil-leader/set-leader ",")
   (evil-leader/set-key "," 'evil-repeat-find-char-reverse)
   (setq evil-leader/in-all-states t))
@@ -137,18 +138,22 @@
   (evil-collection-init))
 
 (use-package evil-exchange
+  :after evil
   :init
   (evil-exchange-cx-install))
 
 (use-package evil-matchit
+  :after evil
   :config
   (global-evil-matchit-mode))
 
 (use-package evil-goggles
+  :after evil
   :config
   (evil-goggles-mode))
 
 (use-package evil-search-highlight-persist
+  :after evil
   :init
   (global-evil-search-highlight-persist t))
 

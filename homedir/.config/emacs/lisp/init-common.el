@@ -428,9 +428,11 @@
   :config
   (define-key esup-mode-map "\C-w" 'evil-window-map))
 
-(use-package evil-ediff)
+(use-package evil-ediff
+  :after evil)
 
 (use-package evil-god-state
+  :after evil
   :config
   (evil-define-key 'normal jco/my-keys-mode-map (kbd "SPC")
     'evil-execute-in-god-state)
@@ -455,6 +457,7 @@
                 (display-line-numbers-mode -1)))))
 
 (use-package evil-numbers
+  :after evil
   :bind (("C-c +" . evil-numbers/inc-at-pt)
          ("C-c -" . evil-numbers/dec-at-pt)))
 
