@@ -67,6 +67,10 @@
                                mu4e-headers-mode-map
                                mu4e-view-mode-map))
                 (define-key m "\C-w" 'evil-window-map))
+              (dolist (h (list 'mu4e-main-mode-hook
+                               'mu4e-headers-mode-hook
+                               'mu4e-view-mode-hook))
+                (add-hook h (lambda () (evil-matchit-mode -1))))
               (setq mu4e-get-mail-command "mbsync -a")
               (setq mu4e-update-interval nil)
               (setq mu4e-sent-messages-behavior 'sent)
