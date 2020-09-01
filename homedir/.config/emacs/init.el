@@ -47,7 +47,7 @@
 (require 'init-projectile)
 (require 'init-rotate)
 (require 'init-rust)
-(require 'init-tab)
+;; (require 'init-tab)
 (require 'init-theme)
 (require 'init-modeline)
 (require 'init-utils)
