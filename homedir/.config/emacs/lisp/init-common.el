@@ -794,6 +794,7 @@
   :init
   (add-hook 'prog-mode-hook #'smartparens-mode)
   (add-hook 'text-mode-hook #'smartparens-mode)
+  (add-hook 'cider-repl-mode-hook #'smartparens-mode)
   :config
   (sp-use-paredit-bindings)
   ;; (sp-pair "\"" nil :actions :rem)
