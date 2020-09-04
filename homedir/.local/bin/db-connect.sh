@@ -57,7 +57,7 @@ fi
 service=$1
 service_snake_case=${service//-/_}
 environment=$2
-tunnel_host="bastion.zimpler.net"
+tunnel_host=bastion
 
 db_host=$(ze-read $service $environment POSTGRES_HOST | awk '{print $4}')
 db_host=${db_host:-$(ze-read $service $environment db_host | awk '{print $4}')}
