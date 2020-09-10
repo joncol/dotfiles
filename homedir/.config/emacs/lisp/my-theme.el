@@ -20,12 +20,15 @@
       ;; 'doom-challenger-deep
       ;; 'doom-city-lights
       ;; 'doom-dracula
-      'doom-gruvbox
+      'doom-flatwhite
+      ;; 'doom-gruvbox
       ;; 'doom-laserwave
       ;; 'doom-manegarm
+      ;; 'doom-miramare
       ;; 'doom-molokai
       ;; 'doom-moonlight
       ;; 'doom-nord-light
+      ;; 'doom-old-hope
       ;; 'doom-one
       ;; 'doom-one-light
       ;; 'doom-opera-light
