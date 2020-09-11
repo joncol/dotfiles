@@ -647,9 +647,7 @@
   :defer t)
 
 (use-package lsp-mode
-  :commands lsp
-  :config
-  (require 'lsp-clients))
+  :commands lsp)
 
 (use-package lsp-ui
   :defer t

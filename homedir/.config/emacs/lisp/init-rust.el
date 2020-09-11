@@ -7,7 +7,9 @@
 ;;; Code:
 
 (use-package cargo
-  :hook (rust-mode . cargo-minor-mode))
+  :hook (rust-mode . cargo-minor-mode)
+  :bind (:map cargo-process-mode-map
+         ("n" . evil-search-next)))
 
 (use-package flycheck-rust
   :config
@@ -21,7 +23,10 @@
   :hook (rust-mode . lsp)
   :config
   (evil-leader/set-key "x m" #'lsp-ui-imenu)
-  (sp-pair "\'" nil :actions :rem))
+  (sp-pair "\'" nil :actions :rem)
+  (add-hook 'rust-mode-hook
+            (lambda ()
+              (modify-syntax-entry ?! "w"))))
 
 (provide 'init-rust)
 
