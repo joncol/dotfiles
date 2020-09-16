@@ -295,6 +295,8 @@
 (use-package dired+
   :straight (dired-plus :type git :host github :repo "emacsmirror/dired-plus")
   :after dired
+  :init
+  (setq dired-dwim-target t)
   :config
   (diredp-toggle-find-file-reuse-dir 1)
   (define-key dired-mode-map "\C-w" 'evil-window-map))
