@@ -10,6 +10,8 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 
 export ANSIBLE_NOCOWS=1
 
+export GOPRIVATE="github.com/Zimpler/*"
+
 if [[ -f /etc/profile.d/apps-bin-path.sh ]]; then
     source /etc/profile.d/apps-bin-path.sh
 fi
