@@ -2,10 +2,6 @@
 ;;; Commentary:
 ;;
 ;;; Code:
-(setq gc-cons-threshold 64000000)
-(add-hook 'after-init-hook (lambda ()
-                             ;; Restore after startup.
-                             (setq gc-cons-threshold 800000)))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file

@@ -368,6 +368,10 @@
                  ("M-g M-p" . eclim-problems-prev-same-file)
                  ("M-g p" . eclim-problems-prev-same-file))))))
 
+(use-package gcmh
+  :config
+  (gcmh-mode))
+
 (use-package gif-screencast
   :defer t
   :bind (:map gif-screencast-mode-map
