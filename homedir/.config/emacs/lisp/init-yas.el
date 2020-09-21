@@ -7,6 +7,7 @@
 ;;; Code:
 
 (use-package yasnippet
+  :defer t
   :config
   (yas-global-mode)
   (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
@@ -20,6 +21,7 @@
   (evil-leader/set-key "TAB" 'yas-insert-snippet))
 
 (use-package helm-c-yasnippet
+  :defer t
   :bind (([C-tab] . helm-yas-complete))
   :config
   (setq helm-yas-display-key-on-candidate t))

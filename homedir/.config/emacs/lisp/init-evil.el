@@ -53,7 +53,36 @@
   :config
   (evil-leader/set-leader ",")
   (evil-leader/set-key "," 'evil-repeat-find-char-reverse)
-  (setq evil-leader/in-all-states t))
+  (setq evil-leader/in-all-states t)
+  (evil-leader/set-key "V" 'jco/vcs-status)
+
+  (evil-leader/set-key "n n" 'narrow-to-defun)
+  (evil-leader/set-key "n r" 'narrow-to-region)
+  (evil-leader/set-key "n s" 'org-narrow-to-subtree)
+  (evil-leader/set-key "n w" 'widen)
+
+  (evil-leader/set-key "i n" '(lambda ()
+                                (interactive)
+                                (when (eq evil-state 'normal)
+                                  (forward-char))
+                                (insert user-full-name)))
+
+  (evil-leader/set-key "i m" '(lambda ()
+                                (interactive)
+                                (when (eq evil-state 'normal)
+                                  (forward-char))
+                                (insert user-mail-address)))
+
+  (evil-leader/set-key "e f" 'jco/what-face)
+  (evil-leader/set-key "e w" 'ace-window)
+
+  (evil-leader/set-key "x b" 'browse-url)
+  (evil-leader/set-key "x w" 'woman)
+
+  (evil-leader/set-key "g n"
+    (lambda ()
+      (interactive)
+      (browse-url "https://github.com/notifications"))))
 
 (use-package evil
   :ensure t
@@ -159,6 +188,7 @@
 (add-hook 'edebug-mode-hook 'evil-normalize-keymaps)
 
 (use-package evil-surround
+  :after evil
   :init
   (global-evil-surround-mode)
   :config
@@ -185,7 +215,7 @@
 (evil-leader/set-key "RET" 'delete-blank-lines)
 
 (use-package evil-nerd-commenter
-  :demand t
+  :after evil
   :config
   (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
   (evil-leader/set-key
@@ -202,28 +232,6 @@ Useful for REPL windows."
   (interactive)
   (evil-window-move-very-bottom)
   (evil-window-set-height height))
-
-(evil-leader/set-key "V" 'jco/vcs-status)
-
-(evil-leader/set-key "n n" 'narrow-to-defun)
-(evil-leader/set-key "n r" 'narrow-to-region)
-(evil-leader/set-key "n s" 'org-narrow-to-subtree)
-(evil-leader/set-key "n w" 'widen)
-
-(evil-leader/set-key "i n" '(lambda ()
-                              (interactive)
-                              (when (eq evil-state 'normal)
-                                (forward-char))
-                              (insert user-full-name)))
-
-(evil-leader/set-key "i m" '(lambda ()
-                              (interactive)
-                              (when (eq evil-state 'normal)
-                                (forward-char))
-                              (insert user-mail-address)))
-
-(evil-leader/set-key "e f" 'jco/what-face)
-(evil-leader/set-key "e w" 'ace-window)
 
 (provide 'init-evil)
 

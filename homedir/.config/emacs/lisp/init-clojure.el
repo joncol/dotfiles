@@ -61,9 +61,11 @@ buffer already exists, don't create a new one."
                   cider-classpath-mode)
                 evil-motion-state-modes)))
 
-(use-package flycheck-clj-kondo)
+(use-package flycheck-clj-kondo
+  :defer t)
 
-(use-package kibit-helper)
+(use-package kibit-helper
+  :defer t)
 
 (defun nrepl-reset ()
   "Helper function to call the (Reloaded workflow) reset function."

@@ -7,6 +7,7 @@
 ;;; Code:
 
 (use-package hydra
+  :defer t
   :config
   (global-set-key (kbd "<f1>") 'jco/hydra-help/body)
   (with-eval-after-load 'evil-leader

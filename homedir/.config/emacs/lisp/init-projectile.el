@@ -7,6 +7,7 @@
 ;;; Code:
 
 (use-package projectile
+  :defer t
   :init
   (projectile-mode)
 
