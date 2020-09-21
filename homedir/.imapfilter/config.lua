@@ -96,5 +96,5 @@ aws = zimpler_account.INBOX:contain_from("Amazon Web Services") +
       zimpler_account.INBOX:contain_from("aws-marketing-email-replies@amazon.com")
 aws:mark_seen()
 
-peakon = zimpler_account.INBOX:contain_from("app@peakon.com")
+peakon = zimpler_account.INBOX:contain_from("Peakon")
 peakon:delete_messages()
