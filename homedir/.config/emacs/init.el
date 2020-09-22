@@ -27,7 +27,6 @@
 (defvar evil-want-C-i-jump nil)
 
 ;; Base initialization
-(require 'init-security)
 (require 'init-common-functions)
 (require 'init-evil)
 (require 'init-common)
@@ -66,7 +65,6 @@
 (require 'init-lisp)
 ;; (require 'init-lua)
 ;; (require 'init-macros)
-(require 'init-markdown)
 ;; (require 'init-nsis)
 ;; (require 'init-nxml)
 (require 'init-org)

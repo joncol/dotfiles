@@ -109,6 +109,16 @@
           (lambda ()
             (setq evil-shift-width 2)))
 
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (auto-fill-mode)
+            (setq evil-shift-width 4)
+            (modify-syntax-entry ?- "w") ;; do not treat "_" as a word separator
+            (footnote-mode)
+            (turn-on-orgtbl)))
+
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
   "Enable evil motion state."
