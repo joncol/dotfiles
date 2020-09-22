@@ -1,0 +1,4 @@
+[Bookmarks]
+[Recent]
+/home/jco/Downloads/
+/home/jco/Sync/blender/

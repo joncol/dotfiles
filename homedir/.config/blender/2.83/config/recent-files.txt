@@ -1,8 +1,0 @@
-/home/jco/blender/mini_landscape.blend
-/home/jco/blender/speaker.blend
-/home/jco/blender/well.blend
-/home/jco/blender/room1.blend
-/home/jco/blender/cube.blend
-/home/jco/blender/donut.blend
-/home/jco/blender/donut.blend1
-/home/jco/untitled.blend

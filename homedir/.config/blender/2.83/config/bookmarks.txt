@@ -1,5 +1,0 @@
-[Bookmarks]
-[Recent]
-/home/jco/blender/
-!Home
-/home/jco/
