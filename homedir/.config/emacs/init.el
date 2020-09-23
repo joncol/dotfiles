@@ -64,7 +64,7 @@
 ;; (require 'init-lang)
 (require 'init-lisp)
 ;; (require 'init-lua)
-;; (require 'init-macros)
+(require 'init-macros)
 ;; (require 'init-nsis)
 ;; (require 'init-nxml)
 (require 'init-org)
