@@ -139,6 +139,9 @@
   (doom-city-lights
    (set-face-background 'ivy-current-match "#3f525b"))
 
+  (doom-flatwhite
+   (set-face-background 'vhl/default-face "#e0dcbe"))
+
   (doom-laserwave
    (set-face-background 'hl-line (jco/current-bg 0.10))
    (set-face-background 'ivy-highlight-face "#352e5a")
