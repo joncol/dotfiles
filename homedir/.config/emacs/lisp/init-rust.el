@@ -18,7 +18,13 @@
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 (use-package racer
-  :hook (rust-mode . racer-mode))
+  :hook (rust-mode . racer-mode)
+  :config
+  (add-hook 'racer-mode-hook
+            (lambda ()
+              (set (make-local-variable 'company-backends)
+                   '((company-capf company-files)))
+              (setq company-minimum-prefix-length 1))))
 
 (use-package rust-mode
   :hook (rust-mode . lsp)
