@@ -30,6 +30,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go'
+Plug 'guns/vim-clojure-static'
 Plug 'honza/vim-snippets'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'itchyny/vim-haskell-indent'
@@ -824,5 +825,10 @@ elseif s:uname != "Windows" || !has("nvim")
   " autocmd InsertEnter * set cul
   " autocmd InsertLeave * set nocul
 endif
+
+let g:clojure_align_subforms = 1
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^comment']
+let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 
 let g:vim_initialized = 1
