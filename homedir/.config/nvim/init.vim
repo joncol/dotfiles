@@ -73,6 +73,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-surround'
+Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'vim-jp/vim-cpp'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/BusyBee'
@@ -87,7 +88,6 @@ Plug 'wlangstroth/vim-racket'
 " vim-scripts repos
 " Plug 'CSApprox'
 Plug 'vim-scripts/Toggle'
-Plug 'vim-scripts/ZoomWin'
 Plug 'vim-scripts/a.vim'
 Plug 'vim-scripts/actionscript.vim'
 Plug 'vim-scripts/glsl.vim'
@@ -296,6 +296,8 @@ set encoding=utf-8
 set showmode
 set showcmd
 set wildmenu
+
+set showtabline=0
 
 " Turn off beep.
 set noerrorbells visualbell t_vb=
@@ -832,5 +834,10 @@ let g:clojure_align_subforms = 1
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^comment']
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+
+let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+if executable("ag")
+  let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
 
 let g:vim_initialized = 1
