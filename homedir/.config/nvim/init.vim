@@ -37,7 +37,7 @@ Plug 'itchyny/vim-haskell-indent'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'jonathanfilip/vim-lucius'
-Plug 'jpalardy/vim-slime'
+" Plug 'jpalardy/vim-slime'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script'
@@ -400,25 +400,25 @@ elseif has("unix")
   let g:haddock_browser = "links"
 end
 
-if !exists("*SmlModeStuff")
-  function SmlModeStuff()
-    let g:slime_no_mappings = 1
-    let g:slime_target = "tmux"
-    let g:slime_paste_file = tempname()
-    nmap <c-c><c-c> "zyip \| :call SmlSlimeSend(@z)<cr>
-    xmap <c-c><c-c> "zy \| :call SmlSlimeSend(@z)<cr>
-    nmap <c-c>v :SlimeConfig<cr>
-
-    nnoremap <leader>r :call SmlFile()<cr>
-  endfunction
-end
-
-if !exists("*SmlSlimeSend")
-  function SmlSlimeSend(data)
-    let l:d = substitute(a:data, "\\n\\+$", "", "") " remove trailing newlines
-    exe "SlimeSend1 " . l:d . ";"
-  endfunction
-end
+" if !exists("*SmlModeStuff")
+"   function SmlModeStuff()
+"     let g:slime_no_mappings = 1
+"     let g:slime_target = "tmux"
+"     let g:slime_paste_file = tempname()
+"     nmap <c-c><c-c> "zyip \| :call SmlSlimeSend(@z)<cr>
+"     xmap <c-c><c-c> "zy \| :call SmlSlimeSend(@z)<cr>
+"     nmap <c-c>v :SlimeConfig<cr>
+"
+"     nnoremap <leader>r :call SmlFile()<cr>
+"   endfunction
+" end
+"
+" if !exists("*SmlSlimeSend")
+"   function SmlSlimeSend(data)
+"     let l:d = substitute(a:data, "\\n\\+$", "", "") " remove trailing newlines
+"     exe "SlimeSend1 " . l:d . ";"
+"   endfunction
+" end
 
 " --------------------------------------------------
 " File-specific stuff
