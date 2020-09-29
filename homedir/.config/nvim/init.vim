@@ -11,7 +11,6 @@ let g:go_version_warning = 0
 call plug#begin('~/.vim/plugged')
 Plug '29decibel/codeschool-vim-theme'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'Lokaltog/vim-powerline'
 Plug 'MaxSt/FlatColor'
 Plug 'OrangeT/vim-csharp'
 Plug 'Raimondi/delimitMate'
@@ -73,6 +72,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'vim-jp/vim-cpp'
 Plug 'vim-ruby/vim-ruby'
@@ -373,13 +374,11 @@ set guioptions-=T " no toolbar
 set guioptions-=r " no right scrollbar
 set guioptions-=L " no left scrollbar
 
-if s:uname != "Windows" || has("gui_running")
-  let g:Powerline_symbols='unicode'
-endif
-
 set laststatus=2 " always show status line
 
 set nojoinspaces
+
+let g:airline_powerline_fonts = 1
 
 if !has("gui_running") && has("unix")
   if $TMUX != ''
