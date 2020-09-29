@@ -825,7 +825,7 @@ if has("gui_running")
   set background=dark
   set cursorline
 elseif s:uname != "Windows" || !has("nvim")
-  " colorscheme summerfruit256
+  colorscheme gruvbox
   " autocmd InsertEnter * set cul
   " autocmd InsertLeave * set nocul
 endif
