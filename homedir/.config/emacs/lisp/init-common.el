@@ -319,11 +319,6 @@
   "Sort dired listings with directories first, before adding marks."
   (mydired-sort))
 
-(use-package dired-narrow
-  :after dired+
-  :bind (:map dired-mode-map
-         ("/" . dired-narrow)))
-
 (use-package dired-subtree
   :after dired+
   :config
