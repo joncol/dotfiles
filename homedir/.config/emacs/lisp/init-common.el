@@ -1022,6 +1022,11 @@ Example: `helloWorld` becomes `Hello world`."
                     "zimpler.com"
                   "gmail.com"))))
 
+(use-package smart-tab
+  :config
+  (global-smart-tab-mode)
+  (setq smart-tab-user-provided-completion-function 'company-complete))
+
 (use-package terraform-mode
   :config
   (add-hook 'terraform-mode-hook
