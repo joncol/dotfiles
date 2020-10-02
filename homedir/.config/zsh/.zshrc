@@ -17,7 +17,13 @@ fpath+=~/.config/zsh/completions
 zstyle ':completion:*:descriptions' format "%U%B%d%b%u"
 zstyle ':completion:*:messages' format "%F{green}%d%f"
 autoload -Uz compinit
+autoload -U +X bashcompinit
 compinit -u
+bashcompinit
+
+if [[ -f ~/work/arthur/arthur_completions.sh ]]; then
+    source ~/work/arthur/arthur_completions.sh
+fi
 
 # use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char
@@ -32,6 +38,7 @@ alias mo=mimeopen
 alias u="yay -Syu --noconfirm"
 alias t=todoist
 alias vim=nvim
+alias arthur=~/work/arthur/arthur
 
 if [[ -f /opt/shell-color-scripts/colorscript.sh ]]; then
     alias colorscript=/opt/shell-color-scripts/colorscript.sh
