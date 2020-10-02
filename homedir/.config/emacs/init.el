@@ -41,6 +41,7 @@
 (require 'init-rotate)
 (require 'init-theme)
 (require 'init-modeline)
+(require 'init-tab)
 (require 'init-utils)
 (require 'init-wspace)
 (require 'init-yas)

@@ -1020,7 +1020,9 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package smart-tab
   :config
   (global-smart-tab-mode)
-  (setq smart-tab-user-provided-completion-function 'company-complete))
+  (setq smart-tab-user-provided-completion-function
+        'jco/expand-snippet-or-complete-selection)
+  (setq smart-tab-using-hippie-expand t))
 
 (use-package terraform-mode
   :config
