@@ -301,7 +301,8 @@
   (setq dired-dwim-target t)
   :config
   (diredp-toggle-find-file-reuse-dir 1)
-  (define-key dired-mode-map "\C-w" 'evil-window-map))
+  (define-key dired-mode-map "\C-w" 'evil-window-map)
+  (add-hook 'dired-mode-hook (lambda () (evil-matchit-mode -1))))
 
 (use-package direnv
   :config
