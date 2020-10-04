@@ -62,7 +62,7 @@
 (require 'init-emacs-lisp)
 (require 'init-go)
 ;; (require 'init-haskell)
-;; (require 'init-lang)
+(require 'init-lang)
 (require 'init-lisp)
 ;; (require 'init-lua)
 (require 'init-macros)
