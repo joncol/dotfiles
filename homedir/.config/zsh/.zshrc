@@ -16,10 +16,8 @@ fpath+=~/.config/zsh/completions
 # The styles for completion descriptions and messages, zsh will hide them by default.
 zstyle ':completion:*:descriptions' format "%U%B%d%b%u"
 zstyle ':completion:*:messages' format "%F{green}%d%f"
-autoload -Uz compinit
-autoload -U +X bashcompinit
-compinit -u
-bashcompinit
+autoload -Uz compinit && compinit -u
+autoload -U +X bashcompinit && bashcompinit
 
 if [[ -f ~/work/arthur/arthur_completions.sh ]]; then
     source ~/work/arthur/arthur_completions.sh
