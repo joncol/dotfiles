@@ -17,9 +17,9 @@
   (let ((dev (if dev dev "eth0")))
     (format-network-address (car (network-interface-info dev)) t)))
 
-(defun jco/update-config ()
-  "Get the latest config from source control."
-  (shell-process-pushd user-emacs-directory)
+(defun jco/update-dotfiles ()
+  "Get the latest dotfiles from source control."
+  (shell-process-pushd "~/dotfiles")
   (magit-pull-from-pushremote nil)
   (shell-process-popd "1"))
 
