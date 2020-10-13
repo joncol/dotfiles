@@ -24,7 +24,9 @@
             (lambda ()
               (set (make-local-variable 'company-backends)
                    '((company-capf company-files)))
-              (setq company-minimum-prefix-length 1))))
+              (setq company-minimum-prefix-length 1)
+              (setq racer-rust-src-path
+                    "/home/jco/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library"))))
 
 (use-package rust-mode
   :defer t
