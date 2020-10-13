@@ -23,6 +23,10 @@ if [[ -f ~/work/arthur/arthur_completions.sh ]]; then
     source ~/work/arthur/arthur_completions.sh
 fi
 
+if [[ -f ~/.asdf/completions/asdf.bash ]]; then
+    source ~/.asdf/completions/asdf.bash
+fi
+
 # use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
