@@ -89,10 +89,14 @@
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
-  :config
-  (evil-mode)
 
   :config
+  (evil-mode)
+  (evil-set-undo-system
+   (if (version<= "28" emacs-version)
+       'undo-redo
+     'undo-tree))
+
   (unbind-key "C-n" evil-insert-state-map) ;; Want company-select-next-or-abort.
   (unbind-key "C-p" evil-insert-state-map) ;; Want company-select-next-or-abort.
   (unbind-key "C-t" evil-normal-state-map) ;; Want transpose-chars instead.
