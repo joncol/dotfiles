@@ -575,10 +575,6 @@
 ;; To get colors in html export of org-mode code snippets.
 (use-package htmlize)
 
-(use-package imenu-anywhere
-  :config
-  (evil-leader/set-key "x m" #'imenu-anywhere))
-
 (use-package insert-shebang
   :defer t)
 
@@ -651,13 +647,14 @@
   :defer t)
 
 (use-package lsp-mode
-  :commands lsp)
+  :hook (prog-mode . lsp-mode))
 
 (use-package lsp-ui
-  :defer t
+  :hook (prog-mode . lsp-ui-mode)
   :bind (:map lsp-ui-mode-map
          ("M-?" . lsp-ui-peek-find-references))
   :config
+  (evil-leader/set-key "x m" #'lsp-ui-imenu)
   (setq lsp-ui-doc-position 'bottom))
 
 (defun jco/magit-kill-buffers ()

@@ -27,9 +27,8 @@
               (setq company-minimum-prefix-length 1))))
 
 (use-package rust-mode
-  :hook (rust-mode . lsp)
+  :defer t
   :config
-  (evil-leader/set-key "x m" #'lsp-ui-imenu)
   (sp-pair "\'" nil :actions :rem)
   (add-hook 'rust-mode-hook
             (lambda ()
