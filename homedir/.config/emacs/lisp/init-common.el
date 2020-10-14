@@ -649,7 +649,11 @@
   :defer t)
 
 (use-package lsp-mode
-  :hook (prog-mode . lsp-mode))
+  :hook (prog-mode . lsp-mode)
+  :config
+  (with-eval-after-load 'lsp-mode
+    (evil-leader/set-key
+      "l" lsp-command-map)))
 
 (use-package lsp-ui
   :hook (prog-mode . lsp-ui-mode)
