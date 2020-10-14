@@ -172,8 +172,6 @@ Opens a new buffer with the result."
 
             (put-clojure-indent 'in-terminal 1)
 
-            (evil-leader/set-key "l" 'cljfmt-buffer)
-
             (dolist (m (list 'cider-repl-mode
                              'cider-test-report-mode-hook
                              'clojure-mode))
