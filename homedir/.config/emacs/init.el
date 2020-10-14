@@ -47,7 +47,7 @@
 (require 'init-yas)
 
 ;; Programming mode initialization
-(require 'init-common-programming)
+;; (require 'init-common-programming)
 ;; (require 'init-bat)
 ;; (require 'init-flymake)
 ;; (require 'init-c)

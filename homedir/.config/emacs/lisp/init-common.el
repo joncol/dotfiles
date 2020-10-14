@@ -23,6 +23,8 @@
           (lambda ()
             (evil-normal-state)))
 
+(add-hook 'prog-mode-hook #'jco/common-prog)
+
 (jco/my-keys-mode)
 
 (setq focus-follows-mouse t)
