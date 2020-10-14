@@ -29,6 +29,7 @@ menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _t_e
   ("o" jco/hydra-org/body)
   ("p" jco/hydra-packages/body)
   ;; ("s" jco/hydra-swoop/body)
+  ("r" jco/hydra-rustic/body)
   ("s" jco/hydra-swiper/body)
   ("S" jco/hydra-snippets/body)
   ("t" jco/hydra-text/body)
@@ -91,6 +92,11 @@ swoop: _m_ulti multi-_a_ll _s_woop"
   ("m" helm-multi-swoop)
   ("a" helm-multi-swoop-all)
   ("s" helm-swoop))
+
+(defhydra jco/hydra-rustic (:color teal :hint nil)
+  "
+rustic: _d_oc"
+  ("d" rustic-cargo-doc))
 
 (defhydra jco/hydra-swiper (:color teal :hint nil)
   "
