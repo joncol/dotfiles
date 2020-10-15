@@ -18,7 +18,7 @@
   (sml/setup))
 
 (use-package doom-modeline
-  ;; :disabled t
+  :disabled t
   :ensure t
   :defer t
   :hook (after-init . doom-modeline-init))
