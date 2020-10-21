@@ -186,6 +186,10 @@
      (set-face-foreground 'mu4e-highlight-face "#101f24")
      (set-face-background 'mu4e-highlight-face "#7ceece")))
 
+  (doom-tomorrow-day
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "#e4f1fe"))
+
   (dracula
    (set-face-background 'region "#582c6b"))
 
