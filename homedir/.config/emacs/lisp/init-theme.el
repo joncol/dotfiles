@@ -86,6 +86,9 @@
      (set-face-background 'mu4e-highlight-face "#7ceece")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
+  (borland-blue
+   (set-face-background 'region "RoyalBlue4"))
+
   (challenger-deep
    (set-face-background 'hl-line "#352e5a")
    (set-face-background 'line-number-current-line nil)
