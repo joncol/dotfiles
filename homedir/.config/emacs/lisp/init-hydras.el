@@ -112,14 +112,15 @@ text: _c_lean-trailing-ws"
 
 (defhydra jco/hydra-util (:color teal :hint nil)
   "
-util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate insert-_t_imestamp _g_ist"
+util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate insert-_t_imestamp _g_ist _h_ide-modeline"
   ("k" jco/hydra-kurecolor/body)
   ("y" jco/yank-current-filename)
   ("f" jco/insert-current-filename)
   ("b" (lambda () (interactive) (jco/insert-current-filename t)))
   ("d" jco/insert-date)
   ("t" jco/insert-timestamp)
-  ("g" yagist-region-or-buffer))
+  ("g" yagist-region-or-buffer)
+  ("h" hide-mode-line-mode))
 
 (defhydra jco/hydra-kurecolor
   (:color pink :hint nil

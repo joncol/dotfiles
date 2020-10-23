@@ -574,6 +574,8 @@
   :disabled t
   :defer t)
 
+(use-package hide-mode-line)
+
 ;; To get colors in html export of org-mode code snippets.
 (use-package htmlize)
 
