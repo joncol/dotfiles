@@ -628,6 +628,15 @@
 (use-package jinja2-mode
   :defer t)
 
+(use-package js2-mode
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  :config
+  (setq js2-basic-offset 2)
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil))
+
 (use-package json-mode
   :defer t)
 
@@ -1037,6 +1046,23 @@ Example: `helloWorld` becomes `Hello world`."
               (setq evil-shift-width terraform-indent-level)
               ;; do not treat "-" as a word separator
               (modify-syntax-entry ?- "w"))))
+
+(defun setup-tide ()
+  "Set up `tide-mode' for JavaScript and TypeScript."
+  (interactive)
+  (tide-setup)
+  (flycheck-mode)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode)
+  (tide-hl-identifier-mode))
+
+(use-package tide
+  :hook ((typescript-mode . setup-tide)
+         (typescript-mode . tide-hl-identifier-mode))
+  :init
+  (add-hook 'js2-mode-hook #'setup-tide)
+  :config
+  (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append))
 
 (use-package toml-mode)
 
