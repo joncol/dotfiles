@@ -12,15 +12,14 @@
 (setq jco/theme
       ;; 'adwaita
       ;; 'borland-blue
-      ;; 'challenger-deep
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
       ;; 'doom-acario-light
-      ;; 'doom-challenger-deep
+      'doom-challenger-deep
       ;; 'doom-city-lights
       ;; 'doom-dracula
-      'doom-flatwhite
+      ;; 'doom-flatwhite
       ;; 'doom-gruvbox
       ;; 'doom-laserwave
       ;; 'doom-manegarm
@@ -37,6 +36,7 @@
       ;; 'doom-snazzy
       ;; 'doom-sourcerer
       ;; 'doom-spacegrey
+      ;; 'doom-tomorrow-day
       ;; 'eink
       ;; 'gotham
       ;; 'github-modern
