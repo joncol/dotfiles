@@ -48,7 +48,7 @@
 
 (global-hl-line-mode -1)
 
-(setq epa-pinentry-mode 'loopback)
+(setq epg-pinentry-mode 'ask)
 
 (setq-default sh-indent-after-continuation 'always)
 
