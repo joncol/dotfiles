@@ -33,15 +33,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-alias git=hub
-alias a="gcalcli agenda now tomorrow"
-alias cu="yay -Syy && yay -Qu"
-alias mo=mimeopen
-alias u="yay -Syu --noconfirm"
-alias t=todoist
-alias vim=nvim
-alias arthur=~/work/arthur/arthur
-
 if [[ -f /opt/shell-color-scripts/colorscript.sh ]]; then
     alias colorscript=/opt/shell-color-scripts/colorscript.sh
 fi
@@ -53,6 +44,26 @@ elif [[ -f /usr/share/zsh-antigen/antigen.zsh ]]; then
 fi
 
 antigen init ~/.antigenrc
+
+alias git=hub
+alias a="gcalcli agenda now tomorrow"
+alias cu="yay -Syy && yay -Qu"
+alias mo=mimeopen
+alias u="yay -Syu --noconfirm"
+alias t=todoist
+alias vim=nvim
+alias arthur=~/work/arthur/arthur
+
+if command -v exa &> /dev/null; then
+    tree_ignore="cache|log|logs|node_modules|vendor"
+    alias ls='exa --group-directories-first --icons'
+    alias la='ls -a'
+    alias ll='ls --git -l'
+    alias lt='ls --tree -D -L 2 -I ${tree_ignore}'
+    alias ltt='ls --tree -D -L 3 -I ${tree_ignore}'
+    alias lttt='ls --tree -D -L 4 -I ${tree_ignore}'
+    alias ltttt='ls --tree -D -L 5 -I ${tree_ignore}'
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
