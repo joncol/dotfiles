@@ -105,10 +105,6 @@
   ;; Set other modes than evil-mode for the following modes.
   (dolist (mode-map '((ag-mode                   . emacs)
                       (cider-browse-ns-mode      . emacs)
-                      (cider-macroexpansion-mode . emacs)
-                      (cider-repl-history-mode   . emacs)
-                      (cider-stacktrace-mode     . emacs)
-                      (cider-test-report-mode    . emacs)
                       (compilation-mode          . motion)
                       (dashboard-mode            . emacs)
                       (doc-view-mode             . emacs)
