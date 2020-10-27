@@ -291,6 +291,8 @@
 
 (use-package dhall-mode
   :config
+  (setq dhall-use-header-line nil)
+  (setq dhall-format-at-save nil)
   (add-hook 'dhall-mode-hook
             (lambda ()
               ;; do not treat "-" as a word separator
