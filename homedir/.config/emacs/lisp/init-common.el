@@ -400,7 +400,7 @@
   (setq eyebrowse-new-workspace t)
   (jco/set-eyebrowse-win-bindings)
   (evil-leader/set-key "w c" 'eyebrowse-close-window-config)
-  (set-face-foreground 'mode-line-emphasis "Red"))
+  (set-face-foreground 'mode-line-emphasis "#f9ca24"))
 
 (use-package ggtags
   :if (eq system-type 'windows-nt))
