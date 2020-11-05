@@ -313,7 +313,8 @@
   (minimal-light
    (set-face-background 'region "LightBlue")
    (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "LightBlue"))
+                        "LightBlue")
+   (set-face-foreground 'mode-line-emphasis "#74b9ff"))
 
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
