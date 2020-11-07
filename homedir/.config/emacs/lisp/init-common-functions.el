@@ -72,7 +72,7 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
   (setq require-final-newline nil)
   (ethan-wspace-mode)
   (modify-syntax-entry ?_ "w") ; do not treat "_" as a word separator
-  )
+  (hs-minor-mode))
 
 (defun jco/underline-line (&optional char)
   "Underline the current line with a character CHAR (\"-\" is the default)."
