@@ -305,6 +305,7 @@
 
   (minimal
    (set-face-background 'hl-line "#101f24")
+   (set-face-foreground 'mode-line-emphasis "#95a5a6")
    (with-eval-after-load 'org
      (set-face-background 'org-todo nil)
      (set-face-background 'evil-search-highlight-persist-highlight-face
