@@ -35,7 +35,7 @@ ethan-wspace."
                                         empty space-after-tab tab-mark))
   (add-hook 'after-init-hook
             (lambda ()
-              (set-face-background 'whitespace-trailing "#ff0000"))))
+              (set-face-background 'whitespace-trailing "#82589f"))))
 
 (global-set-key (kbd "M-S-<backspace>") 'jco/collapse-multiple-empty-lines)
 (evil-leader/set-key "s m" 'jco/collapse-multiple-empty-lines)
