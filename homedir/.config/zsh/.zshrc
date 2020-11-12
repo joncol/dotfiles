@@ -19,8 +19,9 @@ zstyle ':completion:*:messages' format "%F{green}%d%f"
 autoload -Uz compinit && compinit -u
 autoload -U +X bashcompinit && bashcompinit
 
-if [[ -f ~/work/arthur/arthur_completions.sh ]]; then
-    source ~/work/arthur/arthur_completions.sh
+alias arthur=~/work/arthur/arthur
+if command -v arthur &> /dev/null; then
+    source <(arthur completion)
 fi
 
 if [[ -f ~/.asdf/completions/asdf.bash ]]; then
@@ -52,7 +53,6 @@ alias mo=mimeopen
 alias u="yay -Syu --noconfirm"
 alias t=todoist
 alias vim=nvim
-alias arthur=~/work/arthur/arthur
 
 if command -v exa &> /dev/null; then
     tree_ignore="cache|log|logs|node_modules|vendor"
