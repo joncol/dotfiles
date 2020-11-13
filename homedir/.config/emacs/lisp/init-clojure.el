@@ -135,6 +135,8 @@ Opens a new buffer with the result."
 
             (cider-auto-test-mode)
 
+            (require 'flycheck-clj-kondo)
+
             (define-key clojure-mode-map (kbd "M-;") #'jco/lisp-comment-dwim)
 
             (put-clojure-indent 'GET 2)
