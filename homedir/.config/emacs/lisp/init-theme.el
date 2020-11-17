@@ -180,6 +180,11 @@
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "black")))
 
+  (doom-one-light
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#e4f1fe")
+   (with-eval-after-load 'mu4e
+     (set-face-background 'mu4e-highlight-face "LightBlue")))
+
   ((doom-solarized-light solarized-light)
    (setq sml/theme 'light)
    (set-face-background 'region "#e0dcbe")
