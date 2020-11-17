@@ -694,7 +694,6 @@
   ;; Needed for success status message to be shown.
   (setq magit-auto-revert-mode nil)
 
-  (global-magit-file-mode)
   (setq magit-display-buffer-function
         #'magit-display-buffer-fullframe-status-v1)
   (evil-leader/set-key "v l" 'magit-log-buffer-file)
