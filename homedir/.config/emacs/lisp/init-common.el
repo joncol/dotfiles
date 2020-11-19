@@ -83,6 +83,9 @@
 (setq evil-motion-state-modes
       (append '(debugger-mode) evil-motion-state-modes))
 
+(global-set-key (kbd "M-u") 'upcase-dwim)
+(global-set-key (kbd "M-l") 'downcase-dwim)
+
 (add-hook 'doc-view-mode-hook
           (lambda ()
             (when (fboundp 'nlinum-mode)
