@@ -167,6 +167,11 @@
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-show-pair-match-face "#6ab04c")))
 
+  (doom-moonlight
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face
+                          (face-attribute 'default :background))))
+
   (doom-dracula
    (set-face-background 'ivy-current-match "#80409b")
    (set-face-background 'ivy-minibuffer-match-face-2 nil)
