@@ -121,7 +121,6 @@
                       (git-rebase-mode           . emacs)
                       (godoc-mode                . motion)
                       (profiler-report-mode      . emacs)
-                      (rtags-mode                . emacs)
                       (sdcv-mode                 . emacs)
                       (sesman-browser-mode       . emacs)
                       (sx-question-list-mode     . emacs)

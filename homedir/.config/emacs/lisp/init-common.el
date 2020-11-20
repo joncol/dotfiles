@@ -497,9 +497,6 @@
   :init
   (flycheck-pos-tip-mode))
 
-(use-package flycheck-rtags
-  :defer t)
-
 (use-package forge
   :config
   (add-hook 'forge-post-mode-hook
@@ -621,11 +618,6 @@
   (setq ivy-rich-switch-buffer-align-virtual-buffer t)
   (setq ivy-rich-abbreviate-paths t)
   (setq ivy-rich-switch-buffer-name-max-length 64))
-
-(use-package ivy-rtags
-  :after rtags
-  :config
-  (setq rtags-display-result-backend 'ivy))
 
 (use-package ix
   :defer t)
