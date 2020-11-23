@@ -56,6 +56,7 @@
   (not (derived-mode-p 'magit-mode)))
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-diff-options "-w")
 
 (winner-mode)
 (define-key jco/my-keys-mode-map (kbd "C-x C-j") (lambda ()
