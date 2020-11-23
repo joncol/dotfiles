@@ -127,7 +127,6 @@
                       (sx-question-mode          . emacs)
                       (term-mode                 . emacs)
                       (xkcd-mode                 . emacs)
-                      (xref--xref-buffer-mode    . emacs)
                       (yagist-list-mode          . emacs)))
     (evil-set-initial-state (car mode-map) (cdr mode-map)))
 
