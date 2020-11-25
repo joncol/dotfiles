@@ -226,7 +226,8 @@ Opens a new buffer with the result."
   (modify-syntax-entry ?> "w")
   (modify-syntax-entry ?? "w")
   (modify-syntax-entry ?! "w")
-  (modify-syntax-entry ?* "w"))
+  (modify-syntax-entry ?* "w")
+  (modify-syntax-entry ?= "w"))
 
 (add-hook 'cider-mode-hook
           (lambda ()
