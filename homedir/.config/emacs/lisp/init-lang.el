@@ -32,7 +32,7 @@
 
 (use-package sdcv
   :defer t
-  :config
+  :init
   (global-set-key (kbd "C-c d") 'sdcv-search-input))
 
 (provide 'init-lang)
