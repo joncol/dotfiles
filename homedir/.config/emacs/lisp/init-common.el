@@ -499,6 +499,7 @@
   (flycheck-pos-tip-mode))
 
 (use-package forge
+  :defer 1
   :config
   (add-hook 'forge-post-mode-hook
             (lambda ()
