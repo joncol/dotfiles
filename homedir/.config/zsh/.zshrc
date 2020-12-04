@@ -47,7 +47,8 @@ fi
 antigen init ~/.antigenrc
 
 alias git=hub
-alias a="gcalcli agenda now tomorrow"
+alias a="gcalcli agenda now tomorrow --details=description --details=conference"
+alias aw="gcalcli agenda --details=description"
 alias cu="yay -Syy && yay -Qu"
 alias mo=mimeopen
 alias u="yay -Syu --noconfirm"
