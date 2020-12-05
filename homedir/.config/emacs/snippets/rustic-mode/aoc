@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: Advent of Code scaffold
+# key: aoc
+# --
+//! Day ${1:`(save-match-data
+                (let ((s (substring-no-properties (file-name-nondirectory
+                             (file-name-sans-extension (buffer-file-name))))))
+                  (string-match "[^0-9]*\\([0-9]*\\)" s)
+                  (match-string 1 s)))`}: $2
+
+#[derive(Debug)]
+struct ${3:Item} {
+}
+
+#[aoc_generator(day$1)]
+fn parse_input(input: &str) -> Vec<$3> {
+    // input.lines().map(|l| l.parse().unwrap()).collect()
+    Vec::new()
+}
+
+#[aoc(day$1, part1)]
+fn solve_part1(input: &[$3]) -> i32 {
+    ${0:0}
+}
