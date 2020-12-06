@@ -277,6 +277,7 @@ myKeys =
     , ("M--", namedScratchpadAction scratchpads "telegram")
     , ("M-S--", namedScratchpadAction scratchpads "slack")
     , ("M-`", namedScratchpadAction scratchpads "terminal")
+    , ("M-=", namedScratchpadAction scratchpads "discord")
     , ("M-S-c", kill1)
     , ("M-v", getCurrentScreen >>= windows . copyToAll)
     , ("M-S-v", killAllOtherCopies)
@@ -296,6 +297,8 @@ scratchpads =
   , NS "terminal" ("alacritty -t scratchpad-terminal -e tmux")
          (title =? "scratchpad-terminal")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+  , NS "discord" "discord" (className =? "discord")
+         (customFloating $ W.RationalRect (1/8) (1/8) (3/4) (3/4))
   ]
 
 dmenuRun s = spawn $ "dmenu_run -s " ++ show s ++
