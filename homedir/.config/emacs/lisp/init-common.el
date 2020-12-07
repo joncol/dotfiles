@@ -115,8 +115,6 @@
           (lambda ()
             (setq evil-shift-width 2)))
 
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
 (add-hook 'markdown-mode-hook
           (lambda ()
             (auto-fill-mode)
@@ -727,6 +725,19 @@
   :after magit
   :config
   (magit-org-todos-autoinsert))
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode))
+  :config
+  (setq markdown-command
+        (concat "pandoc -c file://"
+                (expand-file-name
+                 (concat user-emacs-directory "github-pandoc.css"))
+                " --from gfm -t html5 --mathjax "
+                "--highlight-style=tango --standalone "
+                "--metadata title=\"*markdown-output*\"")))
 
 (use-package minions
   :config
