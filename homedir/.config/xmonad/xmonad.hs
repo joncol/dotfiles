@@ -62,6 +62,8 @@ megaMan            = "#4bcffa"
 honeyGlow          = "#EAB543"
 fallingStar        = "#CAD3C8"
 desert             = "#ccae62"
+goodSamaritan      = "#3c6382"
+dupain             = "#60a3bc"
 
 main = do
   countScreens >>= createXmobarPipes
@@ -245,7 +247,7 @@ xmobarCommand screenCount (S s) =
                    "vol:\\ " ++ (font 1 $ color hintOfIcePack "%vol%") ++ sep ++
                    color soaringEagle "%ESGG%" ++ sep ++
                    color prunusAvium "%uname%"
-    template 2 _ = "%workspaces%}%focus%{" ++ color megaMan "%date%"
+    template 2 _ = "%workspaces%}%focus%{" ++ color dupain "%date%"
     pipeReader =
       "'[ Run PipeReader \"" ++ pipeName "focus"      s ++ "\" \"focus\"\
        \, Run PipeReader \"" ++ pipeName "workspaces" s ++ "\" \"workspaces\"\
