@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: test
+# key: test
+# --
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn some_test() {
+        assert_eq!(1, 2);
+    }
+}
