@@ -665,8 +665,6 @@
 
 (use-package lsp-ui
   :hook (prog-mode . lsp-ui-mode)
-  :bind (:map lsp-ui-mode-map
-         ("M-?" . lsp-ui-peek-find-references))
   :config
   (evil-leader/set-key "x m" #'lsp-ui-imenu)
   (setq lsp-ui-doc-position 'bottom))
