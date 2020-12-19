@@ -17,13 +17,11 @@ import           XMonad.Actions.UpdatePointer
 import           XMonad.Config.Dmwit ( withScreen )
 import           XMonad.Hooks.DynamicBars as DynBars
 import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.EwmhDesktops ( ewmh
-                                           , ewmhDesktopsStartup
-                                           , fullscreenEventHook
-                                           )
+import           XMonad.Hooks.EwmhDesktops ( fullscreenEventHook )
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Hooks.SetWMName ( setWMName )
+import           XMonad.Hooks.UrgencyHook ( NoUrgencyHook(..), withUrgencyHook )
 import           XMonad.Layout
 import           XMonad.Layout.Grid
 import           XMonad.Layout.IndependentScreens ( countScreens
@@ -70,7 +68,7 @@ dupain             = "#60a3bc"
 main = do
   countScreens >>= createXmobarPipes
   spawn "killall -q xmobar && sleep 1"
-  xmonad . ewmh =<< myStatusBar myConfig
+  xmonad . (withUrgencyHook NoUrgencyHook) =<< myStatusBar myConfig
 
 myConfig = def
     { terminal           = myTerminal
@@ -130,8 +128,6 @@ myStartupHook =
     return ()
     checkKeymap myConfig myKeys
     setFullscreenSupported
-    ewmhDesktopsStartup
-    setWMName "LG3D"
     spawn "~/.local/bin/x-autostart.sh"
 
 myLayoutHook =
@@ -178,7 +174,7 @@ myStatusBar conf = do
                         forM_ [0 .. screenCount-1] $
                            spawnPipe . xmobarCommand screenCount
                         docksStartupHook
-      , logHook = logHook conf >> myPPs screenCount
+      , logHook = logHook conf >> myPPs screenCount >> setWMName "LG3D"
       }
 
 myPPs :: ScreenId -> X ()
