@@ -18,10 +18,12 @@ import           XMonad.Config.Dmwit ( withScreen )
 import           XMonad.Hooks.DynamicBars as DynBars
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops ( ewmh
+                                           , ewmhDesktopsStartup
                                            , fullscreenEventHook
                                            )
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.SetWMName ( setWMName )
 import           XMonad.Layout
 import           XMonad.Layout.Grid
 import           XMonad.Layout.IndependentScreens ( countScreens
@@ -128,6 +130,8 @@ myStartupHook =
     return ()
     checkKeymap myConfig myKeys
     setFullscreenSupported
+    ewmhDesktopsStartup
+    setWMName "LG3D"
     spawn "~/.local/bin/x-autostart.sh"
 
 myLayoutHook =
