@@ -1071,7 +1071,10 @@ Example: `helloWorld` becomes `Hello world`."
   :config
   (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append))
 
-(use-package toml-mode)
+(use-package toml-mode
+  :config
+  (modify-syntax-entry ?- "w") ;; Do not treat "-" as a word separator.
+  )
 
 (use-package try)
 
