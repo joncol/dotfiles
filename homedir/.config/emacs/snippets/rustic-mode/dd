@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Derive Debug
+# key: dd
+# --
+#[derive(Debug)]
