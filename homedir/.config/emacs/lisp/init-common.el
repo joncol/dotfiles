@@ -698,6 +698,7 @@
   (add-hook 'git-commit-setup-hook
             (lambda ()
               (setq fill-column 72)
+              (auto-fill-mode)
               (modify-syntax-entry ?- "w")
               (git-commit-turn-on-flyspell)))
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
