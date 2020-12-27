@@ -144,8 +144,21 @@
   (doom-city-lights
    (set-face-background 'ivy-current-match "#3f525b"))
 
+  (doom-dracula
+   (set-face-background 'ivy-current-match "#80409b")
+   (set-face-background 'ivy-minibuffer-match-face-2 nil)
+   (set-face-background 'hl-line "#3f525b")
+   (set-face-background 'region "#582c6b"))
+
   (doom-flatwhite
    (set-face-background 'vhl/default-face "#e0dcbe"))
+
+  (doom-gruvbox
+   (set-face-background 'hl-line "#3e3c3a")
+   (with-eval-after-load 'company-box
+     (set-face-background 'company-box-scrollbar "#7ceece"))
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face "black")))
 
   (doom-laserwave
    (set-face-background 'hl-line (jco/current-bg 0.10))
@@ -171,19 +184,6 @@
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face
                           (face-attribute 'default :background))))
-
-  (doom-dracula
-   (set-face-background 'ivy-current-match "#80409b")
-   (set-face-background 'ivy-minibuffer-match-face-2 nil)
-   (set-face-background 'hl-line "#3f525b")
-   (set-face-background 'region "#582c6b"))
-
-  (doom-gruvbox
-   (set-face-background 'hl-line "#3e3c3a")
-   (with-eval-after-load 'company-box
-     (set-face-background 'company-box-scrollbar "#7ceece"))
-   (with-eval-after-load 'mu4e
-     (set-face-foreground 'mu4e-highlight-face "black")))
 
   (doom-one-light
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e4f1fe")
