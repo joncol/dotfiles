@@ -185,6 +185,10 @@
      (set-face-foreground 'mu4e-highlight-face
                           (face-attribute 'default :background))))
 
+  (doom-old-hope
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face "#101f24")))
+
   (doom-one-light
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e4f1fe")
    (with-eval-after-load 'mu4e
