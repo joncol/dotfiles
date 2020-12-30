@@ -46,6 +46,7 @@ fi
 
 antigen init ~/.antigenrc
 
+alias sudo="sudo "
 alias git=hub
 alias a="gcalcli agenda now tomorrow --details=description --details=conference"
 alias aw="gcalcli agenda --details=description"
