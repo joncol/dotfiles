@@ -656,6 +656,16 @@
 (use-package lorem-ipsum
   :defer t)
 
+;; Requirements: Install system package `ghcup-hs-bin', and then:
+;; `ghcup install hls' (to install `haskell-language-server').
+;; Install `haskell-implicit-hie', and finally run: `gen-hie > hie.yaml' to get
+;; a hie configuration.
+(use-package lsp-haskell
+  :defer t
+  :init
+  (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-literate-mode-hook #'lsp))
+
 (use-package lsp-mode
   :hook (prog-mode . lsp-mode)
   :config
