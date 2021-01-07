@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+stack build
+stack install --local-bin-path bin/
+mv bin/xmonad "$1"

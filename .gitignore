@@ -26,12 +26,12 @@
 /homedir/.config/polybar/github_access_token
 /homedir/.config/tmux/plugins/
 /homedir/.config/xmonad/pipe-*
+/homedir/.config/zsh/.zcompdump
 /homedir/.imapfilter/certificates
 /homedir/.lein/self-installs/
 /homedir/.local/bin/virtualenv
+/homedir/.stardict/dic/stardict-dictd-web1913-2.4.2/dictd_www.dict.org_web1913.idx.oft
 xmonad-x86_64-linux
 xmonad.errors
 xmonad.hi
 xmonad.o
-/homedir/.config/zsh/.zcompdump
-/homedir/.stardict/dic/stardict-dictd-web1913-2.4.2/dictd_www.dict.org_web1913.idx.oft
