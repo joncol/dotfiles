@@ -25,7 +25,10 @@
 /homedir/.config/nvim/autoload/
 /homedir/.config/polybar/github_access_token
 /homedir/.config/tmux/plugins/
+/homedir/.config/xmonad/.stack-work/
 /homedir/.config/xmonad/pipe-*
+/homedir/.config/xmonad/stack.yaml.lock
+/homedir/.config/xmonad/xmonad-jco.cabal
 /homedir/.config/zsh/.zcompdump
 /homedir/.imapfilter/certificates
 /homedir/.lein/self-installs/
