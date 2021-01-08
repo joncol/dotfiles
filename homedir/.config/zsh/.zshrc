@@ -56,6 +56,12 @@ alias u="yay -Syu --noconfirm"
 alias t=todoist
 alias vim=nvim
 
+if [ -d "$HOME/repos/mitmproxy" ]; then
+    alias mitmproxy="cd $HOME/repos/mitmproxy/ && pipenv run mitmproxy && cd -"
+    alias mitmweb="cd $HOME/repos/mitmproxy/ && pipenv run mitmweb && cd -"
+    alias mitmdump="cd $HOME/repos/mitmproxy/ && pipenv run mitmdump && cd -"
+fi
+
 if command -v exa &> /dev/null; then
     tree_ignore="cache|log|logs|node_modules|vendor"
     alias ls='exa --group-directories-first --icons'
