@@ -185,6 +185,9 @@
      (set-face-foreground 'mu4e-highlight-face
                           (face-attribute 'default :background))))
 
+  (doom-oceanic-next
+   (set-face-background 'vhl/default-face (jco/current-bg 0.10)))
+
   (doom-old-hope
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "#101f24")))
