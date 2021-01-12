@@ -669,6 +669,7 @@
 (use-package lsp-mode
   :hook (prog-mode . lsp-mode)
   :config
+  (setq lsp-modeline-code-actions-enable nil)
   (with-eval-after-load 'lsp-mode
     (evil-leader/set-key
       "l" lsp-command-map)))
