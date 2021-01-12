@@ -1088,6 +1088,13 @@ Example: `helloWorld` becomes `Hello world`."
   (modify-syntax-entry ?- "w") ;; Do not treat "-" as a word separator.
   )
 
+(use-package tree-sitter
+  :config
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs)
+
 (use-package try)
 
 (use-package typescript-mode
