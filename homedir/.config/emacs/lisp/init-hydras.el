@@ -68,8 +68,9 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
 
 (defhydra jco/hydra-org (:color teal :hint nil)
   "
-org: _a_genda _p_omodoro"
+org: _a_genda _d_atabase-properties _p_omodoro"
   ("a" (org-agenda nil "d"))
+  ("d" (jco/add-db-properties))
   ("p" (org-pomodoro)))
 
 (defhydra jco/hydra-packages (:color teal :hint nil)

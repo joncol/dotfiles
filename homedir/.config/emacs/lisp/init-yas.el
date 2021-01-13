@@ -11,7 +11,8 @@
   :config
   (yas-global-mode)
   (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
-  (setq yas-indent-line 'auto)
+  ;; yas-indent-line has to be nil to avoid error when expanding `db' snippet.
+  (setq yas-indent-line nil)
   (setq yas-also-auto-indent-first-line t)
   (yas-reload-all) ;; Needed to unload snippets in elpa dir.
   (add-hook 'snippet-mode-hook

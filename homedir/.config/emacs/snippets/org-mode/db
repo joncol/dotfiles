@@ -4,34 +4,17 @@
 # --
 * Database exploration
 :PROPERTIES:
-:app-name: ${1:app}
-:env: ${2:env}
-:env_ALL: staging sandbox production
+:app-name: $1
+:env: $2
 :END:
 
-** Meta
-#+begin_src sql
-$0
+** Tables
+$0#+begin_src sql
+\d
 #+end_src
 
-;; Local Variables:
-;; eval: (let* ((p (point-at-pos-rel-line-offset (point-min) 1))
-;;              (app-name (org-entry-get nil "app-name" t))
-;;              (env (org-entry-get nil "env" t))
-;;              (app-name-snakecase (string-replace "-" "_" app-name)))
-;;         (org-entry-put-multivalued-property
-;;          p "header-args"
-;;          ":engine" "postgresql"
-;;          ":dbhost" (concat app-name
-;;                            "-"
-;;                            env
-;;                            "-db.czldyizapuwt.eu-central-1.rds.amazonaws.com")
-;;          ":dbport" "5432"
-;;          ":database" (concat app-name-snakecase "_" env)
-;;          ":dbuser" (concat app-name-snakecase "_" env)
-;;          ":dbpassword" (shell-quote-argument
-;;                         (string-trim
-;;                          (shell-command-to-string
-;;                           (concat "ze-read -v " app-name " " env
-;;                                   " shared POSTGRES_PASSWORD"))))))
-;; End:
+** Indexes
+#+begin_src sql
+SELECT * FROM pg_catalog.pg_indexes
+WHERE schemaname = 'public'
+#+end_src
