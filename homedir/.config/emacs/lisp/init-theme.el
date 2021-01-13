@@ -124,7 +124,9 @@
      (set-face-background 'magit-diff-hunk-heading "#f0f0f0")
      (set-face-background 'magit-diff-hunk-heading-highlight "#e0e0e0")
      (set-face-background 'magit-diff-added-highlight "#e0e0e0")
-     (set-face-background 'magit-diff-removed-highlight "#e0e0e0")))
+     (set-face-background 'magit-diff-removed-highlight "#e0e0e0"))
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face (jco/current-bg -0.10))))
 
   (doom-challenger-deep
    (set-face-background 'hl-line "#352e5a")
