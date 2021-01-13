@@ -166,7 +166,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
      (latex . t)
      (octave . t)
      (plantuml . t)
-     (shell . t)))
+     (shell . t)
+     (sql . t)))
   (setq org-confirm-babel-evaluate nil)
   (if (eq system-type 'windows-nt)
       (setq org-ditaa-jar-path "c:/tools/misc/ditaa.jar"
