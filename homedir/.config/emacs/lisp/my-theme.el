@@ -15,7 +15,7 @@
       ;; 'chyla
       ;; 'cyberpunk
       ;; 'darktooth
-      ;; 'doom-acario-light
+      'doom-acario-light
       ;; 'doom-challenger-deep
       ;; 'doom-city-lights
       ;; 'doom-dracula
@@ -27,11 +27,12 @@
       ;; 'doom-molokai
       ;; 'doom-moonlight
       ;; 'doom-nord-light
-      'doom-oceanic-next
+      ;; 'doom-oceanic-next
       ;; 'doom-old-hope
       ;; 'doom-one
       ;; 'doom-one-light
       ;; 'doom-opera-light
+      ;; 'doom-outrun-electric
       ;; 'doom-solarized-light
       ;; 'doom-vibrant
       ;; 'doom-snazzy
