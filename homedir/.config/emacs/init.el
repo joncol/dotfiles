@@ -45,6 +45,7 @@
 (require 'init-utils)
 (require 'init-wspace)
 (require 'init-yas)
+(require 'init-zimpler)
 
 ;; Programming mode initialization
 (require 'init-clojure)

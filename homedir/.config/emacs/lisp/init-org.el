@@ -60,32 +60,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                           path
                                           (or desc "video"))))))))
 
-(defun jco/add-db-properties ()
-  "Add `org-mode' database properties to current buffer.
-This makes it possible to connect against Zimpler databases. Requires the
-properties `app-name' and `env' to be set."
-  (interactive)
-  (let* ((p (point-at-pos-rel-line-offset (point-min) 1))
-         (app-name (org-entry-get nil "app-name" t))
-         (env (org-entry-get nil "env" t))
-         (app-name-snakecase (string-replace "-" "_" app-name)))
-    (org-entry-put-multivalued-property
-     p "header-args"
-     ":engine" "postgresql"
-     ":dbhost" (concat app-name
-                       "-"
-                       env
-                       "-db.czldyizapuwt.eu-central-1.rds.amazonaws.com")
-     ":dbport" "5432"
-     ":database" (concat app-name-snakecase "_" env)
-     ":dbuser" (concat app-name-snakecase "_" env)
-     ":dbpassword" "(shell-quote-argument"
-     "(string-trim"
-     "(shell-command-to-string" "\"ze-read" "-v"
-     app-name
-     env
-     "shared" "POSTGRES_PASSWORD\")))")))
-
 (use-package cha
   :straight (cha :type git :host github :repo "joncol/cha")
   :commands (cha-create-story cha-edit-story)
