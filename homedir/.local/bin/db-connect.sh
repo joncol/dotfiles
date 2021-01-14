@@ -48,26 +48,21 @@ service=$1
 service_snake_case=${service//-/_}
 environment=$2
 
-db_host=$(ze-read $service $environment shared POSTGRES_HOST \
-    | awk '{print $5}')
-db_host=${db_host:-$(ze-read $service $environment shared DB_HOST \
-    | awk '{print $5}')}
+db_host=$(ze-read -v $service $environment shared POSTGRES_HOST)
+db_host=${db_host:-$(ze-read -v $service $environment shared DB_HOST)}
 db_host=${db_host:-$service-$environment-db.czldyizapuwt.eu-central-1.rds.amazonaws.com}
 
-db_database=$(ze-read $service $environment shared POSTGRES_DATABASE \
-    | awk '{print $5}')
+db_database=$(ze-read -v $service $environment shared POSTGRES_DATABASE)
 db_database=${db_database:-"${service_snake_case}_$environment"}
 
-db_user=$(ze-read $service $environment shared POSTGRES_USER | awk '{print $5}')
-db_user=${db_user:-$(ze-read $service $environment shared DB_USER | awk '{print $5}')}
+db_user=$(ze-read -v $service $environment shared POSTGRES_USER)
+db_user=${db_user:-$(ze-read -v $service $environment shared DB_USER)}
 db_user=${db_user:-${service}_$environment}
 
-db_password=$(ze-read $service $environment shared DB_PASSWORD | awk '{print $5}')
-db_password=${db_password:-$(ze-read $service $environment shared DB_PASS | \
-    awk '{print $5}')}
-db_password=${db_password:-$(ze-read $service $environment shared \
-    POSTGRES_PASSWORD | \
-    awk '{print $5}')}
+db_password=$(ze-read -v $service $environment shared DB_PASSWORD)
+db_password=${db_password:-$(ze-read -v $service $environment shared DB_PASS)}
+db_password=${db_password:-$(ze-read -v $service $environment shared \
+    POSTGRES_PASSWORD)}
 
 if [ $verbose = true ]; then
     echo "Database host: $db_host"
