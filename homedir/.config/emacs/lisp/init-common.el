@@ -1052,10 +1052,14 @@ Example: `helloWorld` becomes `Hello world`."
                   "gmail.com"))))
 
 (use-package smart-tab
-  :config
-  (global-smart-tab-mode)
+  :init
   (setq smart-tab-user-provided-completion-function
         'jco/expand-snippet-or-complete-selection)
+  :config
+  ;; This is to avoid using the deprecated `lisp-complete-symbol' function.
+  (setcdr (assq 'emacs-lisp-mode smart-tab-completion-functions-alist)
+          'completion-at-point)
+  (global-smart-tab-mode)
   (setq smart-tab-using-hippie-expand t))
 
 (use-package terraform-mode
