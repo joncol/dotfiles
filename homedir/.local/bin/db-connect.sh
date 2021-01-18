@@ -9,7 +9,7 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-options=v
+options=v,d,t:
 longopts=verbose
 
 ! parsed=$(getopt --options=$options --longoptions=$longopts --name "$0" -- "$@")
@@ -21,12 +21,22 @@ eval set -- "$parsed"
 
 db_port=5432
 verbose=false
+dump=false
+table=
 
 while true; do
     case "$1" in
         -v|--verbose)
             verbose=true
             shift
+            ;;
+        -d|--dump)
+            dump=true
+            shift
+            ;;
+        -t|--dump)
+            table=$2
+            shift 2
             ;;
         --)
             shift
@@ -72,6 +82,18 @@ if [ $verbose = true ]; then
     echo ""
 fi
 
-PGHOST=$db_host PGDATABASE=$db_database PGUSER=$db_user \
-    PGPASSWORD=$db_password PGPORT=$db_port \
-    psql
+if [ $dump = true ]; then
+    if [ -z $table ]; then
+        PGHOST=$db_host PGDATABASE=$db_database PGUSER=$db_user \
+            PGPASSWORD=$db_password PGPORT=$db_port \
+            pg_dump --schema-only
+    else
+        PGHOST=$db_host PGDATABASE=$db_database PGUSER=$db_user \
+            PGPASSWORD=$db_password PGPORT=$db_port \
+            pg_dump -t $table --schema-only
+    fi
+else
+    PGHOST=$db_host PGDATABASE=$db_database PGUSER=$db_user \
+        PGPASSWORD=$db_password PGPORT=$db_port \
+        psql
+fi
