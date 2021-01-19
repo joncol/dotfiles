@@ -4,4 +4,4 @@
 #+STARTUP: showstars
 #+OPTIONS: tags:nil num:0 d:t p:t ^:{}
 #+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
-#+SETUPFILE: ~/repos/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: ~/repos/org-html-themes/org/theme-readtheorg.setup

@@ -5,4 +5,4 @@
 #+LATEX_HEADER: \usepackage{fancyhdr}
 #+LATEX_HEADER: \pagestyle{fancy} \renewcommand{\headrulewidth}{0pt} \cfoot{}
 #+LaTeX: \thispagestyle{fancy}
-#+SETUPFILE: ~/repos/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: ~/repos/org-html-themes/org/theme-readtheorg.setup
