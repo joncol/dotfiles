@@ -217,6 +217,7 @@
   (setq avy-case-fold-search nil))
 
 (use-package bookmark+
+  :disabled t
   :straight (bookmark-plus :type git :host github
                            :repo "emacsmirror/bookmark-plus")
   :defer t
