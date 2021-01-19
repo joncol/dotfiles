@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+(setq org-directory "~/org")
+
 (defun jco/org-inline-css-hook (exporter)
   "Fix colors of snippets when EXPORTER is 'html.
 Insert custom inline css to automatically set the foreground and background of
@@ -100,7 +102,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :defer t
   :ensure org-plus-contrib
   :init
-  (setq org-directory "~/org")
   (setq org-startup-indented t)
   (setq org-edit-src-content-indentation 0)
   (setq org-capture-templates
@@ -120,6 +121,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            "* %:description\n%:initial\n\nSource: %:link\n:LOGBOOK:\n- Added: %U\n:END:\n"
            :empty-lines-before 0)))
   :config
+  (setq org-startup-truncated nil)
   (setq org-src-fontify-natively t)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
   (setq org-log-done t)
@@ -237,6 +239,17 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (eval-after-load "org"
     '(require 'ox-gfm nil t))
   (add-hook 'org-capture-mode-hook 'evil-insert-state))
+
+(use-package org-roam
+  :hook
+  (after-init . org-roam-mode)
+  :bind (:map org-roam-mode-map
+         (("C-c n l" . org-roam)
+          ("C-c n f" . org-roam-find-file)
+          ("C-c n g" . org-roam-graph))
+         :map org-mode-map
+         (("C-c n i" . org-roam-insert))
+         (("C-c n I" . org-roam-insert-immediate))))
 
 (jco/define-bindings global-map
                      '(("C-c a"   . org-agenda)

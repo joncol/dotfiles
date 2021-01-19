@@ -20,7 +20,7 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "
-menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _t_ext _u_til _v_cs _w_indow"
+menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _r_ust _s_woop _S_nippets _t_ext _u_til _v_cs _w_indow"
   ("a" jco/hydra-app/body)
   ("b" counsel-bookmark)
   ("c" jco/hydra-config/body)
@@ -28,7 +28,6 @@ menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _s_woop _S_nippets _t_e
   ("l" jco/hydra-lang/body)
   ("o" jco/hydra-org/body)
   ("p" jco/hydra-packages/body)
-  ;; ("s" jco/hydra-swoop/body)
   ("r" jco/hydra-rustic/body)
   ("s" jco/hydra-swiper/body)
   ("S" jco/hydra-snippets/body)
@@ -67,11 +66,15 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("s" sdcv-search))
 
 (defhydra jco/hydra-org (:color teal :hint nil)
-  "
-org: _a_genda _d_atabase-properties _p_omodoro"
-  ("a" (org-agenda nil "d"))
-  ("d" (jco/add-db-properties))
-  ("p" (org-pomodoro)))
+  "Launcher for org-roam"
+
+  ("i" org-roam-insert "insert")
+  ("f" org-roam-find-file "find-file")
+  ("g" org-roam-graph "graph")
+  ("b" org-roam-buffer-activate "backlinks")
+  ("t" org-roam-tag-add "add tag")
+  ("s" org-store-link "store link")
+  ("l" org-insert-link "insert link"))
 
 (defhydra jco/hydra-packages (:color teal :hint nil)
   "
@@ -113,12 +116,13 @@ text: _c_lean-trailing-ws"
 
 (defhydra jco/hydra-util (:color teal :hint nil)
   "
-util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate _e_diff-regions-wordwise ninsert-_t_imestamp _g_ist _h_ide-modeline _m_arkdown-other-window"
+util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate insert-_D_B-props _e_diff-regions-wordwise ninsert-_t_imestamp _g_ist _h_ide-modeline _m_arkdown-other-window"
   ("k" jco/hydra-kurecolor/body)
   ("y" jco/yank-current-filename)
   ("f" jco/insert-current-filename)
   ("b" (lambda () (interactive) (jco/insert-current-filename t)))
   ("d" jco/insert-date)
+  ("D" (jco/add-db-properties))
   ("e" ediff-regions-wordwise)
   ("t" jco/insert-timestamp)
   ("g" yagist-region-or-buffer)
