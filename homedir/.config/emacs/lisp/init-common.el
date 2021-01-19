@@ -455,19 +455,6 @@
   (setq evil-ledger-sort-key "S")
   (add-hook 'ledger-mode-hook #'evil-ledger-mode))
 
-(use-package evil-magit
-  :disabled t
-  :after magit
-  :config
-  (setq evil-motion-state-modes
-        (append '(magit-submodule-list-mode) evil-motion-state-modes))
-  (add-hook 'magit-mode-hook
-            (lambda ()
-              (evil-local-set-key 'normal (kbd "SPC")
-                                  'magit-diff-show-or-scroll-up)
-              (when (version<= "26" emacs-version)
-                (display-line-numbers-mode -1)))))
-
 (use-package evil-numbers
   :after evil
   :bind (("C-c +" . evil-numbers/inc-at-pt)
@@ -714,7 +701,11 @@
               (auto-fill-mode)
               (modify-syntax-entry ?- "w")
               (git-commit-turn-on-flyspell)))
-  (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
+  (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
+  (add-hook 'magit-mode-hook
+            (lambda ()
+              (evil-local-set-key 'normal (kbd "SPC")
+                                  'magit-diff-show-or-scroll-up))))
 
 (use-package magit-delta
   :if (locate-file "delta" exec-path exec-suffixes 1)
