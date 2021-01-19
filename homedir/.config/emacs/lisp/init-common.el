@@ -456,6 +456,7 @@
   (add-hook 'ledger-mode-hook #'evil-ledger-mode))
 
 (use-package evil-magit
+  :disabled t
   :after magit
   :config
   (setq evil-motion-state-modes
