@@ -116,13 +116,12 @@ text: _c_lean-trailing-ws"
 
 (defhydra jco/hydra-util (:color teal :hint nil)
   "
-util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate insert-_D_B-props _e_diff-regions-wordwise ninsert-_t_imestamp _g_ist _h_ide-modeline _m_arkdown-other-window"
+util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate _e_diff-regions-wordwise ninsert-_t_imestamp _g_ist _h_ide-modeline _m_arkdown-other-window"
   ("k" jco/hydra-kurecolor/body)
   ("y" jco/yank-current-filename)
   ("f" jco/insert-current-filename)
   ("b" (lambda () (interactive) (jco/insert-current-filename t)))
   ("d" jco/insert-date)
-  ("D" (jco/add-db-properties))
   ("e" ediff-regions-wordwise)
   ("t" jco/insert-timestamp)
   ("g" yagist-region-or-buffer)
