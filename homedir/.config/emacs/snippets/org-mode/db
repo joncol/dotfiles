@@ -8,8 +8,11 @@
 :env: $2
 :END:
 
+** Meta
+$0[[elisp:(jco/add-db-properties)][Add DB props]].
+
 ** Tables
-$0#+begin_src sql
+#+begin_src sql
 \d
 #+end_src
 
