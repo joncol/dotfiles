@@ -120,6 +120,7 @@
   (doom-acario-light
    (set-face-attribute 'font-lock-comment-face nil :slant 'normal)
    (set-face-attribute 'font-lock-comment-face nil :inherit nil)
+   (set-face-background 'vhl/default-face (jco/current-bg -0.10))
    (with-eval-after-load 'magit
      (set-face-background 'magit-diff-hunk-heading "#f0f0f0")
      (set-face-background 'magit-diff-hunk-heading-highlight "#e0e0e0")
