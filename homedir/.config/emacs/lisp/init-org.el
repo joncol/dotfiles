@@ -243,6 +243,12 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (use-package org-roam
   :hook
   (after-init . org-roam-mode)
+  :custom
+  (org-roam-capture-templates
+   '(("d" "default" plain #'org-roam-capture--get-point "%?"
+      :file-name "%<%Y-%m-%d_%H-%M-%S>-${slug}"
+      :head "#+title: ${title}\n#+setupfile: ~/org-roam/template.org\n\n"
+      :unnarrowed t)))
   :bind (:map org-roam-mode-map
          (("C-c n l" . org-roam)
           ("C-c n f" . org-roam-find-file)
