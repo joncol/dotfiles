@@ -202,7 +202,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-mobile-directory (concat org-directory "/mobile"))
   (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
   (setq org-mobile-force-id-on-agenda-items nil)
-  (auto-fill-mode)
   (global-unset-key (kbd "C-x C-v"))
   (jco/define-bindings org-mode-map
                        '(("<f5>" . (lambda ()
@@ -234,6 +233,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                    (match-end 1) "•"))))))
   (setq org-clock-persist 'history)
   (add-hook 'org-mode-hook 'org-clock-persistence-insinuate)
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
   (eval-after-load "org"
