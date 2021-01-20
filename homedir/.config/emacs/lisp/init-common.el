@@ -87,6 +87,8 @@
 (global-set-key (kbd "M-u") 'upcase-dwim)
 (global-set-key (kbd "M-l") 'downcase-dwim)
 
+(setq-default c-basic-offset 4)
+
 (add-hook 'doc-view-mode-hook
           (lambda ()
             (when (fboundp 'nlinum-mode)
