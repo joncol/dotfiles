@@ -805,9 +805,10 @@
 (use-package pdf-tools
   :if (and (not (eq system-type 'windows-nt))
            (display-graphic-p))
-  :defer t
-  :config
+  :defer 1
+  :init
   (pdf-tools-install)
+  :config
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-annot-activate-created-annotations t)
   (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))

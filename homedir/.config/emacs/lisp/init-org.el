@@ -268,6 +268,9 @@ Org-mode properties drawer already, keep the headline and don’t insert
     (delete-blank-lines)
     (indent-region (point-min) (point-max))))
 
+(use-package org-noter
+  :defer 1)
+
 (use-package org-roam
   :hook
   (after-init . org-roam-mode)

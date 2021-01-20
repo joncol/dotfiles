@@ -66,7 +66,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("s" sdcv-search))
 
 (defhydra jco/hydra-org (:color teal :hint nil)
-  "Launcher for org-roam"
+  "Launcher for org stuff"
 
   ("i" org-roam-insert "insert")
   ("f" org-roam-find-file "find-file")
@@ -74,7 +74,8 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("b" org-roam-buffer-activate "backlinks")
   ("t" org-roam-tag-add "add tag")
   ("s" org-store-link "store link")
-  ("l" org-insert-link "insert link"))
+  ("l" org-insert-link "insert link")
+  ("n" org-noter "org-noter"))
 
 (defhydra jco/hydra-packages (:color teal :hint nil)
   "
