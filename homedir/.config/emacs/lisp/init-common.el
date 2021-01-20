@@ -27,6 +27,7 @@
 
 (jco/my-keys-mode)
 
+(setq save-interprogram-paste-before-kill t)
 (setq focus-follows-mouse t)
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
@@ -682,6 +683,21 @@
     (magit-restore-window-configuration)
     (mapc #'kill-buffer buffers)))
 
+(defun jco/insert-clubhouse-markdown-link ()
+  "Insert a markdown-formatted link (from the clipboard) to a ClubHouse story."
+  (interactive)
+  (let* ((s (with-temp-buffer
+              (yank)
+              (buffer-substring-no-properties (point-min) (point-max))))
+         (n (save-match-data
+              (string-match
+               "app\\.clubhouse\\.io/zimpler/story/\\([[:digit:]]+\\)" s)
+              (match-string 1 s))))
+    (if n
+        (insert (format "[ch%s](%s)" n s))
+      (message
+       "Error: System clipboard doesn't contain a valid ClubHouse story URL"))))
+
 (use-package magit
   :defer 1
   :config
@@ -708,6 +724,7 @@
               (modify-syntax-entry ?- "w")
               (git-commit-turn-on-flyspell)))
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
+  (evil-leader/set-key "x l" #'jco/insert-clubhouse-markdown-link)
   (add-hook 'magit-mode-hook
             (lambda ()
               (evil-local-set-key 'normal (kbd "SPC")
