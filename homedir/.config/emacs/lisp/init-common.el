@@ -662,6 +662,8 @@
   :config
   (setq lsp-modeline-code-actions-enable nil)
   (with-eval-after-load 'lsp-mode
+    (add-hook 'c-mode-hook 'lsp)
+    (add-hook 'c++-mode-hook 'lsp)
     (evil-leader/set-key
       "l" lsp-command-map)))
 
