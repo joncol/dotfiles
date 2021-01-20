@@ -88,6 +88,8 @@
 (global-set-key (kbd "M-l") 'downcase-dwim)
 
 (setq-default c-basic-offset 4)
+(evil-leader/set-key-for-mode 'c-mode "a" #'ff-find-other-file)
+(evil-leader/set-key-for-mode 'c++-mode "a" #'ff-find-other-file)
 
 (add-hook 'doc-view-mode-hook
           (lambda ()
