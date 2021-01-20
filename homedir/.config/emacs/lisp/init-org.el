@@ -246,7 +246,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :custom
   (org-roam-capture-templates
    '(("d" "default" plain #'org-roam-capture--get-point "%?"
-      :file-name "%<%Y-%m-%d_%H-%M-%S>-${slug}"
+      :file-name "%<%Y%m%d%H%M%S>-${slug}"
       :head "#+title: ${title}\n#+setupfile: ~/org-roam/template.org\n\n"
       :unnarrowed t)))
   :bind (:map org-roam-mode-map
