@@ -815,7 +815,7 @@
            (display-graphic-p))
   :defer 1
   :init
-  (pdf-tools-install)
+  (pdf-loader-install)
   :config
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-annot-activate-created-annotations t)
