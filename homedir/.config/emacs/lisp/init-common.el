@@ -566,6 +566,14 @@
   ;; (setq guide-key/popup-window-position "right")
   (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
 
+(use-package ivy-bibtex
+  :defer t
+  :config
+  ;; Assumes usage of Zotero to export BibTeX bibliography.
+  (setq bibtex-completion-bibliography '("~/Sync/Zotero/My Library.bib"))
+  (setq bibtex-completion-pdf-field "File")
+  (setq bibtex-completion-notes-path "~/org/bibtex_notes.org"))
+
 (use-package help-fns+
   :disabled t
   :defer t)

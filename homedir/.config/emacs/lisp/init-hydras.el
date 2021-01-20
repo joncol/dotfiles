@@ -159,20 +159,20 @@ window: move-to-_b_ottom"
   ("b" jco/move-window-to-bottom))
 
 (defhydra jco/hydra-app (:color teal :hint nil)
-  "
-app: _c_alendar _e_rc el_f_eed _m_u4e e_s_hell _v_im e_w_w s_x_"
-  ("c" (cfw:open-org-calendar))
-  ("e" (erc :server "irc.freenode.net" :port 6667))
-  ("f" (jco/elfeed-load-db-and-open))
+  "Launch application"
+  ("b" (ivy-bibtex) "ivy-bibtex")
+  ("c" (cfw:open-org-calendar) "calendar")
+  ("e" (erc :server "irc.freenode.net" :port 6667) "erc")
+  ("f" (jco/elfeed-load-db-and-open) "elfeed")
   ("m" (lambda ()
          (interactive)
          (jco/init-mu4e-contexts)
          (require 'mu4e)
-         (mu4e)))
-  ("s" jco/eshell-here)
-  ("v" jco/vim)
-  ("w" eww)
-  ("x" sx-tab-all-questions))
+         (mu4e)) "mu4e")
+  ("s" jco/eshell-here "eshell")
+  ("v" jco/vim "vim")
+  ("w" eww "eww")
+  ("x" sx-tab-all-questions "sx"))
 
 ;;; Help menu
 
