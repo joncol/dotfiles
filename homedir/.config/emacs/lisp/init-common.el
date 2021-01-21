@@ -941,6 +941,7 @@ Example: `helloWorld` becomes `Hello world`."
 
 (use-package super-save
   :config
+  (setq super-save-exclude '(".gpg" ".pdf"))
   (super-save-mode))
 
 (use-package sx
