@@ -417,11 +417,13 @@ As such, it will only work when the notes window exists."
         '(("r" "ref" plain (function org-roam-capture--get-point)
            ""
            :file-name "${slug}"
-           :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}
+           :head "#+TITLE: ${citekey}: ${title}\n#+roam_key: ${ref}
+
+#+roam_tags:
 
 - keywords :: ${keywords}
 
-\n* ${title}\n:PROPERTIES:\n:Custom_ID: ${citekey}\n:URL: ${url}
+* ${title}\n:PROPERTIES:\n:Custom_ID: ${citekey}\n:URL: ${url}
 :AUTHOR: ${author-or-editor}
 :NOTER_DOCUMENT: %(orb-process-file-field \"${citekey}\")\n:NOTER_PAGE:
 :END:\n%?"
