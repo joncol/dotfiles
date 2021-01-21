@@ -34,7 +34,7 @@ menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _r_ust _s_woop _S_nippe
   ("t" jco/hydra-text/body)
   ("u" jco/hydra-util/body)
   ("v" jco/hydra-vcs/body)
-  ("w" jco/hydra-window/body))
+  ("w" jco/hydra-writing/body))
 
 (defhydra jco/hydra-config (:color teal :hint nil)
   "
@@ -153,14 +153,12 @@ vcs: _g_it _m_ercurial"
   ("g" magit-status)
   ("m" monky-status))
 
-(defhydra jco/hydra-window (:color teal :hint nil)
-  "
-window: move-to-_b_ottom"
-  ("b" jco/move-window-to-bottom))
+(defhydra jco/hydra-writing (:color teal :hint nil)
+  "Writing"
+  ("o" (jco/toggle-mode olivetti-mode) "olivetti"))
 
 (defhydra jco/hydra-app (:color teal :hint nil)
   "Launch application"
-  ("b" (ivy-bibtex) "ivy-bibtex")
   ("c" (cfw:open-org-calendar) "calendar")
   ("e" (erc :server "irc.freenode.net" :port 6667) "erc")
   ("f" (jco/elfeed-load-db-and-open) "elfeed")

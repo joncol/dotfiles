@@ -257,6 +257,12 @@ invokation."
       (setq bottom-window window-below))
     (select-window bottom-window)))
 
+(defmacro jco/toggle-mode (mode)
+  "Toggle between `MODE' and `normal-mode'."
+  `(if (bound-and-true-p ,mode)
+       (normal-mode)
+     (funcall (quote ,mode))))
+
 (provide 'init-common-functions)
 
 ;;; init-common-functions.el ends here

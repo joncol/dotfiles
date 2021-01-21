@@ -789,6 +789,14 @@
 
 (use-package ob-async)
 
+(use-package olivetti
+  :defer t
+  :config
+  (setq-default olivetti-body-width (+ fill-column 1))
+  (add-hook 'olivetti-mode-hook
+            (lambda ()
+              (setq display-line-numbers nil))))
+
 (use-package org-gcal
   :disabled t
   :after calfw
