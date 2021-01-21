@@ -233,8 +233,12 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
       (0 (prog1 () (compose-region (match-beginning 1)
                                    (match-end 1) "•"))))))
   (setq org-clock-persist 'history)
-  (add-hook 'org-mode-hook 'org-clock-persistence-insinuate)
-  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-clock-persistence-insinuate)
+              (turn-on-auto-fill)))
+
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
   (eval-after-load "org"
