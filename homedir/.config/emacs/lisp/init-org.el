@@ -238,6 +238,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
             (lambda ()
               (org-clock-persistence-insinuate)
               (turn-on-auto-fill)
+              (display-fill-column-indicator-mode -1)
               (flyspell-mode)))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
