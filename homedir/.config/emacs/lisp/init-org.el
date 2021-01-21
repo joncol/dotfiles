@@ -237,7 +237,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (add-hook 'org-mode-hook
             (lambda ()
               (org-clock-persistence-insinuate)
-              (turn-on-auto-fill)))
+              (turn-on-auto-fill)
+              (flyspell-mode)))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
