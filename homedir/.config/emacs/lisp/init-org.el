@@ -271,6 +271,8 @@ Org-mode properties drawer already, keep the headline and don’t insert
 
 (use-package org-noter
   :defer 1
+  :bind (:map org-noter-doc-mode-map
+         (("M-I" . org-noter-insert-note)))
   :config
   (setq org-noter-always-create-frame nil)
   (setq org-noter-hide-other nil)
