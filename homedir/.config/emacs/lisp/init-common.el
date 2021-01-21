@@ -827,7 +827,10 @@
   :config
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-annot-activate-created-annotations t)
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+  (add-hook 'pdf-view-mode-hook
+            (lambda ()
+              (display-line-numbers-mode -1))))
 
 (use-package rainbow-mode)
 
