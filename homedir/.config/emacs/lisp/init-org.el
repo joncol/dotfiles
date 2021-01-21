@@ -419,13 +419,12 @@ As such, it will only work when the notes window exists."
            :file-name "${slug}"
            :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}
 
-- tags ::
 - keywords :: ${keywords}
 
 \n* ${title}\n:PROPERTIES:\n:Custom_ID: ${citekey}\n:URL: ${url}
 :AUTHOR: ${author-or-editor}
 :NOTER_DOCUMENT: %(orb-process-file-field \"${citekey}\")\n:NOTER_PAGE:
-:END:\n"
+:END:\n%?"
            :unnarrowed t))))
 
 (jco/define-bindings global-map
