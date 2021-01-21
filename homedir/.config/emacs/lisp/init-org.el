@@ -102,6 +102,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :defer t
   :ensure org-plus-contrib
   :init
+  (setq org-return-follows-link t)
   (setq org-startup-indented t)
   (setq org-edit-src-content-indentation 0)
   (setq org-capture-templates

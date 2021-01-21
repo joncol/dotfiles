@@ -102,6 +102,9 @@
   (unbind-key "C-t" evil-normal-state-map) ;; Want transpose-chars instead.
   (setq evil-want-C-w-in-emacs-state t)
 
+  (with-eval-after-load 'evil-maps
+    (define-key evil-motion-state-map (kbd "RET") nil))
+
   ;; Set other modes than evil-mode for the following modes.
   (dolist (mode-map '((ag-mode                   . emacs)
                       (cider-browse-ns-mode      . emacs)
