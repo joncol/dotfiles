@@ -308,6 +308,69 @@ With a prefix ARG, remove start location."
               (org-entry-delete nil org-noter-property-note-location)
             (org-entry-put nil org-noter-property-note-location
                            (org-noter--pretty-print-location location))))))))
+
+  ;; Don't focus PDF after syncing notes.
+
+  (defun org-noter-sync-prev-note ()
+    "Go to the location of the previous note, in relation to where the point is.
+As such, it will only work when the notes window exists."
+    (interactive)
+    (org-noter--with-selected-notes-window
+     "No notes window exists"
+     (let ((org-noter--inhibit-location-change-handler t)
+           (contents (org-element-contents (org-noter--parse-root)))
+           (current-begin (org-element-property :begin (org-noter--get-containing-heading)))
+           previous)
+       (when current-begin
+         (org-noter--map-ignore-headings-with-doc-file
+          contents t
+          (when location
+            (if (= current-begin (org-element-property :begin headline))
+                t
+              (setq previous headline)
+              nil))))
+
+       (if previous
+           (progn
+             ;; NOTE(nox): This needs to be manual so we can focus the correct note
+             (org-noter--doc-goto-location (org-noter--parse-location-property previous))
+             (org-noter--focus-notes-region (org-noter--make-view-info-for-single-note session previous)))
+         (user-error "There is no previous note")))))
+
+  (defun org-noter-sync-current-note ()
+    "Go the location of the selected note, in relation to where the point is.
+As such, it will only work when the notes window exists."
+    (interactive)
+    (org-noter--with-selected-notes-window
+     "No notes window exists"
+     (if (string= (org-entry-get nil org-noter-property-doc-file t) (org-noter--session-property-text session))
+         (let ((location (org-noter--parse-location-property (org-noter--get-containing-heading))))
+           (if location
+               (org-noter--doc-goto-location location)
+             (user-error "No note selected")))
+       (user-error "You are inside a different document"))))
+
+  (defun org-noter-sync-next-note ()
+    "Go to the location of the next note, in relation to where the point is.
+As such, it will only work when the notes window exists."
+    (interactive)
+    (org-noter--with-selected-notes-window
+     "No notes window exists"
+     (let ((org-noter--inhibit-location-change-handler t)
+           (contents (org-element-contents (org-noter--parse-root)))
+           next)
+
+       (org-noter--map-ignore-headings-with-doc-file
+        contents t
+        (when (and location (< (point) (org-element-property :begin headline)))
+          (setq next headline)))
+
+       (if next
+           (progn
+             (org-noter--doc-goto-location (org-noter--parse-location-property next))
+             (org-noter--focus-notes-region (org-noter--make-view-info-for-single-note session next)))
+         (user-error "There is no next note")))))
+
   (with-eval-after-load 'pdf-annot
     (add-hook 'pdf-annot-activate-handler-functions
               #'org-noter-pdftools-jump-to-note)))
