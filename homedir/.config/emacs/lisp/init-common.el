@@ -823,10 +823,10 @@
            (display-graphic-p))
   :defer 1
   :init
-  (pdf-loader-install)
+  (pdf-tools-install)
   :config
   (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-annot-activate-created-annotations t)
+  ;; (setq pdf-annot-activate-created-annotations t)
   (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
   (add-hook 'pdf-view-mode-hook
             (lambda ()
