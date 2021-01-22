@@ -239,7 +239,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               (org-clock-persistence-insinuate)
               (turn-on-auto-fill)
               (display-fill-column-indicator-mode -1)
-              (flyspell-mode)))
+              (flyspell-mode)
+              (smartparens-mode -1)))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
