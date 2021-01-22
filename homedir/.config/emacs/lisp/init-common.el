@@ -591,6 +591,9 @@
 (use-package ivy
   :bind (("C-s" . swiper)
          ("C-x C-b" . ivy-switch-buffer))
+  ;; :custom
+  ;; (ivy-re-builders-alist '((swiper . ivy--regex-plus)
+  ;;                          (t . ivy--regex-fuzzy)))
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers nil)
@@ -616,6 +619,8 @@
 
 (use-package ivy-rich
   :config
+  ;; Recommended by the README.
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
   ;; (ivy-set-display-transformer 'ivy-switch-buffer
   ;;                              'ivy-rich-switch-buffer-transformer)
   (setq ivy-virtual-abbreviate 'full)
