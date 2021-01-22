@@ -156,8 +156,8 @@ vcs: _g_it _m_ercurial"
 (defhydra jco/hydra-writing (:color teal :hint nil)
   "Writing"
   ("b" ivy-bibtex "ivy-bibtex")
-  ("o" (jco/toggle-mode olivetti-mode) "olivetti")
-  ("n" org-noter "org-noter"))
+  ("n" org-noter "org-noter")
+  ("o" (jco/toggle-mode olivetti-mode) "olivetti"))
 
 (defhydra jco/hydra-app (:color teal :hint nil)
   "Launch application"
