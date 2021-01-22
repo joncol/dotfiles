@@ -39,6 +39,24 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         subtree-end
       nil)))
 
+(defun jco/convert-org-mode-to-markdown ()
+  "Convert current active region from `org-mode' to `markdown'."
+  (interactive)
+  (when (use-region-p)
+    (kill-ring-save nil nil t)
+    (with-temp-buffer
+      (setq-local org-export-with-toc nil)
+      (setq-local org-export-show-temporary-export-buffer nil)
+      (setq-local org-export-with-sub-superscripts nil)
+      (yank)
+      (deactivate-mark)
+      (org-gfm-export-as-markdown)
+      (with-current-buffer "*Org GFM Export*"
+        (while (re-search-forward "\\\\_" nil t)
+          (replace-match "_"))
+        (string-trim (buffer-string))
+        (kill-ring-save (point-min) (point-max))))))
+
 (cl-defun jco/add-youtube-link-type (name &optional (url-params nil))
   "Add org link type for embedding YouTube links in org-mode."
   (let ((yt-iframe-format
