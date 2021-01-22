@@ -568,6 +568,8 @@
 
 (use-package ivy-bibtex
   :defer t
+  :init
+  (evil-leader/set-key "z b" 'ivy-bibtex)
   :config
   ;; Assumes usage of Zotero to export BibTeX bibliography.
   (setq bibtex-completion-bibliography '("~/Sync/Zotero/My Library.bib"))

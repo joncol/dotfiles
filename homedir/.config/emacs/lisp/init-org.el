@@ -283,7 +283,8 @@ Org-mode properties drawer already, keep the headline and don’t insert
   (setq org-noter-always-create-frame nil)
   (setq org-noter-hide-other nil)
   (setq org-noter-notes-search-path '("~/org-roam"))
-  (org-noter-set-auto-save-last-location t))
+  (org-noter-set-auto-save-last-location t)
+  (evil-leader/set-key "z n" 'org-noter))
 
 (use-package org-noter-pdftools
   :after org-noter
