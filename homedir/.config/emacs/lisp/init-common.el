@@ -970,8 +970,9 @@ Example: `helloWorld` becomes `Hello world`."
               (setq evil-shift-width 2))))
 
 (use-package zeal-at-point
+  :disabled t
   :config
-  (evil-leader/set-key "z" 'zeal-at-point)
+  ;; (evil-leader/set-key "z" 'zeal-at-point)
   (setq zeal-at-point-docsets '(c cpp))
   (add-to-list 'zeal-at-point-mode-alist '(c++-mode . ("cpp" "qt"))))
 
