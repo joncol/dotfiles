@@ -240,7 +240,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               (turn-on-auto-fill)
               (display-fill-column-indicator-mode -1)
               (flyspell-mode)
-              (smartparens-mode -1)))
+              (smartparens-mode -1)
+              (evil-leader/set-key "z l" 'org-toggle-link-display)))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
