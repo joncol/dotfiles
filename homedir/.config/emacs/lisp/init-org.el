@@ -460,6 +460,9 @@ As such, it will only work when the notes window exists."
 :END:\n%?"
            :unnarrowed t))))
 
+(use-package ox-hugo
+  :after ox)
+
 (jco/define-bindings global-map
                      '(("C-c a"   . org-agenda)
                        ("C-c c"   . org-capture)
