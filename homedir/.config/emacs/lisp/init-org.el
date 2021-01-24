@@ -502,6 +502,7 @@ As such, it will only work when the notes window exists."
      (find-file (concat (or ,dir org-directory) "/" ,filename))
      (jco/ensure-todo-org-header)))
 
+(evil-leader/set-key "o b" (jco/find-org-file "all-posts.org"))
 (evil-leader/set-key "o g" (jco/find-org-file "gtd.org"))
 (evil-leader/set-key "o n" (jco/find-org-file "notes.org"))
 (evil-leader/set-key "o r" (jco/find-org-file "reading.org"))
