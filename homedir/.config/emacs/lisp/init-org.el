@@ -140,6 +140,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            "* %:description\n%:initial\n\nSource: %:link\n:LOGBOOK:\n- Added: %U\n:END:\n"
            :empty-lines-before 0)))
   :config
+  (add-hook 'org-capture-mode-hook
+            (lambda ()
+              (god-local-mode -1)))
   (setq org-startup-truncated nil)
   (setq org-src-fontify-natively t)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
