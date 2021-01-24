@@ -97,10 +97,10 @@
        'undo-redo
      'undo-tree))
 
-  ;; Unbind evil keys to make useful company-mode bindings work.
+  ;; Disable certain evil keys to make useful company-mode bindings work.
   (unbind-key "C-n" evil-insert-state-map)
   (unbind-key "C-p" evil-insert-state-map)
-  (unbind-key "C-r" evil-insert-state-map)
+  ;; (unbind-key "C-r" evil-insert-state-map)
   (unbind-key "C-s" evil-insert-state-map)
   (unbind-key "C-t" evil-normal-state-map)
   (setq evil-want-C-w-in-emacs-state t)
