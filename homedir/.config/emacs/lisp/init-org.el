@@ -464,7 +464,29 @@ As such, it will only work when the notes window exists."
            :unnarrowed t))))
 
 (use-package ox-hugo
-  :after ox)
+  :after ox
+  :init
+  (with-eval-after-load 'org-capture
+    (defun org-hugo-new-subtree-post-capture-template ()
+      "Return `org-capture' template string for new Hugo post."
+      (let* ((title (read-from-minibuffer "Post title: "))
+             (filename (org-hugo-slug title)))
+        (mapconcat #'identity
+                   `(,(concat "* TODO " title)
+                     ":PROPERTIES:"
+                     ,(concat ":export_file_name: " filename)
+                     ":END:"
+                     "%?TODO: summary"
+                     "#+hugo: more"
+                     "TODO: content")
+                   "\n")))
+
+    (add-to-list 'org-capture-templates
+                 '("h"
+                   "Hugo post"
+                   entry
+                   (file+olp "all-posts.org" "Weblog ideas")
+                   (function org-hugo-new-subtree-post-capture-template)))))
 
 (jco/define-bindings global-map
                      '(("C-c a"   . org-agenda)
