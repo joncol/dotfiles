@@ -2,10 +2,10 @@
 # name: todo header
 # key: todo
 # --
-#+TAGS: bug(b) code(c) math(m) meta(M) research(r) work(w)
-#+PROPERTY: header-args :exports both
-#+SEQ_TODO: TODO(t) IN-PROGRESS(i) MAYBE(m) WAITING(w) NEXT(n) CANCELED(c) DONE(d)
-#+STARTUP: overview
-#+STARTUP: showall
-#+OPTIONS: tags:nil toc:nil num:0 d:t p:t ^:{}
-#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+tags: bug(b) code(c) math(m) meta(M) research(r) work(w)
+#+property: header-args :exports both
+#+seq_todo: TODO(t) IN-PROGRESS(i) MAYBE(m) WAITING(w) NEXT(n) CANCELED(c) DONE(d)
+#+startup: overview
+#+startup: showall
+#+options: tags:nil toc:nil num:0 d:t p:t ^:{}
+#+latex_header: \usepackage[margin=0.5in]{geometry}

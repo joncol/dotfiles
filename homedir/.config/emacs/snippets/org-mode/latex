@@ -2,4 +2,4 @@
 # name: LaTeX
 # key: latex
 # --
-#+SETUPFILE: ~/.config/emacs/org-templates/latex.org
+#+setupfile: ~/.config/emacs/org-templates/latex.org

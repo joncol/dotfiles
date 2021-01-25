@@ -3,7 +3,7 @@
 # key: dot
 # binding: direct-keybinding
 # --
-#+BEGIN_SRC dot :file ./images/graph.png :cmdline -Kdot -Tpng
+#+begin_src dot :file ./images/graph.png :cmdline -Kdot -Tpng
 digraph {
     labelloc = "t";
     label = "Diagram Label";
@@ -20,4 +20,4 @@ digraph {
     node3 -> "Finished" [style = dotted]
     $0
 }
-#+END_SRC
+#+end_src

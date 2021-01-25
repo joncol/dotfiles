@@ -2,4 +2,4 @@
 # name: GTD config
 # key: gtd
 # --
-#+SETUPFILE: ~/.config/emacs/org-templates/gtd.org
+#+setupfile: ~/.config/emacs/org-templates/gtd.org

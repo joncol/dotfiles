@@ -3,10 +3,10 @@
 # key: ditaa
 # binding: direct-keybinding
 # --
-#+BEGIN_SRC ditaa :file ./diagram.png :cmdline -r
+#+begin_src ditaa :file ./diagram.png :cmdline -r
 +--------------+
 |              |
 | hello, world |
 |              |
 +--------------+
-#+END_SRC
+#+end_src

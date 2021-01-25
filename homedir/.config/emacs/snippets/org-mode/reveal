@@ -11,16 +11,16 @@
 
 Items appearing one by one:
 
-#+ATTR_REVEAL: :frag (appear)
+#+attr_reveal: :frag (appear)
 - apples
 - oranges
 - bananas
 
-#+REVEAL: split
+#+reveal: split
 
 Another list, items appearing all at once:
 
-#+ATTR_REVEAL: :frag appear
+#+attr_reveal: :frag appear
 - cars
 - planes
 - bikes

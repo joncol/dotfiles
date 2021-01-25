@@ -3,7 +3,7 @@
 # key: plant
 # binding: direct-keybinding
 # --
-#+BEGIN_SRC plantuml :file images/diagram.png
+#+begin_src plantuml :file images/diagram.png
 skinparam shadowing false
 skinparam dpi 300
-#+END_SRC
+#+end_src
