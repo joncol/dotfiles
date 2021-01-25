@@ -119,6 +119,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (use-package org
   :defer t
   :ensure org-plus-contrib
+  :custom
+  (org-footnote-auto-adjust t)
   :init
   (setq org-return-follows-link t)
   (setq org-startup-indented t)
@@ -140,6 +142,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            "* %:description\n%:initial\n\nSource: %:link\n:LOGBOOK:\n- Added: %U\n:END:\n"
            :empty-lines-before 0)))
   :config
+  (evil-leader/set-key-for-mode 'org-mode "z f" 'org-footnote-new)
   (add-hook 'org-capture-mode-hook
             (lambda ()
               (god-local-mode -1)))
