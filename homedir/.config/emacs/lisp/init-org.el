@@ -409,8 +409,7 @@ As such, it will only work when the notes window exists."
    org-ref-notes-function 'orb-edit-notes))
 
 (use-package org-roam
-  :hook
-  (after-init . org-roam-mode)
+  :defer t
   :custom
   (org-roam-capture-templates
    '(("d" "default" plain #'org-roam-capture--get-point "%?"
