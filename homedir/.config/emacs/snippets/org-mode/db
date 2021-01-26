@@ -9,7 +9,11 @@
 :END:
 
 ** Meta
-$0[[elisp:(jco/add-db-properties)][Add DB props]].
+- $0[[elisp:(jco/add-db-properties)][Add DB props]]
+- [[elisp:(shell-command (concat "~/work/arthur/arthur vpn-config update-networkmanager " (org-entry-get nil "env" t)))][Update Arthur VPN config]]
+- [[elisp:(shell-command (concat "nmcli c up zimpler-" (org-entry-get nil "env" t)))][Start VPN]]
+- [[elisp:(shell-command (concat "nmcli c down zimpler-" (org-entry-get nil "env" t)))][Stop VPN]]
+- [[elisp:(progn (end-of-line) (insert " => " (string-trim (shell-command-to-string "nmcli c show | grep zimpler-staging | tr -s ' ' | cut -f 4 -d ' '"))))][Check VPN status]]
 
 ** Tables
 #+begin_src sql
