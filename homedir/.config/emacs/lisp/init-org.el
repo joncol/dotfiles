@@ -200,10 +200,10 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
           ("samepage" "")
           ("xrightmargin" "0.5cm")
           ("xleftmargin"  "0.5cm")))
-  (setq org-latex-pdf-process
-        '("pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
-          "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
-          "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
+  ;; (setq org-latex-pdf-process
+  ;;       '("pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+  ;;         "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+  ;;         "pdflatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
   (setq org-latex-table-caption-above nil)
   (setq org-latex-default-figure-position "!htb")
   (setq org-mobile-directory (concat org-directory "/mobile"))
