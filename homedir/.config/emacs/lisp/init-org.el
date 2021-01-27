@@ -409,7 +409,8 @@ As such, it will only work when the notes window exists."
    org-ref-notes-function 'orb-edit-notes))
 
 (use-package org-roam
-  :defer t
+  :hook
+  (after-init . org-roam-mode)
   :custom
   (org-roam-buffer-position 'bottom)
   (org-roam-capture-templates
