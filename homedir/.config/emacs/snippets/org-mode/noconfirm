@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Don't ask for confirmation when running elisp link functions
+# key: noconfirm
+# --
+# -*- org-confirm-elisp-link-function: nil; -*-
