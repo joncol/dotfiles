@@ -411,6 +411,7 @@ As such, it will only work when the notes window exists."
 (use-package org-roam
   :defer t
   :custom
+  (org-roam-buffer-position 'bottom)
   (org-roam-capture-templates
    '(("d" "default" plain #'org-roam-capture--get-point "%?"
       :file-name "%<%Y%m%d%H%M%S>-${slug}"
