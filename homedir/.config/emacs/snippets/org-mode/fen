@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: FEN (Forsyth–Edwards Notation) chess position
+# key: fen
+# --
+#+header: :imagemagick "t"
+#+header: :results file raw
+#+header: :exports results
+#+header: :fit yes :border 0.5cm
+#+header: :iminoptions -density 600 :imoutoptions -geometry 800
+#+begin_src latex :file chess.png
+\setchessboard{normalboard, showmover=false, moverstyle=triangle, label=false}
+\fenboard{${0:6k1/5p2/6p1/8/7p/8/6PP/6K1} b - - 0 0} \chessboard
+#+end_src

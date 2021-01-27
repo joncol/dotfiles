@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Use xelatex as LaTeX engine
+# key: xelatex
+# --
+# Local Variables:
+# org-latex-pdf-process: ("xelatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+#                         "xelatex -shell-escape -interaction=nonstopmode -output-directory=%o %f"
+#                         "xelatex -shell-escape -interaction=nonstopmode -output-directory=%o %f")
+# End:
