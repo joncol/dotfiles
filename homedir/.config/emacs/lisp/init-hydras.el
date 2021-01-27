@@ -66,7 +66,9 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("s" sdcv-search))
 
 (defhydra jco/hydra-org (:color teal :hint nil)
-  "org-roam"
+  "org"
+  ("l" org-capture-goto-last-stored "Goto last captured")
+  ("L" org-refile-goto-last-stored "Goto last refiled")
   ("i" org-roam-insert "insert")
   ("f" org-roam-find-file "find-file")
   ("g" org-roam-graph "graph")
