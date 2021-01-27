@@ -77,6 +77,7 @@
   (evil-leader/set-key "e w" 'ace-window)
 
   (evil-leader/set-key "x b" 'browse-url)
+  (evil-leader/set-key "x n" #'normal-mode)
   (evil-leader/set-key "x w" 'woman)
 
   (evil-leader/set-key "g n"
