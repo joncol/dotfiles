@@ -2,6 +2,8 @@
 # name: Database exploration
 # key: db
 # --
+# -*- org-confirm-elisp-link-function: nil; -*-
+
 * Database exploration
 :PROPERTIES:
 :app-name: $1
