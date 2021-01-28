@@ -539,21 +539,10 @@ As such, it will only work when the notes window exists."
   (evil-leader/set-key-for-mode 'org-mode "z s"
     'org-slack-export-to-clipboard-as-slack))
 
-(defmacro jco/find-org-file (filename &optional dir)
+(defun jco/find-org-file (filename &optional dir)
   "Open file FILENAME in the directory DIR (default: `org-directory')."
-  `(lambda ()
-     (interactive)
-     (find-file (concat (or ,dir org-directory) "/" ,filename))
-     (jco/ensure-todo-org-header)))
-
-(evil-leader/set-key "o b" (jco/find-org-file "all-posts.org"))
-(evil-leader/set-key "o g" (jco/find-org-file "gtd.org"))
-(evil-leader/set-key "o n" (jco/find-org-file "notes.org"))
-(evil-leader/set-key "o r" (jco/find-org-file "reading.org"))
-(evil-leader/set-key "o w" (jco/find-org-file "work.org"))
-(evil-leader/set-key "o W" (jco/find-org-file "web.org"))
-(evil-leader/set-key "o p" (jco/find-org-file "todo.org"
-                                              (projectile-project-root)))
+  (find-file (concat (or dir org-directory) "/" filename))
+  (jco/ensure-todo-org-header))
 
 (provide 'init-org)
 

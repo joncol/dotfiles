@@ -9,7 +9,6 @@
 (use-package hydra
   :defer t
   :config
-  (global-set-key (kbd "<f1>") 'jco/hydra-help/body)
   (with-eval-after-load 'evil-leader
     (evil-leader/set-key "m" 'jco/hydra-main-menu/body)))
 
@@ -19,22 +18,17 @@
   (find-file (concat user-emacs-directory file-name)))
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
-  "
-menu: _a_pp _b_ookmarks _c_fg _f_ind _l_ang _o_rg _p_kgs _r_ust _s_woop _S_nippets _t_ext _u_til _v_cs _w_indow"
-  ("a" jco/hydra-app/body)
-  ("b" counsel-bookmark)
-  ("c" jco/hydra-config/body)
-  ("f" jco/hydra-find/body)
-  ("l" jco/hydra-lang/body)
-  ("o" jco/hydra-org/body)
-  ("p" jco/hydra-packages/body)
-  ("r" jco/hydra-rustic/body)
-  ("s" jco/hydra-swiper/body)
-  ("S" jco/hydra-snippets/body)
-  ("t" jco/hydra-text/body)
-  ("u" jco/hydra-util/body)
-  ("v" jco/hydra-vcs/body)
-  ("w" jco/hydra-writing/body))
+  "main menu"
+  ("a" jco/hydra-app/body "apps")
+  ("b" counsel-bookmark "bookmarks")
+  ("c" jco/hydra-config/body "cfg")
+  ("f" jco/hydra-find/body "find")
+  ("g" jco/hydra-gtd/body "gtd")
+  ("l" jco/hydra-lang/body "lang")
+  ("o" jco/hydra-org/body "org")
+  ("s" jco/hydra-swiper/body "swiper")
+  ("u" jco/hydra-util/body "util")
+  ("w" jco/hydra-writing/body "writing"))
 
 (defhydra jco/hydra-config (:color teal :hint nil)
   "
@@ -52,6 +46,14 @@ find: _f_un _l_ib _v_ar"
   ("f" find-function)
   ("l" find-library)
   ("v" find-variable))
+
+(defhydra jco/hydra-gtd (:color teal :hint nil)
+  "gtd"
+  ("b" (jco/find-org-file "all-posts.org") "blog")
+  ("n" (jco/find-org-file "notes.org") "notes")
+  ("r" (jco/find-org-file "reading.org") "reading")
+  ("t" (jco/find-org-file "todo.org") "todo")
+  ("w" (jco/find-org-file "work.org") "work"))
 
 (defvar jco/global-hl-line-mode-hydra-temp)
 (set (make-local-variable 'jco/global-hl-line-mode-hydra-temp) nil)
@@ -75,31 +77,12 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("b" org-roam-buffer-activate "backlinks")
   ("t" org-roam-tag-add "add tag"))
 
-(defhydra jco/hydra-packages (:color teal :hint nil)
-  "
-packages: _l_ist _n_o-fetch _u_pgrade-all"
-  ("l" list-packages)
-  ("n" package-list-packages-no-fetch)
-  ("u" package-utils-upgrade-all))
-
-(defhydra jco/hydra-snippets (:color teal :hint nil)
-  "
-snippets: _i_nsert _e_dit _r_eload"
-  ("i" yas-insert-snippet)
-  ("e" yas-visit-snippet-file)
-  ("r" yas-reload-all))
-
 (defhydra jco/hydra-swoop (:color teal :hint nil)
   "
 swoop: _m_ulti multi-_a_ll _s_woop"
   ("m" helm-multi-swoop)
   ("a" helm-multi-swoop-all)
   ("s" helm-swoop))
-
-(defhydra jco/hydra-rustic (:color teal :hint nil)
-  "
-rustic: _d_oc"
-  ("d" rustic-cargo-doc))
 
 (defhydra jco/hydra-swiper (:color teal :hint nil)
   "
@@ -145,20 +128,14 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
   ("b" kurecolor-decrease-brightness-by-step)
   ("q" nil "quit" :color blue))
 
-(defhydra jco/hydra-vcs (:color teal :hint nil)
-  "
-vcs: _g_it _m_ercurial"
-  ("g" magit-status)
-  ("m" monky-status))
-
 (defhydra jco/hydra-writing (:color teal :hint nil)
-  "Writing"
+  "writing"
   ("b" ivy-bibtex "ivy-bibtex")
   ("n" org-noter "org-noter")
   ("o" (jco/toggle-mode olivetti-mode) "olivetti"))
 
 (defhydra jco/hydra-app (:color teal :hint nil)
-  "Launch application"
+  "app"
   ("c" (cfw:open-org-calendar) "calendar")
   ("e" (erc :server "irc.freenode.net" :port 6667) "erc")
   ("f" (jco/elfeed-load-db-and-open) "elfeed")
@@ -171,13 +148,6 @@ vcs: _g_it _m_ercurial"
   ("v" jco/vim "vim")
   ("w" eww "eww")
   ("x" sx-tab-all-questions "sx"))
-
-;;; Help menu
-
-(defhydra jco/hydra-help (:color teal :hint nil)
-  "
-help: _a_propos"
-  ("a" jco/hydra-apropos/body))
 
 (defhydra jco/hydra-apropos (:color teal :hint nil)
   "
