@@ -71,6 +71,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
 
 (defhydra jco/hydra-org (:color teal :hint nil)
   "org"
+  ("a" org-agenda-list "agenda")
   ("i" org-roam-insert "insert")
   ("f" org-roam-find-file "find-file")
   ("g" org-roam-graph "graph")
