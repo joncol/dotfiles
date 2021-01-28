@@ -140,10 +140,11 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
           ("NEXT" . "green2")
           ("WAITING" . "purple")
           ("MAYBE" . "gray60")))
+
   (setq org-agenda-files (concat org-directory "/agenda-files"))
+  (setq org-agenda-files '("~/org/work.org" "~/org/todo.org"))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
-                             ("notes.org" :maxlevel . 9)
-                             ("todo.org" :maxlevel . 9)))
+                             ("notes.org" :maxlevel . 9)))
   (setq org-use-fast-todo-selection t)
   (setq org-log-into-drawer t)
   (setq org-enforce-todo-dependencies t)
@@ -164,8 +165,10 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                               (org-agenda-skip-if nil '(scheduled deadline))))
                         (org-agenda-overriding-header
                          "All normal priority tasks, tagged with `work':"))))
-           ((org-agenda-compact-blocks nil)
-            (org-agenda-files '("~/org/work.org"))))))
+           ((org-agenda-compact-blocks nil)))))
+  (add-hook 'org-agenda-mode-hook
+            (lambda ()
+              (display-fill-column-indicator-mode -1)))
   (add-to-list 'org-modules 'org-habit)
   (setq org-habit-show-all-today t)
   (setq org-habit-show-habits-only-for-today t)
@@ -454,7 +457,6 @@ As such, it will only work when the notes window exists."
 (use-package org-super-agenda
   :after org
   :custom
-  (org-agenda-files '("~/org/work.org"))
   (org-super-agenda-groups
    '(;; Each group has an implicit boolean OR operator between its selectors.
      (:name "Today"  ; Optionally specify section name
@@ -495,7 +497,9 @@ As such, it will only work when the notes window exists."
       :order 1)
      ;; After the last group, the agenda will display items that didn't
      ;; match any of these groups, with the default order position of 99
-     )))
+     ))
+  :config
+  (org-super-agenda-mode))
 
 (use-package ox-hugo
   :after ox
