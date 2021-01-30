@@ -11,18 +11,20 @@
 This makes it possible to connect against Zimpler databases. Requires the
 properties `app-name' and `env' to be set."
   (interactive)
-  (let* ((p (point-at-pos-rel-line-offset (point-min) 1))
-         (app-name (org-entry-get nil "app-name" t))
-         (env (org-entry-get nil "env" t))
-         (app-name-snakecase (string-replace "-" "_" app-name)))
-    (apply 'org-entry-put-multivalued-property
-           p "header-args"
-           ":engine" "postgresql"
-           ":dbhost" (jco/zimpler-db-host app-name env)
-           ":dbport" "5432"
-           ":database" (jco/zimpler-db app-name env)
-           ":dbuser" (jco/zimpler-db-user app-name env)
-           ":dbpassword" (split-string (jco/zimpler-db-password app-name env)))))
+  (save-excursion
+    ;; Move backwards relative to the current "** Meta" header.
+    (org-previous-visible-heading 2)
+    (let* ((app-name (org-entry-get nil "app-name" t))
+           (env (org-entry-get nil "env" t))
+           (app-name-snakecase (string-replace "-" "_" app-name)))
+      (apply 'org-entry-put-multivalued-property (point) "header-args"
+             ":engine" "postgresql"
+             ":dbhost" (jco/zimpler-db-host app-name env)
+             ":dbport" "5432"
+             ":database" (jco/zimpler-db app-name env)
+             ":dbuser" (jco/zimpler-db-user app-name env)
+             ":dbpassword" (split-string
+                            (jco/zimpler-db-password app-name env))))))
 
 (defun jco/zimpler-db-host (app-name env)
   "Get the db host of application `APP-NAME' running in environment `ENV'."
