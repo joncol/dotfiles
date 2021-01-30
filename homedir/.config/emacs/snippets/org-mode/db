@@ -23,11 +23,12 @@
 
 ** Tables
 #+begin_src sql
-\d
+SELECT tablename FROM pg_catalog.pg_tables
+WHERE schemaname = 'public'
 #+end_src
 
 ** Indexes
 #+begin_src sql
-SELECT * FROM pg_catalog.pg_indexes
+SELECT tablename, indexname, indexdef FROM pg_catalog.pg_indexes
 WHERE schemaname = 'public'
 #+end_src
