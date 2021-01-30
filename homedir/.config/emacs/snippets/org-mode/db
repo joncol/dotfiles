@@ -4,7 +4,9 @@
 # --
 # -*- org-confirm-elisp-link-function: nil; -*-
 
-#+options: ^:nil
+#+options: tags:nil toc:nil num:0 d:t p:t ^:{}
+
+#+setupfile: ~/repos/org-html-themes/org/theme-readtheorg.setup
 
 * Database exploration
 :PROPERTIES:
@@ -12,7 +14,7 @@
 :env: $2
 :END:
 
-** Meta
+** Meta                                                           :noexport:
 - $0[[elisp:(jco/add-db-properties)][Add DB props]]
 - [[elisp:(shell-command (concat "~/work/arthur/arthur vpn-config update-networkmanager " (org-entry-get nil "env" t)))][Update Arthur VPN config]]
 - [[elisp:(shell-command (concat "nmcli c up zimpler-" (org-entry-get nil "env" t)))][Start VPN]]
