@@ -1,7 +1,7 @@
-#+REVEAL_THEME: night
-#+REVEAL_TRANS: slide
-#+REVEAL_SPEED: fast
-#+REVEAL_EXTRA_CSS: ./css/extra.css
-#+REVEAL_HLEVEL: 3
-#+OPTIONS: toc:nil
-#+OPTIONS: H:3 num:0
+#+reveal_theme: night
+#+reveal_trans: slide
+#+reveal_speed: fast
+#+reveal_extra_css: ./css/extra.css
+#+reveal_hlevel: 3
+#+options: toc:nil
+#+options: H:3 num:0

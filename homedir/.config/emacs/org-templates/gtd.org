@@ -1,7 +1,7 @@
-#+TAGS: bug(b) code(c) math(m) meta(M) research(r) work(w)
-#+SEQ_TODO: TODO(t) IN-PROGRESS(i) MAYBE(m) WAITING(w) NEXT(n) CANCELED(c) DONE(d)
-#+STARTUP: overview
-#+STARTUP: showstars
-#+OPTIONS: tags:nil num:0 d:t p:t ^:{}
-#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
-#+SETUPFILE: ~/repos/org-html-themes/org/theme-readtheorg.setup
+#+tags: bug(b) code(c) math(m) meta(M) research(r) work(w)
+#+seq_todo: TODO(t) IN-PROGRESS(i) MAYBE(m) WAITING(w) NEXT(n) CANCELED(c) DONE(d)
+#+startup: overview
+#+startup: showstars
+#+options: tags:nil num:0 d:t p:t ^:{}
+#+latex_header: \usepackage[margin=0.5in]{geometry}
+#+setupfile: ~/repos/org-html-themes/org/theme-readtheorg.setup

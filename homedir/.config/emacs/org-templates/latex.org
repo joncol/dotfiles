@@ -1,6 +1,6 @@
-#+STARTUP: showall
-#+OPTIONS: toc:nil tags:nil num:0 d:t p:t ^:{}
-#+LATEX_HEADER: \usepackage{parskip}
-#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
-#+LATEX_HEADER: \usepackage{amsmath}
-#+LATEX_HEADER: \pagenumbering{gobble}
+#+startup: showall
+#+options: toc:nil tags:nil num:0 d:t p:t ^:{}
+#+latex_header: \usepackage{parskip}
+#+latex_header: \usepackage[margin=0.5in]{geometry}
+#+latex_header: \usepackage{amsmath}
+#+latex_header: \pagenumbering{gobble}
