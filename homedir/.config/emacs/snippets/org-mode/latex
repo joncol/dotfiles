@@ -1,5 +1,12 @@
 # -*- mode: snippet -*-
-# name: LaTeX
+# name: LaTeX source block headers for inline results as PNG
 # key: latex
 # --
-#+setupfile: ~/.config/emacs/org-templates/latex.org
+#+header: :imagemagick "t"
+#+header: :results file raw
+#+header: :exports results
+#+header: :fit yes :border 0.5cm
+#+header: :iminoptions -density 200 :imoutoptions -geometry 200
+#+begin_src latex :file file.png
+\LaTeX
+#+end_src
