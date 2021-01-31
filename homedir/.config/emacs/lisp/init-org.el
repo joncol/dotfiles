@@ -72,6 +72,16 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq cha-clubhouse-default-project "Backend")
   (require 'my-secrets (concat user-emacs-directory "lisp/my-secrets.el.gpg")))
 
+(use-package org-cliplink
+  :config
+  (evil-leader/set-key-for-mode 'org-mode "x p" 'org-cliplink))
+
+(use-package org-download
+  :init
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (require 'org-download))))
+
 (use-package org-re-reveal
   :after org)
 
