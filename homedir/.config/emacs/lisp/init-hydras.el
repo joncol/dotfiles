@@ -75,7 +75,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("i" org-roam-insert "insert")
   ("f" org-roam-find-file "find-file")
   ("g" org-roam-graph "graph")
-  ("b" org-roam-buffer-activate "backlinks")
+  ("b" org-roam-buffer-activate "org-roam-buffer")
   ("t" org-roam-tag-add "add tag"))
 
 (defhydra jco/hydra-swoop (:color teal :hint nil)
