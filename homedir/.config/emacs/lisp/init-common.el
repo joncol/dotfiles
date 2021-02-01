@@ -293,6 +293,14 @@
   :config
   (evil-set-initial-state 'deadgrep-mode 'emacs))
 
+(use-package deft
+  :custom
+  (deft-directory "~/org-roam")
+  :config
+  (add-hook 'deft-mode-hook
+            (lambda ()
+              (display-line-numbers-mode -1))))
+
 (use-package desktop
   :config
   (push ".*" desktop-clear-preserve-buffers))

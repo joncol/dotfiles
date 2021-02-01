@@ -114,6 +114,7 @@
                       (cider-browse-ns-mode      . emacs)
                       (compilation-mode          . motion)
                       (dashboard-mode            . emacs)
+                      (deft-mode                 . emacs)
                       (doc-view-mode             . emacs)
                       (elfeed-search-mode        . emacs)
                       (elfeed-show-mode          . emacs)

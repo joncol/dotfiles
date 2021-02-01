@@ -19,7 +19,7 @@
 
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "main menu"
-  ("a" jco/hydra-app/body "apps")
+  ("a" jco/hydra-apps/body "apps")
   ("b" counsel-bookmark "bookmarks")
   ("c" jco/hydra-config/body "cfg")
   ("f" jco/hydra-find/body "find")
@@ -135,9 +135,10 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
   ("n" org-noter "org-noter")
   ("o" (jco/toggle-mode olivetti-mode) "olivetti"))
 
-(defhydra jco/hydra-app (:color teal :hint nil)
+(defhydra jco/hydra-apps (:color teal :hint nil)
   "app"
-  ("c" (cfw:open-org-calendar) "calendar")
+  ("c" cfw:open-org-calendar "calendar")
+  ("d" deft "deft")
   ("e" (erc :server "irc.freenode.net" :port 6667) "erc")
   ("f" (jco/elfeed-load-db-and-open) "elfeed")
   ("m" (lambda ()
