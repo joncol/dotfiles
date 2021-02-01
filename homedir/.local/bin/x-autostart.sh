@@ -12,6 +12,11 @@ xset r rate 300 30
 
 # ~/.local/bin/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
 
-feh --bg-fill ~/Pictures/wallpapers/minimalist-blue-mountains-8k-2x-1920x1200.jpg
+currenttime=$(date +%H:%M)
+if [[ "$currenttime" > "23:00" ]] || [[ "$currenttime" < "11:30" ]]; then
+    feh --bg-fill ~/Pictures/wallpapers/dark.png
+else
+    feh --bg-fill ~/Pictures/wallpapers/light.jpg
+fi
 
 ~/.local/bin/launch.sh unclutter &
