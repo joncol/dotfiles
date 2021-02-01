@@ -51,7 +51,6 @@
             (setq inferior-lisp-program "sbcl")
             (slime-setup '(slime-asdf slime-company slime-fancy))
             (slime-asdf-init) ;; Required for `slime-load-system'.
-            (evil-leader/set-key "x l" #'slime-load-system)
             (slime-company-maybe-enable)
             (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)
             (define-key sldb-mode-map "\C-w" 'evil-window-map)))

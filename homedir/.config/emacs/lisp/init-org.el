@@ -74,7 +74,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 (use-package org-cliplink
   :config
-  (evil-leader/set-key-for-mode 'org-mode "x p" 'org-cliplink))
+  (evil-leader/set-key-for-mode 'org-mode "x l" 'org-cliplink))
 
 (use-package org-download
   :init

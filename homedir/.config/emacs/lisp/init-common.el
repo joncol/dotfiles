@@ -747,7 +747,7 @@
               (modify-syntax-entry ?- "w")
               (git-commit-turn-on-flyspell)))
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
-  (evil-leader/set-key "x l" #'jco/insert-clubhouse-markdown-link)
+  (evil-leader/set-key "x L" #'jco/insert-clubhouse-markdown-link)
   (add-hook 'magit-mode-hook
             (lambda ()
               (evil-local-set-key 'normal (kbd "SPC")
