@@ -2,7 +2,7 @@
 # name: Database exploration
 # key: db
 # --
-# -*- org-confirm-elisp-link-function: nil; -*-
+# -*- org-babel-min-lines-for-block-output: 0; org-confirm-elisp-link-function: nil; -*-
 
 #+options: tags:nil toc:nil num:0 d:t p:t ^:{}
 
