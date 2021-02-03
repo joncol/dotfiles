@@ -262,7 +262,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               (display-fill-column-indicator-mode -1)
               ;; (flyspell-mode)
               (smartparens-mode -1)
-              (evil-leader/set-key "z l" 'org-toggle-link-display)))
+              (evil-leader/set-key "z l" 'org-toggle-link-display)
+              (setq company-idle-delay 0.5)))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
