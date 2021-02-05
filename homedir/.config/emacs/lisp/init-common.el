@@ -680,7 +680,10 @@
 (use-package lsp-haskell
   :defer t
   :init
-  (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-mode-hook
+            (lambda ()
+              (lsp)
+              (setq evil-shift-width 2)))
   (add-hook 'haskell-literate-mode-hook #'lsp))
 
 (use-package lsp-mode
