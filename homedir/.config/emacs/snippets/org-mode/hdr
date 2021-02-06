@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Common headers
+# key: hdr
+# --
+# -*- org-babel-min-lines-for-block-output: 0; org-confirm-elisp-link-function: nil; -*-
+#+options: tags:nil toc:nil num:0 d:t p:t ^:{}
+#+property: header-args:bash+ :results verbatim
