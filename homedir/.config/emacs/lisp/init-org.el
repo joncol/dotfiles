@@ -151,7 +151,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
           ("WAITING" . "purple")
           ("MAYBE" . "gray60")))
   (setq org-format-latex-options
-        (plist-put org-format-latex-options :scale 2.0))
+        (plist-put org-format-latex-options :scale 1.6))
   (setq org-agenda-files (concat org-directory "/agenda-files"))
   (setq org-agenda-files '("~/org/work.org" "~/org/todo.org"))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
