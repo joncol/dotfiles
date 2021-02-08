@@ -456,16 +456,13 @@ As such, it will only work when the notes window exists."
            :file-name "${slug}"
            :head "#+title: ${citekey}: ${title}\n#+roam_key: ${ref}
 
-#+roam_tags:
+#+roam_tags: literature
 
-- keywords :: ${keywords}
-
-* ${title}\n:PROPERTIES:\n:Custom_ID: ${citekey}\n:URL: ${url}
-:AUTHOR: ${author-or-editor}
-:NOTER_DOCUMENT: %(orb-process-file-field \"${citekey}\")\n:NOTER_PAGE:
+* ${title}\n:PROPERTIES:\n:custom_id: ${citekey}\n:url: ${url}
+:author: ${author-or-editor}
+:noter_document: %(orb-process-file-field \"${citekey}\")\n:noter_page:
 :END:\n%?"
            :unnarrowed t))))
-
 
 (use-package org-super-agenda
   :after org
