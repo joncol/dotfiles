@@ -39,6 +39,7 @@
 (require 'init-mu4e)
 (require 'init-projectile)
 (require 'init-rotate)
+(require 'init-shackle)
 (require 'init-theme)
 (require 'init-modeline)
 (require 'init-tab)
