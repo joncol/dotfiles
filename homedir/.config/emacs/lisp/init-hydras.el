@@ -72,6 +72,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
 (defhydra jco/hydra-org (:color teal :hint nil)
   "org"
   ("a" org-agenda-list "agenda")
+  ("d" deft "deft")
   ("i" org-roam-insert "insert")
   ("f" org-roam-find-file "find-file")
   ("g" org-roam-graph "graph")
@@ -138,7 +139,6 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
 (defhydra jco/hydra-apps (:color teal :hint nil)
   "app"
   ("c" cfw:open-org-calendar "calendar")
-  ("d" deft "deft")
   ("e" (erc :server "irc.freenode.net" :port 6667) "erc")
   ("f" (jco/elfeed-load-db-and-open) "elfeed")
   ("m" (lambda ()
