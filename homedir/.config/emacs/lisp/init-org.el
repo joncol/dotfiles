@@ -188,6 +188,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    'org-babel-load-languages
    '((ditaa . t)
      (dot . t)
+     (haskell . t)
      (latex . t)
      (octave . t)
      (plantuml . t)
