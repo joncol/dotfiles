@@ -532,6 +532,11 @@
   :config
   (turn-on-fuzzy-isearch))
 
+(use-package nix-mode
+  :custom
+  (evil-shift-width 2)
+  :mode "\\.nix\\'")
+
 (use-package nlinum
   :disabled (version< "26" emacs-version)
   :init
