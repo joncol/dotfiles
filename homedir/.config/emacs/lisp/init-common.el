@@ -823,6 +823,11 @@
   (setq org-gcal-file-alist
         '(("jonas.collberg@zimpler.com" . "~/Sync/emacs/gcal_zimpler.org"))))
 
+(use-package ormolu
+  :after haskell-mode
+  :config
+  (define-key haskell-mode-map (kbd "C-c C-c C-f") 'ormolu-format-buffer))
+
 (use-package outline
   :init
   (if (version< emacs-version "25.1")
