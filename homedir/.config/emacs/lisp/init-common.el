@@ -306,12 +306,25 @@
   (push ".*" desktop-clear-preserve-buffers))
 
 (use-package dhall-mode
+  :after lsp-mode
+  :custom
+  (dhall-use-header-line nil)
+  (dhall-format-at-save nil)
   :config
-  (setq dhall-use-header-line nil)
-  (setq dhall-format-at-save nil)
+  ;; Note that a working LSP integration depends on `dhall-lsp-server' being
+  ;; installed in your system. Preferably install this using:
+  ;; `nix-env -i dhall-lsp-server'.
+  (add-to-list 'lsp-language-id-configuration '(dhall-mode . "dhall"))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection "dhall-lsp-server")
+                    :major-modes '(dhall-mode)
+                    :server-id 'dhall-lsp-server))
   (add-hook 'dhall-mode-hook
             (lambda ()
-              ;; do not treat "-" as a word separator
+              ;; This is necessary to auto-insert matching " in `dhall-mode'.
+              (sp-pair "\"" nil :actions :rem)
+
+              ;; Do not treat "-" as a word separator.
               (modify-syntax-entry ?- "w"))))
 
 (use-package dired+
@@ -698,6 +711,7 @@
   (with-eval-after-load 'lsp-mode
     (add-hook 'c-mode-hook 'lsp)
     (add-hook 'c++-mode-hook 'lsp)
+    (add-hook 'dhall-mode-hook 'lsp)
     (evil-leader/set-key
       "l" lsp-command-map)))
 
