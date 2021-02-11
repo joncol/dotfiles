@@ -574,6 +574,7 @@
   (evil-leader/set-key "g l" 'git-link))
 
 (use-package github-notifier
+  :disabled t
   :if (locate-file "google-chrome-stable" exec-path exec-suffixes 1)
   :defer 2
   :config
