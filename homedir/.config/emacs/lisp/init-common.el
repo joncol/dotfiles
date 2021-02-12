@@ -725,6 +725,8 @@
     (add-hook 'c-mode-hook 'lsp)
     (add-hook 'c++-mode-hook 'lsp)
     (add-hook 'dhall-mode-hook 'lsp)
+    ;; Requires `gopls' binary.
+    (add-hook 'go-mode-hook 'lsp)
     (evil-leader/set-key
       "l" lsp-command-map)))
 
