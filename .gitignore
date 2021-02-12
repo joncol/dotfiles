@@ -1,5 +1,4 @@
 *.zwc
-/fish/.config/fish/fishd.jco-arch
 /fonts/.fonts/.uuid
 /homedir/.config/emacs/.lsp-session-v1
 /homedir/.config/emacs/.org-id-locations
