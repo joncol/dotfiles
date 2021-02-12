@@ -502,6 +502,13 @@
   :config
   (setq flycheck-pos-tip-timeout 0))
 
+(use-package flycheck-haskell
+  ;; Disabling this package, since it only gives error:
+  ;; "Reading Haskell configuration failed with exit code Segmentation fault and
+  ;; output:", when trying to run it in Nix/direnv setup.
+  :disabled t
+  :hook (haskell-mode . flycheck-haskell-setup))
+
 (use-package flycheck-package
   :config
   (eval-after-load 'flycheck
