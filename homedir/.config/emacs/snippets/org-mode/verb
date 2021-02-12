@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Verbatim results everywhere
+# key: verb
+# --
+#+property: header-args:bash+ :results verbatim
