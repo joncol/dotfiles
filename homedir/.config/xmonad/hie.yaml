@@ -1,7 +1,0 @@
-cradle:
-  stack:
-    - path: "././xmonad.hs"
-      component: "xmonad-jco:exe:xmonad"
-
-    - path: "././Paths_xmonad_jco.hs"
-      component: "xmonad-jco:exe:xmonad"

@@ -1,6 +1,23 @@
-#!/usr/bin/env bash
 
-set -e
-stack build
-stack install --local-bin-path bin/
-mv bin/xmonad "$1"
+#!/bin/sh -eu
+
+src_dir=~/code/xmonad-jco
+
+# The name of the executable produced by cabal. This comes from the executable
+# section in the cabal file.
+exe_name=xmonad-jco
+
+# This script will be given a single argument, the path to the executable it
+# should produce.
+output_file=$1; shift
+
+cd $src_dir
+
+nix-shell --run \
+    'cabal configure --enable-optimization --enable-executable-stripping && \
+    cabal build'
+
+find dist-newstyle -type f -executable -name $exe_name \
+     -exec cp -uv '{}' $output_file ';'
+# find dist-newstyle -type f -executable -name $exe_name \
+#      -exec echo '{}' ';'
