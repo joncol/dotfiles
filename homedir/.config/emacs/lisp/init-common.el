@@ -555,7 +555,9 @@
 (use-package nix-mode
   :custom
   (evil-shift-width 2)
-  :mode "\\.nix\\'")
+  :mode "\\.nix\\'"
+  :config
+  (setenv "DIRENV_ALLOW_NIX" "1"))
 
 (use-package nlinum
   :disabled (version< "26" emacs-version)
@@ -715,6 +717,9 @@
 (use-package lsp-mode
   :hook (prog-mode . lsp-mode)
   :config
+  ;; This is to make `lsp-mode' work with `direnv' and pick up the correct
+  ;; version of GHC.
+  (advice-add 'lsp :before #'direnv-update-environment)
   (setq lsp-modeline-code-actions-enable nil)
   (with-eval-after-load 'lsp-mode
     (add-hook 'c-mode-hook 'lsp)
