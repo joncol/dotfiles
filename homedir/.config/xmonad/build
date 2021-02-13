@@ -1,3 +1,4 @@
+# -*- mode: sh; -*-
 
 #!/bin/sh -eu
 
@@ -19,5 +20,3 @@ nix-shell --run \
 
 find dist-newstyle -type f -executable -name $exe_name \
      -exec cp -uv '{}' $output_file ';'
-# find dist-newstyle -type f -executable -name $exe_name \
-#      -exec echo '{}' ';'
