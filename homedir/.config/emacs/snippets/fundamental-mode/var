@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: File-local variable
+# key: var
+# --
+-*- mode: modename; var: value; … -*-
