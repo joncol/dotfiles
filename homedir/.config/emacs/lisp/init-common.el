@@ -721,23 +721,27 @@
   (add-hook 'haskell-literate-mode-hook #'lsp))
 
 (use-package lsp-mode
-  :hook (prog-mode . lsp-mode)
+  :hook
+  ((prog-mode . lsp-mode)
+
+   (c-mode-hook . lsp)
+   (c++-mode-hook . lsp)
+   (dhall-mode-hook . lsp)
+
+   ;; Requires `gopls' binary.
+   (go-mode-hook . lsp)
+
+   ;; Requires `rnix-lsp' binary.
+   (nix-mode-hook . lsp)
+
+   (sh-mode . lsp))
+
   :config
   ;; This is to make `lsp-mode' work with `direnv' and pick up the correct
   ;; version of GHC.
   (advice-add 'lsp :before #'direnv-update-environment)
   (setq lsp-modeline-code-actions-enable nil)
   (with-eval-after-load 'lsp-mode
-    (add-hook 'c-mode-hook 'lsp)
-    (add-hook 'c++-mode-hook 'lsp)
-    (add-hook 'dhall-mode-hook 'lsp)
-
-    ;; Requires `gopls' binary.
-    (add-hook 'go-mode-hook 'lsp)
-
-    ;; Requires `rnix-lsp' binary.
-    (add-hook 'nix-mode-hook 'lsp)
-
     (evil-leader/set-key
       "l" lsp-command-map)))
 
