@@ -553,11 +553,17 @@
   (turn-on-fuzzy-isearch))
 
 (use-package nix-mode
+  :after lsp-mode
   :custom
   (evil-shift-width 2)
   :mode "\\.nix\\'"
   :config
-  (setenv "DIRENV_ALLOW_NIX" "1"))
+  (setenv "DIRENV_ALLOW_NIX" "1")
+  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
+                    :major-modes '(nix-mode)
+                    :server-id 'nix)))
 
 (use-package nlinum
   :disabled (version< "26" emacs-version)
@@ -725,8 +731,13 @@
     (add-hook 'c-mode-hook 'lsp)
     (add-hook 'c++-mode-hook 'lsp)
     (add-hook 'dhall-mode-hook 'lsp)
+
     ;; Requires `gopls' binary.
     (add-hook 'go-mode-hook 'lsp)
+
+    ;; Requires `rnix-lsp' binary.
+    (add-hook 'nix-mode-hook 'lsp)
+
     (evil-leader/set-key
       "l" lsp-command-map)))
 
