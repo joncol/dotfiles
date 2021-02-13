@@ -12,7 +12,7 @@ git
 history
 lein
 caarlos0/zsh-mkc
-chisui/zsh-nix-shell
+# chisui/zsh-nix-shell
 mafredri/zsh-async
 spwhitt/nix-zsh-completions.git
 zsh-users/zsh-autosuggestions
