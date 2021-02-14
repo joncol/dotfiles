@@ -736,14 +736,16 @@
 
    (sh-mode . lsp))
 
+  :init
+  (with-eval-after-load 'lsp-mode
+    (evil-leader/set-key
+      "l" lsp-command-map))
+
   :config
   ;; This is to make `lsp-mode' work with `direnv' and pick up the correct
   ;; version of GHC.
   (advice-add 'lsp :before #'direnv-update-environment)
-  (setq lsp-modeline-code-actions-enable nil)
-  (with-eval-after-load 'lsp-mode
-    (evil-leader/set-key
-      "l" lsp-command-map)))
+  (setq lsp-modeline-code-actions-enable nil))
 
 (use-package lsp-ui
   :hook (prog-mode . lsp-ui-mode)
