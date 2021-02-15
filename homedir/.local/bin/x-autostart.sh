@@ -13,7 +13,7 @@ xset r rate 300 30
 # ~/.local/bin/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
 
 currenttime=$(date +%H:%M)
-if [[ "$currenttime" > "23:00" ]] || [[ "$currenttime" < "11:30" ]]; then
+if [[ "$currenttime" > "21:00" ]] || [[ "$currenttime" < "18:00" ]]; then
     feh --bg-fill ~/Pictures/wallpapers/dark.png
 else
     feh --bg-fill ~/Pictures/wallpapers/light.jpg
