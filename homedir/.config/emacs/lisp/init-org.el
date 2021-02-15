@@ -192,6 +192,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
      (latex . t)
      (octave . t)
      (plantuml . t)
+     (python . t)
      (shell . t)
      (sql . t)))
   (setq org-confirm-babel-evaluate nil)
