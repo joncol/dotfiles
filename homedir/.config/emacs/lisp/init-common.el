@@ -556,7 +556,6 @@
   (turn-on-fuzzy-isearch))
 
 (use-package nix-mode
-  :after lsp-mode
   :custom
   (evil-shift-width 2)
   :mode "\\.nix\\'"
@@ -566,7 +565,9 @@
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
                     :major-modes '(nix-mode)
-                    :server-id 'nix)))
+                    :server-id 'nix))
+  ;; Requires `rnix-lsp' binary.
+  (add-hook 'nix-mode-hook #'lsp))
 
 (use-package nlinum
   :disabled (version< "26" emacs-version)
@@ -732,9 +733,6 @@
 
    ;; Requires `gopls' binary.
    (go-mode-hook . lsp)
-
-   ;; Requires `rnix-lsp' binary.
-   (nix-mode-hook . lsp)
 
    (sh-mode . lsp))
 
