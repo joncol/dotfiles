@@ -110,6 +110,7 @@
 
 (add-hook 'sql-mode-hook
           (lambda ()
+            (setq evil-shift-width 4)
             (modify-syntax-entry ?- "w" sql-mode-syntax-table)))
 
 (add-hook 'TeX-mode-hook
