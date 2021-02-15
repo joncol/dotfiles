@@ -307,7 +307,7 @@
   (push ".*" desktop-clear-preserve-buffers))
 
 (use-package dhall-mode
-  :after lsp-mode
+  :defer t
   :custom
   (dhall-use-header-line nil)
   (dhall-format-at-save nil)
@@ -322,6 +322,8 @@
                     :server-id 'dhall-lsp-server))
   (add-hook 'dhall-mode-hook
             (lambda ()
+              (lsp)
+
               ;; This is necessary to auto-insert matching " in `dhall-mode'.
               (sp-pair "\"" nil :actions :rem)
 
@@ -727,7 +729,6 @@
 
    (c-mode-hook . lsp)
    (c++-mode-hook . lsp)
-   (dhall-mode-hook . lsp)
 
    ;; Requires `gopls' binary.
    (go-mode-hook . lsp)
