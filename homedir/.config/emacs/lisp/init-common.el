@@ -616,6 +616,8 @@
   :defer t
   :init
   (evil-leader/set-key "z b" 'ivy-bibtex)
+  :custom
+  (ivy-bibtex-default-action 'ivy-bibtex-edit-notes)
   :config
   ;; Assumes usage of Zotero to export BibTeX bibliography.
   (setq bibtex-completion-bibliography '("~/Sync/Zotero/My Library.bib"))
