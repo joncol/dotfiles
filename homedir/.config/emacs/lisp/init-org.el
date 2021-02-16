@@ -457,7 +457,6 @@ As such, it will only work when the notes window exists."
            ""
            :file-name "${slug}"
            :head "#+title: ${citekey}: ${title}\n#+roam_key: ${ref}
-
 #+roam_tags: literature
 
 * ${title}\n:PROPERTIES:\n:custom_id: ${citekey}\n:url: ${url}
