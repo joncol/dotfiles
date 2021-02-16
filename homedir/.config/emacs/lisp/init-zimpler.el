@@ -19,7 +19,7 @@ properties `app-name' and `env' to be set."
            (app-name-snakecase (string-replace "-" "_" app-name)))
       (apply 'org-entry-put-multivalued-property (point) "header-args"
              ":exports" "both"
-             ":engine" "postgresql"
+             ":engine" "postgres"
              ":dbhost" (jco/zimpler-db-host app-name env)
              ":dbport" "5432"
              ":database" (jco/zimpler-db app-name env)
