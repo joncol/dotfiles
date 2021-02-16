@@ -128,6 +128,11 @@ Opens a new buffer with the result."
 (add-hook 'clojure-mode-hook
           (lambda ()
             (init-lisp-common)
+
+            ;; This applies when using `fill-paragraph' (`M-q') with the point
+            ;; being inside the docstring.
+            (setq clojure-docstring-fill-column 60)
+
             (setq-local evil-move-beyond-eol t)
             (setq cider-prompt-for-symbol nil)
 
