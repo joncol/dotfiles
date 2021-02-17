@@ -1117,8 +1117,8 @@ Example: `helloWorld` becomes `Hello world`."
   ("<tab>"     . forward-button)
   ("<backtab>" . backward-button))
 
-(jco/define-bindings jco/my-keys-mode-map '(("C-c C-b" . help-go-back)
-                                            ("C-c C-f" . help-go-forward)))
+(jco/define-bindings help-mode-map '(("C-c C-b" . help-go-back)
+                                     ("C-c C-f" . help-go-forward)))
 
 (add-to-list 'exec-path (expand-file-name "~/.asdf/shims") t)
 (setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/.asdf/shims")))
