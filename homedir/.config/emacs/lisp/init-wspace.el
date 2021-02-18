@@ -16,7 +16,7 @@
 (use-package ethan-wspace
   :config
   (jco/no-final-newline)
-  (global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
+  (global-set-key (kbd "M-<backspace>") 'delete-trailing-whitespace)
 
   (add-hook 'makefile-mode-hook 'jco/tabs-are-ok)
 
