@@ -431,6 +431,7 @@ As such, it will only work when the notes window exists."
   :hook
   (after-init . org-roam-mode)
   :custom
+  (org-roam-directory "~/org/roam")
   (org-roam-buffer-position 'bottom)
   (org-roam-capture-templates
    '(("d" "default" plain #'org-roam-capture--get-point "%?"
