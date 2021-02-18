@@ -457,7 +457,9 @@ As such, it will only work when the notes window exists."
         '(("r" "ref" plain (function org-roam-capture--get-point)
            ""
            :file-name "ref/${slug}"
-           :head "#+title: ${citekey}: ${title}\n#+roam_key: ${ref}
+           :head "#+title: ${citekey}: ${title}
+#+setupfile: ~/org/roam/template.org
+#+roam_key: ${ref}
 #+roam_tags: literature
 
 * ${title}\n:PROPERTIES:\n:custom_id: ${citekey}\n:url: ${url}
