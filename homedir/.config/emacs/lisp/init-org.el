@@ -437,6 +437,10 @@ As such, it will only work when the notes window exists."
    '(("d" "default" plain #'org-roam-capture--get-point "%?"
       :file-name "%<%Y%m%d%H%M%S>-${slug}"
       :head "#+title: ${title}\n#+setupfile: ~/org/roam/template.org\n\n"
+      :unnarrowed t)
+     ("p" "project" plain #'org-roam-capture--get-point "%?"
+      :file-name "../projects/%<%Y%m%d%H%M%S>-${slug}"
+      :head "#+title: ${title}\n#+setupfile: ~/org/roam/template.org\n\n"
       :unnarrowed t)))
   :bind (:map org-roam-mode-map
          (("C-c n l" . org-roam)
