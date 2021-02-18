@@ -309,7 +309,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
   :config
   (setq org-noter-always-create-frame nil)
   (setq org-noter-hide-other nil)
-  (setq org-noter-notes-search-path '("~/org-roam"))
+  (setq org-noter-notes-search-path '("~/org/roam"))
   (org-noter-set-auto-save-last-location t)
   (evil-leader/set-key "z n" 'org-noter))
 
@@ -422,9 +422,9 @@ As such, it will only work when the notes window exists."
    org-ref-completion-library 'org-ref-ivy-cite
    org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
    org-ref-default-bibliography (list "~/Sync/Zotero/My Library.bib")
-   org-ref-bibliography-notes "~/org-roam/ref/bib_notes.org"
+   org-ref-bibliography-notes "~/org/roam/ref/bib_notes.org"
    org-ref-note-title-format "* TODO %y - %t\n :PROPERTIES:\n  :Custom_ID: %k\n  :NOTER_DOCUMENT: %F\n :ROAM_KEY: cite:%k\n  :AUTHOR: %9a\n  :JOURNAL: %j\n  :YEAR: %y\n  :VOLUME: %v\n  :PAGES: %p\n  :DOI: %D\n  :URL: %U\n :END:\n\n"
-   org-ref-notes-directory "~/org-roam/ref/"
+   org-ref-notes-directory "~/org/roam/ref/"
    org-ref-notes-function 'orb-edit-notes))
 
 (use-package org-roam
@@ -435,7 +435,7 @@ As such, it will only work when the notes window exists."
   (org-roam-capture-templates
    '(("d" "default" plain #'org-roam-capture--get-point "%?"
       :file-name "%<%Y%m%d%H%M%S>-${slug}"
-      :head "#+title: ${title}\n#+setupfile: ~/org-roam/template.org\n\n"
+      :head "#+title: ${title}\n#+setupfile: ~/org/roam/template.org\n\n"
       :unnarrowed t)))
   :bind (:map org-roam-mode-map
          (("C-c n l" . org-roam)

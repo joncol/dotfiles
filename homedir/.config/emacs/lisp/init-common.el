@@ -296,7 +296,7 @@
 
 (use-package deft
   :custom
-  (deft-directory "~/org-roam")
+  (deft-directory "~/org/roam")
   :config
   (add-hook 'deft-mode-hook
             (lambda ()
@@ -622,7 +622,7 @@
   ;; Assumes usage of Zotero to export BibTeX bibliography.
   (setq bibtex-completion-bibliography '("~/Sync/Zotero/My Library.bib"))
   (setq bibtex-completion-pdf-field "File")
-  (setq bibtex-completion-notes-path "~/org-roam/ref"))
+  (setq bibtex-completion-notes-path "~/org/roam/ref"))
 
 (use-package help-fns+
   :disabled t
