@@ -424,7 +424,7 @@ As such, it will only work when the notes window exists."
    org-ref-default-bibliography (list "~/Sync/Zotero/My Library.bib")
    org-ref-bibliography-notes "~/org-roam/bib_notes.org"
    org-ref-note-title-format "* TODO %y - %t\n :PROPERTIES:\n  :Custom_ID: %k\n  :NOTER_DOCUMENT: %F\n :ROAM_KEY: cite:%k\n  :AUTHOR: %9a\n  :JOURNAL: %j\n  :YEAR: %y\n  :VOLUME: %v\n  :PAGES: %p\n  :DOI: %D\n  :URL: %U\n :END:\n\n"
-   org-ref-notes-directory "~/org-roam/"
+   org-ref-notes-directory "~/org-roam/ref/"
    org-ref-notes-function 'orb-edit-notes))
 
 (use-package org-roam
