@@ -431,15 +431,15 @@ As such, it will only work when the notes window exists."
   :hook
   (after-init . org-roam-mode)
   :custom
-  (org-roam-directory "~/org/roam/notes")
+  (org-roam-directory "~/org/roam")
   (org-roam-buffer-position 'bottom)
   (org-roam-capture-templates
    '(("d" "default" plain #'org-roam-capture--get-point "%?"
-      :file-name "%<%Y%m%d%H%M%S>-${slug}"
+      :file-name "notes/%<%Y%m%d%H%M%S>-${slug}"
       :head "#+title: ${title}\n#+setupfile: ~/org/roam/template.org\n\n"
       :unnarrowed t)
      ("p" "project" plain #'org-roam-capture--get-point "%?"
-      :file-name "../projects/%<%Y%m%d%H%M%S>-${slug}"
+      :file-name "projects/%<%Y%m%d%H%M%S>-${slug}"
       :head "#+title: ${title}\n#+setupfile: ~/org/roam/template.org\n\n"
       :unnarrowed t)))
   :bind (:map org-roam-mode-map
