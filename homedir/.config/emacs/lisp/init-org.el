@@ -422,7 +422,7 @@ As such, it will only work when the notes window exists."
    org-ref-completion-library 'org-ref-ivy-cite
    org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
    org-ref-default-bibliography (list "~/Sync/Zotero/My Library.bib")
-   org-ref-bibliography-notes "~/org-roam/bib_notes.org"
+   org-ref-bibliography-notes "~/org-roam/ref/bib_notes.org"
    org-ref-note-title-format "* TODO %y - %t\n :PROPERTIES:\n  :Custom_ID: %k\n  :NOTER_DOCUMENT: %F\n :ROAM_KEY: cite:%k\n  :AUTHOR: %9a\n  :JOURNAL: %j\n  :YEAR: %y\n  :VOLUME: %v\n  :PAGES: %p\n  :DOI: %D\n  :URL: %U\n :END:\n\n"
    org-ref-notes-directory "~/org-roam/ref/"
    org-ref-notes-function 'orb-edit-notes))
@@ -455,7 +455,7 @@ As such, it will only work when the notes window exists."
   (setq orb-templates
         '(("r" "ref" plain (function org-roam-capture--get-point)
            ""
-           :file-name "${slug}"
+           :file-name "ref/${slug}"
            :head "#+title: ${citekey}: ${title}\n#+roam_key: ${ref}
 #+roam_tags: literature
 
