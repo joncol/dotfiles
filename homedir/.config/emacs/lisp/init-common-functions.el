@@ -192,14 +192,6 @@ CMakeLists.txt file."
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
 
-(defun jco/collapse-multiple-empty-lines ()
-  "Replace multiple consecutive empty lines with one empty line."
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (while (re-search-forward "\n\n+" nil t)
-      (replace-match "\n\n"))))
-
 (defun jco/tighten-braces ()
   "Fix formatting of braces.
 Remove empty lines after opening brace and before closing brace."
