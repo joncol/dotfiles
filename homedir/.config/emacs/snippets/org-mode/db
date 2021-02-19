@@ -24,6 +24,8 @@
 
 ** Tables
 #+begin_src sql
+\pset null 'Ø'
+
 SELECT tablename FROM pg_catalog.pg_tables
 WHERE schemaname = 'public'
 #+end_src
