@@ -92,6 +92,9 @@
 (evil-leader/set-key-for-mode 'c-mode "a" #'ff-find-other-file)
 (evil-leader/set-key-for-mode 'c++-mode "a" #'ff-find-other-file)
 
+;; This is to get correct results for some UTF-8 characters in `psql' results.
+(setenv "LC_ALL" "en_US.UTF-8")
+
 (add-hook 'doc-view-mode-hook
           (lambda ()
             (when (fboundp 'nlinum-mode)
