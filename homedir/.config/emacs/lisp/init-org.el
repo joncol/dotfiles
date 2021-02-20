@@ -283,7 +283,10 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+  ;; Set default column view headings: Task Total-Time Time-Stamp
+  (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"))
 
 ;; Source: https://org-roam.discourse.group/t/creating-an-org-roam-note-from-an-existing-headline/978
 (defun org-roam-create-note-from-headline ()
