@@ -440,11 +440,15 @@ As such, it will only work when the notes window exists."
   (org-roam-capture-templates
    '(("d" "default" plain #'org-roam-capture--get-point "%?"
       :file-name "notes/%<%Y%m%d%H%M%S>-${slug}"
-      :head "#+title: ${title}\n#+setupfile: ~/org/roam/template.org\n\n"
+      :head "#+title: ${title}\n#+setupfile: ~/org/roam/template.org
+#+created: %U
+#+last_modified: %U\n\n"
       :unnarrowed t)
      ("p" "project" plain #'org-roam-capture--get-point "%?"
       :file-name "projects/%<%Y%m%d%H%M%S>-${slug}"
-      :head "#+title: ${title}\n#+setupfile: ~/org/roam/template.org\n\n"
+      :head "#+title: ${title}\n#+setupfile: ~/org/roam/template.org
+#+created: %U
+#+last_modified: %U\n\n"
       :unnarrowed t)))
   :bind (:map org-roam-mode-map
          (("C-c n l" . org-roam)
@@ -453,6 +457,13 @@ As such, it will only work when the notes window exists."
          :map org-mode-map
          (("C-c n i" . org-roam-insert))
          (("C-c n I" . org-roam-insert-immediate)))
+  :init
+  (add-hook 'after-init-hook
+            (lambda ()
+              (setq time-stamp-start "modified:[ ]+\\\\?")
+              (setq time-stamp-end "$")
+              (setq time-stamp-format "\[%Y-%02m-%02d %3a %02H:%02M\]")
+              (add-hook 'before-save-hook #'time-stamp)))
   :config
   (setq org-roam-completion-system 'ivy))
 
