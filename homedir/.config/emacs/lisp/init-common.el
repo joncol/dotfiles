@@ -624,7 +624,7 @@
   (ivy-bibtex-default-action 'ivy-bibtex-edit-notes)
   :config
   ;; Assumes usage of Zotero to export BibTeX bibliography.
-  (setq bibtex-completion-bibliography '("~/Sync/Zotero/My Library.bib"))
+  (setq bibtex-completion-bibliography '("~/Sync/Zotero/library.bib"))
   (setq bibtex-completion-pdf-field "File")
   (setq bibtex-completion-notes-path "~/org/roam/ref"))
 

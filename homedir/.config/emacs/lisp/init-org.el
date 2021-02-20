@@ -419,11 +419,13 @@ As such, it will only work when the notes window exists."
 
 (use-package org-ref
   :after org
+  :custom
+  (org-ref-default-citation-link "citep")
   :config
   (setq
    org-ref-completion-library 'org-ref-ivy-cite
    org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
-   org-ref-default-bibliography (list "~/Sync/Zotero/My Library.bib")
+   org-ref-default-bibliography (list "~/Sync/Zotero/library.bib")
    org-ref-bibliography-notes "~/org/roam/ref/bib_notes.org"
    org-ref-note-title-format "* TODO %y - %t\n:PROPERTIES:\n:custom_id: %k
 :noter_document: %F\n:roam_key: cite:%k\n:author: %9a\n:journal: %j
