@@ -480,6 +480,8 @@ As such, it will only work when the notes window exists."
 #+setupfile: ~/org/roam/template.org
 #+roam_key: ${ref}
 #+roam_tags: literature
+#+created: %U
+#+last_modified: %U
 
 * ${title}\n:PROPERTIES:\n:custom_id: ${citekey}\n:url: ${url}
 :author: ${author-or-editor}
