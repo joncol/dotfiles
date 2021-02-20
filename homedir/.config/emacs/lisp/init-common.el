@@ -300,6 +300,7 @@
 (use-package deft
   :custom
   (deft-directory "~/org/roam")
+  (deft-recursive t)
   :config
   (add-hook 'deft-mode-hook
             (lambda ()
