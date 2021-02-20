@@ -272,7 +272,16 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (require 'ob-clojure)
   (eval-after-load "org"
     '(require 'ox-gfm nil t))
-  (add-hook 'org-capture-mode-hook 'evil-insert-state))
+  (add-hook 'org-capture-mode-hook 'evil-insert-state)
+
+  (add-to-list 'org-latex-classes
+               '("extarticle"
+                 "\\documentclass[14pt]{extarticle}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 ;; Source: https://org-roam.discourse.group/t/creating-an-org-roam-note-from-an-existing-headline/978
 (defun org-roam-create-note-from-headline ()
