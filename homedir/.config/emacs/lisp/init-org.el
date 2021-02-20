@@ -404,8 +404,10 @@ As such, it will only work when the notes window exists."
 
        (if next
            (progn
-             (org-noter--doc-goto-location (org-noter--parse-location-property next))
-             (org-noter--focus-notes-region (org-noter--make-view-info-for-single-note session next)))
+             (org-noter--doc-goto-location
+              (org-noter--parse-location-property next))
+             (org-noter--focus-notes-region
+              (org-noter--make-view-info-for-single-note session next)))
          (user-error "There is no next note")))))
 
   (with-eval-after-load 'pdf-annot
@@ -423,7 +425,9 @@ As such, it will only work when the notes window exists."
    org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
    org-ref-default-bibliography (list "~/Sync/Zotero/My Library.bib")
    org-ref-bibliography-notes "~/org/roam/ref/bib_notes.org"
-   org-ref-note-title-format "* TODO %y - %t\n :PROPERTIES:\n  :Custom_ID: %k\n  :NOTER_DOCUMENT: %F\n :ROAM_KEY: cite:%k\n  :AUTHOR: %9a\n  :JOURNAL: %j\n  :YEAR: %y\n  :VOLUME: %v\n  :PAGES: %p\n  :DOI: %D\n  :URL: %U\n :END:\n\n"
+   org-ref-note-title-format "* TODO %y - %t\n:PROPERTIES:\n:custom_id: %k
+:noter_document: %F\n:roam_key: cite:%k\n:author: %9a\n:journal: %j
+:year: %y\n:volume: %v\n:pages: %p\n:doi: %D\n:url: %U\n:END:\n\n"
    org-ref-notes-directory "~/org/roam/ref/"
    org-ref-notes-function 'orb-edit-notes))
 
