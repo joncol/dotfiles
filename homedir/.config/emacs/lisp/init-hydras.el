@@ -73,6 +73,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("d" deft "deft")
   ("l" org-capture-goto-last-stored "goto captured")
   ("p" org-pomodoro "org-pomodoro")
+  ("x" org-clock-remove-overlays "remove clock overlays")
   ("L" org-refile-goto-last-stored "goto refiled")
   ("i" org-roam-insert "insert")
   ("f" org-roam-find-file "find-file")
