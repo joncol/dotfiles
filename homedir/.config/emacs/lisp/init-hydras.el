@@ -53,9 +53,7 @@ find: _f_un _l_ib _v_ar"
   ("n" (jco/find-org-file "notes.org") "notes")
   ("r" (jco/find-org-file "reading.org") "reading")
   ("t" (jco/find-org-file "todo.org") "todo")
-  ("w" (jco/find-org-file "work.org") "work")
-  ("l" org-capture-goto-last-stored "goto captured")
-  ("L" org-refile-goto-last-stored "goto refiled"))
+  ("w" (jco/find-org-file "work.org") "work"))
 
 (defvar jco/global-hl-line-mode-hydra-temp)
 (set (make-local-variable 'jco/global-hl-line-mode-hydra-temp) nil)
@@ -73,6 +71,8 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   "org"
   ("a" org-agenda-list "agenda")
   ("d" deft "deft")
+  ("l" org-capture-goto-last-stored "goto captured")
+  ("L" org-refile-goto-last-stored "goto refiled")
   ("i" org-roam-insert "insert")
   ("f" org-roam-find-file "find-file")
   ("g" org-roam-graph "graph")
