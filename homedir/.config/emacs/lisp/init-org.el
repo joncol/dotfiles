@@ -434,16 +434,21 @@ As such, it will only work when the notes window exists."
 (use-package org-pomodoro
   :custom
   (org-pomodoro-manual-break t)
+
+  (org-pomodoro-start-sound-p t)
   (org-pomodoro-start-sound (concat user-emacs-directory
-                                    "resources/sounds/ripple.wav"))
+                                    "resources/sounds/ripples.wav"))
   (org-pomodoro-finished-sound (concat user-emacs-directory
-                                       "resources/sounds/ripple.wav"))
+                                       "resources/sounds/ripples.wav"))
   (org-pomodoro-overtime-sound (concat user-emacs-directory
-                                       "resources/sounds/ripple.wav"))
+                                       "resources/sounds/ripples.wav"))
   (org-pomodoro-short-break-sound (concat user-emacs-directory
-                                          "resources/sounds/ripple.wav"))
+                                          "resources/sounds/ripples.wav"))
   (org-pomodoro-long-break-sound (concat user-emacs-directory
-                                         "resources/sounds/ripple.wav")))
+                                         "resources/sounds/ripples.wav"))
+  (org-pomodoro-killed-sound-p t)
+  (org-pomodoro-killed-sound (concat user-emacs-directory
+                                     "resources/sounds/clock.wav")))
 
 (use-package org-ref
   :after org
