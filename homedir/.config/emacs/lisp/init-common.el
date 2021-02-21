@@ -189,6 +189,9 @@
 
 (use-package ahk-mode)
 
+(use-package alert
+  :config (setq alert-default-style 'libnotify))
+
 (use-package all-the-icons-dired
   :disabled t
   :if (display-graphic-p)

@@ -431,6 +431,10 @@ As such, it will only work when the notes window exists."
 (use-package org-pdftools
   :hook (org-mode . org-pdftools-setup-link))
 
+(use-package org-pomodoro
+  :custom
+  (org-pomodoro-manual-break t))
+
 (use-package org-ref
   :after org
   :custom
