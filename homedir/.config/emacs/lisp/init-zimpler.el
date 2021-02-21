@@ -52,15 +52,12 @@ properties `app-name' and `env' to be set."
      ,(concat app-name "_" env))))
 
 (defun jco/zimpler-db-password (app-name env)
-  "Get the db password of application `APP-NAME' running in environment `ENV'.
-Note that this returns a string with the code to get the password, to avoid
-storing plain text passwords in the org file."
-  (format "(shell-quote-argument (find-if-not
-     'string-empty-p
-     `(,(jco/ze-read \"%s\" \"%s\" \"POSTGRES_PASSWORD\")
-       ,(jco/ze-read \"%s\" \"%s\" \"DB_PASSWORD\")
-       ,(jco/ze-read \"%s\" \"%s\" \"DB_PASS\"))))"
-          app-name env app-name env app-name env))
+  "Get the db password of application `APP-NAME' running in environment `ENV'."
+  (shell-quote-argument (find-if-not
+                         'string-empty-p
+                         `(,(jco/ze-read app-name env "POSTGRES_PASSWORD")
+                           ,(jco/ze-read app-name env "DB_PASSWORD")
+                           ,(jco/ze-read app-name env "DB_PASS")))))
 
 (defun jco/ze-read (app-name env param-name)
   "Run `ze-read' to get the value of `PARAM-NAME' for `APP-NAME' in `ENV'."
