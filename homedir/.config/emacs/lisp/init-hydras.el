@@ -70,6 +70,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
 (defhydra jco/hydra-org (:color teal :hint nil)
   "org"
   ("a" org-agenda-list "agenda")
+  ("c" org-clock-goto "org-clock-goto")
   ("d" deft "deft")
   ("l" org-capture-goto-last-stored "goto captured")
   ("p" org-pomodoro "org-pomodoro")
