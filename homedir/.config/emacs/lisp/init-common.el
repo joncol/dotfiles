@@ -332,7 +332,7 @@
               (lsp)
 
               ;; This is necessary to auto-insert matching " in `dhall-mode'.
-              (sp-pair "\"" nil :actions :rem)
+              (sp-local-pair "\"" nil :actions :insert)
 
               ;; Do not treat "-" as a word separator.
               (modify-syntax-entry ?- "w"))))
