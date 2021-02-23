@@ -153,7 +153,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-format-latex-options
         (plist-put org-format-latex-options :scale 1.6))
   (setq org-agenda-files (concat org-directory "/agenda-files"))
-  (setq org-agenda-files '("~/org/work.org" "~/org/todo.org"))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
                              ("~/org/notes.org" :maxlevel . 9)
                              ("~/org/reading.org" :maxlevel . 9)))
