@@ -495,7 +495,7 @@ As such, it will only work when the notes window exists."
   :init
   (add-hook 'after-init-hook
             (lambda ()
-              (setq time-stamp-start "modified:[ ]+\\\\?")
+              (setq time-stamp-start "last_modified:[ ]+\\\\?")
               (setq time-stamp-end "$")
               (setq time-stamp-format "\[%Y-%02m-%02d %3a %02H:%02M\]")
               (add-hook 'before-save-hook #'time-stamp)))
