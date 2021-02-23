@@ -288,6 +288,13 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   ;; Set default column view headings: Task Total-Time Time-Stamp
   (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"))
 
+(use-package org-habit-plus
+  :straight (org-habit-plus :type git :host github
+                            :repo "oddious/org-habit-plus")
+  :defer t
+  :init
+  (add-to-list 'org-modules 'org-habit))
+
 ;; Source: https://org-roam.discourse.group/t/creating-an-org-roam-note-from-an-existing-headline/978
 (defun org-roam-create-note-from-headline ()
   "Create an Org-roam note from the current headline and jump to it.
