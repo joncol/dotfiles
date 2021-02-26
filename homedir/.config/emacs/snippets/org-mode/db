@@ -6,7 +6,7 @@
 
 #+options: tags:nil toc:nil num:0 d:t p:t ^:{}
 #+property: header-args:bash+ :results verbatim
-#+property: header-args:sql+ :results verbatim :eval never-export
+#+property: header-args:sql+ :results value table :eval never-export
 #+setupfile: ~/repos/org-html-themes/org/theme-readtheorg.setup
 
 * Database exploration
