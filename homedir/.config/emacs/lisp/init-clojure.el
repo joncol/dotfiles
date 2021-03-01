@@ -144,6 +144,7 @@ Opens a new buffer with the result."
 
             (define-key clojure-mode-map (kbd "M-;") #'jco/lisp-comment-dwim)
 
+            (put-clojure-indent 'ANY 2)
             (put-clojure-indent 'GET 2)
             (put-clojure-indent 'POST 2)
             (put-clojure-indent 'PUT 2)
