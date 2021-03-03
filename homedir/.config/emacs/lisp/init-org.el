@@ -113,6 +113,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :ensure org-plus-contrib
   :custom
   (org-footnote-auto-adjust t)
+  (org-M-RET-may-split-line nil)
   :init
   (setq org-return-follows-link t)
   (setq org-startup-indented t)
