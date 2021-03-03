@@ -118,7 +118,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-startup-indented t)
   (setq org-edit-src-content-indentation 0)
   (setq org-capture-templates
-        '(("t" "Task" entry (file+headline "work.org" "_Incoming")
+        '(("t" "Task" entry (file+headline "incoming.org" "Incoming tasks")
            "* TODO %^{Description}\n%?\n:LOGBOOK:\n- Added: %U\n:END:\n"
            :empty-lines-before 0)
           ("p" "Project TODO" entry
