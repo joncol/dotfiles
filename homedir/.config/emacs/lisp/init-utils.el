@@ -30,13 +30,13 @@ If ARG is given, dots are used instead of dashes."
 
 (defun jco/insert-timestamp (arg)
   "Insert timestamp at current point.
-The format of the timestamp is 00:00:00.
-If ARG is given, the date is also inserted, and the format of the
-timestamp is 2016-11-23T00:00:00 (in accordance with ISO 8601)."
+The format of the timestamp is \"2021-03-03 Wed 14:31\". If ARG
+is given, the format of the timestamp is 2016-11-23T00:00:00 (in
+accordance with ISO 8601)."
   (interactive "P")
   (insert (if arg
               (format-time-string "%Y-%m-%dT%H:%M:%S")
-            (format-time-string "%H:%M:%S"))))
+            (format-time-string "%Y-%m-%d %a %H:%M"))))
 
 (defun jco/json-lint ()
   "Pretty format JSON."
