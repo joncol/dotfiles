@@ -600,7 +600,7 @@ As such, it will only work when the notes window exists."
                  '("h"
                    "Hugo post"
                    entry
-                   (file+olp "all-posts.org" "Weblog ideas")
+                   (file+olp "blog.org" "Weblog ideas")
                    (function org-hugo-new-subtree-post-capture-template)))))
 
 (jco/define-bindings global-map

@@ -49,7 +49,7 @@ find: _f_un _l_ib _v_ar"
 
 (defhydra jco/hydra-gtd (:color teal :hint nil)
   "gtd"
-  ("b" (jco/find-org-file "all-posts.org") "blog")
+  ("b" (jco/find-org-file "blog.org") "blog")
   ("h" (jco/find-org-file "health.org") "health")
   ("i" (jco/find-org-file "incoming.org") "incoming")
   ("n" (jco/find-org-file "notes.org") "notes")
