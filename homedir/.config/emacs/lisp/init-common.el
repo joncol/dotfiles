@@ -327,12 +327,13 @@
    (make-lsp-client :new-connection (lsp-stdio-connection "dhall-lsp-server")
                     :major-modes '(dhall-mode)
                     :server-id 'dhall-lsp-server))
+
   (add-hook 'dhall-mode-hook
             (lambda ()
               (lsp)
 
               ;; This is necessary to auto-insert matching " in `dhall-mode'.
-              (sp-local-pair "\"" nil :actions :insert)
+              (sp-local-pair 'dhall-mode "\"" "\"" :actions '(add))
 
               ;; Do not treat "-" as a word separator.
               (modify-syntax-entry ?- "w"))))
