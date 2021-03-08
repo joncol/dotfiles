@@ -2,3 +2,4 @@
 :set -fno-warn-type-defaults
 :set -fno-warn-unused-do-bind
 :set -XOverloadedStrings
+:set prompt "λ> "
