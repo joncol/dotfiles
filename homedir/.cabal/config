@@ -38,11 +38,11 @@ world-file: /home/jco/.cabal/world
 -- with-hc-pkg:
 -- program-prefix:
 -- program-suffix:
-library-vanilla: False
+-- library-vanilla: False
 -- library-profiling:
-shared: True
+-- shared: True
 -- static:
-executable-dynamic: True
+-- executable-dynamic: True
 -- executable-static: False
 -- profiling:
 -- executable-profiling:
@@ -215,7 +215,7 @@ program-default-options
   -- cpphs-options:
   -- doctest-options:
   -- gcc-options:
-  ghc-options: -dynamic
+  -- ghc-options: -dynamic
   -- ghc-pkg-options:
   -- ghcjs-options:
   -- ghcjs-pkg-options:
