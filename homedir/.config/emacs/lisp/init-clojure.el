@@ -131,7 +131,7 @@ Opens a new buffer with the result."
 
             ;; This applies when using `fill-paragraph' (`M-q') with the point
             ;; being inside the docstring.
-            (setq clojure-docstring-fill-column 70)
+            (setq clojure-docstring-fill-column 69)
 
             (setq-local evil-move-beyond-eol t)
             (setq cider-prompt-for-symbol nil)
