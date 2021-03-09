@@ -201,9 +201,11 @@
      (set-face-foreground 'mu4e-highlight-face "#101f24")))
 
   (doom-one-light
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#e4f1fe")
-   (with-eval-after-load 'mu4e
-     (set-face-background 'mu4e-highlight-face "LightBlue")))
+   (set-face-background 'highlight "#e4f1fe")
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#e4f1fe"))
+
+  (doom-opera-light
+   (set-face-background 'highlight "#e4f1fe"))
 
   ((doom-solarized-light solarized-light)
    (setq sml/theme 'light)
@@ -217,6 +219,7 @@
      (set-face-background 'mu4e-highlight-face "#7ceece")))
 
   (doom-tomorrow-day
+   (set-face-background 'highlight "#e4f1fe")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#e4f1fe"))
 
