@@ -188,6 +188,7 @@
      (set-face-background 'sp-show-pair-match-face "#6ab04c")))
 
   (doom-moonlight
+   (set-face-background 'highlight "#22a7f0")
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face
                           (face-attribute 'default :background))))
