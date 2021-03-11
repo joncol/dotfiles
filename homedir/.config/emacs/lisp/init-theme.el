@@ -201,8 +201,9 @@
      (set-face-foreground 'mu4e-highlight-face "#101f24")))
 
   (doom-one-light
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#e4f1fe")
    (set-face-background 'highlight "#e4f1fe")
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#e4f1fe"))
+   (set-face-background 'vhl/default-face (jco/current-bg -0.10)))
 
   (doom-opera-light
    (set-face-background 'highlight "#e4f1fe"))
