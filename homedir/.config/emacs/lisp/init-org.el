@@ -532,6 +532,7 @@ As such, it will only work when the notes window exists."
            :unnarrowed t))))
 
 (use-package org-super-agenda
+  :disabled t
   :after org
   :custom
   (org-super-agenda-groups
