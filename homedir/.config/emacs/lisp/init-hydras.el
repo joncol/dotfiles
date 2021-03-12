@@ -53,6 +53,7 @@ find: _f_un _l_ib _v_ar"
   ("h" (jco/find-org-file "health.org") "health")
   ("i" (jco/find-org-file "incoming.org") "incoming")
   ("n" (jco/find-org-file "notes.org") "notes")
+  ("p" (jco/find-org-file "todo.org" (projectile-project-root)) "project-todo")
   ("r" (jco/find-org-file "reading.org") "reading")
   ("t" (jco/find-org-file "todo.org") "todo")
   ("w" (jco/find-org-file "work.org") "work"))
