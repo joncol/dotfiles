@@ -731,7 +731,9 @@
   (add-hook 'haskell-mode-hook
             (lambda ()
               (lsp)
-              (setq evil-shift-width 2)))
+              (setq evil-shift-width 2)
+              (define-key haskell-mode-map (kbd "C-c C-c C-s")
+                'haskell-mode-stylish-buffer)))
   (add-hook 'haskell-literate-mode-hook #'lsp))
 
 (use-package lsp-mode
