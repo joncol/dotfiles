@@ -186,7 +186,10 @@
   (evil-goggles-mode))
 
 (use-package evil-search-highlight-persist
-  :after evil
+  :after (evil facemenu)
+  :bind (:map evil-search-highlight-persist-map
+	 ("C-x SPC" . evil-search-highlight-persist-remove-all)
+	 ("C-x C-SPC" . evil-search-highlight-persist-remove-all))
   :init
   (global-evil-search-highlight-persist t))
 
@@ -204,15 +207,6 @@
 
 (evil-leader/set-key "v d" 'vc-diff)
 (evil-leader/set-key "D" 'ediff-current-file)
-
-(defun jco/remove-search-highlights ()
-  "Remove any persisted highlighted search results."
-  (interactive)
-  (evil-search-highlight-persist-remove-all))
-
-(jco/define-bindings evil-search-highlight-persist-map
-                     '(("C-x SPC" . jco/remove-search-highlights)
-                       ("C-x C-SPC" . jco/remove-search-highlights)))
 
 (evil-leader/set-key "g g" 'ggtags-find-tag-dwim)
 
