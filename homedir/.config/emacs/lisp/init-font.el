@@ -32,29 +32,27 @@
 (use-package ligature
   :straight (:host github :repo "mickeynp/ligature.el")
   :config
-  ;; Enable the "www" ligature in every possible major mode
+  ;; Enable the "www" ligature in every possible major mode.
   (ligature-set-ligatures 't '("www"))
+
   ;; Enable traditional ligature support in eww-mode, if the
-  ;; `variable-pitch' face supports it
+  ;; `variable-pitch' face supports it.
   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-  ;; Enable all Cascadia Code ligatures in programming modes
+
+  ;; Source: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-ligatureel
+  ;; Enable ligatures in programming modes.
   (ligature-set-ligatures
-   'prog-mode '("-->" "//" "/**" "/*" "*/" "<!--" ":=" "->>" "<<-" "->" "<-"
-                "<=>" "==" "!=" "<=" ">=" "=:=" "!==" "&&" "||" "..." ".."
-                "|||" "///" "&&&" "===" "++" "--" "=>" "|>" "<|" "||>" "<||"
-                "|||>" "<|||" ">>" "<<" "::=" "|]" "[|" "{|" "|}"
-                "[<" ">]" ":?>" ":?" "/=" "[||]" "!!" "?:" "?." "::"
-                "+++" "??" "###" "##" ":::" "####" ".?" "?=" "=!=" "<|>"
-                "<:" ":<" ":>" ">:" "<>" "***" ";;" "/==" ".=" ".-" "__"
-                "=/=" "<-<" "<<<" ">>>" "<=<" "<<=" "<==" "<==>" "==>" "=>>"
-                ">=>" ">>=" ">>-" ">-" "<~>" "-<" "-<<" "=<<" "---" "<-|"
-                "<=|" "/\\" "\\/" "|=>" "|~>" "<~~" "<~" "~~" "~~>" "~>"
-                "<$>" "<$" "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</>" "</" "/>"
-                "<->" "..<" "~=" "~-" "-~" "~@" "^=" "-|" "_|_" "|-" "||-"
-                "|=" "||=" "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#="
-                "&="))
-  ;; Enables ligature checks globally in all buffers. You can also do it
-  ;; per mode with `ligature-mode'.
+   'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+                ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+                "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+                "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+                "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+                "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+                "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+                "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+                "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+                "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+
   (global-ligature-mode t))
 
 (provide 'init-font)
