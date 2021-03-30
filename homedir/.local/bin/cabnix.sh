@@ -165,5 +165,6 @@ cabal.project.local~
 EOF
 
 cat <<EOF > .projectile
+-/.direnv/
 -/dist-newstyle/
 EOF
