@@ -60,7 +60,7 @@ environment=$2
 
 db_host=$(ze-read -v $service $environment shared POSTGRES_HOST)
 db_host=${db_host:-$(ze-read -v $service $environment shared DB_HOST)}
-db_host=${db_host:-$service-$environment-db.czldyizapuwt.eu-central-1.rds.amazonaws.com}
+db_host=${db_host:-$service-$environment.czldyizapuwt.eu-central-1.rds.amazonaws.com}
 
 db_database=$(ze-read -v $service $environment shared POSTGRES_DATABASE)
 db_database=${db_database:-"${service_snake_case}_$environment"}
