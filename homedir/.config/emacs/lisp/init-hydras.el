@@ -138,6 +138,7 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
 (defhydra jco/hydra-writing (:color teal :hint nil)
   "writing"
   ("b" ivy-bibtex "ivy-bibtex")
+  ("l" ligature-mode "ligatures")
   ("n" org-noter "org-noter")
   ("o" (jco/toggle-mode olivetti-mode) "olivetti"))
 
