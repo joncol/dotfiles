@@ -252,6 +252,13 @@ Opens a new buffer with the result."
             (evil-make-overriding-map cider--debug-mode-map 'normal)
             (evil-normalize-keymaps)))
 
+(defun my-clojure-mode-before-save-hook ()
+  "Sort namespaces automatically before saving a Clojure file."
+  (when (eq major-mode 'clojure-mode)
+    (clojure-sort-ns)))
+
+(add-hook 'before-save-hook #'my-clojure-mode-before-save-hook)
+
 (provide 'init-clojure)
 
 ;;; init-clojure.el ends here
