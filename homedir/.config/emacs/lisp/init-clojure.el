@@ -46,6 +46,14 @@ buffer already exists, don't create a new one."
 
 (use-package clj-refactor
   :after clojure-mode
+  :custom
+  (cljr-cljc-clojure-test-declaration
+   "#?(:clj [clojure.test :refer [deftest is testing]]
+:cljs [cljs.test :refer [deftest is testing] :include-macros true])")
+  (cljr-cljs-clojure-test-declaration
+   "[cljs.test :as [deftest is testing] :include-macros true]")
+  (cljr-clojure-test-declaration
+   "[clojure.test :refer [deftest is testing]]")
   :config
   (setq cljr-warn-on-eval nil)
   (setq cljr-auto-clean-ns nil)
