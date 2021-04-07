@@ -394,6 +394,10 @@
   (evil-set-initial-state 'eclim-project-mode 'emacs)
   (add-hook 'java-mode-hook
             (lambda ()
+              ;; `electric-pair-mode' causes extra closing parenthesis to be
+              ;; inserted.
+              (electric-pair-mode -1)
+
               (eclim-mode)
               (evil-leader/set-key "e b" 'eclim-project-build)
               (evil-leader/set-key "e c" 'eclim-project-create)
