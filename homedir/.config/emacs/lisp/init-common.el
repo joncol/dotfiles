@@ -579,7 +579,12 @@
                     :major-modes '(nix-mode)
                     :server-id 'nix))
   ;; Requires `rnix-lsp' binary.
-  (add-hook 'nix-mode-hook #'lsp))
+  (add-hook 'nix-mode-hook
+            (lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w")
+
+              (lsp))))
 
 (use-package nlinum
   :disabled (version< "26" emacs-version)
