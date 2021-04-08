@@ -135,6 +135,8 @@ Opens a new buffer with the result."
 
 (add-hook 'clojure-mode-hook
           (lambda ()
+            (lsp)
+
             (init-lisp-common)
 
             ;; This applies when using `fill-paragraph' (`M-q') with the point
