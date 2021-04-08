@@ -152,14 +152,15 @@ CMakeLists.txt file."
 (defun jco/what-face (pos)
   "Determine the face at the point POS."
   (interactive "d")
-  (let ((g (global-hl-line-mode)))
+  (let ((g global-hl-line-mode))
     (global-hl-line-mode -1)
     (let ((face (or (get-char-property (point) 'read-face-name)
                     (get-char-property (point) 'face))))
       (if face
           (message "Face: %s" face)
         (message "No face at %d" pos)))
-    (global-hl-line-mode g)))
+    (when g
+      (global-hl-line-mode 1))))
 
 (defun jco/re-seq (regexp string)
   "Get a list of all regex-matches of REGEXP in STRING."
