@@ -161,7 +161,7 @@
   (doom-gruvbox
    (set-face-background 'hl-line "#3e3c3a")
    (set-face-background 'vhl/default-face (jco/current-bg 0.10))
-   (set-face-foreground 'highlight "#2f333c")
+   (set-face-background 'highlight "#ccae62")
    (with-eval-after-load 'company-box
      (set-face-background 'company-box-scrollbar "#7ceece"))
    (with-eval-after-load 'mu4e
