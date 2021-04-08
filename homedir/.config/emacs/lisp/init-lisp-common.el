@@ -17,7 +17,8 @@
 
 (defun init-lisp-common ()
   "Common configuration options for all Lisp modes."
-  (aggressive-indent-mode)
+  (unless (derived-mode-p 'clojure-mode)
+    (aggressive-indent-mode))
   (setq evil-shift-width 2)
   (define-key lisp-mode-shared-map (kbd "M-;") #'jco/lisp-comment-dwim)
   ;; do not treat "-" as a word separator
