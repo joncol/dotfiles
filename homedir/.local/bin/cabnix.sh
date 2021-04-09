@@ -169,6 +169,11 @@ cat <<EOF > .projectile
 -/dist-newstyle/
 EOF
 
+cat <<EOF > .dir-locals.el
+((haskell-mode . ((haskell-stylish-on-save . t)
+                  (fill-column . 80))))
+EOF
+
 cat <<'EOF' > .stylish-haskell.yaml
 # stylish-haskell configuration file
 # ==================================
