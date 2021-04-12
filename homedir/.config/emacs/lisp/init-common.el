@@ -1174,6 +1174,7 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package iedit)
 
 (use-package info+
+  :disabled t
   :straight (info-plus :type git :host github :repo "emacsmirror/info-plus")
   :after info)
 
