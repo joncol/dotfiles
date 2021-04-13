@@ -683,6 +683,7 @@
                       "insert file name without any directory information"))))
 
 (use-package ivy-rich
+  :disabled t
   :config
   ;; Recommended by the README.
   (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
