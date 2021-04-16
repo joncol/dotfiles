@@ -23,6 +23,7 @@
 /homedir/.config/fish/functions/fish_prompt.fish
 /homedir/.config/nvim/autoload/
 /homedir/.config/polybar/github_access_token
+/homedir/.config/systemd/user/sockets.target.wants/
 /homedir/.config/tmux/plugins/
 /homedir/.config/xmonad/.stack-work/
 /homedir/.config/xmonad/pipe-*
@@ -33,8 +34,8 @@
 /homedir/.lein/self-installs/
 /homedir/.local/bin/virtualenv
 /homedir/.stardict/dic/stardict-dictd-web1913-2.4.2/dictd_www.dict.org_web1913.idx.oft
+homedir/.irssi/config
 xmonad-x86_64-linux
 xmonad.errors
 xmonad.hi
 xmonad.o
-/homedir/.config/systemd/user/sockets.target.wants/
