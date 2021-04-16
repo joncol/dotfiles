@@ -199,8 +199,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (if (eq system-type 'windows-nt)
       (setq org-ditaa-jar-path "c:/tools/misc/ditaa.jar"
             org-plantuml-jar-path "c:/tools/misc/plantuml.jar")
-    (setq org-ditaa-jar-path "/usr/local/bin/ditaa.jar"
-          org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar"))
+    (setq org-ditaa-jar-path "~/.nix-profile/lib/ditaa.jar"
+          org-plantuml-jar-path "~/.nix-profile/lib/plantuml.jar"))
   (require 'ox-latex)
   (add-to-list 'org-latex-packages-alist '("" "minted"))
   (add-to-list 'org-latex-inputenc-alist '("utf8" . "utf8x"))
