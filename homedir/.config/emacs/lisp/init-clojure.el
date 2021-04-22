@@ -190,34 +190,8 @@ Opens a new buffer with the result."
 
             (put-clojure-indent 'in-terminal 1)))
 
-(defun jco/initialize-clojure-repl-keybindings ()
-  "Initialize Clojure REPL key bindings."
-  (dolist (m (list 'cider-repl-mode
-                   'cider-test-report-mode-hook
-                   'clojure-mode))
-    (dolist (kv '(("h d" . cider-doc)
-                  ("h d" . cider-doc)
-                  ("h n" . cider-browse-ns)
-                  ("h s" . cider-browse-spec-all)
-                  ("t c" . cider-test-clear-highlights)
-                  ("t t" . cider-test-run-test)
-                  ("t n" . cider-test-run-ns-tests)
-                  ("t p" . cider-test-run-project-tests)
-                  ("t r" . cider-test-rerun-test)
-                  ("t f" . cider-test-rerun-failed-tests)
-                  ("x d" . disassemble-clojure-fn)
-                  ("x r" . nrepl-reset)
-                  ("x e" . cider-eval-last-sexp-to-repl)
-                  ("x E" . cider-pprint-eval-last-sexp-to-repl)
-                  ("x p" . cider-eval-print-last-sexp)
-                  ("x P" . (lambda ()
-                             (interactive)
-                             (cider-eval-print-last-sexp t)))))
-      (evil-leader/set-key-for-mode m (car kv) (cdr kv)))))
-
 (add-hook 'nrepl-connected-hook
           (lambda ()
-            (jco/initialize-clojure-repl-keybindings)
             (jco/move-window-to-bottom)))
 
 (add-hook 'cider-browse-ns-mode-hook
