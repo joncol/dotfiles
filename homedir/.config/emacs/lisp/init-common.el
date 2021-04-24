@@ -414,6 +414,11 @@
                  ("M-g M-p" . eclim-problems-prev-same-file)
                  ("M-g p" . eclim-problems-prev-same-file))))))
 
+(use-package elm-mode
+  :defer t
+  :config
+  (setq elm-mode-hook '(elm-indent-simple-mode)))
+
 (use-package gcmh
   :config
   (gcmh-mode))
