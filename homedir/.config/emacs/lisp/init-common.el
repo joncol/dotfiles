@@ -417,7 +417,11 @@
 (use-package elm-mode
   :defer t
   :config
-  (setq elm-mode-hook '(elm-indent-simple-mode)))
+  (remove-hook 'elm-mode-hook 'elm-indent-mode)
+  (add-hook 'elm-mode-hook #'elm-format-on-save-mode)
+  (setq elm-indent-offset 2)
+  (setq elm-indent-simple-offset 2)
+  (unbind-key (kbd "<tab>") 'elm-indent-simple-mode-map))
 
 (use-package gcmh
   :config
