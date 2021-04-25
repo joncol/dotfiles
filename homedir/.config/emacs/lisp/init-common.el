@@ -763,7 +763,9 @@
    (c++-mode . lsp)
 
    ;; Requires `gopls' binary.
-   (go-mode . lsp))
+   (go-mode . lsp)
+
+   (elm-mode . lsp))
 
   :init
   (with-eval-after-load 'lsp-mode
