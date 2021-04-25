@@ -759,11 +759,11 @@
   :hook
   ((prog-mode . lsp-mode)
 
-   (c-mode-hook . lsp)
-   (c++-mode-hook . lsp)
+   (c-mode . lsp)
+   (c++-mode . lsp)
 
    ;; Requires `gopls' binary.
-   (go-mode-hook . lsp))
+   (go-mode . lsp))
 
   :init
   (with-eval-after-load 'lsp-mode
