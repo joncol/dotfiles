@@ -808,6 +808,11 @@
 
 (use-package magit
   :defer 1
+  :init
+  (let ((filename "~/.nix-profile/bin/emacsclient"))
+    (when (file-exists-p filename)
+      (setq-default with-editor-emacsclient-executable
+                    (expand-file-name filename))))
   :config
   ;; Fix regression where error message is shown when using magit-status while
   ;; having global-whitespace-mode enabled.
