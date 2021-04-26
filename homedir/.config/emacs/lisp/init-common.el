@@ -161,6 +161,9 @@
 (use-package pretty-hydra
   :defer t)
 
+(use-package project
+  :after magit)
+
 (use-package ace-isearch
   :disabled t
   :config
