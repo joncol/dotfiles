@@ -760,10 +760,10 @@
 
 (use-package lsp-mode
   :hook
-  ((prog-mode . lsp-mode)
-
-   (c-mode . lsp)
+  ((c-mode . lsp)
    (c++-mode . lsp)
+
+   (clojure-mode . lsp)
 
    ;; Requires `gopls' binary.
    (go-mode . lsp)

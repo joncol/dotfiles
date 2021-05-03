@@ -135,7 +135,6 @@ Opens a new buffer with the result."
 
 (add-hook 'clojure-mode-hook
           (lambda ()
-            (lsp)
             (setq lsp-ui-sideline-show-code-actions nil)
 
             (init-lisp-common)
