@@ -203,7 +203,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 exec_always --no-startup-id sleep 2 && ~/.local/bin/setup_screen.pl
-exec_always ~/.local/bin/setup_mouse.sh
+exec_always ~/.local/bin/setup-mouse.sh
 exec_always ~/.local/bin/apply_xrdb_settings.sh
 
 exec_always compton --unredir-if-possible -b
