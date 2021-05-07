@@ -125,14 +125,14 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-edit-src-content-indentation 0)
   (setq org-capture-templates
         '(("t" "Task" entry (file+headline "incoming.org" "Incoming tasks")
-           "* TODO %^{Description}\n%?\n:LOGBOOK:\n- Added: %U\n:END:\n"
+           "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
            :empty-lines-before 0)
           ("p" "Project TODO" entry
            (function (lambda () (jco/goto-current-project-todo-org "Todos")))
-           "* TODO %^{Description}\n%?\n:LOGBOOK:\n- Added: %U\n:END:\n"
+           "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
            :empty-lines-before 0)
           ("n" "Note" entry (file+headline "notes.org" "Notes")
-           "* %^{Description}\n%?\n:LOGBOOK:\n- Added: %U\n:END:\n"
+           "* %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
            :empty-lines-before 0)
           ("a" "Appointment" entry (file  "~/Sync/emacs/gcal_zimpler.org" )
            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
