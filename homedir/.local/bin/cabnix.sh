@@ -73,11 +73,12 @@ fi
 
 nix-shell --pure -p haskell.compiler.ghc8104 cabal-install \
     --run "cabal init --cabal-version=3.0 -m -l BSD-3-Clause ${target_type} -p ${PWD##*/} \
-           -d base -d aeson -d containers -d hashable -d hashmap -d katip \
-           -d microlens -d monad-control -d mtl -d text -d transformers-base \
-           -d unordered-containers && \
-           cabal configure --enable-tests --test-show-details=streaming \
-                           --test-option=--color=always"
+           -d base \
+           -d containers \
+           -d mtl \
+           -d text \
+           && cabal configure --enable-tests --test-show-details=streaming \
+                              --test-option=--color=always"
 
 nix-shell -p niv --run "niv init -b nixpkgs-unstable"
 
