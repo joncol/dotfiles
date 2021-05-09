@@ -125,7 +125,7 @@ let
 
 in def.pkg.overrideAttrs (attrs: {
   src = null;
-  buildInputs = dev-pkgs ++ attrs.buildInputs;
+  buildInputs = dev-pkgs ++ attrs.buildInputs ++ [pkgs.zlib.dev];
 })
 EOF
 
