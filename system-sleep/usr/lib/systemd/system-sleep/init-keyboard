@@ -3,6 +3,5 @@
 case $1 in
     post)
         x-init-kb.sh
-        xset r rate 300 30
         ;;
 esac
