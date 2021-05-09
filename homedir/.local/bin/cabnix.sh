@@ -100,6 +100,8 @@ let
        hl.justStaticExecutables
        hl.disableLibraryProfiling
        hl.disableExecutableProfiling];
+
+    withHoogle = false;
   };
 
 in { inherit pkg; }
