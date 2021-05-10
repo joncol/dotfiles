@@ -25,6 +25,10 @@
 
 (add-hook 'prog-mode-hook #'jco/common-prog)
 
+(add-hook 'picture-mode
+          (lambda ()
+            (setq evil-undo-system 'undo-redo)))
+
 (jco/my-keys-mode)
 
 (setq save-interprogram-paste-before-kill t)
