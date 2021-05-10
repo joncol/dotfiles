@@ -19,9 +19,11 @@ zstyle ':completion:*:messages' format "%F{green}%d%f"
 autoload -Uz compinit && compinit -u
 autoload -U +X bashcompinit && bashcompinit
 
-alias arthur=~/work/arthur/arthur
-if command -v arthur &> /dev/null; then
-    source <(arthur completion)
+if [[ -f ~/work/arthur/arthur ]]; then
+    alias arthur=~/work/arthur/arthur
+    if command -v arthur &> /dev/null; then
+        source <(arthur completion)
+    fi
 fi
 
 if [[ -f ~/.asdf/completions/asdf.bash ]]; then
