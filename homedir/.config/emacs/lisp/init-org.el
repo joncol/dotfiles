@@ -330,6 +330,8 @@ Org-mode properties drawer already, keep the headline and don’t insert
 
 (use-package org-noter
   :defer 1
+  :if (and (not (eq system-type 'windows-nt))
+           (display-graphic-p))
   :bind (:map org-noter-doc-mode-map
          (("M-I" . org-noter-insert-note)))
   :config
