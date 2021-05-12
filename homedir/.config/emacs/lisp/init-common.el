@@ -953,6 +953,9 @@
             (lambda ()
               (display-line-numbers-mode -1))))
 
+(use-package purescript-mode
+  :defer t)
+
 (use-package rainbow-mode)
 
 (use-package rainbow-delimiters)
