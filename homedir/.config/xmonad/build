@@ -14,9 +14,5 @@ output_file=$1; shift
 
 cd $src_dir
 
-nix-shell --run \
-    'cabal configure --enable-optimization --enable-executable-stripping && \
-    cabal build'
-
 find dist-newstyle -type f -executable -name $exe_name \
      -exec cp -uv '{}' $output_file ';'
