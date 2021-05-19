@@ -139,8 +139,6 @@ EOF
 
 direnv allow
 
-gen-hie > hie.yaml
-
 cat <<EOF > .gitignore
 dist
 dist-*
