@@ -40,3 +40,4 @@ xmonad.errors
 xmonad.hi
 xmonad.o
 /homedir/.config/Slack/local-settings.json
+/homedir/.lein/repl-history
