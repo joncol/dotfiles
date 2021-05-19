@@ -2,7 +2,6 @@ antigen use oh-my-zsh
 
 antigen bundles <<EOBUNDLES
 
-asdf
 colored-man-pages
 command-not-found
 docker
