@@ -19,12 +19,7 @@ zstyle ':completion:*:messages' format "%F{green}%d%f"
 autoload -Uz compinit && compinit -u
 autoload -U +X bashcompinit && bashcompinit
 
-if [[ -f ~/work/arthur/arthur ]]; then
-    alias arthur=~/work/arthur/arthur
-    if command -v arthur &> /dev/null; then
-        source <(arthur completion)
-    fi
-fi
+source <(arthur completion)
 
 # use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char
