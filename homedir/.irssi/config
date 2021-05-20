@@ -28,6 +28,14 @@ servers = (
     address = "irc.freenode.net";
     chatnet = "Freenode";
     port = "6667";
+    # use_ssl = "no";
+    # ssl_verify = "no";
+    # autoconnect = "yes";
+  }
+  {
+    address = "irc.libera.chat";
+    chatnet = "LiberaChat";
+    port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
@@ -102,6 +110,11 @@ chatnets = {
     type = "IRC";
     nick = "joncol";
     autosendcmd = "/msg nickserv identify secret ;wait 2000; /wc;";
+  };
+  LiberaChat = {
+    type = "IRC";
+    nick = "jco";
+    autosendcmd = "/msg nickserv identify <SECRET> ;wait 2000; /wc;";
   };
 };
 
