@@ -41,3 +41,4 @@ xmonad.hi
 xmonad.o
 /homedir/.config/Slack/local-settings.json
 /homedir/.lein/repl-history
+/homedir/.irssi/config.autosave
