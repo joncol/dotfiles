@@ -770,7 +770,10 @@
               (lsp)
               (setq evil-shift-width 2)
               (define-key haskell-mode-map (kbd "C-c C-c C-s")
-                'haskell-mode-stylish-buffer)))
+                'haskell-mode-stylish-buffer)
+              (setq haskell-auto-insert-module-format-string
+                    "module %s\n  () where\n\n")
+              (haskell-auto-insert-module-template)))
   (add-hook 'haskell-literate-mode-hook #'lsp))
 
 (use-package lsp-mode
