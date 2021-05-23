@@ -62,6 +62,18 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                           path
                                           (or desc "video"))))))))
 
+;; See: https://github.com/emacs-evil/evil-surround/issues/20#issuecomment-471516289
+(defmacro define-and-bind-quoted-text-object (name key start-regex end-regex)
+  (let ((inner-name (make-symbol (concat "evil-inner-" name)))
+        (outer-name (make-symbol (concat "evil-a-" name))))
+    `(progn
+       (evil-define-text-object ,inner-name (count &optional beg end type)
+         (evil-select-paren ,start-regex ,end-regex beg end type count nil))
+       (evil-define-text-object ,outer-name (count &optional beg end type)
+         (evil-select-paren ,start-regex ,end-regex beg end type count t))
+       (define-key evil-inner-text-objects-map ,key #',inner-name)
+       (define-key evil-outer-text-objects-map ,key #',outer-name))))
+
 (use-package cha
   :straight (cha :type git :host github :repo "joncol/cha")
   :commands (cha-create-story cha-edit-story)
@@ -273,7 +285,10 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               ;; (flyspell-mode)
               (smartparens-mode -1)
               (evil-leader/set-key "z l" 'org-toggle-link-display)
-              (setq company-idle-delay 0.5)))
+              (setq company-idle-delay 0.5)
+              (define-and-bind-quoted-text-object "tilde" "~" "~" "~")
+              (define-and-bind-quoted-text-object "equals" "=" "=" "=")
+              (define-and-bind-quoted-text-object "slash" "/" "/" "/")))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
