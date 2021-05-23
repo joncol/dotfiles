@@ -172,6 +172,7 @@ EOF
 
 cat <<EOF > .dir-locals.el
 ((haskell-mode . ((haskell-stylish-on-save . t)
+                  (haskell-mode-stylish-haskell-path . "brittany")
                   (fill-column . 80))))
 EOF
 
@@ -207,7 +208,7 @@ steps:
       sort: true
 
       # See `separate_lists` for the `imports` step.
-      separate_lists: true
+      separate_lists: false
 
   # Format record definitions. This is disabled by default.
   #
@@ -418,7 +419,7 @@ steps:
       #   > import Data.Foldable (Foldable(fold, foldl, foldMap))
       #
       # Default: true
-      separate_lists: true
+      separate_lists: false
 
       # Space surround option affects formatting of import lists on a single
       # line. The only difference is single space after the initial
