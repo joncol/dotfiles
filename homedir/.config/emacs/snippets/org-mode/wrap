@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Wrap results in json
+# key: :wrap
+# --
+:wrap example json
