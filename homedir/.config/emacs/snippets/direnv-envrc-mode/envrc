@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Default nix-enabled envrc file
+# key: envrc
+# --
+[[ -n "${DIRENV_ALLOW_NIX}" ]] && use nix
+
+if [ -e .envrc-local ]; then
+   source .envrc-local
+fi
