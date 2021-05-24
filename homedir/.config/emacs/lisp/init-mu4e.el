@@ -61,6 +61,7 @@
             (lambda ()
               (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
               (require 'mu4e)
+              (require 'mu4e-contrib)
               (require 'imapfilter)
               (setq mu4e-maildir "~/.mail")
               (dolist (m (list mu4e-main-mode-map
