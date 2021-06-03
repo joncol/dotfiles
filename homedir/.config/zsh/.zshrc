@@ -41,8 +41,8 @@ antigen init ~/.antigenrc
 
 alias sudo="sudo "
 alias git=hub
-alias a="gcalcli agenda now tomorrow --details=description --details=conference"
-alias aw="gcalcli agenda --details=description"
+alias a="LC_ALL=C gcalcli agenda now tomorrow --details=description --details=conference"
+alias aw="LC_ALL=C gcalcli agenda --details=description"
 alias cu="yay -Syy && yay -Qu"
 alias mo=mimeopen
 alias u="yay -Syu --noconfirm"
