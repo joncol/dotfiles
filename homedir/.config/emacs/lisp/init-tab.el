@@ -22,6 +22,8 @@
   (cond
    ((minibufferp)
     (minibuffer-complete))
+   ((s-starts-with? "magit-" (symbol-name major-mode))
+    (magit-section-toggle (magit-current-section)))
    (t
     (if (or (not yas/minor-mode)
             (null (yas-expand)))
@@ -59,25 +61,22 @@
       (yas-abort-snippet)
     (company-abort)))
 
-;; (global-set-key [tab] 'jco/tab-indent-or-complete)
-;; (global-set-key (kbd "TAB") 'jco/tab-indent-or-complete)
+(global-set-key [tab] 'jco/tab-indent-or-complete)
+(global-set-key (kbd "TAB") 'jco/tab-indent-or-complete)
 
-;; (with-eval-after-load 'company
-;;   (define-key company-active-map [tab] 'jco/expand-snippet-or-complete-selection)
-;;   (define-key company-active-map (kbd "TAB")
-;;     'expand-snippet-or-complete-selection))
+(with-eval-after-load 'company
+  (define-key company-active-map [tab] 'jco/expand-snippet-or-complete-selection)
+  (define-key company-active-map (kbd "TAB")
+    'expand-snippet-or-complete-selection))
 
-;; (with-eval-after-load 'yasnippet
-;;   (define-key yas-minor-mode-map [tab] nil)
-;;   (define-key yas-minor-mode-map (kbd "TAB") nil))
+(with-eval-after-load 'yasnippet
+  (define-key yas-minor-mode-map [tab] nil)
+  (define-key yas-minor-mode-map (kbd "TAB") nil))
 
-;; (define-key yas-keymap [tab] 'jco/tab-complete-or-next-field)
-;; (define-key yas-keymap (kbd "TAB") 'jco/tab-complete-or-next-field)
-;; (define-key yas-keymap [(control tab)] 'yas-next-field)
-;; (define-key yas-keymap (kbd "C-g") 'jco/abort-company-or-yas)
-
-;; (with-eval-after-load 'magit
-;;   (bind-key [tab] 'magit-section-toggle magit-mode-map))
+(define-key yas-keymap [tab] 'jco/tab-complete-or-next-field)
+(define-key yas-keymap (kbd "TAB") 'jco/tab-complete-or-next-field)
+(define-key yas-keymap [(control tab)] 'yas-next-field)
+(define-key yas-keymap (kbd "C-g") 'jco/abort-company-or-yas)
 
 ;; (with-eval-after-load 'monky
 ;;   (bind-key [tab] 'monky-toggle-section monky-mode-map))

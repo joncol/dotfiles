@@ -1235,6 +1235,7 @@ Example: `helloWorld` becomes `Hello world`."
                   "gmail.com"))))
 
 (use-package smart-tab
+  :disabled t
   :init
   (setq smart-tab-user-provided-completion-function
         'jco/expand-snippet-or-complete-selection)
