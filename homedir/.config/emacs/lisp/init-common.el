@@ -673,6 +673,19 @@
   (setq bibtex-completion-pdf-field "File")
   (setq bibtex-completion-notes-path "~/org/roam/ref"))
 
+(use-package j-mode
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.ij[rstp]$" . j-mode))
+  :custom
+  (j-console-cmd "jconsole")
+  :config
+  (custom-set-faces
+   '(j-verb-face ((t (:foreground "Red"))))
+   '(j-adverb-face ((t (:foreground "Green"))))
+   '(j-conjunction-face ((t (:foreground "Blue"))))
+   '(j-other-face ((t (:foreground "Black"))))))
+
 (use-package help-fns+
   :disabled t
   :defer t)
