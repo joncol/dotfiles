@@ -206,6 +206,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    '((ditaa . t)
      (dot . t)
      (haskell . t)
+     (J . t)
      (latex . t)
      (octave . t)
      (plantuml . t)
