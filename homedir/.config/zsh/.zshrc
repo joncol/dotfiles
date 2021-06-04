@@ -19,7 +19,7 @@ zstyle ':completion:*:messages' format "%F{green}%d%f"
 autoload -Uz compinit && compinit -u
 autoload -U +X bashcompinit && bashcompinit
 
-source <(arthur completion)
+# source <(arthur completion)
 
 # use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char
