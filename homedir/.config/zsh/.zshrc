@@ -48,6 +48,7 @@ alias mo=mimeopen
 alias u="yay -Syu --noconfirm"
 alias t=todoist
 alias vim=nvim
+alias visidata="LANG= visidata"
 
 if [ -d "$HOME/repos/mitmproxy" ]; then
     alias mitmproxy="cd $HOME/repos/mitmproxy/ && pipenv run mitmproxy && cd -"
