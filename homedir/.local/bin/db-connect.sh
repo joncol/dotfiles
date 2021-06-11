@@ -86,6 +86,7 @@ if [ $verbose = true ]; then
     echo "Username:      $db_user"
     echo "Password:      ${db_password:?couldn\'t find DB_PASS or POSTGRES_PASSWORD in parameter store}"
     echo ""
+    exit 0
 fi
 
 if [ $dump = true ]; then
