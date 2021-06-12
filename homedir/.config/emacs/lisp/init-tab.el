@@ -48,12 +48,12 @@
                     (yas-next-field))))
           (yas-next-field)))))
 
-(defun jco/expand-snippet-or-complete-selection ()
+(defun jco/expand-snippet-or-next-selection ()
   (interactive)
   (if (or (not yas/minor-mode)
           (null (yas-expand))
           (company-abort))
-      (company-complete-selection)))
+      (company-select-next)))
 
 (defun jco/abort-company-or-yas ()
   (interactive)
@@ -65,9 +65,9 @@
 (global-set-key (kbd "TAB") 'jco/tab-indent-or-complete)
 
 (with-eval-after-load 'company
-  (define-key company-active-map [tab] 'jco/expand-snippet-or-complete-selection)
+  (define-key company-active-map [tab] 'jco/expand-snippet-or-next-selection)
   (define-key company-active-map (kbd "TAB")
-    'expand-snippet-or-complete-selection))
+    'jco/expand-snippet-or-next-selection))
 
 (with-eval-after-load 'yasnippet
   (define-key yas-minor-mode-map [tab] nil)
