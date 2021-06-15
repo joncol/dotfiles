@@ -134,7 +134,10 @@
             (setq evil-shift-width 4)
             (modify-syntax-entry ?- "w") ;; do not treat "_" as a word separator
             (footnote-mode)
-            (turn-on-orgtbl)))
+            (turn-on-orgtbl)
+            (setq markdown-gfm-use-electric-backquote nil)
+            (setq markdown-spaces-after-code-fence 0)
+            (setq markdown-gfm-additional-languages '("bash"))))
 
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
