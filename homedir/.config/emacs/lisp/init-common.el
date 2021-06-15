@@ -505,10 +505,10 @@
 (use-package elec-pair
   :init
   (electric-pair-mode)
-  :config
-  ;; (setq electric-pair-preserve-balance nil)
-  (setq electric-pair-skip-whitespace nil)
-  (setq electric-pair-delete-adjacent-pairs nil))
+  :custom
+  (electric-pair-skip-whitespace nil)
+  (electric-pair-delete-adjacent-pairs nil)
+  (electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
 (use-package esup
   :defer t
