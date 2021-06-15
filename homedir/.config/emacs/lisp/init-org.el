@@ -289,7 +289,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               (setq company-idle-delay 0.5)
               (define-and-bind-quoted-text-object "tilde" "~" "~" "~")
               (define-and-bind-quoted-text-object "equals" "=" "=" "=")
-              (define-and-bind-quoted-text-object "slash" "/" "/" "/")))
+              (define-and-bind-quoted-text-object "slash" "/" "/" "/")
+              (define-and-bind-quoted-text-object "dollar" "$" "$" "$")))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
