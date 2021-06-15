@@ -256,6 +256,18 @@ invokation."
        (normal-mode)
      (funcall (quote ,mode))))
 
+(defun jco/show-elec-pairs ()
+  "Show the `electric-pair-pairs' and `electric-pair-text-pairs' lists."
+  (interactive)
+  (let ((s1 (mapcar (lambda (cs)
+                      (cons (format "%c" (car cs)) (format "%c" (cdr cs))))
+                    electric-pair-pairs))
+        (s2 (mapcar (lambda (cs)
+                      (cons (format "%c" (car cs)) (format "%c" (cdr cs))))
+                    electric-pair-text-pairs)))
+    (message "electric-pair-pairs: %s" (prin1-to-string s1))
+    (message "electric-pair-text-pairs: %s" (prin1-to-string s2))))
+
 (provide 'init-common-functions)
 
 ;;; init-common-functions.el ends here
