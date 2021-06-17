@@ -1302,7 +1302,9 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package try)
 
 (use-package typescript-mode
-  :defer t)
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode)))
 
 (use-package undo-tree
   :init
