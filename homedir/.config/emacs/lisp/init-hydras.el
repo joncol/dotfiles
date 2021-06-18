@@ -24,6 +24,7 @@
   ("c" jco/hydra-config/body "cfg")
   ("f" jco/hydra-find/body "find")
   ("g" jco/hydra-gtd/body "gtd")
+  ("h" jco/hydra-hideshow/body "hideshow")
   ("l" jco/hydra-lang/body "lang")
   ("o" jco/hydra-org/body "org")
   ("s" jco/hydra-swiper/body "swiper")
@@ -60,6 +61,14 @@ find: _f_un _l_ib _v_ar"
 
 (defvar jco/global-hl-line-mode-hydra-temp)
 (set (make-local-variable 'jco/global-hl-line-mode-hydra-temp) nil)
+
+(defhydra jco/hydra-hideshow (:color teal :hint nil)
+  "hideshow"
+  ("a" hs-show-all "show-all")
+  ("t" hs-hide-all "hide-all")
+  ("c" hs-toggle-hiding "toggle-hiding")
+  ("d" hs-hide-block "hide-block")
+  ("s" hs-show-block "show-block"))
 
 (defhydra jco/hydra-lang (:color teal :hint nil)
   "
