@@ -226,7 +226,7 @@
     "c v" 'evilnc-toggle-invert-comment-line-by-line
     "c b" 'comment-box))
 
-(cl-defun jco/move-window-to-bottom (&optional (height 10))
+(cl-defun jco/move-window-to-bottom (&optional (height 20))
   "Move window to bottom and make it be HEIGHT lines high.
 Useful for REPL windows."
   (interactive)
