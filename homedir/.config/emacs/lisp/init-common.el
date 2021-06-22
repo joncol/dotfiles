@@ -404,6 +404,7 @@
   (setq ecb-tip-of-the-day nil))
 
 (use-package eclim
+  :disabled t
   :config
   ;; (setq eclimd-autostart t)
   (setq eclimd-autostart-with-default-workspace t)
@@ -487,6 +488,7 @@
 (use-package ghub)
 
 (use-package gradle-mode
+  :disabled t
   :config
   (add-hook 'java-mode-hook
             (lambda ()
