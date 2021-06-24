@@ -10,6 +10,7 @@ let g:go_version_warning = 0
 
 call plug#begin('~/.vim/plugged')
 Plug '29decibel/codeschool-vim-theme'
+Plug 'LnL7/vim-nix'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'MaxSt/FlatColor'
 Plug 'OrangeT/vim-csharp'
