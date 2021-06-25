@@ -115,6 +115,8 @@
           (lambda ()
             (modify-syntax-entry ?_ "w")))
 
+(setq prolog-system 'gnu)
+
 (add-hook 'prolog-mode-hook
           (lambda ()
             (setq evil-shift-width 4)))
