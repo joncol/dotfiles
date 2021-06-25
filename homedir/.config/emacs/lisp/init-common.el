@@ -115,6 +115,10 @@
           (lambda ()
             (modify-syntax-entry ?_ "w")))
 
+(add-hook 'prolog-mode-hook
+          (lambda ()
+            (setq evil-shift-width 4)))
+
 (add-hook 'sql-mode-hook
           (lambda ()
             (setq evil-shift-width 4)
