@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: GHC options
+# key: ghc
+# --
+ghc-options: -Wall -Wextra -threaded -rtsopts -with-rtsopts=-N
