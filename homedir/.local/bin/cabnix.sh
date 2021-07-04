@@ -172,7 +172,7 @@ EOF
 
 cat <<EOF > .dir-locals.el
 ((haskell-mode . ((haskell-stylish-on-save . t)
-                  (haskell-mode-stylish-haskell-path . "brittany")
+                  (haskell-mode-stylish-haskell-path . "stylish-haskell")
                   (fill-column . 80))))
 EOF
 
