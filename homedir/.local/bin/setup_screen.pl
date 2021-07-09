@@ -66,7 +66,7 @@ if ($dp_n_name) {
 if ($dvid_n_name) {
     say "Found right home screen: " . $dvid_n_name;
     if ($left_home_screen && $dp_n_name) {
-        `xrandr --output $dvid_n_name --auto --right-of $dp_n_name`;
+        `xrandr --output $dvid_n_name --auto --left-of $dp_n_name`;
     } elsif ($left_home_screen && $hdmi_name) {
         `xrandr --output $dvid_n_name --auto --right-of $hdmi_name`;
     } else {
