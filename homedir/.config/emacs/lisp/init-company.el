@@ -16,6 +16,7 @@
          ("C-k" . company-select-previous-or-abort)
          ("C-n" . company-select-next-or-abort)
          ("C-p" . company-select-previous-or-abort)
+         ("<backtab>" . company-select-previous-or-abort)
          ("C-d" . company-show-doc-buffer)
          ("M-." . company-show-location)
          ("RET" . company-complete-selection))
