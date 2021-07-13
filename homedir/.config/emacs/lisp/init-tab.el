@@ -22,16 +22,16 @@
   (cond
    ((minibufferp)
     (minibuffer-complete))
-   ((s-starts-with? "magit-" (symbol-name major-mode))
+   ((derived-mode-p 'magit-mode (symbol-name major-mode))
     (magit-section-toggle (magit-current-section)))
+   ((derived-mode-p 'org-mode) (org-cycle))
    (t
     (if (or (not yas/minor-mode)
             (null (yas-expand)))
-        (if (jco/check-expansion)
-            (progn
-              (company-manual-begin)
-              (if (null company-candidates)
-                  (company-abort))))))))
+        (if (jco/check-expansion) (progn
+                                    (company-manual-begin)
+                                    (if (null company-candidates)
+                                        (company-abort))))))))
 
 (defun jco/tab-complete-or-next-field ()
   (interactive)
