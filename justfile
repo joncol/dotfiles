@@ -19,3 +19,36 @@ xmonad:
   Icon=xmonad.png
   Type=XSession
   EOF
+
+# Create Git hooks to make sure that the version of `init.el` that is committed
+# corresponds to the correct version of `init.org`.
+hooks:
+  #!/usr/bin/env bash
+  cat <<"EOF" > .git/hooks/pre-commit
+  #!/bin/sh
+
+  # Create a temp file
+  TMPFILE=`mktemp` || exit 1
+
+  # Set mode in temp file.
+  echo "-*- mode: org -*-" >> $TMPFILE
+
+  # Write the staged version of `init.org`.
+  git show :init.org >> $TMPFILE
+
+  # Tangle the temp file.
+  TANGLED=`emacsclient -e "(let ((enable-local-variables :safe)) (car (org-babel-tangle-file \"$TMPFILE\")))"`
+
+  # Overwrite .emacs.d/init.el with the file that is based on the staged changes.
+  mv -f "${TANGLED//\"}" init.el
+
+  # Stage the file
+  git add init.el
+  EOF
+
+  cat <<"EOF" > .git/hooks/post-commit
+  #!/bin/sh
+
+  # Retangle `init.org` as it is, so all changes are reflected in `init.el`.
+  emacsclient -e "(let ((enable-local-variables :safe)) (car (org-babel-tangle-config)))"
+  EOF
