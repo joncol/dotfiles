@@ -3733,6 +3733,26 @@ Example:
 
 ;; (bind-key [tab] 'completion-at-point read-expression-map)
 
+(defun org-babel-tangle-config ()
+  "Tangle emacs config file.  Uses the following custom logic:
+
+1. Detangle init.el back to org file in order to pick up changes
+to custom variables. Should only pick up changes to that block as
+that's the only one exported with links enabled.
+
+2. Tangle file with only id type links available. This is a
+workaround to prevent git links from being used when in a git
+repo."
+  (interactive)
+  (let ((org-link-parameters '(("id" :follow org-id-open))))
+    ;; Read back changes to custom variables in init.el.
+    (save-window-excursion
+      (org-babel-detangle "init.el"))
+    (let
+        ;; Avoid infinite recursion.
+        ((after-save-hook (remove 'org-babel-tangle-config+ after-save-hook)))
+      (org-babel-tangle-file (concat user-emacs-directory "init.org")))))
+
 (defvar jco/theme)
 
 ;; Change this to whatever theme you want.
