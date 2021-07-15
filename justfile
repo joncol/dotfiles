@@ -34,17 +34,19 @@ hooks:
   echo "-*- mode: org -*-" >> $TMPFILE
 
   # Write the staged version of `init.org`.
-  git show :init.org >> $TMPFILE
+  git show :homedir/.config/emacs/init.org >> $TMPFILE
 
   # Tangle the temp file.
   TANGLED=`emacsclient -e "(let ((enable-local-variables :safe)) (car (org-babel-tangle-file \"$TMPFILE\")))"`
 
   # Overwrite .emacs.d/init.el with the file that is based on the staged changes.
-  mv -f "${TANGLED//\"}" init.el
+  mv -f "${TANGLED//\"}" homedir/.config/emacs/init.el
 
   # Stage the file
-  git add init.el
+  git add homedir/.config/emacs/init.el
   EOF
+
+  chmod +x .git/hooks/pre-commit
 
   cat <<"EOF" > .git/hooks/post-commit
   #!/bin/sh
@@ -52,3 +54,5 @@ hooks:
   # Retangle `init.org` as it is, so all changes are reflected in `init.el`.
   emacsclient -e "(let ((enable-local-variables :safe)) (car (org-babel-tangle-config)))"
   EOF
+
+  chmod +x .git/hooks/post-commit

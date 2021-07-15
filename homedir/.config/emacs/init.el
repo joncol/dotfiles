@@ -16,6 +16,9 @@
 
 (setq straight-use-package-by-default t)
 
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(setq-default flycheck-emacs-lisp-load-path load-path)
+
 (defvar evil-want-C-i-jump nil)
 
 (defun apply-ansi-colors ()
@@ -463,8 +466,8 @@ invokation."
 (use-package evil-search-highlight-persist
   :after (evil facemenu)
   :bind (:map evil-search-highlight-persist-map
-	 ("C-x SPC" . evil-search-highlight-persist-remove-all)
-	 ("C-x C-SPC" . evil-search-highlight-persist-remove-all))
+     ("C-x SPC" . evil-search-highlight-persist-remove-all)
+     ("C-x C-SPC" . evil-search-highlight-persist-remove-all))
   :init
   (global-evil-search-highlight-persist t))
 
@@ -507,6 +510,46 @@ Useful for REPL windows."
   (evil-window-move-very-bottom)
   (evil-window-set-height height))
 
+(use-package projectile
+  :defer t
+  :init
+  (projectile-mode)
+
+  :config
+  (when (not (eq system-type 'windows-nt))
+    (setq projectile-indexing-method 'native))
+  (setq projectile-enable-caching t)
+  (evil-leader/set-key ". c" #'projectile-commander)
+  (evil-leader/set-key ". f" #'counsel-projectile-find-file)
+  (evil-leader/set-key ". a" #'counsel-projectile-ag)
+  (evil-leader/set-key ". r" (lambda ()
+                               (interactive)
+                               (counsel-projectile-rg "--hidden")))
+  (def-projectile-commander-method ?a
+    "Ag."
+    (counsel-projectile-ag))
+  (def-projectile-commander-method ?F
+    "Git fetch."
+    (magit-status)
+    (if (fboundp 'magit-fetch-from-upstream)
+        (call-interactively #'magit-fetch-from-upstream)
+      (call-interactively #'magit-fetch-current)))
+  (def-projectile-commander-method ?j
+    "Jack-in."
+    (let* ((opts (projectile-current-project-files))
+           (file (ido-completing-read
+                  "Find file: "
+                  opts
+                  nil nil nil nil
+                  (car (cl-member-if
+                        (lambda (f)
+                          (string-match "core\\.clj\\'" f))
+                        opts)))))
+      (find-file (expand-file-name
+                  file (projectile-project-root)))
+      (run-hooks 'projectile-find-file-hook)
+      (cider-jack-in))))
+
 (menu-bar-mode -1)
 ;; Change for different username.
 (setq inhibit-startup-echo-area-message "jco")
@@ -546,6 +589,40 @@ ethan-wspace."
 
 (global-set-key (kbd "C-M-S-<backspace>") 'jco/tighten-braces)
 (evil-leader/set-key "s b" 'jco/tighten-braces)
+
+(use-package company
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+
+  :bind (([C-iso-lefttab] . company-ispell)
+         :map company-active-map
+         ("C-j" . company-select-next-or-abort)
+         ("C-k" . company-select-previous-or-abort)
+         ("C-n" . company-select-next-or-abort)
+         ("C-p" . company-select-previous-or-abort)
+         ("<backtab>" . company-select-previous-or-abort)
+         ("C-d" . company-show-doc-buffer)
+         ("M-." . company-show-location)
+         ("RET" . company-complete-selection))
+
+  :config
+  (add-to-list 'completion-styles 'initials t)
+  (setq company-tooltip-align-annotations t)
+  (setq company-dabbrev-ignore-case 'keep-prefix)
+  (setq company-dabbrev-code-ignore-case nil)
+  (setq company-dabbrev-downcase nil)
+
+  (setq company-tooltip-limit 20)
+  (setq company-minimum-prefix-length 1)
+  (setq company-idle-delay 0.0)
+  (setq company-echo-delay 0)
+  ;; (setq company-begin-commands '(self-insert-command))
+  (setq company-transformers '(company-sort-by-occurrence)))
+
+(use-package company-box
+  :disabled t
+  :if (display-graphic-p)
+  :hook (company-mode . company-box-mode))
 
 ;;; Avoid the empty (custom-set-faces) at end of init.el.
 (setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
@@ -842,7 +919,7 @@ ethan-wspace."
 
 (use-package counsel-projectile
   :init
-  (setq projectile-keymap-prefix (kbd "C-c p"))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   :config
   (counsel-projectile-mode)
   (setq counsel-projectile-ag-initial-input '(thing-at-point 'symbol t))
@@ -1877,12 +1954,494 @@ Example: `helloWorld` becomes `Hello world`."
 
 (setq vc-follow-symlinks nil)
 
-(use-package undo-tree
-  :init
-  (global-undo-tree-mode)
+(defun create-scm-string (type branch)
+  "Create a string to be shown in prompt.
+TYPE is either \"git\" or \"hg\" and BRANCH is the branch name."
+  (propertize (concat "[" type ":"
+                      (if (not (string-empty-p branch))
+                          branch
+                        "no branch")
+                      "] ")
+              'face `(:foreground "#f62459")))
+
+(defun get-scm-branch (dir)
+  "Return Git or Mercurial branch name of directory DIR."
+  (interactive)
+  (cond ((and (eshell-search-path "git")
+              (locate-dominating-file dir ".git"))
+         (let* ((git-output
+                 (shell-command-to-string
+                  (concat "git branch | grep '\\*' | sed -e 's/^\\* //'")))
+                (git-branch (if (not (string-empty-p git-output))
+                                (substring git-output 0 -1)
+                              "")))
+           (create-scm-string "git" git-branch)))
+        ((and (eshell-search-path "hg")
+              (locate-dominating-file dir ".hg"))
+         (let* ((hg-output
+                 (shell-command-to-string (concat "hg branch")))
+                (hg-branch (if (not (string-empty-p hg-output))
+                               (substring hg-output 0 -1)
+                             "")))
+           (create-scm-string "hg" hg-branch)))
+        (t "")))
+
+(setq eshell-prompt-function
+      (lambda ()
+        (concat (get-scm-branch (eshell/pwd))
+                (abbreviate-file-name (eshell/pwd)) "\n$ ")))
+
+(setq eshell-highlight-prompt t
+      eshell-prompt-regexp "\$ ")
+
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (set-face-foreground 'eshell-prompt "#f39c12")
+            (defalias 'ff 'find-file)
+            (defalias 'open 'find-file)
+
+            (define-key eshell-mode-map "\C-w" 'evil-window-map)
+
+            ;; Make helm work in eshell.
+            (when helm-mode
+              (eshell-cmpl-initialize)
+              (define-key eshell-mode-map [remap eshell-pcomplete]
+                'helm-esh-pcomplete)
+              (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history))))
+
+(defun jco/eshell-here ()
+  "Open up a new shell in the directory associated with the current buffer.
+The eshell buffer is renamed to match that directory to make multiple eshell
+windows easier."
+  (interactive)
+  (let* ((parent (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   default-directory))
+         (height (/ (window-total-height) 3))
+         (name   (car (last (split-string parent "/" t)))))
+    (split-window-vertically (- height))
+    (other-window 1)
+    (eshell "new")
+    (rename-buffer (concat "*eshell: " name "*"))
+
+    (insert (concat "ls"))
+    (eshell-send-input)))
+
+(defun eshell/x ()
+  "Quit eshell and delete its window."
+  (eshell-quit-process)
+  (delete-window))
+
+(cond
+ ((and (eq system-type 'windows-nt) (display-graphic-p))
+  (add-to-list 'default-frame-alist
+               '(font . "Hack-10"))
+  (set-frame-position (selected-frame) 0 0)
+  (set-frame-size (selected-frame) 100 60))
+
+ ((and (eq system-type 'gnu/linux) (display-graphic-p))
+  (add-to-list 'default-frame-alist
+               '(font . "FiraCodeMedium-11"))
+  ;; (if (>= (x-display-pixel-height) 2160)
+  ;;     (set-face-attribute 'default nil :height 140)
+  ;;   (set-face-attribute 'default nil :height 110))
+  (set-frame-size (selected-frame) 93 64))
+
+ ((eq system-type 'darwin)
+  (setq mac-right-option-modifier 'none)
+  (when (display-graphic-p)
+    (if (<= (x-display-pixel-height) 900)
+        (set-frame-size (selected-frame) 93 47)
+      (set-frame-size (selected-frame) 93 60))
+    (set-face-attribute 'default nil :height 145))))
+
+(use-package ligature
+  :straight (:host github :repo "mickeynp/ligature.el")
   :config
-  (setq undo-tree-visualizer-diff t)
-  (setq undo-tree-visualizer-timestamps t))
+  ;; Enable the "www" ligature in every possible major mode.
+  (ligature-set-ligatures 't '("www"))
+
+  ;; Enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it.
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+
+  ;; Source: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-ligatureel
+  ;; Enable ligatures in programming modes.
+  (ligature-set-ligatures
+   '(clojure-mode dhall-mode haskell-mode)
+   '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+     ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+     "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+     "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" "/*" "/**"
+     "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+     "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+     "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+     "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+     "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+     "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+
+  (global-ligature-mode t))
+
+(use-package hydra
+  :config
+  (with-eval-after-load 'evil-leader
+    (evil-leader/set-key "m" 'jco/hydra-main-menu/body)))
+
+(defun open-config-file (file-name)
+  "Open FILE-NAME in emacs configuration directory."
+  (interactive)
+  (find-file (concat user-emacs-directory file-name)))
+
+(defhydra jco/hydra-main-menu (:color teal :hint nil)
+  "main menu"
+  ("a" jco/hydra-apps/body "apps")
+  ("b" counsel-bookmark "bookmarks")
+  ("c" jco/hydra-config/body "cfg")
+  ("f" jco/hydra-find/body "find")
+  ("g" jco/hydra-gtd/body "gtd")
+  ("h" jco/hydra-hideshow/body "hideshow")
+  ("l" jco/hydra-lang/body "lang")
+  ("o" jco/hydra-org/body "org")
+  ("s" jco/hydra-swiper/body "swiper")
+  ("u" jco/hydra-util/body "util")
+  ("w" jco/hydra-writing/body "writing"))
+
+(defhydra jco/hydra-config (:color teal :hint nil)
+  "config"
+  ("e" (open-config-file "init.org") "edit")
+  ("u" jco/update-dotfiles "update"))
+
+(defhydra jco/hydra-find (:color teal :hint nil)
+  "
+find: _f_un _l_ib _v_ar"
+  ("f" find-function)
+  ("l" find-library)
+  ("v" find-variable))
+
+(defhydra jco/hydra-gtd (:color teal :hint nil)
+  "gtd"
+  ("b" (jco/find-org-file "blog.org") "blog")
+  ("h" (jco/find-org-file "health.org") "health")
+  ("i" (jco/find-org-file "incoming.org") "incoming")
+  ("n" (jco/find-org-file "notes.org") "notes")
+  ("p" (jco/find-org-file "todo.org" (projectile-project-root)) "project-todo")
+  ("r" (jco/find-org-file "reading.org") "reading")
+  ("t" (jco/find-org-file "todo.org") "todo")
+  ("w" (jco/find-org-file "work.org") "work"))
+
+(defvar jco/global-hl-line-mode-hydra-temp)
+(set (make-local-variable 'jco/global-hl-line-mode-hydra-temp) nil)
+
+(defhydra jco/hydra-hideshow (:color teal :hint nil)
+  "hideshow"
+  ("a" hs-show-all "show-all")
+  ("t" hs-hide-all "hide-all")
+  ("c" hs-toggle-hiding "toggle-hiding")
+  ("d" hs-hide-block "hide-block")
+  ("s" hs-show-block "show-block"))
+
+(defhydra jco/hydra-lang (:color teal :hint nil)
+  "
+lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
+  ("f" flyspell-mode)
+  ("l" langtool-check)
+  ("c" langtool-correct-buffer)
+  ("d" langtool-check-done)
+  ("s" sdcv-search))
+
+(defhydra jco/hydra-org (:color teal :hint nil)
+  "org"
+  ("a" org-agenda-list "agenda")
+  ("c" org-clock-goto "org-clock-goto")
+  ("d" deft "deft")
+  ("g" org-capture-goto-last-stored "goto captured")
+  ("p" org-pomodoro "org-pomodoro")
+  ("x" org-clock-remove-overlays "remove clock overlays")
+  ("G" org-refile-goto-last-stored "goto refiled")
+  ("i" org-roam-insert "insert")
+  ("f" org-roam-find-file "find-file")
+  ("b" org-roam-buffer-activate "org-roam-buffer")
+  ("t" org-roam-tag-add "add tag"))
+
+(defhydra jco/hydra-swoop (:color teal :hint nil)
+  "
+swoop: _m_ulti multi-_a_ll _s_woop"
+  ("m" helm-multi-swoop)
+  ("a" helm-multi-swoop-all)
+  ("s" helm-swoop))
+
+(defhydra jco/hydra-swiper (:color teal :hint nil)
+  "
+swiper: _s_wiper _a_ll _m_ulti"
+  ("s" swiper)
+  ("a" swiper-all)
+  ("m" swiper-multi))
+
+(defhydra jco/hydra-text (:color teal :hint nil)
+  "
+text: _c_lean-trailing-ws"
+  ("c" ethan-wspace-clean-all))
+
+(defhydra jco/hydra-util (:color teal :hint nil)
+  "
+util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate _e_diff-regions-wordwise ninsert-_t_imestamp _g_ist _h_ide-modeline _m_arkdown-other-window"
+  ("k" jco/hydra-kurecolor/body)
+  ("y" jco/yank-current-filename)
+  ("f" jco/insert-current-filename)
+  ("b" (lambda () (interactive) (jco/insert-current-filename t)))
+  ("d" jco/insert-date)
+  ("e" ediff-regions-wordwise)
+  ("t" jco/insert-timestamp)
+  ("g" yagist-region-or-buffer)
+  ("h" hide-mode-line-mode)
+  ("m" (lambda ()
+         (interactive)
+         (markdown-other-window)
+         (browse-url-of-buffer markdown-output-buffer-name))))
+
+(defhydra jco/hydra-kurecolor
+  (:color pink :hint nil
+   :pre (progn (set 'jco/global-hl-line-mode-hydra-temp (global-hl-line-mode))
+               (global-hl-line-mode -1))
+   :post (global-hl-line-mode jco/global-hl-line-mode-hydra-temp))
+  "
+kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_rightness(-)"
+  ("H" kurecolor-increase-hue-by-step)
+  ("h" kurecolor-decrease-hue-by-step)
+  ("S" kurecolor-increase-saturation-by-step)
+  ("s" kurecolor-decrease-saturation-by-step)
+  ("B" kurecolor-increase-brightness-by-step)
+  ("b" kurecolor-decrease-brightness-by-step)
+  ("q" nil "quit" :color blue))
+
+(defhydra jco/hydra-writing (:color teal :hint nil)
+  "writing"
+  ("b" ivy-bibtex "ivy-bibtex")
+  ("l" ligature-mode "ligatures")
+  ("n" org-noter "org-noter")
+  ("o" (jco/toggle-mode olivetti-mode) "olivetti"))
+
+(defhydra jco/hydra-apps (:color teal :hint nil)
+  "app"
+  ("c" cfw:open-org-calendar "calendar")
+  ("e" (erc :server "irc.freenode.net" :port 6667) "erc")
+  ("f" (jco/elfeed-load-db-and-open) "elfeed")
+  ("m" (lambda ()
+         (interactive)
+         (jco/init-mu4e-contexts)
+         (require 'mu4e)
+         (mu4e)) "mu4e")
+  ("s" jco/eshell-here "eshell")
+  ("v" jco/vim "vim")
+  ("w" eww "eww")
+  ("x" sx-tab-all-questions "sx"))
+
+(defhydra jco/hydra-apropos (:color teal :hint nil)
+  "
+apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
+  ("a" apropos)
+  ("c" apropos-command)
+  ("d" apropos-documentation)
+  ("e" apropos-value)
+  ("l" apropos-library)
+  ("o" apropos-user-option)
+  ("v" apropos-variable)
+  ("i" info-apropos)
+  ("x" xref-find-apropos))
+
+(use-package flyspell-correct-ivy
+  :after flyspell
+  :bind (:map flyspell-mode-map
+         ("C-;" . flyspell-correct-wrapper)))
+
+(use-package langtool
+  :defer t
+  :init
+  (setq langtool-language-tool-jar
+        "/opt/LanguageTool-3.9/languagetool-commandline.jar")
+  (setq langtool-autoshow-message-function 'langtool-autoshow-detail-popup))
+
+(when (eq system-type 'darwin)
+  (setenv "STARDICT_DATA_DIR" (expand-file-name "~/dictionaries")))
+
+(defun langtool-autoshow-detail-popup (overlays)
+  (when (require 'popup nil t)
+    ;; Do not interrupt current popup.
+    (unless (or popup-instances
+                ;; Suppress popup after typing `C-g` .
+                (memq last-command '(keyboard-quit)))
+      (let ((msg (langtool-details-error-message overlays)))
+        (popup-tip msg)))))
+
+(use-package sdcv
+  :defer t
+  :init
+  (global-set-key (kbd "C-c d") 'sdcv-search-input))
+
+(fset 'jco/paste-over [?\" ?0 ?p])
+
+(fset 'jco/paste-over-word [?v ?i ?w ?\" ?0 ?p])
+
+(evil-leader/set-key "p" 'jco/paste-over)
+(evil-leader/set-key "P" 'jco/paste-over-word)
+
+(use-package rich-minority
+  :config
+  (setq rm-blacklist ".")
+  (rich-minority-mode))
+
+(use-package smart-mode-line
+  :disabled t
+  :config
+  (setq sml/no-confirm-load-theme t)
+  (sml/setup))
+
+(use-package doom-modeline
+  :disabled t
+  :ensure t
+  :defer t
+  :hook (after-init . doom-modeline-init))
+
+(defun jco/init-mu4e-contexts ()
+  "Initialize mu4e contexts."
+  (require 'mu4e-context)
+  (setq mu4e-contexts
+        `(,(make-mu4e-context
+            :name "Gmail"
+            :enter-func (lambda ()
+                          (mu4e-message "Switch to the Gmail context"))
+            ;; leave-func not defined
+            :match-func (lambda (msg)
+                          (if msg
+                              (mu4e-message-contact-field-matches
+                               msg :to "jonas.collberg@gmail.com")
+                            (not (jco/at-office-p))))
+            :vars '((user-mail-address . "jonas.collberg@gmail.com")
+                    ;; (mu4e-compose-signature . "Jonas\n")
+                    (mu4e-drafts-folder . "/gmail/Drafts")
+                    (mu4e-sent-folder . "/gmail/Sent")
+                    (mu4e-trash-folder . "/gmail/Trash")
+                    (mu4e-maildir-shortcuts . (("/gmail/Inbox" . ?i)
+                                               ("/gmail/Sent" . ?s)
+                                               ("/gmail/Trash" . ?t)))
+                    (mu4e-completing-read-function . jco/compl-fun)))
+          ,(make-mu4e-context
+            :name "Work"
+            :enter-func (lambda () (mu4e-message "Switch to the Work context"))
+            ;; leave-fun not defined
+            :match-func (lambda (msg)
+                          (if msg
+                              (mu4e-message-contact-field-matches
+                               msg :to "jonas.collberg@zimpler.com")
+                            (jco/at-office-p)))
+            :vars '((user-mail-address . "jonas.collberg@zimpler.com")
+                    ;; (mu4e-compose-signature . (concat
+                    ;;                             "Kind regards,\n"
+                    ;;                             user-full-name))
+                    (mu4e-drafts-folder . "/zimpler/[Gmail].Drafts")
+                    (mu4e-sent-folder . "/zimpler/[Gmail].Sent Mail")
+                    (mu4e-trash-folder . "/zimpler/[Gmail].Trash")
+                    (mu4e-maildir-shortcuts .
+                                            (("/zimpler/Inbox" . ?i)
+                                             ("/zimpler/[Gmail].Sent Mail" . ?s)
+                                             ("/zimpler/[Gmail].Trash" . ?t)
+                                             ("/zimpler/[Gmail].All Mail" . ?a)))
+                    (mu4e-completing-read-function . jco/compl-fun))))))
+
+(when (and (not (eq system-type 'windows-nt))
+           (not (string-equal (system-name) "jco")))
+
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+
+  (add-hook 'mu4e-main-mode-hook
+            (lambda ()
+              (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+              (require 'mu4e)
+              (require 'mu4e-contrib)
+              (require 'imapfilter)
+              (setq mu4e-maildir "~/.mail")
+              (dolist (m (list mu4e-main-mode-map
+                               mu4e-headers-mode-map
+                               mu4e-view-mode-map))
+                (define-key m "\C-w" 'evil-window-map))
+              (dolist (h (list 'mu4e-main-mode-hook
+                               'mu4e-headers-mode-hook
+                               'mu4e-view-mode-hook))
+                (add-hook h (lambda () (evil-matchit-mode -1))))
+              (setq mu4e-get-mail-command "mbsync -a")
+              (setq mu4e-update-interval nil)
+              (setq mu4e-sent-messages-behavior 'sent)
+              (setq mu4e-html2text-command "w3m -T text/html")
+              (setq mu4e-view-show-images t)
+              (setq mu4e-view-show-addresses t)
+              (add-to-list 'mu4e-view-actions '("ViewInBrowser" .
+                                                mu4e-action-view-in-browser) t)
+              (setq mu4e-view-show-addresses t)
+              (setq mu4e-compose-context-policy 'always-ask)
+              (setq mu4e-compose-in-new-frame t)
+              (setq mu4e-save-multiple-attachments-without-asking t)
+              (setq mu4e-compose-format-flowed t)
+              (setq mu4e-compose-dont-reply-to-self t)
+              (setq mu4e-headers-date-format "%Y-%m-%d %H:%M")
+              (setq mu4e-headers-fields
+                    '((:date    . 25)
+                      (:flags   .  6)
+                      (:from    . 22)
+                      (:subject . nil)))
+
+              (setq mu4e-view-fields '(:from :to :cc :bcc :subject :flags
+                                       :date :maildir :mailing-list :tags
+                                       :attachments :signature :decryption))
+
+              (defun jco/compl-fun (prompt maildirs predicate require-match
+                                           initial-input)
+                (helm-comp-read prompt maildirs
+                                :name prompt
+                                :must-match t))
+
+              (defun jco/smtp-server ()
+                (cond ((or (s-contains? "gmail.com" user-mail-address)
+                           (s-contains? "zimpler.com" user-mail-address))
+                       "smtp.gmail.com")))
+
+              (defun jco/my-send-it ()
+                (setq smtpmail-starttls-credentials
+                      `((,(jco/smtp-server) 587 nil nil))
+                      smtpmail-auth-credentials
+                      `((,(jco/smtp-server) 587 user-mail-address nil))
+                      smtpmail-default-smtp-server (jco/smtp-server)
+                      smtpmail-smtp-server (jco/smtp-server))
+                (smtpmail-send-it))
+
+              (require 'smtpmail)
+
+              (setq message-send-mail-function 'jco/my-send-it
+                    starttls-use-gnutls t
+                    smtpmail-smtp-service 587)
+
+              ;; don't keep message buffers around
+              (setq message-kill-buffer-on-exit t)
+
+              (setq mu4e-org-contacts-file "~/.contacts")
+              (add-to-list 'mu4e-headers-actions
+                           '("org-contact-add" . mu4e-action-add-org-contact) t)
+              (add-to-list 'mu4e-view-actions
+                           '("org-contact-add" . mu4e-action-add-org-contact) t))))
+
+(add-hook 'mu4e-update-pre-hook
+          #'imapfilter)
+
+(add-hook 'mu4e-view-mode-hook
+          (lambda ()
+            (mu4e-view-fill-long-lines)))
+
+(add-hook 'mu4e-compose-mode-hook
+          (lambda ()
+            (ethan-wspace-mode -1)
+            (turn-off-auto-fill)
+            (footnote-mode)
+            (setq truncate-lines nil)
+            (setq word-wrap t)))
 
 (setq org-directory "~/org")
 
@@ -2526,6 +3085,578 @@ As such, it will only work when the notes window exists."
   (find-file (concat (or dir org-directory) "/" filename))
   (jco/ensure-todo-org-header))
 
+(global-set-key (kbd "C-c M-s") #'cider-selector)
+
+(defun create-test-report-window (&rest _)
+  "Create window to show test report buffer, if one exists.
+Place it to the right of the current window. If a window for the test report
+buffer already exists, don't create a new one."
+  (when-let* ((buf (get-buffer cider-test-report-buffer)))
+    (unless (get-buffer-window buf)
+      (let ((buffer-window (split-window (selected-window)
+                                         (/ (window-width) 2)
+                                         'right)))
+        (set-window-buffer buffer-window buf)
+        (display-buffer-record-window 'window buffer-window buf)
+        (set-window-prev-buffers buffer-window nil)
+        (select-window buffer-window)))))
+
+(use-package cider
+  :defer t
+  :bind (:map clojure-mode-map
+         ("M-." . cider-find-dwim))
+  :config
+  (advice-add 'cider-switch-to-repl-buffer :after #'jco/move-window-to-bottom)
+  (advice-add 'cider-test-show-report :before #'create-test-report-window)
+  (advice-add 'cider-popup-buffer :before #'create-test-report-window)
+  (setq cider-repl-display-help-banner nil)
+  (setq cider-show-error-buffer nil)
+  (setq cider-auto-select-test-report-buffer t)
+  (setq cider-test-show-report-on-success nil)
+  (setq cider-jump-to-pop-to-buffer-actions
+        '((display-buffer-reuse-window display-buffer-same-window)))
+  ;; (setq cider-repl-result-prefix ";; => ")
+  )
+
+(use-package cider-eval-sexp-fu
+  :after cider)
+
+(use-package clj-refactor
+  :after clojure-mode
+  :custom
+  (cljr-cljc-clojure-test-declaration
+   "#?(:clj [clojure.test :refer [deftest is testing]]
+:cljs [cljs.test :refer [deftest is testing] :include-macros true])")
+  (cljr-cljs-clojure-test-declaration
+   "[cljs.test :as [deftest is testing] :include-macros true]")
+  (cljr-clojure-test-declaration
+   "[clojure.test :refer [deftest is testing]]")
+  :config
+  (setq cljr-warn-on-eval nil)
+  (setq cljr-auto-clean-ns nil)
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (clj-refactor-mode)
+              (cljr-add-keybindings-with-prefix "C-c C-m")))
+
+  (setq evil-motion-state-modes
+        (append '(cider-docview-mode
+                  cider-popup-buffer-mode
+                  cider-inspector-mode
+                  cider-classpath-mode)
+                evil-motion-state-modes)))
+
+(use-package flycheck-clj-kondo
+  :defer t)
+
+(use-package kibit-helper
+  :defer t)
+
+(defun nrepl-reset ()
+  "Helper function to call the (Reloaded workflow) reset function."
+  (interactive)
+  (set-buffer (cider-current-repl))
+  (goto-char (point-max))
+  (insert "(reset)")
+  (cider-repl-return))
+
+(defun point-at-pos-rel-line-offset (pos rel-line-offset)
+  "Return position of point at POS with REL-LINE-OFFSET relative line offset."
+  (save-excursion
+    (goto-char pos)
+    (forward-line rel-line-offset)
+    (point)))
+
+(defun close-repl-window ()
+  "Close the current REPL window."
+  (cider-switch-to-repl-buffer)
+  (delete-window))
+
+(defun disassemble-clojure-fn ()
+  "Helper function to disassemble a Clojure function.
+Opens a new buffer with the result."
+  (interactive)
+  (let* ((fn-name  (read-string "Disassemble Clojure function: "
+                                (thing-at-point 'symbol t)))
+         (buf-name (concat fn-name "-disassembly")))
+    (set-buffer (cider-current-repl-buffer))
+    (goto-char (point-max))
+    (insert "(use 'no.disassemble)")
+    (cider-repl-return)
+    (sleep-for 0 100)
+    (goto-char (point-max))
+    (insert (concat "(println (disassemble " fn-name "))"))
+    (save-excursion
+      (cider-repl-return))
+    (sleep-for 0 100)
+    (forward-line)
+    (if (not (re-search-forward "CompilerException" (line-end-position) t))
+        (progn (copy-to-buffer buf-name (point)
+                               (point-at-pos-rel-line-offset (point-max) -1))
+               (goto-char (point-max))
+               (pop-to-buffer buf-name)
+               (delete-trailing-whitespace)
+               (java-mode))
+      (progn
+        (goto-char (point-max))
+        (message (concat "No function named '" fn-name "' found"))))))
+
+(defun cljfmt-buffer ()
+  "Run `cljfmt --fix' on current buffer, after saving it."
+  (interactive)
+  (when (or (eq major-mode 'clojure-mode)
+            (eq major-mode 'clojurescript-mode))
+    (save-buffer)
+    (shell-command-to-string (format "cljfmt --fix %s" buffer-file-name))
+    (revert-buffer :ignore-auto :noconfirm)))
+
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (setq lsp-ui-sideline-show-code-actions nil)
+
+            (init-lisp-common)
+
+            ;; This applies when using `fill-paragraph' (`M-q') with the point
+            ;; being inside the docstring.
+            (setq clojure-docstring-fill-column 69)
+
+            (setq-local evil-move-beyond-eol t)
+            (setq cider-prompt-for-symbol nil)
+
+            (modify-syntax-entries)
+
+            (cider-auto-test-mode)
+
+            (require 'flycheck-clj-kondo)
+
+            (define-key clojure-mode-map (kbd "M-;") #'jco/lisp-comment-dwim)
+
+            (put-clojure-indent 'ANY 2)
+            (put-clojure-indent 'GET 2)
+            (put-clojure-indent 'POST 2)
+            (put-clojure-indent 'PUT 2)
+            (put-clojure-indent 'DELETE 2)
+            (put-clojure-indent 'defstate nil)
+            (put-clojure-indent 'try* 0)
+
+            ;; Indentation for re-frame
+            (put-clojure-indent 'reg-cofx 0)
+            (put-clojure-indent 'reg-event-ctx 0)
+            (put-clojure-indent 'reg-event-db 0)
+            (put-clojure-indent 'reg-event-fx 0)
+            (put-clojure-indent 'reg-fx 0)
+            (put-clojure-indent 'reg-sub 0)
+            (put-clojure-indent 'reg-sub-raw 0)
+            (put-clojure-indent '->interceptor 0)
+            (put-clojure-indent 'fn-traced 1)
+
+            (put-clojure-indent 'extend-freeze 2)
+            (put-clojure-indent 'extend-thaw 1)
+
+            ;; Indentation for duct
+            (put-clojure-indent 'context 2)
+
+            (put-clojure-indent 'wcar 1)
+
+            (put-clojure-indent 'alet 'defun)
+            (put-clojure-indent 'mlet 'defun)
+
+            (add-to-list 'clojure-align-binding-forms "m/mlet")
+            (add-to-list 'clojure-align-binding-forms "m/alet")
+            (add-to-list 'clojure-align-binding-forms "with-disposable")
+
+            (put-clojure-indent 'in-terminal 1)))
+
+(add-hook 'nrepl-connected-hook
+          (lambda ()
+            (jco/move-window-to-bottom)))
+
+(add-hook 'cider-browse-ns-mode-hook
+          (lambda ()
+            ;; For some reason, `windmove-default-keybindings' doesn't work.
+            (bind-window-keys cider-browse-ns-mode-map)))
+
+(add-hook 'cider-stacktrace-mode-hook
+          (lambda ()
+            ;; For some reason, `windmove-default-keybindings' doesn't work.
+            (bind-window-keys cider-stacktrace-mode-map)))
+
+(add-hook 'cider-test-report-mode-hook
+          (lambda ()
+            ;; For some reason, `windmove-default-keybindings' doesn't work.
+            (bind-window-keys cider-test-report-mode-map)
+            (bind-keys :map cider-test-report-mode-map
+              ("<tab>"     . forward-button)
+              ("<backtab>" . backward-button)
+              ("TAB"       . forward-button))))
+
+(defun modify-syntax-entries ()
+  "Do not treat valid identifier symbols as word separators."
+  (modify-syntax-entry ?- "w")
+  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?< "w")
+  (modify-syntax-entry ?> "w")
+  (modify-syntax-entry ?? "w")
+  (modify-syntax-entry ?! "w")
+  (modify-syntax-entry ?* "w")
+  (modify-syntax-entry ?= "w"))
+
+(add-hook 'cider-mode-hook
+          (lambda ()
+            (eldoc-mode)
+            (setq eldoc-echo-area-use-multiline-p nil)
+            (cider-company-enable-fuzzy-completion)
+            (advice-add 'cider-quit :before #'close-repl-window)))
+
+(add-hook 'cider-repl-mode-hook
+          (lambda ()
+            (cider-company-enable-fuzzy-completion)
+            (modify-syntax-entries)))
+
+(add-hook 'cider--debug-mode-hook
+          (lambda ()
+            (evil-make-overriding-map cider--debug-mode-map 'normal)
+            (evil-normalize-keymaps)))
+
+(defun my-clojure-mode-before-save-hook ()
+  "Sort namespaces automatically before saving a Clojure file."
+  (when (eq major-mode 'clojure-mode)
+    (clojure-sort-ns)))
+
+(add-hook 'before-save-hook #'my-clojure-mode-before-save-hook)
+
+(defun fuco1/lisp-indent-function (indent-point state)
+  "This function is the normal value of the variable `lisp-indent-function'.
+The function `calculate-lisp-indent' calls this to determine
+if the arguments of a Lisp function call should be indented specially.
+
+INDENT-POINT is the position at which the line being indented begins.
+Point is located at the point to indent under (for default indentation);
+STATE is the `parse-partial-sexp' state for that position.
+
+If the current line is in a call to a Lisp function that has a non-nil
+property `lisp-indent-function' (or the deprecated `lisp-indent-hook'),
+it specifies how to indent.  The property value can be:
+
+- `defun', meaning indent `defun'-style
+  \(this is also the case if there is no property and the function
+  has a name that begins with \"def\", and three or more arguments);
+
+- an integer N, meaning indent the first N arguments specially
+  (like ordinary function arguments), and then indent any further
+  arguments like a body;
+
+- a function to call that returns the indentation (or nil).
+  `lisp-indent-function' calls this function with the same two arguments
+  that it itself received.
+
+This function returns either the indentation to use, or nil if the
+Lisp function does not specify a special indentation."
+  (let ((normal-indent (current-column))
+        (orig-point (point)))
+    (goto-char (1+ (elt state 1)))
+    (parse-partial-sexp (point) calculate-lisp-indent-last-sexp 0 t)
+    (cond
+     ;; car of form doesn't seem to be a symbol, or is a keyword
+     ((and (elt state 2)
+           (or (not (looking-at "\\sw\\|\\s_"))
+               (looking-at ":")))
+      (if (not (> (save-excursion (forward-line 1) (point))
+                  calculate-lisp-indent-last-sexp))
+          (progn (goto-char calculate-lisp-indent-last-sexp)
+                 (beginning-of-line)
+                 (parse-partial-sexp (point)
+                                     calculate-lisp-indent-last-sexp 0 t)))
+      ;; Indent under the list or under the first sexp on the same
+      ;; line as calculate-lisp-indent-last-sexp.  Note that first
+      ;; thing on that line has to be complete sexp since we are
+      ;; inside the innermost containing sexp.
+      (backward-prefix-chars)
+      (current-column))
+     ((and (save-excursion
+             (goto-char indent-point)
+             (skip-syntax-forward " ")
+             (not (looking-at ":")))
+           (save-excursion
+             (goto-char orig-point)
+             (looking-at ":")))
+      (save-excursion
+        (goto-char (+ 2 (elt state 1)))
+        (current-column)))
+     (t
+      (let ((function (buffer-substring (point)
+                                        (progn (forward-sexp 1) (point))))
+            method)
+        (setq method (or (function-get (intern-soft function)
+                                       'lisp-indent-function)
+                         (get (intern-soft function) 'lisp-indent-hook)))
+        (cond ((or (eq method 'defun)
+                   (and (null method)
+                        (> (length function) 3)
+                        (string-match "\\`def" function)))
+               (lisp-indent-defform state indent-point))
+              ((integerp method)
+               (lisp-indent-specform method state
+                                     indent-point normal-indent))
+              (method
+               (funcall method indent-point state))))))))
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (init-lisp-common)
+            (redshank-mode)
+            (setq-local lisp-indent-function #'fuco1/lisp-indent-function)))
+
+(use-package go-mode
+  :defer t
+  :config
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'gofmt-before-save)
+              (evil-leader/set-key "h d" 'godoc-at-point)
+              (local-set-key (kbd "M-.") 'godef-jump)
+              (local-set-key (kbd "M-,") 'pop-tag-mark))))
+
+(use-package slime
+  :after lisp-mode
+  :config
+  (setq slime-description-autofocus t)
+  (add-hook 'lisp-mode-hook
+            (lambda ()
+              (evil-leader/set-key "x s" 'slime)
+              (evil-leader/set-key "x r" 'slime-restart-inferior-lisp)))
+  (add-hook 'slime-popup-buffer-mode-hook
+            (lambda ()
+              (evil-motion-state)))
+  (add-hook 'slime-repl-mode-hook
+            (lambda ()
+              (evil-normal-state))))
+
+(add-hook 'slime-connected-hook
+          (lambda ()
+            (with-selected-window (get-buffer-window (slime-output-buffer t))
+              (let ((height (if (or (jco/at-office-p)
+                                    (display-graphic-p)) 15 10)))
+                (jco/move-window-to-bottom height)))))
+
+(add-hook 'lisp-mode-hook
+          (lambda ()
+            (when (file-exists-p "~/quicklisp/slime-helper.el")
+              (load (expand-file-name "~/quicklisp/slime-helper.el")))
+            (init-lisp-common)
+            (evil-leader/set-key "h h" 'hyperspec-lookup)
+            (redshank-mode)
+            (setq-local evil-move-beyond-eol t)
+            (modify-syntax-entry ?: "w")
+            (modify-syntax-entry ?< "w")
+            (modify-syntax-entry ?> "w")
+            (modify-syntax-entry ?= "w")
+            (modify-syntax-entry ?* "w")
+            (setq inferior-lisp-program "sbcl")
+            (slime-setup '(slime-asdf slime-company slime-fancy))
+            (slime-asdf-init) ;; Required for `slime-load-system'.
+            (slime-company-maybe-enable)
+            (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)
+            (define-key sldb-mode-map "\C-w" 'evil-window-map)))
+
+(use-package slime-company
+  :defer t)
+
+(defun jco/lisp-comment-dwim ()
+  "Comments Lisp sexps smartly."
+  (interactive)
+  (if (and (not (hlt-nonempty-region-p))
+           (member (char-after) '(?\( ?{ ?\[)))
+      (progn (mark-sexp)
+             (comment-dwim nil))
+    (call-interactively #'evilnc-comment-or-uncomment-lines)))
+
+(defun init-lisp-common ()
+  "Common configuration options for all Lisp modes."
+  (unless (derived-mode-p 'clojure-mode)
+    (aggressive-indent-mode))
+  (setq evil-shift-width 2)
+  (define-key lisp-mode-shared-map (kbd "M-;") #'jco/lisp-comment-dwim)
+  ;; do not treat "-" as a word separator
+  (modify-syntax-entry ?- "w")
+  (smartparens-strict-mode))
+
+(use-package redshank
+  :defer t
+  :init
+  (setq redshank-prefix-key "C-c RET"))
+
+(use-package rustic
+  :defer t
+  :config
+  (add-hook 'rustic-mode-hook
+            (lambda ()
+              (sp-pair "\'" nil :actions :rem)
+              (modify-syntax-entry ?! "w"))))
+
+(defvar jco/rotate-text-rotations
+  '(("true" "false")
+    ("True" "False")
+    ("TRUE" "FALSE")
+    ("yes" "no")
+    ("Yes" "No")
+    ("YES" "NO")
+    ("before" "after")
+    ("Before" "After")
+    ("BEFORE" "AFTER")
+    ("begin" "end")
+    ("Begin" "End")
+    ("BEGIN" "END")
+    ("width" "height")
+    ("Width" "Height")
+    ("WIDTH" "HEIGHT")
+    ("x" "y")
+    ("X" "Y")
+    ("in" "out")
+    ("In" "Out")
+    ("IN" "OUT")
+    ("client" "server")
+    ("Client" "Server")
+    ("CLIENT" "SERVER")
+    ("left" "right")
+    ("Left" "Right")
+    ("LEFT" "RIGHT")
+    ("high" "low")
+    ("HIGH" "LOW"))
+  "List of text rotation sets.")
+
+(defun rotate-word-at-point ()
+  "Rotate word at point based on contents of `jco/rotate-text-rotations'."
+  (interactive)
+  (let ((bounds (bounds-of-thing-at-point 'word))
+        (opoint (point)))
+    (when (consp bounds)
+      (let ((beg (car bounds))
+            (end (copy-marker (cdr bounds))))
+        (rotate-region beg end)
+        (goto-char (if (> opoint end) end opoint))))))
+
+(defun rotate-region (beg end)
+  "Rotate all matches in `jco/rotate-text-rotations' between point and mark."
+  (interactive "r")
+  (let ((regexp (jco/rotate-convert-rotations-to-regexp
+                 jco/rotate-text-rotations))
+        (end-mark (copy-marker end)))
+    (save-excursion
+      (goto-char beg)
+      (while (re-search-forward regexp (marker-position end-mark) t)
+        (let* ((found (match-string 0))
+               (replace (rotate-next found)))
+          (replace-match replace))))))
+
+(defun rotate-string (string &optional rotations)
+  "Rotate all matches in STRING using associations in ROTATIONS.
+If ROTATIONS are not given it defaults to `jco/rotate-text-rotations'."
+  (let ((regexp (jco/rotate-convert-rotations-to-regexp
+                 (or rotations jco/rotate-text-rotations)))
+        (start 0))
+    (while (string-match regexp string start)
+      (let* ((found (match-string 0 string))
+             (replace (rotate-next
+                       found
+                       (or rotations jco/rotate-text-rotations))))
+        (setq start (+ (match-end 0)
+                       (- (length replace) (length found))))
+        (setq string (replace-match replace nil t string))))
+    string))
+
+(defun rotate-next (string &optional rotations)
+  "Return the next element after STRING in ROTATIONS."
+  (let ((rots (rotate-get-rotations-for
+               string
+               (or rotations jco/rotate-text-rotations))))
+    (if (> (length rots) 1)
+        (error (format "Ambiguous rotation for %s" string))
+      (if (< (length rots) 1)
+          ;; If we get this far, this should not occur:
+          (error (format "Unknown rotation for %s" string))
+        (let ((occurs-in-rots (member string (car rots))))
+          (if (null occurs-in-rots)
+              ;; If we get this far, this should *never* occur:
+              (error (format "Unknown rotation for %s" string))
+            (if (null (cdr occurs-in-rots))
+                (caar rots)
+              (cadr occurs-in-rots))))))))
+
+(defun rotate-get-rotations-for (string &optional rotations)
+  "Return the string rotations for STRING in ROTATIONS."
+  (remq nil (mapcar (lambda (rot) (if (member string rot) rot))
+                    (or rotations jco/rotate-text-rotations))))
+
+(defun jco/rotate-convert-rotations-to-regexp (rotations)
+  (regexp-opt (jco/rotate-flatten-list rotations)))
+
+(defun jco/rotate-flatten-list (list-of-lists)
+  "Flatten LIST-OF-LISTS to a single list.
+Example:
+  (jco/rotate-flatten-list '((a b c) (1 ((2 3)))))
+    => (a b c 1 2 3)"
+  (if (null list-of-lists)
+      list-of-lists
+    (if (listp list-of-lists)
+        (append (jco/rotate-flatten-list (car list-of-lists))
+                (jco/rotate-flatten-list (cdr list-of-lists)))
+      (list list-of-lists))))
+
+(defun rk/open-compilation-buffer (&optional buffer-or-name shackle-alist shackle-plist)
+  "Helper for selecting window for opening *compilation* buffers."
+  ;; Find existing compilation window left of the current window or left-most
+  ;; window.
+  (let ((win (or (loop for win = (if win (window-left win) (get-buffer-window))
+                       when (or (not (window-left win))
+                                (string-prefix-p "*compilation" (buffer-name (window-buffer win))))
+                       return win)
+                 (get-buffer-window))))
+    ;; If the window is dedicated to a non-compilation buffer, use the current
+    ;; one instead.
+    (when (window-dedicated-p win)
+      (let ((buf-name (buffer-name (window-buffer win))))
+        (unless (string-prefix-p "*compilation" buf-name)
+          (setq win (get-buffer-window)))))
+    (set-window-buffer win (get-buffer buffer-or-name))
+    (set-frame-selected-window (window-frame win) win)))
+
+
+(use-package shackle
+  :ensure
+  :diminish
+  :custom
+  (shackle-rules '((compilation-mode :custom rk/open-compilation-buffer :select t)
+                   ("\\*Apropos\\|Help\\|Occur\\|tide-references\\*" :regexp t :same t :select t :inhibit-window-quit t)
+                   ("\\*magit" :regexp t :same t :select t)
+                   ("\\*shell.*" :regexp t :same t :select t)
+                   ("\\*PowerShell.*" :regexp t :same t :select t)
+                   ("\\*Cargo.*" :regexp t :other t :select nil)
+                   ("*Messages*" :select nil :other t)
+                   ("*go-guru-output*" :select t :same t)
+                   ("*Proced*" :select t :same t)
+                   ("*Buffer List*" :select t :same t)
+                   ("\\*Pp Eval" :regexp t :same nil :select t :other t)
+                   ("*Messages*" :same nil :other t :select t :inhibit-window-quit t)
+
+                   ;; Slime
+                   ("*slime-source*" :select nil :same nil :other t)
+                   ("*slime-description*" :select nil :other t :inhibit-window-quit t)
+                   ("\\*slime-repl" :regexp t :same nil :select nil :other t)
+                   ;; ("\\*sldb" :regexp t :other t :inhibit-window-quit t :select t)
+                   ("\\*slime-compilation" :regexp t :same nil :select nil :other t)
+                   ("*slime-scratch*" :same nil :select t :other t)
+
+                   ;; ert
+                   ("*ert*" :select nil :same nil :other t)
+
+                   ;; Clojure
+                   ("*sesman CIDER browser*" :inhibit-window-quit t :select t :same t)
+                   ("\\*cider-repl" :regexp t :same nil :other t)))
+  (shackle-default-rule nil)
+  :init
+  (shackle-mode))
+
 (defun jco/check-expansion ()
   (save-excursion
     (if (looking-at "\\_>") t
@@ -2602,173 +3733,6 @@ As such, it will only work when the notes window exists."
 
 ;; (bind-key [tab] 'completion-at-point read-expression-map)
 
-(use-package hydra
-  :config
-  (with-eval-after-load 'evil-leader
-    (evil-leader/set-key "m" 'jco/hydra-main-menu/body)))
-
-(defun open-config-file (file-name)
-  "Open FILE-NAME in emacs configuration directory."
-  (interactive)
-  (find-file (concat user-emacs-directory file-name)))
-
-(defhydra jco/hydra-main-menu (:color teal :hint nil)
-  "main menu"
-  ("a" jco/hydra-apps/body "apps")
-  ("b" counsel-bookmark "bookmarks")
-  ("c" jco/hydra-config/body "cfg")
-  ("f" jco/hydra-find/body "find")
-  ("g" jco/hydra-gtd/body "gtd")
-  ("h" jco/hydra-hideshow/body "hideshow")
-  ("l" jco/hydra-lang/body "lang")
-  ("o" jco/hydra-org/body "org")
-  ("s" jco/hydra-swiper/body "swiper")
-  ("u" jco/hydra-util/body "util")
-  ("w" jco/hydra-writing/body "writing"))
-
-(defhydra jco/hydra-config (:color teal :hint nil)
-  "config"
-  ("e" (open-config-file "init.org") "edit")
-  ("u" jco/update-dotfiles "update"))
-
-(defhydra jco/hydra-find (:color teal :hint nil)
-  "
-find: _f_un _l_ib _v_ar"
-  ("f" find-function)
-  ("l" find-library)
-  ("v" find-variable))
-
-(defhydra jco/hydra-gtd (:color teal :hint nil)
-  "gtd"
-  ("b" (jco/find-org-file "blog.org") "blog")
-  ("h" (jco/find-org-file "health.org") "health")
-  ("i" (jco/find-org-file "incoming.org") "incoming")
-  ("n" (jco/find-org-file "notes.org") "notes")
-  ("p" (jco/find-org-file "todo.org" (projectile-project-root)) "project-todo")
-  ("r" (jco/find-org-file "reading.org") "reading")
-  ("t" (jco/find-org-file "todo.org") "todo")
-  ("w" (jco/find-org-file "work.org") "work"))
-
-(defvar jco/global-hl-line-mode-hydra-temp)
-(set (make-local-variable 'jco/global-hl-line-mode-hydra-temp) nil)
-
-(defhydra jco/hydra-hideshow (:color teal :hint nil)
-  "hideshow"
-  ("a" hs-show-all "show-all")
-  ("t" hs-hide-all "hide-all")
-  ("c" hs-toggle-hiding "toggle-hiding")
-  ("d" hs-hide-block "hide-block")
-  ("s" hs-show-block "show-block"))
-
-(defhydra jco/hydra-lang (:color teal :hint nil)
-  "
-lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
-  ("f" flyspell-mode)
-  ("l" langtool-check)
-  ("c" langtool-correct-buffer)
-  ("d" langtool-check-done)
-  ("s" sdcv-search))
-
-(defhydra jco/hydra-org (:color teal :hint nil)
-  "org"
-  ("a" org-agenda-list "agenda")
-  ("c" org-clock-goto "org-clock-goto")
-  ("d" deft "deft")
-  ("g" org-capture-goto-last-stored "goto captured")
-  ("p" org-pomodoro "org-pomodoro")
-  ("x" org-clock-remove-overlays "remove clock overlays")
-  ("G" org-refile-goto-last-stored "goto refiled")
-  ("i" org-roam-insert "insert")
-  ("f" org-roam-find-file "find-file")
-  ("b" org-roam-buffer-activate "org-roam-buffer")
-  ("t" org-roam-tag-add "add tag"))
-
-(defhydra jco/hydra-swoop (:color teal :hint nil)
-  "
-swoop: _m_ulti multi-_a_ll _s_woop"
-  ("m" helm-multi-swoop)
-  ("a" helm-multi-swoop-all)
-  ("s" helm-swoop))
-
-(defhydra jco/hydra-swiper (:color teal :hint nil)
-  "
-swiper: _s_wiper _a_ll _m_ulti"
-  ("s" swiper)
-  ("a" swiper-all)
-  ("m" swiper-multi))
-
-(defhydra jco/hydra-text (:color teal :hint nil)
-  "
-text: _c_lean-trailing-ws"
-  ("c" ethan-wspace-clean-all))
-
-(defhydra jco/hydra-util (:color teal :hint nil)
-  "
-util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate _e_diff-regions-wordwise ninsert-_t_imestamp _g_ist _h_ide-modeline _m_arkdown-other-window"
-  ("k" jco/hydra-kurecolor/body)
-  ("y" jco/yank-current-filename)
-  ("f" jco/insert-current-filename)
-  ("b" (lambda () (interactive) (jco/insert-current-filename t)))
-  ("d" jco/insert-date)
-  ("e" ediff-regions-wordwise)
-  ("t" jco/insert-timestamp)
-  ("g" yagist-region-or-buffer)
-  ("h" hide-mode-line-mode)
-  ("m" (lambda ()
-         (interactive)
-         (markdown-other-window)
-         (browse-url-of-buffer markdown-output-buffer-name))))
-
-(defhydra jco/hydra-kurecolor
-  (:color pink :hint nil
-   :pre (progn (set 'jco/global-hl-line-mode-hydra-temp (global-hl-line-mode))
-               (global-hl-line-mode -1))
-   :post (global-hl-line-mode jco/global-hl-line-mode-hydra-temp))
-  "
-kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_rightness(-)"
-  ("H" kurecolor-increase-hue-by-step)
-  ("h" kurecolor-decrease-hue-by-step)
-  ("S" kurecolor-increase-saturation-by-step)
-  ("s" kurecolor-decrease-saturation-by-step)
-  ("B" kurecolor-increase-brightness-by-step)
-  ("b" kurecolor-decrease-brightness-by-step)
-  ("q" nil "quit" :color blue))
-
-(defhydra jco/hydra-writing (:color teal :hint nil)
-  "writing"
-  ("b" ivy-bibtex "ivy-bibtex")
-  ("l" ligature-mode "ligatures")
-  ("n" org-noter "org-noter")
-  ("o" (jco/toggle-mode olivetti-mode) "olivetti"))
-
-(defhydra jco/hydra-apps (:color teal :hint nil)
-  "app"
-  ("c" cfw:open-org-calendar "calendar")
-  ("e" (erc :server "irc.freenode.net" :port 6667) "erc")
-  ("f" (jco/elfeed-load-db-and-open) "elfeed")
-  ("m" (lambda ()
-         (interactive)
-         (jco/init-mu4e-contexts)
-         (require 'mu4e)
-         (mu4e)) "mu4e")
-  ("s" jco/eshell-here "eshell")
-  ("v" jco/vim "vim")
-  ("w" eww "eww")
-  ("x" sx-tab-all-questions "sx"))
-
-(defhydra jco/hydra-apropos (:color teal :hint nil)
-  "
-apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
-  ("a" apropos)
-  ("c" apropos-command)
-  ("d" apropos-documentation)
-  ("e" apropos-value)
-  ("l" apropos-library)
-  ("o" apropos-user-option)
-  ("v" apropos-variable)
-  ("i" info-apropos)
-  ("x" xref-find-apropos))
-
 (defvar jco/theme)
 
 ;; Change this to whatever theme you want.
@@ -2784,7 +3748,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
       ;; 'doom-dark+
       ;; 'doom-dracula
       ;; 'doom-flatwhite
-      'doom-gruvbox
+      ;; 'doom-gruvbox
       ;; 'doom-gruvbox-light
       ;; 'doom-laserwave
       ;; 'doom-manegarm
@@ -2795,7 +3759,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
       ;; 'doom-oceanic-next
       ;; 'doom-old-hope
       ;; 'doom-one
-      ;; 'doom-one-light
+      'doom-one-light
       ;; 'doom-opera-light
       ;; 'doom-outrun-electric
       ;; 'doom-solarized-light
@@ -3363,3 +4327,70 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 
 (set-face-background 'whitespace-tab nil)
 (set-face-background 'whitespace-indentation nil)
+
+(use-package undo-tree
+  :init
+  (global-undo-tree-mode)
+  :config
+  (setq undo-tree-visualizer-diff t)
+  (setq undo-tree-visualizer-timestamps t))
+
+(defun jco/yank-current-filename ()
+  "Yank the filename of the current buffer to the kill ring."
+  (interactive)
+  (kill-new (buffer-file-name)))
+
+(defun jco/insert-current-filename (arg)
+  "Insert filename of the current buffer at point.
+If ARG is given, only the basename (no path and no extension) of the file is
+inserted."
+  (interactive "P")
+  (insert (if arg
+              (file-name-base (buffer-file-name))
+            (buffer-file-name))))
+
+(defun jco/insert-date (arg)
+  "Insert date at current point, in format 2016-11-23.
+If ARG is given, dots are used instead of dashes."
+  (interactive "P")
+  (insert (if arg
+              (format-time-string "%d.%m.%Y")
+            (format-time-string "%Y-%m-%d"))))
+
+(defun jco/insert-timestamp (arg)
+  "Insert timestamp at current point.
+The format of the timestamp is \"2021-03-03 Wed 14:31\". If ARG
+is given, the format of the timestamp is 2016-11-23T00:00:00 (in
+accordance with ISO 8601)."
+  (interactive "P")
+  (insert (if arg
+              (format-time-string "%Y-%m-%dT%H:%M:%S")
+            (format-time-string "%Y-%m-%d %a %H:%M"))))
+
+(defun jco/json-lint ()
+  "Pretty format JSON."
+  (interactive)
+  (save-restriction
+    (widen)
+    (shell-command-on-region (point-min) (point-max) "python -m json.tool"
+                             t t)))
+
+
+(global-set-key (kbd "<f12>") (lambda ()
+                                (interactive)
+                                (message "Current major mode: %s" major-mode)))
+
+(use-package yasnippet
+  :defer t
+  :config
+  (yas-global-mode)
+  (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
+  ;; yas-indent-line has to be nil to avoid error when expanding `db' snippet.
+  (setq yas-indent-line nil)
+  (setq yas-also-auto-indent-first-line t)
+  (yas-reload-all) ;; Needed to unload snippets in elpa dir.
+  (add-hook 'snippet-mode-hook
+            (lambda ()
+              (modify-syntax-entry ?- "w")
+              (ethan-wspace-mode -1)))
+  (evil-leader/set-key "TAB" 'yas-insert-snippet))
