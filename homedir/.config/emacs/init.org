@@ -3791,7 +3791,7 @@ http://emacs.stackexchange.com/questions/7908/how-to-make-yasnippet-and-company-
 
 ;; (bind-key [tab] 'completion-at-point read-expression-map)
 #+end_src
-* Theme list
+* Theme list, and my selection
 #+begin_src emacs-lisp
 (defvar jco/theme)
 
@@ -3808,7 +3808,7 @@ http://emacs.stackexchange.com/questions/7908/how-to-make-yasnippet-and-company-
       ;; 'doom-dark+
       ;; 'doom-dracula
       ;; 'doom-flatwhite
-      'doom-gruvbox
+      ;; 'doom-gruvbox
       ;; 'doom-gruvbox-light
       ;; 'doom-laserwave
       ;; 'doom-manegarm
@@ -3819,7 +3819,7 @@ http://emacs.stackexchange.com/questions/7908/how-to-make-yasnippet-and-company-
       ;; 'doom-oceanic-next
       ;; 'doom-old-hope
       ;; 'doom-one
-      ;; 'doom-one-light
+      'doom-one-light
       ;; 'doom-opera-light
       ;; 'doom-outrun-electric
       ;; 'doom-solarized-light
