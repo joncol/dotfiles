@@ -2108,7 +2108,7 @@ windows easier."
 
 (defhydra jco/hydra-config (:color teal :hint nil)
   "config"
-  ("e" (open-config-file "init.org") "edit")
+  ("e" (find-file "~/dotfiles/homedir/.config/emacs/init.org") "edit")
   ("u" jco/update-dotfiles "update"))
 
 (defhydra jco/hydra-find (:color teal :hint nil)
