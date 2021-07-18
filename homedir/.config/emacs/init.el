@@ -4308,6 +4308,26 @@ accordance with ISO 8601)."
                                 (interactive)
                                 (message "Current major mode: %s" major-mode)))
 
+;; See: https://youtu.be/UtqE-lR2HCA?t=5039
+(defun jco/minibuffer-backward-kill (arg)
+  "When minibuffer is completing a file name, delete up to parent
+  directory. Otherwise, delete a character backward."
+  (interactive "p")
+  (if minibuffer-completing-file-name
+      (if (string-match-p "/." (minibuffer-contents))
+          (zap-up-to-char (- arg) ?/)
+        (delete-minibuffer-contents))
+    (delete-backward-char arg)))
+
+(use-package vertico
+  :bind (:map minibuffer-local-map
+         ("<backspace>" . jco/minibuffer-backward-kill))
+  :init
+  (vertico-mode)
+  ;; (setq vertico-resize t)
+  ;; (setq vertico-cycle t)
+  )
+
 (use-package yasnippet
   :defer t
   :config
