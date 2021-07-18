@@ -2159,7 +2159,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("x" org-clock-remove-overlays "remove clock overlays")
   ("G" org-refile-goto-last-stored "goto refiled")
   ("i" org-roam-insert "insert")
-  ("f" org-roam-find-file "find-file")
+  ("f" org-roam-node-find "node-find")
   ("b" org-roam-buffer-activate "org-roam-buffer")
   ("t" org-roam-tag-add "add tag"))
 
@@ -2444,6 +2444,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
             (setq word-wrap t)))
 
 (setq org-directory "~/org")
+(setq org-roam-v2-ack t)
 
 (defun jco/org-inline-css-hook (exporter)
   "Fix colors of snippets when EXPORTER is 'html.
@@ -2937,8 +2938,7 @@ As such, it will only work when the notes window exists."
    org-ref-notes-function 'orb-edit-notes))
 
 (use-package org-roam
-  :hook
-  (after-init . org-roam-mode)
+  :defer t
   :custom
   (org-roam-directory "~/org/roam")
   (org-roam-buffer-position 'bottom)
@@ -2957,7 +2957,7 @@ As such, it will only work when the notes window exists."
       :unnarrowed t)))
   :bind (:map org-roam-mode-map
          (("C-c n l" . org-roam)
-          ("C-c n f" . org-roam-find-file)
+          ("C-c n f" . org-roam-node-find)
           ("C-c n g" . org-roam-graph))
          :map org-mode-map
          (("C-c n i" . org-roam-insert))
@@ -2984,7 +2984,7 @@ As such, it will only work when the notes window exists."
            :head "#+title: ${citekey}: ${title}
 #+setupfile: ~/org/roam/template.org
 #+roam_key: ${ref}
-#+roam_tags: literature
+#+filetags: literature
 #+created: %U
 #+last_modified: %U
 
