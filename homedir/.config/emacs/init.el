@@ -3703,7 +3703,10 @@ Example:
   (if (or (not yas/minor-mode)
           (null (yas-expand))
           (company-abort))
-      (company-select-next)))
+
+      (if (> company-candidates-length 1)
+          (company-select-next)
+        (company-complete-common))))
 
 (defun jco/abort-company-or-yas ()
   (interactive)
