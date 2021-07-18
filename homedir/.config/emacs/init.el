@@ -514,8 +514,8 @@ Useful for REPL windows."
   :defer t
   :init
   (projectile-mode)
-
   :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (when (not (eq system-type 'windows-nt))
     (setq projectile-indexing-method 'native))
   (setq projectile-enable-caching t)
@@ -832,12 +832,6 @@ ethan-wspace."
   :config
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
-(use-package all-the-icons-ivy
-  :disabled t
-  :if (display-graphic-p)
-  :config
-  (all-the-icons-ivy-setup))
-
 (use-package ansible
   :defer t)
 
@@ -888,42 +882,6 @@ ethan-wspace."
 (use-package calfw-org
   :disabled t
   :after calfw)
-
-(use-package counsel
-  :after ivy
-  :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("C-x C-r" . counsel-recentf)
-         ("C-c p s a" . counsel-projectile-ag))
-  :config
-  (jco/define-bindings jco/my-keys-mode-map
-                       '(("C-h f" . counsel-describe-function)
-                         ("C-h v" . counsel-describe-variable)
-                         ("C-h S" . counsel-info-lookup-symbol)))
-  (evil-leader/set-key "x z" 'counsel-fzf)
-  (when (eq system-type 'windows-nt)
-    (setq-default counsel-ag-base-command
-                  "ag --vimgrep --nocolor --nogroup %s")))
-
-(use-package counsel-etags
-  :bind (("C-]" . counsel-etags-find-tag-at-point))
-  :init
-  (add-hook 'prog-mode-hook
-            (lambda ()
-              ;; (add-hook 'after-save-hook
-              ;;           'counsel-etags-virtual-update-tags 'append 'local)
-))
-  :config
-  (setq counsel-etags-update-interval 60)
-  (push "build" counsel-etags-ignore-directories))
-
-(use-package counsel-projectile
-  :init
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  :config
-  (counsel-projectile-mode)
-  (setq counsel-projectile-ag-initial-input '(thing-at-point 'symbol t))
-  (setq counsel-projectile-rg-initial-input '(thing-at-point 'symbol t)))
 
 (use-package crystal-mode
   :defer t)
@@ -1291,18 +1249,6 @@ ethan-wspace."
   ;; (setq guide-key/popup-window-position "right")
   (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
 
-(use-package ivy-bibtex
-  :defer t
-  :init
-  (evil-leader/set-key "z b" 'ivy-bibtex)
-  :custom
-  (ivy-bibtex-default-action 'ivy-bibtex-edit-notes)
-  :config
-  ;; Assumes usage of Zotero to export BibTeX bibliography.
-  (setq bibtex-completion-bibliography '("~/Sync/Zotero/library.bib"))
-  (setq bibtex-completion-pdf-field "File")
-  (setq bibtex-completion-notes-path "~/org/roam/ref"))
-
 (use-package j-mode
   :defer t
   :init
@@ -1327,47 +1273,6 @@ ethan-wspace."
 
 (use-package insert-shebang
   :defer t)
-
-(use-package ivy
-  :bind (("C-s" . swiper)
-         ("C-x C-b" . ivy-switch-buffer))
-  ;; :custom
-  ;; (ivy-re-builders-alist '((swiper . ivy--regex-plus)
-  ;;                          (t . ivy--regex-fuzzy)))
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers nil)
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-use-selectable-prompt t)
-  (evil-leader/set-key "b" 'ivy-switch-buffer)
-  (evil-leader/set-key "r" 'ivy-resume)
-  (define-key ivy-minibuffer-map (kbd "S-SPC") nil)
-  (define-key ivy-minibuffer-map [tab] 'ivy-partial)
-  (setq ivy-on-del-error-function nil)
-  (evil-declare-not-repeat 'swiper)
-  (ivy-add-actions 'counsel-find-file
-                   '(("F" (lambda (x)
-                            (with-ivy-window (insert (file-relative-name x))))
-                      "insert relative file name")
-
-                     ("B" (lambda (x)
-                            (with-ivy-window
-                              (insert
-                               (file-name-nondirectory
-                                (replace-regexp-in-string "/\\'" "" x)))))
-                      "insert file name without any directory information"))))
-
-(use-package ivy-rich
-  :disabled t
-  :config
-  ;; Recommended by the README.
-  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
-  ;; (ivy-set-display-transformer 'ivy-switch-buffer
-  ;;                              'ivy-rich-switch-buffer-transformer)
-  (setq ivy-virtual-abbreviate 'full)
-  (setq ivy-rich-switch-buffer-align-virtual-buffer t)
-  (setq ivy-rich-abbreviate-paths t)
-  (setq ivy-rich-switch-buffer-name-max-length 64))
 
 (use-package ix
   :defer t)
