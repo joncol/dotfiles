@@ -1945,14 +1945,7 @@ TYPE is either \"git\" or \"hg\" and BRANCH is the branch name."
             (defalias 'ff 'find-file)
             (defalias 'open 'find-file)
 
-            (define-key eshell-mode-map "\C-w" 'evil-window-map)
-
-            ;; Make helm work in eshell.
-            (when helm-mode
-              (eshell-cmpl-initialize)
-              (define-key eshell-mode-map [remap eshell-pcomplete]
-                'helm-esh-pcomplete)
-              (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history))))
+            (define-key eshell-mode-map "\C-w" 'evil-window-map)))
 
 (defun jco/eshell-here ()
   "Open up a new shell in the directory associated with the current buffer.
@@ -2350,12 +2343,6 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                                        :date :maildir :mailing-list :tags
                                        :attachments :signature :decryption))
 
-              (defun jco/compl-fun (prompt maildirs predicate require-match
-                                           initial-input)
-                (helm-comp-read prompt maildirs
-                                :name prompt
-                                :must-match t))
-
               (defun jco/smtp-server ()
                 (cond ((or (s-contains? "gmail.com" user-mail-address)
                            (s-contains? "zimpler.com" user-mail-address))
@@ -2651,8 +2638,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                      (interactive)
                                      (org-remove-inline-images)
                                      (org-ctrl-c-ctrl-c)
-                                     (org-display-inline-images)))
-                         ("M-o" . helm-org-in-buffer-headings)))
+                                     (org-display-inline-images)))))
   (require 'org-agenda)
   (bind-keys :map org-agenda-mode-map
     ("j"       . org-agenda-next-item)
