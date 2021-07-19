@@ -1258,7 +1258,6 @@ ethan-wspace."
    '(j-other-face ((t (:foreground "Black"))))))
 
 (use-package help-fns+
-  :disabled t
   :defer t)
 
 (use-package hide-mode-line)
