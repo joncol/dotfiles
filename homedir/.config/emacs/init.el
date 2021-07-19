@@ -2829,23 +2829,6 @@ As such, it will only work when the notes window exists."
   (org-pomodoro-killed-sound (concat user-emacs-directory
                                      "resources/sounds/clock.wav")))
 
-(use-package org-ref
-  :disabled
-  :after org
-  :custom
-  (org-ref-default-citation-link "citep")
-  :config
-  (setq
-   org-ref-completion-library 'org-ref-ivy-cite
-   org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
-   org-ref-default-bibliography (list "~/Sync/Zotero/library.bib")
-   org-ref-bibliography-notes "~/org/roam/ref/bib_notes.org"
-   org-ref-note-title-format "* TODO %y - %t\n:PROPERTIES:\n:custom_id: %k
-:noter_document: %F\n:roam_key: cite:%k\n:author: %9a\n:journal: %j
-:year: %y\n:volume: %v\n:pages: %p\n:doi: %D\n:url: %U\n:END:\n\n"
-   org-ref-notes-directory "~/org/roam/ref/"
-   org-ref-notes-function 'orb-edit-notes))
-
 (use-package org-roam
   :defer t
   :custom
