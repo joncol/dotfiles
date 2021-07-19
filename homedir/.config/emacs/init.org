@@ -4369,7 +4369,7 @@ accordance with ISO 8601)."
                                 (interactive)
                                 (message "Current major mode: %s" major-mode)))
 #+end_src
-* Vertico/Consult/Marginalia/Embark
+* =vertico=, =consult=, =marginalia=, and =embark=
 #+begin_src emacs-lisp
 ;; See: https://youtu.be/UtqE-lR2HCA?t=5039
 (defun jco/minibuffer-backward-kill (arg)
