@@ -965,6 +965,12 @@ ethan-wspace."
   (define-key dired-mode-map "\C-w" 'evil-window-map)
   (add-hook 'dired-mode-hook (lambda () (evil-matchit-mode -1))))
 
+(use-package diredful
+  :disabled t
+  :after dired
+  :config
+  (diredful-mode))
+
 (use-package direnv
   :config
   (direnv-mode))
