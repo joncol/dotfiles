@@ -1969,7 +1969,8 @@ windows easier."
 (defun eshell/x ()
   "Quit eshell and delete its window."
   (eshell-quit-process)
-  (delete-window))
+  (when (window-parent)
+    (delete-window)))
 #+end_src
 * Font
 #+begin_src emacs-lisp

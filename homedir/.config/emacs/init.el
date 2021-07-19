@@ -1947,7 +1947,8 @@ windows easier."
 (defun eshell/x ()
   "Quit eshell and delete its window."
   (eshell-quit-process)
-  (delete-window))
+  (when (window-parent)
+    (delete-window)))
 
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
