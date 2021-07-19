@@ -615,7 +615,6 @@ ethan-wspace."
   (setq company-transformers '(company-sort-by-occurrence)))
 
 (use-package company-box
-  :disabled t
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
 
