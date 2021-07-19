@@ -1993,6 +1993,13 @@ windows easier."
 
   (global-ligature-mode t))
 
+(use-package helpful
+  :defer t
+  :init
+  (global-set-key (kbd "C-h f") #'helpful-callable)
+  (global-set-key (kbd "C-h v") #'helpful-variable)
+  (global-set-key (kbd "C-h k") #'helpful-key))
+
 (use-package hydra
   :config
   (with-eval-after-load 'evil-leader

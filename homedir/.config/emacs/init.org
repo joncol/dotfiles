@@ -2017,6 +2017,15 @@ windows easier."
 
   (global-ligature-mode t))
 #+end_src
+* Helpful
+#+begin_src emacs-lisp
+(use-package helpful
+  :defer t
+  :init
+  (global-set-key (kbd "C-h f") #'helpful-callable)
+  (global-set-key (kbd "C-h v") #'helpful-variable)
+  (global-set-key (kbd "C-h k") #'helpful-key))
+#+end_src
 * Hydras
 #+begin_src emacs-lisp
 (use-package hydra
