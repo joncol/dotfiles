@@ -2829,6 +2829,7 @@ As such, it will only work when the notes window exists."
                                      "resources/sounds/clock.wav")))
 
 (use-package org-ref
+  :disabled
   :after org
   :custom
   (org-ref-default-citation-link "citep")
