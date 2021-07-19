@@ -1409,7 +1409,8 @@ ethan-wspace."
               (setq fill-column 72)
               (auto-fill-mode)
               (modify-syntax-entry ?- "w")
-              (git-commit-turn-on-flyspell)))
+              (git-commit-turn-on-flyspell)
+              (end-of-line)))
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
   (evil-leader/set-key "x L" #'jco/insert-clubhouse-markdown-link)
   (add-hook 'magit-mode-hook
