@@ -3686,7 +3686,7 @@ repo."
 
 (defvar jco/theme)
 
-;; Change this to whatever theme you want.
+;; My current theme. Change this to whatever theme you want.
 (setq jco/theme
       ;; 'adwaita
       ;; 'borland-blue
@@ -3709,8 +3709,8 @@ repo."
       ;; 'doom-nord-light
       ;; 'doom-oceanic-next
       ;; 'doom-old-hope
-      ;; 'doom-one
-      'doom-one-light
+      'doom-one
+      ;; 'doom-one-light
       ;; 'doom-opera-light
       ;; 'doom-outrun-electric
       ;; 'doom-solarized-light
