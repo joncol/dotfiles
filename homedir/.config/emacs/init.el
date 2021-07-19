@@ -3595,14 +3595,15 @@ Example:
 
 (require 'minibuffer)
 
-(defun jco/tab-indent-or-complete ()
-  (interactive)
+(defun jco/tab-indent-or-complete (&optional arg)
+  "Expand completion or yas snippet. Prefix ARG is used if in `org-mode'."
+  (interactive "P")
   (cond
    ((minibufferp)
     (minibuffer-complete))
    ((derived-mode-p 'magit-mode (symbol-name major-mode))
     (magit-section-toggle (magit-current-section)))
-   ((derived-mode-p 'org-mode) (org-cycle))
+   ((derived-mode-p 'org-mode) (org-cycle arg))
    (t
     (if (or (not yas/minor-mode)
             (null (yas-expand)))
