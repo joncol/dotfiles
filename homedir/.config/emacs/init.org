@@ -4383,6 +4383,8 @@ accordance with ISO 8601)."
 (use-package vertico
   :bind (:map minibuffer-local-map
          ("<backspace>" . jco/minibuffer-backward-kill))
+  :custom
+  (completion-ignore-case t)
   :init
   (vertico-mode)
   ;; (setq vertico-resize t)
@@ -4405,10 +4407,14 @@ accordance with ISO 8601)."
 
 (use-package orderless
   :straight t
-  :custom (completion-styles '(orderless))
+  :custom
+  (completion-styles '(orderless))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles . (partial-completion))))))
+
+(use-package savehist
   :init
-  (setq completion-category-defaults nil)
-  (setq completion-category-overrides nil))
+  (savehist-mode))
 
 (defun my-consult-find-fd (&optional dir initial)
   (interactive "P")
