@@ -1760,7 +1760,10 @@ Example: `helloWorld` becomes `Hello world`."
 
 (define-key jco/my-keys-mode-map (kbd "C-x b") 'ibuffer)
 
-(use-package iedit)
+(use-package iedit
+  :defer t
+  :init
+  (evil-leader/set-key ";" #'iedit-mode))
 
 (use-package info+
   :disabled t
