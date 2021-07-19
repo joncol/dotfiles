@@ -21,8 +21,9 @@ xmonad:
   EOF
 
 # Create Git hooks to make sure that the version of `init.el` that is committed
-# corresponds to the correct version of `init.org`.
-hooks:
+# corresponds to the correct version of `init.org`, and to automatically prepare
+# the commit message.
+git_hooks:
   #!/usr/bin/env bash
   cat <<"EOF" > .git/hooks/pre-commit
   #!/bin/sh
@@ -56,3 +57,23 @@ hooks:
   EOF
 
   chmod +x .git/hooks/post-commit
+
+  cat <<"EOF" > .git/hooks/prepare-commit-msg
+  #!/bin/sh
+
+  COMMIT_MSG_FILE=$1
+  COMMIT_SOURCE=$2
+  SHA1=$3
+
+  # Print the correct prefix in the commit message.
+  case "$COMMIT_SOURCE,$SHA1" in
+   ,|template,)
+     /usr/bin/perl -i.bak -pe '
+        print `git diff --cached --name-only | sed "/\\.org\\b/!d" | \
+            sed "s:^.*/emacs/init.org:emacs:" | \
+            sed -z "s/\\n/: \\n/g"`
+       if $first++ == 0' "$COMMIT_MSG_FILE" ;;
+   *) ;;
+  esac
+  EOF
+  chmod +x .git/hooks/prepare-commit-msg
