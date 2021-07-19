@@ -929,7 +929,7 @@ ethan-wspace."
 
   (add-hook 'dhall-mode-hook
             (lambda ()
-              (lsp)
+              (lsp-deferred)
 
               ;; This is necessary to auto-insert matching " in `dhall-mode'.
               (sp-local-pair 'dhall-mode "\"" "\"" :actions '(add))
@@ -1199,7 +1199,7 @@ ethan-wspace."
               ;; do not treat "-" as a word separator
               (modify-syntax-entry ?- "w")
 
-              (lsp))))
+              (lsp-deferred))))
 
 (use-package nlinum
   :disabled (version< "26" emacs-version)
@@ -1314,26 +1314,26 @@ ethan-wspace."
   :init
   (add-hook 'haskell-mode-hook
             (lambda ()
-              (lsp)
+              (lsp-deferred)
               (setq evil-shift-width 2)
               (define-key haskell-mode-map (kbd "C-c C-c C-s")
                 'haskell-mode-stylish-buffer)
               (setq haskell-auto-insert-module-format-string
                     "module %s\n  () where\n\n")
               (haskell-auto-insert-module-template)))
-  (add-hook 'haskell-literate-mode-hook #'lsp))
+  (add-hook 'haskell-literate-mode-hook #'lsp-deferred))
 
 (use-package lsp-mode
   :hook
-  ((c-mode . lsp)
-   (c++-mode . lsp)
+  ((c-mode . lsp-deferred)
+   (c++-mode . lsp-deferred)
 
-   (clojure-mode . lsp)
+   (clojure-mode . lsp-deferred)
 
    ;; Requires `gopls' binary.
-   (go-mode . lsp)
+   (go-mode . lsp-deferred)
 
-   (elm-mode . lsp))
+   (elm-mode . lsp-deferred))
 
   :init
   (with-eval-after-load 'lsp-mode
