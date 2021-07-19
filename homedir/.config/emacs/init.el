@@ -2133,6 +2133,8 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
 
 (defhydra jco/hydra-writing (:color teal :hint nil)
   "writing"
+  ("d" darkroom-tentative-mode "darkroom-tentative")
+  ("D" darkroom-mode "darkroom")
   ("l" ligature-mode "ligatures")
   ("n" org-noter "org-noter")
   ("o" (jco/toggle-mode olivetti-mode) "olivetti"))
@@ -2164,6 +2166,8 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   ("v" apropos-variable)
   ("i" info-apropos)
   ("x" xref-find-apropos))
+
+(use-package darkroom)
 
 (use-package flyspell-correct
   :bind (:map flyspell-mode-map
