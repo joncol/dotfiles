@@ -520,7 +520,6 @@ Useful for REPL windows."
     (setq projectile-indexing-method 'native))
   (setq projectile-enable-caching t)
   (evil-leader/set-key ". c" #'projectile-commander)
-  (evil-leader/set-key ". r" #'consult-ripgrep)
   (def-projectile-commander-method ?a
     "Ag."
     (counsel-projectile-ag))
@@ -4388,6 +4387,9 @@ accordance with ISO 8601)."
          ("M-e" . consult-isearch)   ;; orig. isearch-edit-string
          ("M-s e" . consult-isearch) ;; orig. isearch-edit-string
          ("M-s l" . consult-line))
+  :custom
+  (consult-ripgrep-command
+   "rg --null --line-buffered --color=ansi --max-columns=1000 --no-heading --line-number --smart-case . -e ARG OPTS")
   :init
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref
@@ -4398,6 +4400,7 @@ accordance with ISO 8601)."
 
   (advice-add #'register-preview :override #'consult-register-window)
   (evil-leader/set-key "b" 'consult-buffer)
+  (evil-leader/set-key ". r" #'consult-ripgrep)
   :config
   (consult-customize
    consult-theme
