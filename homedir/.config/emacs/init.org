@@ -1871,6 +1871,20 @@ Example: `helloWorld` becomes `Hello world`."
 
 (setq vc-follow-symlinks nil)
 #+end_src
+* Bibtex
+#+begin_src emacs-lisp
+(use-package ivy-bibtex
+  :defer t
+  :init
+  (evil-leader/set-key "z b" 'ivy-bibtex)
+  :custom
+  (ivy-bibtex-default-action 'ivy-bibtex-edit-notes)
+  :config
+  ;; Assumes usage of Zotero to export BibTeX bibliography.
+  (setq bibtex-completion-bibliography '("~/Sync/Zotero/library.bib"))
+  (setq bibtex-completion-pdf-field "File")
+  (setq bibtex-completion-notes-path "~/org/roam/ref"))
+#+end_src
 * Eshell
 #+begin_src emacs-lisp
 (defun create-scm-string (type branch)

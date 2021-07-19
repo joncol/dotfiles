@@ -1853,6 +1853,18 @@ Example: `helloWorld` becomes `Hello world`."
 
 (setq vc-follow-symlinks nil)
 
+(use-package ivy-bibtex
+  :defer t
+  :init
+  (evil-leader/set-key "z b" 'ivy-bibtex)
+  :custom
+  (ivy-bibtex-default-action 'ivy-bibtex-edit-notes)
+  :config
+  ;; Assumes usage of Zotero to export BibTeX bibliography.
+  (setq bibtex-completion-bibliography '("~/Sync/Zotero/library.bib"))
+  (setq bibtex-completion-pdf-field "File")
+  (setq bibtex-completion-notes-path "~/org/roam/ref"))
+
 (defun create-scm-string (type branch)
   "Create a string to be shown in prompt.
 TYPE is either \"git\" or \"hg\" and BRANCH is the branch name."
