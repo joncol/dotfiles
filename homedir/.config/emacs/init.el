@@ -4320,7 +4320,9 @@ accordance with ISO 8601)."
   (interactive "p")
   (if minibuffer-completing-file-name
       (if (string-match-p "/." (minibuffer-contents))
-          (zap-up-to-char (- arg) ?/)
+          (if (string-match-p ".*/$" (minibuffer-contents))
+              (zap-up-to-char (- arg) ?/)
+            (delete-backward-char arg))
         (delete-minibuffer-contents))
     (delete-backward-char arg)))
 
