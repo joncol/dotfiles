@@ -2093,13 +2093,6 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("b" org-roam-buffer-activate "org-roam-buffer")
   ("t" org-roam-tag-add "add tag"))
 
-(defhydra jco/hydra-swoop (:color teal :hint nil)
-  "
-swoop: _m_ulti multi-_a_ll _s_woop"
-  ("m" helm-multi-swoop)
-  ("a" helm-multi-swoop-all)
-  ("s" helm-swoop))
-
 (defhydra jco/hydra-swiper (:color teal :hint nil)
   "
 swiper: _s_wiper _a_ll _m_ulti"
