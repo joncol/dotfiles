@@ -1427,7 +1427,10 @@ ethan-wspace."
   (add-hook 'magit-mode-hook
             (lambda ()
               (evil-local-set-key 'normal (kbd "SPC")
-                                  'magit-diff-show-or-scroll-up))))
+                                  'magit-diff-show-or-scroll-up)))
+  (map-put magit-clone-name-alist
+           "\\`\\(?:bitbucket:\\|bb:\\)\\([^:]+\\)\\'"
+           '("bitbucket.org" "bitbucket.user")))
 
 (use-package magit-delta
   :if (locate-file "delta" exec-path exec-suffixes 1)
