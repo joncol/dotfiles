@@ -361,7 +361,6 @@ invokation."
                                 (insert user-mail-address)))
 
   (evil-leader/set-key "e f" 'jco/what-face)
-  (evil-leader/set-key "e w" 'ace-window)
 
   (evil-leader/set-key "x b" 'browse-url)
   (evil-leader/set-key "x n" #'normal-mode)
@@ -458,15 +457,36 @@ invokation."
   :config
   (evil-collection-init))
 
+(use-package evil-ediff
+  :after evil)
+
 (use-package evil-exchange
   :after evil
   :init
   (evil-exchange-cx-install))
 
+(use-package evil-god-state
+  :after evil
+  :config
+  (evil-define-key 'normal jco/my-keys-mode-map (kbd "SPC")
+    'evil-execute-in-god-state)
+  (evil-define-key 'god jco/my-keys-mode-map [escape] 'evil-god-state-bail))
+
+(use-package evil-ledger
+  :after (evil ledger-mode)
+  :config
+  (setq evil-ledger-sort-key "S")
+  (add-hook 'ledger-mode-hook #'evil-ledger-mode))
+
 (use-package evil-matchit
   :after evil
   :config
   (global-evil-matchit-mode))
+
+(use-package evil-numbers
+  :after evil
+  :bind (("C-c +" . evil-numbers/inc-at-pt)
+         ("C-c -" . evil-numbers/dec-at-pt)))
 
 (use-package evil-goggles
   :after evil
@@ -476,8 +496,8 @@ invokation."
 (use-package evil-search-highlight-persist
   :after (evil facemenu)
   :bind (:map evil-search-highlight-persist-map
-     ("C-x SPC" . evil-search-highlight-persist-remove-all)
-     ("C-x C-SPC" . evil-search-highlight-persist-remove-all))
+         ("C-x SPC" . evil-search-highlight-persist-remove-all)
+         ("C-x C-SPC" . evil-search-highlight-persist-remove-all))
   :init
   (global-evil-search-highlight-persist t))
 
@@ -523,7 +543,7 @@ Useful for REPL windows."
 * Projectile
 #+begin_src emacs-lisp
 (use-package projectile
-  :defer t
+  :defer
   :init
   (projectile-mode)
   :config
@@ -556,48 +576,6 @@ Useful for REPL windows."
                   file (projectile-project-root)))
       (run-hooks 'projectile-find-file-hook)
       (cider-jack-in))))
-#+end_src
-* Basic UI
-#+begin_src emacs-lisp
-(menu-bar-mode -1)
-;; Change for different username.
-(setq inhibit-startup-echo-area-message "jco")
-(setq inhibit-startup-message t)
-
-(defun jco/no-final-newline ()
-  (setq require-final-newline nil)
-  (setq mode-require-final-newline nil))
-
-(defun jco/tabs-are-ok ()
-  (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
-
-(use-package ethan-wspace
-  :config
-  (jco/no-final-newline)
-  (global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
-  (global-set-key (kbd "M-S-<backspace>") 'delete-trailing-whitespace)
-
-  (add-hook 'makefile-mode-hook 'jco/tabs-are-ok)
-
-  (add-hook 'sml-mode-hook 'jco/no-final-newline t)
-  (add-hook 'fsharp-mode-hook 'jco/no-final-newline t)
-  (add-hook 'ruby-mode-hook 'jco/no-final-newline t)
-  (defadvice ruby-mode-variables (after reset-final-newline activate compile)
-    "Reset final-newline that ruby-mode enforces but conflicts with
-ethan-wspace."
-    (jco/no-final-newline)))
-
-(use-package whitespace
-  :config
-  (setq-default whitespace-style '(face tabs trailing
-                                        space-before-tab indentation
-                                        empty space-after-tab tab-mark))
-  (add-hook 'after-init-hook
-            (lambda ()
-              (set-face-background 'whitespace-trailing "#82589f"))))
-
-(global-set-key (kbd "C-M-S-<backspace>") 'jco/tighten-braces)
-(evil-leader/set-key "s b" 'jco/tighten-braces)
 #+end_src
 * Company
 #+begin_src emacs-lisp
@@ -633,6 +611,71 @@ ethan-wspace."
 (use-package company-box
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
+#+end_src
+* Global config
+#+begin_src emacs-lisp
+(setq sentence-end-double-space nil)
+(setq ring-bell-function 'ignore)
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(electric-indent-mode)
+(global-set-key (kbd "RET")
+                (lambda ()
+                  (interactive)
+                  (delete-trailing-whitespace (line-beginning-position)
+                                              (line-end-position))
+                  (newline-and-indent)))
+
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
+(setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed nil)
+(setq scroll-margin 4)
+
+(load-library "iso-transl")
+(setq system-time-locale "C")
+
+(require 'time)
+(setq display-time-string-forms '(24-hours ":" minutes))
+
+(display-time-mode)
+
+;; (define-key jco/my-keys-mode-map (kbd "C-x a r") 'align-regexp)
+(defadvice align-regexp (around align-regexp-with-spaces activate compile)
+  "Never use tabs for alignment."
+  (let ((indent-tabs-mode nil))
+    ad-do-it))
+
+(put 'narrow-to-region 'disabled nil)
+
+(setq help-window-select t)
+
+(dolist (hook '(help-mode-hook
+                makefile-gmake-mode-hook
+                scss-mode-hook
+                sql-mode-hook))
+  (add-hook hook
+            (lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w"))))
+
+(jco/define-bindings Info-mode-map
+                     '(("<tab>"     . Info-next-reference)
+                       ("<backtab>" . Info-prev-reference)))
+
+(require 'help-mode)
+(bind-keys :map help-mode-map
+  ("<tab>"     . forward-button)
+  ("<backtab>" . backward-button))
+
+(jco/define-bindings help-mode-map '(("C-c C-b" . help-go-back)
+                                     ("C-c C-f" . help-go-forward)))
+
+(when (display-graphic-p)
+  (global-unset-key (kbd "C-x C-z")))
+
+(setq vc-follow-symlinks nil)
 #+end_src
 * Miscellaneous
 #+begin_src emacs-lisp
@@ -799,33 +842,32 @@ ethan-wspace."
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
 (use-package pkgbuild-mode
-  :defer t)
+  :defer)
 
 (use-package pretty-hydra
-  :defer t)
+  :defer)
 
 (use-package project
   :after magit)
 
 (use-package ace-isearch
-  :disabled t
+  :disabled
   :config
   (global-ace-isearch-mode))
 
 (use-package ace-link
+  :defer
   :init
   (ace-link-setup-default "f"))
 
 (use-package ace-window
+  :defer
   :init
+  (evil-leader/set-key "w o" 'ace-window)
   (global-set-key [remap other-window] 'ace-window))
 
-(use-package adoc-mode
-  :disabled t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode)))
-
 (use-package aggressive-indent
+  :defer
   :config
   (add-to-list
    'aggressive-indent-dont-indent-if
@@ -833,90 +875,67 @@ ethan-wspace."
          (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
                              (thing-at-point 'line))))))
 
-(use-package ahk-mode)
-
 (use-package alert
-  :config (setq alert-default-style 'libnotify))
+  :defer
+  :custom
+  (alert-default-style 'libnotify))
 
 (use-package all-the-icons-dired
-  :disabled t
+  :disabled
   :if (display-graphic-p)
   :config
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 (use-package ansible
-  :defer t)
+  :defer)
 
 (use-package anzu
+  :disabled
   :config
   (global-anzu-mode))
 
-(use-package auto-yasnippet
-  :config
-  (evil-leader/set-key "y c" #'aya-create)
-  (evil-leader/set-key "y e" #'aya-expand))
-
 (use-package avy
-  :config
-  (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o)) ;; Colemak specific
-
+  :defer
+  :custom
+  (avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o)) ;; Colemak specific
+  (avy-case-fold-search nil)
+  :init
   (evil-leader/set-key "f" 'evil-avy-goto-char)
   (evil-leader/set-key "#" 'evil-avy-goto-line)
   (evil-leader/set-key "F" 'evil-avy-goto-word-or-subword-1)
   (evil-leader/set-key "/" 'avy-goto-char-timer)
   (evil-declare-not-repeat 'avy-goto-char-timer)
-  (avy-setup-default)
-  (setq avy-case-fold-search nil))
+  (avy-setup-default))
 
 (use-package bookmark+
-  :disabled t
+  :disabled
   :straight (bookmark-plus :type git :host github
                            :repo "emacsmirror/bookmark-plus")
-  :defer t
+  :defer
   :config
   (bmkp-info-auto-bookmark-mode))
 
 (use-package buffer-move
   :if (not (eq system-type 'windows-nt))
-  :config
-  (jco/define-bindings jco/my-keys-mode-map
-                       '(("<C-S-up>"    . buf-move-up)
-                         ("<C-S-down>"  . buf-move-down)
-                         ("<C-S-left>"  . buf-move-left)
-                         ("<C-S-right>" . buf-move-right))))
-
-(use-package calfw
-  :disabled t
-  :commands cfw:open-org-calendar
-  :config
-  (setq cfw:display-calendar-holidays nil))
-
-(use-package calfw-org
-  :disabled t
-  :after calfw)
+  :bind (("C-S-<up>"    . buf-move-up)
+         ("C-S-<down>"  . buf-move-down)
+         ("C-S-<left>"  . buf-move-left)
+         ("C-S-<right>" . buf-move-right)))
 
 (use-package crystal-mode
-  :defer t)
+  :defer)
 
 (use-package csv-mode
-  :defer t)
+  :defer)
 
 (use-package cypher-mode
-  :defer t)
+  :defer)
 
 (use-package dash-functional
-  :defer t)
-
-(use-package deadgrep
-  :bind (:map deadgrep-mode-map
-         ("j" . deadgrep-forward)
-         ("k" . deadgrep-backward))
-  :init
-  (evil-leader/set-key "d g" 'deadgrep)
-  :config
-  (evil-set-initial-state 'deadgrep-mode 'emacs))
+  :defer)
 
 (use-package deft
+  :defer
   :custom
   (deft-directory "~/org/roam")
   (deft-recursive t)
@@ -926,11 +945,12 @@ ethan-wspace."
               (display-line-numbers-mode -1))))
 
 (use-package desktop
+  :defer
   :config
   (push ".*" desktop-clear-preserve-buffers))
 
 (use-package dhall-mode
-  :defer t
+  :defer
   :custom
   (dhall-use-header-line nil)
   (dhall-format-at-save nil)
@@ -965,12 +985,13 @@ ethan-wspace."
   (add-hook 'dired-mode-hook (lambda () (evil-matchit-mode -1))))
 
 (use-package diredful
-  :disabled t
+  :disabled
   :after dired
   :config
   (diredful-mode))
 
 (use-package direnv
+  :defer
   :config
   (direnv-mode))
 
@@ -994,51 +1015,13 @@ ethan-wspace."
     (";" . dired-subtree-remove)))
 
 (use-package docker-compose-mode
-  :defer t)
+  :defer)
 
 (use-package dockerfile-mode
-  :defer t)
-
-(use-package ecb
-  :defer t
-  :config
-  (setq ecb-tip-of-the-day nil))
-
-(use-package eclim
-  :disabled t
-  :config
-  ;; (setq eclimd-autostart t)
-  (setq eclimd-autostart-with-default-workspace t)
-  (setq eclim-eclipse-dirs "~/eclipse/java-oxygen/eclipse")
-  (setq eclim-executable
-        (expand-file-name "~/.p2/pool/plugins/org.eclim_2.7.2/bin/eclim"))
-  (setq eclimd-default-workspace (expand-file-name "~/eclipse-workspace"))
-  (evil-set-initial-state 'eclim-problems-mode 'emacs)
-  (evil-set-initial-state 'eclim-project-mode 'emacs)
-  (add-hook 'java-mode-hook
-            (lambda ()
-              ;; `electric-pair-mode' causes extra closing parenthesis to be
-              ;; inserted.
-              (electric-pair-mode -1)
-
-              (eclim-mode)
-              (evil-leader/set-key "e b" 'eclim-project-build)
-              (evil-leader/set-key "e c" 'eclim-project-create)
-              (evil-leader/set-key "e r" 'eclim-run-class)
-              (setq help-at-pt-display-when-idle t)
-              (setq help-at-pt-timer-delay 0.1)
-              (help-at-pt-set-timer)
-              (setq comment-start "//"
-                    comment-end "")
-              (jco/define-bindings
-               java-mode-map
-               '(("M-g M-n" . eclim-problems-next-same-file)
-                 ("M-g n" . eclim-problems-next-same-file)
-                 ("M-g M-p" . eclim-problems-prev-same-file)
-                 ("M-g p" . eclim-problems-prev-same-file))))))
+  :defer)
 
 (use-package elm-mode
-  :defer t
+  :defer
   :config
   (remove-hook 'elm-mode-hook 'elm-indent-mode)
   (add-hook 'elm-mode-hook #'elm-format-on-save-mode)
@@ -1049,7 +1032,7 @@ ethan-wspace."
   (gcmh-mode))
 
 (use-package gif-screencast
-  :defer t
+  :defer
   :bind (:map gif-screencast-mode-map
          ("<f1>" . gif-screencast-stop)
          ("<f2>" . gif-screencast-toggle-pause))
@@ -1066,12 +1049,12 @@ ethan-wspace."
              (number-sequence 0 9))))
 
 (use-package eyebrowse
+  :defer 1
+  :custom
+  (eyebrowse-keymap-prefix "")
+  (eyebrowse-mode-line-separator " ")
+  (eyebrowse-new-workspace t)
   :init
-  (setq eyebrowse-keymap-prefix "")
-  :config
-  (eyebrowse-mode)
-  (setq eyebrowse-mode-line-separator " ")
-  (setq eyebrowse-new-workspace t)
   (evil-leader/set-key "w w" 'eyebrowse-switch-to-window-config)
   (evil-leader/set-key "w r" 'eyebrowse-rename-window-config)
   (jco/set-eyebrowse-win-bindings)
@@ -1081,75 +1064,43 @@ ethan-wspace."
       (when (projectile-project-root)
         (projectile-kill-buffers))
       (eyebrowse-close-window-config)))
+  :config
+  (eyebrowse-mode)
   (set-face-foreground 'mode-line-emphasis "#f9ca24"))
 
 (use-package ggtags
-  :if (eq system-type 'windows-nt))
+  :if (eq system-type 'windows-nt)
+  :defer)
 
-(use-package ghub)
-
-(use-package gradle-mode
-  :disabled t
-  :config
-  (add-hook 'java-mode-hook
-            (lambda ()
-              (setq gradle-executable-path "/opt/gradle-4.6/bin/gradle")
-              (gradle-mode)
-              (evil-leader/set-key "g r"
-                (lambda ()
-                  (interactive)
-                  (gradle-run "run")))
-              (evil-leader/set-key "t t"
-                (lambda ()
-                  (interactive)
-                  (gradle-run "test --info")))
-              (evil-leader/set-key "t s" 'gradle-single-test))))
+(use-package ghub
+  :defer)
 
 (use-package elec-pair
-  :init
-  (electric-pair-mode)
+  :defer 1
   :custom
   (electric-pair-skip-whitespace nil)
   (electric-pair-delete-adjacent-pairs nil)
-  (electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
+  (electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+  :config
+  (electric-pair-mode))
 
 (use-package esup
-  :defer t
+  :defer
   :config
   (define-key esup-mode-map "\C-w" 'evil-window-map))
 
-(use-package evil-ediff
-  :after evil)
-
-(use-package evil-god-state
-  :after evil
-  :config
-  (evil-define-key 'normal jco/my-keys-mode-map (kbd "SPC")
-    'evil-execute-in-god-state)
-  (evil-define-key 'god jco/my-keys-mode-map [escape] 'evil-god-state-bail))
-
-(use-package evil-ledger
-  :after ledger-mode
-  :config
-  (setq evil-ledger-sort-key "S")
-  (add-hook 'ledger-mode-hook #'evil-ledger-mode))
-
-(use-package evil-numbers
-  :after evil
-  :bind (("C-c +" . evil-numbers/inc-at-pt)
-         ("C-c -" . evil-numbers/dec-at-pt)))
-
 (use-package expand-region
-  :config
-  (define-key jco/my-keys-mode-map (kbd "C-=") 'er/expand-region))
+  :bind
+  (("C-=" . er/expand-region)))
 
-(use-package f)
+(use-package f
+  :defer)
 
-(use-package fennel-mode)
-
-(use-package fireplace)
+(use-package fireplace
+  :defer)
 
 (use-package flycheck
+  :defer
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
   :config
@@ -1159,20 +1110,21 @@ ethan-wspace."
   ;; Disabling this package, since it only gives error:
   ;; "Reading Haskell configuration failed with exit code Segmentation fault and
   ;; output:", when trying to run it in Nix/direnv setup.
-  :disabled t
+  :disabled
   :hook (haskell-mode . flycheck-haskell-setup))
 
 (use-package flycheck-package
+  :after flycheck
   :config
-  (eval-after-load 'flycheck
-    '(flycheck-package-setup)))
+  (flycheck-package-setup))
 
 (use-package flycheck-pos-tip
-  :init
+  :after flycheck
+  :config
   (flycheck-pos-tip-mode))
 
 (use-package forge
-  :defer 1
+  :after magit
   :config
   (add-hook 'forge-post-mode-hook
             (lambda ()
@@ -1183,60 +1135,27 @@ ethan-wspace."
 
 (use-package fortune
   :if (not (eq system-type 'windows-nt))
-  :disabled t
+  :disabled
   :config
   (setq fortune-dir "/usr/share/games/fortunes")
   (setq fortune-file "/usr/share/games/fortunes"))
 
 (use-package fortune-cookie
   :if (not (eq system-type 'windows-nt))
-  :disabled t
+  :disabled
   :config
   (setq fortune-cookie-cowsay-enable t)
   (setq fortune-cookie-cowsay-args "-f tux")
   (fortune-cookie-mode))
 
-(use-package fsharp-mode
-  :disabled t
-  :defer t)
-
-(use-package fuzzy
-  :disabled t
-  :config
-  (turn-on-fuzzy-isearch))
-
-(use-package nix-mode
-  :custom
-  (evil-shift-width 2)
-  :mode "\\.nix\\'"
-  :config
-  (setenv "DIRENV_ALLOW_NIX" "1")
-  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
-                    :major-modes '(nix-mode)
-                    :server-id 'nix))
-  ;; Requires `rnix-lsp' binary.
-  (add-hook 'nix-mode-hook
-            (lambda ()
-              ;; do not treat "-" as a word separator
-              (modify-syntax-entry ?- "w")
-
-              (lsp-deferred))))
-
-(use-package nlinum
-  :disabled (version< "26" emacs-version)
-  :init
-  (global-nlinum-mode))
-
 (use-package git-gutter+
-  :disabled t
+  :disabled
   :if (not (eq system-type 'windows-nt))
   :config
   (global-git-gutter+-mode))
 
 (use-package git-gutter-fringe+
-  :disabled t
+  :disabled
   :after nlinum
   :if (not (eq system-type 'windows-nt)))
 
@@ -1248,72 +1167,35 @@ ethan-wspace."
   (evil-leader/set-key "g l" 'git-link))
 
 (use-package github-notifier
-  :disabled t
+  :disabled
   :if (locate-file "google-chrome-stable" exec-path exec-suffixes 1)
   :defer 2
   :config
   (github-notifier-mode))
 
-(use-package glsl-mode)
-
 (use-package google-this
-  :defer t
+  :defer
   :init
   (evil-leader/set-key "x g" 'google-this))
 
-(use-package guide-key
-  :config
-  (guide-key-mode)
-  ;; (setq guide-key/popup-window-position "right")
-  (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c C-r")))
-
-(use-package j-mode
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.ij[rstp]$" . j-mode))
-  :custom
-  (j-console-cmd "jconsole")
-  :config
-  (custom-set-faces
-   '(j-verb-face ((t (:foreground "Red"))))
-   '(j-adverb-face ((t (:foreground "Green"))))
-   '(j-conjunction-face ((t (:foreground "Blue"))))
-   '(j-other-face ((t (:foreground "Black"))))))
-
 (use-package help-fns+
-  :defer t)
-
-(use-package hide-mode-line)
+  :defer)
 
 ;; To get colors in html export of org-mode code snippets.
-(use-package htmlize)
+(use-package htmlize
+  :defer)
 
 (use-package insert-shebang
-  :defer t)
+  :defer)
 
 (use-package ix
-  :defer t)
-
-(use-package jinja2-mode
-  :defer t)
-
-(use-package js2-mode
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-  :config
-  (setq js2-basic-offset 2)
-  (setq js2-mode-show-parse-errors nil)
-  (setq js2-mode-show-strict-warnings nil))
-
-(use-package json-mode
-  :defer t)
+  :defer)
 
 (use-package kurecolor
-  :defer t)
+  :defer)
 
 (use-package ledger-mode
-  :defer t
+  :defer
   :mode "\\.journal\\'"
   :config
   (setq ledger-mode-should-check-version nil)
@@ -1326,14 +1208,14 @@ ethan-wspace."
                t))
 
 (use-package lorem-ipsum
-  :defer t)
+  :defer)
 
 ;; Requirements: Install system package `ghcup-hs-bin', and then:
 ;; `ghcup install hls' (to install `haskell-language-server').
 ;; Install `haskell-implicit-hie', and finally run: `gen-hie > hie.yaml' to get
 ;; a hie configuration.
 (use-package lsp-haskell
-  :defer t
+  :defer
   :init
   (add-hook 'haskell-mode-hook
             (lambda ()
@@ -1397,112 +1279,19 @@ ethan-wspace."
       (message
        "Error: System clipboard doesn't contain a valid ClubHouse story URL"))))
 
-(use-package magit
-  :defer 1
-  :init
-  (let ((filename "~/.nix-profile/bin/emacsclient"))
-    (when (file-exists-p filename)
-      (setq-default with-editor-emacsclient-executable
-                    (expand-file-name filename))))
-  :config
-  ;; Fix regression where error message is shown when using magit-status while
-  ;; having global-whitespace-mode enabled.
-  (add-function :before-while whitespace-enable-predicate
-    'prevent-whitespace-mode-for-magit)
-
-  ;; Needed for success status message to be shown.
-  (setq magit-auto-revert-mode nil)
-
-  (setq magit-display-buffer-function
-        #'magit-display-buffer-fullframe-status-v1)
-  (evil-leader/set-key "v l" 'magit-log-buffer-file)
-  (evil-leader/set-key "v b" 'magit-blame)
-  (bind-key "q" #'jco/magit-kill-buffers magit-status-mode-map)
-  (unless (display-graphic-p)
-    (remove-hook 'magit-section-highlight-hook 'magit-section-highlight)
-    (remove-hook 'magit-section-highlight-hook 'magit-diff-highlight))
-  (add-hook 'git-commit-setup-hook
-            (lambda ()
-              (setq fill-column 72)
-              (auto-fill-mode)
-              (modify-syntax-entry ?- "w")
-              (git-commit-turn-on-flyspell)
-              (end-of-line)))
-  (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
-  (evil-leader/set-key "x L" #'jco/insert-clubhouse-markdown-link)
-  (add-hook 'magit-mode-hook
-            (lambda ()
-              (evil-local-set-key 'normal (kbd "SPC")
-                                  'magit-diff-show-or-scroll-up)))
-  (map-put magit-clone-name-alist
-           "\\`\\(?:bitbucket:\\|bb:\\)\\([^:]+\\)\\'"
-           '("bitbucket.org" "bitbucket.user")))
-
-(use-package magit-delta
-  :if (locate-file "delta" exec-path exec-suffixes 1)
-  :straight (magit-delta :type git :host github
-                         :repo "dandavison/magit-delta")
-  :after magit
-  :config
-  (when (< (kurecolor-hex-get-brightness (face-attribute 'default :background))
-           0.5)
-    (setq magit-delta-delta-args
-          `("--plus-color" "#016000"
-            "--plus-emph-color" "#02a000"
-            "--minus-color" "#840001"
-            "--minus-emph-color" "#b60004"
-            "--max-line-distance" "0.6"
-            "--24-bit-color" ,(if xterm-color--support-truecolor
-                                  "always"
-                                "never")
-            "--color-only")))
-  (magit-delta-mode))
-
-(use-package magit-org-todos
-  :disabled t
-  :after magit
-  :config
-  (magit-org-todos-autoinsert))
-
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode))
-  :config
-  (setq markdown-command
-        (concat "pandoc -c file://"
-                (expand-file-name
-                 (concat user-emacs-directory "github-pandoc.css"))
-                " --from gfm -t html5 --mathjax "
-                "--highlight-style=tango --standalone "
-                "--metadata title=\"*markdown-output*\"")))
-
 (use-package minions
   :config
   (minions-mode)
   (setq minions-mode-line-lighter "#"))
 
-(use-package monky
-  :defer t)
+(use-package nginx-mode
+  :defer)
 
-(use-package mustache-mode
-  :mode "\\.mustache\\'"
-  :defer t)
-
-(use-package nginx-mode)
-
-(use-package ob-async)
-
-(use-package olivetti
-  :defer t
-  :config
-  (setq-default olivetti-body-width (+ fill-column 1))
-  (add-hook 'olivetti-mode-hook
-            (lambda ()
-              (setq display-line-numbers nil))))
+(use-package ob-async
+  :after org-mode)
 
 (use-package org-gcal
-  :disabled t
+  :disabled
   :after calfw
   :config
   (require 'my-secrets (concat user-emacs-directory "lisp/my-secrets.el.gpg"))
@@ -1515,17 +1304,17 @@ ethan-wspace."
   (define-key haskell-mode-map (kbd "C-c C-c C-f") 'ormolu-format-buffer))
 
 (use-package outline
+  :defer
   :init
   (if (version< emacs-version "25.1")
       (add-hook 'ediff-prepare-buffer-hook #'show-all)
     (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)))
 
-(use-package ox-gfm)
-
 (use-package package-build
-  :defer t)
+  :defer)
 
-(use-package package-utils)
+(use-package package-utils
+  :defer)
 
 (use-package pdf-tools
   :if (and (not (eq system-type 'windows-nt))
@@ -1541,15 +1330,14 @@ ethan-wspace."
             (lambda ()
               (display-line-numbers-mode -1))))
 
-(use-package purescript-mode
-  :defer t)
+(use-package rainbow-mode
+  :defer)
 
-(use-package rainbow-mode)
-
-(use-package rainbow-delimiters)
+(use-package rainbow-delimiters
+  :defer)
 
 (use-package recentf
-  :defer t
+  :defer
   :config
   (add-to-list 'recentf-exclude "/\\.emacs\\.d/elpa/")
   (add-to-list 'recentf-exclude "/\\.elfeed/index")
@@ -1557,7 +1345,7 @@ ethan-wspace."
   (setq recentf-max-menu-items 25))
 
 (use-package restclient
-  :defer t
+  :defer
   :config
   (dolist (mode-map '((html-mode . motion)
                       (js-mode   . motion)))
@@ -1573,10 +1361,8 @@ ethan-wspace."
            (save-match-data (looking-at "\\sw\\|\\s_\\|\\s."))))))
 
 (use-package smartparens
-  :init
-  (add-hook 'prog-mode-hook #'smartparens-mode)
-  (add-hook 'text-mode-hook #'smartparens-mode)
-  (add-hook 'cider-repl-mode-hook #'smartparens-mode)
+  ;; :hook (prog-mode text-mode cider-repl-mode)
+  :defer
   :config
   (sp-use-paredit-bindings)
   ;; (sp-pair "\"" nil :actions :rem)
@@ -1626,17 +1412,6 @@ ethan-wspace."
   (evil-leader/set-key "}" 'sp-forward-barf-sexp)
   (evil-leader/set-key "{" 'sp-backward-barf-sexp))
 
-(use-package speed-type
-  :defer t)
-
-(use-package string-inflection
-  :config
-  (evil-leader/set-key "s i" 'string-inflection-all-cycle)
-  (evil-leader/set-key "s s" 'string-inflection-underscore)
-  (evil-leader/set-key "s k" 'string-inflection-kebab-case)
-  (evil-leader/set-key "s c" 'string-inflection-lower-camelcase)
-  (evil-leader/set-key "s C" 'string-inflection-camelcase))
-
 (defun jco/camel-case-to-sentence (text)
   "Convert TEXT from camelCase to a sentence.
 Example: `helloWorld` becomes `Hello world`."
@@ -1652,26 +1427,20 @@ Example: `helloWorld` becomes `Hello world`."
     (string-inflection-camelcase-function base-name)))
 
 (use-package super-save
+  :defer 1
   :config
   (setq super-save-exclude '(".gpg" ".pdf"))
   (super-save-mode))
 
-(use-package sx
-  :config
-  (with-eval-after-load "sx-question-mode"
-    (bind-keys :map sx-question-mode-map
-      ("j" . scroll-up-line)
-      ("k" . scroll-down-line))))
-
 (use-package unkillable-scratch
+  :defer 1
   :init
   (unkillable-scratch))
 
 (use-package volatile-highlights
+  :defer 1
   :config
   (volatile-highlights-mode))
-
-(use-package xkcd)
 
 (use-package yaml-mode
   :mode "\\.yml\\'"
@@ -1680,13 +1449,6 @@ Example: `helloWorld` becomes `Hello world`."
             (lambda ()
               (modify-syntax-entry ?- "w")
               (setq evil-shift-width 2))))
-
-(use-package zeal-at-point
-  :disabled t
-  :config
-  ;; (evil-leader/set-key "z" 'zeal-at-point)
-  (setq zeal-at-point-docsets '(c cpp))
-  (add-to-list 'zeal-at-point-mode-alist '(c++-mode . ("cpp" "qt"))))
 
 (require 'server)
 
@@ -1698,70 +1460,9 @@ Example: `helloWorld` becomes `Hello world`."
   (server-start)
   (require 'org-protocol))
 
-(setq sentence-end-double-space nil)
-(setq ring-bell-function 'ignore)
-
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(electric-indent-mode)
-(global-set-key (kbd "RET")
-                (lambda ()
-                  (interactive)
-                  (delete-trailing-whitespace (line-beginning-position)
-                                              (line-end-position))
-                  (newline-and-indent)))
-
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
-(setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
-(setq mouse-wheel-progressive-speed nil)
-(setq scroll-margin 4)
-
-(load-library "iso-transl")
-(setq system-time-locale "C")
-
-(require 'time)
-(setq display-time-string-forms '(24-hours ":" minutes))
-
-(display-time-mode)
-
-(define-key jco/my-keys-mode-map (kbd "C-x a r") 'align-regexp)
-(defadvice align-regexp (around align-regexp-with-spaces activate compile)
-  "Never use tabs for alignment."
-  (let ((indent-tabs-mode nil))
-    ad-do-it))
-
-(put 'narrow-to-region 'disabled nil)
-
-(setq help-window-select t)
-
-(dolist (hook '(help-mode-hook
-                makefile-gmake-mode-hook
-                scss-mode-hook
-                sql-mode-hook))
-  (add-hook hook
-            (lambda ()
-              ;; do not treat "-" as a word separator
-              (modify-syntax-entry ?- "w"))))
-
-(jco/define-bindings Info-mode-map
-                     '(("<tab>"     . Info-next-reference)
-                       ("<backtab>" . Info-prev-reference)))
-
-(require 'help-mode)
-(bind-keys :map help-mode-map
-  ("<tab>"     . forward-button)
-  ("<backtab>" . backward-button))
-
-(jco/define-bindings help-mode-map '(("C-c C-b" . help-go-back)
-                                     ("C-c C-f" . help-go-forward)))
-
-(add-to-list 'exec-path (expand-file-name "~/.asdf/shims") t)
-(setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/.asdf/shims")))
-
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
-  :defer t
+  :defer
   :config
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize)
@@ -1787,106 +1488,38 @@ Example: `helloWorld` becomes `Hello world`."
 
 (define-key jco/my-keys-mode-map (kbd "C-x b") 'ibuffer)
 
-(use-package iedit
-  :defer t
-  :init
-  (evil-leader/set-key ";" #'iedit-mode))
-
 (use-package info+
-  :disabled t
+  :disabled
   :straight (info-plus :type git :host github :repo "emacsmirror/info-plus")
   :after info)
 
 (use-package s
-  :config
-  (setq user-mail-address
-        (concat (s-replace " " "." (downcase user-full-name)) "@"
-                (if (jco/at-office-p)
-                    "zimpler.com"
-                  "gmail.com"))))
-
-(use-package smart-tab
-  :disabled t
-  :init
-  (setq smart-tab-user-provided-completion-function
-        'jco/expand-snippet-or-complete-selection)
-  :config
-  ;; This is to avoid using the deprecated `lisp-complete-symbol' function.
-  (setcdr (assq 'emacs-lisp-mode smart-tab-completion-functions-alist)
-          'completion-at-point)
-  (global-smart-tab-mode)
-  (setq smart-tab-using-hippie-expand t))
-
-(use-package terraform-mode
-  :config
-  (add-hook 'terraform-mode-hook
-            (lambda ()
-              (setq evil-shift-width terraform-indent-level)
-              ;; do not treat "-" as a word separator
-              (modify-syntax-entry ?- "w"))))
-
-(defun setup-tide ()
-  "Set up `tide-mode' for JavaScript and TypeScript."
-  (interactive)
-  (tide-setup)
-  (flycheck-mode)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode)
-  (tide-hl-identifier-mode))
-
-(use-package tide
-  :hook ((typescript-mode . setup-tide)
-         (typescript-mode . tide-hl-identifier-mode))
-  :init
-  (add-hook 'js2-mode-hook #'setup-tide)
-  :config
-  (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append))
-
-(use-package toml-mode
-  :config
-  (modify-syntax-entry ?- "w") ;; Do not treat "-" as a word separator.
-  )
+  :defer)
 
 (use-package tree-sitter
+  :defer 1
   :config
   (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
-(use-package tree-sitter-langs)
+(use-package tree-sitter-langs
+  :after tree-sitter)
 
-(use-package try)
-
-(use-package typescript-mode
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode)))
-
-(use-package visual-fill-column)
-
-(use-package wgrep)
-
-(use-package which-key
-  :config
-  (which-key-mode))
+(use-package wgrep
+  :defer)
 
 (use-package xterm-color
   :after magit-delta)
 
 (use-package yagist
+  :defer
   :config
   (setq yagist-view-gist t))
-
-(evil-leader/set-key "x o" 'occur)
-
-(when (display-graphic-p)
-  (global-unset-key (kbd "C-x C-z")))
-
-(setq vc-follow-symlinks nil)
 #+end_src
 * Bibtex
 #+begin_src emacs-lisp
 (use-package ivy-bibtex
-  :defer t
+  :defer
   :init
   (evil-leader/set-key "z b" 'ivy-bibtex)
   :custom
@@ -1998,6 +1631,7 @@ windows easier."
 
 (use-package ligature
   :straight (:host github :repo "mickeynp/ligature.el")
+  :defer
   :config
   ;; Enable the "www" ligature in every possible major mode.
   (ligature-set-ligatures 't '("www"))
@@ -2023,21 +1657,12 @@ windows easier."
 
   (global-ligature-mode t))
 #+end_src
-* Helpful
-#+begin_src emacs-lisp
-(use-package helpful
-  :defer t
-  :init
-  (global-set-key (kbd "C-h f") #'helpful-callable)
-  (global-set-key (kbd "C-h v") #'helpful-variable)
-  (global-set-key (kbd "C-h k") #'helpful-key))
-#+end_src
 * Hydras
 #+begin_src emacs-lisp
 (use-package hydra
-  :config
-  (with-eval-after-load 'evil-leader
-    (evil-leader/set-key "m" 'jco/hydra-main-menu/body)))
+  :defer
+  :init
+  (evil-leader/set-key "m" 'jco/hydra-main-menu/body))
 
 (defun open-config-file (file-name)
   "Open FILE-NAME in emacs configuration directory."
@@ -2197,14 +1822,12 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 #+end_src
 * Language/writing
 #+begin_src emacs-lisp
-(use-package darkroom)
-
 (use-package flyspell-correct
   :bind (:map flyspell-mode-map
          (("C-;" . flyspell-correct-wrapper))))
 
 (use-package langtool
-  :defer t
+  :defer
   :init
   (setq langtool-language-tool-jar
         "/opt/LanguageTool-3.9/languagetool-commandline.jar")
@@ -2223,7 +1846,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
         (popup-tip msg)))))
 
 (use-package sdcv
-  :defer t
+  :defer
   :init
   (global-set-key (kbd "C-c d") 'sdcv-search-input))
 #+end_src
@@ -2236,27 +1859,107 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 (evil-leader/set-key "p" 'jco/paste-over)
 (evil-leader/set-key "P" 'jco/paste-over-word)
 #+end_src
+* Magit
+#+begin_src emacs-lisp
+(use-package magit
+  :defer 1
+  :init
+  (let ((filename "~/.nix-profile/bin/emacsclient"))
+    (when (file-exists-p filename)
+      (setq-default with-editor-emacsclient-executable
+                    (expand-file-name filename))))
+  :config
+  ;; Fix regression where error message is shown when using magit-status while
+  ;; having global-whitespace-mode enabled.
+  (add-function :before-while whitespace-enable-predicate
+    'prevent-whitespace-mode-for-magit)
+
+  ;; Needed for success status message to be shown.
+  (setq magit-auto-revert-mode nil)
+
+  (setq magit-display-buffer-function
+        #'magit-display-buffer-fullframe-status-v1)
+  (evil-leader/set-key "v l" 'magit-log-buffer-file)
+  (evil-leader/set-key "v b" 'magit-blame)
+  (bind-key "q" #'jco/magit-kill-buffers magit-status-mode-map)
+  (unless (display-graphic-p)
+    (remove-hook 'magit-section-highlight-hook 'magit-section-highlight)
+    (remove-hook 'magit-section-highlight-hook 'magit-diff-highlight))
+  (add-hook 'git-commit-setup-hook
+            (lambda ()
+              (setq fill-column 72)
+              (auto-fill-mode)
+              (modify-syntax-entry ?- "w")
+              (git-commit-turn-on-flyspell)
+              (end-of-line)))
+  (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
+  (evil-leader/set-key "x L" #'jco/insert-clubhouse-markdown-link)
+  (add-hook 'magit-mode-hook
+            (lambda ()
+              (evil-local-set-key 'normal (kbd "SPC")
+                                  'magit-diff-show-or-scroll-up)))
+  (setq magit-clone-name-alist
+        (map-insert magit-clone-name-alist
+                    "\\`\\(?:bitbucket:\\|bb:\\)\\([^:]+\\)\\'"
+                    '("bitbucket.org" "bitbucket.user"))))
+
+(use-package magit-delta
+  :if (locate-file "delta" exec-path exec-suffixes 1)
+  :straight (magit-delta :type git :host github
+                         :repo "dandavison/magit-delta")
+  :after magit
+  :config
+  (when (< (kurecolor-hex-get-brightness (face-attribute 'default :background))
+           0.5)
+    (setq magit-delta-delta-args
+          `("--plus-color" "#016000"
+            "--plus-emph-color" "#02a000"
+            "--minus-color" "#840001"
+            "--minus-emph-color" "#b60004"
+            "--max-line-distance" "0.6"
+            "--24-bit-color" ,(if xterm-color--support-truecolor
+                                  "always"
+                                "never")
+            "--color-only")))
+  (magit-delta-mode))
+
+(use-package magit-org-todos
+  :disabled
+  :after magit
+  :config
+  (magit-org-todos-autoinsert))
+
+#+end_src
 * Modeline
 #+begin_src emacs-lisp
 (use-package rich-minority
+  :defer
   :config
   (setq rm-blacklist ".")
   (rich-minority-mode))
 
 (use-package smart-mode-line
-  :disabled t
+  :disabled
   :config
   (setq sml/no-confirm-load-theme t)
   (sml/setup))
 
 (use-package doom-modeline
-  :disabled t
+  :disabled
   :ensure t
-  :defer t
+  :defer
   :hook (after-init . doom-modeline-init))
 #+end_src
 * Mu4e
 #+begin_src emacs-lisp
+(require 's)
+
+(setq user-mail-address
+      (concat (s-replace " " "." (downcase user-full-name)) "@"
+              (if (jco/at-office-p)
+                  "zimpler.com"
+                "gmail.com")))
+
 (defun jco/init-mu4e-contexts ()
   "Initialize mu4e contexts."
   (require 'mu4e-context)
@@ -2481,10 +2184,12 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
 
 (use-package org-cliplink
-  :config
+  :defer
+  :init
   (evil-leader/set-key-for-mode 'org-mode "x l" 'org-cliplink))
 
 (use-package org-download
+  :after org
   :init
   (add-hook 'org-mode-hook
             (lambda ()
@@ -2517,7 +2222,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     (beginning-of-line 0)))
 
 (use-package org
-  :defer t
+  :defer
   :ensure org-plus-contrib
   :custom
   (org-footnote-auto-adjust t)
@@ -2702,9 +2407,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"))
 
 (use-package org-habit-plus
+  :disabled
   :straight (org-habit-plus :type git :host github
                             :repo "oddious/org-habit-plus")
-  :defer t
   :init
   (add-to-list 'org-modules 'org-habit))
 
@@ -2854,6 +2559,7 @@ As such, it will only work when the notes window exists."
   :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-pomodoro
+  :defer
   :custom
   (org-pomodoro-manual-break t)
 
@@ -2873,7 +2579,7 @@ As such, it will only work when the notes window exists."
                                      "resources/sounds/clock.wav")))
 
 (use-package org-roam
-  :defer t
+  :defer
   :custom
   (org-roam-directory "~/org/roam")
   (org-roam-buffer-position 'bottom)
@@ -2930,7 +2636,7 @@ As such, it will only work when the notes window exists."
            :unnarrowed t))))
 
 (use-package org-super-agenda
-  :disabled t
+  :disabled
   :after org
   :custom
   (org-super-agenda-groups
@@ -3010,7 +2716,7 @@ As such, it will only work when the notes window exists."
                        ("C-c C-w" . org-refile)))
 
 (use-package ox-slack
-  :defer t
+  :defer
   :init
   (evil-leader/set-key-for-mode 'org-mode "z s"
     'org-slack-export-to-clipboard-as-slack))
@@ -3040,7 +2746,7 @@ buffer already exists, don't create a new one."
         (select-window buffer-window)))))
 
 (use-package cider
-  :defer t
+  :defer
   :bind (:map clojure-mode-map
          ("M-." . cider-find-dwim))
   :config
@@ -3085,10 +2791,10 @@ buffer already exists, don't create a new one."
                 evil-motion-state-modes)))
 
 (use-package flycheck-clj-kondo
-  :defer t)
+  :defer)
 
 (use-package kibit-helper
-  :defer t)
+  :defer)
 
 (defun nrepl-reset ()
   "Helper function to call the (Reloaded workflow) reset function."
@@ -3347,10 +3053,20 @@ Lisp function does not specify a special indentation."
             (redshank-mode)
             (setq-local lisp-indent-function #'fuco1/lisp-indent-function)))
 #+end_src
+** Fennel
+#+begin_src emacs-lisp
+(use-package fennel-mode
+  :defer)
+#+end_src
+** GLSL
+#+begin_src emacs-lisp
+(use-package glsl-mode
+  :defer)
+#+end_src
 ** Go
 #+begin_src emacs-lisp
 (use-package go-mode
-  :defer t
+  :defer
   :config
   (add-hook 'go-mode-hook
             (lambda ()
@@ -3358,6 +3074,112 @@ Lisp function does not specify a special indentation."
               (evil-leader/set-key "h d" 'godoc-at-point)
               (local-set-key (kbd "M-.") 'godef-jump)
               (local-set-key (kbd "M-,") 'pop-tag-mark))))
+#+end_src
+** J
+#+begin_src emacs-lisp
+(use-package j-mode
+  :defer
+  :init
+  (add-to-list 'auto-mode-alist '("\\.ij[rstp]$" . j-mode))
+  :custom
+  (j-console-cmd "jconsole")
+  :config
+  (custom-set-faces
+   '(j-verb-face ((t (:foreground "Red"))))
+   '(j-adverb-face ((t (:foreground "Green"))))
+   '(j-conjunction-face ((t (:foreground "Blue"))))
+   '(j-other-face ((t (:foreground "Black"))))))
+#+end_src
+** Java
+#+begin_src emacs-lisp
+(use-package eclim
+  :disabled
+  :defer
+  :config
+  ;; (setq eclimd-autostart t)
+  (setq eclimd-autostart-with-default-workspace t)
+  (setq eclim-eclipse-dirs "~/eclipse/java-oxygen/eclipse")
+  (setq eclim-executable
+        (expand-file-name "~/.p2/pool/plugins/org.eclim_2.7.2/bin/eclim"))
+  (setq eclimd-default-workspace (expand-file-name "~/eclipse-workspace"))
+  (evil-set-initial-state 'eclim-problems-mode 'emacs)
+  (evil-set-initial-state 'eclim-project-mode 'emacs)
+  (add-hook 'java-mode-hook
+            (lambda ()
+              ;; `electric-pair-mode' causes extra closing parenthesis to be
+              ;; inserted.
+              (electric-pair-mode -1)
+
+              (eclim-mode)
+              (evil-leader/set-key "e b" 'eclim-project-build)
+              (evil-leader/set-key "e c" 'eclim-project-create)
+              (evil-leader/set-key "e r" 'eclim-run-class)
+              (setq help-at-pt-display-when-idle t)
+              (setq help-at-pt-timer-delay 0.1)
+              (help-at-pt-set-timer)
+              (setq comment-start "//"
+                    comment-end "")
+              (jco/define-bindings
+               java-mode-map
+               '(("M-g M-n" . eclim-problems-next-same-file)
+                 ("M-g n" . eclim-problems-next-same-file)
+                 ("M-g M-p" . eclim-problems-prev-same-file)
+                 ("M-g p" . eclim-problems-prev-same-file))))))
+
+(use-package gradle-mode
+  :disabled
+  :defer
+  :config
+  (add-hook 'java-mode-hook
+            (lambda ()
+              (setq gradle-executable-path "/opt/gradle-4.6/bin/gradle")
+              (gradle-mode)
+              (evil-leader/set-key "g r"
+                (lambda ()
+                  (interactive)
+                  (gradle-run "run")))
+              (evil-leader/set-key "t t"
+                (lambda ()
+                  (interactive)
+                  (gradle-run "test --info")))
+              (evil-leader/set-key "t s" 'gradle-single-test))))
+
+#+end_src
+** JavaScript
+#+begin_src emacs-lisp
+(use-package js2-mode
+  :mode "\\.js\\'"
+  :config
+  (setq js2-basic-offset 2)
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil))
+
+(defun setup-tide ()
+  "Set up `tide-mode' for JavaScript and TypeScript."
+  (interactive)
+  (tide-setup)
+  (flycheck-mode)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode)
+  (tide-hl-identifier-mode))
+
+(use-package tide
+  :hook ((typescript-mode . setup-tide)
+         (typescript-mode . tide-hl-identifier-mode))
+  :init
+  (add-hook 'js2-mode-hook #'setup-tide)
+  :config
+  (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append))
+#+end_src
+** Jinja
+#+begin_src emacs-lisp
+(use-package jinja2-mode
+  :defer)
+#+end_src
+** JSON
+#+begin_src emacs-lisp
+(use-package json-mode
+  :defer)
 #+end_src
 ** Lisp
 #+begin_src emacs-lisp
@@ -3374,37 +3196,35 @@ Lisp function does not specify a special indentation."
               (evil-motion-state)))
   (add-hook 'slime-repl-mode-hook
             (lambda ()
-              (evil-normal-state))))
-
-(add-hook 'slime-connected-hook
-          (lambda ()
-            (with-selected-window (get-buffer-window (slime-output-buffer t))
-              (let ((height (if (or (jco/at-office-p)
-                                    (display-graphic-p)) 15 10)))
-                (jco/move-window-to-bottom height)))))
-
-(add-hook 'lisp-mode-hook
-          (lambda ()
-            (when (file-exists-p "~/quicklisp/slime-helper.el")
-              (load (expand-file-name "~/quicklisp/slime-helper.el")))
-            (init-lisp-common)
-            (evil-leader/set-key "h h" 'hyperspec-lookup)
-            (redshank-mode)
-            (setq-local evil-move-beyond-eol t)
-            (modify-syntax-entry ?: "w")
-            (modify-syntax-entry ?< "w")
-            (modify-syntax-entry ?> "w")
-            (modify-syntax-entry ?= "w")
-            (modify-syntax-entry ?* "w")
-            (setq inferior-lisp-program "sbcl")
-            (slime-setup '(slime-asdf slime-company slime-fancy))
-            (slime-asdf-init) ;; Required for `slime-load-system'.
-            (slime-company-maybe-enable)
-            (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)
-            (define-key sldb-mode-map "\C-w" 'evil-window-map)))
+              (evil-normal-state)))
+  (add-hook 'slime-connected-hook
+            (lambda ()
+              (with-selected-window (get-buffer-window (slime-output-buffer t))
+                (let ((height (if (or (jco/at-office-p)
+                                      (display-graphic-p)) 15 10)))
+                  (jco/move-window-to-bottom height)))))
+  (add-hook 'lisp-mode-hook
+            (lambda ()
+              (when (file-exists-p "~/quicklisp/slime-helper.el")
+                (load (expand-file-name "~/quicklisp/slime-helper.el")))
+              (init-lisp-common)
+              (evil-leader/set-key "h h" 'hyperspec-lookup)
+              (redshank-mode)
+              (setq-local evil-move-beyond-eol t)
+              (modify-syntax-entry ?: "w")
+              (modify-syntax-entry ?< "w")
+              (modify-syntax-entry ?> "w")
+              (modify-syntax-entry ?= "w")
+              (modify-syntax-entry ?* "w")
+              (setq inferior-lisp-program "sbcl")
+              (slime-setup '(slime-asdf slime-company slime-fancy))
+              (slime-asdf-init) ;; Required for `slime-load-system'.
+              (slime-company-maybe-enable)
+              (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)
+              (define-key sldb-mode-map "\C-w" 'evil-window-map))))
 
 (use-package slime-company
-  :defer t)
+  :defer)
 #+end_src
 ** Lisp common
 Configuration common to all Lisps.
@@ -3429,19 +3249,92 @@ Configuration common to all Lisps.
   (smartparens-strict-mode))
 
 (use-package redshank
-  :defer t
+  :defer
   :init
   (setq redshank-prefix-key "C-c RET"))
+#+end_src
+** Markdown
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode))
+  :config
+  (setq markdown-command
+        (concat "pandoc -c file://"
+                (expand-file-name
+                 (concat user-emacs-directory "github-pandoc.css"))
+                " --from gfm -t html5 --mathjax "
+                "--highlight-style=tango --standalone "
+                "--metadata title=\"*markdown-output*\"")))
+
+(use-package ox-gfm
+  :after markdown-mode)
+#+end_src
+** Mustache
+#+begin_src emacs-lisp
+(use-package mustache-mode
+  :mode "\\.mustache\\'")
+#+end_src
+** Nix
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :custom
+  (evil-shift-width 2)
+  :mode "\\.nix\\'"
+  :config
+  (setenv "DIRENV_ALLOW_NIX" "1")
+  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
+                    :major-modes '(nix-mode)
+                    :server-id 'nix))
+  ;; Requires `rnix-lsp' binary.
+  (add-hook 'nix-mode-hook
+            (lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w")
+
+              (lsp-deferred))))
+#+end_src
+** PureScript
+#+begin_src emacs-lisp
+(use-package purescript-mode
+  :defer)
 #+end_src
 ** Rust
 #+begin_src emacs-lisp
 (use-package rustic
-  :defer t
+  :defer
   :config
   (add-hook 'rustic-mode-hook
             (lambda ()
               (sp-pair "\'" nil :actions :rem)
               (modify-syntax-entry ?! "w"))))
+#+end_src
+** Terraform
+#+begin_src emacs-lisp
+(use-package terraform-mode
+  :defer
+  :config
+  (add-hook 'terraform-mode-hook
+            (lambda ()
+              (setq evil-shift-width terraform-indent-level)
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w"))))
+#+end_src
+** Toml
+#+begin_src emacs-lisp
+(use-package toml-mode
+  :defer
+  :config
+  (modify-syntax-entry ?- "w") ;; Do not treat "-" as a word separator.
+  )
+#+end_src
+** TypeScript
+#+begin_src emacs-lisp
+(use-package typescript-mode
+  :mode "\\.tsx\\'")
 #+end_src
 * Rotate
 #+begin_src emacs-lisp
@@ -3577,7 +3470,7 @@ Taken from: https://gist.github.com/rksm/8c07d9ccc9e15adf752d3dd73dd9a61e.
 
 
 (use-package shackle
-  :ensure
+  :defer
   :diminish
   :custom
   (shackle-rules '((compilation-mode :custom rk/open-compilation-buffer :select t)
@@ -3684,17 +3577,12 @@ http://emacs.stackexchange.com/questions/7908/how-to-make-yasnippet-and-company-
 
 (with-eval-after-load 'yasnippet
   (define-key yas-minor-mode-map [tab] nil)
-  (define-key yas-minor-mode-map (kbd "TAB") nil))
+  (define-key yas-minor-mode-map (kbd "TAB") nil)
 
-(define-key yas-keymap [tab] 'jco/tab-complete-or-next-field)
-(define-key yas-keymap (kbd "TAB") 'jco/tab-complete-or-next-field)
-(define-key yas-keymap [(control tab)] 'yas-next-field)
-(define-key yas-keymap (kbd "C-g") 'jco/abort-company-or-yas)
-
-;; (with-eval-after-load 'monky
-;;   (bind-key [tab] 'monky-toggle-section monky-mode-map))
-
-;; (bind-key [tab] 'completion-at-point read-expression-map)
+  (define-key yas-keymap [tab] 'jco/tab-complete-or-next-field)
+  (define-key yas-keymap (kbd "TAB") 'jco/tab-complete-or-next-field)
+  (define-key yas-keymap [(control tab)] 'yas-next-field)
+  (define-key yas-keymap (kbd "C-g") 'jco/abort-company-or-yas))
 #+end_src
 * Tangle helpers
 Taken from: https://assortedarray.com/posts/my-init-org-setup/.
@@ -3718,6 +3606,22 @@ repo."
         ;; Avoid infinite recursion.
         ((after-save-hook (remove 'org-babel-tangle-config+ after-save-hook)))
       (org-babel-tangle-file (concat user-emacs-directory "init.org")))))
+#+end_src
+* Text editing
+#+begin_src emacs-lisp
+(use-package iedit
+  :defer
+  :init
+  (evil-leader/set-key ";" #'iedit-mode))
+
+(use-package string-inflection
+  :defer
+  :init
+  (evil-leader/set-key "s i" 'string-inflection-all-cycle)
+  (evil-leader/set-key "s s" 'string-inflection-underscore)
+  (evil-leader/set-key "s k" 'string-inflection-kebab-case)
+  (evil-leader/set-key "s c" 'string-inflection-lower-camelcase)
+  (evil-leader/set-key "s C" 'string-inflection-camelcase))
 #+end_src
 * Theme list, and current theme
 #+begin_src emacs-lisp
@@ -3827,7 +3731,7 @@ repo."
            soothe-theme
            tao-theme)))
     `(progn ,@(mapcar (lambda (p)
-                        `(use-package ,p :defer t))
+                        `(use-package ,p :defer))
                       theme-pkgs))))
 
 (if (display-graphic-p)
@@ -4318,9 +4222,43 @@ repo."
 (set-face-background 'whitespace-tab nil)
 (set-face-background 'whitespace-indentation nil)
 #+end_src
+* UI
+#+begin_src emacs-lisp
+(menu-bar-mode -1)
+;; Change for different username.
+(setq inhibit-startup-echo-area-message "jco")
+(setq inhibit-startup-message t)
+
+(use-package darkroom
+  :defer)
+
+(use-package helpful
+  :defer
+  :init
+  (global-set-key (kbd "C-h f") #'helpful-callable)
+  (global-set-key (kbd "C-h v") #'helpful-variable)
+  (global-set-key (kbd "C-h k") #'helpful-key))
+
+(use-package olivetti
+  :defer
+  :config
+  (setq-default olivetti-body-width (+ fill-column 1))
+  (add-hook 'olivetti-mode-hook
+            (lambda ()
+              (setq display-line-numbers nil))))
+
+(use-package visual-fill-column
+  :defer)
+
+(use-package which-key
+  :defer
+  :config
+  (which-key-mode))
+#+end_src
 * Undo tree
 #+begin_src emacs-lisp
 (use-package undo-tree
+  :defer
   :init
   (global-undo-tree-mode)
   :config
@@ -4390,6 +4328,7 @@ accordance with ISO 8601)."
     (delete-backward-char arg)))
 
 (use-package vertico
+  :defer
   :bind (:map minibuffer-local-map
          ("<backspace>" . jco/minibuffer-backward-kill))
   :custom
@@ -4413,13 +4352,14 @@ accordance with ISO 8601)."
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
 (use-package orderless
-  :straight t
+  :after vertico
   :custom
   (completion-styles '(orderless))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles . (partial-completion))))))
 
 (use-package savehist
+  :after vertico
   :init
   (savehist-mode))
 
@@ -4439,7 +4379,6 @@ accordance with ISO 8601)."
     (consult-locate initial)))
 
 (use-package consult
-  :straight t
   :bind (("C-s" . consult-line)
          ("C-x b" . consult-buffer)
          ("M-y" . consult-yank-pop)
@@ -4498,18 +4437,16 @@ accordance with ISO 8601)."
             (car (project-roots project))))))
 
 (use-package marginalia
-  :straight t
   :bind (:map minibuffer-local-map
          ("M-A" . marginalia-cycle))
   :init
   (marginalia-mode))
 
 (use-package embark
-  :bind
-  (:map minibuffer-local-map
-   ("C-." . embark-act)
-   ("M-." . embark-dwim)
-   ("C-h B" . embark-bindings))
+  :bind (:map minibuffer-local-map
+         ("C-." . embark-act)
+         ("M-." . embark-dwim)
+         ("C-h B" . embark-bindings))
   :init
   ;; Optionally replace the key help with a completing-read interface.
   (setq prefix-help-command #'embark-prefix-help-command)
@@ -4529,10 +4466,30 @@ accordance with ISO 8601)."
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 #+end_src
+* Whitespace
+#+begin_src emacs-lisp
+(use-package ethan-wspace
+  :defer
+  :config
+  (global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
+  (global-set-key (kbd "M-S-<backspace>") 'delete-trailing-whitespace)
+
+  (add-hook 'makefile-mode-hook 'jco/))
+
+(use-package whitespace
+  :defer
+  :config
+  (setq-default whitespace-style '(face tabs trailing
+                                        space-before-tab indentation
+                                        empty space-after-tab tab-mark))
+  (add-hook 'after-init-hook
+            (lambda ()
+              (set-face-background 'whitespace-trailing "#82589f"))))
+#+end_src
 * Yas
 #+begin_src emacs-lisp
 (use-package yasnippet
-  :defer t
+  :defer
   :config
   (yas-global-mode)
   (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
