@@ -3650,12 +3650,13 @@ repo."
       ;; 'doom-nord-light
       ;; 'doom-oceanic-next
       ;; 'doom-old-hope
-      'doom-one
+      ;; 'doom-one
       ;; 'doom-one-light
       ;; 'doom-opera-light
       ;; 'doom-outrun-electric
       ;; 'doom-solarized-light
       ;; 'doom-vibrant
+      'doom-rouge
       ;; 'doom-snazzy
       ;; 'doom-sourcerer
       ;; 'doom-spacegrey
