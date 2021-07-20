@@ -3528,6 +3528,14 @@ repo."
   (evil-leader/set-key "s c" 'string-inflection-lower-camelcase)
   (evil-leader/set-key "s C" 'string-inflection-camelcase))
 
+(use-package undo-tree
+  :defer
+  :init
+  (global-undo-tree-mode)
+  :config
+  (setq undo-tree-visualizer-diff t)
+  (setq undo-tree-visualizer-timestamps t))
+
 (defvar jco/theme)
 
 ;; My current theme. Change this to whatever theme you want.
@@ -4154,14 +4162,6 @@ repo."
   :defer
   :config
   (which-key-mode))
-
-(use-package undo-tree
-  :defer
-  :init
-  (global-undo-tree-mode)
-  :config
-  (setq undo-tree-visualizer-diff t)
-  (setq undo-tree-visualizer-timestamps t))
 
 (defun jco/yank-current-filename ()
   "Yank the filename of the current buffer to the kill ring."

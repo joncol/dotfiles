@@ -3624,6 +3624,14 @@ repo."
   (evil-leader/set-key "s k" 'string-inflection-kebab-case)
   (evil-leader/set-key "s c" 'string-inflection-lower-camelcase)
   (evil-leader/set-key "s C" 'string-inflection-camelcase))
+
+(use-package undo-tree
+  :defer
+  :init
+  (global-undo-tree-mode)
+  :config
+  (setq undo-tree-visualizer-diff t)
+  (setq undo-tree-visualizer-timestamps t))
 #+end_src
 * Theme list, and current theme
 #+begin_src emacs-lisp
@@ -4257,16 +4265,6 @@ repo."
   :defer
   :config
   (which-key-mode))
-#+end_src
-* Undo tree
-#+begin_src emacs-lisp
-(use-package undo-tree
-  :defer
-  :init
-  (global-undo-tree-mode)
-  :config
-  (setq undo-tree-visualizer-diff t)
-  (setq undo-tree-visualizer-timestamps t))
 #+end_src
 * Utilities
 #+begin_src emacs-lisp
