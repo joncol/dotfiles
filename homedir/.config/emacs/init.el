@@ -4362,6 +4362,8 @@ accordance with ISO 8601)."
 
 (use-package ethan-wspace
   :defer
+  :custom
+  (mode-require-final-newline nil)
   :config
   (global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
   (global-set-key (kbd "M-S-<backspace>") 'delete-trailing-whitespace)
