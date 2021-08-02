@@ -1924,6 +1924,29 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                   "zimpler.com"
                 "gmail.com")))
 
+(setq mm-discouraged-alternatives '("text/html" "text/richtext"))
+
+(setq gnus-select-method
+      '(nnimap "gmail.com"
+               (nnimap-address "imap.gmail.com")
+               (nnimap-server-port 993)
+               (nnimap-stream ssl)))
+
+(setq gnus-secondary-select-methods
+      '((nnimap "zimpler.com"
+                (nnimap-address "imap.gmail.com")
+                (nnimap-server-port 993)
+                (nnimap-stream ssl))))
+
+(setq smtpmail-smtp-service 587)
+(setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
+
+(setq send-mail-function    'smtpmail-send-it
+      smtpmail-smtp-user    user-mail-address
+      smtpmail-smtp-server  "smtp.gmail.com"
+      smtpmail-stream-type  'starttls
+      smtpmail-smtp-service 587)
+
 (defun jco/init-mu4e-contexts ()
   "Initialize mu4e contexts."
   (require 'mu4e-context)
