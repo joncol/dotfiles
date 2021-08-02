@@ -3233,6 +3233,11 @@ Configuration common to all Lisps.
   :init
   (setq redshank-prefix-key "C-c RET"))
 #+end_src
+** Lua
+#+begin_src emacs-lisp
+(use-package lua-mode
+  :defer)
+#+end_src
 ** Markdown
 #+begin_src emacs-lisp
 (use-package markdown-mode

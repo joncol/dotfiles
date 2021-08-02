@@ -3167,6 +3167,9 @@ Lisp function does not specify a special indentation."
   :init
   (setq redshank-prefix-key "C-c RET"))
 
+(use-package lua-mode
+  :defer)
+
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
