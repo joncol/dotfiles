@@ -1994,6 +1994,12 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                                        :date :maildir :mailing-list :tags
                                        :attachments :signature :decryption))
 
+              (defun jco/compl-fun (prompt maildirs predicate require-match
+                                           initial-input)
+                (helm-comp-read prompt maildirs
+                                :name prompt
+                                :must-match t))
+
               (defun jco/smtp-server ()
                 (cond ((or (s-contains? "gmail.com" user-mail-address)
                            (s-contains? "zimpler.com" user-mail-address))
@@ -2025,10 +2031,6 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 
 (add-hook 'mu4e-update-pre-hook
           #'imapfilter)
-
-(add-hook 'mu4e-view-mode-hook
-          (lambda ()
-            (mu4e-view-fill-long-lines)))
 
 (add-hook 'mu4e-compose-mode-hook
           (lambda ()
