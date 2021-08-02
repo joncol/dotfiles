@@ -1175,8 +1175,7 @@ Useful for REPL windows."
 (use-package ix
   :defer)
 
-(use-package kurecolor
-  :defer)
+(use-package kurecolor)
 
 (use-package ledger-mode
   :defer
@@ -3538,7 +3537,7 @@ repo."
       ;; 'doom-flatwhite
       ;; 'doom-gruvbox
       ;; 'doom-gruvbox-light
-      ;; 'doom-laserwave
+      'doom-laserwave
       ;; 'doom-manegarm
       ;; 'doom-miramare
       ;; 'doom-molokai
@@ -3552,7 +3551,7 @@ repo."
       ;; 'doom-outrun-electric
       ;; 'doom-solarized-light
       ;; 'doom-vibrant
-      'doom-rouge
+      ;; 'doom-rouge
       ;; 'doom-snazzy
       ;; 'doom-sourcerer
       ;; 'doom-spacegrey
@@ -3675,9 +3674,6 @@ repo."
    (set-face-background 'line-number-current-line nil)
    (set-face-foreground 'line-number-current-line nil)
    (set-face-background 'vhl/default-face "#2f333c")
-   (set-face-background 'ivy-highlight-face "#352e5a")
-   (set-face-background 'ivy-current-match "#e0dcbe")
-   (set-face-foreground 'ivy-current-match "#1b182c")
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-show-pair-match-face "#268bd2"))
    (with-eval-after-load 'calfw
@@ -3713,9 +3709,6 @@ repo."
    (set-face-background 'line-number-current-line nil)
    (set-face-foreground 'line-number-current-line nil)
    (set-face-background 'vhl/default-face "#2f333c")
-   (set-face-background 'ivy-highlight-face "#352e5a")
-   (set-face-background 'ivy-current-match "#e0dcbe")
-   (set-face-foreground 'ivy-current-match "#1b182c")
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-show-pair-match-face "#268bd2"))
    (with-eval-after-load 'calfw
@@ -3746,19 +3739,10 @@ repo."
 
   (doom-laserwave
    (set-face-background 'hl-line (jco/current-bg 0.10))
-   (set-face-background 'ivy-highlight-face "#352e5a")
-   (set-face-background 'ivy-current-match "#e0dcbe")
-   (set-face-foreground 'ivy-current-match "#1b182c")
-   (set-face-foreground 'eyebrowse-mode-line-active "#808080"))
+   (with-eval-after-load 'eyebrowse
+     (set-face-foreground 'eyebrowse-mode-line-active "#808080")))
 
   (doom-molokai
-   (set-face-background 'ivy-current-match "#582c6b")
-   (set-face-foreground 'ivy-minibuffer-match-face-1 "#f5f6fa")
-
-   ;; This is the color used in the ivy-switch-buffer window.
-   (set-face-foreground 'ivy-modified-buffer "#f5f6fa")
-   (set-face-attribute 'ivy-modified-buffer nil :weight 'normal)
-
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "#101f24"))
    (with-eval-after-load 'smartparens
@@ -3821,10 +3805,6 @@ repo."
    (set-face-foreground 'hydra-face-blue "Blue")
    (set-face-foreground 'hydra-face-pink "#fd79a8")
    (set-face-foreground 'isearch-fail "#d63031")
-   (set-face-background 'ivy-current-match "#e4f1fe")
-   (set-face-background 'ivy-minibuffer-match-face-2 "#dadfe1")
-   (set-face-background 'ivy-minibuffer-match-face-3 "#c0c5c7")
-   (set-face-background 'ivy-minibuffer-match-face-4 "#a6abad")
    (set-face-background 'region "#e4f1fe")
    (set-face-background 'whitespace-empty "#ffe9ec")
    (set-face-background 'whitespace-trailing "#ffe9ec")
@@ -3949,7 +3929,6 @@ repo."
                         "#101f24")
    (set-face-foreground 'font-lock-warning-face "#ff6523")
    (set-face-background 'font-lock-warning-face nil)
-   (set-face-background 'ivy-minibuffer-match-face-2 "#582c6b")
    (set-face-background 'vhl/default-face "#582c6b"))
 
   (nubox-dark
@@ -3961,7 +3940,6 @@ repo."
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-pair-overlay-face "#444748"))
    (set-face-background 'region "#582c6b")
-   (set-face-background 'ivy-minibuffer-match-face-2 "#444748")
    (set-face-background 'ffap "#582c6b")
    (set-face-background 'highlight "#582c6b"))
 
@@ -4021,8 +3999,7 @@ repo."
   (solarized-dark
    (set-face-background 'region "#1a4550")
    (with-eval-after-load 'swiper
-     (set-face-background 'swiper-line-face "#335e69"))
-   (set-face-background 'ivy-current-match "#335e69"))
+     (set-face-background 'swiper-line-face "#335e69")))
 
   (tao-yang
    (setq sml/theme 'light)
