@@ -17,37 +17,37 @@ Path ~/.mail/gmail/
 Inbox ~/.mail/gmail/Inbox
 
 Channel gmail-inbox
-Master :gmail-remote:
-Slave :gmail-local:
+Far :gmail-remote:
+Near :gmail-local:
 Patterns "INBOX"
 Create Both
 Expunge Both
 SyncState *
 
 Channel gmail-trash
-Master :gmail-remote:"[Gmail]/Trash"
-Slave :gmail-local:"[Gmail].Trash"
+Far :gmail-remote:"[Gmail]/Trash"
+Near :gmail-local:"[Gmail].Trash"
 Create Both
 Expunge Both
 SyncState *
 
 Channel gmail-sent
-Master :gmail-remote:"[Gmail]/Sent Mail"
-Slave :gmail-local:"[Gmail].Sent Mail"
+Far :gmail-remote:"[Gmail]/Sent Mail"
+Near :gmail-local:"[Gmail].Sent Mail"
 Create Both
 Expunge Both
 SyncState *
 
 # Channel gmail-all
-# Master :gmail-remote:"[Gmail]/All Mail"
-# Slave :gmail-local:"[Gmail].All Mail"
+# Far :gmail-remote:"[Gmail]/All Mail"
+# Near :gmail-local:"[Gmail].All Mail"
 # Create Both
 # Expunge Both
 # SyncState *
 
 Channel gmail-starred
-Master :gmail-remote:"[Gmail]/Starred"
-Slave :gmail-local:"[Gmail].Starred"
+Far :gmail-remote:"[Gmail]/Starred"
+Near :gmail-local:"[Gmail].Starred"
 Create Both
 Expunge Both
 SyncState *
