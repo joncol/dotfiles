@@ -2549,14 +2549,14 @@ As such, it will only work when the notes window exists."
   (org-roam-directory "~/org/roam")
   (org-roam-buffer-position 'bottom)
   (org-roam-capture-templates
-   '(("d" "default" plain #'org-roam-capture--get-point "%?"
+   '(("d" "default" plain "%?"
       :if-new (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}
 #+setupfile: ~/org/roam/template.org
 #+created: %U
 #+last_modified: %U\n\n")
       :unnarrowed t)
-     ("p" "project" plain #'org-roam-capture--get-point "%?"
+     ("p" "project" plain "%?"
       :if-new (file+head "projects/%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}
 #+setupfile: ~/org/roam/template.org
