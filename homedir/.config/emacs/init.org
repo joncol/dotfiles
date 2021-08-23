@@ -2733,6 +2733,11 @@ As such, it will only work when the notes window exists."
   (jco/ensure-todo-org-header))
 #+end_src
 * Programming languages
+** C#
+#+begin_src emacs-lisp
+(use-package csharp-mode
+  :mode "\\.cs\\'")
+#+end_src
 ** Clojure
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-c M-s") #'cider-selector)

@@ -2693,6 +2693,9 @@ As such, it will only work when the notes window exists."
   (find-file (concat (or dir org-directory) "/" filename))
   (jco/ensure-todo-org-header))
 
+(use-package csharp-mode
+  :mode "\\.cs\\'")
+
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 
 (defun create-test-report-window (&rest _)
