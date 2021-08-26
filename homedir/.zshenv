@@ -1,19 +1,21 @@
 ZDOTDIR=~/.config/zsh
 
 export EDITOR=nvim
-
 export LESS="-FRX $LESS"
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
-
 export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up --color fg:124,hl:202,fg+:214,bg+:52,hl+:231 --color info:52,prompt:196,spinner:208,pointer:196,marker:208'
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | xsel -b)+abort' --header 'Press CTRL-Y to copy command into clipboard'"
-
 export ANSIBLE_NOCOWS=1
-
 export GOPRIVATE="github.com/Zimpler/*"
-
 export DIRENV_ALLOW_NIX=1
+y_res=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
+if [ $y_res -ge 2400 ]; then
+    export GDK_SCALE=2
+    export QT_AUTO_SCREEN_SCALE_FACTOR=0
+    export QT_SCALE_FACTOR=2
+fi
 
 if [[ -f /etc/profile.d/apps-bin-path.sh ]]; then
     source /etc/profile.d/apps-bin-path.sh
 fi
+if [ -e /home/jco/.nix-profile/etc/profile.d/nix.sh ]; then . /home/jco/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
