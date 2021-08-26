@@ -1615,12 +1615,13 @@ windows easier."
   (set-frame-size (selected-frame) 100 60))
 
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
-  (add-to-list 'default-frame-alist
-               '(font . "FiraCodeMedium-11"))
-  ;; (if (>= (x-display-pixel-height) 2160)
-  ;;     (set-face-attribute 'default nil :height 140)
-  ;;   (set-face-attribute 'default nil :height 110))
-  (set-frame-size (selected-frame) 93 64))
+  (if (>= (x-display-pixel-height) 2160)
+      (add-to-list 'default-frame-alist
+                   '(font . "FiraCodeMedium-20"))
+    (add-to-list 'default-frame-alist
+                 '(font . "FiraCodeMedium-11")))
+  ;; (set-frame-size (selected-frame) 93 64)
+  )
 
  ((eq system-type 'darwin)
   (setq mac-right-option-modifier 'none)
