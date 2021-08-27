@@ -8,11 +8,9 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 export ANSIBLE_NOCOWS=1
 export GOPRIVATE="github.com/Zimpler/*"
 export DIRENV_ALLOW_NIX=1
-y_res=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
-if [ $y_res -ge 2400 ]; then
-    export GDK_SCALE=2
-    export QT_AUTO_SCREEN_SCALE_FACTOR=0
-    export QT_SCALE_FACTOR=2
+
+if [[ -f ~/.myzshenv ]]; then
+    source ~/.myzshenv 
 fi
 
 if [[ -f /etc/profile.d/apps-bin-path.sh ]]; then
