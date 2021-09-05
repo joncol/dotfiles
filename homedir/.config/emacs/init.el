@@ -1466,7 +1466,7 @@ Example: `helloWorld` becomes `Hello world`."
 
 (require 'ibuffer)
 
-(dolist (map (list ibuffer-mode-map package-menu-mode-map))
+(dolist (map (list ibuffer-mode-map))
   (define-key map "\C-w" 'evil-window-map))
 
 (define-key jco/my-keys-mode-map (kbd "C-x b") 'ibuffer)
