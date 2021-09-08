@@ -3591,9 +3591,9 @@ repo."
       ;; 'doom-dark+
       ;; 'doom-dracula
       ;; 'doom-flatwhite
-      ;; 'doom-gruvbox
+      'doom-gruvbox
       ;; 'doom-gruvbox-light
-      'doom-laserwave
+      ;; 'doom-laserwave
       ;; 'doom-manegarm
       ;; 'doom-miramare
       ;; 'doom-molokai
@@ -3729,7 +3729,8 @@ repo."
    (set-face-background 'hl-line "#352e5a")
    (set-face-background 'line-number-current-line nil)
    (set-face-foreground 'line-number-current-line nil)
-   (set-face-background 'vhl/default-face "#2f333c")
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face "#2f333c"))
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-show-pair-match-face "#268bd2"))
    (with-eval-after-load 'calfw
@@ -3751,7 +3752,8 @@ repo."
   (doom-acario-light
    (set-face-attribute 'font-lock-comment-face nil :slant 'normal)
    (set-face-attribute 'font-lock-comment-face nil :inherit nil)
-   (set-face-background 'vhl/default-face (jco/current-bg -0.10))
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face (jco/current-bg -0.10)))
    (with-eval-after-load 'magit
      (set-face-background 'magit-diff-hunk-heading "#f0f0f0")
      (set-face-background 'magit-diff-hunk-heading-highlight "#e0e0e0")
@@ -3764,7 +3766,8 @@ repo."
    (set-face-background 'hl-line "#352e5a")
    (set-face-background 'line-number-current-line nil)
    (set-face-foreground 'line-number-current-line nil)
-   (set-face-background 'vhl/default-face "#2f333c")
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face "#2f333c"))
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-show-pair-match-face "#268bd2"))
    (with-eval-after-load 'calfw
@@ -3782,11 +3785,13 @@ repo."
    (set-face-background 'region "#582c6b"))
 
   (doom-flatwhite
-   (set-face-background 'vhl/default-face "#e0dcbe"))
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face "#e0dcbe")))
 
   (doom-gruvbox
    (set-face-background 'hl-line "#3e3c3a")
-   (set-face-background 'vhl/default-face (jco/current-bg 0.10))
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face (jco/current-bg 0.10)))
    (set-face-background 'highlight "#ccae62")
    (with-eval-after-load 'company-box
      (set-face-background 'company-box-scrollbar "#7ceece"))
@@ -3811,7 +3816,8 @@ repo."
                           (face-attribute 'default :background))))
 
   (doom-oceanic-next
-   (set-face-background 'vhl/default-face (jco/current-bg 0.10)))
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face (jco/current-bg 0.10))))
 
   (doom-old-hope
    (with-eval-after-load 'mu4e
@@ -3820,7 +3826,8 @@ repo."
   (doom-one-light
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e6ffe6")
    (set-face-background 'highlight "#e6ffe6")
-   (set-face-background 'vhl/default-face (jco/current-bg -0.10)))
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face (jco/current-bg -0.10))))
 
   (doom-opera-light
    (set-face-background 'highlight "#e4f1fe"))
@@ -3911,14 +3918,16 @@ repo."
   (kaolin-eclipse
    (set-face-background 'hl-line "#3E2A3E")
    (set-face-background 'region "#582c6b")
-   (set-face-background 'vhl/default-face "#3E2A3E")
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face "#3E2A3E"))
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "#101f24")
      (set-face-background 'mu4e-highlight-face "#7ceece")))
 
   (kaolin-ocean
    (set-face-background 'hl-line "#1A2631")
-   (set-face-background 'vhl/default-face "#2B2C40")
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face "#2B2C40"))
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "#101f24")
      (set-face-background 'mu4e-highlight-face "#7ceece")))
@@ -3985,13 +3994,15 @@ repo."
                         "#101f24")
    (set-face-foreground 'font-lock-warning-face "#ff6523")
    (set-face-background 'font-lock-warning-face nil)
-   (set-face-background 'vhl/default-face "#582c6b"))
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face "#582c6b")))
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
    (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#2a2d2e"))
-   (set-face-background 'vhl/default-face "#2a2d2e")
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face "#2a2d2e"))
    (set-face-background 'iedit-occurrence "#2a2d2e")
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-pair-overlay-face "#444748"))
@@ -4005,7 +4016,8 @@ repo."
    (with-eval-after-load 'swiper
      (set-face-background 'swiper-line-face "#e0dcbe"))
    (set-face-background 'hl-line "#e0dcbe")
-   (set-face-background 'vhl/default-face "#e0dcbe")
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face "#e0dcbe"))
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-pair-overlay-face "#c7c3a5"))
    (set-face-background 'region "#ffc3ff")
