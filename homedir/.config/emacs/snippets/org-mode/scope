@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Use subtree as org-export initial scope
+# key: scope
+# --
+# -*- org-export-initial-scope: subtree; -*-
