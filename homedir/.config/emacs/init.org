@@ -2412,7 +2412,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               (define-and-bind-quoted-text-object "tilde" "~" "~" "~")
               (define-and-bind-quoted-text-object "equals" "=" "=" "=")
               (define-and-bind-quoted-text-object "slash" "/" "/" "/")
-              (define-and-bind-quoted-text-object "dollar" "$" "$" "$")))
+              (define-and-bind-quoted-text-object "dollar" "$" "$" "$")
+              (modify-syntax-entry ?- "w") ;; do not treat "_" as a word separator
+              ))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
