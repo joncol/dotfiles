@@ -1681,6 +1681,7 @@ windows easier."
   ("h" jco/hydra-hideshow/body "hideshow")
   ("l" jco/hydra-lang/body "lang")
   ("o" jco/hydra-org/body "org")
+  ("s" jco/hydra-consult/body "consult")
   ("u" jco/hydra-util/body "util")
   ("w" jco/hydra-writing/body "writing"))
 
@@ -1741,6 +1742,10 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("f" org-roam-node-find "node-find")
   ("b" org-roam-buffer-activate "org-roam-buffer")
   ("t" org-roam-tag-add "add tag"))
+
+(defhydra jco/hydra-consult (:color teal :hint nil)
+  "org"
+  ("a" consult-line-multi "consult-line-multi"))
 
 (defhydra jco/hydra-text (:color teal :hint nil)
   "
