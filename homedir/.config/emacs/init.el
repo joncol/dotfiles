@@ -2231,7 +2231,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
           ("w" "Web" entry (file+headline "web.org" "_Incoming")
            "* %:description\n%:initial\n\nSource: %:link\n:LOGBOOK:\n- Added: %U\n:END:\n"
-           :empty-lines-before 0)))
+           :empty-lines-before 0)
+          ("s" "Standup entry" entry (file+headline "standup.org" "Entries")
+           "* %U\n%?\n" :empty-lines-before 0)))
   :config
   (evil-leader/set-key-for-mode 'org-mode "z f" 'org-footnote-new)
   (add-hook 'org-capture-mode-hook
