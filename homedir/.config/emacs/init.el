@@ -1679,6 +1679,7 @@ find: _f_un _l_ib _v_ar"
   ("n" (jco/find-org-file "notes.org") "notes")
   ("p" (jco/find-org-file "todo.org" (projectile-project-root)) "project-todo")
   ("r" (jco/find-org-file "reading.org") "reading")
+  ("s" (jco/find-org-file "standup.org") "standup")
   ("t" (jco/find-org-file "todo.org") "todo")
   ("w" (jco/find-org-file "work.org") "work"))
 
