@@ -1681,7 +1681,6 @@ windows easier."
   ("h" jco/hydra-hideshow/body "hideshow")
   ("l" jco/hydra-lang/body "lang")
   ("o" jco/hydra-org/body "org")
-  ("s" jco/hydra-swiper/body "swiper")
   ("u" jco/hydra-util/body "util")
   ("w" jco/hydra-writing/body "writing"))
 
@@ -1742,13 +1741,6 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("f" org-roam-node-find "node-find")
   ("b" org-roam-buffer-activate "org-roam-buffer")
   ("t" org-roam-tag-add "add tag"))
-
-(defhydra jco/hydra-swiper (:color teal :hint nil)
-  "
-swiper: _s_wiper _a_ll _m_ulti"
-  ("s" swiper)
-  ("a" swiper-all)
-  ("m" swiper-multi))
 
 (defhydra jco/hydra-text (:color teal :hint nil)
   "
@@ -4072,8 +4064,6 @@ repo."
    (set-face-foreground 'font-lock-comment-face "azure4")
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-pair-overlay-face "#582c6b"))
-   (with-eval-after-load 'swiper
-     (set-face-background 'swiper-line-face "#582c6b"))
    (set-face-background 'region "#582c6b")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (set-face-foreground 'evil-search-highlight-persist-highlight-face "#465457")
@@ -4099,8 +4089,6 @@ repo."
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
-   (with-eval-after-load 'swiper
-     (set-face-background 'swiper-line-face "#2a2d2e"))
    (with-eval-after-load 'volatile-highlights
      (set-face-background 'vhl/default-face "#2a2d2e"))
    (set-face-background 'iedit-occurrence "#2a2d2e")
@@ -4113,8 +4101,6 @@ repo."
   (nubox-light
    (setq sml/theme 'light)
    (setq jco/cursor-color "#101f24")
-   (with-eval-after-load 'swiper
-     (set-face-background 'swiper-line-face "#e0dcbe"))
    (set-face-background 'hl-line "#e0dcbe")
    (with-eval-after-load 'volatile-highlights
      (set-face-background 'vhl/default-face "#e0dcbe"))
@@ -4165,9 +4151,7 @@ repo."
      (set-face-background 'company-scrollbar-fg "LightBlue")))
 
   (solarized-dark
-   (set-face-background 'region "#1a4550")
-   (with-eval-after-load 'swiper
-     (set-face-background 'swiper-line-face "#335e69")))
+   (set-face-background 'region "#1a4550"))
 
   (tao-yang
    (setq sml/theme 'light)
