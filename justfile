@@ -77,3 +77,7 @@ git_hooks:
   esac
   EOF
   chmod +x .git/hooks/prepare-commit-msg
+
+# Make git ignore certain files where only local changes are applied.
+skip_worktree:
+  git update-index --skip-worktree homedir/.config/emacs/custom.el
