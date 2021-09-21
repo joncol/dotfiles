@@ -3044,6 +3044,7 @@ Lisp function does not specify a special indentation."
   :init
   (add-hook 'haskell-mode-hook
             (lambda ()
+              (rainbow-mode -1)
               (evil-leader/set-key "x h" 'haskell-hoogle)
               (lsp-deferred)
               (setq evil-shift-width 2)
