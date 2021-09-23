@@ -374,12 +374,13 @@ invokation."
        'undo-redo
      'undo-tree))
 
-  ;; Disable certain evil keys to make useful company-mode bindings work.
+  ;; Disable certain evil keys to make useful company-mode/embark bindings work.
   (unbind-key "C-n" evil-insert-state-map)
   (unbind-key "C-p" evil-insert-state-map)
   ;; (unbind-key "C-r" evil-insert-state-map)
   (unbind-key "C-s" evil-insert-state-map)
   (unbind-key "C-t" evil-normal-state-map)
+  (unbind-key "C-." evil-normal-state-map) ; Using this for `embark-act'.
   (setq evil-want-C-w-in-emacs-state t)
 
   (with-eval-after-load 'evil-maps
@@ -4357,9 +4358,8 @@ accordance with ISO 8601)."
   (marginalia-mode))
 
 (use-package embark
-  :bind (:map minibuffer-local-map
-         ("C-." . embark-act)
-         ("M-." . embark-dwim)
+  :bind (("C-." . embark-act)
+         ("C-;" . embark-dwim)
          ("C-h B" . embark-bindings))
   :init
   ;; Optionally replace the key help with a completing-read interface.
