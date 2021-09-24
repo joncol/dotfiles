@@ -71,7 +71,7 @@ elif [[ $exe = true ]]; then
     target_type=--exe
 fi
 
-nix-shell --pure -p haskell.compiler.ghc8104 cabal-install \
+nix-shell --pure -p haskell.compiler.ghc8107 cabal-install \
     --run "cabal init --cabal-version=3.0 -m -l BSD-3-Clause ${target_type} -p ${PWD##*/} \
            -d base \
            -d containers \
