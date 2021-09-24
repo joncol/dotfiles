@@ -1201,6 +1201,10 @@ Useful for REPL windows."
 
   :init
   (with-eval-after-load 'lsp-mode
+    ;; To avoid watching all Scrive API docs.
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]api_docs\\'" t)
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_build-adminonly\\'" t)
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_local\\'" t)
     (evil-leader/set-key
       "l" lsp-command-map))
 
