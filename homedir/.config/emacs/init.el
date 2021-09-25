@@ -2575,9 +2575,7 @@ As such, it will only work when the notes window exists."
               (setq time-stamp-start "last_modified:[ ]+\\\\?")
               (setq time-stamp-end "$")
               (setq time-stamp-format "\[%Y-%02m-%02d %3a %02H:%02M\]")
-              (add-hook 'before-save-hook #'time-stamp)))
-  :config
-  (setq org-roam-completion-system 'ivy))
+              (add-hook 'before-save-hook #'time-stamp))))
 
 (use-package org-roam-bibtex
   :hook (org-roam-mode . org-roam-bibtex-mode)
@@ -3592,9 +3590,9 @@ repo."
       ;; 'doom-challenger-deep
       ;; 'doom-city-lights
       ;; 'doom-dark+
-      ;; 'doom-dracula
+      'doom-dracula
       ;; 'doom-flatwhite
-      'doom-gruvbox
+      ;; 'doom-gruvbox
       ;; 'doom-gruvbox-light
       ;; 'doom-laserwave
       ;; 'doom-manegarm
@@ -3743,7 +3741,6 @@ repo."
 
   (chyla
    (setq sml/theme 'light)
-   (set-face-background 'ivy-current-match "#edf5dc")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
 
@@ -3778,12 +3775,7 @@ repo."
      (set-face-background 'cfw:face-toolbar-button-off "Steelblue4")
      (set-face-foreground 'cfw:face-toolbar-button-off "#dadfe1")))
 
-  (doom-city-lights
-   (set-face-background 'ivy-current-match "#3f525b"))
-
   (doom-dracula
-   (set-face-background 'ivy-current-match "#80409b")
-   (set-face-background 'ivy-minibuffer-match-face-2 nil)
    (set-face-background 'hl-line "#3f525b")
    (set-face-background 'region "#582c6b"))
 
