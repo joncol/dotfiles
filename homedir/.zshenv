@@ -10,7 +10,7 @@ export GOPRIVATE="github.com/Zimpler/*"
 export DIRENV_ALLOW_NIX=1
 
 if [[ -f ~/.myzshenv ]]; then
-    source ~/.myzshenv 
+    source ~/.myzshenv
 fi
 
 if [[ -f /etc/profile.d/apps-bin-path.sh ]]; then
