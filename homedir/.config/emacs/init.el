@@ -3685,21 +3685,19 @@ repo."
                         `(use-package ,p :defer))
                       theme-pkgs))))
 
-(if (display-graphic-p)
-    (progn
-      (install-themes)
-      (load-theme jco/theme t)
+(progn
+  (install-themes)
+  (load-theme jco/theme t)
 
-      (set-face-background 'evil-search-highlight-persist-highlight-face
-                           "RoyalBlue4")
-      (set-face-foreground 'show-paren-match "#101f24")
-      (set-face-background 'show-paren-match "#89C5B7")
-      ;; (set-face-attribute 'font-lock-comment-face nil :slant 'normal)
-      (custom-set-faces
-       '(italic ((t (:underline t)))))
-      (with-eval-after-load 'smartparens
-        (set-face-attribute 'sp-show-pair-match-face nil :weight 'normal)))
-  (defvar jco/theme nil))
+  (set-face-background 'evil-search-highlight-persist-highlight-face
+                       "RoyalBlue4")
+  (set-face-foreground 'show-paren-match "#101f24")
+  (set-face-background 'show-paren-match "#89C5B7")
+  ;; (set-face-attribute 'font-lock-comment-face nil :slant 'normal)
+  (custom-set-faces
+   '(italic ((t (:underline t)))))
+  (with-eval-after-load 'smartparens
+    (set-face-attribute 'sp-show-pair-match-face nil :weight 'normal)))
 
 (cl-defun jco/current-fg (&optional (adj 0.0))
   "Get the current foreground color, optionally adjusting brightness by ADJ."
