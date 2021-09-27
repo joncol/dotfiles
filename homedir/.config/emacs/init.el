@@ -3055,7 +3055,8 @@ Lisp function does not specify a special indentation."
                 'haskell-mode-stylish-buffer)
               (setq haskell-auto-insert-module-format-string
                     "module %s\n  () where\n\n")
-              (haskell-auto-insert-module-template)))
+              (haskell-auto-insert-module-template)
+              (smartparens-mode)))
   (add-hook 'haskell-literate-mode-hook #'lsp-deferred))
 
 (use-package ormolu
