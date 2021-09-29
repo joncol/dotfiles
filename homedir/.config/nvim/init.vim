@@ -16,7 +16,7 @@ Plug 'MaxSt/FlatColor'
 Plug 'OrangeT/vim-csharp'
 Plug 'Raimondi/delimitMate'
 Plug 'Shougo/vimproc.vim'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'altercation/vim-colors-solarized'
 Plug 'cespare/vim-toml'
 Plug 'chilicuil/vim-sml-coursera'
@@ -118,7 +118,7 @@ let mapleader=","
 nnoremap <leader>ev :e ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 
-nnoremap <leader>es :UltiSnipsEdit<cr>
+" nnoremap <leader>es :UltiSnipsEdit<cr>
 
 inoremap <s-space> <space>
 
@@ -354,10 +354,9 @@ set scrolloff=3
 
 let g:buffergator_autoexpand_on_split=0
 let g:buffergator_viewport_split_policy="R"
-let g:UltiSnipsSnippetsDir="~/.vim/MySnippets"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/MySnippets']
-
-let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsSnippetsDir="~/.vim/MySnippets"
+" let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/MySnippets']
+" let g:UltiSnipsExpandTrigger="<tab>"
 
 if has("gui_running")
   autocmd BufWinEnter * match TrailingWhitespace /\s\+$/
