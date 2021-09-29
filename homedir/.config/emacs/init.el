@@ -1892,12 +1892,6 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 
 (require 's)
 
-(setq user-mail-address
-      (concat (s-replace " " "." (downcase user-full-name)) "@"
-              (if (jco/at-office-p)
-                  "scrive.com"
-                "gmail.com")))
-
 (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 
 (setq gnus-select-method
@@ -1910,7 +1904,6 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 
 (setq send-mail-function    'smtpmail-send-it
-      smtpmail-smtp-user    user-mail-address
       smtpmail-smtp-server  "smtp.gmail.com"
       smtpmail-stream-type  'starttls
       smtpmail-smtp-service 587)
@@ -1930,6 +1923,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                                msg :to "jonas.collberg@gmail.com")
                             (not (jco/at-office-p))))
             :vars '((user-mail-address . "jonas.collberg@gmail.com")
+                    (smtpmail-smtp-user . "jonas.collberg@gmail.com")
                     ;; (mu4e-compose-signature . "Jonas\n")
                     (mu4e-drafts-folder . "/gmail/Drafts")
                     (mu4e-sent-folder . "/gmail/Sent")
@@ -1939,28 +1933,29 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                                                ("/gmail/Trash" . ?t)))
                     (mu4e-completing-read-function . jco/compl-fun)))
 
-        ,(make-mu4e-context
-          :name "Work"
-          :enter-func (lambda () (mu4e-message "Switch to the Work context"))
-          ;; leave-fun not defined
-          :match-func (lambda (msg)
-                        (if msg
-                            (mu4e-message-contact-field-matches
-                             msg :to "jonas.collberg@scrive.com")
-                          (jco/at-office-p)))
-          :vars '((user-mail-address . "jonas.collberg@scrive.com")
-                  ;; (mu4e-compose-signature . (concat
-                  ;;                             "Kind regards,\n"
-                  ;;                             user-full-name))
-                  (mu4e-drafts-folder . "/scrive/[Gmail].Drafts")
-                  (mu4e-sent-folder . "/scrive/[Gmail].Sent Mail")
-                  (mu4e-trash-folder . "/scrive/[Gmail].Trash")
-                  (mu4e-maildir-shortcuts .
-                                          (("/scrive/Inbox" . ?i)
-                                           ("/scrive/[Gmail].Sent Mail" . ?s)
-                                           ("/scrive/[Gmail].Trash" . ?t)
-                                           ("/scrive/[Gmail].All Mail" . ?a)))
-                  (mu4e-completing-read-function . jco/compl-fun))))))
+          ,(make-mu4e-context
+            :name "Work"
+            :enter-func (lambda () (mu4e-message "Switch to the Work context"))
+            ;; leave-fun not defined
+            :match-func (lambda (msg)
+                          (if msg
+                              (mu4e-message-contact-field-matches
+                               msg :to "jonas.collberg@scrive.com")
+                            (jco/at-office-p)))
+            :vars '((user-mail-address . "jonas.collberg@scrive.com")
+                    (smtpmail-smtp-user . "jonas.collberg@scrive.com")
+                    ;; (mu4e-compose-signature . (concat
+                    ;;                             "Kind regards,\n"
+                    ;;                             user-full-name))
+                    (mu4e-drafts-folder . "/scrive/[Gmail].Drafts")
+                    (mu4e-sent-folder . "/scrive/[Gmail].Sent Mail")
+                    (mu4e-trash-folder . "/scrive/[Gmail].Trash")
+                    (mu4e-maildir-shortcuts .
+                                            (("/scrive/Inbox" . ?i)
+                                             ("/scrive/[Gmail].Sent Mail" . ?s)
+                                             ("/scrive/[Gmail].Trash" . ?t)
+                                             ("/scrive/[Gmail].All Mail" . ?a)))
+                    (mu4e-completing-read-function . jco/compl-fun))))))
 
 (when (and (not (eq system-type 'windows-nt))
            (not (string-equal (system-name) "jco")))
