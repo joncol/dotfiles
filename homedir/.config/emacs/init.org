@@ -1679,7 +1679,8 @@ find: _f_un _l_ib _v_ar"
   ("i" (jco/find-org-file "incoming.org") "incoming")
   ("n" (jco/find-org-file "notes.org") "notes")
   ("p" (jco/find-org-file "todo.org" (projectile-project-root)) "project-todo")
-  ("r" (jco/find-org-file "reading.org") "reading")
+  ("R" (jco/find-org-file "reading.org") "reading")
+  ("r" (jco/find-org-file "retro.org") "retro")
   ("s" (jco/find-org-file "standup.org") "standup")
   ("t" (jco/find-org-file "todo.org") "todo")
   ("w" (jco/find-org-file "work.org") "work"))
@@ -2242,7 +2243,14 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            "* %:description\n%:initial\n\nSource: %:link\n:LOGBOOK:\n- Added: %U\n:END:\n"
            :empty-lines-before 0)
           ("s" "Standup entry" entry (file+headline "standup.org" "Entries")
-           "* %U\n%?\n" :empty-lines-before 0)))
+           "* %U\n%?\n" :empty-lines-before 0)
+          ("r" "Retrospective templates")
+          ("rp" "Positive" entry (file+headline "retro.org" "Positives")
+           "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n")
+          ("rn" "Negative" entry (file+headline "retro.org" "Negatives")
+           "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n")
+          ("rl" "Learned" entry (file+headline "retro.org" "Learned")
+           "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n")))
   :config
   (evil-leader/set-key-for-mode 'org-mode "z f" 'org-footnote-new)
   (add-hook 'org-capture-mode-hook
