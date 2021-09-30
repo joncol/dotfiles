@@ -6,8 +6,12 @@
 Current theme. Change this to whatever theme you want, by copying the line from
 the list below.
 #+name: my-theme
-: doom-one
-
+: doom-gruvbox-light
+#+begin_src emacs-lisp :var my-theme=my-theme
+(defvar jco/theme)
+(setq jco/theme (intern my-theme))
+#+end_src
+** List of available themes
 : adwaita
 : borland-blue
 : chyla
@@ -65,11 +69,6 @@ the list below.
 : solarized-dark
 : tao-yang
 : tao-yin
-
-#+begin_src emacs-lisp :var my-theme=my-theme
-(defvar jco/theme)
-(setq jco/theme (intern my-theme))
-#+end_src
 * Straight
 #+begin_src emacs-lisp
 (defvar bootstrap-version)
