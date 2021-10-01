@@ -1,4 +1,4 @@
-(let ((my-theme '"soothe"))
+(let ((my-theme '"doom-moonlight"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
