@@ -3051,27 +3051,28 @@ Lisp function does not specify a special indentation."
   :disabled
   :hook (haskell-mode . flycheck-haskell-setup))
 
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (rainbow-mode -1)
+            (evil-leader/set-key "x h" 'haskell-hoogle)
+            (setq evil-shift-width 2)
+            (define-key haskell-mode-map (kbd "C-c C-c C-s")
+              'haskell-mode-stylish-buffer)
+            (setq haskell-auto-insert-module-format-string
+                  "module %s\n  () where\n\n")
+            (haskell-auto-insert-module-template)
+            (smartparens-mode)
+            (sp-local-pair 'haskell-mode "{" "}")))
+
 ;; Requirements: Install system package `ghcup-hs-bin', and then:
 ;; `ghcup install hls' (to install `haskell-language-server').
 ;; Install `haskell-implicit-hie', and finally run: `gen-hie > hie.yaml' to get
 ;; a hie configuration.
 (use-package lsp-haskell
   :defer
-  :init
-  (add-hook 'haskell-mode-hook
-            (lambda ()
-              (rainbow-mode -1)
-              (evil-leader/set-key "x h" 'haskell-hoogle)
-              (lsp-deferred)
-              (setq evil-shift-width 2)
-              (define-key haskell-mode-map (kbd "C-c C-c C-s")
-                'haskell-mode-stylish-buffer)
-              (setq haskell-auto-insert-module-format-string
-                    "module %s\n  () where\n\n")
-              (haskell-auto-insert-module-template)
-              (smartparens-mode)
-              (sp-local-pair 'haskell-mode "{" "}")))
-  (add-hook 'haskell-literate-mode-hook #'lsp-deferred))
+  ;; :hook ((haskell-mode . lsp-deferred)
+  ;;        (haskell-literate-mode . lsp-deferred))
+  )
 
 (use-package ormolu
   :after haskell-mode
