@@ -6,7 +6,7 @@
 ~/.local/bin/setup-wacom.sh
 
 # picom --unredir-if-possible --experimental-backends -b
-~/.local/bin/launch.sh redshift &
+# ~/.local/bin/launch.sh redshift &
 
 # ~/.local/bin/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
 
