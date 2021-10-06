@@ -1203,7 +1203,8 @@ Useful for REPL windows."
    ;; Requires `gopls' binary.
    (go-mode . lsp-deferred)
 
-   (elm-mode . lsp-deferred))
+   (elm-mode . lsp-deferred)
+   (js2-mode . lsp-deferred))
 
   :init
   (with-eval-after-load 'lsp-mode
@@ -3140,11 +3141,15 @@ Lisp function does not specify a special indentation."
               (evil-leader/set-key "t s" 'gradle-single-test))))
 
 (use-package js2-mode
-  :mode "\\.js\\'"
-  :config
-  (setq js2-basic-offset 2)
-  (setq js2-mode-show-parse-errors nil)
-  (setq js2-mode-show-strict-warnings nil))
+  :mode (("\\.js\\'" . js2-mode)
+         ("\\.jsx\\'" . js2-mode))
+  :custom
+  (js2-basic-offset 2)
+  (js2-mode-show-parse-errors nil)
+  (js2-mode-show-strict-warnings nil))
+
+(with-eval-after-load 'js
+  (define-key js-mode-map (kbd "M-.") nil))
 
 (defun setup-tide ()
   "Set up `tide-mode' for JavaScript and TypeScript."
