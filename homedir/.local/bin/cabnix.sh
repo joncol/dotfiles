@@ -130,7 +130,7 @@ in def.pkg.overrideAttrs (attrs: {
 EOF
 
 cat <<'EOF' > .envrc
-[[ -n "${DIRENV_ALLOW_NIX}" ]] && use nix
+[[ -n "${DIRENV_ALLOW_NIX}" ]] && use nix -j4
 
 if [ -e .envrc-local ]; then
    source .envrc-local
