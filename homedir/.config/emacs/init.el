@@ -1,4 +1,4 @@
-(let ((my-theme '"doom-moonlight"))
+(let ((my-theme '"doom-henna"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -3748,6 +3748,12 @@ repo."
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "black")))
 
+  (doom-henna
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#6ab04c")
+   (with-eval-after-load 'vertico
+     (set-face-foreground 'vertico-group-separator "#808080")
+     (set-face-foreground 'vertico-group-title "#c0c0c0")))
+
   (doom-laserwave
    (set-face-background 'hl-line (jco/current-bg 0.10))
    (with-eval-after-load 'eyebrowse
@@ -3761,6 +3767,9 @@ repo."
 
   (doom-moonlight
    (set-face-background 'highlight "#22a7f0")
+   (with-eval-after-load 'vertico
+     (set-face-foreground 'vertico-group-separator "#808080")
+     (set-face-foreground 'vertico-group-title "#c0c0c0"))
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face
                           (face-attribute 'default :background))))
