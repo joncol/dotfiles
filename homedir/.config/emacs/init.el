@@ -3064,15 +3064,9 @@ Lisp function does not specify a special indentation."
             (smartparens-mode)
             (sp-local-pair 'haskell-mode "{" "}")))
 
-;; Requirements: Install system package `ghcup-hs-bin', and then:
-;; `ghcup install hls' (to install `haskell-language-server').
-;; Install `haskell-implicit-hie', and finally run: `gen-hie > hie.yaml' to get
-;; a hie configuration.
 (use-package lsp-haskell
-  :defer
-  ;; :hook ((haskell-mode . lsp-deferred)
-  ;;        (haskell-literate-mode . lsp-deferred))
-  )
+  :hook ((haskell-mode . lsp-deferred)
+         (haskell-literate-mode . lsp-deferred)))
 
 (use-package ormolu
   :after haskell-mode
