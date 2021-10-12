@@ -667,8 +667,6 @@ Useful for REPL windows."
 
 (setq vc-follow-symlinks nil)
 
-(which-function-mode 1)
-
 ;;; Avoid the empty (custom-set-faces) at end of init.el.
 (setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
 (load custom-file)

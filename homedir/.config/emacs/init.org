@@ -895,8 +895,6 @@ Useful for REPL windows."
   (global-unset-key (kbd "C-x C-z")))
 
 (setq vc-follow-symlinks nil)
-
-(which-function-mode 1)
 #+end_src
 * Miscellaneous
 #+begin_src emacs-lisp
