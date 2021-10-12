@@ -1167,9 +1167,6 @@ Useful for REPL windows."
 (use-package htmlize
   :defer)
 
-(use-package insert-shebang
-  :defer)
-
 (use-package ix
   :defer)
 
