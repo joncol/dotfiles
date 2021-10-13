@@ -1430,7 +1430,7 @@ Useful for REPL windows."
    (go-mode . lsp-deferred)
 
    (elm-mode . lsp-deferred)
-   (js2-mode . lsp-deferred))
+   (js-mode . lsp-deferred))
 
   :init
   (with-eval-after-load 'lsp-mode
@@ -3407,14 +3407,7 @@ Lisp function does not specify a special indentation."
 #+end_src
 ** JavaScript
 #+begin_src emacs-lisp
-(use-package js2-mode
-  :mode (("\\.js\\'" . js2-mode)
-         ("\\.jsx\\'" . js2-mode))
-  :config
-  (setq js2-basic-offset 2)
-  (setq js2-mode-show-parse-errors nil)
-  (setq js2-mode-show-strict-warnings nil))
-
+(setq js-indent-level 2)
 (with-eval-after-load 'js
   (define-key js-mode-map (kbd "M-.") nil))
 
@@ -3431,7 +3424,7 @@ Lisp function does not specify a special indentation."
   :hook ((typescript-mode . setup-tide)
          (typescript-mode . tide-hl-identifier-mode))
   :init
-  (add-hook 'js2-mode-hook #'setup-tide)
+  (add-hook 'js-mode-hook #'setup-tide)
   :config
   (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append))
 #+end_src
