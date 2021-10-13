@@ -26,10 +26,19 @@ To uninstall all symbolic links to home directory configuration files:
 
 ```bash
 cd ~/code/dotfiles/homedir
-stow -t ~ -D *
+stow -Dt ~ homedir
 ```
 
-Note that `i3lock-color` needs to be installed. It replaces `i3lock`.
+To install work setup files:
+```bash
+stow -t ~/work work
+```
+
+To uninstall work setup files:
+
+```bash
+stow -Dt ~/work work
+```
 
 ## License
 
