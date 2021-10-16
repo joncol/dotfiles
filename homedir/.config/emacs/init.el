@@ -2112,6 +2112,15 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
        (define-key evil-inner-text-objects-map ,key #',inner-name)
        (define-key evil-outer-text-objects-map ,key #',outer-name))))
 
+;; Custom link types
+
+(defun org-make-my-link-description (link _desc)
+  "Remove my custom prefixes from LINK."
+  (when (string-prefix-p "jira:" link)
+    (string-remove-prefix "jira:" link)))
+
+(setq org-make-link-description-function #'org-make-my-link-description)
+
 (use-package cha
   :disabled
   :straight (cha :type git :host github :repo "joncol/cha")
