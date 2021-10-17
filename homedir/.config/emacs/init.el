@@ -2576,6 +2576,7 @@ As such, it will only work when the notes window exists."
               (setq time-stamp-start "last_modified:[ ]+\\\\?")
               (setq time-stamp-end "$")
               (setq time-stamp-format "\[%Y-%02m-%02d %3a %02H:%02M\]")
+              (setq time-stamp-line-limit 16)
               (add-hook 'before-save-hook #'time-stamp))))
 
 (use-package org-roam-bibtex
