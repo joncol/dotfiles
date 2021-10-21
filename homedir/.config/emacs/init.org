@@ -2373,12 +2373,10 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 ;; Custom link types
 
-(defun org-make-my-link-description (link _desc)
+(defun my-org-link-make-description-function (link _desc)
   "Remove my custom prefixes from LINK."
   (when (string-prefix-p "jira:" link)
     (string-remove-prefix "jira:" link)))
-
-(setq org-make-link-description-function #'org-make-my-link-description)
 
 (use-package cha
   :disabled
@@ -2440,6 +2438,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :custom
   (org-footnote-auto-adjust t)
   (org-M-RET-may-split-line nil)
+  (org-link-make-description-function #'my-org-link-make-description-function)
   :init
   (setq org-return-follows-link t)
   (setq org-startup-indented t)
