@@ -10,11 +10,9 @@
 
 # ~/.local/bin/launch.sh xcape -t 150 -e 'Control_L=BackSpace'
 
-currenttime=$(date +%H:%M)
-if [[ "$currenttime" > "21:00" ]] || [[ "$currenttime" < "18:00" ]]; then
-    feh --bg-fill ~/Pictures/wallpapers/dark.png
-else
-    feh --bg-fill ~/Pictures/wallpapers/light.jpg
-fi
+wallpaper_dir=~/Pictures/wallpapers
+ls $wallpaper_dir | sort -R | tail -1 | while read file; do
+    feh --bg-fill ${wallpaper_dir}/${file}
+done
 
 ~/.local/bin/launch.sh unclutter &
