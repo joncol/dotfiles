@@ -1,6 +1,7 @@
 # Jonas' dotfiles
 
-Configuration for Linux based system, with fish, mail settings etc.
+My personal configuration for Linux based system, with `zsh`, email settings
+etc.
 
 ## Requirements
 
