@@ -3755,6 +3755,7 @@ repo."
 
   (doom-moonlight
    (set-face-background 'highlight "#22a7f0")
+   (set-face-background 'region (jco/current-bg 0.30))
    (with-eval-after-load 'vertico
      (set-face-foreground 'vertico-group-separator "#808080")
      (set-face-foreground 'vertico-group-title "#c0c0c0"))
