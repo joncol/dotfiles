@@ -1471,18 +1471,6 @@ Example: `helloWorld` becomes `Hello world`."
   :config
   (setq yagist-view-gist t))
 
-(use-package ivy-bibtex
-  :defer
-  :init
-  (evil-leader/set-key "z b" 'ivy-bibtex)
-  :custom
-  (ivy-bibtex-default-action 'ivy-bibtex-edit-notes)
-  :config
-  ;; Assumes usage of Zotero to export BibTeX bibliography.
-  (setq bibtex-completion-bibliography '("~/Sync/Zotero/library.bib"))
-  (setq bibtex-completion-pdf-field "File")
-  (setq bibtex-completion-notes-path "~/org/roam/ref"))
-
 (defun create-scm-string (type branch)
   "Create a string to be shown in prompt.
 TYPE is either \"git\" or \"hg\" and BRANCH is the branch name."
@@ -2550,7 +2538,6 @@ As such, it will only work when the notes window exists."
                                      "resources/sounds/clock.wav")))
 
 (use-package org-roam
-  :defer
   :custom
   (org-roam-directory "~/org/roam")
   (org-roam-buffer-position 'bottom)
@@ -2583,18 +2570,24 @@ As such, it will only work when the notes window exists."
               (setq time-stamp-end "$")
               (setq time-stamp-format "\[%Y-%02m-%02d %3a %02H:%02M\]")
               (setq time-stamp-line-limit 16)
-              (add-hook 'before-save-hook #'time-stamp))))
+              (add-hook 'before-save-hook #'time-stamp)))
+  :config
+  (org-roam-setup)
+  (org-roam-bibtex-mode))
+
+(use-package citeproc
+  :defer)
 
 (use-package org-roam-bibtex
-  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :after org-roam
   :config
+  (require 'org-ref)
   (setq orb-preformat-keywords
         '("citekey" "title" "url" "file" "author-or-editor" "keywords"))
-  (setq orb-templates
-        '(("r" "ref" plain (function org-roam-capture--get-point)
-           ""
-           :file-name "ref/${slug}"
-           :head "#+title: ${citekey}: ${title}
+  (add-to-list 'org-roam-capture-templates
+               '("l" "literature" plain "%?"
+                 :target (file+head "literature/${citekey}.org"
+                                    "#+title: ${title}
 #+setupfile: ~/org/roam/template.org
 #+roam_key: ${ref}
 #+filetags: literature
@@ -2604,8 +2597,21 @@ As such, it will only work when the notes window exists."
 * ${title}\n:PROPERTIES:\n:custom_id: ${citekey}\n:url: ${url}
 :author: ${author-or-editor}
 :noter_document: %(orb-process-file-field \"${citekey}\")\n:noter_page:
-:END:\n%?"
-           :unnarrowed t))))
+:END:\n")
+                 :unnarrowed t)))
+
+(use-package ivy-bibtex
+  :defer
+  :init
+  (evil-leader/set-key "z b" 'ivy-bibtex)
+  :custom
+  (ivy-bibtex-default-action 'ivy-bibtex-edit-notes)
+  :config
+  ;; Assumes usage of Zotero to export BibTeX bibliography.
+  (setq bibtex-completion-bibliography '("~/Sync/Zotero/library.bib"))
+  (setq bibtex-completion-pdf-field "File")
+  (setq bibtex-completion-notes-path "~/org/roam/ref")
+  (org-roam-bibtex-mode))
 
 (use-package org-super-agenda
   :disabled
