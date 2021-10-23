@@ -860,7 +860,6 @@ Useful for REPL windows."
 
 (display-time-mode)
 
-;; (define-key jco/my-keys-mode-map (kbd "C-x a r") 'align-regexp)
 (defadvice align-regexp (around align-regexp-with-spaces activate compile)
   "Never use tabs for alignment."
   (let ((indent-tabs-mode nil))
@@ -910,6 +909,8 @@ Useful for REPL windows."
   "Minor mode for my personal keybindings."
   :global t
   :keymap (make-sparse-keymap))
+
+(define-key jco/my-keys-mode-map (kbd "C-x a r") 'align-regexp)
 
 (add-hook 'jco/my-keys-mode-hook
           (lambda ()
