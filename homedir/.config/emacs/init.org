@@ -1082,6 +1082,8 @@ Useful for REPL windows."
 
 (use-package ace-window
   :defer
+  :custom
+  (aw-keys '(?a ?r ?s ?t ?n ?e ?i ?o))
   :init
   (evil-leader/set-key "w o" 'ace-window)
   (global-set-key [remap other-window] 'ace-window))
