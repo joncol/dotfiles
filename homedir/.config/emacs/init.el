@@ -4192,6 +4192,18 @@ accordance with ISO 8601)."
         (delete-minibuffer-contents))
     (delete-backward-char arg)))
 
+;; Source: https://karthinks.com/software/fifteen-ways-to-use-embark
+(eval-when-compile
+  (defmacro my/embark-split-action (fn split-type)
+    `(defun ,(intern (concat "my/embark-"
+                             (symbol-name fn)
+                             "-"
+                             (car (last  (split-string
+                                          (symbol-name split-type) "-"))))) ()
+       (interactive)
+       (funcall #',split-type)
+       (call-interactively #',fn))))
+
 (use-package vertico
   :defer
   :bind (:map minibuffer-local-map
@@ -4326,7 +4338,21 @@ accordance with ISO 8601)."
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
-                 (window-parameters (mode-line-format . none)))))
+                 (window-parameters (mode-line-format . none))))
+
+  (define-key embark-file-map
+    (kbd "2") (my/embark-split-action find-file split-window-below))
+  (define-key embark-buffer-map
+    (kbd "2") (my/embark-split-action switch-to-buffer split-window-below))
+  (define-key embark-bookmark-map
+    (kbd "2") (my/embark-split-action bookmark-jump split-window-below))
+
+  (define-key embark-file-map (kbd "3")
+    (my/embark-split-action find-file split-window-right))
+  (define-key embark-buffer-map (kbd "3")
+    (my/embark-split-action switch-to-buffer split-window-right))
+  (define-key embark-bookmark-map (kbd "3")
+    (my/embark-split-action bookmark-jump split-window-right)))
 
 (use-package embark-consult
   :after (embark consult)
