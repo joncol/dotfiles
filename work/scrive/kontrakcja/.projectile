@@ -1,8 +1,9 @@
--/_build
+-/_build*
 -/_local
 -/api-docs/
 -/dist-newstyle/
 -/frontend/
+-/frontend-elm/
 -/result/
 -/scripts/kontrakcja/
 -/scrivepdftools/
