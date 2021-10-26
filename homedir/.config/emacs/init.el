@@ -4298,7 +4298,10 @@ accordance with ISO 8601)."
 
   (advice-add #'register-preview :override #'consult-register-window)
   (evil-leader/set-key "b" 'consult-buffer)
-  (evil-leader/set-key ". r" #'consult-ripgrep)
+  (evil-leader/set-key ". r"
+    (lambda ()
+      (interactive)
+      (consult-ripgrep (projectile-project-root))))
   :config
   (consult-customize
    consult-theme
