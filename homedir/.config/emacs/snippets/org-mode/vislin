@@ -2,4 +2,4 @@
 # name: Enable `visual-line-mode`
 # key: vislin
 # --
-# -*- org-export-initial-scope: subtree; eval: (visual-line-mode 1); eval: (visual-fill-column-mode t); eval: (turn-off-auto-fill); -*-
+`(auto-fill-mode -1)`# -*- org-export-initial-scope: subtree; eval: (visual-line-mode 1); eval: (visual-fill-column-mode t); eval: (turn-off-auto-fill); -*-
