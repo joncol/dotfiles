@@ -1788,6 +1788,8 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 
 (use-package magit
   :defer 1
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
   :init
   (let ((filename "~/.nix-profile/bin/emacsclient"))
     (when (file-exists-p filename)
@@ -1802,8 +1804,6 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   ;; Needed for success status message to be shown.
   (setq magit-auto-revert-mode nil)
 
-  (setq magit-display-buffer-function
-        #'magit-display-buffer-fullframe-status-v1)
   (evil-leader/set-key "v l" 'magit-log-buffer-file)
   (evil-leader/set-key "v b" 'magit-blame)
   (bind-key "q" #'jco/magit-kill-buffers magit-status-mode-map)
