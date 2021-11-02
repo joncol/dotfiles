@@ -1204,6 +1204,9 @@ Useful for REPL windows."
    (elm-mode . lsp-deferred)
    (js-mode . lsp-deferred))
 
+  :custom
+  (lsp-lens-enable nil)
+
   :init
   (with-eval-after-load 'lsp-mode
     ;; To avoid watching all Scrive API docs.
