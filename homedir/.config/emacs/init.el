@@ -1,4 +1,4 @@
-(let ((my-theme '"doom-moonlight"))
+(let ((my-theme '"doom-1337"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -3690,6 +3690,11 @@ repo."
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "midnightblue")
    (set-face-background 'hl-line "#041040"))
+
+  (doom-1337
+   (set-face-background 'region "#582c6b")
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face (jco/current-bg -0.10))))
 
   (doom-acario-light
    (set-face-attribute 'font-lock-comment-face nil :slant 'normal)
