@@ -4010,7 +4010,9 @@ repo."
   (doom-1337
    (set-face-background 'region "#582c6b")
    (with-eval-after-load 'mu4e
-     (set-face-foreground 'mu4e-highlight-face (jco/current-bg -0.10))))
+     (set-face-foreground 'mu4e-highlight-face (jco/current-bg -0.10)))
+   (with-eval-after-load 'vertico
+     (set-face-background 'vertico-current "#406080")))
 
   (doom-acario-light
    (set-face-attribute 'font-lock-comment-face nil :slant 'normal)
