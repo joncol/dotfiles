@@ -1,8 +1,227 @@
-(let ((my-theme '"doom-1337"))
+#+TITLE: Emacs configuration
+#+PROPERTY: header-args:emacs-lisp :tangle init.el
+#+startup: overview
+
+* Theme list, and current theme
+Current theme. Change this to whatever theme you want, by copying the line from
+the list below.
+#+name: my-theme
+: doom-1337
+#+begin_src emacs-lisp :var my-theme=my-theme
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
-)
-
+#+end_src
+** List of favourite themes
+: adwaita
+: borland-blue
+: chyla
+: cyberpunk
+: darktooth
+: doom-acario-light
+: doom-challenger-deep
+: doom-city-lights
+: doom-dark+
+: doom-dracula
+: doom-flatwhite
+: doom-gruvbox
+: doom-gruvbox-light
+: doom-henna
+: doom-laserwave
+: doom-manegarm
+: doom-miramare
+: doom-molokai
+: doom-moonlight
+: doom-nord-light
+: doom-oceanic-next
+: doom-old-hope
+: doom-one
+: doom-one-light
+: doom-opera-light
+: doom-outrun-electric
+: doom-solarized-light
+: doom-vibrant
+: doom-rouge
+: doom-snazzy
+: doom-sourcerer
+: doom-spacegrey
+: doom-tomorrow-day
+: eink
+: gotham
+: github-modern
+: gruvbox-dark-hard
+: hemisu-dark
+: hemisu-light
+: kaolin-bubblegum
+: kaolin-dark
+: kaolin-eclipse
+: kaolin-galaxy
+: kaolin-ocean
+: kaolin-valley-dark
+: minimal
+: minimal-light
+: mustang
+: nubox-dark
+: nubox-light
+: nubox-tty
+: organic-green
+: reykjavik
+: sanityinc-tomorrow-blue
+: sanityinc-tomorrow-eighties
+: sanityinc-tomorrow-night
+: solarized-dark
+: tao-yang
+: tao-yin
+** List of all themes
+: adwaita
+: afternoon
+: ample
+: ample-flat
+: ample-light
+: ample-zen
+: borland-blue
+: cherry-blossom
+: chyla
+: cyberpunk
+: darktooth
+: deeper-blue
+: default
+: dichromacy
+: doom-1337
+: doom-Iosvkem
+: doom-acario-dark
+: doom-acario-light
+: doom-ayu-light
+: doom-ayu-mirage
+: doom-badger
+: doom-challenger-deep
+: doom-city-lights
+: doom-dark+
+: doom-dracula
+: doom-ephemeral
+: doom-fairy-floss
+: doom-flatwhite
+: doom-gruvbox
+: doom-gruvbox-light
+: doom-henna
+: doom-homage-black
+: doom-homage-white
+: doom-horizon
+: doom-ir-black
+: doom-laserwave
+: doom-manegarm
+: doom-material
+: doom-miramare
+: doom-molokai
+: doom-monokai-classic
+: doom-monokai-machine
+: doom-monokai-octagon
+: doom-monokai-pro
+: doom-monokai-ristretto
+: doom-monokai-spectrum
+: doom-moonlight
+: doom-nord
+: doom-nord-light
+: doom-nova
+: doom-oceanic-next
+: doom-old-hope
+: doom-one
+: doom-one-light
+: doom-opera
+: doom-opera-light
+: doom-outrun-electric
+: doom-palenight
+: doom-peacock
+: doom-plain
+: doom-plain-dark
+: doom-rouge
+: doom-shades-of-purple
+: doom-snazzy
+: doom-solarized-dark
+: doom-solarized-dark-high-contrast
+: doom-solarized-light
+: doom-sourcerer
+: doom-spacegrey
+: doom-tomorrow-day
+: doom-tomorrow-night
+: doom-vibrant
+: doom-wilmersdorf
+: doom-xcode
+: doom-zenburn
+: eink
+: espresso
+: flatland
+: flatui
+: github-modern
+: gotham
+: grandshell
+: gruber-darker
+: hemisu
+: hemisu-dark
+: hemisu-light
+: kaolin-aurora
+: kaolin-blossom
+: kaolin-breeze
+: kaolin-bubblegum
+: kaolin-dark
+: kaolin-eclipse
+: kaolin-galaxy
+: kaolin-light
+: kaolin-mono-dark
+: kaolin-mono-light
+: kaolin-ocean
+: kaolin-shiva
+: kaolin-temple
+: kaolin-valley-dark
+: kaolin-valley-light
+: leuven
+: leuven-dark
+: light-blue
+: manoj-dark
+: material
+: material-light
+: minimal
+: minimal-black
+: minimal-light
+: misterioso
+: molokai
+: monokai
+: mustang
+: nubox-dark
+: nubox-light
+: nubox-tty
+: organic-green
+: reykjavik
+: sanityinc-tomorrow-blue
+: sanityinc-tomorrow-bright
+: sanityinc-tomorrow-day
+: sanityinc-tomorrow-eighties
+: sanityinc-tomorrow-night
+: solarized
+: solarized-dark
+: solarized-dark-high-contrast
+: solarized-gruvbox-dark
+: solarized-gruvbox-light
+: solarized-light
+: solarized-light-high-contrast
+: solarized-selenized-black
+: solarized-selenized-dark
+: solarized-selenized-light
+: solarized-selenized-white
+: solarized-wombat-dark
+: solarized-zenburn
+: soothe
+: tango
+: tango-dark
+: tao
+: tao-yang
+: tao-yin
+: tsdh-dark
+: tsdh-light
+: wheatgrass
+: whiteboard
+: wombat
+* Straight
+#+begin_src emacs-lisp
 (defvar bootstrap-version)
 (let ((bootstrap-file
                (expand-file-name "straight/repos/straight.el/bootstrap.el"
@@ -25,7 +244,9 @@
 (setq-default flycheck-emacs-lisp-load-path load-path)
 
 (defvar evil-want-C-i-jump nil)
-
+#+end_src
+* Common functions
+#+begin_src emacs-lisp
 (defun apply-ansi-colors ()
   "Apply ANSI colors on region."
   (interactive)
@@ -287,7 +508,9 @@ invokation."
                     electric-pair-text-pairs)))
     (message "electric-pair-pairs: %s" (prin1-to-string s1))
     (message "electric-pair-text-pairs: %s" (prin1-to-string s2))))
-
+#+end_src
+* Evil
+#+begin_src emacs-lisp
 (defun jco/bind-exit-insert-mode (first-key second-key)
   "Add binding to exit insert mode using FIRST-KEY followed by SECOND-KEY."
   (define-key evil-insert-state-map (char-to-string ?l)
@@ -535,7 +758,9 @@ Useful for REPL windows."
   (interactive)
   (evil-window-move-very-bottom)
   (evil-window-set-height height))
-
+#+end_src
+* Projectile
+#+begin_src emacs-lisp
 (use-package projectile
   :defer
   :init
@@ -570,7 +795,9 @@ Useful for REPL windows."
                   file (projectile-project-root)))
       (run-hooks 'projectile-find-file-hook)
       (cider-jack-in))))
-
+#+end_src
+* Company
+#+begin_src emacs-lisp
 (use-package company
   :init
   (add-hook 'after-init-hook 'global-company-mode)
@@ -603,7 +830,9 @@ Useful for REPL windows."
 (use-package company-box
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
-
+#+end_src
+* Global config
+#+begin_src emacs-lisp
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
 
@@ -665,7 +894,9 @@ Useful for REPL windows."
   (global-unset-key (kbd "C-x C-z")))
 
 (setq vc-follow-symlinks nil)
-
+#+end_src
+* Miscellaneous
+#+begin_src emacs-lisp
 ;;; Avoid the empty (custom-set-faces) at end of init.el.
 (setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
 (load custom-file)
@@ -1469,7 +1700,9 @@ Example: `helloWorld` becomes `Hello world`."
   :defer
   :config
   (setq yagist-view-gist t))
-
+#+end_src
+* Eshell
+#+begin_src emacs-lisp
 (defun create-scm-string (type branch)
   "Create a string to be shown in prompt.
 TYPE is either \"git\" or \"hg\" and BRANCH is the branch name."
@@ -1541,7 +1774,9 @@ windows easier."
   (eshell-quit-process)
   (when (window-parent)
     (delete-window)))
-
+#+end_src
+* Font
+#+begin_src emacs-lisp
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
   (add-to-list 'default-frame-alist
@@ -1593,7 +1828,9 @@ windows easier."
      "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
 
   (global-ligature-mode t))
-
+#+end_src
+* Hydras
+#+begin_src emacs-lisp
 (use-package hydra
   :defer
   :init
@@ -1620,7 +1857,7 @@ windows easier."
 
 (defhydra jco/hydra-config (:color teal :hint nil)
   "config"
-  ("e" (find-file "~/dotfiles/homedir/.config/emacs/init.org") "edit")
+  ("e" (find-file "~/dotfiles/homedir/.emacs.d/init.org") "edit")
   ("u" jco/update-dotfiles "update"))
 
 (defhydra jco/hydra-find (:color teal :hint nil)
@@ -1753,7 +1990,9 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   ("v" apropos-variable)
   ("i" info-apropos)
   ("x" xref-find-apropos))
-
+#+end_src
+* Language/writing
+#+begin_src emacs-lisp
 (use-package flyspell-correct
   :bind (:map flyspell-mode-map
          (("C-;" . flyspell-correct-wrapper))))
@@ -1781,14 +2020,18 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :defer
   :init
   (global-set-key (kbd "C-c d") 'sdcv-search-input))
-
+#+end_src
+* Macros
+#+begin_src emacs-lisp
 (fset 'jco/paste-over [?\" ?0 ?p])
 
 (fset 'jco/paste-over-word [?v ?i ?w ?\" ?0 ?p])
 
 (evil-leader/set-key "p" 'jco/paste-over)
 (evil-leader/set-key "P" 'jco/paste-over-word)
-
+#+end_src
+* Magit
+#+begin_src emacs-lisp
 (use-package magit
   :defer 1
   :custom
@@ -1856,6 +2099,9 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :config
   (magit-org-todos-autoinsert))
 
+#+end_src
+* Modeline
+#+begin_src emacs-lisp
 (use-package rich-minority
   :defer
   :config
@@ -1873,7 +2119,9 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :ensure t
   :defer
   :hook (after-init . doom-modeline-init))
-
+#+end_src
+* Mu4e
+#+begin_src emacs-lisp
 (require 's)
 
 (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
@@ -2035,7 +2283,9 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
             (footnote-mode)
             (setq truncate-lines nil)
             (setq word-wrap t)))
-
+#+end_src
+* Org-mode
+#+begin_src emacs-lisp
 (setq org-directory "~/org")
 (setq org-roam-v2-ack t)
 
@@ -2544,16 +2794,16 @@ As such, it will only work when the notes window exists."
    '(("d" "default" plain "%?"
       :if-new (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}
-#+setupfile: ~/org/roam/template.org
-#+created: %U
-#+last_modified: %U")
+,#+setupfile: ~/org/roam/template.org
+,#+created: %U
+,#+last_modified: %U")
       :unnarrowed t)
      ("p" "project" plain "%?"
       :if-new (file+head "projects/%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}
-#+setupfile: ~/org/roam/template.org
-#+created: %U
-#+last_modified: %U")
+,#+setupfile: ~/org/roam/template.org
+,#+created: %U
+,#+last_modified: %U")
       :unnarrowed t)))
   :bind (:map org-roam-mode-map
          (("C-c n l" . org-roam)
@@ -2587,13 +2837,13 @@ As such, it will only work when the notes window exists."
                '("l" "literature" plain "%?"
                  :target (file+head "literature/${citekey}.org"
                                     "#+title: ${title}
-#+setupfile: ~/org/roam/template.org
-#+roam_key: ${ref}
-#+filetags: literature
-#+created: %U
-#+last_modified: %U
+,#+setupfile: ~/org/roam/template.org
+,#+roam_key: ${ref}
+,#+filetags: literature
+,#+created: %U
+,#+last_modified: %U
 
-* ${title}\n:PROPERTIES:\n:custom_id: ${citekey}\n:url: ${url}
+,* ${title}\n:PROPERTIES:\n:custom_id: ${citekey}\n:url: ${url}
 :author: ${author-or-editor}
 :noter_document: %(orb-process-file-field \"${citekey}\")\n:noter_page:
 :END:")
@@ -2702,10 +2952,15 @@ As such, it will only work when the notes window exists."
   "Open file FILENAME in the directory DIR (default: `org-directory')."
   (find-file (concat (or dir org-directory) "/" filename))
   (jco/ensure-todo-org-header))
-
+#+end_src
+* Programming languages
+** C#
+#+begin_src emacs-lisp
 (use-package csharp-mode
   :mode "\\.cs\\'")
-
+#+end_src
+** Clojure
+#+begin_src emacs-lisp
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 
 (defun create-test-report-window (&rest _)
@@ -2945,7 +3200,9 @@ Opens a new buffer with the result."
     (clojure-sort-ns)))
 
 (add-hook 'before-save-hook #'my-clojure-mode-before-save-hook)
-
+#+end_src
+** Emacs Lisp
+#+begin_src emacs-lisp
 (defun fuco1/lisp-indent-function (indent-point state)
   "This function is the normal value of the variable `lisp-indent-function'.
 The function `calculate-lisp-indent' calls this to determine
@@ -3027,13 +3284,19 @@ Lisp function does not specify a special indentation."
             (init-lisp-common)
             (redshank-mode)
             (setq-local lisp-indent-function #'fuco1/lisp-indent-function)))
-
+#+end_src
+** Fennel
+#+begin_src emacs-lisp
 (use-package fennel-mode
   :defer)
-
+#+end_src
+** GLSL
+#+begin_src emacs-lisp
 (use-package glsl-mode
   :defer)
-
+#+end_src
+** Go
+#+begin_src emacs-lisp
 (use-package go-mode
   :defer
   :config
@@ -3043,7 +3306,9 @@ Lisp function does not specify a special indentation."
               (evil-leader/set-key "h d" 'godoc-at-point)
               (local-set-key (kbd "M-.") 'godef-jump)
               (local-set-key (kbd "M-,") 'pop-tag-mark))))
-
+#+end_src
+** Haskell
+#+begin_src emacs-lisp
 (use-package flycheck-haskell
   ;; Disabling this package, since it only gives error:
   ;; "Reading Haskell configuration failed with exit code Segmentation fault and
@@ -3072,7 +3337,9 @@ Lisp function does not specify a special indentation."
   :after haskell-mode
   :config
   (define-key haskell-mode-map (kbd "C-c C-c C-f") 'ormolu-format-buffer))
-
+#+end_src
+** J
+#+begin_src emacs-lisp
 (use-package j-mode
   :defer
   :init
@@ -3085,7 +3352,9 @@ Lisp function does not specify a special indentation."
    '(j-adverb-face ((t (:foreground "Green"))))
    '(j-conjunction-face ((t (:foreground "Blue"))))
    '(j-other-face ((t (:foreground "Black"))))))
-
+#+end_src
+** Java
+#+begin_src emacs-lisp
 (use-package eclim
   :disabled
   :defer
@@ -3138,6 +3407,9 @@ Lisp function does not specify a special indentation."
                   (gradle-run "test --info")))
               (evil-leader/set-key "t s" 'gradle-single-test))))
 
+#+end_src
+** JavaScript
+#+begin_src emacs-lisp
 (setq js-indent-level 2)
 (with-eval-after-load 'js
   (define-key js-mode-map (kbd "M-.") nil))
@@ -3158,13 +3430,19 @@ Lisp function does not specify a special indentation."
   (add-hook 'js-mode-hook #'setup-tide)
   :config
   (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append))
-
+#+end_src
+** Jinja
+#+begin_src emacs-lisp
 (use-package jinja2-mode
   :defer)
-
+#+end_src
+** JSON
+#+begin_src emacs-lisp
 (use-package json-mode
   :defer)
-
+#+end_src
+** Lisp
+#+begin_src emacs-lisp
 (use-package slime
   :after lisp-mode
   :config
@@ -3207,7 +3485,10 @@ Lisp function does not specify a special indentation."
 
 (use-package slime-company
   :defer)
-
+#+end_src
+** Lisp common
+Configuration common to all Lisps.
+#+begin_src emacs-lisp
 (defun jco/lisp-comment-dwim ()
   "Comments Lisp sexps smartly."
   (interactive)
@@ -3231,10 +3512,14 @@ Lisp function does not specify a special indentation."
   :defer
   :init
   (setq redshank-prefix-key "C-c RET"))
-
+#+end_src
+** Lua
+#+begin_src emacs-lisp
 (use-package lua-mode
   :defer)
-
+#+end_src
+** Markdown
+#+begin_src emacs-lisp
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -3250,10 +3535,14 @@ Lisp function does not specify a special indentation."
 
 (use-package ox-gfm
   :after markdown-mode)
-
+#+end_src
+** Mustache
+#+begin_src emacs-lisp
 (use-package mustache-mode
   :mode "\\.mustache\\'")
-
+#+end_src
+** Nix
+#+begin_src emacs-lisp
 (use-package nix-mode
   :custom
   (evil-shift-width 2)
@@ -3272,10 +3561,14 @@ Lisp function does not specify a special indentation."
               (modify-syntax-entry ?- "w")
 
               (lsp-deferred))))
-
+#+end_src
+** PureScript
+#+begin_src emacs-lisp
 (use-package purescript-mode
   :defer)
-
+#+end_src
+** Rust
+#+begin_src emacs-lisp
 (use-package rustic
   :defer
   :config
@@ -3283,7 +3576,9 @@ Lisp function does not specify a special indentation."
             (lambda ()
               (sp-pair "\'" nil :actions :rem)
               (modify-syntax-entry ?! "w"))))
-
+#+end_src
+** Terraform
+#+begin_src emacs-lisp
 (use-package terraform-mode
   :defer
   :config
@@ -3292,16 +3587,22 @@ Lisp function does not specify a special indentation."
               (setq evil-shift-width terraform-indent-level)
               ;; do not treat "-" as a word separator
               (modify-syntax-entry ?- "w"))))
-
+#+end_src
+** Toml
+#+begin_src emacs-lisp
 (use-package toml-mode
   :defer
   :config
   (modify-syntax-entry ?- "w") ;; Do not treat "-" as a word separator.
   )
-
+#+end_src
+** TypeScript
+#+begin_src emacs-lisp
 (use-package typescript-mode
   :mode "\\.tsx\\'")
-
+#+end_src
+* Rotate
+#+begin_src emacs-lisp
 (defvar jco/rotate-text-rotations
   '(("true" "false")
     ("True" "False")
@@ -3410,7 +3711,10 @@ Example:
         (append (jco/rotate-flatten-list (car list-of-lists))
                 (jco/rotate-flatten-list (cdr list-of-lists)))
       (list list-of-lists))))
-
+#+end_src
+* Shackle
+Taken from: https://gist.github.com/rksm/8c07d9ccc9e15adf752d3dd73dd9a61e.
+#+begin_src emacs-lisp
 (defun rk/open-compilation-buffer (&optional buffer-or-name shackle-alist shackle-plist)
   "Helper for selecting window for opening *compilation* buffers."
   ;; Find existing compilation window left of the current window or left-most
@@ -3464,7 +3768,12 @@ Example:
   (shackle-default-rule nil)
   :init
   (shackle-mode))
+#+end_src
+* Tab key behavior
+Much of this code was taken from
+http://emacs.stackexchange.com/questions/7908/how-to-make-yasnippet-and-company-work-nicer.
 
+#+begin_src emacs-lisp
 (defun jco/check-expansion ()
   (save-excursion
     (if (looking-at "\\_>") t
@@ -3541,7 +3850,10 @@ Example:
   (define-key yas-keymap (kbd "TAB") 'jco/tab-complete-or-next-field)
   (define-key yas-keymap [(control tab)] 'yas-next-field)
   (define-key yas-keymap (kbd "C-g") 'jco/abort-company-or-yas))
-
+#+end_src
+* Tangle helpers
+Taken from: https://assortedarray.com/posts/my-init-org-setup/.
+#+begin_src emacs-lisp
 (defun org-babel-tangle-config ()
   "Tangle emacs config file.  Uses the following custom logic:
 
@@ -3561,7 +3873,9 @@ repo."
         ;; Avoid infinite recursion.
         ((after-save-hook (remove 'org-babel-tangle-config+ after-save-hook)))
       (org-babel-tangle-file (concat user-emacs-directory "init.org")))))
-
+#+end_src
+* Text editing
+#+begin_src emacs-lisp
 (use-package iedit
   :defer
   :init
@@ -3583,7 +3897,9 @@ repo."
   :config
   (setq undo-tree-visualizer-diff t)
   (setq undo-tree-visualizer-timestamps t))
-
+#+end_src
+* Theme
+#+begin_src emacs-lisp
 (require 'kurecolor)
 
 (defmacro install-themes ()
@@ -4109,7 +4425,9 @@ repo."
 
 (set-face-background 'whitespace-tab nil)
 (set-face-background 'whitespace-indentation nil)
-
+#+end_src
+* UI
+#+begin_src emacs-lisp
 (menu-bar-mode -1)
 ;; Change for different username.
 (setq inhibit-startup-echo-area-message "jco")
@@ -4145,7 +4463,9 @@ repo."
   :defer
   :config
   (which-key-mode))
-
+#+end_src
+* Utilities
+#+begin_src emacs-lisp
 (defun jco/yank-current-filename ()
   "Yank the filename of the current buffer to the kill ring."
   (interactive)
@@ -4190,7 +4510,9 @@ accordance with ISO 8601)."
 (global-set-key (kbd "<f12>") (lambda ()
                                 (interactive)
                                 (message "Current major mode: %s" major-mode)))
-
+#+end_src
+* =vertico=, =consult=, =marginalia=, and =embark=
+#+begin_src emacs-lisp
 ;; See: https://youtu.be/UtqE-lR2HCA?t=5039
 (defun jco/minibuffer-backward-kill (arg)
   "When minibuffer is completing a file name, delete up to parent
@@ -4376,7 +4698,9 @@ accordance with ISO 8601)."
   ;; auto-updating embark collect buffer
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
-
+#+end_src
+* Whitespace
+#+begin_src emacs-lisp
 (use-package ethan-wspace
   :defer
   :custom
@@ -4396,7 +4720,9 @@ accordance with ISO 8601)."
   (add-hook 'after-init-hook
             (lambda ()
               (set-face-background 'whitespace-trailing "#82589f"))))
-
+#+end_src
+* Yas
+#+begin_src emacs-lisp
 (use-package yasnippet
   :defer
   :config
@@ -4411,3 +4737,8 @@ accordance with ISO 8601)."
               (modify-syntax-entry ?- "w")
               (ethan-wspace-mode -1)))
   (evil-leader/set-key "TAB" 'yas-insert-snippet))
+#+end_src
+* Local Variables (auto-tangle this file)
+# Local Variables:
+# eval: (add-hook 'after-save-hook (lambda () (load-file user-init-file) (org-babel-tangle)) nil t)
+# End:

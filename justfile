@@ -35,16 +35,16 @@ git_hooks:
   echo "-*- mode: org -*-" >> $TMPFILE
 
   # Write the staged version of `init.org`.
-  git show :homedir/.config/emacs/init.org >> $TMPFILE
+  git show :homedir/.emacs.d/init.org >> $TMPFILE
 
   # Tangle the temp file.
   TANGLED=`emacsclient -e "(let ((enable-local-variables :safe)) (car (org-babel-tangle-file \"$TMPFILE\")))"`
 
   # Overwrite .emacs.d/init.el with the file that is based on the staged changes.
-  mv -f "${TANGLED//\"}" homedir/.config/emacs/init.el
+  mv -f "${TANGLED//\"}" homedir/.emacs.d/init.el
 
   # Stage the file
-  git add homedir/.config/emacs/init.el
+  git add homedir/.emacs.d/init.el
   EOF
 
   chmod +x .git/hooks/pre-commit
@@ -70,7 +70,7 @@ git_hooks:
    ,|template,)
      /usr/bin/perl -i.bak -pe '
         print `git diff --cached --name-only | sed "/\\.org\\b/!d" | \
-            sed "s:^.*/emacs/init.org:emacs:" | \
+            sed "s:^.*/.emacs.d/init.org:emacs:" | \
             sed -z "s/\\n/: \\n/g"`
        if $first++ == 0' "$COMMIT_MSG_FILE" ;;
    *) ;;
@@ -80,4 +80,4 @@ git_hooks:
 
 # Make git ignore certain files where only local changes are applied.
 skip_worktree:
-  git update-index --skip-worktree homedir/.config/emacs/custom.el
+  git update-index --skip-worktree homedir/.emacs.d/custom.el
