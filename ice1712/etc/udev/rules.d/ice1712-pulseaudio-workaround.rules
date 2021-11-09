@@ -1,7 +1,0 @@
-SUBSYSTEM!="sound", GOTO="ice1712_end"
-ACTION!="change", GOTO="ice1712_end"
-KERNEL!="card*", GOTO="ice1712_end"
-
-SUBSYSTEMS=="pci", ATTRS{vendor}=="0x1412", ATTRS{device}=="0x1712", ATTRS{subsystem_vendor}=="0x1412", ATTRS{subsystem_device}=="0xd633", ENV{PULSE_PROFILE_SET}="via-ice1712.conf"
-
-LABEL="ice1712_end"
