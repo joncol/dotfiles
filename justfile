@@ -2,7 +2,7 @@
 # mode: makefile
 # indent-tabs-mode: nil
 # End:
-# vim: set ft=make :
+# vim: set ft=[make] :
 
 # Install .desktop files for XMonad. Note that LightDM doesn't find XMonad if we
 # use a symbolic link for `/usr/share/xsessions/xmonad.desktop`, so that file
@@ -68,7 +68,7 @@ git_hooks:
   # Print the correct prefix in the commit message.
   case "$COMMIT_SOURCE,$SHA1" in
    ,|template,)
-     /usr/bin/perl -i.bak -pe '
+     /usr/bin/env perl -i.bak -pe '
         print `git diff --cached --name-only | sed "/\\.org\\b/!d" | \
             sed "s:^.*/.emacs.d/init.org:emacs:" | \
             sed -z "s/\\n/: \\n/g"`
