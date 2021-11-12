@@ -42,3 +42,8 @@ xmonad.o
 /homedir/.config/Slack/local-settings.json
 /homedir/.lein/repl-history
 /homedir/.irssi/config.autosave
+/homedir/.config/Slack/
+/homedir/.cabal/packages/
+/homedir/.cabal/store/
+/homedir/.local/share/applications/mimeapps.list
+/homedir/.local/share/applications/userapp-Telegram Desktop-*
