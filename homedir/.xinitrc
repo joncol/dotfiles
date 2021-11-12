@@ -48,8 +48,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-x-init-kb.sh
+# setxkbmap -model pc105
+xset r rate 300 30
 
 xsetroot -cursor_name left_ptr
+
+redshift &
 
 exec xmonad
