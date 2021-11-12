@@ -97,7 +97,22 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: FiraCode Medium
+    # family: CaskaydiaCoveNerdFont
+    # family: CodeNewRomanNerdFont
+    # family: CoousineNerdFont
+    # family: DaddyTimeMonoNerdFont
+    # family: DejaVuSansMonoNerdFont
+    # family: DroidSansMonoNerdFont
+    # family: FantasqueSansMonoNerdFont
+    family: FiraCodeNerdFont
+    # family: HackNerdFont
+    # family: InconsolataNerdFont
+    # family: JetBrainsMonoNerdFont
+    # family: LektonNerdFont
+    # family: SauceCodeProNerdFont
+    # family: SpaceMonoNerdFont
+    # family: VictorMonoNerdFont
+    # family: UbuntuMonoNerdFont
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -136,7 +151,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
