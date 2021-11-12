@@ -1327,15 +1327,20 @@ Useful for REPL windows."
                        '(("M-(" . (lambda (&optional arg)
                                     (interactive "P")
                                     (sp-wrap-with-pair "(")))
-                         ("M-[" . (lambda (&optional arg)
-                                    (interactive "P")
-                                    (sp-wrap-with-pair "[")))
                          ("M-{" . (lambda (&optional arg)
                                     (interactive "P")
                                     (sp-wrap-with-pair "{")))
                          ("M-\"" . (lambda (&optional arg)
                                      (interactive "P")
                                      (sp-wrap-with-pair "\"")))))
+  ;; This is needed to avoid problems when using tmux in console mode.
+  ;; Before this, things would become wrapped in brackets when switching
+  ;; panes.
+  (when (display-graphic-p)
+    (jco/define-bindings global-map
+                         '(("M-[" . (lambda (&optional arg)
+                                      (interactive "P")
+                                      (sp-wrap-with-pair "["))))))
   (jco/define-bindings smartparens-mode-map
                        '(("M-?" . sp-convolute-sexp)
                          ("C-k" . sp-kill-hybrid-sexp)
