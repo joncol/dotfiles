@@ -1,5 +1,10 @@
 *.zwc
 /fonts/.fonts/.uuid
+/homedir/.cabal/logs/
+/homedir/.cabal/packages/
+/homedir/.cabal/store/
+/homedir/.config/Slack/
+/homedir/.config/Slack/local-settings.json
 /homedir/.config/emacs/.lsp-session-v1
 /homedir/.config/emacs/.org-id-locations
 /homedir/.config/emacs/archives/
@@ -31,19 +36,15 @@
 /homedir/.config/xmonad/xmonad-jco.cabal
 /homedir/.config/zsh/.zcompdump
 /homedir/.imapfilter/certificates
+/homedir/.irssi/config.autosave
+/homedir/.lein/repl-history
 /homedir/.lein/self-installs/
 /homedir/.local/bin/virtualenv
+/homedir/.local/share/applications/mimeapps.list
+/homedir/.local/share/applications/userapp-Telegram Desktop-*
 /homedir/.stardict/dic/stardict-dictd-web1913-2.4.2/dictd_www.dict.org_web1913.idx.oft
 homedir/.irssi/config
 xmonad-x86_64-linux
 xmonad.errors
 xmonad.hi
 xmonad.o
-/homedir/.config/Slack/local-settings.json
-/homedir/.lein/repl-history
-/homedir/.irssi/config.autosave
-/homedir/.config/Slack/
-/homedir/.cabal/packages/
-/homedir/.cabal/store/
-/homedir/.local/share/applications/mimeapps.list
-/homedir/.local/share/applications/userapp-Telegram Desktop-*
