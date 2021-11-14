@@ -99,12 +99,13 @@ font:
     #   - (Windows) Consolas
     # family: CaskaydiaCoveNerdFont
     # family: CodeNewRomanNerdFont
-    # family: CoousineNerdFont
+    family: CousineNerdFont
     # family: DaddyTimeMonoNerdFont
     # family: DejaVuSansMonoNerdFont
     # family: DroidSansMonoNerdFont
     # family: FantasqueSansMonoNerdFont
-    family: FiraCodeNerdFont
+    # family: FiraCode # A bit less antialiasing than the nerd font.
+    # family: FiraCodeNerdFont
     # family: FuraCodeNerdFont
     # family: HackNerdFont
     # family: InconsolataNerdFont
@@ -152,7 +153,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 11.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
