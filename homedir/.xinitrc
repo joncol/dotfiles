@@ -52,6 +52,4 @@ xset r rate 300 30
 
 xsetroot -cursor_name left_ptr
 
-redshift &
-
 exec xmonad
