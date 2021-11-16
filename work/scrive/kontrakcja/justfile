@@ -96,7 +96,7 @@ watch-mail:
 git-hooks:
   #!/usr/bin/env bash
   cat <<"EOF" > .git/hooks/prepare-commit-msg
-  #!/usr/bin env bash
+  #!/usr/bin/env bash
   branch=$(git rev-parse --abbrev-ref HEAD)
   if [[ "${branch}" =~ ^.*core-?([0-9]+).* ]]
   then
