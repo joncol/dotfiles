@@ -3,7 +3,7 @@
 # key: reveal
 # binding: direct-keybinding
 # --
-#+SETUPFILE: ~/.config/emacs/org-templates/reveal.org
+#+SETUPFILE: ~/.emacs.d/org-templates/reveal.org
 
 #+TITLE: ${Title}
 

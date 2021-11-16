@@ -3,4 +3,4 @@
 # key: umldoc
 # binding: direct-keybinding
 # --
-#+SETUPFILE: ~/.config/emacs/org-templates/uml.org
+#+SETUPFILE: ~/.emacs.d/org-templates/uml.org
