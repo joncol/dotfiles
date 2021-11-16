@@ -50,6 +50,6 @@ fi
 
 xset r rate 300 30
 
-xsetroot -cursor_name left_ptr
+xsetroot -xcf /nix/store/ywm3qsy3slfas0lh0m4r2lrdq932xi58-adwaita-icon-theme-41.0/share/icons/Adwaita/cursors/left_ptr 32
 
 exec xmonad
