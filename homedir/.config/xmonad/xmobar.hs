@@ -18,7 +18,7 @@ Config { font = "xft:Montserrat:Medium:size=12"
        , commands = [ Run Weather "ESGG" ["-t", "<station>: <tempC>C", "-L", "18", "-H", "25", "--normal", "#badc58", "--high", "#eb4d4b", "--low", "#686de0"] 36000
                     , Run Date "%Y-%m-%d %a %H:%M" "date" 10
                     , Run StdinReader
-                    , Run Com "/home/jco/.local/bin/get-pulse-volume.sh" [] "vol" 1
+                    , Run Com "/run/current-system/sw/bin/get-pulse-volume.sh" [] "vol" 1
                     , Run Com "uname" ["-r"] "" 0
                     ]
        , sepChar = "%"
