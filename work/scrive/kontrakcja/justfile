@@ -6,6 +6,16 @@
 
 set dotenv-load := true
 
+# Automatically compile when source files change.
+ghcid:
+  ghcid --command='cabal repl kontrakcja --repl-options=-Wwarn'
+
+# Automatically compile and rerun tests when source files change.
+ghcid-test:
+  scripts/generate-cabal-file-for-testing.sh && cd scripts/kontrakcja/ && \
+    ghcid --command='cabal repl kontrakcja-test --repl-options=-Wwarn' --test 'Main.main' -W
+
+# Start `supervisord` and all services.
 start-all:
   #!/usr/bin/env bash
   if [ ! -e supervisor/supervisor.sock ]
@@ -75,10 +85,6 @@ watch-docs:
         api-docs/index/index.html.md
     fi
   done
-
-# Run `ghcid` for tests.
-ghcid-test:
-  scripts/generate-cabal-file-for-testing.sh && cd scripts/kontrakcja/ && ghcid --command='cabal repl kontrakcja-test --repl-options=-Wwarn' --test 'Main.main' -W
 
 # Watch /tmp for emails sent by `kontrakcja`.
 watch-mail:
