@@ -23,7 +23,7 @@ xmonad:
 # Create Git hooks to make sure that the version of `init.el` that is committed
 # corresponds to the correct version of `init.org`, and to automatically prepare
 # the commit message.
-git_hooks:
+git-hooks:
   #!/usr/bin/env bash
   cat <<"EOF" > .git/hooks/pre-commit
   #!/bin/sh
