@@ -1558,9 +1558,9 @@ windows easier."
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
   (if (>= (x-display-pixel-height) 2160)
       (add-to-list 'default-frame-alist
-                   '(font . "FiraCodeNerdFont-22"))
-    (add-to-list 'default-frame-alist
-                 '(font . "FiraCodeNerdFont-11")))
+                   '(font . "NotoSansMono-24"))
+    (add-to-list 'default-frame-alis4
+                 '(font . "NotoSansMono-12")))
   ;; (set-frame-size (selected-frame) 93 64)
   )
 
