@@ -1559,7 +1559,7 @@ windows easier."
   (if (>= (x-display-pixel-height) 2160)
       (add-to-list 'default-frame-alist
                    '(font . "NotoSansMono-24"))
-    (add-to-list 'default-frame-alis4
+    (add-to-list 'default-frame-alist
                  '(font . "NotoSansMono-12")))
   ;; (set-frame-size (selected-frame) 93 64)
   )
