@@ -3066,8 +3066,8 @@ Lisp function does not specify a special indentation."
             (sp-local-pair 'haskell-mode "{" "}")))
 
 (use-package lsp-haskell
-  ;; :hook ((haskell-mode . lsp-deferred)
-  ;;        (haskell-literate-mode . lsp-deferred))
+  :hook ((haskell-mode . lsp-deferred)
+         (haskell-literate-mode . lsp-deferred))
   :custom
   (lsp-haskell-server-path "haskell-language-server"))
 
