@@ -16,7 +16,8 @@
            nil t)
      (cider-ns-refresh-after-fn . "integrant.repl/resume")
      (cider-ns-refresh-before-fn . "integrant.repl/suspend")
-     (org-archive-location . "::* Archived Tasks"))))
+     (org-archive-location . "::* Archived Tasks")))
+ '(warning-suppress-types '((direnv))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
