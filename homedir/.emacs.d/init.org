@@ -2823,7 +2823,8 @@ As such, it will only work when the notes window exists."
               (add-hook 'before-save-hook #'time-stamp)))
   :config
   (org-roam-setup)
-  (org-roam-bibtex-mode))
+  (org-roam-bibtex-mode)
+  (require 'ucs-normalize))
 
 (use-package citeproc
   :defer)
