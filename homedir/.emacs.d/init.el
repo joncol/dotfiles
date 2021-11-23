@@ -3261,6 +3261,7 @@ Lisp function does not specify a special indentation."
   :custom
   (evil-shift-width 2)
   :mode "\\.nix\\'"
+  :bind (("C-c C-c C-f" . nix-format-buffer))
   :config
   (setenv "DIRENV_ALLOW_NIX" "1")
   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
