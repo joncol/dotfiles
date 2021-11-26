@@ -2,11 +2,11 @@
 -/_build*
 -/_local
 -/api-docs/
--/dist-newstyle/
--/frontend/
 -/frontend-elm/
+-/frontend/
 -/result/
 -/scripts/kontrakcja/
 -/scrivepdftools/
 -/texts/
 -/vagrant/
+-dist-newstyle/
