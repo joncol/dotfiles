@@ -81,3 +81,7 @@ git-hooks:
 # Make git ignore certain files where only local changes are applied.
 skip_worktree:
   git update-index --skip-worktree homedir/.emacs.d/custom.el
+
+# Log in to the Docker registry of Scrive.
+docker-login:
+  aws ecr get-login-password --profile scrive | docker login --username AWS --password-stdin 720173602891.dkr.ecr.eu-west-1.amazonaws.com
