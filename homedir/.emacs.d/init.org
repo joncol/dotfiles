@@ -2166,7 +2166,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                     (mu4e-maildir-shortcuts . (("/gmail/Inbox" . ?i)
                                                ("/gmail/Sent" . ?s)
                                                ("/gmail/Trash" . ?t)))
-                    (mu4e-completing-read-function . jco/compl-fun)))
+                    (mu4e-completing-read-function . completing-read)))
 
           ,(make-mu4e-context
             :name "Work"
@@ -2190,7 +2190,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                                              ("/scrive/[Gmail].Sent Mail" . ?s)
                                              ("/scrive/[Gmail].Trash" . ?t)
                                              ("/scrive/[Gmail].All Mail" . ?a)))
-                    (mu4e-completing-read-function . jco/compl-fun))))))
+                    (mu4e-completing-read-function . completing-read))))))
 
 (when (and (not (eq system-type 'windows-nt))
            (not (string-equal (system-name) "jco")))
@@ -2240,12 +2240,6 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
               (setq mu4e-view-fields '(:from :to :cc :bcc :subject :flags
                                        :date :maildir :mailing-list :tags
                                        :attachments :signature :decryption))
-
-              (defun jco/compl-fun (prompt maildirs predicate require-match
-                                           initial-input)
-                (helm-comp-read prompt maildirs
-                                :name prompt
-                                :must-match t))
 
               (defun jco/smtp-server ()
                 (cond ((or (s-contains? "gmail.com" user-mail-address)
