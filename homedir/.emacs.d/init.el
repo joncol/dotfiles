@@ -3297,8 +3297,10 @@ Lisp function does not specify a special indentation."
 (use-package toml-mode
   :defer
   :config
-  (modify-syntax-entry ?- "w") ;; Do not treat "-" as a word separator.
-  )
+  (add-hook 'toml-mode-hook
+            (lambda ()
+              ;; Do not treat "-" as a word separator.
+              (modify-syntax-entry ?- "w"))))
 
 (use-package typescript-mode
   :mode "\\.tsx\\'")

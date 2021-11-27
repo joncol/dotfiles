@@ -3594,8 +3594,10 @@ Configuration common to all Lisps.
 (use-package toml-mode
   :defer
   :config
-  (modify-syntax-entry ?- "w") ;; Do not treat "-" as a word separator.
-  )
+  (add-hook 'toml-mode-hook
+            (lambda ()
+              ;; Do not treat "-" as a word separator.
+              (modify-syntax-entry ?- "w"))))
 #+end_src
 ** TypeScript
 #+begin_src emacs-lisp
