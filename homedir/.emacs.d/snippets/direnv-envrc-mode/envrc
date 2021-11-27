@@ -2,7 +2,7 @@
 # name: Default nix-enabled envrc file
 # key: envrc
 # --
-[[ -n "${DIRENV_ALLOW_NIX}" ]] && use nix -j4
+use flake -j4
 
 if [ -e .envrc-local ]; then
    source .envrc-local
