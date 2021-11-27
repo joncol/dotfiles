@@ -1074,8 +1074,10 @@ Useful for REPL windows."
   (electric-pair-skip-whitespace nil)
   (electric-pair-delete-adjacent-pairs nil)
   (electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
-  :config
-  (electric-pair-mode))
+  :hook
+  ((prog-mode . electric-pair-mode)
+   (smartparens-mode . (lambda ()
+                         (electric-pair-mode -1)))))
 
 (use-package esup
   :defer
@@ -3275,7 +3277,7 @@ Lisp function does not specify a special indentation."
             (lambda ()
               ;; do not treat "-" as a word separator
               (modify-syntax-entry ?- "w")
-
+              (smartparens-mode)
               (lsp-deferred))))
 
 (use-package purescript-mode
