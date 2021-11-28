@@ -115,7 +115,7 @@ let g:go_fmt_autosave = 0
 
 let mapleader=","
 
-nnoremap <leader>ev :e ~/.config/nvim/init.vim<cr>
+nnoremap <leader>ev :e ~/.config/nvim/myinit.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 
 " nnoremap <leader>es :UltiSnipsEdit<cr>
