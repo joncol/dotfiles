@@ -1,7 +1,6 @@
 -/.direnv
 -/_build*
 -/_local
--/api-docs/
 -/frontend-elm/
 -/frontend/
 -/result/
