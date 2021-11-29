@@ -53,7 +53,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'pbrisbin/vim-syntax-shakespeare'
