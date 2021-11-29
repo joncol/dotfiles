@@ -1051,6 +1051,7 @@ Useful for REPL windows."
   (evil-leader/set-key "w w" 'eyebrowse-switch-to-window-config)
   (evil-leader/set-key "w r" 'eyebrowse-rename-window-config)
   (jco/set-eyebrowse-win-bindings)
+  (evil-leader/set-key "w C" 'eyebrowse-close-window-config)
   (evil-leader/set-key "w c"
     (lambda ()
       (interactive)
