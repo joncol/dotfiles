@@ -9,7 +9,6 @@
 /homedir/.config/nixpkgs/
 /homedir/.config/nvim/autoload/
 /homedir/.config/tmux/plugins/
-/homedir/.config/xmonad/xmonad.hs
 /homedir/.config/zsh/.zcompdump
 /homedir/.emacs.d/.org-id-locations
 /homedir/.emacs.d/auto-save-list/
