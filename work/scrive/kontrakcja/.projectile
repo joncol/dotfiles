@@ -1,5 +1,4 @@
 -/.direnv
--/_build*
 -/_local
 -/frontend-elm/
 -/frontend/
@@ -8,4 +7,6 @@
 -/scrivepdftools/
 -/texts/
 -/vagrant/
+-_build*
 -dist-newstyle/
+-node_modules/
