@@ -7,6 +7,6 @@
 -/scrivepdftools/
 -/texts/
 -/vagrant/
--_build*
+-_build/
 -dist-newstyle/
 -node_modules/
