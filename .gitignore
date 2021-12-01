@@ -31,6 +31,7 @@
 /homedir/.local/share/applications/mimeapps.list
 /homedir/.local/share/applications/userapp-Telegram Desktop-*
 /homedir/.stardict/dic/stardict-dictd-web1913-2.4.2/dictd_www.dict.org_web1913.idx.oft
+/homedir/.xmonad/xmonad.hs
 xmonad-x86_64-linux
 xmonad.errors
 xmonad.hi
