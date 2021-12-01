@@ -1561,11 +1561,11 @@ windows easier."
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
   (if (>= (x-display-pixel-height) 2160)
       (add-to-list 'default-frame-alist
-                   '(font . "NotoSansMono-24"))
-    (add-to-list 'default-frame-alist
-                 '(font . "NotoSansMono-12")))
-  ;; (set-frame-size (selected-frame) 93 64)
-  )
+                   '(font . "FiraCodeNerdFont-22"))
+    (custom-set-faces
+     '(default ((t (:family "Fira Code" :foundry "CTDB" :slant normal
+                    :weight medium :height 110 :width normal))))
+     '(italic ((t (:underline t)))))))
 
  ((eq system-type 'darwin)
   (setq mac-right-option-modifier 'none)
