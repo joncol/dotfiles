@@ -3416,22 +3416,8 @@ Lisp function does not specify a special indentation."
 (with-eval-after-load 'js
   (define-key js-mode-map (kbd "M-.") nil))
 
-(defun setup-tide ()
-  "Set up `tide-mode' for JavaScript and TypeScript."
-  (interactive)
-  (tide-setup)
-  (flycheck-mode)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode)
-  (tide-hl-identifier-mode))
-
-(use-package tide
-  :hook ((typescript-mode . setup-tide)
-         (typescript-mode . tide-hl-identifier-mode))
-  :init
-  (add-hook 'js-mode-hook #'setup-tide)
-  :config
-  (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append))
+(use-package js2-mode
+  :mode "\\.js\\'")
 #+end_src
 ** Jinja
 #+begin_src emacs-lisp
