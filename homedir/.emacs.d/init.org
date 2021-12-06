@@ -4260,14 +4260,18 @@ repo."
 
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
+   (set-face-background 'highlight "#582c6b")
+   (with-eval-after-load 'eyebrowse
+     (set-face-foreground 'eyebrowse-mode-line-active "#34ace0"))
    (with-eval-after-load 'volatile-highlights
      (set-face-background 'vhl/default-face "#2a2d2e"))
-   (set-face-background 'iedit-occurrence "#2a2d2e")
+   (with-eval-after-load 'iedit
+     (set-face-background 'iedit-occurrence "#2a2d2e"))
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-pair-overlay-face "#444748"))
    (set-face-background 'region "#582c6b")
-   (set-face-background 'ffap "#582c6b")
-   (set-face-background 'highlight "#582c6b"))
+   (with-eval-after-load 'ffap
+     (set-face-background 'ffap "#582c6b")))
 
   (nubox-light
    (setq sml/theme 'light)
