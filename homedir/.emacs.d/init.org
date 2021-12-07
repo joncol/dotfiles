@@ -4196,6 +4196,10 @@ repo."
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
    (set-face-background 'highlight "#582c6b")
+   (with-eval-after-load 'company
+     (set-face-background 'company-tooltip-selection "#1079a8")
+     (set-face-background 'company-tooltip-annotation-selection "#1079a8")
+     (set-face-foreground 'company-preview-common "#f0f0f0"))
    (with-eval-after-load 'eyebrowse
      (set-face-foreground 'eyebrowse-mode-line-active "#34ace0"))
    (with-eval-after-load 'volatile-highlights
