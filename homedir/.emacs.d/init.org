@@ -376,20 +376,6 @@ CMakeLists.txt file."
   (let ((dir (locate-dominating-file (buffer-file-name) "CMakeLists.txt")))
     (car (last (f-split dir)))))
 
-(defun jco/vcs-status ()
-  "Run either monky-status or magit-status, depending on the kind of repo."
-  (interactive)
-  (cl-case (projectile-project-vcs)
-    (git (magit-status))
-    (hg (monky-status))))
-
-(defun jco/vcs-update ()
-  "Run either `hg pull -u' or `git pull', depending on the kind of repo."
-  (interactive)
-  (cl-case (projectile-project-vcs)
-    (git (magit-pull "origin/master" nil))
-    (hg (monky-hg-command "pull -u"))))
-
 (defun jco/what-face (pos)
   "Determine the face at the point POS."
   (interactive "d")
@@ -412,22 +398,6 @@ CMakeLists.txt file."
         (push (match-string 0 string) matches)
         (setq pos (match-end 0)))
       (nreverse matches))))
-
-(defun jco/cmake-compile-command ()
-  "Return compile command for building a project using CMake."
-  (when (and (stringp (buffer-file-name))
-             (projectile-project-p))
-    (let ((sh (getenv "SHELL"))
-          (target (jco/cmake-target-string)))
-      (concat
-       "cd " (projectile-project-root)
-       (cond
-        ((s-contains-p "fish" sh)
-         (format "_build ;and cmake --build . %s -- -j4" target))
-        ((eq system-type 'windows-nt)
-         (format "_build && cmake --build . %s" target))
-        (t (format
-            "_build && cmake --build . %s -- -j4" target)))))))
 
 (defun jco/display-ansi-colors ()
   "Display ansi color codes in buffer."
@@ -559,7 +529,7 @@ invokation."
   (evil-leader/set-leader ",")
   (evil-leader/set-key "," 'evil-repeat-find-char-reverse)
   (setq evil-leader/in-all-states t)
-  (evil-leader/set-key "V" 'jco/vcs-status)
+  (evil-leader/set-key "V" 'magit-status)
 
   (evil-leader/set-key "n n" 'narrow-to-defun)
   (evil-leader/set-key "n r" 'narrow-to-region)
@@ -758,43 +728,6 @@ Useful for REPL windows."
   (interactive)
   (evil-window-move-very-bottom)
   (evil-window-set-height height))
-#+end_src
-* Projectile
-#+begin_src emacs-lisp
-(use-package projectile
-  :defer
-  :init
-  (projectile-mode)
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (when (not (eq system-type 'windows-nt))
-    (setq projectile-indexing-method 'native))
-  (setq projectile-enable-caching t)
-  (evil-leader/set-key ". c" #'projectile-commander)
-  (def-projectile-commander-method ?a
-    "Ag."
-    (counsel-projectile-ag))
-  (def-projectile-commander-method ?F
-    "Git fetch."
-    (magit-status)
-    (if (fboundp 'magit-fetch-from-upstream)
-        (call-interactively #'magit-fetch-from-upstream)
-      (call-interactively #'magit-fetch-current)))
-  (def-projectile-commander-method ?j
-    "Jack-in."
-    (let* ((opts (projectile-current-project-files))
-           (file (ido-completing-read
-                  "Find file: "
-                  opts
-                  nil nil nil nil
-                  (car (cl-member-if
-                        (lambda (f)
-                          (string-match "core\\.clj\\'" f))
-                        opts)))))
-      (find-file (expand-file-name
-                  file (projectile-project-root)))
-      (run-hooks 'projectile-find-file-hook)
-      (cider-jack-in))))
 #+end_src
 * Company
 #+begin_src emacs-lisp
@@ -1286,8 +1219,8 @@ Useful for REPL windows."
   (evil-leader/set-key "w c"
     (lambda ()
       (interactive)
-      (when (projectile-project-root)
-        (projectile-kill-buffers))
+      (when (project-root (project-current))
+        (project-kill-buffers))
       (eyebrowse-close-window-config)))
   :config
   (eyebrowse-mode)
@@ -1882,7 +1815,8 @@ find: _f_un _l_ib _v_ar"
   ("h" (jco/find-org-file "health.org") "health")
   ("i" (jco/find-org-file "incoming.org") "incoming")
   ("n" (jco/find-org-file "notes.org") "notes")
-  ("p" (jco/find-org-file "todo.org" (projectile-project-root)) "project-todo")
+  ("p" (jco/find-org-file "todo.org"
+                          (project-root (project-current))) "project-todo")
   ("R" (jco/find-org-file "reading.org") "reading")
   ("r" (jco/find-org-file "retro.org") "retro")
   ("s" (jco/find-org-file "standup.org") "standup")
@@ -2400,8 +2334,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 (defun jco/goto-current-project-todo-org (headline)
   "Go to project's todo.org, section: HEADLINE."
-  (set-buffer (org-capture-target-buffer (concat (projectile-project-root)
-                                                 "todo.org")))
+  (set-buffer (org-capture-target-buffer
+               (concat (project-root (project-current))
+                                     "todo.org")))
   (org-capture-put-target-region-and-position)
   (widen)
   (goto-char (point-min))
@@ -4630,7 +4565,7 @@ accordance with ISO 8601)."
   (evil-leader/set-key ". r"
     (lambda ()
       (interactive)
-      (consult-ripgrep (projectile-project-root))))
+      (consult-ripgrep (project-root (project-current)))))
   :config
   (consult-customize
    consult-theme
