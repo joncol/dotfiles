@@ -1219,7 +1219,7 @@ Useful for REPL windows."
   (evil-leader/set-key "w c"
     (lambda ()
       (interactive)
-      (when (project-root (project-current))
+      (when (and (project-current) (project-root (project-current)))
         (project-kill-buffers))
       (eyebrowse-close-window-config)))
   :config
