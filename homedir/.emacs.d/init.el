@@ -1001,6 +1001,10 @@ Useful for REPL windows."
   :if (eq system-type 'windows-nt)
   :defer)
 
+(use-package etags-table
+  :custom
+  (etags-table-search-up-depth 99))
+
 (use-package ghub
   :defer)
 
