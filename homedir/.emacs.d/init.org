@@ -4201,6 +4201,7 @@ repo."
   (nubox-dark
    (set-face-background 'hl-line "#2a2d2e")
    (set-face-background 'highlight "#582c6b")
+   (set-face-background 'whitespace-empty nil)
    (with-eval-after-load 'company
      (set-face-background 'company-tooltip-selection "#1079a8")
      (set-face-background 'company-tooltip-annotation-selection "#1079a8")
