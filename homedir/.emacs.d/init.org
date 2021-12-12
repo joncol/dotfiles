@@ -963,7 +963,7 @@ Useful for REPL windows."
 
 (add-hook 'markdown-mode-hook
           (lambda ()
-            (auto-fill-mode)
+            (turn-on-auto-fill)
             (setq evil-shift-width 4)
             (modify-syntax-entry ?- "w") ;; do not treat "_" as a word separator
             (footnote-mode)
@@ -2001,7 +2001,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   (add-hook 'git-commit-setup-hook
             (lambda ()
               (setq fill-column 72)
-              (auto-fill-mode)
+              (turn-on-auto-fill)
               (modify-syntax-entry ?- "w")
               (git-commit-turn-on-flyspell)
               (end-of-line)))
