@@ -1538,9 +1538,7 @@ windows easier."
      "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
      "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
      "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
-     "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
-
-  (global-ligature-mode t))
+     "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%")))
 
 (use-package hydra
   :defer
@@ -3004,7 +3002,8 @@ Lisp function does not specify a special indentation."
             (haskell-auto-insert-module-template)
             (smartparens-mode)
             (sp-local-pair 'haskell-mode "{" "}")
-            (setq haskell-hoogle-command nil)))
+            (setq haskell-hoogle-command nil)
+            (ligature-mode)))
 
 (use-package lsp-haskell
   :hook ((haskell-mode . lsp-deferred)
