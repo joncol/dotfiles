@@ -1,5 +1,6 @@
 *.zwc
 /fonts/.fonts/.uuid
+/homedir/.cabal/bin/
 /homedir/.cabal/logs/
 /homedir/.cabal/packages/
 /homedir/.cabal/store/
