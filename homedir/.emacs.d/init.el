@@ -2884,6 +2884,7 @@ Opens a new buffer with the result."
   (unbind-key (kbd "<tab>") 'elm-indent-simple-mode-map)
   (add-hook 'elm-mode-hook
             (lambda ()
+              (smartparens-mode)
               (display-fill-column-indicator-mode -1))))
 
 (defun fuco1/lisp-indent-function (indent-point state)
