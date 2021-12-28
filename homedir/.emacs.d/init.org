@@ -752,7 +752,6 @@ Useful for REPL windows."
   (setq company-dabbrev-ignore-case 'keep-prefix)
   (setq company-dabbrev-code-ignore-case nil)
   (setq company-dabbrev-downcase nil)
-
   (setq company-tooltip-limit 20)
   (setq company-minimum-prefix-length 1)
   (setq company-idle-delay 0.0)
