@@ -947,13 +947,6 @@ Useful for REPL windows."
 (use-package dockerfile-mode
   :defer)
 
-(use-package elm-mode
-  :defer
-  :config
-  (remove-hook 'elm-mode-hook 'elm-indent-mode)
-  (add-hook 'elm-mode-hook #'elm-format-on-save-mode)
-  (unbind-key (kbd "<tab>") 'elm-indent-simple-mode-map))
-
 (use-package gcmh
   :config
   (gcmh-mode))
@@ -2882,6 +2875,16 @@ Opens a new buffer with the result."
     (clojure-sort-ns)))
 
 (add-hook 'before-save-hook #'my-clojure-mode-before-save-hook)
+
+(use-package elm-mode
+  :defer
+  :config
+  (remove-hook 'elm-mode-hook 'elm-indent-mode)
+  (add-hook 'elm-mode-hook #'elm-format-on-save-mode)
+  (unbind-key (kbd "<tab>") 'elm-indent-simple-mode-map)
+  (add-hook 'elm-mode-hook
+            (lambda ()
+              (display-fill-column-indicator-mode -1))))
 
 (defun fuco1/lisp-indent-function (indent-point state)
   "This function is the normal value of the variable `lisp-indent-function'.
