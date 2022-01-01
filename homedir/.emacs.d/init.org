@@ -3833,7 +3833,7 @@ repo."
   (setq undo-tree-visualizer-diff t)
   (setq undo-tree-visualizer-timestamps t))
 #+end_src
-* Theme
+* Themes
 #+begin_src emacs-lisp
 (require 'kurecolor)
 
@@ -4061,6 +4061,9 @@ repo."
   (eink
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
+
+  (flatui
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b"))
 
   (github-modern
    (setq sml/theme 'light)

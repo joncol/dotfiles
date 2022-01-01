@@ -3746,6 +3746,9 @@ repo."
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue"))
 
+  (flatui
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b"))
+
   (github-modern
    (setq sml/theme 'light)
    (set-face-foreground 'avy-lead-face "#00b894")
