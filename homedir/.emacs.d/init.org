@@ -4067,7 +4067,7 @@ repo."
    (with-eval-after-load 'company
      (set-face-background 'company-tooltip-selection "#fd79a8")
      (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
-     (set-face-foreground 'company-preview-common "#f0f0f0")))
+     (set-face-foreground 'company-preview-common "#a0a0a0")))
 
   (github-modern
    (setq sml/theme 'light)
