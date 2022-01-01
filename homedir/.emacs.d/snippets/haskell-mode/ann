@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: HLint annotation
+# key: ann
+# --
+{-# ANN module ("HLint: ignore ${1:Use camelCase}" :: String) #-}
