@@ -3747,7 +3747,11 @@ repo."
                         "LightBlue"))
 
   (flatui
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b"))
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+   (with-eval-after-load 'company
+     (set-face-background 'company-tooltip-selection "#fd79a8")
+     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
+     (set-face-foreground 'company-preview-common "#f0f0f0")))
 
   (github-modern
    (setq sml/theme 'light)
