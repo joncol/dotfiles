@@ -2320,6 +2320,10 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (use-package org-re-reveal
   :after org)
 
+(use-package org-tree-slide
+  :custom
+  (org-image-actual-width nil))
+
 (defun jco/ensure-todo-org-header ()
   "If the current buffer is empty, insert an org header."
   (when (zerop (buffer-size))
