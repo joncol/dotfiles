@@ -3500,6 +3500,13 @@ Configuration common to all Lisps.
 (use-package purescript-mode
   :defer)
 #+end_src
+** Python
+#+begin_src emacs-lisp
+(use-package lsp-pyright
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp-deferred))))
+#+end_src
 ** Rust
 #+begin_src emacs-lisp
 (use-package rustic

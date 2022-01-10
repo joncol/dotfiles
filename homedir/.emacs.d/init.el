@@ -3209,6 +3209,11 @@ Lisp function does not specify a special indentation."
 (use-package purescript-mode
   :defer)
 
+(use-package lsp-pyright
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp-deferred))))
+
 (use-package rustic
   :defer
   :config
