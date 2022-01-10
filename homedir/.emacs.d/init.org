@@ -1849,6 +1849,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("i" org-roam-insert "insert")
   ("f" org-roam-node-find "node-find")
   ("b" org-roam-buffer-activate "org-roam-buffer")
+  ("s" org-tree-slide-mode "org-tree-slide-mode")
   ("t" org-roam-tag-add "add tag"))
 
 (defhydra jco/hydra-consult (:color teal :hint nil)
