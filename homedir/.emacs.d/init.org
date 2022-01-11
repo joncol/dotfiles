@@ -2323,7 +2323,14 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 (use-package org-tree-slide
   :custom
-  (org-image-actual-width nil))
+  (org-image-actual-width nil)
+  :config
+  (add-hook 'org-tree-slide-play-hook
+            (lambda ()
+              (org-display-inline-images)))
+  (add-hook 'org-tree-slide-stop-hook
+            (lambda ()
+              (org-toggle-inline-images))))
 
 (defun jco/ensure-todo-org-header ()
   "If the current buffer is empty, insert an org header."
