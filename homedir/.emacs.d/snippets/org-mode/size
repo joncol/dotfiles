@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Image size
+# key: size
+# --
+#+attr_html: :width 800px
+#+attr_latex: :width 800px
