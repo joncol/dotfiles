@@ -2725,6 +2725,9 @@ As such, it will only work when the notes window exists."
   (org-pomodoro-killed-sound (concat user-emacs-directory
                                      "resources/sounds/clock.wav")))
 
+(use-package org-ref
+  :defer)
+
 (use-package org-roam
   :custom
   (org-roam-directory "~/org/roam")
