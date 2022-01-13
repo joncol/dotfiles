@@ -4,7 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((haskell-stylish-on-save)
+   '((evil-shift-width . 4)
+     (haskell-stylish-on-save)
      (haskell-mode-stylish-haskell-path . "brittany")
      (haskell-stylish-on-save . t)
      (eval turn-off-auto-fill)
