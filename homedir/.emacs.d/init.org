@@ -4195,7 +4195,8 @@ repo."
 
   (minimal
    (set-face-background 'hl-line "#101f24")
-   (set-face-foreground 'mode-line-emphasis "#95a5a6")
+   (with-eval-after-load 'eyebrowse
+     (set-face-foreground 'mode-line-emphasis "#95a5a6"))
    (with-eval-after-load 'org
      (set-face-background 'org-todo nil)
      (set-face-background 'evil-search-highlight-persist-highlight-face
@@ -4205,7 +4206,8 @@ repo."
    (set-face-background 'region "LightBlue")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "LightBlue")
-   (set-face-foreground 'mode-line-emphasis "#74b9ff"))
+   (with-eval-after-load 'eyebrowse
+     (set-face-foreground 'mode-line-emphasis "#74b9ff")))
 
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
@@ -4274,7 +4276,8 @@ repo."
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
   (nubox-tty
-   (set-face-foreground 'mode-line-emphasis "#0652DD"))
+   (with-eval-after-load 'eyebrowse
+     (set-face-foreground 'mode-line-emphasis "#0652DD")))
 
   (organic-green
    (setq sml/theme 'light)
