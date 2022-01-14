@@ -3958,6 +3958,7 @@ repo."
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
   (nubox-tty
+   (set-face-background 'highlight "#5758BB")
    (with-eval-after-load 'company
      (set-face-background 'company-tooltip-selection "#009432")
      (set-face-background 'company-tooltip-annotation-selection "#009432")
