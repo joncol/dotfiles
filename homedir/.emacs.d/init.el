@@ -3955,6 +3955,9 @@ repo."
      (set-face-background 'mu4e-highlight-face "#7ceece")
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
+  (nubox-tty
+   (set-face-foreground 'mode-line-emphasis "#0652DD"))
+
   (organic-green
    (setq sml/theme 'light)
    (setq jco/cursor-color "gray25")
