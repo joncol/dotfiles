@@ -3973,6 +3973,8 @@ repo."
      (set-face-background 'company-tooltip-selection "#009432")
      (set-face-background 'company-tooltip-annotation-selection "#009432")
      (set-face-foreground 'company-preview-common "#a0a0a0"))
+   (with-eval-after-load 'consult
+     (set-face-background 'consult-preview-match "#34ace0"))
    (with-eval-after-load 'eyebrowse
      (set-face-foreground 'mode-line-emphasis "#0652DD"))
    (with-eval-after-load 'vertico
