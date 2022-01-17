@@ -3959,6 +3959,7 @@ repo."
 
   (nubox-tty
    (set-face-background 'highlight "#5758BB")
+   (set-face-foreground 'link "#34ace0")
    (with-eval-after-load 'company
      (set-face-background 'company-tooltip-selection "#009432")
      (set-face-background 'company-tooltip-annotation-selection "#009432")
