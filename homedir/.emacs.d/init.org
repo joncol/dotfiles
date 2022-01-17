@@ -1552,7 +1552,7 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package super-save
   :defer 1
   :config
-  (setq super-save-exclude '(".gpg" ".pdf"))
+  (setq super-save-exclude '("\\.gpg" "\\.pdf"))
   (super-save-mode))
 
 (use-package unkillable-scratch
