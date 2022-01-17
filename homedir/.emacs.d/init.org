@@ -2324,13 +2324,22 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (use-package org-tree-slide
   :custom
   (org-image-actual-width nil)
+  (org-tree-slide-activate-message "Starting presentation")
+  (org-tree-slide-deactivate-message "Leaving presentation")
   :config
   (add-hook 'org-tree-slide-play-hook
             (lambda ()
-              (org-display-inline-images)))
+              (org-display-inline-images)
+              (setq text-scale-mode-amount 2)
+              (text-scale-mode)
+              (darkroom-tentative-mode)
+              (display-fill-column-indicator-mode -1)))
   (add-hook 'org-tree-slide-stop-hook
             (lambda ()
-              (org-toggle-inline-images))))
+              (org-toggle-inline-images)
+              (text-scale-mode -1)
+              (darkroom-tentative-mode -1)
+              (display-fill-column-indicator-mode))))
 
 (defun jco/ensure-todo-org-header ()
   "If the current buffer is empty, insert an org header."
