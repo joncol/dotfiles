@@ -3967,7 +3967,7 @@ repo."
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
   (nubox-tty
-   (set-face-background 'highlight "#5758BB")
+   (set-face-background 'highlight "#582c6b")
    (set-face-foreground 'link "#34ace0")
    (with-eval-after-load 'company
      (set-face-background 'company-tooltip-selection "#009432")
@@ -3977,9 +3977,11 @@ repo."
      (set-face-background 'consult-preview-match "#34ace0"))
    (with-eval-after-load 'eyebrowse
      (set-face-foreground 'mode-line-emphasis "#0652DD"))
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face "#34ace0")
+     (set-face-foreground 'mu4e-header-highlight-face (jco/current-bg 0.90)))
    (with-eval-after-load 'vertico
-     (set-face-background 'vertico-current "#0652DD"))
-   )
+     (set-face-background 'vertico-current "#0652DD")))
 
   (organic-green
    (setq sml/theme 'light)
