@@ -2078,6 +2078,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (org-image-actual-width nil)
   (org-tree-slide-activate-message "Starting presentation")
   (org-tree-slide-deactivate-message "Leaving presentation")
+  (org-tree-slide-header nil)
   :config
   (add-hook 'org-tree-slide-play-hook
             (lambda ()
