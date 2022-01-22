@@ -3041,8 +3041,9 @@ Lisp function does not specify a special indentation."
 
 (use-package ormolu
   :after haskell-mode
-  :config
-  (define-key haskell-mode-map (kbd "C-c C-c C-f") 'ormolu-format-buffer))
+  :bind
+  (:map haskell-mode-map
+   ("C-c C-f" . ormolu-format-buffer)))
 
 (use-package j-mode
   :defer
