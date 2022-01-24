@@ -104,13 +104,14 @@ git-hooks:
   cat <<"EOF" > .git/hooks/prepare-commit-msg
   #!/usr/bin/env bash
   branch=$(git rev-parse --abbrev-ref HEAD)
-  if [[ "${branch}" =~ ^.*core-?([0-9]+).* ]]
-  then
-      prefix="[CORE-${BASH_REMATCH[1]}] "
+  if [[ "${branch}" =~ ^.*core-?([0-9]+).* ]]; then
+      prefix="CORE-${BASH_REMATCH[1]}"
+  elif [[ "${branch}" =~ ^.*no-?issue.* ]]; then
+    prefix="NO-ISSUE"
   fi
-  if [ prefix ] && (head -n 1 "${1}" | grep -vi "^${prefix}")
-  then
-      echo -ne "${prefix}$(cat $1)" > ${1}
+  if [ prefix ] && (head -n 1 "${1}" | grep -vi "^${prefix}") && \
+      (head -n 1 "${1}" | grep -vi "fixup\|squash"); then
+      echo -ne "[${prefix}] $(cat $1)" > ${1}
   fi
   EOF
   chmod +x .git/hooks/prepare-commit-msg
