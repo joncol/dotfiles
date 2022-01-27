@@ -3230,7 +3230,8 @@ Lisp function does not specify a special indentation."
               ;; do not treat "-" as a word separator
               (modify-syntax-entry ?- "w")
               (smartparens-mode)
-              (lsp-deferred))))
+              (lsp-deferred)
+              (add-hook 'before-save-hook 'nix-format-before-save))))
 
 (use-package purescript-mode
   :defer)

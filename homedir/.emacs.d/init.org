@@ -3519,7 +3519,8 @@ Configuration common to all Lisps.
               ;; do not treat "-" as a word separator
               (modify-syntax-entry ?- "w")
               (smartparens-mode)
-              (lsp-deferred))))
+              (lsp-deferred)
+              (add-hook 'before-save-hook 'nix-format-before-save))))
 #+end_src
 ** PureScript
 #+begin_src emacs-lisp
