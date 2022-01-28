@@ -221,7 +221,7 @@ colors:
     text: '0xff271d'
     cursor: '0xfbfcfc'
   # Normal colors
-background_opacity: 0.85
+window.opacity: 0.85
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
