@@ -198,6 +198,7 @@ colors:
 
   # Normal colors
   normal:
+  # Bright colors
     black: '0x2e2e2e'
     red: '0xeb4129'
     green: '0xabe047'
@@ -217,9 +218,37 @@ colors:
     magenta: '0xa47de9'
     cyan: '0x99faf2'
     white: '0xffffff'
+  dim:
+    black: '0x000000'
+    red: '0xb21818'
+    green: '0x18b218'
+    yellow: '0xb26818'
+    blue: '0x1818b2'
+    magenta: '0xb218b2'
+    cyan: '0x18b2b2'
+    white: '0xb2b2b2'
+  indexed_colors:
+    - {index: 16, color: '0xb45bcf'}
+    - {index: 17, color: '0x00f769'}
+    - {index: 18, color: '0x3a3c4e'}
+    - {index: 19, color: '0x4d4f68'}
+    - {index: 20, color: '0x62d6e8'}
+    - {index: 21, color: '0xf1f2f8'}
+  selection:
+    background: '#f2f2f2'
+    text: '#403f53'
+  search:
+    matches:
+      foreground: '0xb2b2b2'
+      background: '0xb26818'
+    focused_match:
+      foreground: CellBackground
+      background: CellForeground
+
   cursor:
-    text: '0xff271d'
-    cursor: '0xfbfcfc'
+    text: '0x000b1e'
+    cursor: '0x0abdc6'
+
   # Normal colors
 window.opacity: 0.85
 
