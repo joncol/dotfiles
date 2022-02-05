@@ -1846,7 +1846,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("p" org-pomodoro "org-pomodoro")
   ("x" org-clock-remove-overlays "remove clock overlays")
   ("G" org-refile-goto-last-stored "goto refiled")
-  ("i" org-roam-insert "insert")
+  ("i" org-roam-node-insert "insert")
   ("f" org-roam-node-find "node-find")
   ("b" org-roam-buffer-activate "org-roam-buffer")
   ("s" org-tree-slide-mode "org-tree-slide-mode")
@@ -2762,8 +2762,7 @@ As such, it will only work when the notes window exists."
           ("C-c n f" . org-roam-node-find)
           ("C-c n g" . org-roam-graph))
          :map org-mode-map
-         (("C-c n i" . org-roam-insert))
-         (("C-c n I" . org-roam-insert-immediate)))
+         (("C-c n i" . org-roam-node-insert)))
   :init
   (add-hook 'after-init-hook
             (lambda ()
