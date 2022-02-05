@@ -4,7 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((evil-shift-width . 4)
+   '((ormolu-process-path . "fourmolu")
+     (evil-shift-width . 4)
      (haskell-stylish-on-save)
      (haskell-mode-stylish-haskell-path . "brittany")
      (haskell-stylish-on-save . t)
