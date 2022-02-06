@@ -1523,7 +1523,7 @@ windows easier."
   ;; Source: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-ligatureel
   ;; Enable ligatures in programming modes.
   (ligature-set-ligatures
-   '(clojure-mode dhall-mode haskell-mode purescript-mode)
+   '(clojure-mode dhall-mode haskell-mode org-mode purescript-mode)
    '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
      ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
      "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"

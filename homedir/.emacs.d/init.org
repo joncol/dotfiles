@@ -1716,7 +1716,7 @@ windows easier."
   (when (window-parent)
     (delete-window)))
 #+end_src
-* Font
+* Font and ligatures
 #+begin_src emacs-lisp
 (cond
  ((and (eq system-type 'windows-nt) (display-graphic-p))
@@ -1756,7 +1756,7 @@ windows easier."
   ;; Source: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-ligatureel
   ;; Enable ligatures in programming modes.
   (ligature-set-ligatures
-   '(clojure-mode dhall-mode haskell-mode purescript-mode)
+   '(clojure-mode dhall-mode haskell-mode org-mode purescript-mode)
    '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
      ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
      "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
