@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Show inline images
+# key: img
+# --
+#+startup: inlineimages

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Add file local variable to enable ligature-mode
+# key: lig
+# --
+;; Local Variables:
+;; eval: (ligature-mode)
+;; End:
