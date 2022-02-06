@@ -3217,7 +3217,6 @@ Lisp function does not specify a special indentation."
   :mode "\\.nix\\'"
   :bind (("C-c C-c C-f" . nix-format-buffer))
   :config
-  (setenv "DIRENV_ALLOW_NIX" "1")
   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
