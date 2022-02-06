@@ -3244,15 +3244,11 @@ Lisp function does not specify a special indentation."
   :args '("format")
   :lighter " PT")
 
-(use-package psc-ide
-  :defer)
-
 (use-package purescript-mode
   :defer
   :config
   (add-hook 'purescript-mode-hook
             (lambda ()
-              (psc-ide-mode)
               (turn-on-purescript-indentation)
               (lsp-deferred)
               (purs-purty-format-on-save-mode))))
