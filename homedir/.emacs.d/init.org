@@ -3523,8 +3523,16 @@ Configuration common to all Lisps.
 #+end_src
 ** PureScript
 #+begin_src emacs-lisp
-(use-package purescript-mode
+(use-package psc-ide
   :defer)
+
+(use-package purescript-mode
+  :defer
+  :config
+  (add-hook 'purescript-mode-hook
+            (lambda ()
+              (psc-ide-mode)
+              (turn-on-purescript-indentation))))
 #+end_src
 ** Python
 #+begin_src emacs-lisp

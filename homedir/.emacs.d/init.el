@@ -3232,8 +3232,16 @@ Lisp function does not specify a special indentation."
               (lsp-deferred)
               (add-hook 'before-save-hook 'nix-format-before-save))))
 
-(use-package purescript-mode
+(use-package psc-ide
   :defer)
+
+(use-package purescript-mode
+  :defer
+  :config
+  (add-hook 'purescript-mode-hook
+            (lambda ()
+              (psc-ide-mode)
+              (turn-on-purescript-indentation))))
 
 (use-package lsp-pyright
   :hook (python-mode . (lambda ()
