@@ -1523,7 +1523,7 @@ windows easier."
   ;; Source: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-ligatureel
   ;; Enable ligatures in programming modes.
   (ligature-set-ligatures
-   '(clojure-mode dhall-mode haskell-mode)
+   '(clojure-mode dhall-mode haskell-mode purescript-mode)
    '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
      ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
      "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
@@ -3251,7 +3251,8 @@ Lisp function does not specify a special indentation."
             (lambda ()
               (turn-on-purescript-indentation)
               (lsp-deferred)
-              (purs-purty-format-on-save-mode))))
+              (purs-purty-format-on-save-mode)
+              (ligature-mode))))
 
 (use-package lsp-pyright
   :hook (python-mode . (lambda ()
