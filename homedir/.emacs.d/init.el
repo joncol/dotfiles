@@ -1233,6 +1233,9 @@ Useful for REPL windows."
   (recentf-mode)
   (setq recentf-max-menu-items 25))
 
+(use-package reformatter
+  :defer)
+
 (use-package restclient
   :defer
   :config
@@ -3231,6 +3234,16 @@ Lisp function does not specify a special indentation."
               (lsp-deferred)
               (add-hook 'before-save-hook 'nix-format-before-save))))
 
+(reformatter-define purs-purty-format
+  :program "purty"
+  :args '("format" "-")
+  :lighter " PP")
+
+(reformatter-define purs-tidy-format
+  :program "purs-tidy"
+  :args '("format")
+  :lighter " PT")
+
 (use-package psc-ide
   :defer)
 
@@ -3240,7 +3253,9 @@ Lisp function does not specify a special indentation."
   (add-hook 'purescript-mode-hook
             (lambda ()
               (psc-ide-mode)
-              (turn-on-purescript-indentation))))
+              (turn-on-purescript-indentation)
+              (lsp-deferred)
+              (purs-purty-format-on-save-mode))))
 
 (use-package lsp-pyright
   :hook (python-mode . (lambda ()
