@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Sensible document header
+# key: doc
+# --
+# -*- org-babel-min-lines-for-block-output: 0; -*-
+
+#+options: tags:nil toc:nil num:0 d:t p:t ^:{}
+#+latex_header: \usepackage[english]{babel}
+#+latex_header: \usepackage{mathpazo}
+#+latex_header: \usepackage{nopageno}
+#+latex_header: \usepackage[margin=1in]{geometry}
+#+latex_header: \setlength{\parskip}{\baselineskip}
+#+latex_header: \setlength{\parindent}{0pt}%
+#+startup: inlineimages
