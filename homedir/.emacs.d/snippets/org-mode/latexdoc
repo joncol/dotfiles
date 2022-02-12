@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: Sensible document header
-# key: doc
+# name: Sensible LaTeX document header
+# key: latexdoc
 # --
 # -*- org-babel-min-lines-for-block-output: 0; -*-
 
