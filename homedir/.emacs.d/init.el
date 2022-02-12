@@ -2129,6 +2129,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (org-M-RET-may-split-line nil)
   (org-link-make-description-function #'my-org-link-make-description-function)
   (org-export-copy-to-kill-ring 'if-interactive)
+  (org-num-skip-commented t)
   :init
   (setq org-return-follows-link t)
   (setq org-startup-indented t)
