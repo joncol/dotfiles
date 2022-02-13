@@ -2130,6 +2130,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (org-link-make-description-function #'my-org-link-make-description-function)
   (org-export-copy-to-kill-ring 'if-interactive)
   (org-num-skip-commented t)
+  (org-num-format-function
+   (lambda (numbering)
+     (concat (mapconcat #'number-to-string numbering ".") ": ")))
   :init
   (setq org-return-follows-link t)
   (setq org-startup-indented t)
