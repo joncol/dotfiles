@@ -1625,21 +1625,19 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("a" consult-line-multi "consult-line-multi"))
 
 (defhydra jco/hydra-util (:color teal :hint nil)
-  "
-util: _k_urecolor _y_ank-filename insert-_f_ilename insert-_b_asename insert-_d_ate _e_diff-regions-wordwise ninsert-_t_imestamp _g_ist _h_ide-modeline _m_arkdown-other-window"
-  ("k" jco/hydra-kurecolor/body)
-  ("y" jco/yank-current-filename)
-  ("f" jco/insert-current-filename)
-  ("b" (lambda () (interactive) (jco/insert-current-filename t)))
-  ("d" jco/insert-date)
-  ("e" ediff-regions-wordwise)
-  ("t" jco/insert-timestamp)
-  ("g" yagist-region-or-buffer)
-  ("h" hide-mode-line-mode)
+  "util"
+  ("k" jco/hydra-kurecolor/body "kurekolor")
+  ("f" (lambda () (interactive) (jco/yank-current-filename t)) "yank filename")
+  ("F" jco/yank-current-filename "yank full path")
+  ("d" jco/yank-date "yank date")
+  ("t" jco/yank-timestamp "yank timestamp")
+  ("e" ediff-regions-wordwise "ediff-regions-wordwise")
+  ("g" yagist-region-or-buffer "gist")
+  ("h" hide-mode-line-mode "hide modeline")
   ("m" (lambda ()
          (interactive)
          (markdown-other-window)
-         (browse-url-of-buffer markdown-output-buffer-name))))
+         (browse-url-of-buffer markdown-output-buffer-name)) "markdown"))
 
 (defhydra jco/hydra-kurecolor
   (:color pink :hint nil
@@ -4174,37 +4172,32 @@ repo."
   :config
   (which-key-mode))
 
-(defun jco/yank-current-filename ()
-  "Yank the filename of the current buffer to the kill ring."
-  (interactive)
-  (kill-new (buffer-file-name)))
-
-(defun jco/insert-current-filename (arg)
-  "Insert filename of the current buffer at point.
-If ARG is given, only the basename (no path and no extension) of the file is
-inserted."
+(defun jco/yank-current-filename (arg)
+  "Yank the filename of the current buffer to the kill ring.
+If ARG is given, only the filename (no path) of the file is yanked."
   (interactive "P")
-  (insert (if arg
-              (file-name-base (buffer-file-name))
-            (buffer-file-name))))
+  (when-let ((f (buffer-file-name)))
+    (kill-new (if arg
+                  (file-name-nondirectory f)
+                f))))
 
-(defun jco/insert-date (arg)
-  "Insert date at current point, in format 2016-11-23.
+(defun jco/yank-date (arg)
+  "Yank current date, in format 2016-11-23.
 If ARG is given, dots are used instead of dashes."
   (interactive "P")
-  (insert (if arg
-              (format-time-string "%d.%m.%Y")
-            (format-time-string "%Y-%m-%d"))))
+  (kill-new (if arg
+                (format-time-string "%d.%m.%Y")
+              (format-time-string "%Y-%m-%d"))))
 
-(defun jco/insert-timestamp (arg)
-  "Insert timestamp at current point.
+(defun jco/yank-timestamp (arg)
+  "Yank timestamp.
 The format of the timestamp is \"2021-03-03 Wed 14:31\". If ARG
 is given, the format of the timestamp is 2016-11-23T00:00:00 (in
 accordance with ISO 8601)."
   (interactive "P")
-  (insert (if arg
-              (format-time-string "%Y-%m-%dT%H:%M:%S")
-            (format-time-string "%Y-%m-%d %a %H:%M"))))
+  (kill-new (if arg
+                (format-time-string "%Y-%m-%dT%H:%M:%S")
+              (format-time-string "%Y-%m-%d %a %H:%M"))))
 
 (defun jco/json-lint ()
   "Pretty format JSON."
