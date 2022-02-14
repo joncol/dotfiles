@@ -1,5 +1,5 @@
-#+TITLE: Emacs configuration
-#+PROPERTY: header-args:emacs-lisp :tangle init.el
+#+title: Emacs configuration
+#+property: header-args:emacs-lisp :tangle init.el
 #+startup: overview
 
 * Theme list, and current theme
