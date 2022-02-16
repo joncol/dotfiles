@@ -4,7 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((org-babel-min-lines-for-block-output . 0)
+   '((evil-shift-width . 2)
+     (org-babel-min-lines-for-block-output . 0)
      (org-latex-pdf-process "xelatex -shell-escape -interaction=nonstopmode -output-directory=%o %f" "xelatex -shell-escape -interaction=nonstopmode -output-directory=%o %f" "xelatex -shell-escape -interaction=nonstopmode -output-directory=%o %f")
      (ormolu-process-path . "fourmolu")
      (evil-shift-width . 4)
