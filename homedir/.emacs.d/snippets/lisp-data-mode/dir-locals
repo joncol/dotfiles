@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Example `.dir-locals.el` file
+# key: dir-locals
+# --
+((nil . ((project-vc-ignores . ("texts/"
+                                "vagrant/"))))
+ (c-mode . ((eval . (progn (ethan-wspace-mode -1)
+                           (whitespace-mode -1))))))
