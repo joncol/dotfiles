@@ -2912,6 +2912,20 @@ As such, it will only work when the notes window exists."
   (jco/ensure-todo-org-header))
 #+end_src
 * Programming languages
+** C/C++
+#+begin_src emacs-lisp
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (setq lsp-clangd-binary-path "clangd")))
+
+(use-package cmake-mode
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'")
+  :hook (cmake-mode . lsp-deferred))
+
+(use-package cmake-font-lock
+  :after cmake-mode
+  :config (cmake-font-lock-activate))
+#+end_src
 ** C#
 #+begin_src emacs-lisp
 (use-package csharp-mode

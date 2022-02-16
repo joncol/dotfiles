@@ -2663,6 +2663,18 @@ As such, it will only work when the notes window exists."
   (find-file (concat (or dir org-directory) "/" filename))
   (jco/ensure-todo-org-header))
 
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (setq lsp-clangd-binary-path "clangd")))
+
+(use-package cmake-mode
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'")
+  :hook (cmake-mode . lsp-deferred))
+
+(use-package cmake-font-lock
+  :after cmake-mode
+  :config (cmake-font-lock-activate))
+
 (use-package csharp-mode
   :mode "\\.cs\\'")
 
