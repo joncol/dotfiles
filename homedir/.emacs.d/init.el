@@ -1233,8 +1233,21 @@ Useful for REPL windows."
   (recentf-mode)
   (setq recentf-max-menu-items 25))
 
-(use-package reformatter
-  :defer)
+;; Automatic code reformatting.
+(use-package apheleia
+  :init
+  (apheleia-global-mode)
+  :config
+  (progn ;; JavaScript
+    (setf (alist-get 'prettier apheleia-formatters)
+          '(npx "/home/jco/work/scrive/kontrakcja/frontend/node_modules/.bin/prettier"
+                "--stdin-filepath" filepath "--trailing-comma" "none"
+                "--no-bracket-spacing")))
+  (progn ;; Nix
+    (cl-pushnew '(alejandra . ("alejandra")) apheleia-formatters :test #'equal)
+    (cl-pushnew '(nixfmt . ("nixfmt")) apheleia-formatters :test #'equal)
+    (cl-pushnew '(nixpkgs-fmt . ("nixpkgs-fmt")) apheleia-formatters :test #'equal)
+    (cl-pushnew '(nix-mode . nixfmt) apheleia-mode-alist :test #'equal)))
 
 (use-package restclient
   :defer
@@ -3281,7 +3294,6 @@ Lisp function does not specify a special indentation."
   :custom
   (evil-shift-width 2)
   :mode "\\.nix\\'"
-  :bind (("C-c C-c C-f" . nix-format-buffer))
   :config
   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
   (lsp-register-client
@@ -3294,18 +3306,7 @@ Lisp function does not specify a special indentation."
               ;; do not treat "-" as a word separator
               (modify-syntax-entry ?- "w")
               (smartparens-mode)
-              (lsp-deferred)
-              (add-hook 'before-save-hook 'nix-format-before-save))))
-
-(reformatter-define purs-purty-format
-  :program "purty"
-  :args '("format" "-")
-  :lighter " PP")
-
-(reformatter-define purs-tidy-format
-  :program "purs-tidy"
-  :args '("format")
-  :lighter " PT")
+              (lsp-deferred))))
 
 (use-package purescript-mode
   :defer
