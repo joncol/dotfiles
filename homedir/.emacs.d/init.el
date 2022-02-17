@@ -1238,6 +1238,10 @@ Useful for REPL windows."
   :init
   (apheleia-global-mode)
   :config
+  (progn ;; Haskell
+    (cl-pushnew '(fourmolu . ("fourmolu")) apheleia-formatters :test #'equal)
+    (cl-pushnew '(haskell-mode . fourmolu) apheleia-mode-alist :test #'equal))
+
   (progn ;; JavaScript
     (setf (alist-get 'prettier apheleia-formatters)
           '(npx "/home/jco/work/scrive/kontrakcja/frontend/node_modules/.bin/prettier"
@@ -3075,12 +3079,6 @@ Lisp function does not specify a special indentation."
          (haskell-literate-mode . lsp-deferred))
   :custom
   (lsp-haskell-server-path "haskell-language-server"))
-
-(use-package ormolu
-  :after haskell-mode
-  :bind
-  (:map haskell-mode-map
-   ("C-c C-f" . ormolu-format-buffer)))
 
 (use-package j-mode
   :defer
