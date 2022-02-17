@@ -769,6 +769,18 @@ Useful for REPL windows."
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
 #+end_src
+* General
+#+begin_src emacs-lisp
+(defvar nav-prefix "M-n"
+  "Key prefix used for commands related to navigation.")
+
+(use-package general
+  :commands
+  (general-define-key)
+  :init
+  (eval-when-compile
+    (require 'general)))
+#+end_src
 * Global config
 #+begin_src emacs-lisp
 (setq sentence-end-double-space nil)
@@ -2944,6 +2956,17 @@ As such, it will only work when the notes window exists."
   "Open file FILENAME in the directory DIR (default: `org-directory')."
   (find-file (concat (or dir org-directory) "/" filename))
   (jco/ensure-todo-org-header))
+#+end_src
+* Peek
+#+begin_src emacs-lisp
+(use-package quick-peek)
+
+(use-package source-peek
+  :straight (emacs-source-peek :type git :host github
+                               :repo "iqbalansari/emacs-source-peek")
+  :general
+  (:prefix nav-prefix
+           "SPC" 'source-peek))
 #+end_src
 * Performance
 #+begin_src emacs-lisp

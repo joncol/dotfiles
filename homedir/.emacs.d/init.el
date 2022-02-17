@@ -544,6 +544,16 @@ Useful for REPL windows."
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
 
+(defvar nav-prefix "M-n"
+  "Key prefix used for commands related to navigation.")
+
+(use-package general
+  :commands
+  (general-define-key)
+  :init
+  (eval-when-compile
+    (require 'general)))
+
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
 
@@ -2697,6 +2707,15 @@ As such, it will only work when the notes window exists."
   "Open file FILENAME in the directory DIR (default: `org-directory')."
   (find-file (concat (or dir org-directory) "/" filename))
   (jco/ensure-todo-org-header))
+
+(use-package quick-peek)
+
+(use-package source-peek
+  :straight (emacs-source-peek :type git :host github
+                               :repo "iqbalansari/emacs-source-peek")
+  :general
+  (:prefix nav-prefix
+           "SPC" 'source-peek))
 
 ;; No second pass of case-insensitive search over auto-mode-alist.
 (setq auto-mode-case-fold nil)
