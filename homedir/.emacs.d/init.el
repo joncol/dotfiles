@@ -2717,7 +2717,8 @@ As such, it will only work when the notes window exists."
                                :repo "iqbalansari/emacs-source-peek")
   :general
   (:prefix nav-prefix
-           "SPC" 'source-peek))
+           "." 'source-peek
+           "M-." 'source-peek))
 
 ;; No second pass of case-insensitive search over auto-mode-alist.
 (setq auto-mode-case-fold nil)

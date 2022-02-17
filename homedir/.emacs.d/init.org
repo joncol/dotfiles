@@ -2968,7 +2968,8 @@ As such, it will only work when the notes window exists."
                                :repo "iqbalansari/emacs-source-peek")
   :general
   (:prefix nav-prefix
-           "SPC" 'source-peek))
+           "." 'source-peek
+           "M-." 'source-peek))
 #+end_src
 * Performance
 #+begin_src emacs-lisp
