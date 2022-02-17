@@ -1,4 +1,4 @@
-(let ((my-theme '"doom-old-hope"))
+(let ((my-theme '"nubox-dark"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -2117,6 +2117,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (add-hook 'org-mode-hook
             (lambda ()
               (require 'org-download))))
+
+(use-package org-fragtog)
 
 (use-package org-re-reveal
   :after org)

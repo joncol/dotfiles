@@ -2367,6 +2367,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
             (lambda ()
               (require 'org-download))))
 
+(use-package org-fragtog)
+
 (use-package org-re-reveal
   :after org)
 
