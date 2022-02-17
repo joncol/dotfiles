@@ -1544,6 +1544,8 @@ windows easier."
       (set-frame-size (selected-frame) 93 60))
     (set-face-attribute 'default nil :height 145))))
 
+(setq x-underline-at-descent-line t)
+
 (use-package ligature
   :straight (:host github :repo "mickeynp/ligature.el")
   :defer
