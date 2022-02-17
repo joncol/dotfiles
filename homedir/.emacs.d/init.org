@@ -3288,11 +3288,9 @@ Lisp function does not specify a special indentation."
               (method
                (funcall method indent-point state))))))))
 
-(add-hook 'emacs-lisp-mode-hook
+(add-hook 'lisp-data-mode-hook
           (lambda ()
-            (init-lisp-common)
-            (redshank-mode)
-            (setq-local lisp-indent-function #'fuco1/lisp-indent-function)))
+            (init-lisp-common)))
 #+end_src
 ** Fennel
 #+begin_src emacs-lisp

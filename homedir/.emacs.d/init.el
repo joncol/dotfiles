@@ -1,4 +1,4 @@
-(let ((my-theme '"nubox-dark"))
+(let ((my-theme '"doom-old-hope"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -3029,11 +3029,9 @@ Lisp function does not specify a special indentation."
               (method
                (funcall method indent-point state))))))))
 
-(add-hook 'emacs-lisp-mode-hook
+(add-hook 'lisp-data-mode-hook
           (lambda ()
-            (init-lisp-common)
-            (redshank-mode)
-            (setq-local lisp-indent-function #'fuco1/lisp-indent-function)))
+            (init-lisp-common)))
 
 (use-package fennel-mode
   :defer)
