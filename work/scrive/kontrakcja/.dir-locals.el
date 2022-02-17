@@ -2,6 +2,5 @@
                                 "texts/"
                                 "vagrant/"))
          (lsp-file-watch-threshold . 20000)))
- (haskell-mode . ((haskell-stylish-on-save . t)
-                  (haskell-mode-stylish-haskell-path . "brittany")
+ (haskell-mode . ((apheleia-formatter . 'brittany)
                   (fill-column . 90))))
