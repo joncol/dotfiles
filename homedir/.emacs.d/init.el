@@ -1642,7 +1642,8 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
 
 (defhydra jco/hydra-prog (:color teal :hint nil)
   "programming"
-  ("f" apheleia-format-buffer "format-buffer"))
+  ("f" apheleia-format-buffer "format-buffer")
+  ("v" vc-msg-show "vc-msg-show"))
 
 (defhydra jco/hydra-consult (:color teal :hint nil)
   "org"
@@ -1815,6 +1816,9 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :after magit
   :config
   (magit-org-todos-autoinsert))
+
+(use-package vc-msg
+  :defer)
 
 (use-package rich-minority
   :defer
