@@ -3127,6 +3127,15 @@ Lisp function does not specify a special indentation."
                   (gradle-run "test --info")))
               (evil-leader/set-key "t s" 'gradle-single-test))))
 
+(add-hook 'js-mode-hook
+          (lambda ()
+            (lsp-deferred)
+
+            ;; This is to make the call to `flycheck-add-next-checker' work.
+            (lsp-diagnostics-mode)
+
+            (flycheck-add-next-checker 'lsp 'javascript-eslint)))
+
 (setq js-indent-level 2)
 (with-eval-after-load 'js
   (define-key js-mode-map (kbd "M-.") nil))
