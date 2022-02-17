@@ -1,4 +1,4 @@
-(let ((my-theme '"nubox-dark"))
+(let ((my-theme '"doom-old-hope"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -257,6 +257,12 @@ invokation."
                     electric-pair-text-pairs)))
     (message "electric-pair-pairs: %s" (prin1-to-string s1))
     (message "electric-pair-text-pairs: %s" (prin1-to-string s2))))
+
+(defun toggle-dedicated-window ()
+  "Toggle selected window as dedicated window."
+  (interactive)
+  (set-window-dedicated-p (selected-window)
+                          (not (window-dedicated-p (selected-window)))))
 
 (defun jco/bind-exit-insert-mode (first-key second-key)
   "Add binding to exit insert mode using FIRST-KEY followed by SECOND-KEY."
@@ -1651,14 +1657,15 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
 
 (defhydra jco/hydra-util (:color teal :hint nil)
   "util"
-  ("k" jco/hydra-kurecolor/body "kurekolor")
   ("f" (lambda () (interactive) (jco/yank-current-filename t)) "yank filename")
   ("F" jco/yank-current-filename "yank full path")
   ("d" jco/yank-date "yank date")
   ("t" jco/yank-timestamp "yank timestamp")
+  ("l" toggle-dedicated-window "toggle-dedicated-window")
   ("e" ediff-regions-wordwise "ediff-regions-wordwise")
   ("g" yagist-region-or-buffer "gist")
   ("h" hide-mode-line-mode "hide modeline")
+  ("k" jco/hydra-kurecolor/body "kurekolor")
   ("m" (lambda ()
          (interactive)
          (markdown-other-window)
