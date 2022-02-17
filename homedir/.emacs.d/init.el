@@ -1,4 +1,4 @@
-(let ((my-theme '"nubox-dark"))
+(let ((my-theme '"doom-old-hope"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -1193,6 +1193,14 @@ Useful for REPL windows."
   :config
   (minions-mode)
   (setq minions-mode-line-lighter "#"))
+
+(use-package multicolumn
+  :defer
+  :general
+  (:prefix nav-prefix
+           "m" 'multicolumn-delete-other-windows-and-split-with-follow-mode
+           "M" 'multicolumn-delete-other-windows-and-split)
+  ("C-x 4 u" 'multicolumn-pop-window-configuration))
 
 (use-package nginx-mode
   :defer)
