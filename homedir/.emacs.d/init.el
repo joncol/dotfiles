@@ -1,4 +1,4 @@
-(let ((my-theme '"doom-old-hope"))
+(let ((my-theme '"nubox-dark"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -2707,6 +2707,14 @@ As such, it will only work when the notes window exists."
 ;; Accelerate scrolling with the trade-off of sometimes delayed accurate
 ;; fontification.
 (setq fast-but-imprecise-scrolling t)
+
+(use-package so-long
+  :defer 2
+  :config
+  (global-so-long-mode 1))
+
+(use-package vlf
+  :defer)
 
 (add-hook 'c-mode-common-hook
           (lambda ()
