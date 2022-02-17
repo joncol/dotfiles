@@ -1803,6 +1803,7 @@ windows easier."
   ("h" jco/hydra-hideshow/body "hideshow")
   ("l" jco/hydra-lang/body "lang")
   ("o" jco/hydra-org/body "org")
+  ("p" jco/hydra-prog/body "programming")
   ("s" jco/hydra-consult/body "consult")
   ("u" jco/hydra-util/body "util")
   ("w" jco/hydra-writing/body "writing"))
@@ -1867,6 +1868,10 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("b" org-roam-buffer-activate "org-roam-buffer")
   ("s" org-tree-slide-mode "org-tree-slide-mode")
   ("t" org-roam-tag-add "add tag"))
+
+(defhydra jco/hydra-prog (:color teal :hint nil)
+  "programming"
+  ("f" apheleia-format-buffer "format-buffer"))
 
 (defhydra jco/hydra-consult (:color teal :hint nil)
   "org"
