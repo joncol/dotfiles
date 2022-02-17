@@ -1242,7 +1242,9 @@ Useful for REPL windows."
     (setf (alist-get 'prettier apheleia-formatters)
           '(npx "/home/jco/work/scrive/kontrakcja/frontend/node_modules/.bin/prettier"
                 "--stdin-filepath" filepath "--trailing-comma" "none"
-                "--no-bracket-spacing")))
+                "--no-bracket-spacing"
+                (when (bound-and-true-p fill-column)
+                  (list "--print-width" (number-to-string fill-column))))))
   (progn ;; Nix
     (cl-pushnew '(alejandra . ("alejandra")) apheleia-formatters :test #'equal)
     (cl-pushnew '(nixfmt . ("nixfmt")) apheleia-formatters :test #'equal)
