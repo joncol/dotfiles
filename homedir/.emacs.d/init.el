@@ -89,6 +89,7 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
     ;; (hl-line-mode)
     (rainbow-delimiters-mode)
     (rainbow-mode t))
+  (apheleia-mode)
   (setq require-final-newline nil)
   (ethan-wspace-mode)
   (modify-syntax-entry ?_ "w") ; do not treat "_" as a word separator
@@ -1259,8 +1260,7 @@ Useful for REPL windows."
 
 ;; Automatic code reformatting.
 (use-package apheleia
-  :init
-  (apheleia-global-mode)
+  :defer
   :config
   (progn ;; Haskell
     (cl-pushnew '(fourmolu . ("fourmolu")) apheleia-formatters :test #'equal)
