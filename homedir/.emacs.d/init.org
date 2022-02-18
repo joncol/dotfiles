@@ -2,6 +2,12 @@
 #+property: header-args:emacs-lisp :tangle init.el
 #+startup: overview
 
+* Custom configuration location
+#+begin_src emacs-lisp
+(setq custom-file (expand-file-name "custom.el" temporary-file-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+#+end_src
 * Theme list, and current theme
 Current theme. Change this to whatever theme you want, by copying the line from
 the list below.
@@ -848,10 +854,6 @@ Useful for REPL windows."
 #+end_src
 * Miscellaneous
 #+begin_src emacs-lisp
-;;; Avoid the empty (custom-set-faces) at end of init.el.
-(setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
-(load custom-file)
-
 (setq native-comp-async-report-warnings-errors nil)
 (setq ad-redefinition-action 'accept)
 

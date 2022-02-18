@@ -1,3 +1,7 @@
+(setq custom-file (expand-file-name "custom.el" temporary-file-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 (let ((my-theme '"doom-old-hope"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
@@ -616,10 +620,6 @@ Useful for REPL windows."
   (global-unset-key (kbd "C-x C-z")))
 
 (setq vc-follow-symlinks nil)
-
-;;; Avoid the empty (custom-set-faces) at end of init.el.
-(setq custom-file (expand-file-name (concat user-emacs-directory "custom.el")))
-(load custom-file)
 
 (setq native-comp-async-report-warnings-errors nil)
 (setq ad-redefinition-action 'accept)
