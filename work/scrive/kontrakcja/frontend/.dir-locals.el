@@ -1,7 +1,10 @@
-((nil . ((eval . (apheleia-global-mode -1))))
+((web-mode . ((eval . (apheleia-mode -1))
+              (fill-column . 90)))
 
- (web-mode . ((fill-column . 90)))
-
- (js-mode . ((fill-column . 90)
+ (js-mode . ((eval . (apheleia-mode -1))
+             (fill-column . 90)
              (evil-shift-width . 2)
-             (js-indent-level . 2))))
+             (js-indent-level . 2)))
+
+ (json-mode . ((eval . (apheleia-mode -1))
+               (eval . (display-line-numbers-mode -1)))))
