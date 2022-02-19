@@ -3227,6 +3227,7 @@ Lisp function does not specify a special indentation."
 
 (add-hook 'js-mode-hook
           (lambda ()
+            (smartparens-mode)
             (lsp-deferred)
 
             ;; This is to make the call to `flycheck-add-next-checker' work.
