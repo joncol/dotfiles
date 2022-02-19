@@ -3249,6 +3249,7 @@ Lisp function does not specify a special indentation."
   :config
   (add-hook 'web-mode-hook
             (lambda ()
+              (smartparens-mode)
               (lsp-deferred)
               (flycheck-add-mode 'javascript-eslint 'web-mode)
 
