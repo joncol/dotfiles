@@ -2783,7 +2783,10 @@ As such, it will only work when the notes window exists."
 (dolist (hook '(css-mode-hook
                 less-css-mode-hook
                 scss-mode-hook))
-  (add-hook hook #'smartparens-mode))
+  (add-hook hook
+            (lambda ()
+              (setq css-indent-offset 2)
+              (smartparens-mode))))
 
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 
