@@ -1713,7 +1713,8 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
   ("D" darkroom-mode "darkroom")
   ("l" ligature-mode "ligatures")
   ("n" org-noter "org-noter")
-  ("o" (jco/toggle-mode olivetti-mode) "olivetti"))
+  ("o" (jco/toggle-mode olivetti-mode) "olivetti")
+  ("s" (sublimity-mode 'toggle) "sublimity-mode"))
 
 (defhydra jco/hydra-apps (:color teal :hint nil)
   "app"
@@ -1770,6 +1771,13 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :defer
   :init
   (global-set-key (kbd "C-c d") 'sdcv-search-input))
+
+(use-package sublimity
+  :straight (sublimity :type git :host github
+                       :repo "zk-phi/sublimity")
+  :defer
+  :config
+  (require 'sublimity-map))
 
 (fset 'jco/paste-over [?\" ?0 ?p])
 
