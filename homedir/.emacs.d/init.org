@@ -826,7 +826,8 @@ Useful for REPL windows."
 
 (setq help-window-select t)
 
-(dolist (hook '(help-mode-hook
+(dolist (hook '(css-mode-hook
+                help-mode-hook
                 makefile-gmake-mode-hook
                 scss-mode-hook
                 sql-mode-hook))
