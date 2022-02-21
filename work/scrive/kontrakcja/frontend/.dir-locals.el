@@ -1,6 +1,8 @@
 ((web-mode . ((eval . (apheleia-mode -1))
               (fill-column . 90)))
 
+ (less-css-mode . ((eval . (apheleia-mode -1))))
+
  (js-mode . ((eval . (apheleia-mode -1))
              (fill-column . 90)
              (evil-shift-width . 2)
