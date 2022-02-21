@@ -597,6 +597,7 @@ Useful for REPL windows."
 
 (dolist (hook '(css-mode-hook
                 help-mode-hook
+                less-css-mode-hook
                 makefile-gmake-mode-hook
                 scss-mode-hook
                 sql-mode-hook))
@@ -2779,13 +2780,10 @@ As such, it will only work when the notes window exists."
 (use-package csharp-mode
   :mode "\\.cs\\'")
 
-(add-hook 'css-mode-hook
-          (lambda ()
-            (smartparens-mode)))
-
-(add-hook 'scss-mode-hook
-          (lambda ()
-            (smartparens-mode)))
+(dolist (hook '(css-mode-hook
+                less-css-mode-hook
+                scss-mode-hook))
+  (add-hook hook #'smartparens-mode))
 
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 
