@@ -2771,6 +2771,14 @@ As such, it will only work when the notes window exists."
 (use-package csharp-mode
   :mode "\\.cs\\'")
 
+(add-hook 'css-mode-hook
+          (lambda ()
+            (smartparens-mode)))
+
+(add-hook 'scss-mode-hook
+          (lambda ()
+            (smartparens-mode)))
+
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 
 (defun create-test-report-window (&rest _)

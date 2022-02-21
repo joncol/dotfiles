@@ -3031,6 +3031,16 @@ As such, it will only work when the notes window exists."
 (use-package csharp-mode
   :mode "\\.cs\\'")
 #+end_src
+** CSS
+#+begin_src emacs-lisp
+(add-hook 'css-mode-hook
+          (lambda ()
+            (smartparens-mode)))
+
+(add-hook 'scss-mode-hook
+          (lambda ()
+            (smartparens-mode)))
+#+end_src
 ** Clojure
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-c M-s") #'cider-selector)
