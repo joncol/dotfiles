@@ -2,7 +2,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"doom-old-hope"))
+(let ((my-theme '"nubox-dark"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -1637,11 +1637,11 @@ find: _f_un _l_ib _v_ar"
 
 (defhydra jco/hydra-hideshow (:color teal :hint nil)
   "hideshow"
-  ("a" hs-show-all "show-all")
-  ("t" hs-hide-all "hide-all")
-  ("c" hs-toggle-hiding "toggle-hiding")
-  ("d" hs-hide-block "hide-block")
-  ("s" hs-show-block "show-block"))
+  ("h" hs-hide-all "hide-all")
+  ("s" hs-show-all "show-all")
+  ("H" hs-hide-block "hide-block")
+  ("S" hs-show-block "show-block")
+  ("t" hs-toggle-hiding "toggle-hiding"))
 
 (defhydra jco/hydra-lang (:color teal :hint nil)
   "
