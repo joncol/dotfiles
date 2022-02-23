@@ -3280,7 +3280,8 @@ Lisp function does not specify a special indentation."
               (setq-local standard-indent 2)
               (setq web-mode-markup-indent-offset 2)
               (setq web-mode-css-indent-offset 2)
-              (setq web-mode-code-indent-offset 2)))
+              (setq web-mode-code-indent-offset 2)
+              (setq web-mode-enable-auto-quoting nil)))
 
   ;; For better jsx syntax-highlighting in web-mode.
   (defadvice web-mode-highlight-part (around tweak-jsx activate)
