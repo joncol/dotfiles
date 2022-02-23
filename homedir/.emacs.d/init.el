@@ -3246,6 +3246,7 @@ Lisp function does not specify a special indentation."
 
 (add-hook 'js-mode-hook
           (lambda ()
+            (setq-local standard-indent 2)
             (smartparens-mode)
             (lsp-deferred)
 
@@ -3276,6 +3277,7 @@ Lisp function does not specify a special indentation."
               (lsp-diagnostics-mode)
 
               (flycheck-add-next-checker 'lsp 'javascript-eslint)
+              (setq-local standard-indent 2)
               (setq web-mode-markup-indent-offset 2)
               (setq web-mode-css-indent-offset 2)
               (setq web-mode-code-indent-offset 2)))
