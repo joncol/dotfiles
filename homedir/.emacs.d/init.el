@@ -4584,3 +4584,5 @@ accordance with ISO 8601)."
               (modify-syntax-entry ?- "w")
               (ethan-wspace-mode -1)))
   (evil-leader/set-key "TAB" 'yas-insert-snippet))
+
+(use-package yasnippet-snippets)

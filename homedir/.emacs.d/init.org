@@ -4909,7 +4909,7 @@ accordance with ISO 8601)."
             (lambda ()
               (set-face-background 'whitespace-trailing "#82589f"))))
 #+end_src
-* Yas
+* Yasnippet
 #+begin_src emacs-lisp
 (use-package yasnippet
   :defer
@@ -4925,6 +4925,8 @@ accordance with ISO 8601)."
               (modify-syntax-entry ?- "w")
               (ethan-wspace-mode -1)))
   (evil-leader/set-key "TAB" 'yas-insert-snippet))
+
+(use-package yasnippet-snippets)
 #+end_src
 * Local Variables (auto-tangle this file)
 # Local Variables:
