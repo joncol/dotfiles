@@ -701,6 +701,7 @@ Useful for REPL windows."
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq auto-save-default nil)
 (setq make-backup-files nil)
+(setq create-lockfiles nil)
 
 (setq evil-motion-state-modes
       (append '(debugger-mode) evil-motion-state-modes))
