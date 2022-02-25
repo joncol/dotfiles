@@ -3038,7 +3038,8 @@ Opens a new buffer with the result."
   (add-hook 'elm-mode-hook
             (lambda ()
               (smartparens-mode)
-              (display-fill-column-indicator-mode -1))))
+              (display-fill-column-indicator-mode -1)
+              (setq indent-tabs-mode nil))))
 
 (defun fuco1/lisp-indent-function (indent-point state)
   "This function is the normal value of the variable `lisp-indent-function'.

@@ -3306,7 +3306,8 @@ Opens a new buffer with the result."
   (add-hook 'elm-mode-hook
             (lambda ()
               (smartparens-mode)
-              (display-fill-column-indicator-mode -1))))
+              (display-fill-column-indicator-mode -1)
+              (setq indent-tabs-mode nil))))
 #+end_src
 ** Emacs Lisp
 #+begin_src emacs-lisp
