@@ -1265,6 +1265,10 @@ Useful for REPL windows."
 (use-package apheleia
   :defer
   :config
+  (progn ;; Elm
+    (cl-pushnew '(elm-format . ("elm-format" "--stdin")) apheleia-formatters :test #'equal)
+    (cl-pushnew '(elm-mode . elm-format) apheleia-mode-alist :test #'equal))
+
   (progn ;; Haskell
     (cl-pushnew '(fourmolu . ("fourmolu")) apheleia-formatters :test #'equal)
     (cl-pushnew '(haskell-mode . fourmolu) apheleia-mode-alist :test #'equal))
