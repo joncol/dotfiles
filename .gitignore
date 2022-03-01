@@ -40,3 +40,4 @@ xmonad.errors
 xmonad.hi
 xmonad.o
 /homedir/.xmonad/build-x86_64-linux/
+/homedir/.config/gtk-3.0/*.css
