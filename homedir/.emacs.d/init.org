@@ -3027,6 +3027,12 @@ As such, it will only work when the notes window exists."
 (use-package vlf
   :defer)
 #+end_src
+* Programming misc
+#+begin_src emacs-lisp
+(use-package highlight-indent-guides
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :custom (highlight-indent-guides-method 'bitmap))
+#+end_src
 * Programming languages
 ** C/C++
 #+begin_src emacs-lisp

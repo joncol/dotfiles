@@ -2770,6 +2770,10 @@ As such, it will only work when the notes window exists."
 (use-package vlf
   :defer)
 
+(use-package highlight-indent-guides
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :custom (highlight-indent-guides-method 'bitmap))
+
 (add-hook 'c-mode-common-hook
           (lambda ()
             (setq lsp-clangd-binary-path "clangd")))
