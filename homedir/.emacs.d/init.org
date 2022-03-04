@@ -3453,6 +3453,9 @@ Lisp function does not specify a special indentation."
          (haskell-literate-mode . lsp-deferred))
   :custom
   (lsp-haskell-server-path "haskell-language-server"))
+
+(use-package haskell-mode
+  :defer)
 #+end_src
 ** J
 #+begin_src emacs-lisp
