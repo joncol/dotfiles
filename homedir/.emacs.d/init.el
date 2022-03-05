@@ -1275,7 +1275,7 @@ Useful for REPL windows."
 
   (progn ;; JavaScript
     (setf (alist-get 'prettier apheleia-formatters)
-          '(npx "/home/jco/work/scrive/kontrakcja/frontend/node_modules/.bin/prettier"
+          '(npx "prettier"
                 "--stdin-filepath" filepath "--trailing-comma" "none"
                 "--no-bracket-spacing"
                 (when (bound-and-true-p fill-column)
@@ -3173,6 +3173,9 @@ Lisp function does not specify a special indentation."
          (haskell-literate-mode . lsp-deferred))
   :custom
   (lsp-haskell-server-path "haskell-language-server"))
+
+(use-package haskell-mode
+  :defer)
 
 (use-package j-mode
   :defer

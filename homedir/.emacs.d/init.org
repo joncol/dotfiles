@@ -1508,7 +1508,7 @@ Useful for REPL windows."
 
   (progn ;; JavaScript
     (setf (alist-get 'prettier apheleia-formatters)
-          '(npx "/home/jco/work/scrive/kontrakcja/frontend/node_modules/.bin/prettier"
+          '(npx "prettier"
                 "--stdin-filepath" filepath "--trailing-comma" "none"
                 "--no-bracket-spacing"
                 (when (bound-and-true-p fill-column)
