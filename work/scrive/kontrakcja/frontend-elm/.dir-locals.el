@@ -1,4 +1,6 @@
-((web-mode . ((eval . (apheleia-mode -1))
+((css-mode . ((eval . (apheleia-mode -1))))
+
+ (web-mode . ((eval . (apheleia-mode -1))
               (fill-column . 90)))
 
  (less-css-mode . ((eval . (apheleia-mode -1))))
