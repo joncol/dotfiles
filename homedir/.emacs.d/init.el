@@ -2797,6 +2797,10 @@ As such, it will only work when the notes window exists."
               (setq css-indent-offset 2)
               (smartparens-mode))))
 
+(use-package lsp-tailwindcss
+  :defer
+  :custom (lsp-tailwindcss-add-on-mode t))
+
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 
 (defun create-test-report-window (&rest _)

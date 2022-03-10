@@ -3062,6 +3062,10 @@ As such, it will only work when the notes window exists."
             (lambda ()
               (setq css-indent-offset 2)
               (smartparens-mode))))
+
+(use-package lsp-tailwindcss
+  :defer
+  :custom (lsp-tailwindcss-add-on-mode t))
 #+end_src
 ** Clojure
 #+begin_src emacs-lisp
