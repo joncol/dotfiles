@@ -732,36 +732,6 @@ Useful for REPL windows."
           (lambda ()
             (modify-syntax-entry ?_ "w")))
 
-(setq prolog-system 'gnu)
-
-(add-hook 'prolog-mode-hook
-          (lambda ()
-            (setq evil-shift-width 4)))
-
-(add-hook 'sql-mode-hook
-          (lambda ()
-            (setq evil-shift-width 4)
-            (modify-syntax-entry ?- "w" sql-mode-syntax-table)))
-
-(add-hook 'TeX-mode-hook
-          (lambda ()
-            (setq evil-shift-width 2)))
-
-(add-hook 'octave-mode-hook
-          (lambda ()
-            (setq evil-shift-width 2)))
-
-(add-hook 'markdown-mode-hook
-          (lambda ()
-            (turn-on-auto-fill)
-            (setq evil-shift-width 4)
-            (modify-syntax-entry ?- "w") ;; do not treat "_" as a word separator
-            (footnote-mode)
-            (turn-on-orgtbl)
-            (setq markdown-gfm-use-electric-backquote nil)
-            (setq markdown-spaces-after-code-fence 0)
-            (setq markdown-gfm-additional-languages '("bash"))))
-
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
   "Enable evil motion state."
@@ -962,10 +932,18 @@ Useful for REPL windows."
     (";" . dired-subtree-remove)))
 
 (use-package docker-compose-mode
-  :defer)
+  :defer
+  :config
+  (add-hook 'docker-compose-mode-hook
+            (lambda ()
+              (smartparens-mode))))
 
 (use-package dockerfile-mode
-  :defer)
+  :defer
+  :config
+  (add-hook 'docker-compose-mode-hook
+            (lambda ()
+              (smartparens-mode))))
 
 (use-package gcmh
   :config
@@ -3181,6 +3159,11 @@ Lisp function does not specify a special indentation."
 (use-package haskell-mode
   :defer)
 
+(add-hook 'html-mode-hook
+          (lambda ()
+            ;; do not treat "-" as a word separator
+            (modify-syntax-entry ?- "w")))
+
 (use-package j-mode
   :defer
   :init
@@ -3360,14 +3343,25 @@ Lisp function does not specify a special indentation."
   :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode))
+  :custom
+  (markdown-command
+   (concat "pandoc -c file://"
+           (expand-file-name
+            (concat user-emacs-directory "github-pandoc.css"))
+           " --from gfm -t html5 --mathjax "
+           "--highlight-style=tango --standalone "
+           "--metadata title=\"*markdown-output*\""))
   :config
-  (setq markdown-command
-        (concat "pandoc -c file://"
-                (expand-file-name
-                 (concat user-emacs-directory "github-pandoc.css"))
-                " --from gfm -t html5 --mathjax "
-                "--highlight-style=tango --standalone "
-                "--metadata title=\"*markdown-output*\"")))
+  (add-hook 'markdown-mode-hook
+            (lambda ()
+              (turn-on-auto-fill)
+              (setq evil-shift-width 4)
+              (modify-syntax-entry ?- "w") ;; do not treat "_" as a word separator
+              (footnote-mode)
+              (turn-on-orgtbl)
+              (setq markdown-gfm-use-electric-backquote nil)
+              (setq markdown-spaces-after-code-fence 0)
+              (setq markdown-gfm-additional-languages '("bash")))))
 
 (use-package ox-gfm
   :after markdown-mode)
@@ -3393,6 +3387,16 @@ Lisp function does not specify a special indentation."
               (smartparens-mode)
               (lsp-deferred))))
 
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (setq evil-shift-width 2)))
+
+(setq prolog-system 'gnu)
+
+(add-hook 'prolog-mode-hook
+          (lambda ()
+            (setq evil-shift-width 4)))
+
 (use-package purescript-mode
   :defer
   :config
@@ -3415,6 +3419,11 @@ Lisp function does not specify a special indentation."
             (lambda ()
               (sp-pair "\'" nil :actions :rem)
               (modify-syntax-entry ?! "w"))))
+
+(add-hook 'sql-mode-hook
+          (lambda ()
+            (setq evil-shift-width 4)
+            (modify-syntax-entry ?- "w" sql-mode-syntax-table)))
 
 (use-package terraform-mode
   :defer
