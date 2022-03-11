@@ -1139,6 +1139,7 @@ Useful for REPL windows."
 
   :custom
   (lsp-lens-enable nil)
+  (lsp-enable-symbol-highlighting nil)
 
   :init
   (with-eval-after-load 'lsp-mode
