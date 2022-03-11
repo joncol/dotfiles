@@ -1843,14 +1843,18 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 (use-package rich-minority
   :defer
   :config
-  (setq rm-blacklist ".")
+  (setq rm-whitelist "ⓜ")
   (rich-minority-mode))
 
 (use-package smart-mode-line
-  :disabled
+  ;; :after smart-mode-line-atom-one-dark-theme
   :config
   (setq sml/no-confirm-load-theme t)
+  ;; (setq sml/theme 'atom-one-dark)
   (sml/setup))
+
+(use-package smart-mode-line-atom-one-dark-theme
+  :disabled)
 
 (use-package doom-modeline
   :disabled
@@ -3707,8 +3711,9 @@ repo."
       (org-babel-tangle-file (concat user-emacs-directory "init.org")))))
 
 (use-package evil-mc
-  :defer
+  :defer 1
   :config
+  (setq evil-mc-mode-line-prefix "ⓜ")
   (global-evil-mc-mode))
 
 (use-package iedit
