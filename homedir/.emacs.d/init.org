@@ -4051,6 +4051,11 @@ repo."
 #+end_src
 * Text editing
 #+begin_src emacs-lisp
+(use-package evil-mc
+  :defer
+  :config
+  (global-evil-mc-mode))
+
 (use-package iedit
   :defer
   :init

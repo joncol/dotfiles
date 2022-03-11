@@ -3706,6 +3706,11 @@ repo."
         ((after-save-hook (remove 'org-babel-tangle-config+ after-save-hook)))
       (org-babel-tangle-file (concat user-emacs-directory "init.org")))))
 
+(use-package evil-mc
+  :defer
+  :config
+  (global-evil-mc-mode))
+
 (use-package iedit
   :defer
   :init
