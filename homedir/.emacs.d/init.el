@@ -269,26 +269,6 @@ invokation."
   (set-window-dedicated-p (selected-window)
                           (not (window-dedicated-p (selected-window)))))
 
-(defun jco/bind-exit-insert-mode (first-key second-key)
-  "Add binding to exit insert mode using FIRST-KEY followed by SECOND-KEY."
-  (define-key evil-insert-state-map (char-to-string ?l)
-    #'jco/maybe-exit)
-  (evil-define-command jco/maybe-exit ()
-    :repeat change
-    (interactive)
-    (let ((modified (buffer-modified-p)))
-      (insert (char-to-string ?l))
-      (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-                             nil 0.25)))
-        (cond
-         ((null evt) (message ""))
-         ((and (integerp evt) (char-equal evt ?h))
-          (delete-char -1)
-          (set-buffer-modified-p modified)
-          (push 'escape unread-command-events))
-         (t (setq unread-command-events (append unread-command-events
-                                                (list evt)))))))))
-
 (defun bind-window-keys (keymap)
   "Apply windmove key bindings to KEYMAP."
   (bind-keys :map keymap
@@ -425,7 +405,6 @@ invokation."
                          ("C-k" . windmove-up)
                          ("C-l" . windmove-right)))
 
-  (jco/bind-exit-insert-mode ?l ?h) ;; Colemak specific
   (setq evil-flash-delay 3600))
 
 (use-package evil-collection
@@ -557,7 +536,14 @@ Useful for REPL windows."
   (general-define-key)
   :init
   (eval-when-compile
-    (require 'general)))
+    (require 'general))
+  :config
+
+  (general-evil-setup)
+  (general-imap "l"
+    (general-key-dispatch 'self-insert-command
+      :timeout 0.25
+      "h" 'evil-normal-state)))
 
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
