@@ -1,3 +1,4 @@
+*.~undo-tree~
 *.zwc
 /fonts/.fonts/.uuid
 /homedir/.cabal/bin/
