@@ -4073,6 +4073,8 @@ repo."
 (use-package evil-mc
   :defer 1
   :config
+  (set-face-background 'evil-mc-cursor-bar-face "#db2777")
+  (set-face-background 'evil-mc-cursor-default-face "#db2777")
   (setq evil-mc-mode-line-prefix "ⓜ")
   (evil-define-key '(normal visual) 'global
     "gzm" #'evil-mc-make-all-cursors
