@@ -3711,6 +3711,18 @@ repo."
         ((after-save-hook (remove 'org-babel-tangle-config+ after-save-hook)))
       (org-babel-tangle-file (concat user-emacs-directory "init.org")))))
 
+;; Taken from `doom-emacs'.
+(defun evil-mc-toggle-cursors ()
+  "Toggle frozen state of evil-mc cursors."
+  (interactive)
+  (unless (evil-mc-has-cursors-p)
+    (user-error "No cursors exist to be toggled"))
+  (setq evil-mc-frozen (not (and (evil-mc-has-cursors-p)
+                                 evil-mc-frozen)))
+  (if evil-mc-frozen
+      (message "evil-mc paused")
+    (message "evil-mc resumed")))
+
 (use-package evil-mc
   :defer 1
   :config
@@ -3718,6 +3730,7 @@ repo."
   (evil-define-key '(normal visual) 'global
     "gzm" #'evil-mc-make-all-cursors
     "gzu" #'evil-mc-undo-all-cursors
+    "gzz" #'evil-mc-toggle-cursors
     "gzc" #'evil-mc-make-cursor-here
     "gzn" #'evil-mc-make-and-goto-next-cursor
     "gzp" #'evil-mc-make-and-goto-prev-cursor
