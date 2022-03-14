@@ -3715,6 +3715,21 @@ repo."
   :defer 1
   :config
   (setq evil-mc-mode-line-prefix "ⓜ")
+  (evil-define-key '(normal visual) 'global
+    "gzm" #'evil-mc-make-all-cursors
+    "gzu" #'evil-mc-undo-all-cursors
+    "gzz" #'+evil/mc-toggle-cursors
+    "gzc" #'+evil/mc-make-cursor-here
+    "gzn" #'evil-mc-make-and-goto-next-cursor
+    "gzp" #'evil-mc-make-and-goto-prev-cursor
+    "gzN" #'evil-mc-make-and-goto-last-cursor
+    "gzP" #'evil-mc-make-and-goto-first-cursor)
+  (with-eval-after-load 'evil-mc
+    (evil-define-key '(normal visual) evil-mc-key-map
+      (kbd "C-n") #'evil-mc-make-and-goto-next-cursor
+      (kbd "C-N") #'evil-mc-make-and-goto-last-cursor
+      (kbd "C-p") #'evil-mc-make-and-goto-prev-cursor
+      (kbd "C-P") #'evil-mc-make-and-goto-first-cursor))
   (global-evil-mc-mode))
 
 (use-package evil-multiedit
