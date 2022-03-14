@@ -4092,11 +4092,13 @@ repo."
   (global-evil-mc-mode))
 
 (use-package evil-multiedit
-  :defer
+  :after evil-mc
   :init
   (require 'evil-multiedit)
   :config
-  (evil-multiedit-default-keybinds))
+  (evil-multiedit-default-keybinds)
+  (evil-define-key '(visual normal) 'global
+    (kbd "C-M-d") #'evil-multiedit-restore))
 
 (use-package iedit
   :defer
