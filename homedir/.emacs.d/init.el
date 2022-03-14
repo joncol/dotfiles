@@ -3717,6 +3717,13 @@ repo."
   (setq evil-mc-mode-line-prefix "ⓜ")
   (global-evil-mc-mode))
 
+(use-package evil-multiedit
+  :defer
+  :init
+  (require 'evil-multiedit)
+  :config
+  (evil-multiedit-default-keybinds))
+
 (use-package iedit
   :defer
   :init
@@ -4131,7 +4138,7 @@ repo."
    (with-eval-after-load 'volatile-highlights
      (set-face-background 'vhl/default-face "#2a2d2e"))
    (with-eval-after-load 'iedit
-     (set-face-background 'iedit-occurrence "#2a2d2e"))
+     (set-face-background 'iedit-occurrence "#0891b2"))
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-pair-overlay-face "#444748"))
    (set-face-background 'region "#582c6b")
