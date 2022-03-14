@@ -531,6 +531,12 @@ Useful for REPL windows."
 (defvar nav-prefix "M-n"
   "Key prefix used for commands related to navigation.")
 
+(defun jco/enable-exit-insert-mode-chord (enable)
+  (general-imap "l"
+    (and enable (general-key-dispatch 'self-insert-command
+                  :timeout 0.25
+                  "h" 'evil-normal-state))))
+
 (use-package general
   :commands
   (general-define-key)
@@ -538,12 +544,8 @@ Useful for REPL windows."
   (eval-when-compile
     (require 'general))
   :config
-
   (general-evil-setup)
-  (general-imap "l"
-    (general-key-dispatch 'self-insert-command
-      :timeout 0.25
-      "h" 'evil-normal-state)))
+  (jco/enable-exit-insert-mode-chord t))
 
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
@@ -3732,7 +3734,13 @@ repo."
       (kbd "C-S-n") #'evil-mc-make-and-goto-last-cursor
       (kbd "C-p") #'evil-mc-make-and-goto-prev-cursor
       (kbd "C-S-p") #'evil-mc-make-and-goto-first-cursor))
-  (global-evil-mc-mode))
+  (global-evil-mc-mode)
+  (add-hook 'evil-mc-before-cursors-created
+            (lambda ()
+              (jco/enable-exit-insert-mode-chord nil)))
+  (add-hook 'evil-mc-after-cursors-deleted
+            (lambda ()
+              (jco/enable-exit-insert-mode-chord t))))
 
 (use-package evil-multiedit
   :after evil-mc
