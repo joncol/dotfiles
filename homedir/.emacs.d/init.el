@@ -335,10 +335,7 @@ invokation."
 
   :config
   (evil-mode)
-  (evil-set-undo-system
-   (if (version<= "28" emacs-version)
-       'undo-redo
-     'undo-tree))
+  (evil-set-undo-system 'undo-tree)
 
   ;; Disable certain evil keys to make useful company-mode/embark bindings work.
   (unbind-key "C-n" evil-insert-state-map)
