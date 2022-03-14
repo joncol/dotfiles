@@ -628,6 +628,8 @@ Useful for REPL windows."
 
 (setq-default explicit-shell-file-name "/bin/bash")
 
+(setq-default major-mode 'text-mode)
+
 (define-minor-mode jco/my-keys-mode
   "Minor mode for my personal keybindings."
   :global t
