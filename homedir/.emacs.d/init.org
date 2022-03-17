@@ -1468,9 +1468,11 @@ Useful for REPL windows."
     (cl-pushnew '(elm-format . ("elm-format" "--stdin")) apheleia-formatters :test #'equal)
     (cl-pushnew '(elm-mode . elm-format) apheleia-mode-alist :test #'equal))
 
-  (progn ;; Haskell
+  (progn ;; Haskell/Cabal
     (cl-pushnew '(fourmolu . ("fourmolu")) apheleia-formatters :test #'equal)
-    (cl-pushnew '(haskell-mode . fourmolu) apheleia-mode-alist :test #'equal))
+    (cl-pushnew '(cabal-fmt . ("~/.cabal/bin/cabal-fmt")) apheleia-formatters :test #'equal)
+    (cl-pushnew '(haskell-mode . fourmolu) apheleia-mode-alist :test #'equal)
+    (cl-pushnew '(haskell-cabal-mode . cabal-fmt) apheleia-mode-alist :test #'equal))
 
   (progn ;; JavaScript
     (setf (alist-get 'prettier apheleia-formatters)
@@ -3422,6 +3424,8 @@ Lisp function does not specify a special indentation."
             (sp-local-pair 'haskell-mode "{" "}")
             (setq haskell-hoogle-command nil)
             (ligature-mode)))
+
+(add-hook 'haskell-cabal-mode-hook #'jco/common-prog)
 
 (use-package lsp-haskell
   :hook ((haskell-mode . lsp-deferred)
