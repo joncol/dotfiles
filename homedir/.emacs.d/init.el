@@ -2,7 +2,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"nubox-dark"))
+(let ((my-theme '"doom-challenger-deep"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -1839,7 +1839,8 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :config
   (setq sml/no-confirm-load-theme t)
   ;; (setq sml/theme 'atom-one-dark)
-  (sml/setup))
+  (sml/setup)
+  (sml/apply-theme 'dark))
 
 (use-package smart-mode-line-atom-one-dark-theme
   :disabled)

@@ -12,7 +12,7 @@
 Current theme. Change this to whatever theme you want, by copying the line from
 the list below.
 #+name: my-theme
-: nubox-dark
+: doom-challenger-deep
 #+begin_src emacs-lisp :var my-theme=my-theme
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
@@ -2088,7 +2088,8 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :config
   (setq sml/no-confirm-load-theme t)
   ;; (setq sml/theme 'atom-one-dark)
-  (sml/setup))
+  (sml/setup)
+  (sml/apply-theme 'dark))
 
 (use-package smart-mode-line-atom-one-dark-theme
   :disabled)
