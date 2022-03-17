@@ -6,6 +6,6 @@
  (haskell-mode . ((apheleia-formatter . brittany)
                   (fill-column . 90)))
 
- (haskell-cabal-mode . ((apheleia-mode -1)))
+ (haskell-cabal-mode . ((eval . (apheleia-mode -1))))
 
- (json-mode . ((apheleia-mode -1))))
+ (json-mode . ((eval . (apheleia-mode -1)))))
