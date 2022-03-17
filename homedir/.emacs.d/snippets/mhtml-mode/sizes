@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: Add Tailwind CSS media size breakpoints
-# key: sz
+# key: sizes
 # --
 sm:bg-yellow-300 md:bg-green-300 lg:bg-pink-300 xl:bg-blue-300 2xl:bg-red-300
