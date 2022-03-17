@@ -3762,11 +3762,12 @@ repo."
 
 (use-package undo-tree
   :defer
+  :custom
+  (undo-tree-visualizer-diff t) 
+  (undo-tree-visualizer-timestamps t)
+  (undo-tree-auto-save-history nil)
   :init
-  (global-undo-tree-mode)
-  :config
-  (setq undo-tree-visualizer-diff t)
-  (setq undo-tree-visualizer-timestamps t))
+  (global-undo-tree-mode))
 
 (require 'kurecolor)
 
