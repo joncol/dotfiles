@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Log
+# key: lg
+# --
+logInfo_ $ "${1:message}"
