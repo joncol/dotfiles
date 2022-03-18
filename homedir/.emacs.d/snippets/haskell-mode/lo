@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Log object
+# key: lo
+# --
+logInfo_ $ "${1:object}: " <> showt ($1)
