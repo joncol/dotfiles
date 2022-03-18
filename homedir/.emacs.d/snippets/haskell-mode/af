@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Assert false
+# key: af
+# --
+assertBool "Dummy" False
