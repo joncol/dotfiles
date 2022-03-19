@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Basic Tailwind CSS file
+# key: tailwind
+# --
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
