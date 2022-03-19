@@ -3257,7 +3257,12 @@ Lisp function does not specify a special indentation."
   (define-key js-mode-map (kbd "M-.") nil))
 
 (use-package js2-mode
-  :mode "\\.js\\'")
+  :mode "\\.js\\'"
+  :init
+  (add-hook 'js-jsx-mode-hook
+            (lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w"))))
 
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js-jsx-mode))
 
