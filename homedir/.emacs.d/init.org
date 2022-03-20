@@ -4079,12 +4079,12 @@ repo."
     "gzp" #'evil-mc-make-and-goto-prev-cursor
     "gzN" #'evil-mc-make-and-goto-last-cursor
     "gzP" #'evil-mc-make-and-goto-first-cursor)
-  (with-eval-after-load 'evil-mc
-    (evil-define-key '(normal visual) evil-mc-key-map
-      (kbd "C-n") #'evil-mc-make-and-goto-next-cursor
-      (kbd "C-S-n") #'evil-mc-make-and-goto-last-cursor
-      (kbd "C-p") #'evil-mc-make-and-goto-prev-cursor
-      (kbd "C-S-p") #'evil-mc-make-and-goto-first-cursor))
+  ;; (with-eval-after-load 'evil-mc
+  ;;   (evil-define-key '(normal visual) evil-mc-key-map
+  ;;     (kbd "C-n") #'evil-mc-make-and-goto-next-cursor
+  ;;     (kbd "C-S-n") #'evil-mc-make-and-goto-last-cursor
+  ;;     (kbd "C-p") #'evil-mc-make-and-goto-prev-cursor
+  ;;     (kbd "C-S-p") #'evil-mc-make-and-goto-first-cursor))
   (global-evil-mc-mode)
   (add-hook 'evil-mc-before-cursors-created
             (lambda ()
