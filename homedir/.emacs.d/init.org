@@ -1477,8 +1477,7 @@ Useful for REPL windows."
   (progn ;; JavaScript
     (setf (alist-get 'prettier apheleia-formatters)
           '(npx "prettier"
-                "--stdin-filepath" filepath "--trailing-comma" "none"
-                "--no-bracket-spacing"
+                "--stdin-filepath" filepath
                 (when (bound-and-true-p fill-column)
                   (list "--print-width" (number-to-string fill-column))))))
   (progn ;; Nix
