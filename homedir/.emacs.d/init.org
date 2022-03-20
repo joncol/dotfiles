@@ -3548,6 +3548,8 @@ Lisp function does not specify a special indentation."
 (use-package js2-mode
   :mode "\\.js\\'"
   :init
+  (require 'lsp-tailwindcss)
+  (add-to-list 'lsp-tailwindcss-major-modes 'js-jsx-mode)
   (add-hook 'js-jsx-mode-hook
             (lambda ()
               ;; do not treat "-" as a word separator
