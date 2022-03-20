@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Prettier config
+# key: prettier
+# --
+// prettier.config.js
+module.exports = {
+  printWidth: 80,
+  bracketSpacing: true,
+  trailingComma: "none"
+};
