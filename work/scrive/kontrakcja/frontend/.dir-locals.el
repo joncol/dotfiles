@@ -1,12 +1,12 @@
 ((css-mode . ((eval . (apheleia-mode -1))))
 
  (web-mode . ((eval . (apheleia-mode -1))
-              (fill-column . 90)))
+              (fill-column . 120)))
 
  (less-css-mode . ((eval . (apheleia-mode -1))))
 
  (js-mode . ((eval . (apheleia-mode -1))
-             (fill-column . 90)
+             (fill-column . 120)
              (evil-shift-width . 2)
              (js-indent-level . 2)))
 
