@@ -3,4 +3,4 @@ tests: True
 test-options: "--color=always"
 test-show-details: streaming
 package kontrakcja
-  ghc-options: -Wwarn -fdefer-typed-holes
+  ghc-options: -Wwarn -fdefer-typed-holes -Wno-missed-extra-shared-lib
