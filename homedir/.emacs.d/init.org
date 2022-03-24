@@ -950,6 +950,7 @@ Useful for REPL windows."
 
 (add-hook 'conf-mode-hook
           (lambda ()
+            (jco/common-prog)
             (modify-syntax-entry ?_ "w")))
 
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
