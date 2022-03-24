@@ -645,6 +645,7 @@ Useful for REPL windows."
   (scroll-bar-mode -1))
 (tool-bar-mode -1)
 (global-auto-revert-mode)
+(setq auto-revert-verbose nil)
 (add-to-list 'revert-without-query ".*\\.pdf\\'")
 (global-font-lock-mode)
 (setq select-enable-primary t)
