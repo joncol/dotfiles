@@ -2747,7 +2747,7 @@ As such, it will only work when the notes window exists."
 (use-package highlight-indent-guides
   :hook ((prog-mode . highlight-indent-guides-mode)
          (conf-mode . highlight-indent-guides-mode))
-  :custom (highlight-indent-guides-method 'bitmap))
+  :custom (highlight-indent-guides-method 'character))
 
 (add-hook 'c-mode-common-hook
           (lambda ()
