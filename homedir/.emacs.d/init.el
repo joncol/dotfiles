@@ -2,7 +2,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"doom-challenger-deep"))
+(let ((my-theme '"nubox-light"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -4175,7 +4175,8 @@ repo."
      (set-face-background 'vhl/default-face "#e0dcbe"))
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-pair-overlay-face "#c7c3a5"))
-   (set-face-background 'region "#ffc3ff")
+   (set-face-background 'highlight "#88d6e5")
+   (set-face-background 'region "#88d6e5")
    (set-face-background 'ffap "#ffc3ff")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (with-eval-after-load 'ledger-mode
