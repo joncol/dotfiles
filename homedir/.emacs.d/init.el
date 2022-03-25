@@ -4171,6 +4171,10 @@ repo."
    (setq sml/theme 'light)
    (setq jco/cursor-color "#101f24")
    (set-face-background 'hl-line "#e0dcbe")
+   (with-eval-after-load 'company
+     (set-face-background 'company-tooltip-selection "#fd79a8")
+     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
+     (set-face-foreground 'company-preview-common "#a0a0a0"))
    (with-eval-after-load 'volatile-highlights
      (set-face-background 'vhl/default-face "#e0dcbe"))
    (with-eval-after-load 'smartparens
