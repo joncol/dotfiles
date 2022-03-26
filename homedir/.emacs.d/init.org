@@ -1512,6 +1512,8 @@ Useful for REPL windows."
   ;; (sp-pair "\"" nil :actions :rem)
   (show-smartparens-global-mode)
   (setq sp-navigate-interactive-always-progress-point t)
+  (dolist (mode '(elm-mode haskell-mode))
+    (push mode sp-no-reindent-after-kill-modes))
   (jco/define-bindings global-map
                        '(("M-(" . (lambda (&optional arg)
                                     (interactive "P")
