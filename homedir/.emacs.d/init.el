@@ -3028,7 +3028,9 @@ Opens a new buffer with the result."
             (lambda ()
               (smartparens-mode)
               (display-fill-column-indicator-mode -1)
-              (setq indent-tabs-mode nil))))
+              (setq indent-tabs-mode nil)
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w"))))
 
 (defun fuco1/lisp-indent-function (indent-point state)
   "This function is the normal value of the variable `lisp-indent-function'.
