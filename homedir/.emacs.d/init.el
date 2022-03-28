@@ -1415,6 +1415,7 @@ Example: `helloWorld` becomes `Hello world`."
   :defer)
 
 (use-package tree-sitter
+  :disabled
   :defer 1
   :config
   (global-tree-sitter-mode)
