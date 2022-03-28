@@ -3233,6 +3233,9 @@ Lisp function does not specify a special indentation."
                   (gradle-run "test --info")))
               (evil-leader/set-key "t s" 'gradle-single-test))))
 
+(use-package jinja2-mode
+  :defer)
+
 ;; Use local eslint from node_modules before global one.
 ;; See: http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
 (defun my/use-eslint-from-node-modules ()
@@ -3273,9 +3276,6 @@ Lisp function does not specify a special indentation."
               (modify-syntax-entry ?- "w"))))
 
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js-jsx-mode))
-
-(use-package jinja2-mode
-  :defer)
 
 (use-package json-mode
   :defer)
