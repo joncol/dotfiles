@@ -4127,7 +4127,8 @@ repo."
      (set-face-background 'sp-pair-overlay-face "#c7c3a5"))
    (set-face-background 'highlight "#88d6e5")
    (set-face-background 'region "#88d6e5")
-   (set-face-background 'ffap "#ffc3ff")
+   (with-eval-after-load 'ffap
+     (set-face-background 'ffap "#ffc3ff"))
    (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (with-eval-after-load 'ledger-mode
      (set-face-background 'ledger-font-xact-highlight-face "#e0dcbe")
