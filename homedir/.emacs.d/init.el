@@ -3279,7 +3279,12 @@ Lisp function does not specify a special indentation."
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js-jsx-mode))
 
 (use-package json-mode
-  :defer)
+  :defer
+  :config
+  (add-hook 'json-mode-hook
+            (lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w"))))
 
 (use-package slime
   :after lisp-mode

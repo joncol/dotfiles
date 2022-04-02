@@ -3572,7 +3572,12 @@ Lisp function does not specify a special indentation."
 ** JSON
 #+begin_src emacs-lisp
 (use-package json-mode
-  :defer)
+  :defer
+  :config
+  (add-hook 'json-mode-hook
+            (lambda ()
+              ;; do not treat "-" as a word separator
+              (modify-syntax-entry ?- "w"))))
 #+end_src
 ** Lisp
 #+begin_src emacs-lisp
