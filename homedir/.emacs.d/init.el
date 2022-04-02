@@ -3165,6 +3165,7 @@ Lisp function does not specify a special indentation."
 
 (add-hook 'html-mode-hook
           (lambda ()
+            (setq sgml-xml-mode t)
             (smartparens-mode)
             ;; do not treat "-" as a word separator
             (modify-syntax-entry ?- "w")))
