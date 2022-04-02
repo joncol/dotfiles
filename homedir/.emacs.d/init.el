@@ -2604,6 +2604,7 @@ As such, it will only work when the notes window exists."
   (org-roam-bibtex-mode))
 
 (use-package ox-hugo
+  :disabled
   :after ox
   :init
   (with-eval-after-load 'org-capture
