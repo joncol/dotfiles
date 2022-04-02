@@ -2343,17 +2343,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (when (string-prefix-p "jira:" link)
     (string-remove-prefix "jira:" link)))
 
-(use-package cha
-  :disabled
-  :straight (cha :type git :host github :repo "joncol/cha")
-  :commands (cha-create-story cha-edit-story)
-  :init
-  (evil-leader/set-key "x c" #'cha-create-story)
-  (evil-leader/set-key "x e" #'cha-edit-story)
-  :config
-  (setq cha-clubhouse-default-project "Backend")
-  (require 'my-secrets (concat user-emacs-directory "lisp/my-secrets.el.gpg")))
-
 (use-package org-bullets
   :after org
   :config
@@ -2407,7 +2396,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   "Go to project's todo.org, section: HEADLINE."
   (set-buffer (org-capture-target-buffer
                (concat (project-root (project-current))
-                                     "todo.org")))
+                       "todo.org")))
   (org-capture-put-target-region-and-position)
   (widen)
   (goto-char (point-min))
@@ -2566,16 +2555,16 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                                      (org-display-inline-images)))))
   (require 'org-agenda)
   (bind-keys :map org-agenda-mode-map
-    ("j"       . org-agenda-next-item)
-    ("k"       . org-agenda-previous-item)
-    ("C-w h"   . windmove-left)
-    ("C-w j"   . windmove-down)
-    ("C-w k"   . windmove-up)
-    ("C-w l"   . windmove-right)
-    ("C-w C-h" . windmove-left)
-    ("C-w C-j" . windmove-down)
-    ("C-w C-k" . windmove-up)
-    ("C-w C-l" . windmove-right))
+             ("j"       . org-agenda-next-item)
+             ("k"       . org-agenda-previous-item)
+             ("C-w h"   . windmove-left)
+             ("C-w j"   . windmove-down)
+             ("C-w k"   . windmove-up)
+             ("C-w l"   . windmove-right)
+             ("C-w C-h" . windmove-left)
+             ("C-w C-j" . windmove-down)
+             ("C-w C-k" . windmove-up)
+             ("C-w C-l" . windmove-right))
   (jco/add-youtube-link-type "yt")
   (jco/add-youtube-link-type "ytnc" "&controls=0")
   (define-key org-mode-map (kbd "M-o") 'ace-link-org)
@@ -2622,13 +2611,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   ;; Set default column view headings: Task Total-Time Time-Stamp
   (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"))
 
-(use-package org-habit-plus
-  :disabled
-  :straight (org-habit-plus :type git :host github
-                            :repo "oddious/org-habit-plus")
-  :init
-  (add-to-list 'org-modules 'org-habit))
-
 ;; Source: https://org-roam.discourse.group/t/creating-an-org-roam-note-from-an-existing-headline/978
 (defun org-roam-create-note-from-headline ()
   "Create an Org-roam note from the current headline and jump to it.
@@ -2663,7 +2645,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
   :if (and (not (eq system-type 'windows-nt))
            (display-graphic-p))
   :bind (:map org-noter-doc-mode-map
-         (("M-I" . org-noter-insert-note)))
+              (("M-I" . org-noter-insert-note)))
   :config
   (setq org-noter-always-create-frame nil)
   (setq org-noter-hide-other nil)
@@ -2818,11 +2800,11 @@ As such, it will only work when the notes window exists."
 ,#+last_modified: %U")
       :unnarrowed t)))
   :bind (:map org-roam-mode-map
-         (("C-c n l" . org-roam)
-          ("C-c n f" . org-roam-node-find)
-          ("C-c n g" . org-roam-graph))
-         :map org-mode-map
-         (("C-c n i" . org-roam-node-insert)))
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-node-find)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-node-insert)))
   :init
   (add-hook 'after-init-hook
             (lambda ()
@@ -2873,54 +2855,6 @@ As such, it will only work when the notes window exists."
   (setq bibtex-completion-pdf-field "File")
   (setq bibtex-completion-notes-path "~/org/roam/ref")
   (org-roam-bibtex-mode))
-
-(use-package org-super-agenda
-  :disabled
-  :after org
-  :custom
-  (org-super-agenda-groups
-   '(;; Each group has an implicit boolean OR operator between its selectors.
-     (:name "Today"  ; Optionally specify section name
-      :time-grid t  ; Items that appear on the time grid
-      :todo "TODAY")  ; Items that have this TODO keyword
-     (:name "Important"
-      ;; Single arguments given alone
-      :tag "bills"
-      :priority "A")
-     ;; Set order of multiple groups at once
-     (:order-multi (2 (:name "Shopping in town"
-                       ;; Boolean AND group matches items that match all subgroups
-                       :and (:tag "shopping" :tag "@town"))
-                      (:name "Food-related"
-                       ;; Multiple args given in list with implicit OR
-                       :tag ("food" "dinner"))
-                      (:name "Personal"
-                       :habit t
-                       :tag "personal")
-                      (:name "Space-related (non-moon-or-planet-related)"
-                       ;; Regexps match case-insensitively on the entire entry
-                       :and (:regexp ("space" "NASA")
-                             ;; Boolean NOT also has implicit OR between selectors
-                             :not (:regexp "moon" :tag "planet")))))
-     ;; Groups supply their own section names when none are given
-     (:todo "WAITING" :order 8)  ; Set order of this section
-     (:todo ("SOMEDAY" "TO-READ" "CHECK" "TO-WATCH" "WATCHING")
-      ;; Show this group at the end of the agenda (since it has the
-      ;; highest number). If you specified this group last, items
-      ;; with these todo keywords that e.g. have priority A would be
-      ;; displayed in that group instead, because items are grouped
-      ;; out in the order the groups are listed.
-      :order 9)
-     (:priority<= "B"
-      ;; Show this section after "Today" and "Important", because
-      ;; their order is unspecified, defaulting to 0. Sections
-      ;; are displayed lowest-number-first.
-      :order 1)
-     ;; After the last group, the agenda will display items that didn't
-     ;; match any of these groups, with the default order position of 99
-     ))
-  :config
-  (org-super-agenda-mode))
 
 (use-package ox-hugo
   :after ox
