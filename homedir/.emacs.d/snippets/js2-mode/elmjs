@@ -2,9 +2,9 @@
 # name: elmjs
 # key: elmjs
 # --
-import { Elm } from "./src/Main.elm";
+import { Elm } from "./src/${1:Main}.elm";
 
-const app = Elm.Main.init({
+const app = Elm.$1.init({
   node: document.getElementById("root")
 });
 
