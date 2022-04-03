@@ -30,6 +30,25 @@
 
 (defvar evil-want-C-i-jump nil)
 
+(defvar nav-prefix "M-n"
+  "Key prefix used for commands related to navigation.")
+
+(defun jco/enable-exit-insert-mode-chord (enable)
+  (general-imap "l"
+    (and enable (general-key-dispatch 'self-insert-command
+                  :timeout 0.25
+                  "h" 'evil-normal-state))))
+
+(use-package general
+  :commands
+  (general-define-key)
+  :init
+  (eval-when-compile
+    (require 'general))
+  :config
+  (general-evil-setup)
+  (jco/enable-exit-insert-mode-chord t))
+
 (defun apply-ansi-colors ()
   "Apply ANSI colors on region."
   (interactive)
@@ -74,13 +93,6 @@ If PRINT-MESSAGE is true, a message will be printed indicating the result."
   (with-temp-buffer
     (insert-file-contents file-path)
     (split-string (buffer-string) "\n" t)))
-
-(defun jco/define-bindings (keymap binding-alist)
-  "Define keys for KEYMAP given a BINDING-ALIST."
-  (dolist (p binding-alist)
-    (let ((key (car p))
-          (command (cdr p)))
-      (define-key keymap (kbd key) command))))
 
 (defun jco/move-key (key keymap-from keymap-to)
   "Move KEY binding from KEYMAP-FROM to KEYMAP-TO."
@@ -396,12 +408,12 @@ invokation."
   (when (display-graphic-p)
     (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward))
 
-  (jco/define-bindings 'evil-window-map
-                       '(("C-h" . windmove-left)
-                         ("C-j" . windmove-down)
-                         ("C-k" . windmove-up)
-                         ("C-l" . windmove-right)))
-
+  (general-def evil-window-map
+    "C-h" 'windmove-left
+    "C-j" 'windmove-down
+    "C-k" 'windmove-up
+    "C-l" 'windmove-right)
+  
   (setq evil-flash-delay 3600))
 
 (use-package evil-collection
@@ -525,25 +537,6 @@ Useful for REPL windows."
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
 
-(defvar nav-prefix "M-n"
-  "Key prefix used for commands related to navigation.")
-
-(defun jco/enable-exit-insert-mode-chord (enable)
-  (general-imap "l"
-    (and enable (general-key-dispatch 'self-insert-command
-                  :timeout 0.25
-                  "h" 'evil-normal-state))))
-
-(use-package general
-  :commands
-  (general-define-key)
-  :init
-  (eval-when-compile
-    (require 'general))
-  :config
-  (general-evil-setup)
-  (jco/enable-exit-insert-mode-chord t))
-
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
 
@@ -591,17 +584,18 @@ Useful for REPL windows."
               ;; do not treat "-" as a word separator
               (modify-syntax-entry ?- "w"))))
 
-(jco/define-bindings Info-mode-map
-                     '(("<tab>"     . Info-next-reference)
-                       ("<backtab>" . Info-prev-reference)))
+(general-def Info-mode-map
+  "TAB"     'Info-next-reference
+  "BACKTAB" 'Info-prev-reference)
 
 (require 'help-mode)
 (bind-keys :map help-mode-map
   ("<tab>"     . forward-button)
   ("<backtab>" . backward-button))
 
-(jco/define-bindings help-mode-map '(("C-c C-b" . help-go-back)
-                                     ("C-c C-f" . help-go-forward)))
+(general-def help-mode-map
+  "C-c C-b" 'help-go-back
+  "C-c C-f" 'help-go-forward)
 
 (when (display-graphic-p)
   (global-unset-key (kbd "C-x C-z")))
@@ -731,9 +725,9 @@ Useful for REPL windows."
   "Enable evil motion state."
   (evil-motion-state))
 
-(jco/define-bindings minibuffer-inactive-mode-map
-                     '(("C-n" . ido-next-match)
-                       ("C-p" . ido-prev-match)))
+(general-def minibuffer-inactive-mode-map
+  "C-n" 'ido-next-match
+  "C-p" 'ido-prev-match)
 
 (setq compilation-scroll-output t)
 
@@ -1281,36 +1275,36 @@ Useful for REPL windows."
   (setq sp-navigate-interactive-always-progress-point t)
   (dolist (mode '(elm-mode haskell-mode))
     (push mode sp-no-reindent-after-kill-modes))
-  (jco/define-bindings global-map
-                       '(("M-(" . (lambda (&optional arg)
-                                    (interactive "P")
-                                    (sp-wrap-with-pair "(")))
-                         ("M-{" . (lambda (&optional arg)
-                                    (interactive "P")
-                                    (sp-wrap-with-pair "{")))
-                         ("M-\"" . (lambda (&optional arg)
-                                     (interactive "P")
-                                     (sp-wrap-with-pair "\"")))))
+  (general-def global-map
+    "M-(" '(lambda (&optional arg)
+             (interactive "P")
+             (sp-wrap-with-pair "("))
+    "M-{" '(lambda (&optional arg)
+             (interactive "P")
+             (sp-wrap-with-pair "{"))
+    "M-\"" '(lambda (&optional arg)
+              (interactive "P")
+              (sp-wrap-with-pair "\"")))
   ;; This is needed to avoid problems when using tmux in console mode.
   ;; Before this, things would become wrapped in brackets when switching
   ;; panes.
   (when (display-graphic-p)
-    (jco/define-bindings global-map
-                         '(("M-[" . (lambda (&optional arg)
-                                      (interactive "P")
-                                      (sp-wrap-with-pair "["))))))
-  (jco/define-bindings smartparens-mode-map
-                       '(("M-?" . sp-convolute-sexp)
-                         ("C-k" . sp-kill-hybrid-sexp)
-                         ("M-j" . sp-join-sexp)
-                         ("M-C" . sp-clone-sexp)
-                         ("C-M-n" . sp-next-sexp)
-                         ("C-M-p" . sp-previous-sexp)
-                         ("C-M-e" . sp-up-sexp)
-                         ("C-M-d" . sp-down-sexp)
-                         ("C-M-a" . sp-backward-down-sexp)
-                         ("C-S-d" . sp-beginning-of-sexp)
-                         ("C-S-a" . sp-end-of-sexp)))
+    (general-define-key
+     "M-[" '(lambda (&optional arg)
+              (interactive "P")
+              (sp-wrap-with-pair "["))))
+  (general-def smartparens-mode-map
+    "M-?" 'sp-convolute-sexp
+    "C-k" 'sp-kill-hybrid-sexp
+    "M-j" 'sp-join-sexp
+    "M-C" 'sp-clone-sexp
+    "C-M-n" 'sp-next-sexp
+    "C-M-p" 'sp-previous-sexp
+    "C-M-e" 'sp-up-sexp
+    "C-M-d" 'sp-down-sexp
+    "C-M-a" 'sp-backward-down-sexp
+    "C-S-d" 'sp-beginning-of-sexp
+    "C-S-a" 'sp-end-of-sexp)
   (sp-with-modes (cl-set-difference sp-lisp-modes sp-clojure-modes)
     (sp-local-pair "'" nil :actions nil)
     (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))
@@ -2294,12 +2288,12 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
   (setq org-mobile-force-id-on-agenda-items nil)
   (global-unset-key (kbd "C-x C-v"))
-  (jco/define-bindings org-mode-map
-                       '(("<f5>" . (lambda ()
-                                     (interactive)
-                                     (org-remove-inline-images)
-                                     (org-ctrl-c-ctrl-c)
-                                     (org-display-inline-images)))))
+  (general-def org-mode-map
+    "<f5>" '(lambda ()
+              (interactive)
+              (org-remove-inline-images)
+              (org-ctrl-c-ctrl-c)
+              (org-display-inline-images)))
   (require 'org-agenda)
   (bind-keys :map org-agenda-mode-map
              ("j"       . org-agenda-next-item)
@@ -2629,12 +2623,12 @@ As such, it will only work when the notes window exists."
                    (file+olp "blog.org" "Weblog ideas")
                    (function org-hugo-new-subtree-post-capture-template)))))
 
-(jco/define-bindings global-map
-                     '(("C-c a"   . org-agenda)
-                       ("C-c c"   . org-capture)
-                       ("C-c l"   . org-store-link)
-                       ("C-c M-w" . org-copy)
-                       ("C-c C-w" . org-refile)))
+(general-define-key
+ "C-c a"   'org-agenda
+ "C-c c"   'org-capture
+ "C-c l"   'org-store-link
+ "C-c M-w" 'org-copy
+ "C-c C-w" 'org-refile)
 
 (use-package ox-slack
   :defer
@@ -3145,12 +3139,11 @@ Lisp function does not specify a special indentation."
               (help-at-pt-set-timer)
               (setq comment-start "//"
                     comment-end "")
-              (jco/define-bindings
-               java-mode-map
-               '(("M-g M-n" . eclim-problems-next-same-file)
-                 ("M-g n" . eclim-problems-next-same-file)
-                 ("M-g M-p" . eclim-problems-prev-same-file)
-                 ("M-g p" . eclim-problems-prev-same-file))))))
+              (general-def java-mode-map
+                "M-g M-n" 'eclim-problems-next-same-file
+                "M-g n" 'eclim-problems-next-same-file
+                "M-g M-p" 'eclim-problems-prev-same-file
+                "M-g p" 'eclim-problems-prev-same-file))))
 
 (use-package gradle-mode
   :disabled
