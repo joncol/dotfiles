@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: Elm sections
+# key: sections
+# --
+-- MAIN
+
+
+-- MODEL
+
+
+-- UPDATE
+
+
+-- SUBSCRIPTIONS
+
+
+-- VIEW
