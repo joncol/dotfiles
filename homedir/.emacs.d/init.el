@@ -2598,7 +2598,6 @@ As such, it will only work when the notes window exists."
   (org-roam-bibtex-mode))
 
 (use-package ox-hugo
-  :disabled
   :after ox
   :init
   (with-eval-after-load 'org-capture
@@ -2958,9 +2957,7 @@ Opens a new buffer with the result."
             (lambda ()
               (smartparens-mode)
               (display-fill-column-indicator-mode -1)
-              (setq indent-tabs-mode nil)
-              ;; do not treat "-" as a word separator
-              (modify-syntax-entry ?- "w"))))
+              (setq indent-tabs-mode nil))))
 
 (defun fuco1/lisp-indent-function (indent-point state)
   "This function is the normal value of the variable `lisp-indent-function'.
