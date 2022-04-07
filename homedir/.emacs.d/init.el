@@ -420,6 +420,7 @@ invokation."
   :after evil
   :ensure t
   :config
+  (setq forge-add-default-bindings nil)
   (evil-collection-init))
 
 (use-package evil-ediff
