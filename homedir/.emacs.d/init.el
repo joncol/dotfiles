@@ -413,7 +413,7 @@ invokation."
     "C-j" 'windmove-down
     "C-k" 'windmove-up
     "C-l" 'windmove-right)
-  
+
   (setq evil-flash-delay 3600))
 
 (use-package evil-collection
@@ -3698,7 +3698,7 @@ repo."
 (use-package undo-tree
   :defer
   :custom
-  (undo-tree-visualizer-diff t) 
+  (undo-tree-visualizer-diff t)
   (undo-tree-visualizer-timestamps t)
   (undo-tree-auto-save-history nil)
   :init
