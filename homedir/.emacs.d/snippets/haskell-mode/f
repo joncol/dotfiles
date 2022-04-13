@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Focus test
+# key: f
+# --
+focus $ 
