@@ -4212,6 +4212,11 @@ repo."
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "black")))
 
+  (doom-gruvbox-light
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+   (with-eval-after-load 'volatile-highlights
+     (set-face-background 'vhl/default-face (jco/current-bg -0.10))))
+
   (doom-henna
    (set-face-background 'evil-search-highlight-persist-highlight-face "#6ab04c")
    (with-eval-after-load 'vertico
