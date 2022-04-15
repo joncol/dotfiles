@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Outgoing port
+# key: outport
+# --
+port send${2:Name} : Maybe ${1:String} -> Cmd msg

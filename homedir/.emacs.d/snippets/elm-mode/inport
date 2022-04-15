@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Incoming port
+# key: inport
+# --
+port receive${2:Name} : (${1:String} -> msg) -> Sub msg
