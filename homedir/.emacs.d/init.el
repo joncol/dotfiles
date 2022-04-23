@@ -3055,7 +3055,10 @@ Lisp function does not specify a special indentation."
   (push '("\\.frag$" . glsl-mode) auto-mode-alist)
   (push '("\\.vert$" . glsl-mode) auto-mode-alist)
   :config
-  (direnv-update-environment))
+  (direnv-update-environment)
+  (add-hook 'glsl-mode-hook
+            (lambda ()
+              (smartparens-mode))))
 
 (use-package go-mode
   :defer
