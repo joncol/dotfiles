@@ -1345,7 +1345,8 @@ Example: `helloWorld` becomes `Hello world`."
 (use-package super-save
   :defer 1
   :config
-  (setq super-save-exclude '("\\.gpg" "\\.pdf"))
+  (setq super-save-exclude
+        '("\\.gpg" "\\.pdf" "\\.fsh" "\\.vsh" "\\.frag" "\\.vert"))
   (super-save-mode))
 
 (use-package unkillable-scratch
@@ -3049,10 +3050,10 @@ Lisp function does not specify a special indentation."
 (use-package glsl-mode
   :defer
   :init
-  (push '("\\.vsh$" . glsl-mode) auto-mode-alist)
   (push '("\\.fsh$" . glsl-mode) auto-mode-alist)
-  (push '("\\.vert$" . glsl-mode) auto-mode-alist)
+  (push '("\\.vsh$" . glsl-mode) auto-mode-alist)
   (push '("\\.frag$" . glsl-mode) auto-mode-alist)
+  (push '("\\.vert$" . glsl-mode) auto-mode-alist)
   :config
   (direnv-update-environment))
 
