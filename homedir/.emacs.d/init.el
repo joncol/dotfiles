@@ -1232,6 +1232,9 @@ Useful for REPL windows."
     (cl-pushnew '(elm-format . ("elm-format" "--stdin")) apheleia-formatters :test #'equal)
     (cl-pushnew '(elm-mode . elm-format) apheleia-mode-alist :test #'equal))
 
+  (progn ;; GLSL
+    (cl-pushnew '(glsl-mode . clang-format) apheleia-mode-alist :test #'equal))
+
   (progn ;; Haskell/Cabal
     (cl-pushnew '(fourmolu . ("fourmolu")) apheleia-formatters :test #'equal)
     (cl-pushnew '(cabal-fmt . ("~/.cabal/bin/cabal-fmt")) apheleia-formatters :test #'equal)
@@ -3044,7 +3047,14 @@ Lisp function does not specify a special indentation."
   :defer)
 
 (use-package glsl-mode
-  :defer)
+  :defer
+  :init
+  (push '("\\.vsh$" . glsl-mode) auto-mode-alist)
+  (push '("\\.fsh$" . glsl-mode) auto-mode-alist)
+  (push '("\\.vert$" . glsl-mode) auto-mode-alist)
+  (push '("\\.frag$" . glsl-mode) auto-mode-alist)
+  :config
+  (direnv-update-environment))
 
 (use-package go-mode
   :defer
