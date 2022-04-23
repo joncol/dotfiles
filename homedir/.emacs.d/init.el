@@ -3058,6 +3058,7 @@ Lisp function does not specify a special indentation."
   (direnv-update-environment)
   (add-hook 'glsl-mode-hook
             (lambda ()
+              (setq c-basic-offset 2)
               (smartparens-mode))))
 
 (use-package go-mode
