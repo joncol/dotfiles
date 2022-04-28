@@ -4386,6 +4386,9 @@ repo."
      (set-face-foreground 'mu4e-highlight-face "#101f24")
      (set-face-background 'mu4e-highlight-face "#7ceece")))
 
+  (light-blue
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "#fcd34d"))
   (material
    (set-face-background 'hl-line "#37474f")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
