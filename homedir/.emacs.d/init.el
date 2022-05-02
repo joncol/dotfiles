@@ -4041,7 +4041,12 @@ repo."
 
   (light-blue
    (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "#fcd34d"))
+                        "#fcd34d")
+   (with-eval-after-load 'company
+     (set-face-background 'company-tooltip-selection "#fd79a8")
+     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
+     (set-face-foreground 'company-preview-common "#f0f0f0")))
+
   (material
    (set-face-background 'hl-line "#37474f")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
