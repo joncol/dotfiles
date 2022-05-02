@@ -3695,6 +3695,12 @@ Configuration common to all Lisps.
               (sp-pair "\'" nil :actions :rem)
               (modify-syntax-entry ?! "w"))))
 #+end_src
+** Shell scripts
+#+begin_src emacs-lisp
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (smartparens-mode)))
+#+end_src
 ** SQL
 #+begin_src emacs-lisp
 (add-hook 'sql-mode-hook

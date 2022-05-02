@@ -3379,6 +3379,10 @@ Lisp function does not specify a special indentation."
               (sp-pair "\'" nil :actions :rem)
               (modify-syntax-entry ?! "w"))))
 
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (smartparens-mode)))
+
 (add-hook 'sql-mode-hook
           (lambda ()
             (setq evil-shift-width 4)
