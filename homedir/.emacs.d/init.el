@@ -49,128 +49,10 @@
   (general-evil-setup)
   (jco/enable-exit-insert-mode-chord t))
 
-(defun apply-ansi-colors ()
-  "Apply ANSI colors on region."
-  (interactive)
-  (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region (point-min) (point-max))))
-
-(defun get-ip-address (&optional dev)
-  "Get the IP-address for device DEV (default: eth0)."
-  (let ((dev (if dev dev "eth0")))
-    (format-network-address (car (network-interface-info dev)) t)))
-
-(defun jco/update-dotfiles ()
-  "Get the latest dotfiles from source control."
-  (shell-process-pushd "~/dotfiles")
-  (magit-pull-from-pushremote nil)
-  (shell-process-popd "1"))
-
-(defun jco/at-office-p (&optional print-message)
-  "Check whether at the office.
-If PRINT-MESSAGE is true, a message will be printed indicating the result."
-  (interactive "P")
-  (let ((result (member system-name '("jco-thinkpad"))))
-    (if print-message
-        (message (if result
-                     "You're at the office"
-                   "You're not at the office"))
-      result)))
-
-(defun jco/at-digitalocean-p (&optional print-message)
-  "Check whether on the DigitalOcean server.
-If PRINT-MESSAGE is true, a message will be printed indicating the result."
-  (interactive "P")
-  (let ((result (string-equal "162.243.220.203" (get-ip-address))))
-    (if print-message
-        (message (if result
-                     "You're on DigitalOcean"
-                   "You're not on DigitalOcean"))
-      result)))
-
-(defun jco/read-lines (file-path)
-  "Return a list of lines of a file at FILE-PATH."
-  (with-temp-buffer
-    (insert-file-contents file-path)
-    (split-string (buffer-string) "\n" t)))
-
 (defun jco/move-key (key keymap-from keymap-to)
   "Move KEY binding from KEYMAP-FROM to KEYMAP-TO."
   (define-key keymap-to key (lookup-key keymap-from key))
   (define-key keymap-from key nil))
-
-(defun jco/common-prog ()
-  "Common setup for programming modes."
-  (when (display-graphic-p)
-    ;; (hl-line-mode)
-    (rainbow-delimiters-mode)
-    (rainbow-mode t))
-  (apheleia-mode)
-  (setq require-final-newline nil)
-  (ethan-wspace-mode)
-  (modify-syntax-entry ?_ "w") ; do not treat "_" as a word separator
-  (hs-minor-mode))
-
-(defun jco/underline-line (&optional char)
-  "Underline the current line with a character CHAR (\"-\" is the default)."
-  (interactive)
-  (let ((line-length (jco/get-line-length)))
-    (end-of-line)
-    (insert (concat "\n" (make-string line-length (or char ?-))))
-    (beginning-of-line)))
-
-(global-set-key (kbd "<f7>") 'jco/underline-line)
-(global-set-key (kbd "<S-f7>") (lambda () (interactive) (jco/underline-line ?=)))
-
-(defun jco/get-line-length (&optional print-message)
-  "Get the length of the current line.
-If PRINT-MESSAGE is non-nil, print a message"
-  (interactive "p")
-  (save-excursion
-    (beginning-of-line)
-    (let ((line-start-pos (point)))
-      (end-of-line)
-      (let ((line-length (- (point) line-start-pos)))
-        (when print-message (message (format "Current line length: %d"
-                                             line-length)))
-        line-length))))
-
-(defun jco/capitalize-first-char (&optional string)
-  "Capitalize the first characer of STRING."
-  (when (and string (> (length string) 0))
-   (let ((first-char (substring string 0 1))
-         (rest-str (substring string 1)))
-     (concat (capitalize first-char) rest-str))))
-
-(defun jco/downcase-first-char (string)
-  "Downcase the first character of STRING."
-  (concat (downcase (substring string 0 1)) (substring string 1)))
-
-(defun jco/cpp-insert-class-name ()
-  "Insert the class name corresponding to the name of the current buffer."
-  (interactive)
-  (insert (jco/cpp-class-name)))
-
-(defun jco/irc-account ()
-  "Return a cons cell of username and password."
-  (if (file-exists-p "~/.irc")
-    (let ((lines (jco/read-lines "~/.irc")))
-      (cons (car lines) (cadr lines)))
-    '("" . "")))
-
-(defun jco/cmake-target-string ()
-  "Get target string for CMake."
-  (let ((proj (jco/cmake-project-name)))
-    (if (string= proj "src")
-        ""
-      (concat "--target " proj))))
-
-(defun jco/cmake-project-name ()
-  "Get name of CMake project.
-Traverses the directory hierarchy upwards and looks for the first
-CMakeLists.txt file."
-  (let ((dir (locate-dominating-file (buffer-file-name) "CMakeLists.txt")))
-    (car (last (f-split dir)))))
 
 (defun jco/what-face (pos)
   "Determine the face at the point POS."
@@ -185,47 +67,6 @@ CMakeLists.txt file."
     (when g
       (global-hl-line-mode 1))))
 
-(defun jco/re-seq (regexp string)
-  "Get a list of all regex-matches of REGEXP in STRING."
-  (save-match-data
-    (let ((pos 0)
-          matches)
-      (while (string-match regexp string pos)
-        (push (match-string 0 string) matches)
-        (setq pos (match-end 0)))
-      (nreverse matches))))
-
-(defun jco/display-ansi-colors ()
-  "Display ansi color codes in buffer."
-  (interactive)
-  (ansi-color-apply-on-region (point-min) (point-max)))
-
-(defun jco/tighten-braces ()
-  "Fix formatting of braces.
-Remove empty lines after opening brace and before closing brace."
-  (interactive)
-  (save-excursion
-    ;; Remove empty line(s) after opening brace.
-    (goto-char (point-min))
-    (while (re-search-forward "{\n\n+" nil t)
-      (replace-match "{\n"))
-
-    ;; Remove empty line(s) before closing brace.
-    (goto-char (point-min))
-    (while (re-search-forward "\n\n+\\(\\s-*\\)}" nil t)
-      (replace-match "\n\\1}"))))
-
-(defun jco/run-process (program &rest args)
-  "Start process PROGRAM with arguments ARGS."
-  (apply 'start-process program nil program args))
-
-(defun jco/run-on-current-buffer (program &rest args)
-  "Start process PROGRAM with arguments ARGS on current buffer.
-The filename of the current buffer is passed as the last argument to the process
-invokation."
-  (apply 'start-process program nil program
-         (append args (list (buffer-file-name)))))
-
 (defun jco/vim ()
   "Open current buffer in Vim."
   (interactive)
@@ -238,24 +79,6 @@ invokation."
                    "nvim"
                    (format "+%d" (line-number-at-pos))
                    (buffer-file-name))))
-
-(defmacro measure-time (&rest body)
-  "Measure the time it takes to evaluate BODY."
-  `(let ((time (current-time)))
-     ,@body
-     (message "%.06f" (float-time (time-since time)))))
-
-(defun jco/find-buffers-by-regex (re)
-  "Find the first buffer with a name matching RE."
-  (seq-filter (lambda(b) (string-match re (buffer-name b))) (buffer-list)))
-
-(defun jco/select-bottom-window ()
-  "Select the bottommost window."
-  (let ((bottom-window (selected-window))
-        window-below)
-    (while (setq window-below (window-in-direction 'below bottom-window))
-      (setq bottom-window window-below))
-    (select-window bottom-window)))
 
 (defmacro jco/toggle-mode (mode)
   "Toggle between `MODE' and `normal-mode'."
@@ -621,8 +444,6 @@ Useful for REPL windows."
           (lambda ()
             (evil-normal-state)))
 
-(add-hook 'prog-mode-hook #'jco/common-prog)
-
 (add-hook 'picture-mode
           (lambda ()
             (setq evil-undo-system 'undo-redo)))
@@ -710,11 +531,6 @@ Useful for REPL windows."
             (define-key eww-mode-map "\C-w" 'evil-window-map)))
 
 (add-hook 'messages-buffer-mode-hook 'ansi-color-for-comint-mode-on)
-
-(add-hook 'conf-mode-hook
-          (lambda ()
-            (jco/common-prog)
-            (modify-syntax-entry ?_ "w")))
 
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
@@ -1328,20 +1144,6 @@ Useful for REPL windows."
   (evil-leader/set-key "}" 'sp-forward-barf-sexp)
   (evil-leader/set-key "{" 'sp-backward-barf-sexp))
 
-(defun jco/camel-case-to-sentence (text)
-  "Convert TEXT from camelCase to a sentence.
-Example: `helloWorld` becomes `Hello world`."
-  (interactive)
-  (let* ((snake (string-inflection-underscore-function text))
-         (words (replace-regexp-in-string "_" " " snake)))
-    (jco/capitalize-first-char words)))
-
-(defun jco/cpp-class-name ()
-  "Return the class name corresponding to the name of the current buffer."
-  (interactive)
-  (let* ((base-name (file-name-base buffer-file-name)))
-    (string-inflection-camelcase-function base-name)))
-
 (use-package super-save
   :defer 1
   :config
@@ -1585,8 +1387,7 @@ windows easier."
 
 (defhydra jco/hydra-config (:color teal :hint nil)
   "config"
-  ("e" (find-file "~/dotfiles/homedir/.emacs.d/init.org") "edit")
-  ("u" jco/update-dotfiles "update"))
+  ("e" (find-file "~/dotfiles/homedir/.emacs.d/init.org") "edit"))
 
 (defhydra jco/hydra-find (:color teal :hint nil)
   "
@@ -2685,6 +2486,20 @@ As such, it will only work when the notes window exists."
          (conf-mode . highlight-indent-guides-mode))
   :custom (highlight-indent-guides-method 'character))
 
+(defun jco/common-prog ()
+  "Common setup for programming modes."
+  (when (display-graphic-p)
+    ;; (hl-line-mode)
+    (rainbow-delimiters-mode)
+    (rainbow-mode t))
+  (apheleia-mode)
+  (setq require-final-newline nil)
+  (ethan-wspace-mode)
+  (modify-syntax-entry ?_ "w") ; do not treat "_" as a word separator
+  (hs-minor-mode))
+
+(add-hook 'prog-mode-hook #'jco/common-prog)
+
 (add-hook 'c-mode-common-hook
           (lambda ()
             (setq lsp-clangd-binary-path "clangd")))
@@ -2699,6 +2514,11 @@ As such, it will only work when the notes window exists."
 
 (use-package csharp-mode
   :mode "\\.cs\\'")
+
+(add-hook 'conf-mode-hook
+          (lambda ()
+            (jco/common-prog)
+            (modify-syntax-entry ?_ "w")))
 
 (dolist (hook '(css-mode-hook
                 less-css-mode-hook
