@@ -1441,7 +1441,6 @@ Useful for REPL windows."
 (define-key jco/my-keys-mode-map (kbd "C-x b") 'ibuffer)
 
 (use-package info+
-  :disabled
   :straight (info-plus :type git :host github :repo "emacsmirror/info-plus")
   :after info)
 
