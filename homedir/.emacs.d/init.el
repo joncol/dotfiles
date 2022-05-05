@@ -1678,6 +1678,16 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
       smtpmail-stream-type  'starttls
       smtpmail-smtp-service 587)
 
+(defun jco/office-hours-p ()
+  "Return a non-nil value if current time is during office hours."
+  (let* ((time (current-time))
+         (weekday (format-time-string "%a" time))
+         (bod (date-to-time (format-time-string "%Y-%m-%d 07:00" time)))
+         (eod (date-to-time (format-time-string "%Y-%m-%d 17:00" time))))
+    (and (member weekday '("Mon" "Tue" "Wed" "Thu" "Fri"))
+         (time-less-p bod time)
+         (time-less-p time eod))))
+
 (defun jco/init-mu4e-contexts ()
   "Initialize mu4e contexts."
   (require 'mu4e-context)
@@ -1688,10 +1698,10 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                           (mu4e-message "Switch to the Gmail context"))
             ;; leave-func not defined
             :match-func (lambda (msg)
-                          (if msg
-                              (mu4e-message-contact-field-matches
-                               msg :to "jonas.collberg@gmail.com")
-                            (not (jco/at-office-p))))
+                          (or (and msg
+                                   (mu4e-message-contact-field-matches
+                                    msg :to "jonas.collberg@gmail.com"))
+                              (not (jco/office-hours-p))))
             :vars '((user-mail-address . "jonas.collberg@gmail.com")
                     (smtpmail-smtp-user . "jonas.collberg@gmail.com")
                     ;; (mu4e-compose-signature . "Jonas\n")
@@ -1708,10 +1718,10 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
             :enter-func (lambda () (mu4e-message "Switch to the Work context"))
             ;; leave-fun not defined
             :match-func (lambda (msg)
-                          (if msg
-                              (mu4e-message-contact-field-matches
-                               msg :to "jonas.collberg@scrive.com")
-                            (jco/at-office-p)))
+                          (or (and msg
+                                   (mu4e-message-contact-field-matches
+                                    msg :to "jonas.collberg@scrive.com"))
+                              (jco/office-hours-p)))
             :vars '((user-mail-address . "jonas.collberg@scrive.com")
                     (smtpmail-smtp-user . "jonas.collberg@scrive.com")
                     ;; (mu4e-compose-signature . (concat
