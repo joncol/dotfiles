@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Input for flake-compat
+# key: flake-compat
+# --
+inputs.flake-compat = {
+  url = "github:edolstra/flake-compat";
+  flake = false;
+};
