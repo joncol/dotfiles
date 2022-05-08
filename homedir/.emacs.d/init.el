@@ -3083,9 +3083,7 @@ Lisp function does not specify a special indentation."
   (add-hook 'slime-connected-hook
             (lambda ()
               (with-selected-window (get-buffer-window (slime-output-buffer t))
-                (let ((height (if (or (jco/at-office-p)
-                                      (display-graphic-p)) 15 10)))
-                  (jco/move-window-to-bottom height)))))
+                (jco/move-window-to-bottom))))
   (add-hook 'lisp-mode-hook
             (lambda ()
               (when (file-exists-p "~/quicklisp/slime-helper.el")
