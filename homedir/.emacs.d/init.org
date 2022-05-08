@@ -1621,6 +1621,7 @@ windows easier."
   ("g" jco/hydra-gtd/body "gtd")
   ("h" jco/hydra-hideshow/body "hideshow")
   ("l" jco/hydra-lang/body "lang")
+  ("m" jco/hydra-magit/body "magit")
   ("o" jco/hydra-org/body "org")
   ("p" jco/hydra-prog/body "programming")
   ("s" jco/hydra-consult/body "consult")
@@ -1671,6 +1672,10 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("c" langtool-correct-buffer)
   ("d" langtool-check-done)
   ("s" sdcv-search))
+
+(defhydra jco/hydra-magit (:color teal :hint nil)
+  "magit"
+  ("b" forge-browse-dwim "forge-browse-dwim"))
 
 (defhydra jco/hydra-org (:color teal :hint nil)
   "org"
