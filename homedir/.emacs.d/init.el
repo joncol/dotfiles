@@ -1408,6 +1408,7 @@ find: _f_un _l_ib _v_ar"
   ("n" (jco/find-org-file "notes.org") "notes")
   ("p" (jco/find-org-file "todo.org"
                           (project-root (project-current))) "project-todo")
+  ("P" (jco/find-org-file "projects.org") "projects")
   ("R" (jco/find-org-file "reading.org") "reading")
   ("r" (jco/find-org-file "retro.org") "retro")
   ("s" (jco/find-org-file "standup.org") "standup")
