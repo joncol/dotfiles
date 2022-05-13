@@ -1531,6 +1531,10 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   ("i" info-apropos)
   ("x" xref-find-apropos))
 
+(use-package evil-lion
+  :config
+  (evil-lion-mode))
+
 (use-package flyspell-correct
   :bind (:map flyspell-mode-map
          (("C-;" . flyspell-correct-wrapper))))
