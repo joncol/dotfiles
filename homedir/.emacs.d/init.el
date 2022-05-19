@@ -2,7 +2,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"nubox-light"))
+(let ((my-theme '"chocolate"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -3616,6 +3616,7 @@ repo."
            borland-blue-theme
            challenger-deep-theme
            cherry-blossom-theme
+           chocolate-theme
            chyla-theme
            color-theme-sanityinc-tomorrow
            cyberpunk-theme

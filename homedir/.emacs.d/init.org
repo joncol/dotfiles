@@ -12,7 +12,7 @@
 Current theme. Change this to whatever theme you want, by copying the line from
 the list below.
 #+name: my-theme
-: nubox-light
+: chocolate
 #+begin_src emacs-lisp :var my-theme=my-theme
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
@@ -20,6 +20,7 @@ the list below.
 ** List of favourite themes
 : adwaita
 : borland-blue
+: chocolate
 : chyla
 : cyberpunk
 : darktooth
@@ -86,6 +87,7 @@ the list below.
 : ample-zen
 : borland-blue
 : cherry-blossom
+: chocolate
 : chyla
 : cyberpunk
 : darktooth
@@ -3969,6 +3971,7 @@ repo."
            borland-blue-theme
            challenger-deep-theme
            cherry-blossom-theme
+           chocolate-theme
            chyla-theme
            color-theme-sanityinc-tomorrow
            cyberpunk-theme
