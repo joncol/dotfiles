@@ -1218,16 +1218,6 @@ Useful for REPL windows."
 (use-package s
   :defer)
 
-(use-package tree-sitter
-  :disabled
-  :defer 1
-  :config
-  (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
-(use-package tree-sitter-langs
-  :after tree-sitter)
-
 (use-package wgrep
   :defer)
 
@@ -2508,6 +2498,16 @@ As such, it will only work when the notes window exists."
   :hook ((prog-mode . highlight-indent-guides-mode)
          (conf-mode . highlight-indent-guides-mode))
   :custom (highlight-indent-guides-method 'character))
+
+(use-package tree-sitter
+  :disabled
+  :defer 1
+  :config
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs
+  :after tree-sitter)
 
 (defun jco/common-prog ()
   "Common setup for programming modes."
