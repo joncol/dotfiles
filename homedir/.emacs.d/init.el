@@ -2494,15 +2494,55 @@ As such, it will only work when the notes window exists."
 (use-package vlf
   :defer)
 
+(use-package evil-textobj-tree-sitter
+  :config
+  ;; Bind `function.outer` (entire function block) to `f` for use in things like
+  ;; `vaf`, `yaf`.
+  (define-key evil-outer-text-objects-map "f"
+    (evil-textobj-tree-sitter-get-textobj "function.outer"))
+
+  ;; Bind `function.inner` (function block without name and args) to `f` for use
+  ;; in things like `vif`, `yif`.
+  (define-key evil-inner-text-objects-map "f"
+    (evil-textobj-tree-sitter-get-textobj "function.inner"))
+
+  (define-key evil-outer-text-objects-map "a"
+    (evil-textobj-tree-sitter-get-textobj ("conditional.outer" "loop.outer")))
+
+  ;; Goto start of next function.
+  (define-key evil-normal-state-map (kbd "]f")
+    (lambda ()
+      (interactive)
+      (evil-textobj-tree-sitter-goto-textobj "function.outer")))
+
+  ;; Goto start of previous function.
+  (define-key evil-normal-state-map (kbd "[f")
+    (lambda ()
+      (interactive)
+      (evil-textobj-tree-sitter-goto-textobj "function.outer" t)))
+
+  ;; Goto end of next function.
+  (define-key evil-normal-state-map (kbd "]F")
+    (lambda ()
+      (interactive)
+      (evil-textobj-tree-sitter-goto-textobj "function.outer" nil t)))
+
+  ;; Goto end of previous function.
+  (define-key evil-normal-state-map (kbd "[F")
+    (lambda ()
+      (interactive)
+      (evil-textobj-tree-sitter-goto-textobj "function.outer" t t))))
+
 (use-package highlight-indent-guides
+  :disabled
   :hook ((prog-mode . highlight-indent-guides-mode)
          (conf-mode . highlight-indent-guides-mode))
   :custom (highlight-indent-guides-method 'character))
 
 (use-package tree-sitter
-  :disabled
   :defer 1
   :config
+  (add-to-list 'tree-sitter-major-mode-language-alist '(haskell-mode . haskell))
   (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
