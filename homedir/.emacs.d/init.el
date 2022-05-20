@@ -3703,6 +3703,17 @@ repo."
      (set-face-background 'cfw:face-toolbar-button-off "Steelblue4")
      (set-face-foreground 'cfw:face-toolbar-button-off "#dadfe1")))
 
+  (chocolate
+   (set-face-background 'highlight "#9a3412")
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "#0e7490")
+   (with-eval-after-load 'mu4e
+     (set-face-foreground 'mu4e-highlight-face "#33272a"))
+   (with-eval-after-load 'orderless
+     (set-face-foreground 'orderless-match-face-0 "#dff9fb"))
+   (with-eval-after-load 'vertico
+     (set-face-background 'vertico-current "#155e75")))
+
   (chyla
    (setq sml/theme 'light)
    (set-face-background 'evil-search-highlight-persist-highlight-face
