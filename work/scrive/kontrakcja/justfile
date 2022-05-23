@@ -105,11 +105,6 @@ git-hooks:
   #!/usr/bin/env bash
 
   commit_msg_file=$1
-  commit_source=$2
-
-  # if [ "${commit_source}" = merge ]; then
-  #     exit 0
-  # fi
 
   branch=$(git rev-parse --abbrev-ref HEAD)
 
@@ -121,10 +116,10 @@ git-hooks:
 
   current_msg=$(head -n 1 "${commit_msg_file}")
 
-  if [ -n "$prefix" ] && (echo ${current_msg} | grep -vi "^\[${prefix}\]") && \
-      (echo ${current_msg} | grep -vi "fixup\|squash")
+  if [ -n "$prefix" ] && (echo "${current_msg}" | grep -vi "^\[${prefix}\]") && \
+      (echo "${current_msg}" | grep -vi "fixup\|squash")
   then
-      sed -i.bak -e "1s/^/[$prefix] \n/" ${commit_msg_file}
+      sed -i.bak -e "1s/^/[$prefix] \n/" "${commit_msg_file}"
   fi
   EOF
   chmod +x .git/hooks/prepare-commit-msg
