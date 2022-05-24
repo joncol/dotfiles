@@ -3704,7 +3704,7 @@ repo."
      (set-face-foreground 'cfw:face-toolbar-button-off "#dadfe1")))
 
   (chocolate
-   (set-face-background 'highlight "#9a3412")
+   (set-face-background 'highlight "#a21caf")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#0e7490")
    (with-eval-after-load 'mu4e
