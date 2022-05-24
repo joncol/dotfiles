@@ -2158,6 +2158,20 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (when (string-prefix-p "jira:" link)
     (string-remove-prefix "jira:" link)))
 
+(defun my-kill-thing-at-point (thing)
+  "Kill the `thing-at-point' for the specified kind of THING."
+  (let ((bounds (bounds-of-thing-at-point thing)))
+    (if bounds
+        (kill-region (car bounds) (cdr bounds))
+      (error "No %s at point" thing))))
+
+(defun my-create-jira-link-from-word-at-point ()
+  "Insert an `org-mode' link using the word at point."
+  (interactive)
+  (my-kill-thing-at-point 'word)
+  (let ((w (current-kill 0)))
+    (org-insert-link nil (concat "jira:" w) w)))
+
 (use-package org-bullets
   :after org
   :config
@@ -2362,12 +2376,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
   (setq org-mobile-force-id-on-agenda-items nil)
   (global-unset-key (kbd "C-x C-v"))
-  (general-def org-mode-map
-    "<f5>" '(lambda ()
-              (interactive)
-              (org-remove-inline-images)
-              (org-ctrl-c-ctrl-c)
-              (org-display-inline-images)))
   (require 'org-agenda)
   (bind-keys :map org-agenda-mode-map
              ("j"       . org-agenda-next-item)
@@ -2406,7 +2414,16 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               (define-and-bind-quoted-text-object "slash" "/" "/" "/")
               (define-and-bind-quoted-text-object "dollar" "$" "$" "$")
               (modify-syntax-entry ?- "w") ;; do not treat "_" as a word separator
-              ))
+
+              (general-def org-mode-map
+                "<f5>" '(lambda ()
+                          (interactive)
+                          (org-remove-inline-images)
+                          (org-ctrl-c-ctrl-c)
+                          (org-display-inline-images)))
+
+              (general-nvmap :prefix ","
+                "xj" 'my-create-jira-link-from-word-at-point)))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
