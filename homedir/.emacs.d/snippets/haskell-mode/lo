@@ -2,4 +2,4 @@
 # name: Log object
 # key: lo
 # --
-logInfo_ $ "${1:object}: " <> showt ($1)
+logInfo_ $ "$1: " <> showt (${1:object})
