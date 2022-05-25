@@ -3726,8 +3726,6 @@ repo."
    (set-face-background 'highlight "#a21caf")
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#0e7490")
-   (with-eval-after-load 'mu4e
-     (set-face-foreground 'mu4e-highlight-face "#33272a"))
    (with-eval-after-load 'orderless
      (set-face-foreground 'orderless-match-face-0 "#dff9fb"))
    (with-eval-after-load 'vertico
