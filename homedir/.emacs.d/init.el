@@ -709,6 +709,8 @@ Useful for REPL windows."
 
 (use-package direnv
   :defer
+  :custom
+  (direnv-always-show-summary nil)
   :config
   (direnv-mode))
 
