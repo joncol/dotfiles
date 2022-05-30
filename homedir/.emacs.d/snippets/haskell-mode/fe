@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Repeat forever
+# key: fe
+# --
+forever $ 
