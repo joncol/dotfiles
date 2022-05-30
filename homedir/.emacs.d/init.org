@@ -4499,7 +4499,11 @@ repo."
                         "MidnightBlue")
    (custom-set-faces
     '(sp-show-pair-match-face ((t (:box nil))))
-    '(font-lock-function-name-face ((t (:weight bold :box nil)))))))
+    '(font-lock-function-name-face ((t (:weight bold :box nil))))))
+
+  (whiteboard
+   (set-face-background 'evil-search-highlight-persist-highlight-face
+                        "#99f6e4")))
 
 (when (not (display-graphic-p))
   ;; Transparent background in console mode.
