@@ -4147,8 +4147,11 @@ repo."
     '(font-lock-function-name-face ((t (:weight bold :box nil))))))
 
   (whiteboard
-   (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "#99f6e4")))
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#99f6e4")
+   (with-eval-after-load 'company
+     (set-face-background 'company-tooltip-selection "#fd79a8")
+     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
+     (set-face-foreground 'company-preview-common "#a0a0a0"))))
 
 (when (not (display-graphic-p))
   ;; Transparent background in console mode.
