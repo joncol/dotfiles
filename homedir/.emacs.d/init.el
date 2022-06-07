@@ -502,7 +502,7 @@ Useful for REPL windows."
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+(setq use-short-answers t)
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
