@@ -3679,14 +3679,15 @@ repo."
                         `(use-package ,p :defer))
                       theme-pkgs))))
 
-(defun configure-modus-themes ()
-  "Configure Modus themes."
+(use-package modus-themes
+  :init
   (setq modus-themes-mode-line '(accented borderless padded))
+  (setq modus-themes-fringes 'subtle)
   (setq modus-themes-region '(bg-only))
-  (setq modus-themes-completions 'moderate)
+  (setq modus-themes-completions '(moderate))
   (setq modus-themes-bold-constructs nil)
   (setq modus-themes-italic-constructs t)
-  (setq modus-themes-hl-line '(accented))
+  (setq modus-themes-hl-line '(intense accented))
   (setq modus-themes-paren-match '(bold intense))
   (setq modus-themes-prompts '(intense))
   (setq modus-themes-headings '((1 . (rainbow overline background 1.4))
@@ -3698,7 +3699,6 @@ repo."
 
 (progn
   (install-themes)
-  (configure-modus-themes)
   (load-theme jco/theme t)
 
   (set-face-background 'evil-search-highlight-persist-highlight-face
