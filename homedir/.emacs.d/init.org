@@ -1564,7 +1564,7 @@ windows easier."
      ;; If you edit it by hand, you could mess it up, so be careful.
      ;; Your init file should contain only one such instance.
      ;; If there is more than one, they won't work right.
-     '(default ((t (:family "VictorMono Nerd Font" :foundry "UKWN" :slant normal :weight semi-bold :height 118 :width normal))))
+     '(default ((t (:family "JetBrainsMonoMedium Nerd Font" :foundry "JB  " :slant normal :weight normal :height 118 :width normal))))
      '(italic ((t (:underline t))))
      '(j-adverb-face ((t (:foreground "Green"))))
      '(j-conjunction-face ((t (:foreground "Blue"))))
@@ -4067,9 +4067,7 @@ repo."
                        "RoyalBlue4")
   (set-face-foreground 'show-paren-match "#101f24")
   (set-face-background 'show-paren-match "#89C5B7")
-  ;; (set-face-attribute 'font-lock-comment-face nil :slant 'normal)
-  (custom-set-faces
-   '(italic ((t (:underline t)))))
+
   (with-eval-after-load 'smartparens
     (set-face-attribute 'sp-show-pair-match-face nil :weight 'normal)))
 
