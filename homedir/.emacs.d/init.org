@@ -1322,6 +1322,12 @@ Useful for REPL windows."
            (goto-char me)
            (save-match-data (looking-at "\\sw\\|\\s_\\|\\s."))))))
 
+(use-package screenshot
+  :straight (screenshot :type git :host github
+                        :repo "tecosaur/screenshot"
+                        :build (:not compile))
+  :defer)
+
 (use-package smartparens
   ;; :hook (prog-mode text-mode cider-repl-mode)
   :defer
@@ -1710,7 +1716,8 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("m" (lambda ()
          (interactive)
          (markdown-other-window)
-         (browse-url-of-buffer markdown-output-buffer-name)) "markdown"))
+         (browse-url-of-buffer markdown-output-buffer-name)) "markdown")
+  ("s" screenshot "screenshot"))
 
 (defhydra jco/hydra-kurecolor
   (:color pink :hint nil
