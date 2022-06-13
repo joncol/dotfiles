@@ -2186,6 +2186,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               (general-nvmap :prefix ","
                 "xj" 'my-create-jira-link-from-word-at-point)
               (cl-pushnew '("haskell" modus-themes-nuanced-cyan)
+                          org-src-block-faces)
+              (cl-pushnew '("nix" modus-themes-nuanced-blue)
                           org-src-block-faces)))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
@@ -3687,21 +3689,18 @@ repo."
                       theme-pkgs))))
 
 (use-package modus-themes
+  :straight (modus-themes :host github :repo "protesilaos/modus-themes")
   :init
   (setq modus-themes-mode-line '(accented borderless padded))
   (setq modus-themes-fringes 'subtle)
   (setq modus-themes-region '(bg-only))
   (setq modus-themes-completions '(moderate))
-  (setq modus-themes-bold-constructs nil)
+  (setq modus-themes-bold-constructs t)
   (setq modus-themes-italic-constructs t)
   (setq modus-themes-hl-line '(intense accented))
   (setq modus-themes-paren-match '(bold intense))
   (setq modus-themes-prompts '(intense))
-  (setq modus-themes-headings '((1 . (rainbow overline background 1.4))
-                                (2 . (rainbow background 1.3))
-                                (3 . (rainbow bold 1.2))
-                                (t . (semilight 1.1))))
-  (setq modus-themes-scale-headings t)
+  (setq modus-themes-headings '((1 . (rainbow overline background))))
   (setq modus-themes-org-blocks 'tinted-background))
 
 (progn
@@ -4034,10 +4033,16 @@ repo."
      (set-face-foreground 'mode-line-emphasis "#74b9ff")))
 
   (modus-operandi
-   (set-face-attribute 'font-lock-comment-face nil :underline nil))
+   (set-face-attribute 'font-lock-comment-face nil :underline nil)
+   (set-face-attribute 'font-lock-doc-face nil :underline nil)
+   (with-eval-after-load 'marginalia
+     (set-face-attribute 'marginalia-documentation nil :underline nil)))
 
   (modus-vivendi
-   (set-face-attribute 'font-lock-comment-face nil :underline nil))
+   (set-face-attribute 'font-lock-comment-face nil :underline nil)
+   (set-face-attribute 'font-lock-doc-face nil :underline nil)
+   (with-eval-after-load 'marginalia
+     (set-face-attribute 'marginalia-documentation nil :underline nil)))
 
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
