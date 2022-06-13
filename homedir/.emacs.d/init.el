@@ -1321,9 +1321,16 @@ windows easier."
       (add-to-list 'default-frame-alist
                    '(font . "FiraCodeNerdFont-22"))
     (custom-set-faces
-     '(default ((t (:family "Fira Code" :foundry "CTDB" :slant normal
-                    :weight medium :height 110 :width normal))))
-     '(italic ((t (:underline t)))))))
+     ;; custom-set-faces was added by Custom.
+     ;; If you edit it by hand, you could mess it up, so be careful.
+     ;; Your init file should contain only one such instance.
+     ;; If there is more than one, they won't work right.
+     '(default ((t (:family "VictorMono Nerd Font" :foundry "UKWN" :slant normal :weight semi-bold :height 118 :width normal))))
+     '(italic ((t (:underline t))))
+     '(j-adverb-face ((t (:foreground "Green"))))
+     '(j-conjunction-face ((t (:foreground "Blue"))))
+     '(j-other-face ((t (:foreground "Black"))))
+     '(j-verb-face ((t (:foreground "Red")))))))
 
  ((eq system-type 'darwin)
   (setq mac-right-option-modifier 'none)
@@ -4027,6 +4034,12 @@ repo."
                         "LightBlue")
    (with-eval-after-load 'eyebrowse
      (set-face-foreground 'mode-line-emphasis "#74b9ff")))
+
+  (modus-operandi
+   (set-face-attribute 'font-lock-comment-face nil :underline nil))
+
+  (modus-vivendi
+   (set-face-attribute 'font-lock-comment-face nil :underline nil))
 
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
