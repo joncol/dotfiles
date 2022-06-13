@@ -3688,6 +3688,7 @@ repo."
   (setq modus-themes-italic-constructs t)
   (setq modus-themes-hl-line '(accented))
   (setq modus-themes-paren-match '(bold intense))
+  (setq modus-themes-prompts '(intense))
   (setq modus-themes-headings '((1 . (rainbow overline background 1.4))
                                 (2 . (rainbow background 1.3))
                                 (3 . (rainbow bold 1.2))
