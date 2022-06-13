@@ -471,7 +471,7 @@ Useful for REPL windows."
 (setq-default fill-column 80)
 (global-display-fill-column-indicator-mode)
 
-(global-hl-line-mode -1)
+(global-hl-line-mode 1)
 
 (setq epg-pinentry-mode 'ask)
 
