@@ -2,7 +2,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"chocolate"))
+(let ((my-theme '"modus-vivendi"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -2177,7 +2177,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                           (org-display-inline-images)))
 
               (general-nvmap :prefix ","
-                "xj" 'my-create-jira-link-from-word-at-point)))
+                "xj" 'my-create-jira-link-from-word-at-point)
+              (cl-pushnew '("haskell" modus-themes-nuanced-cyan)
+                          org-src-block-faces)))
 
   (add-hook 'org-export-before-processing-hook 'jco/org-inline-css-hook)
   (require 'ob-clojure)
@@ -3677,8 +3679,25 @@ repo."
                         `(use-package ,p :defer))
                       theme-pkgs))))
 
+(defun configure-modus-themes ()
+  "Configure Modus themes."
+  (setq modus-themes-mode-line '(accented borderless padded))
+  (setq modus-themes-region '(bg-only))
+  (setq modus-themes-completions 'moderate)
+  (setq modus-themes-bold-constructs nil)
+  (setq modus-themes-italic-constructs t)
+  (setq modus-themes-hl-line '(accented))
+  (setq modus-themes-paren-match '(bold intense))
+  (setq modus-themes-headings '((1 . (rainbow overline background 1.4))
+                                (2 . (rainbow background 1.3))
+                                (3 . (rainbow bold 1.2))
+                                (t . (semilight 1.1))))
+  (setq modus-themes-scale-headings t)
+  (setq modus-themes-org-blocks 'tinted-background))
+
 (progn
   (install-themes)
+  (configure-modus-themes)
   (load-theme jco/theme t)
 
   (set-face-background 'evil-search-highlight-persist-highlight-face
@@ -3698,6 +3717,8 @@ repo."
 (cl-defun jco/current-bg (&optional (adj 0.0))
   "Get the current background color, optionally adjusting brightness by ADJ."
   (kurecolor-adjust-brightness (face-attribute 'default :background) adj))
+
+;; Custom theme configurations.
 
 (cl-case jco/theme
   (adwaita
