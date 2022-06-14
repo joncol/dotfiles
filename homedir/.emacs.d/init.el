@@ -1572,6 +1572,11 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :init
   (global-set-key (kbd "C-c d") 'sdcv-search-input))
 
+(use-package solaire-mode
+  :after modus-themes
+  :init
+  (solaire-global-mode))
+
 (use-package sublimity
   :straight (sublimity :type git :host github
                        :repo "zk-phi/sublimity")
