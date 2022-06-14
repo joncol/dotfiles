@@ -3843,6 +3843,25 @@ Taken from: https://gist.github.com/rksm/8c07d9ccc9e15adf752d3dd73dd9a61e.
   :init
   (shackle-mode))
 #+end_src
+* Snippets (=yasnippet=)
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :defer
+  :config
+  (yas-global-mode)
+  (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
+  ;; yas-indent-line has to be nil to avoid error when expanding `db' snippet.
+  (setq yas-indent-line nil)
+  (setq yas-also-auto-indent-first-line t)
+  (yas-reload-all) ;; Needed to unload snippets in elpa dir.
+  (add-hook 'snippet-mode-hook
+            (lambda ()
+              (modify-syntax-entry ?- "w")
+              (ethan-wspace-mode -1)))
+  (evil-leader/set-key "TAB" 'yas-insert-snippet))
+
+(use-package yasnippet-snippets)
+#+end_src
 * Tab key behavior
 Much of this code was taken from
 http://emacs.stackexchange.com/questions/7908/how-to-make-yasnippet-and-company-work-nicer.
@@ -4923,25 +4942,6 @@ accordance with ISO 8601)."
   (add-hook 'after-init-hook
             (lambda ()
               (set-face-background 'whitespace-trailing "#82589f"))))
-#+end_src
-* Yasnippet
-#+begin_src emacs-lisp
-(use-package yasnippet
-  :defer
-  :config
-  (yas-global-mode)
-  (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
-  ;; yas-indent-line has to be nil to avoid error when expanding `db' snippet.
-  (setq yas-indent-line nil)
-  (setq yas-also-auto-indent-first-line t)
-  (yas-reload-all) ;; Needed to unload snippets in elpa dir.
-  (add-hook 'snippet-mode-hook
-            (lambda ()
-              (modify-syntax-entry ?- "w")
-              (ethan-wspace-mode -1)))
-  (evil-leader/set-key "TAB" 'yas-insert-snippet))
-
-(use-package yasnippet-snippets)
 #+end_src
 * Local Variables (auto-tangle this file)
 # Local Variables:

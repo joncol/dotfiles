@@ -3500,6 +3500,23 @@ Example:
   :init
   (shackle-mode))
 
+(use-package yasnippet
+  :defer
+  :config
+  (yas-global-mode)
+  (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
+  ;; yas-indent-line has to be nil to avoid error when expanding `db' snippet.
+  (setq yas-indent-line nil)
+  (setq yas-also-auto-indent-first-line t)
+  (yas-reload-all) ;; Needed to unload snippets in elpa dir.
+  (add-hook 'snippet-mode-hook
+            (lambda ()
+              (modify-syntax-entry ?- "w")
+              (ethan-wspace-mode -1)))
+  (evil-leader/set-key "TAB" 'yas-insert-snippet))
+
+(use-package yasnippet-snippets)
+
 (defun jco/check-expansion ()
   (save-excursion
     (if (looking-at "\\_>") t
@@ -4560,20 +4577,3 @@ accordance with ISO 8601)."
   (add-hook 'after-init-hook
             (lambda ()
               (set-face-background 'whitespace-trailing "#82589f"))))
-
-(use-package yasnippet
-  :defer
-  :config
-  (yas-global-mode)
-  (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets")))
-  ;; yas-indent-line has to be nil to avoid error when expanding `db' snippet.
-  (setq yas-indent-line nil)
-  (setq yas-also-auto-indent-first-line t)
-  (yas-reload-all) ;; Needed to unload snippets in elpa dir.
-  (add-hook 'snippet-mode-hook
-            (lambda ()
-              (modify-syntax-entry ?- "w")
-              (ethan-wspace-mode -1)))
-  (evil-leader/set-key "TAB" 'yas-insert-snippet))
-
-(use-package yasnippet-snippets)
