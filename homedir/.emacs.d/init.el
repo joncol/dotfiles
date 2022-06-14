@@ -1990,6 +1990,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         '(("t" "Task" entry (file+headline "incoming.org" "Incoming tasks")
            "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
            :empty-lines-before 0)
+          ("T" "Scrive task" entry (file+headline "work.org" "Scrive")
+           "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
+           :empty-lines-before 0)
           ("p" "Project TODO" entry
            (function (lambda () (jco/goto-current-project-todo-org "Todos")))
            "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
