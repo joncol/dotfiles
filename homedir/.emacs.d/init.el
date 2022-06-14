@@ -926,47 +926,6 @@ Useful for REPL windows."
 (use-package lorem-ipsum
   :defer)
 
-(use-package lsp-mode
-  :hook
-  ((c-mode . lsp-deferred)
-   (c++-mode . lsp-deferred)
-
-   (clojure-mode . lsp-deferred)
-
-   ;; Requires `gopls' binary.
-   (go-mode . lsp-deferred)
-
-   (elm-mode . lsp-deferred)
-   (js-mode . lsp-deferred))
-
-  :custom
-  (lsp-lens-enable nil)
-  (lsp-enable-symbol-highlighting nil)
-
-  :init
-  (with-eval-after-load 'lsp-mode
-    ;; To avoid watching all Scrive API docs.
-    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]api_docs\\'" t)
-    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_build-adminonly\\'" t)
-    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_local\\'" t)
-    (evil-leader/set-key
-      "l" lsp-command-map))
-  (add-hook 'lsp-mode-hook
-            (lambda ()
-              (lsp-enable-which-key-integration)))
-
-  :config
-  ;; This is to make `lsp-mode' work with `direnv' and pick up the correct
-  ;; version of GHC.
-  (advice-add 'lsp :before #'direnv-update-environment)
-  (setq lsp-modeline-code-actions-enable nil))
-
-(use-package lsp-ui
-  :hook (prog-mode . lsp-ui-mode)
-  :config
-  (evil-leader/set-key "x m" #'lsp-ui-imenu)
-  (setq lsp-ui-doc-position 'bottom))
-
 (defun jco/magit-kill-buffers ()
   "Restore window configuration and kill all Magit buffers."
   (interactive)
@@ -2586,6 +2545,47 @@ As such, it will only work when the notes window exists."
   :hook ((prog-mode . highlight-indent-guides-mode)
          (conf-mode . highlight-indent-guides-mode))
   :custom (highlight-indent-guides-method 'character))
+
+(use-package lsp-mode
+  :hook
+  ((c-mode . lsp-deferred)
+   (c++-mode . lsp-deferred)
+
+   (clojure-mode . lsp-deferred)
+
+   ;; Requires `gopls' binary.
+   (go-mode . lsp-deferred)
+
+   (elm-mode . lsp-deferred)
+   (js-mode . lsp-deferred))
+
+  :custom
+  (lsp-lens-enable nil)
+  (lsp-enable-symbol-highlighting nil)
+
+  :init
+  (with-eval-after-load 'lsp-mode
+    ;; To avoid watching all Scrive API docs.
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]api_docs\\'" t)
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_build-adminonly\\'" t)
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_local\\'" t)
+    (evil-leader/set-key
+      "l" lsp-command-map))
+  (add-hook 'lsp-mode-hook
+            (lambda ()
+              (lsp-enable-which-key-integration)))
+
+  :config
+  ;; This is to make `lsp-mode' work with `direnv' and pick up the correct
+  ;; version of GHC.
+  (advice-add 'lsp :before #'direnv-update-environment)
+  (setq lsp-modeline-code-actions-enable nil))
+
+(use-package lsp-ui
+  :hook (prog-mode . lsp-ui-mode)
+  :config
+  (evil-leader/set-key "x m" #'lsp-ui-imenu)
+  (setq lsp-ui-doc-position 'bottom))
 
 (use-package tree-sitter
   :defer 1
