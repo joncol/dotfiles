@@ -1474,6 +1474,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   "util"
   ("f" (lambda () (interactive) (jco/yank-current-filename t)) "yank filename")
   ("F" jco/yank-current-filename "yank full path")
+  ("c" keycast-mode "keycast")
   ("d" jco/yank-date "yank date")
   ("t" jco/yank-timestamp "yank timestamp")
   ("l" toggle-dedicated-window "toggle-dedicated-window")
@@ -1571,6 +1572,8 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :defer
   :init
   (global-set-key (kbd "C-c d") 'sdcv-search-input))
+
+(use-package keycast)
 
 (use-package solaire-mode
   :after modus-themes
