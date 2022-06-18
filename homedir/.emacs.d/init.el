@@ -4067,13 +4067,19 @@ repo."
    (set-face-attribute 'font-lock-comment-face nil :underline nil)
    (set-face-attribute 'font-lock-doc-face nil :underline nil)
    (with-eval-after-load 'marginalia
-     (set-face-attribute 'marginalia-documentation nil :underline nil)))
+     (set-face-attribute 'marginalia-documentation nil :underline nil))
+   (with-eval-after-load 'vertico
+     (set-face-attribute 'vertico-current nil
+                         :weight 'normal :background "#406080")))
 
   (modus-vivendi
    (set-face-attribute 'font-lock-comment-face nil :underline nil)
    (set-face-attribute 'font-lock-doc-face nil :underline nil)
    (with-eval-after-load 'marginalia
-     (set-face-attribute 'marginalia-documentation nil :underline nil)))
+     (set-face-attribute 'marginalia-documentation nil :underline nil))
+   (with-eval-after-load 'vertico
+     (set-face-attribute 'vertico-current nil
+                         :weight 'normal :background "#406080")))
 
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
