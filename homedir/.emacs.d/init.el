@@ -1433,7 +1433,6 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   "util"
   ("f" (lambda () (interactive) (jco/yank-current-filename t)) "yank filename")
   ("F" jco/yank-current-filename "yank full path")
-  ("c" keycast-mode "keycast")
   ("d" jco/yank-date "yank date")
   ("t" jco/yank-timestamp "yank timestamp")
   ("l" toggle-dedicated-window "toggle-dedicated-window")
@@ -1441,6 +1440,7 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
   ("g" yagist-region-or-buffer "gist")
   ("h" hide-mode-line-mode "hide modeline")
   ("k" jco/hydra-kurecolor/body "kurekolor")
+  ("K" keycast-mode "keycast")
   ("m" (lambda ()
          (interactive)
          (markdown-other-window)
