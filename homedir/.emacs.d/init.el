@@ -1813,7 +1813,6 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
             (setq word-wrap t)))
 
 (setq org-directory "~/org")
-(setq org-roam-v2-ack t)
 
 (defun jco/org-inline-css-hook (exporter)
   "Fix colors of snippets when EXPORTER is 'html.
@@ -2376,6 +2375,7 @@ As such, it will only work when the notes window exists."
               :map org-mode-map
               (("C-c n i" . org-roam-node-insert)))
   :init
+  (setq org-roam-v2-ack t)
   (add-hook 'after-init-hook
             (lambda ()
               (setq time-stamp-start "last_modified:[ ]+\\\\?")
