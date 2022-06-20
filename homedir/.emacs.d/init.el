@@ -2353,6 +2353,7 @@ As such, it will only work when the notes window exists."
   :custom
   (org-roam-directory "~/org/roam")
   (org-roam-buffer-position 'bottom)
+  (org-roam-completion-everywhere t)
   (org-roam-capture-templates
    '(("d" "default" plain "%?"
       :if-new (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
@@ -2373,7 +2374,12 @@ As such, it will only work when the notes window exists."
                ("C-c n f" . org-roam-node-find)
                ("C-c n g" . org-roam-graph))
               :map org-mode-map
-              (("C-c n i" . org-roam-node-insert)))
+              (("C-c n i" . org-roam-node-insert))
+              :map org-roam-dailies-map
+              ("Y" . org-roam-dailies-capture-yesterday)
+              ("T" . org-roam-dailies-capture-tomorrow))
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
   :init
   (setq org-roam-v2-ack t)
   (add-hook 'after-init-hook
@@ -2386,7 +2392,8 @@ As such, it will only work when the notes window exists."
   :config
   (org-roam-setup)
   (org-roam-bibtex-mode)
-  (require 'ucs-normalize))
+  (require 'ucs-normalize)
+  (require 'org-roam-dailies))
 
 (use-package citeproc
   :defer)
@@ -4463,7 +4470,6 @@ accordance with ISO 8601)."
          ("C-x b" . consult-buffer)
          ("M-y" . consult-yank-pop)
          ("<help> a" . consult-apropos)
-         ("C-c n" . consult-ripgrep)
          ("C-c e" . my-consult-find-git)
          ("C-c i" . my-consult-locate-mdfind)
          ("C-c o" . consult-git-grep)
