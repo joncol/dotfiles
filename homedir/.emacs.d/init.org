@@ -4438,6 +4438,7 @@ repo."
                          :weight 'normal :background "#406080")))
 
   (modus-vivendi
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
    (set-face-attribute 'font-lock-comment-face nil :underline nil)
    (set-face-attribute 'font-lock-doc-face nil :underline nil)
    (with-eval-after-load 'marginalia
