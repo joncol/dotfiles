@@ -4084,6 +4084,27 @@ repo."
                         `(use-package ,p :defer))
                       theme-pkgs))))
 
+(defun configure-modus-themes ()
+  "Configure modus themes."
+  (pcase (modus-themes--current-theme)
+    ('modus-operandi
+     (set-face-attribute 'font-lock-comment-face nil :underline nil)
+     (set-face-attribute 'font-lock-doc-face nil :underline nil)
+     (with-eval-after-load 'marginalia
+       (set-face-attribute 'marginalia-documentation nil :underline nil))
+     (with-eval-after-load 'vertico
+       (set-face-attribute 'vertico-current nil
+                           :weight 'normal :background "#fda7df")))
+    ('modus-vivendi
+     (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+     (set-face-attribute 'font-lock-comment-face nil :underline nil)
+     (set-face-attribute 'font-lock-doc-face nil :underline nil)
+     (with-eval-after-load 'marginalia
+       (set-face-attribute 'marginalia-documentation nil :underline nil))
+     (with-eval-after-load 'vertico
+       (set-face-attribute 'vertico-current nil
+                           :weight 'normal :background "#406080")))))
+
 (use-package modus-themes
   :straight (modus-themes :host github :repo "protesilaos/modus-themes")
   :init
@@ -4097,7 +4118,9 @@ repo."
   (setq modus-themes-paren-match '(bold intense))
   (setq modus-themes-prompts '(intense))
   (setq modus-themes-headings '((1 . (rainbow overline background))))
-  (setq modus-themes-org-blocks 'tinted-background))
+  (setq modus-themes-org-blocks 'tinted-background)
+  :config
+  (add-hook 'modus-themes-after-load-theme-hook #'configure-modus-themes))
 
 (progn
   (install-themes)
@@ -4428,24 +4451,8 @@ repo."
    (with-eval-after-load 'eyebrowse
      (set-face-foreground 'mode-line-emphasis "#74b9ff")))
 
-  (modus-operandi
-   (set-face-attribute 'font-lock-comment-face nil :underline nil)
-   (set-face-attribute 'font-lock-doc-face nil :underline nil)
-   (with-eval-after-load 'marginalia
-     (set-face-attribute 'marginalia-documentation nil :underline nil))
-   (with-eval-after-load 'vertico
-     (set-face-attribute 'vertico-current nil
-                         :weight 'normal :background "#406080")))
-
-  (modus-vivendi
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
-   (set-face-attribute 'font-lock-comment-face nil :underline nil)
-   (set-face-attribute 'font-lock-doc-face nil :underline nil)
-   (with-eval-after-load 'marginalia
-     (set-face-attribute 'marginalia-documentation nil :underline nil))
-   (with-eval-after-load 'vertico
-     (set-face-attribute 'vertico-current nil
-                         :weight 'normal :background "#406080")))
+  ((modus-operandi modus-vivendi)
+   (configure-modus-themes))
 
   (molokai
    (set-face-foreground 'font-lock-comment-face "azure4")
