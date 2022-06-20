@@ -1686,7 +1686,8 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
          (interactive)
          (markdown-other-window)
          (browse-url-of-buffer markdown-output-buffer-name)) "markdown")
-  ("s" screenshot "screenshot"))
+  ("s" screenshot "screenshot")
+  ("T" modus-themes-toggle "modus-themes-toggle"))
 
 (defhydra jco/hydra-kurecolor
   (:color pink :hint nil
