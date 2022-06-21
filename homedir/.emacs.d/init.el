@@ -3727,6 +3727,8 @@ repo."
   "Configure modus themes."
   (pcase (modus-themes--current-theme)
     ('modus-operandi
+     (set-face-background 'evil-search-highlight-persist-highlight-face
+                          "#f9bf3b")
      (set-face-attribute 'font-lock-comment-face nil :underline nil)
      (set-face-attribute 'font-lock-doc-face nil :underline nil)
      (with-eval-after-load 'marginalia
@@ -3735,7 +3737,8 @@ repo."
        (set-face-attribute 'vertico-current nil
                            :weight 'normal :background "#fda7df")))
     ('modus-vivendi
-     (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+     (set-face-background 'evil-search-highlight-persist-highlight-face
+                          "RoyalBlue4")
      (set-face-attribute 'font-lock-comment-face nil :underline nil)
      (set-face-attribute 'font-lock-doc-face nil :underline nil)
      (with-eval-after-load 'marginalia
