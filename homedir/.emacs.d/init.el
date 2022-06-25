@@ -2982,6 +2982,10 @@ Lisp function does not specify a special indentation."
           (lambda ()
             (init-lisp-common)))
 
+(use-package ess
+  :defer
+  :hook (ess-mode . lsp-deferred))
+
 (use-package fennel-mode
   :defer)
 
