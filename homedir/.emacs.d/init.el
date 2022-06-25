@@ -332,7 +332,6 @@ Useful for REPL windows."
 (use-package company
   :init
   (add-hook 'after-init-hook 'global-company-mode)
-
   :bind (([C-iso-lefttab] . company-ispell)
          :map company-active-map
          ("C-j" . company-select-next-or-abort)
@@ -343,9 +342,7 @@ Useful for REPL windows."
          ("C-d" . company-show-doc-buffer)
          ("M-." . company-show-location)
          ("RET" . company-complete-selection))
-
   :config
-  (add-to-list 'completion-styles 'initials t)
   (setq company-tooltip-align-annotations t)
   (setq company-dabbrev-ignore-case 'keep-prefix)
   (setq company-dabbrev-code-ignore-case nil)
@@ -4453,7 +4450,7 @@ accordance with ISO 8601)."
 (use-package orderless
   :after vertico
   :custom
-  (completion-styles '(orderless))
+  (completion-styles '(orderless partial-completion basic))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles . (partial-completion))))))
 
