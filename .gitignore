@@ -18,6 +18,7 @@
 /homedir/.emacs.d/.org-id-locations
 /homedir/.emacs.d/auto-save-list/
 /homedir/.emacs.d/eln-cache/
+/homedir/.emacs.d/forge-database-*.sql
 /homedir/.emacs.d/forge-database.sqlite
 /homedir/.emacs.d/history
 /homedir/.emacs.d/org-clock-save.el
