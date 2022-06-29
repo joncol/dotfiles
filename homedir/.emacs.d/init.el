@@ -1361,6 +1361,7 @@ find: _f_un _l_ib _v_ar"
 
 (defhydra jco/hydra-gtd (:color teal :hint nil)
   "gtd"
+  ("f" (jco/find-org-file nil) "file")
   ("b" (jco/find-org-file "blog.org") "blog")
   ("h" (jco/find-org-file "health.org") "health")
   ("i" (jco/find-org-file "incoming.org") "incoming")
