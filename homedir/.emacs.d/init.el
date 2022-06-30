@@ -1025,7 +1025,11 @@ Useful for REPL windows."
     (cl-pushnew '(alejandra . ("alejandra")) apheleia-formatters :test #'equal)
     (cl-pushnew '(nixfmt . ("nixfmt")) apheleia-formatters :test #'equal)
     (cl-pushnew '(nixpkgs-fmt . ("nixpkgs-fmt")) apheleia-formatters :test #'equal)
-    (cl-pushnew '(nix-mode . nixfmt) apheleia-mode-alist :test #'equal)))
+    (cl-pushnew '(nix-mode . nixfmt) apheleia-mode-alist :test #'equal))
+
+  (progn ;; shfmt
+    ;; Remove explicit "-i" option, to make "shfmt" use ".editorconfig" instead.
+    (setf (alist-get 'shfmt apheleia-formatters) '("shfmt"))))
 
 (use-package restclient
   :defer
@@ -2505,6 +2509,11 @@ As such, it will only work when the notes window exists."
 
 (use-package vlf
   :defer)
+
+(use-package editorconfig
+  :defer 1
+  :config
+  (editorconfig-mode 1))
 
 (use-package evil-textobj-tree-sitter
   :config
