@@ -1349,6 +1349,7 @@ windows easier."
   ("o" jco/hydra-org/body "org")
   ("p" jco/hydra-prog/body "programming")
   ("s" jco/hydra-consult/body "consult")
+  ("t" jco/hydra-org-transclusion/body "org-transclusion")
   ("u" jco/hydra-util/body "util")
   ("w" jco/hydra-writing/body "writing"))
 
@@ -1426,6 +1427,15 @@ lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
 (defhydra jco/hydra-consult (:color teal :hint nil)
   "org"
   ("a" consult-line-multi "consult-line-multi"))
+
+(defhydra jco/hydra-org-transclusion (:color teal :hint nil)
+  "org-transclusion"
+  ("i" org-id-get-create "create ID")
+  ("a" org-transclusion-add "add")
+  ("A" org-transclusion-add-all "add all")
+  ("x" org-transclusion-remove "remove")
+  ("X" org-transclusion-remove-all "remove all")
+  ("m" org-transclusion-mode "org-transclusion-mode"))
 
 (defhydra jco/hydra-util (:color teal :hint nil)
   "util"
@@ -1921,6 +1931,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (use-package org-fragtog)
 
 (use-package org-re-reveal
+  :after org)
+
+(use-package org-transclusion
   :after org)
 
 (use-package org-tree-slide
