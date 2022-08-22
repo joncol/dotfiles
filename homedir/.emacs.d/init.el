@@ -1484,7 +1484,6 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
   "app"
   ("c" cfw:open-org-calendar "calendar")
   ("e" (erc :server "irc.freenode.net" :port 6667) "erc")
-  ("f" (jco/elfeed-load-db-and-open) "elfeed")
   ("m" (lambda ()
          (interactive)
          (require 'mu4e)
