@@ -5,5 +5,5 @@
 use flake -j12
 
 if [ -e .envrc-local ]; then
-   source .envrc-local
+  source .envrc-local
 fi
