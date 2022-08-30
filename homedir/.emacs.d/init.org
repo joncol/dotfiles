@@ -4105,6 +4105,22 @@ repo."
                         `(use-package ,p :defer))
                       theme-pkgs))))
 
+(defun configure-ef-themes ()
+  "Configure ef-themes."
+  (set-face-attribute 'font-lock-comment-face nil :underline nil)
+  (set-face-attribute 'font-lock-doc-face nil :underline nil)
+  (with-eval-after-load 'marginalia
+    (set-face-attribute 'marginalia-documentation nil :underline nil))
+  (with-eval-after-load 'vertico
+    (set-face-attribute 'vertico-current nil
+                        :weight 'normal :background "#fda7df")))
+
+(use-package ef-themes
+  :init
+  (setq ef-themes-headings '((1 . (rainbow overline background))))
+  :config
+  (add-hook 'ef-themes-post-load-hook #'configure-ef-themes))
+
 (defun configure-modus-themes ()
   "Configure modus themes."
   (pcase (modus-themes--current-theme)
@@ -4340,6 +4356,18 @@ repo."
 
   (dracula
    (set-face-background 'region "#582c6b"))
+
+  ((ef-light
+    ef-day
+    ef-summer
+    ef-spring
+    ef-deuteranopia-light
+    ef-dark
+    ef-night
+    ef-winter
+    ef-autumn
+    ef-deuteranopia-dark)
+   (configure-ef-themes))
 
   (eink
    (set-face-background 'evil-search-highlight-persist-highlight-face
