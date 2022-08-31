@@ -3754,7 +3754,11 @@ repo."
     (set-face-attribute 'marginalia-documentation nil :underline nil))
   (with-eval-after-load 'vertico
     (set-face-attribute 'vertico-current nil
-                        :weight 'normal :background "#fda7df")))
+                        :weight 'normal :background "#fda7df"))
+  (pcase (ef-themes--current-theme)
+    ((or 'ef-day 'ef-deuteranopia-light 'ef-light 'ef-spring 'ef-summer)
+     (set-face-background 'evil-search-highlight-persist-highlight-face
+                          "#f9bf3b"))))
 
 (use-package ef-themes
   :init
