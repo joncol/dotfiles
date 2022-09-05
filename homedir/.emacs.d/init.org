@@ -1823,7 +1823,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   ;; Fix regression where error message is shown when using magit-status while
   ;; having global-whitespace-mode enabled.
   (add-function :before-while whitespace-enable-predicate
-    'prevent-whitespace-mode-for-magit)
+                'prevent-whitespace-mode-for-magit)
 
   ;; Needed for success status message to be shown.
   (setq magit-auto-revert-mode nil)
