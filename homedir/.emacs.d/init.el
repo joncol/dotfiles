@@ -1561,6 +1561,9 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 (evil-leader/set-key "p" 'jco/paste-over)
 (evil-leader/set-key "P" 'jco/paste-over-word)
 
+(use-package git-modes
+  :defer)
+
 (use-package magit
   :defer 1
   :custom
