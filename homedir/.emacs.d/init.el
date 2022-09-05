@@ -3753,6 +3753,8 @@ repo."
   "Configure ef-themes."
   (set-face-attribute 'font-lock-comment-face nil :underline nil)
   (set-face-attribute 'font-lock-doc-face nil :underline nil)
+  (with-eval-after-load 'eyebrowse
+    (set-face-foreground 'eyebrowse-mode-line-active "#f9bf3b"))
   (with-eval-after-load 'marginalia
     (set-face-attribute 'marginalia-documentation nil :underline nil))
   (with-eval-after-load 'vertico
