@@ -1583,7 +1583,7 @@ windows easier."
 (defhydra jco/hydra-main-menu (:color teal :hint nil)
   "main menu"
   ("a" jco/hydra-apps/body "apps")
-  ("b" counsel-bookmark "bookmarks")
+  ("b" edit-bookmarks "bookmarks")
   ("c" jco/hydra-config/body "cfg")
   ("f" jco/hydra-find/body "find")
   ("g" jco/hydra-gtd/body "gtd")
