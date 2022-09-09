@@ -1032,7 +1032,7 @@ Useful for REPL windows."
 
   (progn ;; shfmt
     ;; Remove explicit "-i" option, to make "shfmt" use ".editorconfig" instead.
-    (setf (alist-get 'shfmt apheleia-formatters) '("shfmt"))))
+    (setf (alist-get 'shfmt apheleia-formatters) '("shfmt" "-i" "2"))))
 
 (use-package restclient
   :defer
