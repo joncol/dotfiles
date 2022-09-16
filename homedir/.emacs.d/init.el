@@ -1967,8 +1967,11 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (defun jco/ensure-todo-org-header ()
   "If the current buffer is empty, insert an org header."
   (when (zerop (buffer-size))
-    (insert (concat "#+SEQ_TODO: TODO(t) IN-PROGRESS(i) DONE(d)\n"
-                    "#+STARTUP: showall\n\n"))))
+    (let ((time-str (format-time-string "%Y-%m-%d %a %H:%M")))
+      (insert (concat "#+seq_todo: TODO(t) IN-PROGRESS(i) MAYBE(m) WAITING(w) REVIEW(r) NEXT(n) CANCELED(c) DONE(d)\n"
+                      "#+startup: showall\n"
+                      "#+created: " time-str "\n"
+                      "#+last_modified: " time-str "\n\n")))))
 
 (defun jco/goto-current-project-todo-org (headline)
   "Go to project's todo.org, section: HEADLINE."
