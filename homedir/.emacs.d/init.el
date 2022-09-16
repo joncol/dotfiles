@@ -1396,13 +1396,12 @@ find: _f_un _l_ib _v_ar"
   ("t" hs-toggle-hiding "toggle-hiding"))
 
 (defhydra jco/hydra-lang (:color teal :hint nil)
-  "
-lang: _f_lyspell _l_angtool _c_orrect _d_one _s_dcv"
-  ("f" flyspell-mode)
-  ("l" langtool-check)
-  ("c" langtool-correct-buffer)
-  ("d" langtool-check-done)
-  ("s" sdcv-search))
+  "lang"
+  ("f" flyspell-mode "flyspell-mode")
+  ("l" langtool-check "langtool-check")
+  ("c" langtool-correct-buffer "langtool-correct-buffer")
+  ("d" langtool-check-done "langtool-check-done")
+  ("s" sdcv-search "sdcv"))
 
 (defhydra jco/hydra-magit (:color teal :hint nil)
   "magit"
