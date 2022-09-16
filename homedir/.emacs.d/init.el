@@ -1138,6 +1138,7 @@ Useful for REPL windows."
   (add-hook 'yaml-mode-hook
             (lambda ()
               (modify-syntax-entry ?- "w")
+              (modify-syntax-entry ?_ "w")
               (setq evil-shift-width 2))))
 
 (require 'server)
