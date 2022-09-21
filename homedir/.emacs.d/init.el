@@ -1137,6 +1137,7 @@ Useful for REPL windows."
   :config
   (add-hook 'yaml-mode-hook
             (lambda ()
+              (jco/common-prog)
               (modify-syntax-entry ?- "w")
               (modify-syntax-entry ?_ "w")
               (setq evil-shift-width 2))))
