@@ -1013,8 +1013,8 @@ Useful for REPL windows."
     (cl-pushnew '(glsl-mode . clang-format) apheleia-mode-alist :test #'equal))
 
   (progn ;; Haskell/Cabal
-    (cl-pushnew '(fourmolu . ("fourmolu")) apheleia-formatters :test #'equal)
-    (cl-pushnew '(cabal-fmt . ("~/.cabal/bin/cabal-fmt")) apheleia-formatters :test #'equal)
+    (cl-pushnew '(fourmolu . ("fourmolu" "--stdin-input-file" ".")) apheleia-formatters :test #'equal)
+    (cl-pushnew '(cabal-fmt . ("cabal-fmt")) apheleia-formatters :test #'equal)
     (cl-pushnew '(haskell-mode . fourmolu) apheleia-mode-alist :test #'equal)
     (cl-pushnew '(haskell-cabal-mode . cabal-fmt) apheleia-mode-alist :test #'equal))
 
