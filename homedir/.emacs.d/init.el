@@ -1450,6 +1450,7 @@ find: _f_un _l_ib _v_ar"
   "util"
   ("f" (lambda () (interactive) (jco/yank-current-filename t)) "yank filename")
   ("F" jco/yank-current-filename "yank full path")
+  ("c" global-command-log-mode "global-command-log-mode")
   ("d" jco/yank-date "yank date")
   ("t" jco/yank-timestamp "yank timestamp")
   ("l" toggle-dedicated-window "toggle-dedicated-window")
@@ -4553,6 +4554,11 @@ accordance with ISO 8601)."
   (interactive "P")
   (let ((consult-locate-command "mdfind -name OPTS ARG"))
     (consult-locate initial)))
+
+(use-package command-log-mode
+  :commands (command-log-mode global-command-log-mode)
+  :custom
+  (command-log-mode-auto-show t))
 
 (use-package consult
   :bind (("C-s" . consult-line)
