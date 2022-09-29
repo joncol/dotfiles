@@ -555,6 +555,9 @@ Useful for REPL windows."
 ;; Increase width of first column in `edit-bookmarks' view.
 (setq bookmark-bmenu-file-column 100)
 
+(general-nvmap :prefix ","
+  "xo" 'occur)
+
 (use-package pkgbuild-mode
   :defer)
 
