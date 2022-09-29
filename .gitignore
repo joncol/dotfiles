@@ -32,6 +32,7 @@
 /homedir/.imapfilter/certificates
 /homedir/.irssi/config
 /homedir/.irssi/config.autosave
+/homedir/.irssi/otr/
 /homedir/.lein/repl-history
 /homedir/.lein/self-installs/
 /homedir/.local/bin/virtualenv
