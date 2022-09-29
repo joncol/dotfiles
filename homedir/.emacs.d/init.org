@@ -2795,6 +2795,13 @@ As such, it will only work when the notes window exists."
 #+end_src
 * Programming misc
 #+begin_src emacs-lisp
+(use-package diff-hl
+  :after magit
+  :config
+  (global-diff-hl-mode)
+  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+
 (use-package editorconfig
   :defer 1
   :config
