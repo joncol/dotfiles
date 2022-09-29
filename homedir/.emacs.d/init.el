@@ -167,6 +167,9 @@
   :custom
   (evil-vsplit-window-right t)
   (evil-split-window-below t)
+  (evil-want-fine-undo t)
+  (evil-cross-lines t)
+  (evil-symbol-word-search t)
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
