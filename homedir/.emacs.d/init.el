@@ -2541,9 +2541,10 @@ As such, it will only work when the notes window exists."
   :defer)
 
 (use-package diff-hl
-  :after magit
+  :if (display-graphic-p)
+  :hook ((after-init . global-diff-hl-mode)
+         (dired-mode . diff-hl-dired-mode))
   :config
-  (global-diff-hl-mode)
   (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
