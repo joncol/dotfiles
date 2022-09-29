@@ -164,10 +164,12 @@
 
 (use-package evil
   :ensure t
+  :custom
+  (evil-vsplit-window-right t)
+  (evil-split-window-below t)
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
-
   :config
   (evil-mode)
   (evil-set-undo-system 'undo-tree)
