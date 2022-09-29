@@ -976,6 +976,12 @@ Useful for REPL windows."
     ("i" . dired-subtree-insert)
     (";" . dired-subtree-remove)))
 
+(use-package docker
+  :defer
+  :init
+  (general-nvmap :prefix ","
+    "xd" 'docker))
+
 (use-package docker-compose-mode
   :defer
   :config
