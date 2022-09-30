@@ -1631,19 +1631,23 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   :straight (magit-delta :type git :host github
                          :repo "dandavison/magit-delta")
   :after magit
+  :custom
+  (magit-delta-hide-plus-minus-markers nil)
   :config
+  (setq magit-delta-delta-args
+        `("--max-line-distance" "0.6"
+          "--true-color" ,(if xterm-color--support-truecolor
+                              "always"
+                            "never")
+          "--color-only"))
   (when (< (kurecolor-hex-get-brightness (face-attribute 'default :background))
            0.5)
     (setq magit-delta-delta-args
-          `("--plus-color" "#016000"
-            "--plus-emph-color" "#02a000"
-            "--minus-color" "#840001"
-            "--minus-emph-color" "#b60004"
-            "--max-line-distance" "0.6"
-            "--24-bit-color" ,(if xterm-color--support-truecolor
-                                  "always"
-                                "never")
-            "--color-only")))
+          (append magit-delta-delta-args
+                  '("--plus-color" "#016000"
+                    "--plus-emph-color" "#02a000"
+                    "--minus-color" "#840001"
+                    "--minus-emph-color" "#b60004"))))
   (magit-delta-mode))
 
 (use-package magit-org-todos
