@@ -3515,7 +3515,7 @@ Example:
   "Helper for selecting window for opening *compilation* buffers."
   ;; Find existing compilation window left of the current window or left-most
   ;; window.
-  (let ((win (or (loop for win = (if win (window-left win) (get-buffer-window))
+  (let ((win (or (cl-loop for win = (if win (window-left win) (get-buffer-window))
                        when (or (not (window-left win))
                                 (string-prefix-p "*compilation" (buffer-name (window-buffer win))))
                        return win)
