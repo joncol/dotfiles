@@ -122,6 +122,8 @@ let mapleader=","
 nnoremap <leader>ev :e ~/.config/nvim/myinit.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/myinit.vim<cr>
 
+unmap Y
+
 " nnoremap <leader>es :UltiSnipsEdit<cr>
 
 inoremap <s-space> <space>
