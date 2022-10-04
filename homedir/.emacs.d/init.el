@@ -648,16 +648,6 @@ Useful for REPL windows."
 (use-package dash-functional
   :defer)
 
-(use-package deft
-  :defer
-  :custom
-  (deft-directory "~/org/roam")
-  (deft-recursive t)
-  :config
-  (add-hook 'deft-mode-hook
-            (lambda ()
-              (display-line-numbers-mode -1))))
-
 (use-package desktop
   :defer
   :config
@@ -1931,6 +1921,16 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (my-kill-thing-at-point 'word)
   (let ((w (current-kill 0)))
     (org-insert-link nil (concat "jira:" w) w)))
+
+(use-package deft
+  :defer
+  :custom
+  (deft-directory "~/org/roam")
+  (deft-recursive t)
+  :config
+  (add-hook 'deft-mode-hook
+            (lambda ()
+              (display-line-numbers-mode -1))))
 
 (use-package org-bullets
   :after org
