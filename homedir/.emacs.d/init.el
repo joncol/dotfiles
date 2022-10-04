@@ -642,12 +642,6 @@ Useful for REPL windows."
          ("C-S-<left>"  . buf-move-left)
          ("C-S-<right>" . buf-move-right)))
 
-(use-package crystal-mode
-  :defer)
-
-(use-package csv-mode
-  :defer)
-
 (use-package cypher-mode
   :defer)
 
@@ -2696,6 +2690,9 @@ As such, it will only work when the notes window exists."
             (jco/common-prog)
             (modify-syntax-entry ?_ "w")))
 
+(use-package crystal-mode
+  :defer)
+
 (dolist (hook '(css-mode-hook
                 less-css-mode-hook
                 scss-mode-hook))
@@ -2707,6 +2704,9 @@ As such, it will only work when the notes window exists."
 (use-package lsp-tailwindcss
   :defer
   :custom (lsp-tailwindcss-add-on-mode t))
+
+(use-package csv-mode
+  :defer)
 
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 

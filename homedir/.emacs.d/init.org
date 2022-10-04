@@ -877,12 +877,6 @@ Useful for REPL windows."
          ("C-S-<left>"  . buf-move-left)
          ("C-S-<right>" . buf-move-right)))
 
-(use-package crystal-mode
-  :defer)
-
-(use-package csv-mode
-  :defer)
-
 (use-package cypher-mode
   :defer)
 
@@ -2966,6 +2960,11 @@ As such, it will only work when the notes window exists."
             (jco/common-prog)
             (modify-syntax-entry ?_ "w")))
 #+end_src
+** Crystal
+#+begin_src emacs-lisp
+(use-package crystal-mode
+  :defer)
+#+end_src
 ** CSS
 #+begin_src emacs-lisp
 (dolist (hook '(css-mode-hook
@@ -2979,6 +2978,11 @@ As such, it will only work when the notes window exists."
 (use-package lsp-tailwindcss
   :defer
   :custom (lsp-tailwindcss-add-on-mode t))
+#+end_src
+** CSV
+#+begin_src emacs-lisp
+(use-package csv-mode
+  :defer)
 #+end_src
 ** Clojure
 #+begin_src emacs-lisp
