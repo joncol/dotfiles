@@ -666,8 +666,6 @@ Useful for REPL windows."
 (setq native-comp-async-report-warnings-errors nil)
 (setq ad-redefinition-action 'accept)
 
-(setq-default explicit-shell-file-name "/bin/bash")
-
 (setq-default major-mode 'text-mode)
 
 (define-minor-mode jco/my-keys-mode
