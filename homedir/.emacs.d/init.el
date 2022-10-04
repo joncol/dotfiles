@@ -467,7 +467,6 @@ Useful for REPL windows."
 (add-to-list 'revert-without-query ".*\\.pdf\\'")
 (global-font-lock-mode)
 (setq select-enable-primary t)
-(global-whitespace-mode)
 (setq calendar-week-start-day 1)
 
 (setq-default fill-column 80)
@@ -478,9 +477,6 @@ Useful for REPL windows."
 (setq epg-pinentry-mode 'ask)
 
 (setq-default sh-indent-after-continuation 'always)
-
-(defun prevent-whitespace-mode-for-magit ()
-  (not (derived-mode-p 'magit-mode)))
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-diff-options "-w")
@@ -1584,6 +1580,10 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 
 (use-package git-modes
   :defer)
+
+(defun prevent-whitespace-mode-for-magit ()
+  "Do not use `whitespace-mode' when in `magit-mode'."
+  (not (derived-mode-p 'magit-mode)))
 
 (use-package magit
   :defer 1
@@ -4082,7 +4082,8 @@ repo."
    (set-face-background 'region "#e4f1fe")
    (set-face-background 'whitespace-empty "#ffe9ec")
    (set-face-background 'whitespace-trailing "#ffe9ec")
-   (set-face-background 'whitespace-tab "#f0f0f0")
+   (with-eval-after-load 'whitespace
+     (set-face-background 'whitespace-tab "#f0f0f0"))
    (with-eval-after-load 'cider
      (set-face-background 'cider-deprecated-face "#d63031")
      (set-face-background 'cider-test-error-face "Red")
@@ -4414,8 +4415,9 @@ repo."
      ((((type x)) (:inherit company-tooltip-selection :weight bold))
       (t (:inherit company-tooltip-selection))))))
 
-(set-face-background 'whitespace-tab nil)
-(set-face-background 'whitespace-indentation nil)
+(with-eval-after-load 'whitespace
+  (set-face-background 'whitespace-tab nil)
+  (set-face-background 'whitespace-indentation nil))
 
 (menu-bar-mode -1)
 ;; Change for different username.
@@ -4679,6 +4681,8 @@ accordance with ISO 8601)."
   ;; auto-updating embark collect buffer
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
+
+(global-whitespace-mode)
 
 (use-package ethan-wspace
   :defer
