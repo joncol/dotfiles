@@ -765,8 +765,6 @@ Useful for REPL windows."
           (lambda ()
             (define-key eww-mode-map "\C-w" 'evil-window-map)))
 
-(add-hook 'messages-buffer-mode-hook 'ansi-color-for-comint-mode-on)
-
 (defadvice view-emacs-news (after evil-motion-state-in-news-view
                                   activate compile)
   "Enable evil motion state."
