@@ -559,6 +559,9 @@ Useful for REPL windows."
 (general-nvmap :prefix ","
   "xo" 'occur)
 
+(general-nvmap :prefix ","
+  "xr" 'restart-emacs)
+
 (use-package pkgbuild-mode
   :defer)
 
