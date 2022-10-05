@@ -363,6 +363,10 @@ Useful for REPL windows."
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
 
+(use-package company-statistics
+  :init
+  (add-hook 'after-init-hook 'company-statistics-mode))
+
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
 

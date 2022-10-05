@@ -593,6 +593,10 @@ Useful for REPL windows."
 (use-package company-box
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
+
+(use-package company-statistics
+  :init
+  (add-hook 'after-init-hook 'company-statistics-mode))
 #+end_src
 * Global config
 #+begin_src emacs-lisp
