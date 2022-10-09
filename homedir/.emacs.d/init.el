@@ -1190,6 +1190,12 @@ Useful for REPL windows."
 (use-package s
   :defer)
 
+(use-package vterm
+  :defer
+  :init
+  (general-nvmap :prefix ","
+    "xt" 'vterm-other-window))
+
 (use-package wgrep
   :defer)
 
@@ -1492,6 +1498,7 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
          (jco/init-mu4e-contexts)
          (mu4e)) "mu4e")
   ("s" jco/eshell-here "eshell")
+  ("t" vterm-other-window "vterm")
   ("v" jco/vim "vim")
   ("w" eww "eww")
   ("x" sx-tab-all-questions "sx"))
