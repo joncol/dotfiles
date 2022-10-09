@@ -1116,7 +1116,7 @@ Useful for REPL windows."
   :defer 1
   :config
   (setq super-save-exclude
-        '("\\.gpg" "\\.pdf" "\\.fsh" "\\.vsh" "\\.frag" "\\.vert"))
+        '("init\\.org" "\\.gpg" "\\.pdf" "\\.fsh" "\\.vsh" "\\.frag" "\\.vert"))
   (super-save-mode))
 
 (use-package unkillable-scratch
