@@ -1887,10 +1887,10 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
            0.5)
     (setq magit-delta-delta-args
           (append magit-delta-delta-args
-                  '("--plus-color" "#016000"
-                    "--plus-emph-color" "#02a000"
-                    "--minus-color" "#840001"
-                    "--minus-emph-color" "#b60004"))))
+                  '("--plus-style" "#016000"
+                    "--plus-emph-style" "#02a000"
+                    "--minus-style" "#840001"
+                    "--minus-emph-style" "#b60004"))))
   (magit-delta-mode))
 
 (use-package magit-org-todos
