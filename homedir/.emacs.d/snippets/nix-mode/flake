@@ -7,16 +7,15 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs { inherit system; };
+      let
+        overlays = [];
+        pkgs = builtins.foldl' (acc: overlay: acc.extend overlay)
+          nixpkgs.legacyPackages.\${system} overlays;
       in rec {
         packages = flake-utils.lib.flattenTree {
           hello = pkgs.hello;
@@ -25,6 +24,6 @@
         defaultPackage = packages.hello;
         apps.hello = flake-utils.lib.mkApp { drv = packages.hello; };
         defaultApp = apps.hello;
-        devShell = pkgs.mkShell rec { packages = with pkgs; [ nyancat ]; };
+        devShells.default = pkgs.mkShell rec { packages = with pkgs; [ nyancat ]; };
       });
 }
