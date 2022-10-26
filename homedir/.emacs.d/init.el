@@ -3587,7 +3587,8 @@ Example:
               (ethan-wspace-mode -1)))
   (evil-leader/set-key "TAB" 'yas-insert-snippet))
 
-(use-package yasnippet-snippets)
+(use-package yasnippet-snippets
+  :straight (yasnippet-snippets :host github :repo "joncol/yasnippet-snippets"))
 
 (defun jco/check-expansion ()
   (save-excursion
