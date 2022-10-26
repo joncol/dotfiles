@@ -3221,6 +3221,7 @@ Lisp function does not specify a special indentation."
               (modify-syntax-entry ?- "w"))))
 
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.cjs$" . js2-mode))
 
 (use-package json-mode
   :defer
