@@ -249,6 +249,7 @@
   :ensure t
   :config
   (setq forge-add-default-bindings nil)
+  (delete 'calc evil-collection-mode-list)
   (evil-collection-init))
 
 (use-package evil-ediff
@@ -3608,6 +3609,8 @@ Example:
     (minibuffer-complete))
    ((derived-mode-p 'magit-mode (symbol-name major-mode))
     (magit-section-toggle (magit-current-section)))
+   ((derived-mode-p 'calc-mode (symbol-name major-mode))
+    (calc-roll-down nil))
    (t
     (when (or (not yas/minor-mode)
               (null (yas-expand)))
