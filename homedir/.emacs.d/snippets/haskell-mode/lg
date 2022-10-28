@@ -2,4 +2,4 @@
 # name: Log
 # key: lg
 # --
-logInfo_ $ "${1:message}"
+logInfo_ "${1:message}"
