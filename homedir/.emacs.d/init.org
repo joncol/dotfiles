@@ -12,7 +12,7 @@
 Current theme. Change this to whatever theme you want, by copying the line from
 the list below.
 #+name: my-theme
-: ef-summer
+: modus-vivendi
 #+begin_src emacs-lisp :var my-theme=my-theme
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))

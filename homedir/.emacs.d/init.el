@@ -2,7 +2,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"ef-summer"))
+(let ((my-theme '"modus-vivendi"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
