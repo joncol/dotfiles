@@ -563,6 +563,9 @@ Useful for REPL windows."
 (general-nvmap :prefix ","
   "xr" 'restart-emacs)
 
+(general-nvmap :prefix ","
+  "xs" 'shortdoc-display-group)
+
 (use-package pkgbuild-mode
   :defer)
 
