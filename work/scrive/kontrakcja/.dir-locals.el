@@ -9,8 +9,11 @@
 
  (conf-colon-mode . ((eval . (lsp-deferred))))
 
- (haskell-mode . ((apheleia-formatter . brittany)
+ (haskell-mode . ((eval (push '(cabal-fmt . ("cabal-fmt" "--indent 4"))
+                              apheleia-formatters))
+                  (apheleia-formatter . brittany)
                   (fill-column . 90)))
+ ;; (haskell-mode . ((fill-column . 90)))
 
  (haskell-cabal-mode . ((eval . (apheleia-mode -1))))
 
