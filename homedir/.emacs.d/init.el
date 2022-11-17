@@ -1004,7 +1004,7 @@ Useful for REPL windows."
 
 ;; Automatic code reformatting.
 (use-package apheleia
-  :defer
+  :defer 1
   :config
   (progn ;; Elm
     (cl-pushnew '(elm-format . ("elm-format" "--stdin")) apheleia-formatters :test #'equal)
