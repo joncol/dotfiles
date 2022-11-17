@@ -1,5 +1,7 @@
-((nil . ((eval . (add-to-list 'lsp-language-id-configuration
-                              '(conf-colon-mode . "json")))
+((nil . ((eval . (progn (add-to-list 'lsp-language-id-configuration
+                                     '(conf-colon-mode . "json"))
+                        (push '(cabal-fmt . ("cabal-fmt" "--indent" "4"))
+                              apheleia-formatters)))
          (project-vc-ignores . ("scrivepdftools/"
                                 "texts/"
                                 "vagrant/"))
@@ -9,12 +11,10 @@
 
  (conf-colon-mode . ((eval . (lsp-deferred))))
 
- (haskell-mode . ((eval (push '(cabal-fmt . ("cabal-fmt" "--indent 4"))
-                              apheleia-formatters))
-                  (apheleia-formatter . brittany)
+ (haskell-mode . ((apheleia-formatter . brittany)
                   (fill-column . 90)))
  ;; (haskell-mode . ((fill-column . 90)))
 
- (haskell-cabal-mode . ((eval . (apheleia-mode -1))))
+ (haskell-cabal-mode . ((eval . (direnv-update-environment))))
 
  (json-mode . ((eval . (apheleia-mode -1)))))
