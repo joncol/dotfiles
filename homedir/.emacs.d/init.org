@@ -1875,6 +1875,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                     '("bitbucket.org" "bitbucket.user"))))
 
 (use-package magit-delta
+  :disabled
   :if (locate-file "delta" exec-path exec-suffixes 1)
   :straight (magit-delta :type git :host github
                          :repo "dandavison/magit-delta")
