@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Fake SHA-256
+# key: fakesha
+# --
+nixpkgs.lib.fakeSha256
