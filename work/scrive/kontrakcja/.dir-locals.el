@@ -11,9 +11,7 @@
 
  (conf-colon-mode . ((eval . (lsp-deferred))))
 
- (haskell-mode . ((apheleia-formatter . brittany)
-                  (fill-column . 90)))
- ;; (haskell-mode . ((fill-column . 90)))
+ (haskell-mode . ((fill-column . 90)))
 
  (haskell-cabal-mode . ((eval . (direnv-update-environment))))
 
