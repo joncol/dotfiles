@@ -1015,7 +1015,7 @@ Useful for REPL windows."
 
   (progn ;; Haskell/Cabal
     (cl-pushnew '(fourmolu . ("fourmolu" "--stdin-input-file" filepath)) apheleia-formatters :test #'equal)
-    (cl-pushnew '(cabal-fmt . ("cabal-fmt")) apheleia-formatters :test #'equal)
+    (cl-pushnew '(cabal-fmt . ("cabal-fmt" "--indent" "4")) apheleia-formatters :test #'equal)
     (cl-pushnew '(haskell-mode . fourmolu) apheleia-mode-alist :test #'equal)
     (cl-pushnew '(haskell-cabal-mode . cabal-fmt) apheleia-mode-alist :test #'equal))
 
