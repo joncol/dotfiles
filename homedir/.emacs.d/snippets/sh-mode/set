@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: set bash script recommended variables
+# key: set
+# --
+set -o errexit  # Abort on nonzero exitstatus.
+set -o nounset  # Abort on unbound variable.
+set -o pipefail # Don't hide errors within pipes.
