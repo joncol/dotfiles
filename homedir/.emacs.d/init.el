@@ -3805,12 +3805,20 @@ repo."
     (set-face-foreground 'eyebrowse-mode-line-active "#f9bf3b"))
   (with-eval-after-load 'marginalia
     (set-face-attribute 'marginalia-documentation nil :underline nil))
-  (with-eval-after-load 'vertico
-    (set-face-attribute 'vertico-current nil
-                        :weight 'normal :background "#fda7df"))
-  (pcase (ef-themes--current-theme)
-    ((or 'ef-day 'ef-deuteranopia-light 'ef-light 'ef-spring 'ef-summer)
-     (set-face-background 'evil-search-highlight-persist-highlight-face
+
+  (unless (eq (ef-themes--current-theme) 'ef-cherie)
+    (with-eval-after-load 'vertico
+      (set-face-attribute 'vertico-current nil
+                          :weight 'normal :background "#fda7df")))
+
+  (set-face-background 'evil-search-highlight-persist-highlight-face
+                       (pcase (ef-themes--current-theme)
+                         ('ef-cherie "#6c1e8e")
+                         ((or 'ef-day
+                              'ef-deuteranopia-light
+                              'ef-light
+                              'ef-spring
+                              'ef-summer)
                           "#f9bf3b"))))
 
 (use-package ef-themes
