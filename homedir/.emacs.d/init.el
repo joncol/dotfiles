@@ -2254,7 +2254,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
 
 (use-package org-noter
   :defer 1
-  :straight (org-noter :type git :host github :repo "joncol/org-noter-plus-djvu")
+  ;; :straight (org-noter :type git :host github :repo "joncol/org-noter-plus-djvu")
   :if (and (not (eq system-type 'windows-nt))
            (display-graphic-p))
   :bind (:map org-noter-doc-mode-map
