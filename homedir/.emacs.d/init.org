@@ -12,7 +12,7 @@
 Current theme. Change this to whatever theme you want, by copying the line from
 the list below.
 #+name: my-theme
-: ef-cherie
+: ef-bio
 #+begin_src emacs-lisp :var my-theme=my-theme
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
@@ -52,6 +52,8 @@ the list below.
 : doom-sourcerer
 : doom-spacegrey
 : doom-tomorrow-day
+: ef-bio
+: ef-cherie
 : eink
 : gotham
 : github-modern
@@ -4180,14 +4182,14 @@ repo."
   (with-eval-after-load 'marginalia
     (set-face-attribute 'marginalia-documentation nil :underline nil))
 
-  (unless (eq (ef-themes--current-theme) 'ef-cherie)
+  (unless (member (ef-themes--current-theme) '(ef-bio ef-cherie))
     (with-eval-after-load 'vertico
       (set-face-attribute 'vertico-current nil
                           :weight 'normal :background "#fda7df")))
 
   (set-face-background 'evil-search-highlight-persist-highlight-face
                        (pcase (ef-themes--current-theme)
-                         ('ef-cherie "#6c1e8e")
+                         ((or 'ef-bio 'ef-cherie) "#6c1e8e")
                          ((or 'ef-day
                               'ef-deuteranopia-light
                               'ef-light
