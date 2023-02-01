@@ -4528,8 +4528,7 @@ accordance with ISO 8601)."
   :custom
   (completion-ignore-case t)
   :init
-  (vertico-mode)
-  (setq vertico-cycle t))
+  (vertico-mode))
 
 (eval-and-compile
   (defun my-vertico-extensions-load-path ()
