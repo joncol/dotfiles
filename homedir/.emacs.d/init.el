@@ -3787,7 +3787,6 @@ repo."
            flatui-theme
            github-modern-theme
            gotham-theme
-           grandshell-theme
            gruber-darker-theme
            hemisu-theme
            kaolin-themes
