@@ -4621,13 +4621,6 @@ accordance with ISO 8601)."
       (interactive)
       (consult-ripgrep (project-root (project-current)))))
   :config
-  (consult-customize
-   consult-theme
-   :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep
-   consult-bookmark consult-recent-file consult-xref
-   :preview-key (kbd "M-."))
-
   (setq consult-project-root-function
         (lambda ()
           (when-let (project (project-current))
