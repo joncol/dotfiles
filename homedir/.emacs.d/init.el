@@ -2,7 +2,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"ef-bio"))
+(let ((my-theme '"ef-winter"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -3814,14 +3814,14 @@ repo."
   (with-eval-after-load 'marginalia
     (set-face-attribute 'marginalia-documentation nil :underline nil))
 
-  (unless (member (ef-themes--current-theme) '(ef-bio ef-cherie))
+  (unless (ef-themes--list-enabled-themes)
     (with-eval-after-load 'vertico
       (set-face-attribute 'vertico-current nil
                           :weight 'normal :background "#fda7df")))
 
   (set-face-background 'evil-search-highlight-persist-highlight-face
                        (pcase (ef-themes--current-theme)
-                         ((or 'ef-bio 'ef-cherie) "#6c1e8e")
+                         ((or 'ef-bio 'ef-cherie ef-winter) "#6c1e8e")
                          ((or 'ef-day
                               'ef-deuteranopia-light
                               'ef-light
