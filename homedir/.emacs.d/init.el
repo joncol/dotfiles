@@ -1184,8 +1184,6 @@ Useful for REPL windows."
 
 (put 'erase-buffer 'disabled nil)
 
-(windmove-default-keybindings)
-
 (require 'ibuffer)
 
 (dolist (map (list ibuffer-mode-map))
