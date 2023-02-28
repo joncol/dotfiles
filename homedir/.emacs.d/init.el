@@ -210,7 +210,7 @@
                       (git-rebase-mode           . emacs)
                       (godoc-mode                . motion)
                       (profiler-report-mode      . emacs)
-                      (sdcv-mode                 . emacs)
+                      (sdcv-mode                 . motion)
                       (sesman-browser-mode       . emacs)
                       (sx-question-list-mode     . emacs)
                       (sx-question-mode          . emacs)
