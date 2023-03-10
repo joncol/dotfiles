@@ -24,6 +24,7 @@
 (straight-use-package 'use-package)
 
 (setq straight-use-package-by-default t)
+(setq straight-check-for-modifications nil)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (setq-default flycheck-emacs-lisp-load-path load-path)
