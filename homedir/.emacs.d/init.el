@@ -178,7 +178,7 @@
   (evil-mode)
   (evil-set-undo-system 'undo-tree)
 
-  ;; Disable certain evil keys to make useful company-mode/embark bindings work.
+  ;; Disable certain evil keys to make useful embark bindings work.
   (unbind-key "C-n" evil-insert-state-map)
   (unbind-key "C-p" evil-insert-state-map)
   ;; (unbind-key "C-r" evil-insert-state-map)
@@ -231,7 +231,6 @@
 
   (define-key evil-normal-state-map (kbd "+") 'rotate-word-at-point)
   (define-key evil-normal-state-map (kbd "M-.") nil)
-  (define-key evil-insert-state-map (kbd "C-k") nil) ;; Conflicts with Company.
 
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
   (when (display-graphic-p)
@@ -347,38 +346,18 @@ Useful for REPL windows."
   (evil-window-move-very-bottom)
   (evil-window-set-height height))
 
-(use-package company
+(use-package corfu
   :init
-  (add-hook 'after-init-hook 'global-company-mode)
-  :bind (([C-iso-lefttab] . company-ispell)
-         :map company-active-map
-         ("C-j" . company-select-next-or-abort)
-         ("C-k" . company-select-previous-or-abort)
-         ("C-n" . company-select-next-or-abort)
-         ("C-p" . company-select-previous-or-abort)
-         ("<backtab>" . company-select-previous-or-abort)
-         ("C-d" . company-show-doc-buffer)
-         ("M-." . company-show-location)
-         ("RET" . company-complete-selection))
-  :config
-  (setq company-tooltip-align-annotations t)
-  (setq company-dabbrev-ignore-case 'keep-prefix)
-  (setq company-dabbrev-code-ignore-case nil)
-  (setq company-dabbrev-downcase nil)
-  (setq company-tooltip-limit 20)
-  (setq company-minimum-prefix-length 1)
-  (setq company-idle-delay 0.0)
-  (setq company-echo-delay 0)
-  ;; (setq company-begin-commands '(self-insert-command))
-  (setq company-transformers '(company-sort-by-occurrence)))
+  (global-corfu-mode))
 
-(use-package company-box
-  :if (display-graphic-p)
-  :hook (company-mode . company-box-mode))
-
-(use-package company-statistics
+(use-package emacs
   :init
-  (add-hook 'after-init-hook 'company-statistics-mode))
+  ;; TAB cycle if there are only few candidates.
+  (setq completion-cycle-threshold 3)
+
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (setq tab-always-indent 'complete))
 
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
@@ -2195,7 +2174,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
               ;; (flyspell-mode)
               (smartparens-mode -1)
               (evil-leader/set-key "z l" 'org-toggle-link-display)
-              (setq company-idle-delay 0.5)
               (define-and-bind-quoted-text-object "tilde" "~" "~" "~")
               (define-and-bind-quoted-text-object "equals" "=" "=" "=")
               (define-and-bind-quoted-text-object "slash" "/" "/" "/")
@@ -2946,12 +2924,10 @@ Opens a new buffer with the result."
           (lambda ()
             (eldoc-mode)
             (setq eldoc-echo-area-use-multiline-p nil)
-            (cider-company-enable-fuzzy-completion)
             (advice-add 'cider-quit :before #'close-repl-window)))
 
 (add-hook 'cider-repl-mode-hook
           (lambda ()
-            (cider-company-enable-fuzzy-completion)
             (modify-syntax-entries)))
 
 (add-hook 'cider--debug-mode-hook
@@ -3279,14 +3255,10 @@ Lisp function does not specify a special indentation."
               (modify-syntax-entry ?= "w")
               (modify-syntax-entry ?* "w")
               (setq inferior-lisp-program "sbcl")
-              (slime-setup '(slime-asdf slime-company slime-fancy))
+              (slime-setup '(slime-asdf slime-fancy))
               (slime-asdf-init) ;; Required for `slime-load-system'.
-              (slime-company-maybe-enable)
               (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)
               (define-key sldb-mode-map "\C-w" 'evil-window-map))))
-
-(use-package slime-company
-  :defer)
 
 (defun jco/lisp-comment-dwim ()
   "Comments Lisp sexps smartly."
@@ -3606,85 +3578,6 @@ Example:
 (use-package yasnippet-snippets
   :straight (yasnippet-snippets :host github :repo "joncol/yasnippet-snippets"))
 
-(defun jco/check-expansion ()
-  (save-excursion
-    (if (looking-at "\\_>") t
-      (backward-char 1)
-      (if (looking-at "\\.") t
-        (backward-char 1)
-        (if (looking-at "->") t nil)))))
-
-(require 'minibuffer)
-
-(defun jco/tab-indent-or-complete (&optional arg)
-  "Expand completion or yas snippet. Prefix ARG is used if in `org-mode'."
-  (interactive "P")
-  (cond
-   ((minibufferp)
-    (minibuffer-complete))
-   ((derived-mode-p 'magit-mode (symbol-name major-mode))
-    (magit-section-toggle (magit-current-section)))
-   ((derived-mode-p 'calc-mode (symbol-name major-mode))
-    (calc-roll-down nil))
-   (t
-    (when (or (not yas/minor-mode)
-              (null (yas-expand)))
-      (if (jco/check-expansion)
-          (progn
-            (company-manual-begin)
-            (when (null company-candidates)
-              (company-abort)))
-        (when (derived-mode-p 'org-mode)
-          (org-cycle arg)))))))
-
-(defun jco/tab-complete-or-next-field ()
-  (interactive)
-  (if (or (not yas/minor-mode)
-          (null (yas-expand)))
-      (if company-candidates
-          (company-complete-selection)
-        (if (jco/check-expansion)
-            (progn
-              (company-manual-begin)
-              (if (null company-candidates)
-                  (progn
-                    (company-abort)
-                    (yas-next-field))))
-          (yas-next-field)))))
-
-(defun jco/expand-snippet-or-next-selection ()
-  (interactive)
-  (if (or (not yas/minor-mode)
-          (null (yas-expand))
-          (company-abort))
-
-      (if (> company-candidates-length 1)
-          (company-select-next)
-        (company-complete-common))))
-
-(defun jco/abort-company-or-yas ()
-  (interactive)
-  (if (null company-candidates)
-      (yas-abort-snippet)
-    (company-abort)))
-
-(global-set-key [tab] 'jco/tab-indent-or-complete)
-(global-set-key (kbd "TAB") 'jco/tab-indent-or-complete)
-
-(with-eval-after-load 'company
-  (define-key company-active-map [tab] 'jco/expand-snippet-or-next-selection)
-  (define-key company-active-map (kbd "TAB")
-    'jco/expand-snippet-or-next-selection))
-
-(with-eval-after-load 'yasnippet
-  (define-key yas-minor-mode-map [tab] nil)
-  (define-key yas-minor-mode-map (kbd "TAB") nil)
-
-  (define-key yas-keymap [tab] 'jco/tab-complete-or-next-field)
-  (define-key yas-keymap (kbd "TAB") 'jco/tab-complete-or-next-field)
-  (define-key yas-keymap [(control tab)] 'yas-next-field)
-  (define-key yas-keymap (kbd "C-g") 'jco/abort-company-or-yas))
-
 (defun org-babel-tangle-config ()
   "Tangle emacs config file.  Uses the following custom logic:
 
@@ -3910,9 +3803,7 @@ repo."
      (set-face-foreground 'mu4e-header-highlight-face "#101f24")))
 
   (borland-blue
-   (set-face-background 'region "RoyalBlue4")
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#268bd2")))
+   (set-face-background 'region "RoyalBlue4"))
 
   (challenger-deep
    (set-face-background 'hl-line "#352e5a")
@@ -3994,8 +3885,6 @@ repo."
    (with-eval-after-load 'volatile-highlights
      (set-face-background 'vhl/default-face (jco/current-bg 0.10)))
    (set-face-background 'highlight "#ccae62")
-   (with-eval-after-load 'company-box
-     (set-face-background 'company-box-scrollbar "#7ceece"))
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "black")))
 
@@ -4075,11 +3964,7 @@ repo."
                         "LightBlue"))
 
   (flatui
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#fd79a8")
-     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
-     (set-face-foreground 'company-preview-common "#a0a0a0")))
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b"))
 
   (github-modern
    (setq sml/theme 'light)
@@ -4106,10 +3991,6 @@ repo."
      (set-face-background 'cider-test-failure-face "Red")
      (set-face-foreground 'cider-test-failure-face "Black")
      (set-face-background 'cider-test-success-face "Green"))
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#fd79a8")
-     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
-     (set-face-foreground 'company-preview-common "#f0f0f0"))
    (with-eval-after-load 'ediff
      (set-face-foreground 'ediff-current-diff-Ancestor "white")
      (set-face-foreground 'ediff-current-diff-C "white")
@@ -4162,20 +4043,11 @@ repo."
   (light-blue
    (set-face-background 'evil-search-highlight-persist-highlight-face
                         "#fcd34d")
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#fd79a8")
-     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
-     (set-face-foreground 'company-preview-common "#f0f0f0")))
+   )
 
   (material
    (set-face-background 'hl-line "#37474f")
    (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip (jco/current-bg 0.25))
-     (set-face-foreground 'company-tooltip-common (jco/current-fg))
-     (set-face-background 'company-tooltip-selection "#fd79a8")
-     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
-     (set-face-foreground 'company-preview-common "#f0f0f0"))
    (with-eval-after-load 'org
      (set-face-background 'org-todo nil)))
 
@@ -4239,10 +4111,6 @@ repo."
    (set-face-background 'hl-line "#2a2d2e")
    (set-face-background 'highlight "#582c6b")
    (set-face-background 'whitespace-empty nil)
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#1079a8")
-     (set-face-background 'company-tooltip-annotation-selection "#1079a8")
-     (set-face-foreground 'company-preview-common "#f0f0f0"))
    (with-eval-after-load 'eyebrowse
      (set-face-foreground 'eyebrowse-mode-line-active "#34ace0"))
    (with-eval-after-load 'volatile-highlights
@@ -4259,10 +4127,6 @@ repo."
    (setq sml/theme 'light)
    (setq jco/cursor-color "#101f24")
    (set-face-background 'hl-line "#e0dcbe")
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#fd79a8")
-     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
-     (set-face-foreground 'company-preview-common "#a0a0a0"))
    (with-eval-after-load 'volatile-highlights
      (set-face-background 'vhl/default-face "#e0dcbe"))
    (with-eval-after-load 'smartparens
@@ -4283,10 +4147,6 @@ repo."
   (nubox-tty
    (set-face-background 'highlight "#582c6b")
    (set-face-foreground 'link "#34ace0")
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#009432")
-     (set-face-background 'company-tooltip-annotation-selection "#009432")
-     (set-face-foreground 'company-preview-common "#a0a0a0"))
    (with-eval-after-load 'consult
      (set-face-background 'consult-preview-match "#34ace0"))
    (with-eval-after-load 'eyebrowse
@@ -4323,12 +4183,7 @@ repo."
   (sanityinc-tomorrow-blue
    (setq jco/cursor-color "snow")
    (set-face-background 'evil-search-highlight-persist-highlight-face
-                        "RoyalBlue")
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "snow")
-     (set-face-foreground 'company-tooltip-selection "gray8")
-     (set-face-foreground 'company-tooltip-common-selection "VioletRed4")
-     (set-face-background 'company-scrollbar-fg "LightBlue")))
+                        "RoyalBlue"))
 
   (solarized-dark
    (set-face-background 'region "#1a4550"))
@@ -4356,11 +4211,7 @@ repo."
     '(font-lock-function-name-face ((t (:weight bold :box nil))))))
 
   (whiteboard
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#99f6e4")
-   (with-eval-after-load 'company
-     (set-face-background 'company-tooltip-selection "#fd79a8")
-     (set-face-background 'company-tooltip-annotation-selection "#fd79a8")
-     (set-face-foreground 'company-preview-common "#a0a0a0"))))
+   (set-face-background 'evil-search-highlight-persist-highlight-face "#99f6e4")))
 
 (when (not (display-graphic-p))
   ;; Transparent background in console mode.
@@ -4397,23 +4248,6 @@ repo."
   (setq evil-insert-state-cursor `(,jco/cursor-color bar)))
 
 (blink-cursor-mode -1)
-
-(unless (display-graphic-p)
-  (custom-set-faces
-   '(company-preview
-     ((t (:foreground "darkgray" :underline t))))
-   '(company-preview-common
-     ((t (:inherit company-preview))))
-   '(company-tooltip
-     ((t (:background "lightgray" :foreground "black"))))
-   '(company-tooltip-selection
-     ((t (:background "steelblue" :foreground "white"))))
-   '(company-tooltip-common
-     ((((type x)) (:inherit company-tooltip :weight bold))
-      (t (:inherit company-tooltip))))
-   '(company-tooltip-common-selection
-     ((((type x)) (:inherit company-tooltip-selection :weight bold))
-      (t (:inherit company-tooltip-selection))))))
 
 (with-eval-after-load 'whitespace
   (set-face-background 'whitespace-tab nil)
