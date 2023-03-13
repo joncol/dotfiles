@@ -3714,13 +3714,13 @@ repo."
                           :weight 'normal :background "#fda7df")))
 
   (set-face-background 'evil-search-highlight-persist-highlight-face
-                       (pcase (ef-themes--current-theme)
-                         ((or 'ef-bio 'ef-cherie ef-winter) "#6c1e8e")
-                         ((or 'ef-day
-                              'ef-deuteranopia-light
-                              'ef-light
-                              'ef-spring
-                              'ef-summer)
+                       (cl-case (ef-themes--current-theme)
+                         ((ef-bio ef-cherie ef-winter) "#6c1e8e")
+                         ((ef-day
+                           ef-deuteranopia-light
+                           ef-light
+                           ef-spring
+                           ef-summer)
                           "#f9bf3b"))))
 
 (use-package ef-themes
