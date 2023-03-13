@@ -2617,8 +2617,13 @@ As such, it will only work when the notes window exists."
   :custom
   (lsp-lens-enable nil)
   (lsp-enable-symbol-highlighting nil)
+  (lsp-completion-provider :none) ;; We use `corfu`.
 
   :init
+  (defun my/lsp-mode-setup-completion ()
+    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(flex)))
+
   (with-eval-after-load 'lsp-mode
     ;; To avoid watching all Scrive API docs.
     (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]api_docs\\'" t)
@@ -2629,6 +2634,9 @@ As such, it will only work when the notes window exists."
   (add-hook 'lsp-mode-hook
             (lambda ()
               (lsp-enable-which-key-integration)))
+
+  :hook
+  (lsp-completion-mode . my/lsp-mode-setup-completion)
 
   :config
   ;; This is to make `lsp-mode' work with `direnv' and pick up the correct
