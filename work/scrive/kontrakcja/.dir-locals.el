@@ -18,4 +18,6 @@
 
  (haskell-cabal-mode . ((eval . (direnv-update-environment))))
 
+ (js2-mode . ((eval . (apheleia-mode -1))))
+
  (json-mode . ((eval . (apheleia-mode -1)))))
