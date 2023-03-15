@@ -347,10 +347,23 @@ Useful for REPL windows."
   (evil-window-set-height height))
 
 (use-package corfu
-  :bind
-  (:map corfu-map ("M-SPC" . corfu-insert-separator))
+  :hook (lsp-completion-mode . my/corfu-lsp-setup)
+
+  :general
+  (:keymaps 'corfu-map
+            :states 'insert
+            "M-SPC" #'corfu-insert-separator)
+
+  :custom
+  (lsp-completion-provider :none)
+
   :init
-  (global-corfu-mode))
+  (global-corfu-mode)
+
+  :config
+  (defun my/corfu-lsp-setup ()
+    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(orderless))))
 
 (use-package emacs
   :init
@@ -2620,13 +2633,8 @@ As such, it will only work when the notes window exists."
   :custom
   (lsp-lens-enable nil)
   (lsp-enable-symbol-highlighting nil)
-  (lsp-completion-provider :none) ;; We use `corfu`.
 
   :init
-  (defun my/lsp-mode-setup-completion ()
-    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-          '(flex)))
-
   (with-eval-after-load 'lsp-mode
     ;; To avoid watching all Scrive API docs.
     (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]api_docs\\'" t)
@@ -2634,11 +2642,9 @@ As such, it will only work when the notes window exists."
     (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]_local\\'" t)
     (evil-leader/set-key
       "l" lsp-command-map))
-  (add-hook 'lsp-mode-hook
-            (lambda ()
-              (lsp-enable-which-key-integration)))
 
   :hook
+  (lsp-mode . lsp-enable-which-key-integration)
   (lsp-completion-mode . my/lsp-mode-setup-completion)
 
   :config
