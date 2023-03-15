@@ -410,12 +410,11 @@ Useful for REPL windows."
   "TAB"     'Info-next-reference
   "BACKTAB" 'Info-prev-reference)
 
-(require 'help-mode)
 (bind-keys :map help-mode-map
   ("<tab>"     . forward-button)
   ("<backtab>" . backward-button))
 
-(general-def help-mode-map
+(general-def helpful-mode-map
   "C-c C-b" 'help-go-back
   "C-c C-f" 'help-go-forward)
 
