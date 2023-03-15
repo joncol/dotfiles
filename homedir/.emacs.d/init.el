@@ -357,7 +357,9 @@ Useful for REPL windows."
 
   ;; Enable indentation+completion using the TAB key.
   ;; `completion-at-point' is often bound to M-TAB.
-  (setq tab-always-indent 'complete))
+  (setq tab-always-indent 'complete)
+
+  (general-def 'insert "M-SPC" 'hippie-expand))
 
 (setq sentence-end-double-space nil)
 (setq ring-bell-function 'ignore)
