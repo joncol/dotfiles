@@ -347,6 +347,8 @@ Useful for REPL windows."
   (evil-window-set-height height))
 
 (use-package corfu
+  :bind
+  (:map corfu-map ("M-SPC" . corfu-insert-separator))
   :init
   (global-corfu-mode))
 
