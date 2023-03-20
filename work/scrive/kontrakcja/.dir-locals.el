@@ -19,4 +19,6 @@
 
  (js2-mode . ((eval . (apheleia-mode -1))))
 
+ (js-jsx-mode . ((eval . (apheleia-mode -1))))
+
  (json-mode . ((eval . (apheleia-mode -1)))))
