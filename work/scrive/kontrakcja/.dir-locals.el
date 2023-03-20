@@ -13,8 +13,7 @@
 
  (conf-colon-mode . ((eval . (lsp-deferred))))
 
- (haskell-mode . ((fill-column . 90)
-                  (eval . (super-save-mode -1))))
+ (haskell-mode . ((fill-column . 90)))
 
  (haskell-cabal-mode . ((eval . (direnv-update-environment))))
 
