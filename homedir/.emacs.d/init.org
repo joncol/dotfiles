@@ -463,8 +463,6 @@ the list below.
   (define-key evil-normal-state-map (kbd "M-.") nil)
 
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (when (display-graphic-p)
-    (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward))
 
   (general-def evil-window-map
     "C-h" 'windmove-left
