@@ -2905,7 +2905,6 @@ As such, it will only work when the notes window exists."
 
   :hook
   (lsp-mode . lsp-enable-which-key-integration)
-  (lsp-completion-mode . my/lsp-mode-setup-completion)
 
   :config
   ;; This is to make `lsp-mode' work with `direnv' and pick up the correct
