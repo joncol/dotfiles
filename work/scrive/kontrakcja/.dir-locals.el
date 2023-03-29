@@ -1,8 +1,6 @@
 ((nil . ((eval . (progn (add-to-list 'lsp-language-id-configuration
                                      '(conf-colon-mode . "json"))
                         (cl-pushnew '(cabal-fmt . ("cabal-fmt" "--indent" "4"))
-                                    apheleia-formatters :test #'equal)
-                        (cl-pushnew '(nixfmt . ("alejandra"))
                                     apheleia-formatters :test #'equal)))
          (project-vc-ignores . ("scrivepdftools/"
                                 "texts/"
@@ -21,4 +19,6 @@
 
  (js-jsx-mode . ((eval . (apheleia-mode -1))))
 
- (json-mode . ((eval . (apheleia-mode -1)))))
+ (json-mode . ((eval . (apheleia-mode -1))))
+
+ (nix-mode . ((apheleia-formatter . alejandra))))
