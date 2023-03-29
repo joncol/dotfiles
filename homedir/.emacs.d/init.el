@@ -3304,7 +3304,7 @@ Lisp function does not specify a special indentation."
   :custom
   (lsp-clients-lua-language-server-main-location (executable-find "lua-language-server"))
   (lsp-clients-lua-language-server-bin (executable-find "lua-language-server"))
-  (lua-indent-level 4)
+  (lua-indent-level 2)
   (lua-indent-string-contents t))
 
 (use-package markdown-mode
