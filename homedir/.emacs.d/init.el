@@ -552,11 +552,6 @@ Useful for REPL windows."
 
 (setq compilation-scroll-output t)
 
-(add-to-list 'auto-mode-alist
-             '("/\\(rfc\\|std\\)[0-9]+\\.txt\\'" . rfcview-mode))
-
-(autoload 'rfcview-mode "rfcview" nil t)
-
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
 ;; Increase width of first column in `edit-bookmarks' view.
@@ -1006,6 +1001,9 @@ Useful for REPL windows."
   (add-to-list 'recentf-exclude "/\\.elfeed/index")
   (recentf-mode)
   (setq recentf-max-menu-items 25))
+
+(use-package rfc-mode
+  :defer)
 
 ;; Automatic code reformatting.
 (use-package apheleia
@@ -1469,6 +1467,7 @@ find: _f_un _l_ib _v_ar"
          (interactive)
          (markdown-other-window)
          (browse-url-of-buffer markdown-output-buffer-name)) "markdown")
+  ("r" rfc-mode-browse "rfc-browse")
   ("s" screenshot "screenshot")
   ("T" modus-themes-toggle "modus-themes-toggle"))
 
