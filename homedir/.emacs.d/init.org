@@ -3611,7 +3611,14 @@ Configuration common to all Lisps.
 ** Lua
 #+begin_src emacs-lisp
 (use-package lua-mode
-  :defer)
+  :mode "\\.lua\\'"
+  :interpreter "lua"
+  :hook (lua-mode . lsp-deferred)
+  :custom
+  (lsp-clients-lua-language-server-main-location (executable-find "lua-language-server"))
+  (lsp-clients-lua-language-server-bin (executable-find "lua-language-server"))
+  (lua-indent-level 4)
+  (lua-indent-string-contents t))
 #+end_src
 ** Markdown
 #+begin_src emacs-lisp

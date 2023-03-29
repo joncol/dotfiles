@@ -3298,7 +3298,14 @@ Lisp function does not specify a special indentation."
   (setq redshank-prefix-key "C-c RET"))
 
 (use-package lua-mode
-  :defer)
+  :mode "\\.lua\\'"
+  :interpreter "lua"
+  :hook (lua-mode . lsp-deferred)
+  :custom
+  (lsp-clients-lua-language-server-main-location (executable-find "lua-language-server"))
+  (lsp-clients-lua-language-server-bin (executable-find "lua-language-server"))
+  (lua-indent-level 4)
+  (lua-indent-string-contents t))
 
 (use-package markdown-mode
   :ensure t
