@@ -15,6 +15,7 @@ vim.g.maplocalleader = ","
 vim.opt.colorcolumn = "80"
 vim.o.number = true
 vim.o.relativenumber = true
+vim.keymap.set("n", "<A-.>", "", opts)
 
 require("lazy").setup("plugins")
 
