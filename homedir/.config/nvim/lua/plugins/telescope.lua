@@ -9,10 +9,21 @@ return {
       {
         "<leader>fi",
         function()
-          require("telescope.builtin").find_files({ cwd = "~/.config/nvim", follow = true })
+          require("telescope.builtin").find_files({
+            cwd = "~/.config/nvim", follow = true
+          })
         end,
         desc = "Find init file",
-      }
+      },
+      {
+        "<leader>fp",
+        function()
+          require("telescope.builtin").find_files({
+            cwd = require("lazy.core.config").options.root
+          })
+        end,
+        desc = "Find plugin file",
+      },
     },
     config = function()
       require("telescope").setup({})
