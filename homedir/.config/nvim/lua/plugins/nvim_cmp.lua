@@ -29,7 +29,7 @@ return {
     }))
 
     opts.mapping = vim.tbl_extend("force", opts.mapping or {}, {
-      ["<Tab>"] = cmp.mapping(function(fallback)
+      ["<tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
           -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -42,7 +42,7 @@ return {
           fallback()
         end
       end, { "i", "s" }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
+      ["<s-tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -51,6 +51,16 @@ return {
           fallback()
         end
       end, { "i", "s" }),
+      ['<cr>'] = cmp.mapping({
+        i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+        c = function(fallback)
+          if cmp.visible() then
+            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+          else
+            fallback()
+          end
+        end
+      }),
     })
   end
 }
