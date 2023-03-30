@@ -29,6 +29,12 @@ return {
       require("telescope").setup({})
 
       local builtin = require('telescope.builtin')
+      vim.lsp.handlers["textDocument/definition"] = builtin.lsp_definitions
+      vim.lsp.handlers["textDocument/typeDefinition"] = builtin.lsp_type_definitions
+      vim.lsp.handlers["textDocument/references"] = builtin.lsp_references
+      vim.lsp.handlers["textDocument/documentSymbol"] = builtin.lsp_document_symbols
+      vim.lsp.handlers["workspace/symbol"] = builtin.lsp_workspace_symbols
+
       vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
       vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
