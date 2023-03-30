@@ -35,10 +35,11 @@ return {
       vim.lsp.handlers["textDocument/documentSymbol"] = builtin.lsp_document_symbols
       vim.lsp.handlers["workspace/symbol"] = builtin.lsp_workspace_symbols
 
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find file" })
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Grep" })
+      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffer" })
+      vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tag" })
+      vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Find recent files" })
     end
   },
   {
