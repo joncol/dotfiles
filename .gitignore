@@ -48,3 +48,4 @@ xmonad.errors
 xmonad.hi
 xmonad.o
 /.direnv/
+/homedir/.config/nvim/lua/.luarc.json
