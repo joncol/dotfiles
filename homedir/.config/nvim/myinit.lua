@@ -13,6 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 vim.opt.colorcolumn = "80"
+vim.o.number = true
+vim.o.relativenumber = true
 
 require("lazy").setup("plugins")
 
