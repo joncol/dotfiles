@@ -12,12 +12,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
+
+require("lazy").setup("plugins")
+
 vim.opt.colorcolumn = "80"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.keymap.set("n", "<A-.>", "", opts)
-
-require("lazy").setup("plugins")
 
 vim.cmd.colorscheme "duskfox"
 -- vim.cmd.colorscheme "catppuccin-mocha"
