@@ -32,7 +32,7 @@ return {
         local client = vim.lsp.get_client_by_id(client_id)
         local bufnr = args.buf
 
-        -- Enable completion triggered by <c-x><c-o>
+        -- Enable completion triggered by <c-x><c-o>.
         vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
         local opts = { buffer = args.buf }
