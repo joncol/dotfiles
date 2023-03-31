@@ -1,5 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
+  init = function()
+    vim.keymap.set("n", "<A-.>", "", {})
+  end,
   config = function()
     local lspconfig = require('lspconfig')
     lspconfig.lua_ls.setup {}

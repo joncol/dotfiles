@@ -18,7 +18,6 @@ require("lazy").setup("plugins")
 vim.opt.colorcolumn = "80"
 vim.o.number = true
 vim.o.relativenumber = true
-vim.keymap.set("n", "<A-.>", "", {})
 
 vim.cmd.colorscheme "duskfox"
 -- vim.cmd.colorscheme "catppuccin-mocha"
