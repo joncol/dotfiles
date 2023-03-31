@@ -37,7 +37,7 @@ return {
 
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find file" })
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Grep" })
-      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffer" })
+      vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Find buffer" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tag" })
       vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Find recent files" })
     end
