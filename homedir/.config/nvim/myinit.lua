@@ -18,6 +18,7 @@ require("lazy").setup("plugins")
 vim.opt.colorcolumn = "80"
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.signcolumn = "yes" -- Always leave room for gitsigns.
 
 vim.cmd.colorscheme "duskfox"
 -- vim.cmd.colorscheme "catppuccin-mocha"
