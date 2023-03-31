@@ -26,7 +26,7 @@ vim.keymap.set("n", "Y", "Y")
 vim.keymap.set("x", "<leader>p", [["0p]])
 vim.keymap.set("n", "<leader>P", [[viw"0p]])
 
-vim.cmd.colorscheme "catppuccin-mocha"
+vim.cmd.colorscheme("catppuccin-mocha")
 -- vim.cmd.colorscheme "carbonfox"
 -- vim.cmd.colorscheme "dawnfox"
 -- vim.cmd.colorscheme "duskfox"

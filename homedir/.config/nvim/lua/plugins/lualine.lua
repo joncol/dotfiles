@@ -6,7 +6,7 @@ return {
     options = {
       theme = "nightfly",
       section_separators = { left = "", right = "" },
-      component_separators = "|"
-    }
-  }
+      component_separators = "|",
+    },
+  },
 }

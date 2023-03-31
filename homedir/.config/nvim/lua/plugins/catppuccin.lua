@@ -1,3 +1,3 @@
 return {
-  "catppuccin/nvim"
+  "catppuccin/nvim",
 }

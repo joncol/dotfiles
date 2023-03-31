@@ -39,10 +39,30 @@ return {
         vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
         local opts = { buffer = args.buf }
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
-        vim.keymap.set("n", "<A-.>", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
+        vim.keymap.set(
+          "n",
+          "gD",
+          vim.lsp.buf.declaration,
+          vim.tbl_extend("force", opts, { desc = "Go to declaration" })
+        )
+        vim.keymap.set(
+          "n",
+          "gd",
+          vim.lsp.buf.definition,
+          vim.tbl_extend("force", opts, { desc = "Go to definition" })
+        )
+        vim.keymap.set(
+          "n",
+          "<A-.>",
+          vim.lsp.buf.definition,
+          vim.tbl_extend("force", opts, { desc = "Go to definition" })
+        )
+        vim.keymap.set(
+          "n",
+          "K",
+          vim.lsp.buf.hover,
+          vim.tbl_extend("force", opts, { desc = "Hover" })
+        )
         vim.keymap.set(
           "n",
           "gi",
@@ -55,18 +75,25 @@ return {
           vim.lsp.buf.signature_help,
           vim.tbl_extend("force", opts, { desc = "Signature help" })
         )
-        vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder,
-          vim.tbl_extend("force", opts, { desc = "Add workspace folder" }))
-        vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder,
-          vim.tbl_extend("force", opts, { desc = "Remove workspace folder" }))
         vim.keymap.set(
           "n",
-          "<leader>wl",
-          function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end,
-          vim.tbl_extend("force", opts, { desc = "List workspace folders" })
+          "<leader>wa",
+          vim.lsp.buf.add_workspace_folder,
+          vim.tbl_extend("force", opts, { desc = "Add workspace folder" })
         )
+        vim.keymap.set(
+          "n",
+          "<leader>wr",
+          vim.lsp.buf.remove_workspace_folder,
+          vim.tbl_extend("force", opts, { desc = "Remove workspace folder" })
+        )
+        vim.keymap.set("n", "<leader>wl", function()
+          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, vim.tbl_extend(
+          "force",
+          opts,
+          { desc = "List workspace folders" }
+        ))
         vim.keymap.set(
           "n",
           "<leader>lr",
@@ -139,7 +166,10 @@ return {
             }
           end,
         })
+        vim.keymap.set("n", "<leader>l==", function()
+          vim.lsp.buf.format({ async = true })
+        end, vim.tbl_extend("force", opts, { desc = "Format file" }))
       end,
     })
-  end
+  end,
 }

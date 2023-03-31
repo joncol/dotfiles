@@ -1,3 +1,3 @@
 return {
-  "airblade/vim-rooter"
+  "airblade/vim-rooter",
 }

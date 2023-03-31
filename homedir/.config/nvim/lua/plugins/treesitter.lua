@@ -22,7 +22,7 @@ return {
       },
     })
     vim.cmd("TSUpdate")
-    require("nvim-treesitter.configs").setup {
+    require("nvim-treesitter.configs").setup({
       ensure_installed = { "c", "lua", "vim", "haskell", "help", "query" },
       sync_install = false,
       auto_install = true,
@@ -31,6 +31,6 @@ return {
         enable = true,
         additional_vim_regex_highlighting = false,
       },
-    }
+    })
   end,
 }
