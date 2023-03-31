@@ -19,6 +19,8 @@ vim.opt.colorcolumn = "80"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = "yes" -- Always leave room for gitsigns.
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 vim.keymap.set("n", "Y", "Y")
 vim.keymap.set("x", "<leader>p", [["0p]])
