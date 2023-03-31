@@ -11,7 +11,7 @@
       let pkgs = nixpkgs.legacyPackages.${system};
       in rec {
         devShells.default = pkgs.mkShell rec {
-          packages = with pkgs; [ sumneko-lua-language-server ];
+          packages = with pkgs; [ stylua sumneko-lua-language-server ];
         };
       });
 }
