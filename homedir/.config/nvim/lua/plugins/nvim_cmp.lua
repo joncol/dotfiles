@@ -8,7 +8,6 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-emoji",
   },
-  ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
     local has_words_before = function()
       unpack = unpack or table.unpack
