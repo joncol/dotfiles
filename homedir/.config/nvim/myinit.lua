@@ -27,6 +27,13 @@ vim.keymap.set("n", "Y", "Y")
 vim.keymap.set("x", "<leader>p", [["0p]])
 vim.keymap.set("n", "<leader>P", [[viw"0p]])
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  -- Don't make newly inserted lines after a comment into a comment.
+  callback = function()
+    vim.opt.formatoptions:remove({ "c", "r", "o" })
+  end,
+})
+
 vim.cmd.colorscheme("catppuccin-mocha")
 -- vim.cmd.colorscheme "carbonfox"
 -- vim.cmd.colorscheme "dawnfox"
