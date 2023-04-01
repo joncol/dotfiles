@@ -28,23 +28,31 @@ git-hooks:
   cat <<"EOF" > .git/hooks/pre-commit
   #!/bin/sh
 
-  # Create a temp file
-  TMPFILE=`mktemp` || exit 1
+  init_org_file=$(
+    git diff --cached --find-copies --find-renames --name-only --diff-filter=ACMRTXBU |
+    grep -E "init\.org"
+  )
 
-  # Set mode in temp file.
-  echo "-*- mode: org -*-" >> $TMPFILE
+  if [[ -n $init_org_file ]];
+  then
+    # Create a temp file
+    TMPFILE=`mktemp` || exit 1
 
-  # Write the staged version of `init.org`.
-  git show :homedir/.emacs.d/init.org >> $TMPFILE
+    # Set mode in temp file.
+    echo "-*- mode: org -*-" >> $TMPFILE
 
-  # Tangle the temp file.
-  TANGLED=`emacsclient -e "(let ((enable-local-variables :safe)) (car (org-babel-tangle-file \"$TMPFILE\")))"`
+    # Write the staged version of `init.org`.
+    git show :homedir/.emacs.d/init.org >> $TMPFILE
 
-  # Overwrite .emacs.d/init.el with the file that is based on the staged changes.
-  mv -f "${TANGLED//\"}" homedir/.emacs.d/init.el
+    # Tangle the temp file.
+    TANGLED=`emacsclient -e "(let ((enable-local-variables :safe)) (car (org-babel-tangle-file \"$TMPFILE\")))"`
 
-  # Stage the file
-  git add homedir/.emacs.d/init.el
+    # Overwrite .emacs.d/init.el with the file that is based on the staged changes.
+    mv -f "${TANGLED//\"}" homedir/.emacs.d/init.el
+
+    # Stage the file
+    git add homedir/.emacs.d/init.el
+  fi
   EOF
 
   chmod +x .git/hooks/pre-commit
@@ -69,8 +77,9 @@ git-hooks:
   case "$COMMIT_SOURCE,$SHA1" in
    ,|template,)
      /usr/bin/env perl -i.bak -pe '
-        print `git diff --cached --name-only | sed "/\\.org\\b/!d" | \
+        print `git diff --cached --name-only | sed ":(\\.org\\b|\\.config/nvim):!d" | \
             sed "s:^.*/.emacs.d/init.org:emacs:" | \
+            sed "s:^.*/.config/nvim/.*:nvim:" | \
             sed -z "s/\\n/: \\n/g"`
        if $first++ == 0' "$COMMIT_MSG_FILE" ;;
    *) ;;
