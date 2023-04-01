@@ -14,10 +14,6 @@ return {
         { clear = true }
       ),
       callback = function(args)
-        local client_id = args.data.client_id
-        local client = vim.lsp.get_client_by_id(client_id)
-        local bufnr = args.buf
-
         -- Enable completion triggered by <c-x><c-o>.
         vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
