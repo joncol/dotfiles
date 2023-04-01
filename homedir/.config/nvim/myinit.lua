@@ -34,6 +34,23 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- Change binding for `cedit`. This avoids conflict with using `C-f` to move
+-- forwards in the command line.
+vim.o.cedit = "<C-y>"
+
+-- Enable Emacs keys in the "minibuffer" (see: `:help emacs-keys`).
+vim.cmd([[
+  cnoremap <C-a> <Home>
+  cnoremap <C-b> <Left>
+  cnoremap <C-d> <Del>
+  cnoremap <C-e> <End>
+  cnoremap <C-f> <Right>
+  cnoremap <C-n> <Down>
+  cnoremap <C-p> <Up>
+  cnoremap <A-b> <S-Left>
+  cnoremap <A-f> <S-Right>
+]])
+
 vim.cmd.colorscheme("catppuccin-mocha")
 -- vim.cmd.colorscheme "carbonfox"
 -- vim.cmd.colorscheme "dawnfox"
