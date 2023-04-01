@@ -27,7 +27,7 @@ return {
       { name = "buffer" },
       { name = "cmdline" },
       { name = "emoji" },
-      { name = "nvim_lsp:lua_ls" },
+      { name = "nvim_lsp" },
       { name = "path" },
     }))
 
