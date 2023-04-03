@@ -29,7 +29,7 @@ return {
     },
 
     config = function()
-      require("telescope").setup({})
+      require("telescope").setup()
 
       local builtin = require("telescope.builtin")
       vim.lsp.handlers["textDocument/definition"] = builtin.lsp_definitions
@@ -51,19 +51,25 @@ return {
         "n",
         "<leader>b",
         builtin.buffers,
-        { desc = "Find buffer" }
+        { noremap = true, desc = "Find buffer" }
       )
       vim.keymap.set(
         "n",
         "<leader>fh",
         builtin.help_tags,
-        { desc = "Find help tag" }
+        { noremap = true, desc = "Find help tag" }
       )
       vim.keymap.set(
         "n",
         "<leader>fr",
         builtin.oldfiles,
-        { desc = "Find recent files" }
+        { noremap = true, desc = "Find recent files" }
+      )
+      vim.api.nvim_set_keymap(
+        "n",
+        "<leader>fb",
+        ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
+        { noremap = true, desc = "Browse files" }
       )
     end,
   },
@@ -77,5 +83,13 @@ return {
         require("telescope").load_extension("fzf")
       end,
     },
+  },
+
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    config = function()
+      require("telescope").load_extension("file_browser")
+    end,
   },
 }
