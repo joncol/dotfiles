@@ -73,14 +73,17 @@ git-hooks:
   COMMIT_SOURCE=$2
   SHA1=$3
 
-  # Print the correct prefix in the commit message.
+  # Automatically prefix the commit message for certain files.
+  # First delete (`!d`) any lines not matching the pattern.
+  # Then, replace some longer path with a shorter prefix, such as `nvim:` for
+  # any file in the `~/.config/nvim` directory.
   case "$COMMIT_SOURCE,$SHA1" in
    ,|template,)
      /usr/bin/env perl -i.bak -pe '
-        print `git diff --cached --name-only | sed ":(\\.org\\b|\\.config/nvim):!d" | \
-            sed "s:^.*/.emacs.d/init.org:emacs:" | \
-            sed "s:^.*/.config/nvim/.*:nvim:" | \
-            sed -z "s/\\n/: \\n/g"`
+       print `git diff --cached --name-only | sed -E "/\(\\.org\\b|\\.config\\/nvim\)/!d" | \
+           sed "s:^.*/.emacs.d/init.org:emacs:" | \
+           sed "s:^.*/.config/nvim/.*:nvim:" | \
+           sed -z "s/\\n/: \\n/g"`
        if $first++ == 0' "$COMMIT_MSG_FILE" ;;
    *) ;;
   esac
