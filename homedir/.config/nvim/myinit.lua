@@ -23,6 +23,8 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.scrolloff = 3
 vim.o.splitright = true
+vim.o.expandtab = true
+vim.o.shiftwidth = 2
 
 vim.keymap.set("n", "Y", "Y")
 vim.keymap.set("x", "<leader>p", [["0p]])
