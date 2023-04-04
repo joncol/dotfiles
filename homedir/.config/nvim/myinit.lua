@@ -22,6 +22,7 @@ vim.o.signcolumn = "yes" -- Always leave room for gitsigns.
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.scrolloff = 3
+vim.o.splitright = true
 
 vim.keymap.set("n", "Y", "Y")
 vim.keymap.set("x", "<leader>p", [["0p]])
