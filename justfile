@@ -2,7 +2,7 @@
 # mode: makefile
 # indent-tabs-mode: nil
 # End:
-# vim: set ft=[make] :
+# vim: set ft=make expandtab shiftwidth=2:
 
 # Install .desktop files for XMonad. Note that LightDM doesn't find XMonad if we
 # use a symbolic link for `/usr/share/xsessions/xmonad.desktop`, so that file
