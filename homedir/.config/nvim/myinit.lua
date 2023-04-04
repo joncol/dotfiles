@@ -63,6 +63,7 @@ vim.cmd([[
 ]])
 
 vim.keymap.set({ "n", "x" }, "<C-x><space>", ":noh<cr>")
+vim.keymap.set({ "n", "x" }, "<C-x><C-space>", ":noh<cr>")
 
 vim.cmd.colorscheme("catppuccin-mocha")
 -- vim.cmd.colorscheme "carbonfox"
