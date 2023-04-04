@@ -16,6 +16,7 @@ return {
       })
 
       local builtin = require("telescope.builtin")
+      local extensions = require("telescope").extensions
       vim.lsp.handlers["textDocument/definition"] = builtin.lsp_definitions
       vim.lsp.handlers["textDocument/typeDefinition"] =
         builtin.lsp_type_definitions
@@ -71,7 +72,7 @@ return {
       vim.keymap.set(
         "n",
         "<leader>fm",
-        require('telescope').extensions.media_files.media_files,
+        extensions.media_files.media_files,
         { noremap = true, desc = "Find media files" }
       )
     end,
