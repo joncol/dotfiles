@@ -65,6 +65,12 @@ return {
       )
       vim.keymap.set(
         "n",
+        "<leader>fP",
+        builtin.planets,
+        { noremap = true, desc = "Find planet" }
+      )
+      vim.keymap.set(
+        "n",
         "<leader>fb",
         ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
         { noremap = true, desc = "Browse files" }
