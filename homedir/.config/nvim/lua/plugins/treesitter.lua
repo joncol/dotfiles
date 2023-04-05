@@ -5,7 +5,6 @@ return {
       ensure_installed = {
         "bash",
         "haskell",
-        "help",
         "html",
         "javascript",
         "json",
@@ -23,7 +22,7 @@ return {
     })
     vim.cmd("TSUpdate")
     require("nvim-treesitter.configs").setup({
-      ensure_installed = { "c", "lua", "vim", "haskell", "help", "query" },
+      ensure_installed = { "c", "lua", "vim", "haskell", "query" },
       sync_install = false,
       auto_install = true,
       ignore_install = {},
