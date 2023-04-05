@@ -30,14 +30,6 @@ vim.keymap.set("n", "Y", "Y")
 vim.keymap.set("x", "<leader>p", [["0p]])
 vim.keymap.set("n", "<leader>P", [[viw"0p]])
 
--- Comment and copy.
-vim.keymap.set("n", "<leader>cc", "yy<Plug>(comment_toggle_linewise_current)p")
-vim.keymap.set(
-  "x",
-  "<leader>cc",
-  ":'{,'}y<cr>gv<Plug>(comment_toggle_linewise_visual)`>p"
-)
-
 vim.api.nvim_create_autocmd("BufEnter", {
   -- Don't make newly inserted lines after a comment into a comment.
   callback = function()
