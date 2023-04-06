@@ -37,6 +37,15 @@ return {
           end,
         },
 
+        nix = {
+          function()
+            return {
+              exe = "nixfmt",
+              stdin = true,
+            }
+          end,
+        },
+
         ["*"] = {
           require("formatter.filetypes.any").remove_trailing_whitespace,
         },
