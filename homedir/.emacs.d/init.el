@@ -1300,7 +1300,7 @@ windows easier."
  ((and (eq system-type 'gnu/linux) (display-graphic-p))
   (if (>= (x-display-pixel-height) 2160)
       (add-to-list 'default-frame-alist
-                   '(font . "FiraCodeNerdFont-22"))
+                   '(font . "FiraCodeNerdFont-32"))
     (custom-set-faces
     '(default ((t (:family "JetBrainsMono Nerd Font" :foundry "JB  " :slant normal :weight normal :height 110 :width normal))))
     '(italic ((t (:underline t))))
