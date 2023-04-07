@@ -80,11 +80,11 @@ git-hooks:
   case "$COMMIT_SOURCE,$SHA1" in
    ,|template,)
      /usr/bin/env perl -i.bak -pe '
-       print `git diff --cached --name-only | sed -E "/\(\\.org\\b|\\.config\\/nvim\)/!d" | \
-           sed "s:^.*/.emacs.d/init.org:emacs:" | \
-           sed "s:^.*/.config/nvim/.*:nvim:" | \
-           sed -z "s/\\n/: \\n/g"`
-       if $first++ == 0' "$COMMIT_MSG_FILE" ;;
+       if ($first++ == 0) {
+         print `git diff --cached --name-only | sed -E "/\(\\.org\\b|\\.config\\/nvim\)/!d" | \
+           sed -z "s;^.*/.emacs.d/init.org;emacs: ;" | \
+           sed -z "s;^.*/.config/nvim/.*;nvim\: ;"`
+       }' "$COMMIT_MSG_FILE";;
    *) ;;
   esac
   EOF
