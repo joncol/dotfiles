@@ -44,5 +44,17 @@ return {
       "<cmd>lua require('fzf-lua').loclist_stack()<cr>",
       { silent = true }
     )
+    vim.keymap.set(
+      "n",
+      "<leader>zC",
+      "<cmd>lua require('fzf-lua').git_commits()<cr>",
+      { silent = true }
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>zc",
+      "<cmd>lua require('fzf-lua').git_bcommits()<cr>",
+      { silent = true }
+    )
   end,
 }
