@@ -87,6 +87,18 @@ return {
         builtin.current_buffer_fuzzy_find,
         { noremap = true, desc = "Find in buffer" }
       )
+      vim.keymap.set(
+        "n",
+        "<leader>vL",
+        builtin.git_commits,
+        { noremap = true, desc = "Find project commits" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>vl",
+        builtin.git_bcommits,
+        { noremap = true, desc = "Find buffer commits" }
+      )
     end,
   },
 
