@@ -1345,6 +1345,24 @@ windows easier."
      "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
      "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%")))
 
+(use-package harpoon
+  :straight (harpoon :host github :repo "joncol/harpoon.el" :branch "fix-project-root-bug")
+  :after general
+  :init
+  (general-nmap :prefix "\\h"
+    "h" 'harpoon-quick-menu-hydra
+    "f" 'harpoon-toggle-file
+    "c" 'harpoon-clear)
+  (general-nmap
+    "gh" (lambda (&optional count)
+           (interactive "P")
+           (if count
+               (harpoon-go-to count)
+             (if (harpoon--buffer-file-name)
+                 (harpoon-add-file)
+               (message "Harpoon: Current buffer does not have a file name"))))
+    "gH" 'harpoon-toggle-quick-menu))
+
 (use-package hydra
   :defer
   :init
