@@ -11,6 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ","
+
+-- Make it possible to repeat latest search backwards on current line.
+vim.keymap.set("n", ",,", ",", { noremap = true })
+
 vim.g.maplocalleader = "\\"
 
 require("lazy").setup("plugins")
