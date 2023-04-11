@@ -81,6 +81,12 @@ return {
         extensions.media_files.media_files,
         { noremap = true, desc = "Find media files" }
       )
+      vim.keymap.set(
+        "n",
+        "<leader>sb",
+        builtin.current_buffer_fuzzy_find,
+        { noremap = true, desc = "Find in buffer" }
+      )
     end,
   },
 
