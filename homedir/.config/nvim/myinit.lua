@@ -35,8 +35,17 @@ vim.keymap.set("n", "Y", "Y")
 vim.keymap.set("x", "<leader>p", [["0p]])
 vim.keymap.set("n", "<leader>P", [[viw"0p]])
 
+-- Always open help windows in vertical splits.
 vim.api.nvim_create_autocmd("BufEnter", {
-  -- Don't make newly inserted lines after a comment into a comment.
+  callback = function()
+    if vim.bo.filetype == "help" then
+      vim.cmd("wincmd L")
+    end
+  end,
+})
+
+-- Don't make newly inserted lines after a comment into a comment.
+vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions:remove({ "c", "r", "o" })
   end,
