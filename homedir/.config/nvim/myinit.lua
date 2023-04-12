@@ -39,7 +39,11 @@ vim.keymap.set("n", "<leader>P", [[viw"0p]])
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     if vim.bo.filetype == "help" then
-      vim.cmd("wincmd L")
+      -- Ignore any errors from `:wincmd L`. Errors happen when opening a help
+      -- page from within a help page.
+      pcall(function()
+        vim.cmd("wincmd L")
+      end)
     end
   end,
 })
