@@ -99,13 +99,13 @@ return {
         )
         vim.keymap.set(
           "n",
-          "<leader>lds",
+          "<leader>ld",
           vim.lsp.buf.document_symbol,
           vim.tbl_extend("force", opts, { desc = "Document symbols" })
         )
         vim.keymap.set(
           "n",
-          "<leader>lws",
+          "<leader>lw",
           vim.lsp.buf.workspace_symbol,
           vim.tbl_extend("force", opts, { desc = "Workspace symbols" })
         )
