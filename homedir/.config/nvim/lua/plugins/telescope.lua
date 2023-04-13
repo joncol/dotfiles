@@ -44,7 +44,7 @@ return {
         builtin.find_files,
         { desc = "Find file" }
       )
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Grep" })
+      vim.keymap.set("n", "<leader>f/", builtin.live_grep, { desc = "Grep" })
       vim.keymap.set(
         "n",
         "<leader>b",
@@ -71,31 +71,25 @@ return {
       )
       vim.keymap.set(
         "n",
-        "<leader>fb",
-        ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
-        { noremap = true, desc = "Browse files" }
-      )
-      vim.keymap.set(
-        "n",
         "<leader>fm",
         extensions.media_files.media_files,
         { noremap = true, desc = "Find media files" }
       )
       vim.keymap.set(
         "n",
-        "<leader>sb",
+        "<leader>fb",
         builtin.current_buffer_fuzzy_find,
         { noremap = true, desc = "Find in buffer" }
       )
       vim.keymap.set(
         "n",
-        "<leader>vL",
+        "<leader>fG",
         builtin.git_commits,
         { noremap = true, desc = "Find project commits" }
       )
       vim.keymap.set(
         "n",
-        "<leader>vl",
+        "<leader>fg",
         builtin.git_bcommits,
         { noremap = true, desc = "Find buffer commits" }
       )
@@ -109,6 +103,13 @@ return {
       build = "make",
       config = function()
         require("telescope").load_extension("fzf")
+
+        vim.keymap.set(
+          "n",
+          "<leader>fd",
+          ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
+          { noremap = true, desc = "Browse files" }
+        )
       end,
     },
   },
