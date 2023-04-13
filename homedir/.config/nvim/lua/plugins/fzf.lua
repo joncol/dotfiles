@@ -46,13 +46,13 @@ return {
     )
     vim.keymap.set(
       "n",
-      "<leader>zC",
+      "<leader>zG",
       "<cmd>lua require('fzf-lua').git_commits()<cr>",
       { silent = true }
     )
     vim.keymap.set(
       "n",
-      "<leader>zc",
+      "<leader>zg",
       "<cmd>lua require('fzf-lua').git_bcommits()<cr>",
       { silent = true }
     )
