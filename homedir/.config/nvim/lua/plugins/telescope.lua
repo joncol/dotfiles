@@ -52,7 +52,7 @@ return {
         builtin.find_files,
         { desc = "Find file" }
       )
-      vim.keymap.set("n", "<leader>f/", builtin.live_grep, { desc = "Grep" })
+      vim.keymap.set("n", "<leader>.r", builtin.live_grep, { desc = "Grep" })
       vim.keymap.set(
         "n",
         "<leader>b",
