@@ -4,6 +4,11 @@ return {
     "nvim-lua/plenary.nvim",
   },
   config = function()
+    require("harpoon").setup({
+      global_settings = {
+        mark_branch = true,
+      }
+    })
     local mark = require("harpoon.mark")
     local ui = require("harpoon.ui")
 
