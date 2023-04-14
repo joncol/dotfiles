@@ -114,7 +114,7 @@ return {
 
         vim.keymap.set(
           "n",
-          "<leader>fd",
+          "<leader>f.",
           ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
           { noremap = true, desc = "Browse files" }
         )
