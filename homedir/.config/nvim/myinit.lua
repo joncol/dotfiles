@@ -73,9 +73,6 @@ vim.cmd([[
   cnoremap <A-f> <S-Right>
 ]])
 
-vim.keymap.set({ "n", "x" }, "<C-x><space>", ":noh<cr>")
-vim.keymap.set({ "n", "x" }, "<C-x><C-space>", ":noh<cr>")
-
 vim.cmd.colorscheme("catppuccin-mocha")
 -- vim.cmd.colorscheme "carbonfox"
 -- vim.cmd.colorscheme "dawnfox"
