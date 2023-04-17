@@ -38,5 +38,9 @@ return {
         i(3, "else"),
       }),
     })
+
+    ls.add_snippets("haskell", {
+      s("f", { t("focus $ ") }),
+    })
   end,
 }
