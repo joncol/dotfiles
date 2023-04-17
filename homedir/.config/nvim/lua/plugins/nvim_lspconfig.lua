@@ -4,6 +4,8 @@ return {
     vim.keymap.set("n", "<A-.>", "", {})
   end,
   config = function()
+    require("neodev").setup()
+
     local lspconfig = require("lspconfig")
     lspconfig.lua_ls.setup({})
     lspconfig.hls.setup({})
