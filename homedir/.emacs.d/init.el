@@ -133,7 +133,8 @@
   (evil-leader/set-leader ",")
   (evil-leader/set-key "," 'evil-repeat-find-char-reverse)
   (setq evil-leader/in-all-states t)
-  (evil-leader/set-key "V" 'magit-status)
+  (general-nvmap :prefix "\\"
+    "g" 'magit-status)
 
   (evil-leader/set-key "n n" 'narrow-to-defun)
   (evil-leader/set-key "n r" 'narrow-to-region)
