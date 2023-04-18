@@ -42,5 +42,21 @@ return {
     ls.add_snippets("haskell", {
       s("f", { t("focus $ ") }),
     })
+
+    ls.add_snippets("lua", {
+      s({ trig = "key", name = "Map a key" }, {
+        t("vim.keymap.set("),
+        i(1, "mode"),
+        t(", "),
+        i(2, "lhs"),
+        t(", "),
+        i(3, "rhs"),
+        t(", "),
+        i(4, "opts"),
+        t(")"),
+      }),
+      s("le", { t("<leader>") }),
+      s("ll", { t("<localleader>") }),
+    })
   end,
 }
