@@ -8,6 +8,8 @@ return {
 
     config = function()
       local trouble = require("trouble.providers.telescope")
+      local builtin = require("telescope.builtin")
+      local extensions = require("telescope").extensions
 
       require("telescope").setup({
         defaults = {
@@ -17,14 +19,13 @@ return {
           },
         },
         extensions = {
+          file_browser = {},
           media_files = {
             find_cmd = "rg",
           },
         },
       })
 
-      local builtin = require("telescope.builtin")
-      local extensions = require("telescope").extensions
       vim.lsp.handlers["textDocument/definition"] = builtin.lsp_definitions
       vim.lsp.handlers["textDocument/typeDefinition"] =
         builtin.lsp_type_definitions
@@ -34,14 +35,20 @@ return {
       vim.lsp.handlers["workspace/symbol"] = builtin.lsp_workspace_symbols
 
       vim.keymap.set("n", "<leader>fi", function()
-        require("telescope.builtin").find_files({
+        builtin.find_files({
           cwd = "~/.config/nvim",
           follow = true,
         })
       end, { desc = "Find init file" })
 
       vim.keymap.set("n", "<leader>fp", function()
-        require("telescope.builtin").find_files({
+        extensions.file_browser.file_browser({
+          path = vim.fn.stdpath("config") .. "/lua/plugins",
+        })
+      end, { noremap = true, desc = "Find plugin file" })
+
+      vim.keymap.set("n", "<leader>fl", function()
+        builtin.find_files({
           cwd = require("lazy.core.config").options.root,
         })
       end, { desc = "Find plugin file" })
