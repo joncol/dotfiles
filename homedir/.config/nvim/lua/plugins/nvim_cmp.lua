@@ -4,6 +4,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
+    "saadparwaiz1/cmp_luasnip",
   },
   opts = function(_, opts)
     local cmp = require("cmp")
