@@ -1,8 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  init = function()
-    vim.keymap.set("n", "<A-.>", "", {})
-  end,
+
   config = function()
     require("neodev").setup()
 
