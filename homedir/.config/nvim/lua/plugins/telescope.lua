@@ -71,6 +71,7 @@ return {
       )
       vim.keymap.set("n", "<leader>fG", ":Telescope git_commits<cr>")
       vim.keymap.set("n", "<leader>fg", ":Telescope git_bcommits<cr>")
+      vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<cr>")
     end,
   },
 
