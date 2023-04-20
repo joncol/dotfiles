@@ -48,5 +48,5 @@ xmonad.errors
 xmonad.hi
 xmonad.o
 /.direnv/
-/homedir/.config/nvim/lua/.luarc.json
+/homedir/.config/nvim/.luarc.json
 /homedir/.config/fontconfig/conf.d/10-hm-fonts.conf
