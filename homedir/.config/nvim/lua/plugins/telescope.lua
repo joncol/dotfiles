@@ -26,6 +26,11 @@ return {
             find_cmd = "rg",
           },
         },
+        pickers = {
+          colorscheme = {
+            enable_preview = true,
+          },
+        },
       })
 
       vim.lsp.handlers["textDocument/definition"] = builtin.lsp_definitions
@@ -72,6 +77,7 @@ return {
       vim.keymap.set("n", "<leader>fG", ":Telescope git_commits<cr>")
       vim.keymap.set("n", "<leader>fg", ":Telescope git_bcommits<cr>")
       vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<cr>")
+      vim.keymap.set("n", "<leader>fc", ":Telescope colorscheme<cr>")
     end,
   },
 
