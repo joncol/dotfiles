@@ -363,8 +363,8 @@ the list below.
   (evil-leader/set-leader ",")
   (evil-leader/set-key "," 'evil-repeat-find-char-reverse)
   (setq evil-leader/in-all-states t)
-  (general-nvmap :prefix "\\"
-    "g" 'magit-status)
+  (general-nvmap :prefix ","
+    "V" 'magit-status)
 
   (evil-leader/set-key "n n" 'narrow-to-defun)
   (evil-leader/set-key "n r" 'narrow-to-region)
@@ -1879,7 +1879,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
   ;; Needed for success status message to be shown.
   (setq magit-auto-revert-mode nil)
 
-  (general-nmap :prefix "\\g"
+  (general-nmap :prefix ",v"
     "b" 'magit-blame
     "l" 'magit-log-buffer-file)
 
