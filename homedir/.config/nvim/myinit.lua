@@ -34,6 +34,7 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.wrap = false
 vim.opt.iskeyword:append("-") -- Do not treat hyphens as word separators.
+vim.opt.cursorline = true
 
 vim.keymap.set("n", "Y", "Y")
 vim.keymap.set("x", "<leader>p", [["0p]])
