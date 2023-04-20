@@ -43,7 +43,7 @@ return {
         })
       end, { desc = "Find init file" })
 
-      vim.keymap.set("n", "<leader>fp", function()
+      vim.keymap.set("n", "<leader>fI", function()
         extensions.file_browser.file_browser({
           path = vim.fn.stdpath("config") .. "/lua/plugins",
         })
