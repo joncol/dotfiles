@@ -55,66 +55,22 @@ return {
         })
       end, { desc = "Find plugin file" })
 
-      vim.keymap.set(
-        "n",
-        "<leader>ff",
-        builtin.find_files,
-        { desc = "Find file" }
-      )
-      vim.keymap.set(
-        "n",
-        "<localleader>r",
-        builtin.live_grep,
-        { desc = "Grep" }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>b",
-        builtin.buffers,
-        { noremap = true, desc = "Find buffer" }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>fh",
-        builtin.help_tags,
-        { noremap = true, desc = "Find help tag" }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>fr",
-        builtin.oldfiles,
-        { noremap = true, desc = "Find recent files" }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>fP",
-        builtin.planets,
-        { noremap = true, desc = "Find planet" }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>fm",
-        extensions.media_files.media_files,
-        { noremap = true, desc = "Find media files" }
-      )
+      vim.keymap.set("n", "<leader>fF", ":Telescope find_files hidden=true<cr>")
+      vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>")
+      vim.keymap.set("n", "<localleader>r", ":Telescope live_grep<cr>")
+      vim.keymap.set("n", "<leader>b", ":Telescope buffers<cr>")
+      vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<cr>")
+      vim.keymap.set("n", "<leader>fr", ":Telescope oldfiles<cr>")
+      vim.keymap.set("n", "<leader>fo", ":Telescope vim_options<cr>")
+      vim.keymap.set("n", "<leader>fP", ":Telescope planets<cr>")
+      vim.keymap.set("n", "<leader>fm", ":Telescope media_files<cr>")
       vim.keymap.set(
         "n",
         "<leader>fb",
-        builtin.current_buffer_fuzzy_find,
-        { noremap = true, desc = "Find in buffer" }
+        ":Telescope current_buffer_fuzzy_find<cr>"
       )
-      vim.keymap.set(
-        "n",
-        "<leader>fG",
-        builtin.git_commits,
-        { noremap = true, desc = "Find project commits" }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>fg",
-        builtin.git_bcommits,
-        { noremap = true, desc = "Find buffer commits" }
-      )
+      vim.keymap.set("n", "<leader>fG", ":Telescope git_commits<cr>")
+      vim.keymap.set("n", "<leader>fg", ":Telescope git_bcommits<cr>")
     end,
   },
 
