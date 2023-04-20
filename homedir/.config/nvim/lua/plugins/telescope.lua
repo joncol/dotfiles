@@ -111,4 +111,15 @@ return {
       require("telescope").load_extension("media_files")
     end,
   },
+
+  {
+    "nvim-telescope/telescope-live-grep-args.nvim",
+    config = function()
+      vim.keymap.set(
+        "n",
+        "<localleader>R",
+        ":lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>"
+      )
+    end,
+  },
 }
