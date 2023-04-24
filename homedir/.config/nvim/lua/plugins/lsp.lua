@@ -9,6 +9,9 @@ return {
     config = function()
       require("neodev").setup()
 
+      require("lspconfig").clangd.setup({})
+      require("lspconfig").elmls.setup({})
+      require("lspconfig").hls.setup({})
       require("lspconfig").lua_ls.setup({
         single_file_support = true,
         settings = {
@@ -26,8 +29,6 @@ return {
           },
         },
       })
-      require("lspconfig").hls.setup({})
-      require("lspconfig").elmls.setup({})
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup(
