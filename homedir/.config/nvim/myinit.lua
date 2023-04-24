@@ -22,7 +22,7 @@ require("lazy").setup("plugins")
 
 vim.keymap.set("n", "<localleader>l", ":Lazy<cr>")
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "+1"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = "yes" -- Always leave room for gitsigns.
