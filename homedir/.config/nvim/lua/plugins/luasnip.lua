@@ -53,6 +53,22 @@ return {
       }),
     })
 
+    local javascript_and_react_snippets = {
+      s("clg", { t('console.log("'), i(0), t('")') }),
+      s("clo", {
+        t('console.log("'),
+        f(function(args)
+          return args[1][1]
+        end, { 1 }),
+        t(':", '),
+        i(1),
+        t(")"),
+      }),
+    }
+
+    ls.add_snippets("javascript", javascript_and_react_snippets)
+    ls.add_snippets("javascriptreact", javascript_and_react_snippets)
+
     ls.add_snippets("lua", {
       s({ trig = "key", name = "Map a key" }, {
         t("vim.keymap.set("),
