@@ -30,6 +30,8 @@ return {
         },
       })
 
+      vim.keymap.set("n", "<A-.>", "")
+
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup(
           "my-lsp-attach-format",
