@@ -1,8 +1,10 @@
 x = 123
-vim.keymap.set("n", "<C-n>", "<Down>")
-vim.keymap.set("n", "<C-p>", "<Up>")
-vim.keymap.set(
+vim.api.nvim_buf_set_keymap(0, "n", "<C-n>", "<Down>", {})
+vim.api.nvim_buf_set_keymap(0, "n", "<C-p>", "<Up>", {})
+vim.api.nvim_buf_set_keymap(
+  0,
   "n",
   "<C-c>",
-  "<Cmd>lua require('code_action_menu').close_code_action_menu()<CR>"
+  "<Cmd>lua require('code_action_menu').close_code_action_menu()<CR>",
+  {}
 )
