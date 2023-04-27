@@ -104,12 +104,6 @@ return {
           )
           keymap(
             "n",
-            "<leader>la",
-            vim.lsp.buf.code_action,
-            vim.tbl_extend("force", opts, { desc = "Code action" })
-          )
-          keymap(
-            "n",
             "<leader>lgr",
             vim.lsp.buf.references,
             vim.tbl_extend("force", opts, { desc = "Find references" })
@@ -137,6 +131,13 @@ return {
           end, vim.tbl_extend("force", opts, { desc = "Format file" }))
         end,
       })
+    end,
+  },
+
+  {
+    "weilbith/nvim-code-action-menu",
+    config = function()
+      vim.keymap.set("n", "<leader>la", "<Cmd>CodeActionMenu<CR>")
     end,
   },
 }
