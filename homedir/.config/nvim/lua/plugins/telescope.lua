@@ -60,24 +60,28 @@ return {
         })
       end, { desc = "Find plugin file" })
 
-      vim.keymap.set("n", "<leader>fF", ":Telescope find_files hidden=true<cr>")
-      vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>")
-      vim.keymap.set("n", "<localleader>r", ":Telescope live_grep<cr>")
-      vim.keymap.set("n", "<leader>b", ":Telescope buffers<cr>")
-      vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<cr>")
-      vim.keymap.set("n", "<leader>fr", ":Telescope oldfiles<cr>")
-      vim.keymap.set("n", "<leader>fo", ":Telescope vim_options<cr>")
-      vim.keymap.set("n", "<leader>fP", ":Telescope planets<cr>")
-      vim.keymap.set("n", "<leader>fm", ":Telescope media_files<cr>")
+      vim.keymap.set(
+        "n",
+        "<leader>fF",
+        "<Cmd>Telescope find_files hidden=true<CR>"
+      )
+      vim.keymap.set("n", "<leader>ff", "<Cmd>Telescope find_files<CR>")
+      vim.keymap.set("n", "<localleader>r", "<Cmd>Telescope live_grep<CR>")
+      vim.keymap.set("n", "<leader>b", "<Cmd>Telescope buffers<CR>")
+      vim.keymap.set("n", "<leader>fh", "<Cmd>Telescope help_tags<CR>")
+      vim.keymap.set("n", "<leader>fr", "<Cmd>Telescope oldfiles<CR>")
+      vim.keymap.set("n", "<leader>fo", "<Cmd>Telescope vim_options<CR>")
+      vim.keymap.set("n", "<leader>fP", "<Cmd>Telescope planets<CR>")
+      vim.keymap.set("n", "<leader>fm", "<Cmd>Telescope media_files<CR>")
       vim.keymap.set(
         "n",
         "<leader>fb",
-        ":Telescope current_buffer_fuzzy_find<cr>"
+        "<Cmd>Telescope current_buffer_fuzzy_find<CR>"
       )
-      vim.keymap.set("n", "<leader>fG", ":Telescope git_commits<cr>")
-      vim.keymap.set("n", "<leader>fg", ":Telescope git_bcommits<cr>")
-      vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<cr>")
-      vim.keymap.set("n", "<leader>fc", ":Telescope colorscheme<cr>")
+      vim.keymap.set("n", "<leader>fG", "<Cmd>Telescope git_commits<CR>")
+      vim.keymap.set("n", "<leader>fg", "<Cmd>Telescope git_bcommits<CR>")
+      vim.keymap.set("n", "<leader>fk", "<Cmd>Telescope keymaps<CR>")
+      vim.keymap.set("n", "<leader>fc", "<Cmd>Telescope colorscheme<CR>")
     end,
   },
 
@@ -92,7 +96,7 @@ return {
         vim.keymap.set(
           "n",
           "<leader>f.",
-          ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
+          "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
           { noremap = true, desc = "Browse files" }
         )
       end,
@@ -125,7 +129,7 @@ return {
       vim.keymap.set(
         "n",
         "<localleader>R",
-        ":lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>"
+        ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
       )
     end,
   },
