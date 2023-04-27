@@ -21,6 +21,8 @@ return {
               ["<C-u>"] = false,
               ["<C-a>"] = { "<home>", type = "command" },
               ["<C-e>"] = { "<end>", type = "command" },
+              ["<C-b>"] = { "<Left>", type = "command" },
+              ["<C-f>"] = { "<Right>", type = "command" },
             },
             n = { ["<C-t>"] = trouble.open_with_trouble },
           },
