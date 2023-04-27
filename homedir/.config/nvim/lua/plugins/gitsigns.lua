@@ -10,6 +10,8 @@ return {
         vim.keymap.set(mode, l, r, opts)
       end
 
+      map("n", "<leader>gs", "<Cmd>Gitsigns toggle_signs<CR>")
+
       -- Navigation.
       map("n", "]c", function()
         if vim.wo.diff then
