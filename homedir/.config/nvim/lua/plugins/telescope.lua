@@ -16,8 +16,13 @@ return {
       require("telescope").setup({
         defaults = {
           mappings = {
-            i = { ["<c-t>"] = trouble.open_with_trouble },
-            n = { ["<c-t>"] = trouble.open_with_trouble },
+            i = {
+              ["<C-t>"] = trouble.open_with_trouble,
+              ["<C-u>"] = false,
+              ["<C-a>"] = { "<home>", type = "command" },
+              ["<C-e>"] = { "<end>", type = "command" },
+            },
+            n = { ["<C-t>"] = trouble.open_with_trouble },
           },
         },
         extensions = {
