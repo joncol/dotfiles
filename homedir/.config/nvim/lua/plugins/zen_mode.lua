@@ -5,6 +5,9 @@ return {
       window = {
         backdrop = 0.8,
       },
+      plugins = {
+        tmux = { enabled = true },
+      },
     })
     vim.keymap.set("n", "<localleader>z", "<Cmd>ZenMode<CR>")
   end,
