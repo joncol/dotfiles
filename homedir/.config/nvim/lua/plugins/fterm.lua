@@ -7,7 +7,8 @@ return {
     vim.keymap.set(
       "t",
       "<A-cr>",
-      '<c-\\><c-n>:lua require("FTerm").toggle()<cr>'
+      '<c-\\><c-n>:lua require("FTerm").toggle()<cr>',
+      { silent = true }
     )
   end,
 }
