@@ -49,17 +49,10 @@ return {
       vim.lsp.handlers["workspace/symbol"] = builtin.lsp_workspace_symbols
 
       vim.keymap.set("n", "<leader>fi", function()
-        builtin.find_files({
-          cwd = "~/.config/nvim",
-          follow = true,
-        })
-      end, { desc = "Find init file" })
-
-      vim.keymap.set("n", "<leader>fI", function()
         extensions.file_browser.file_browser({
           path = vim.fn.stdpath("config") .. "/lua/plugins",
         })
-      end, { noremap = true, desc = "Find plugin file" })
+      end, { noremap = true, desc = "Find init file" })
 
       vim.keymap.set("n", "<leader>fl", function()
         builtin.find_files({
