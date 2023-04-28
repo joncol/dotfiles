@@ -51,6 +51,7 @@ return {
         i(1),
         t(")"),
       }),
+      s("af", { t('assertBool "Dummy" False') }),
     })
 
     local javascript_and_react_snippets = {
