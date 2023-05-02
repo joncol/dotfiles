@@ -3,18 +3,18 @@ return {
 
   config = function()
     require("substitute").setup({
-      prefix = {
-        prefix = "s",
+      range = {
+        prefix = "S",
       },
     })
     vim.keymap.set(
       "n",
-      "sx",
+      "S",
       require("substitute").operator,
       { noremap = true }
     )
-    vim.keymap.set("n", "sxx", require("substitute").line, { noremap = true })
-    vim.keymap.set("n", "sx$", require("substitute").eol, { noremap = true })
+    vim.keymap.set("n", "Sx", require("substitute").line, { noremap = true })
+    vim.keymap.set("n", "S$", require("substitute").eol, { noremap = true })
     vim.keymap.set("x", "x", require("substitute").visual, { noremap = true })
 
     vim.keymap.set(
