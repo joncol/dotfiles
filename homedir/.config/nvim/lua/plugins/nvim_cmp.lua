@@ -28,8 +28,6 @@ return {
       },
 
       mapping = cmp.mapping.preset.insert({
-        ["<C-space>"] = cmp.mapping.complete(),
-
         ["<tab>"] = cmp.mapping(function(fallback)
           -- You could replace the expand_or_jumpable() calls with
           -- expand_or_locally_jumpable() they way you will only jump inside
