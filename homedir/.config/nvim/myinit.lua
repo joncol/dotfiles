@@ -48,6 +48,11 @@ vim.keymap.set("n", "<leader>yf", [[<Cmd>let @"=expand("%:t")<CR>]])
 vim.keymap.set("n", "<leader>yF", [[<Cmd>let @"=expand("%:p")<CR>]])
 vim.keymap.set("n", "<leader>yn", [[<Cmd>let @"=expand("%:~")<CR>]])
 
+-- Autosave.
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+  command = "silent! w",
+})
+
 -- Always open help windows in vertical splits.
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
