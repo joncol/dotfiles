@@ -28,7 +28,7 @@ return {
       },
 
       mapping = cmp.mapping.preset.insert({
-        ["<tab>"] = cmp.mapping(function(fallback)
+        ["<Tab>"] = cmp.mapping(function(fallback)
           -- You could replace the expand_or_jumpable() calls with
           -- expand_or_locally_jumpable() they way you will only jump inside
           -- the snippet region
@@ -43,7 +43,7 @@ return {
           end
         end, { "i", "s" }),
 
-        ["<s-tab>"] = cmp.mapping(function(fallback)
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
           elseif luasnip.jumpable(-1) then
@@ -52,7 +52,8 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<cr>"] = cmp.mapping.confirm({ select = true }),
+
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
 
       sources = cmp.config.sources({
@@ -79,7 +80,7 @@ return {
 
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline({
-        ["<cr>"] = cmp.mapping(function(fallback)
+        ["<CR>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.mapping.confirm({ select = false })
           else
