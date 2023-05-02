@@ -1,1 +1,1 @@
-vim.keymap.set("n", "q", "<Cmd>bd<CR>", { silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "q", "<Cmd>bd<CR>", {})
