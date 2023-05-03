@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
 })
 
 -- Always open help windows in vertical splits.
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
     if vim.bo.filetype == "help" then
       -- Ignore any errors from `:wincmd L`. Errors happen when opening a help
