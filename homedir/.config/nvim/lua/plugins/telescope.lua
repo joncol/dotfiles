@@ -54,7 +54,7 @@ return {
         })
       end, { noremap = true, desc = "Find init file" })
 
-      vim.keymap.set("n", "<leader>fl", function()
+      vim.keymap.set("n", "<leader>fp", function()
         builtin.find_files({
           cwd = require("lazy.core.config").options.root,
         })
