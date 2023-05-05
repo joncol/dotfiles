@@ -6,7 +6,9 @@ return {
   branch = "bugfix/symbol-hover-misplacement",
 
   config = function()
-    require("symbols-outline").setup()
+    require("symbols-outline").setup({
+      symbol_blacklist = { "Module" },
+    })
     vim.keymap.set("n", "<localleader>s", "<Cmd>SymbolsOutline<CR>")
   end,
 }
