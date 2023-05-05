@@ -52,6 +52,8 @@ return {
         t(")"),
       }),
       s("af", { t('assertBool "Dummy" False') }),
+      s("t", { t("-- TODO: "), i(0) }),
+      s("tj", { t("-- TODO_JCO: "), i(0) }),
     })
 
     local javascript_and_react_snippets = {
