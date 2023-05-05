@@ -117,8 +117,7 @@ return {
           keymap(
             "n",
             "<leader>ld",
-            vim.lsp.buf.document_symbol,
-            vim.tbl_extend("force", opts, { desc = "Document symbols" })
+            "<Cmd>lua require('telescope.builtin').lsp_document_symbols({ignore_symbols={'Module'}})<CR>"
           )
           keymap(
             "n",
