@@ -117,7 +117,7 @@ return {
           keymap(
             "n",
             "<leader>ld",
-            "<Cmd>lua require('telescope.builtin').lsp_document_symbols({ignore_symbols={'Module'}})<CR>"
+            "<Cmd>lua require('telescope.builtin').lsp_document_symbols({ignore_symbols={'File', 'Module'}})<CR>"
           )
           keymap(
             "n",
