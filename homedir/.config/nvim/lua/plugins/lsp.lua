@@ -31,6 +31,7 @@ return {
       })
 
       vim.keymap.set("n", "<A-.>", "")
+      vim.keymap.set("n", "<leader>lgr", "")
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup(
