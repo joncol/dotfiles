@@ -7,12 +7,7 @@ return {
         prefix = "S",
       },
     })
-    vim.keymap.set(
-      "n",
-      "S",
-      require("substitute").operator,
-      { noremap = true }
-    )
+    vim.keymap.set("n", "S", require("substitute").operator, { noremap = true })
     vim.keymap.set("n", "Sx", require("substitute").line, { noremap = true })
     vim.keymap.set("n", "S$", require("substitute").eol, { noremap = true })
     vim.keymap.set("x", "x", require("substitute").visual, { noremap = true })
@@ -31,7 +26,7 @@ return {
     )
     vim.keymap.set(
       "x",
-      "X",
+      "cx",
       require("substitute.exchange").visual,
       { noremap = true }
     )
