@@ -18,7 +18,12 @@ vim.keymap.set("n", ",,", ",", { noremap = true })
 
 vim.g.maplocalleader = "\\"
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+  change_detection = {
+    enabled = false,
+    notify = false,
+  },
+})
 
 vim.keymap.set("n", "<localleader>l", ":Lazy<cr>")
 
