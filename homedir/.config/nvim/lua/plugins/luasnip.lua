@@ -84,8 +84,8 @@ return {
         i(4, "opts"),
         t(")"),
       }),
-      s("<l", { t("<leader>") }),
-      s("<ll", { t("<localleader>") }),
+      s("<l", { t("<Leader>") }),
+      s("<ll", { t("<LocalLeader>") }),
       s("deps", { t({ "dependencies = {" }), i(0), t("},") }),
     })
   end,
