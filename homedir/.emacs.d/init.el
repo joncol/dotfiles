@@ -2742,6 +2742,30 @@ As such, it will only work when the notes window exists."
 (use-package csv-mode
   :defer)
 
+(defun jco/lisp-comment-dwim ()
+  "Comments Lisp sexps smartly."
+  (interactive)
+  (if (and (not (hlt-nonempty-region-p))
+           (member (char-after) '(?\( ?{ ?\[)))
+      (progn (mark-sexp)
+             (comment-dwim nil))
+    (call-interactively #'evilnc-comment-or-uncomment-lines)))
+
+(defun init-lisp-common ()
+  "Common configuration options for all Lisp modes."
+  (unless (derived-mode-p 'clojure-mode)
+    (aggressive-indent-mode))
+  (setq evil-shift-width 2)
+  (define-key lisp-mode-shared-map (kbd "M-;") #'jco/lisp-comment-dwim)
+  ;; do not treat "-" as a word separator
+  (modify-syntax-entry ?- "w")
+  (smartparens-strict-mode))
+
+(use-package redshank
+  :defer
+  :init
+  (setq redshank-prefix-key "C-c RET"))
+
 (global-set-key (kbd "C-c M-s") #'cider-selector)
 
 (defun create-test-report-window (&rest _)
@@ -3297,30 +3321,6 @@ Lisp function does not specify a special indentation."
               (slime-asdf-init) ;; Required for `slime-load-system'.
               (bind-key (kbd "M-.") 'slime-edit-definition lisp-mode-map)
               (define-key sldb-mode-map "\C-w" 'evil-window-map))))
-
-(defun jco/lisp-comment-dwim ()
-  "Comments Lisp sexps smartly."
-  (interactive)
-  (if (and (not (hlt-nonempty-region-p))
-           (member (char-after) '(?\( ?{ ?\[)))
-      (progn (mark-sexp)
-             (comment-dwim nil))
-    (call-interactively #'evilnc-comment-or-uncomment-lines)))
-
-(defun init-lisp-common ()
-  "Common configuration options for all Lisp modes."
-  (unless (derived-mode-p 'clojure-mode)
-    (aggressive-indent-mode))
-  (setq evil-shift-width 2)
-  (define-key lisp-mode-shared-map (kbd "M-;") #'jco/lisp-comment-dwim)
-  ;; do not treat "-" as a word separator
-  (modify-syntax-entry ?- "w")
-  (smartparens-strict-mode))
-
-(use-package redshank
-  :defer
-  :init
-  (setq redshank-prefix-key "C-c RET"))
 
 (use-package lua-mode
   :mode "\\.lua\\'"
