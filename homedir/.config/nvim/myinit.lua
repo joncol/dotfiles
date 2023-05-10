@@ -39,7 +39,6 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.wrap = false
 vim.o.pumheight = 40
-vim.o.spell = true
 vim.opt.iskeyword:append("-") -- Do not treat hyphens as word separators.
 vim.opt.cursorline = true
 
