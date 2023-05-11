@@ -27,8 +27,16 @@ return {
     -- local types = require("luasnip.util.types")
     -- local parse = require("luasnip.util.parser").parse_snippet
     -- local ms = ls.multi_snippet
-    --
+
     ls.add_snippets("all", {
+      s("envrc", {
+        t({
+          "use flake -j12",
+          "",
+          "if [ -e .envrc-local ]; then",
+          "  source .envrc-local",
+          "fi",
+        }),
       }),
     })
 
