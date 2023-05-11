@@ -68,6 +68,15 @@ return {
           "}",
         }),
       }),
+      s("justfile", {
+        t({
+          "# Local Variables:",
+          "# mode: makefile",
+          "# indent-tabs-mode: nil",
+          "# End:",
+          "# vim: set ft=make expandtab shiftwidth=2:",
+        }),
+      }),
     })
 
     ls.add_snippets("haskell", {
