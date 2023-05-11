@@ -11,6 +11,7 @@ return {
 
       require("lspconfig").clangd.setup({})
       require("lspconfig").elmls.setup({})
+      require("lspconfig").gopls.setup({})
       require("lspconfig").hls.setup({})
       require("lspconfig").lua_ls.setup({
         single_file_support = true,
