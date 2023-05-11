@@ -27,7 +27,7 @@ require("lazy").setup("plugins", {
 
 vim.keymap.set("n", "<localleader>l", ":Lazy<cr>")
 
-vim.opt.colorcolumn = "+1"
+vim.o.textwidth = 80
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = "yes" -- Always leave room for gitsigns.
@@ -39,6 +39,7 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.wrap = false
 vim.o.pumheight = 40
+vim.opt.colorcolumn = "+1"
 vim.opt.iskeyword:append("-") -- Do not treat hyphens as word separators.
 vim.opt.cursorline = true
 

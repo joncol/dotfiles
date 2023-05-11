@@ -74,7 +74,7 @@ return {
           "# mode: makefile",
           "# indent-tabs-mode: nil",
           "# End:",
-          "# vim: set ft=make expandtab shiftwidth=2:",
+          "# vim: set ft=make expandtab shiftwidth=2 tabstop=2:",
         }),
       }),
     })
