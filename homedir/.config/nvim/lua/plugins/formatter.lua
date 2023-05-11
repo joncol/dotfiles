@@ -6,6 +6,15 @@ return {
 
     require("formatter").setup({
       filetype = {
+        go = {
+          function()
+            return {
+              exe = "gofmt",
+              stdin = true,
+            }
+          end,
+        },
+
         haskell = {
           function()
             return {
