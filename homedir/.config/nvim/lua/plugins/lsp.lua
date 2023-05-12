@@ -30,6 +30,7 @@ return {
           },
         },
       })
+      require("lspconfig").tsserver.setup({})
 
       vim.keymap.set("n", "<A-.>", "")
       vim.keymap.set("n", "<leader>lgr", "")
