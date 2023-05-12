@@ -48,13 +48,13 @@ return {
         builtin.lsp_document_symbols
       vim.lsp.handlers["workspace/symbol"] = builtin.lsp_workspace_symbols
 
-      vim.keymap.set("n", "<leader>fi", function()
+      vim.keymap.set("n", "<Leader>fi", function()
         extensions.file_browser.file_browser({
           path = vim.fn.stdpath("config") .. "/lua/plugins",
         })
       end, { noremap = true, desc = "Find init file" })
 
-      vim.keymap.set("n", "<leader>fp", function()
+      vim.keymap.set("n", "<Leader>fp", function()
         builtin.find_files({
           cwd = require("lazy.core.config").options.root,
         })
@@ -62,26 +62,26 @@ return {
 
       vim.keymap.set(
         "n",
-        "<leader>fF",
+        "<Leader>fF",
         "<Cmd>Telescope find_files hidden=true<CR>"
       )
-      vim.keymap.set("n", "<leader>ff", "<Cmd>Telescope find_files<CR>")
-      vim.keymap.set("n", "<localleader>r", "<Cmd>Telescope live_grep<CR>")
-      vim.keymap.set("n", "<leader>b", "<Cmd>Telescope buffers<CR>")
-      vim.keymap.set("n", "<leader>fh", "<Cmd>Telescope help_tags<CR>")
-      vim.keymap.set("n", "<leader>fr", "<Cmd>Telescope oldfiles<CR>")
-      vim.keymap.set("n", "<leader>fo", "<Cmd>Telescope vim_options<CR>")
-      vim.keymap.set("n", "<leader>fP", "<Cmd>Telescope planets<CR>")
-      vim.keymap.set("n", "<leader>fm", "<Cmd>Telescope media_files<CR>")
+      vim.keymap.set("n", "<Leader>ff", "<Cmd>Telescope find_files<CR>")
+      vim.keymap.set("n", "<LocalLeader>r", "<Cmd>Telescope live_grep<CR>")
+      vim.keymap.set("n", "<Leader>b", "<Cmd>Telescope buffers<CR>")
+      vim.keymap.set("n", "<Leader>fh", "<Cmd>Telescope help_tags<CR>")
+      vim.keymap.set("n", "<Leader>fr", "<Cmd>Telescope oldfiles<CR>")
+      vim.keymap.set("n", "<Leader>fo", "<Cmd>Telescope vim_options<CR>")
+      vim.keymap.set("n", "<Leader>fP", "<Cmd>Telescope planets<CR>")
+      vim.keymap.set("n", "<Leader>fm", "<Cmd>Telescope media_files<CR>")
       vim.keymap.set(
         "n",
-        "<leader>fb",
+        "<Leader>fb",
         "<Cmd>Telescope current_buffer_fuzzy_find<CR>"
       )
-      vim.keymap.set("n", "<leader>fG", "<Cmd>Telescope git_commits<CR>")
-      vim.keymap.set("n", "<leader>fg", "<Cmd>Telescope git_bcommits<CR>")
-      vim.keymap.set("n", "<leader>fk", "<Cmd>Telescope keymaps<CR>")
-      vim.keymap.set("n", "<leader>fc", "<Cmd>Telescope colorscheme<CR>")
+      vim.keymap.set("n", "<Leader>fG", "<Cmd>Telescope git_commits<CR>")
+      vim.keymap.set("n", "<Leader>fg", "<Cmd>Telescope git_bcommits<CR>")
+      vim.keymap.set("n", "<Leader>fk", "<Cmd>Telescope keymaps<CR>")
+      vim.keymap.set("n", "<Leader>fc", "<Cmd>Telescope colorscheme<CR>")
     end,
   },
 
@@ -95,7 +95,7 @@ return {
 
         vim.keymap.set(
           "n",
-          "<leader>f.",
+          "<Leader>f.",
           "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
           { noremap = true, desc = "Browse files" }
         )
@@ -128,7 +128,7 @@ return {
     config = function()
       vim.keymap.set(
         "n",
-        "<localleader>R",
+        "<LocalLeader>R",
         ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
       )
     end,
