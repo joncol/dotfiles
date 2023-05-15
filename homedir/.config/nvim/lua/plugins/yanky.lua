@@ -59,5 +59,6 @@ return {
     require("telescope").load_extension("yank_history")
 
     vim.keymap.set("n", "<A-y>", "<Cmd>Telescope yank_history<CR>")
+    vim.keymap.set("i", "<A-y>", "<Cmd>Telescope yank_history<CR>")
   end,
 }
