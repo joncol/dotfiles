@@ -11,14 +11,15 @@ return {
     require("yanky").setup({
       picker = {
         telescope = {
-          default = mapping.put("p"),
+          default = mapping.put("P"),
           mappings = {
             i = {
+              ["<CR>"] = mapping.put("P"),
+              ["<A-CR>"] = mapping.put("p"),
               ["<C-n>"] = actions.move_selection_next,
               ["<C-p>"] = actions.move_selection_previous,
               ["<C-x>"] = mapping.delete(),
               ["<C-r>"] = mapping.set_register(utils.get_default_register()),
-              ["<A-CR>"] = mapping.put("P"),
             },
             n = {
               p = mapping.put("p"),
