@@ -80,6 +80,7 @@ return {
     })
 
     ls.add_snippets("haskell", {
+      s("af", { t('assertBool "Dummy" False') }),
       s("f", { t("focus $ ") }),
       s("lg", { t('logInfo_ "'), i(0), t('"') }),
       s("lo", {
@@ -91,7 +92,7 @@ return {
         i(1),
         t(")"),
       }),
-      s("af", { t('assertBool "Dummy" False') }),
+      s("q", { t("qualified") }),
       s("t", { t("-- TODO: "), i(0) }),
       s("tj", { t("-- TODO_JCO: "), i(0) }),
     })
