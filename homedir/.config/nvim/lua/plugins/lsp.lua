@@ -9,10 +9,16 @@ return {
     config = function()
       require("neodev").setup()
 
+      require("lspconfig").bashls.setup({
+        cmd = { "npx", "bash-language-server", "start" },
+      })
       require("lspconfig").clangd.setup({})
       require("lspconfig").elmls.setup({})
       require("lspconfig").gopls.setup({})
       require("lspconfig").hls.setup({})
+      require("lspconfig").jsonls.setup({
+        cmd = { "npx", "vscode-json-language-server", "--stdio" },
+      })
       require("lspconfig").lua_ls.setup({
         single_file_support = true,
         settings = {
