@@ -36,6 +36,7 @@ return {
           },
         },
       })
+      require("lspconfig").nil_ls.setup({})
       require("lspconfig").tsserver.setup({})
 
       vim.keymap.set("n", "<A-.>", "")
