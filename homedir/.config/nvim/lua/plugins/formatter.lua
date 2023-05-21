@@ -15,6 +15,15 @@ return {
           end,
         },
 
+        cabal = {
+          function()
+            return {
+              exe = "cabal-fmt",
+              stdin = true,
+            }
+          end,
+        },
+
         haskell = {
           function()
             return {
