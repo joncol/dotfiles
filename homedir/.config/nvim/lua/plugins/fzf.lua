@@ -4,62 +4,62 @@ return {
     vim.env.FZF_DEFAULT_OPTS = nil
     vim.keymap.set(
       "n",
-      "<leader>zb",
-      "<cmd>lua require('fzf-lua').buffers()<cr>",
+      "<Leader>zb",
+      "<Cmd>lua require('fzf-lua').buffers()<CR>",
       { silent = true }
     )
     vim.keymap.set(
       "n",
-      "<leader>zf",
-      "<cmd>lua require('fzf-lua').files()<cr>",
+      "<Leader>zf",
+      "<Cmd>lua require('fzf-lua').files()<CR>",
       { silent = true }
     )
     vim.keymap.set(
       "n",
-      "<leader>zr",
-      "<cmd>lua require('fzf-lua').oldfiles()<cr>",
+      "<Leader>zr",
+      "<Cmd>lua require('fzf-lua').oldfiles()<CR>",
       { silent = true }
     )
     vim.keymap.set(
       "n",
-      "<Leader>fi",
-      [[<cmd>lua require('fzf-lua').files({cwd = vim.fn.stdpath("config") .. "/lua/plugins"} )<cr>]],
+      "<leader>fi",
+      [[<Cmd>lua require('fzf-lua').files({cwd = vim.fn.stdpath("config") .. "/lua/plugins"} )<CR>]],
       { noremap = true, desc = "Find init file" }
     )
     vim.keymap.set(
       "n",
-      "<leader>zq",
-      "<cmd>lua require('fzf-lua').quickfix()<cr>",
+      "<Leader>zq",
+      "<Cmd>lua require('fzf-lua').quickfix()<CR>",
       { silent = true }
     )
     vim.keymap.set(
       "n",
-      "<leader>zQ",
-      "<cmd>lua require('fzf-lua').quickfix_stack()<cr>",
+      "<Leader>zQ",
+      "<Cmd>lua require('fzf-lua').quickfix_stack()<CR>",
       { silent = true }
     )
     vim.keymap.set(
       "n",
-      "<leader>zl",
-      "<cmd>lua require('fzf-lua').loclist()<cr>",
+      "<Leader>zl",
+      "<Cmd>lua require('fzf-lua').loclist()<CR>",
       { silent = true }
     )
     vim.keymap.set(
       "n",
-      "<leader>zl",
-      "<cmd>lua require('fzf-lua').loclist_stack()<cr>",
+      "<Leader>zl",
+      "<Cmd>lua require('fzf-lua').loclist_stack()<CR>",
       { silent = true }
     )
     vim.keymap.set(
       "n",
-      "<leader>zG",
-      "<cmd>lua require('fzf-lua').git_commits()<cr>",
+      "<Leader>zG",
+      "<Cmd>lua require('fzf-lua').git_commits()<CR>",
       { silent = true }
     )
     vim.keymap.set(
       "n",
-      "<leader>zg",
-      "<cmd>lua require('fzf-lua').git_bcommits()<cr>",
+      "<Leader>zg",
+      "<Cmd>lua require('fzf-lua').git_bcommits()<CR>",
       { silent = true }
     )
   end,
