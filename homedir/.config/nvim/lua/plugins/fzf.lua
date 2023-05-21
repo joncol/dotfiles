@@ -20,12 +20,24 @@ return {
       "<Cmd>lua require('fzf-lua').oldfiles()<CR>",
       { silent = true }
     )
-    vim.keymap.set(
-      "n",
-      "<leader>fi",
-      [[<Cmd>lua require('fzf-lua').files({cwd = vim.fn.stdpath("config") .. "/lua/plugins"} )<CR>]],
-      { noremap = true, desc = "Find init file" }
-    )
+    vim.keymap.set("n", "<leader>fi", function()
+      local plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins"
+      require("fzf-lua").files({
+        cwd = plugins_dir,
+        actions = {
+          ["default"] = function(selected, opts)
+            local selected_item = selected[1]
+            local last_query =
+              require("fzf-lua").config.__resume_data.last_query
+            if selected_item then
+              require("fzf-lua").actions.file_edit(selected, opts)
+            else
+              vim.cmd("e " .. plugins_dir .. "/" .. last_query)
+            end
+          end,
+        },
+      })
+    end, { noremap = true, desc = "Find init file" })
     vim.keymap.set(
       "n",
       "<Leader>zq",
