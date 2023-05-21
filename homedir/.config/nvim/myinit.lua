@@ -25,7 +25,7 @@ require("lazy").setup("plugins", {
   },
 })
 
-vim.keymap.set("n", "<localleader>l", ":Lazy<cr>")
+vim.keymap.set("n", "<leader>ll", ":Lazy<cr>")
 
 vim.o.textwidth = 80
 vim.o.number = true
