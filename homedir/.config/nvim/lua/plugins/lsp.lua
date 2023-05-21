@@ -15,7 +15,9 @@ return {
       require("lspconfig").clangd.setup({})
       require("lspconfig").elmls.setup({})
       require("lspconfig").gopls.setup({})
-      require("lspconfig").hls.setup({})
+      require("lspconfig").hls.setup({
+        cmd = { "haskell-language-server", "--lsp" },
+      })
       require("lspconfig").jsonls.setup({
         cmd = { "npx", "vscode-json-language-server", "--stdio" },
       })
