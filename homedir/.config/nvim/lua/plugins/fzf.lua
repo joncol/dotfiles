@@ -22,6 +22,12 @@ return {
     )
     vim.keymap.set(
       "n",
+      "<Leader>fi",
+      [[<cmd>lua require('fzf-lua').files({cwd = vim.fn.stdpath("config") .. "/lua/plugins"} )<cr>]],
+      { noremap = true, desc = "Find init file" }
+    )
+    vim.keymap.set(
+      "n",
       "<leader>zq",
       "<cmd>lua require('fzf-lua').quickfix()<cr>",
       { silent = true }

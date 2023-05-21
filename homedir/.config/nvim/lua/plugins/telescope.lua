@@ -48,11 +48,11 @@ return {
         builtin.lsp_document_symbols
       vim.lsp.handlers["workspace/symbol"] = builtin.lsp_workspace_symbols
 
-      vim.keymap.set("n", "<Leader>fi", function()
-        extensions.file_browser.file_browser({
-          path = vim.fn.stdpath("config") .. "/lua/plugins",
-        })
-      end, { noremap = true, desc = "Find init file" })
+      -- vim.keymap.set("n", "<Leader>fi", function()
+      --   extensions.file_browser.file_browser({
+      --     path = vim.fn.stdpath("config") .. "/lua/plugins",
+      --   })
+      -- end, { noremap = true, desc = "Find init file" })
 
       vim.keymap.set("n", "<Leader>fp", function()
         builtin.find_files({
