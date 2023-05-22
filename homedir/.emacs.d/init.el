@@ -2699,7 +2699,8 @@ As such, it will only work when the notes window exists."
     (rainbow-mode t))
   (apheleia-mode)
   (setq require-final-newline nil)
-  (ethan-wspace-mode)
+  (with-eval-after-load 'ethan-wspace
+    (ethan-wspace-mode))
   (modify-syntax-entry ?_ "w") ; do not treat "_" as a word separator
   (hs-minor-mode))
 
