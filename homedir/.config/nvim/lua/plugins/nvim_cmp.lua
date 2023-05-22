@@ -7,6 +7,7 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-git",
     "saadparwaiz1/cmp_luasnip",
+    "PaterJason/cmp-conjure",
   },
 
   config = function()
@@ -59,6 +60,7 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
+        { name = "conjure" },
         { name = "buffer" },
       }, { name = "buffer" }),
     })
