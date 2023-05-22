@@ -54,9 +54,9 @@ vim.keymap.set("n", "<leader>yf", [[<Cmd>let @"=expand("%:t")<CR>]])
 vim.keymap.set("n", "<leader>yF", [[<Cmd>let @"=expand("%:p")<CR>]])
 vim.keymap.set("n", "<leader>yn", [[<Cmd>let @"=expand("%:~")<CR>]])
 
--- Autosave.
+-- Autosave non-empty files.
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
-  command = [[if expand("%:e") != "log" | silent! w | endif]],
+  command = [[if expand("%:e") != "log" && line2byte(line('$')) > 0 | silent! w | endif]],
 })
 
 -- Always open help windows in vertical splits.
