@@ -2,6 +2,7 @@ return {
   "ibhagwan/fzf-lua",
   config = function()
     vim.env.FZF_DEFAULT_OPTS = nil
+
     vim.keymap.set(
       "n",
       "<Leader>zb",
@@ -20,6 +21,8 @@ return {
       "<Cmd>lua require('fzf-lua').oldfiles()<CR>",
       { silent = true }
     )
+
+    local path = require("fzf-lua.path")
     vim.keymap.set("n", "<leader>fi", function()
       local plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins"
       require("fzf-lua").files({
@@ -27,9 +30,11 @@ return {
         actions = {
           ["default"] = function(selected, opts)
             local selected_item = selected[1]
+            local status, entry =
+              pcall(path.entry_to_file, selected_item, opts, opts.force_uri)
             local last_query =
               require("fzf-lua").config.__resume_data.last_query
-            if selected_item then
+            if selected_item and status and vim.loop.fs_stat(entry.path) then
               require("fzf-lua").actions.file_edit(selected, opts)
             else
               vim.cmd("e " .. plugins_dir .. "/" .. last_query)
