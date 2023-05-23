@@ -3,6 +3,7 @@ return {
 
   init = function()
     vim.cmd([[
+      let g:VM_leader = "\\"
       let g:VM_show_warnings = 0
       let g:VM_theme = "iceblue"
 
