@@ -48,11 +48,11 @@ vim.keymap.set("x", "<leader>p", [["0p]])
 vim.keymap.set("n", "<leader>P", [[viw"0p]])
 
 -- Yank filename and path of current file.
-vim.keymap.set("n", "<leader>yp", [[<Cmd>let @"=expand("%:~:h")<CR>]])
-vim.keymap.set("n", "<leader>yP", [[<Cmd>let @"=expand("%:h")<CR>]])
-vim.keymap.set("n", "<leader>yf", [[<Cmd>let @"=expand("%:t")<CR>]])
-vim.keymap.set("n", "<leader>yF", [[<Cmd>let @"=expand("%:p")<CR>]])
-vim.keymap.set("n", "<leader>yn", [[<Cmd>let @"=expand("%:~")<CR>]])
+vim.keymap.set("n", "<leader>yp", [[<Cmd>let @+=expand("%:~:h")<CR>]])
+vim.keymap.set("n", "<leader>yP", [[<Cmd>let @+=expand("%:h")<CR>]])
+vim.keymap.set("n", "<leader>yf", [[<Cmd>let @+=expand("%:t")<CR>]])
+vim.keymap.set("n", "<leader>yF", [[<Cmd>let @+=expand("%:p")<CR>]])
+vim.keymap.set("n", "<leader>yn", [[<Cmd>let @+=expand("%:~")<CR>]])
 
 -- Autosave non-empty files.
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
