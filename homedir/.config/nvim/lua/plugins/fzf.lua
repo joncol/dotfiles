@@ -45,6 +45,18 @@ return {
     end, { noremap = true, desc = "Find init file" })
     vim.keymap.set(
       "n",
+      "<Leader>zr",
+      "<Cmd>lua require('fzf-lua').live_grep_glob()<CR>",
+      { silent = true }
+    )
+    vim.keymap.set(
+      "n",
+      "<Leader>zR",
+      "<Cmd>lua require('fzf-lua').live_grep_resume()<CR>",
+      { silent = true }
+    )
+    vim.keymap.set(
+      "n",
       "<Leader>zq",
       "<Cmd>lua require('fzf-lua').quickfix()<CR>",
       { silent = true }
