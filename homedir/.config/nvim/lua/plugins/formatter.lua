@@ -64,6 +64,16 @@ return {
           end,
         },
 
+        purescript = {
+          function()
+            return {
+              exe = "purs-tidy",
+              args = { "format" },
+              stdin = true,
+            }
+          end,
+        },
+
         ["*"] = {
           require("formatter.filetypes.any").remove_trailing_whitespace,
         },

@@ -39,6 +39,14 @@ return {
         },
       })
       require("lspconfig").nil_ls.setup({})
+      require("lspconfig").purescriptls.setup({
+        settings = {
+          purescript = {
+            addSpagoSources = true,
+            formatter = "purs-tidy",
+          },
+        },
+      })
       require("lspconfig").tsserver.setup({})
 
       vim.keymap.set("n", "<A-.>", "")
