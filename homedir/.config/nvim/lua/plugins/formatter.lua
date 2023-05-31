@@ -80,7 +80,7 @@ return {
       },
     })
 
-    vim.keymap.set("n", "<localleader>F", ":Format<cr>", { desc = "Format" })
+    vim.keymap.set("n", "<leader>F", ":Format<cr>", { desc = "Format" })
 
     -- Autoformat on save.
     vim.cmd([[
