@@ -66,7 +66,11 @@ return {
         "<Cmd>Telescope find_files hidden=true<CR>"
       )
       vim.keymap.set("n", "<Leader>ff", "<Cmd>Telescope find_files<CR>")
-      vim.keymap.set({"n", "x"}, "<Leader>fw", "<Cmd>Telescope grep_string<CR>")
+      vim.keymap.set(
+        { "n", "x" },
+        "<Leader>fw",
+        "<Cmd>Telescope grep_string<CR>"
+      )
       vim.keymap.set("n", "<Leader>r", "<Cmd>Telescope live_grep<CR>")
       vim.keymap.set("n", "<Leader>b", "<Cmd>Telescope buffers<CR>")
       vim.keymap.set("n", "<Leader>fh", "<Cmd>Telescope help_tags<CR>")
@@ -83,6 +87,7 @@ return {
       vim.keymap.set("n", "<Leader>fg", "<Cmd>Telescope git_bcommits<CR>")
       vim.keymap.set("n", "<Leader>fk", "<Cmd>Telescope keymaps<CR>")
       vim.keymap.set("n", "<Leader>fc", "<Cmd>Telescope colorscheme<CR>")
+      vim.keymap.set("n", "<Leader>R", "<Cmd>Telescope resume<CR>")
     end,
   },
 
@@ -129,8 +134,8 @@ return {
     config = function()
       vim.keymap.set(
         "n",
-        "<LocalLeader>R",
-        ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
+        "<LocalLeader>r",
+        "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
       )
     end,
   },
