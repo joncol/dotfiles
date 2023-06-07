@@ -135,3 +135,4 @@ vim.cmd.colorscheme("catppuccin-mocha")
 -- vim.cmd.colorscheme "carbonfox"
 -- vim.cmd.colorscheme "dawnfox"
 -- vim.cmd.colorscheme "duskfox"
+-- vim.cmd.colorscheme("moonfly")
