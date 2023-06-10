@@ -16,6 +16,12 @@ vim.g.mapleader = ","
 -- Make it possible to repeat latest search backwards on current line.
 vim.keymap.set("n", ",,", ",", { noremap = true })
 
+vim.api.nvim_set_keymap(
+  "",
+  "<Space>",
+  "<Nop>",
+  { noremap = true, silent = true }
+)
 vim.g.maplocalleader = " "
 
 require("lazy").setup("plugins", {
