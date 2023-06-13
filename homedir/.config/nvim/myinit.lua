@@ -133,9 +133,13 @@ vim.cmd([[
   endif
 ]])
 
--- Navigating between diagnostics
+-- Navigating between diagnostics.
 vim.keymap.set("n", "[d", "<Cmd>lua vim.diagnostic.goto_prev()<CR>")
 vim.keymap.set("n", "]d", "<Cmd>lua vim.diagnostic.goto_next()<CR>")
+
+-- Navigating quickfix entries.
+vim.keymap.set("n", "[q", "<Cmd>cprev<CR>")
+vim.keymap.set("n", "]q", "<Cmd>cnext<CR>")
 
 vim.cmd.colorscheme("catppuccin-mocha")
 -- vim.cmd.colorscheme "carbonfox"
