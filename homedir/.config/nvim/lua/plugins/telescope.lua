@@ -88,6 +88,7 @@ return {
       vim.keymap.set("n", "<Leader>fk", "<Cmd>Telescope keymaps<CR>")
       vim.keymap.set("n", "<Leader>fc", "<Cmd>Telescope colorscheme<CR>")
       vim.keymap.set("n", "<Leader>R", "<Cmd>Telescope resume<CR>")
+      vim.keymap.set("n", "<Leader>fq", "<Cmd>Telescope quickfixhistory<CR>")
     end,
   },
 
