@@ -6,9 +6,6 @@ optimization: False
 package kontrakcja
   ghc-options: -Wwarn -fdefer-typed-holes
 
-package kontrakcja-authentication
-  ghc-options: -Wwarn -fdefer-typed-holes
-
 package kontrakcja-shake
   ghc-options: -Wwarn -fdefer-typed-holes
 
