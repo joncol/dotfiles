@@ -4496,7 +4496,7 @@ accordance with ISO 8601)."
 
   (advice-add #'register-preview :override #'consult-register-window)
   (evil-leader/set-key "b" 'consult-buffer)
-  (general-nmap :prefix "\\"
+  (general-nmap :prefix ","
     "r" (lambda ()
           (interactive)
           (consult-ripgrep (project-root (project-current)))))
