@@ -309,6 +309,19 @@ the list below.
                    (format "+%d" (line-number-at-pos))
                    (buffer-file-name))))
 
+(defun jco/kakoune ()
+  "Open current buffer in Kakoune."
+  (interactive)
+  (when (display-graphic-p)
+    (start-process "kakoune" nil
+                   "alacritty"
+                   "-e"
+                   "tmux"
+                   "new"
+                   "kak"
+                   (format "+%d" (line-number-at-pos))
+                   (buffer-file-name))))
+
 (defmacro jco/toggle-mode (mode)
   "Toggle between `MODE' and `normal-mode'."
   `(if (bound-and-true-p ,mode)
@@ -1766,6 +1779,7 @@ kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_
   "app"
   ("c" cfw:open-org-calendar "calendar")
   ("e" (erc :server "irc.freenode.net" :port 6667) "erc")
+  ("k" jco/kakoune "kakoune")
   ("m" (lambda ()
          (interactive)
          (require 'mu4e)
