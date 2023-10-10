@@ -68,11 +68,11 @@ return {
       vim.keymap.set("n", "<Leader>ff", "<Cmd>Telescope find_files<CR>")
       vim.keymap.set(
         { "n", "x" },
-        "<Leader>fw",
+        "<Leader>fG",
         "<Cmd>Telescope grep_string<CR>"
       )
-      vim.keymap.set("n", "<Leader>r", "<Cmd>Telescope live_grep<CR>")
-      vim.keymap.set("n", "<Leader>b", "<Cmd>Telescope buffers<CR>")
+      vim.keymap.set("n", "<Leader>fg", "<Cmd>Telescope live_grep<CR>")
+      vim.keymap.set("n", "<Leader>fb", "<Cmd>Telescope buffers<CR>")
       vim.keymap.set("n", "<Leader>fh", "<Cmd>Telescope help_tags<CR>")
       vim.keymap.set("n", "<Leader>fr", "<Cmd>Telescope oldfiles<CR>")
       vim.keymap.set("n", "<Leader>fo", "<Cmd>Telescope vim_options<CR>")
@@ -83,11 +83,11 @@ return {
         "<Leader>fb",
         "<Cmd>Telescope current_buffer_fuzzy_find<CR>"
       )
-      vim.keymap.set("n", "<Leader>fG", "<Cmd>Telescope git_commits<CR>")
-      vim.keymap.set("n", "<Leader>fg", "<Cmd>Telescope git_bcommits<CR>")
+      vim.keymap.set("n", "<Leader>fC", "<Cmd>Telescope git_commits<CR>")
+      vim.keymap.set("n", "<Leader>fc", "<Cmd>Telescope git_bcommits<CR>")
       vim.keymap.set("n", "<Leader>fk", "<Cmd>Telescope keymaps<CR>")
-      vim.keymap.set("n", "<Leader>fc", "<Cmd>Telescope colorscheme<CR>")
-      vim.keymap.set("n", "<Leader>R", "<Cmd>Telescope resume<CR>")
+      vim.keymap.set("n", "<Leader>ft", "<Cmd>Telescope colorscheme<CR>")
+      vim.keymap.set("n", "<Leader>fl", "<Cmd>Telescope resume<CR>")
       vim.keymap.set("n", "<Leader>fq", "<Cmd>Telescope quickfixhistory<CR>")
     end,
   },
