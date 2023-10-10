@@ -72,7 +72,7 @@ return {
         "<Cmd>Telescope grep_string<CR>"
       )
       vim.keymap.set("n", "<Leader>fg", "<Cmd>Telescope live_grep<CR>")
-      vim.keymap.set("n", "<Leader>fb", "<Cmd>Telescope buffers<CR>")
+      vim.keymap.set("n", "<LocalLeader>b", "<Cmd>Telescope buffers<CR>")
       vim.keymap.set("n", "<Leader>fh", "<Cmd>Telescope help_tags<CR>")
       vim.keymap.set("n", "<Leader>fr", "<Cmd>Telescope oldfiles<CR>")
       vim.keymap.set("n", "<Leader>fo", "<Cmd>Telescope vim_options<CR>")
