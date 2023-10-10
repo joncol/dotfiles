@@ -34,22 +34,21 @@ return {
       end, { expr = true })
 
       -- Actions.
-      map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<cr>")
-      map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<cr>")
-      map("n", "<leader>hS", gs.stage_buffer)
-      map("n", "<leader>hu", gs.undo_stage_hunk)
-      map("n", "<leader>hR", gs.reset_buffer)
-      map("n", "<leader>hp", gs.preview_hunk)
-      map("n", "<leader>hb", function()
+      map({ "n", "v" }, "<localleader>hs", ":Gitsigns stage_hunk<cr>")
+      map({ "n", "v" }, "<localleader>hr", ":Gitsigns reset_hunk<cr>")
+      map("n", "<localleader>hS", gs.stage_buffer)
+      map("n", "<localleader>hu", gs.undo_stage_hunk)
+      map("n", "<localleader>hR", gs.reset_buffer)
+      map("n", "<localleader>hp", gs.preview_hunk)
+      map("n", "<localleader>hb", function()
         gs.blame_line({ full = true })
       end)
-      map("n", "<leader>tb", gs.toggle_current_line_blame)
-      map("n", "<leader>hd", gs.diffthis)
-      map("n", "<leader>hD", function()
+      map("n", "<localleader>tb", gs.toggle_current_line_blame)
+      map("n", "<localleader>hd", gs.diffthis)
+      map("n", "<localleader>hD", function()
         gs.diffthis("~")
       end)
-      map("n", "<leader>hx", gs.toggle_deleted)
-
+      map("n", "<localleader>hx", gs.toggle_deleted)
       -- Text object.
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<cr>")
     end,
