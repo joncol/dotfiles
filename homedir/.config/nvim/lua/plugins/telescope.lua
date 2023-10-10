@@ -68,7 +68,7 @@ return {
       vim.keymap.set("n", "<Leader>ff", "<Cmd>Telescope find_files<CR>")
       vim.keymap.set(
         { "n", "x" },
-        "<Leader>fG",
+        "<Leader>fw",
         "<Cmd>Telescope grep_string<CR>"
       )
       vim.keymap.set("n", "<Leader>fg", "<Cmd>Telescope live_grep<CR>")
@@ -135,7 +135,7 @@ return {
     config = function()
       vim.keymap.set(
         "n",
-        "<LocalLeader>r",
+        "<Leader>fG",
         "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
       )
     end,
