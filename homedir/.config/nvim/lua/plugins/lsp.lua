@@ -124,7 +124,7 @@ return {
           )
           keymap(
             "n",
-            "<leader>lgr",
+            "gr",
             vim.lsp.buf.references,
             vim.tbl_extend("force", opts, { desc = "Find references" })
           )
