@@ -2553,11 +2553,13 @@ Org-mode properties drawer already, keep the headline and don’t insert
 
 (use-package org-noter
   :defer 1
-  ;; :straight (org-noter :type git :host github :repo "joncol/org-noter-plus-djvu")
+  :straight (org-noter :host github :repo "joncol/org-noter" :branch "add-focus-behavior-setting")
   :if (and (not (eq system-type 'windows-nt))
            (display-graphic-p))
   :bind (:map org-noter-doc-mode-map
               (("M-I" . org-noter-insert-note)))
+  :custom
+  (org-noter-focus-doc-after-note-navigation nil)
   :config
   (setq org-noter-always-create-frame nil)
   (setq org-noter-hide-other nil)
