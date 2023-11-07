@@ -2,7 +2,7 @@
 # name: Default nix-enabled envrc file
 # key: envrc
 # --
-use flake -j12
+use flake . -j12
 
 if [ -e .envrc-local ]; then
   source .envrc-local
