@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Kakoune 
+Exec=/home/jco/.local/bin/kak-desktop %F
+Icon=kakoune.svg
+MimeType=text/plain;text/markdown
