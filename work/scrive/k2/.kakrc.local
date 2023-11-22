@@ -1,0 +1,19 @@
+hook global WinSetOption filetype=javascript %{
+  set-option window formatcmd "./frontend/node_modules/prettier/bin-prettier.js --parser babel"
+}
+
+hook global WinSetOption filetype=haskell %{
+  set-option buffer autowrap_column 90
+
+  set -add buffer snippets 'log' '\blg' %{
+    snippets-insert %{logInfo_ "${}"}
+  }
+
+  set -add buffer snippets 'log value' '\blv' %{
+    snippets-insert %{logInfo_ $ "${}: " <> showt (${})}
+  }
+}
+
+hook global WinSetOption filetype=javascript %{
+  set-option buffer autowrap_column 120
+}
