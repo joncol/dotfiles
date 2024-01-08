@@ -1359,7 +1359,7 @@ windows easier."
      "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%")))
 
 (use-package harpoon
-  :straight (harpoon :host github :repo "joncol/harpoon.el" :branch "fix-project-root-bug")
+  :straight (harpoon :host github :repo "otavioschwanck/harpoon.el")
   :after general
   :init
   (general-nmap :prefix "\\h"
