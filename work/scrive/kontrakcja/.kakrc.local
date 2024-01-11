@@ -17,3 +17,11 @@ hook global WinSetOption filetype=haskell %{
 hook global WinSetOption filetype=javascript %{
   set-option buffer autowrap_column 120
 }
+
+hook global WinSetOption filetype=markdown %{
+  set-option buffer autowrap_column 120
+
+  set -add buffer snippets 'ticket link' '\bc-' %{
+    snippets-insert %{[[CORE-${}](https://scriveab.atlassian.net/browse/CORE-${})]}
+  }
+}
