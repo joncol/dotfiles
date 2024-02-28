@@ -3311,6 +3311,7 @@ Lisp function does not specify a special indentation."
 ** Fennel
 #+begin_src emacs-lisp
 (use-package fennel-mode
+  :disabled
   :defer)
 #+end_src
 ** GLSL

@@ -2,7 +2,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"ef-winter"))
+(let ((my-theme '"doom-henna"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -3019,6 +3019,7 @@ Lisp function does not specify a special indentation."
   :hook (ess-mode . lsp-deferred))
 
 (use-package fennel-mode
+  :disabled
   :defer)
 
 (use-package glsl-mode
