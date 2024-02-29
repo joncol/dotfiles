@@ -522,7 +522,7 @@ Useful for REPL windows."
 
 (when (eq system-type 'gnu/linux)
   (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "google-chrome-stable"))
+        browse-url-generic-program "firefox"))
 
 (modify-syntax-entry ?_ "w") ;; do not treat "_" as a word separator
 
@@ -907,7 +907,7 @@ Useful for REPL windows."
 
 (use-package github-notifier
   :disabled
-  :if (locate-file "google-chrome-stable" exec-path exec-suffixes 1)
+  :if (locate-file "firefox" exec-path exec-suffixes 1)
   :defer 2
   :config
   (github-notifier-mode))
