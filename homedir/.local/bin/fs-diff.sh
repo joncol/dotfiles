@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# First mount the `root` subvolume:
-# sudo mount -o subvol=/ /dev/mapper/lvm-root /mnt
+# First mount the `/` subvolume.
+sudo mkdir -p /mnt
+sudo mount -o subvol=/ /dev/mapper/lvm-root /mnt
 
 OLD_TRANSID=$(sudo btrfs subvolume find-new /mnt/root-blank 9999999)
 OLD_TRANSID=${OLD_TRANSID#transid marker was }
