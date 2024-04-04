@@ -17,3 +17,28 @@ hook global WinSetOption filetype=haskell %{
 hook global WinSetOption filetype=javascript %{
   set-option buffer autowrap_column 120
 }
+
+hook global WinSetOption filetype=markdown %{
+  set-option buffer autowrap_column 120
+}
+
+hook global WinSetOption filetype=yaml %{
+  set-option buffer autowrap_column 120
+
+  set -add buffer snippets 'changelog entry' '^ch' %{
+    snippets-insert %sh{filename=$(basename $kak_buffile .yaml); cat <<- EOF
+			section: esign
+			$(if [[ $filename =~ ^core- ]]; then
+  			echo "jira_issue: $filename"
+      elif [[ $filename =~ ^pr- ]]; then
+				echo "pull_request: ${filename//pr-/}"
+		  else
+  			echo "jira_issue: "
+      fi)
+			title: 
+			description: |
+			  
+		EOF
+    }
+  }
+}
