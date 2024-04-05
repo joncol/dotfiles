@@ -1,3 +1,4 @@
+file_watch_support = false
 snippet_support = true
 verbosity = 2
 
@@ -50,7 +51,7 @@ command = "crystalline"
 [language_server.css-language-server]
 filetypes = ["css"]
 roots = ["package.json", ".git", ".hg"]
-command = "vscode-css-languageserver"
+command = "vscode-css-language-server"
 args = ["--stdio"]
 
 # [language_server.deno-lsp]
@@ -66,7 +67,7 @@ args = ["--stdio"]
 [language_server.less-language-server]
 filetypes = ["less"]
 roots = ["package.json", ".git", ".hg"]
-command = "vscode-css-languageserver"
+command = "vscode-css-language-server"
 args = ["--stdio"]
 
 
@@ -91,7 +92,7 @@ roots = ["flake.nix", "shell.nix", ".git", ".hg"]
 [language_server.scss-language-server]
 filetypes = ["scss"]
 roots = ["package.json", ".git", ".hg"]
-command = "vscode-css-languageserver"
+command = "vscode-css-language-server"
 args = ["--stdio"]
 
 [language_server.dls]
@@ -156,6 +157,14 @@ command = "gopls"
 [language_server.gopls.settings.gopls]
 # See https://github.com/golang/tools/blob/master/gopls/doc/settings.md
 # "build.buildFlags" = []
+hints.assignVariableTypes = true
+hints.compositeLiteralFields = true
+hints.compositeLiteralTypes = true
+hints.constantValues = true
+hints.functionTypeParameters = true
+hints.parameterNames = true
+hints.rangeVariableTypes = true
+"ui.completion.usePlaceholders" = true
 
 [language_server.haskell-language-server]
 filetypes = ["haskell"]
@@ -170,7 +179,7 @@ settings_section = "_"
 [language_server.html-language-server]
 filetypes = ["html"]
 roots = ["package.json"]
-command = "vscode-html-languageserver"
+command = "vscode-html-language-server"
 args = ["--stdio"]
 settings_section = "_"
 [language_server.html-language-server.settings._]
@@ -189,7 +198,7 @@ storagePath = "/tmp/intelephense"
 [language_server.json-language-server]
 filetypes = ["json"]
 roots = ["package.json"]
-command = "vscode-json-languageserver"
+command = "vscode-json-language-server"
 args = ["--stdio"]
 
 # Requires Julia package "LanguageServer"
