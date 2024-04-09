@@ -1,31 +1,31 @@
 hook global WinSetOption filetype=javascript %{
-  set-option window formatcmd "./frontend/node_modules/prettier/bin-prettier.js --parser babel"
+  set window formatcmd "./frontend/node_modules/prettier/bin-prettier.js --parser babel"
 }
 
 hook global WinSetOption filetype=haskell %{
-  set-option buffer autowrap_column 90
+  set window autowrap_column 90
 
-  set -add buffer snippets 'log' '\blg' %{
+  set -add window snippets 'log' '\blg' %{
     snippets-insert %{logInfo_ "${}"}
   }
 
-  set -add buffer snippets 'log value' '\blv' %{
+  set -add window snippets 'log value' '\blv' %{
     snippets-insert %{logInfo_ $ "${}: " <> showt (${})}
   }
 }
 
 hook global WinSetOption filetype=javascript %{
-  set-option buffer autowrap_column 120
+  set window autowrap_column 120
 }
 
 hook global WinSetOption filetype=markdown %{
-  set-option buffer autowrap_column 120
+  set window autowrap_column 80
 }
 
 hook global WinSetOption filetype=yaml %{
-  set-option buffer autowrap_column 120
+  set window autowrap_column 80
 
-  set -add buffer snippets 'changelog entry' '^ch' %{
+  set -add window snippets 'changelog entry' '^ch' %{
     snippets-insert %sh{filename=$(basename $kak_buffile .yaml); cat <<- EOF
 			section: esign
 			$(if [[ $filename =~ ^core- ]]; then
@@ -41,4 +41,9 @@ hook global WinSetOption filetype=yaml %{
 		EOF
     }
   }
+}
+
+hook global WinSetOption filetype=nix %{
+  set window autowrap_column 120
+  set window formatcmd "alejandra";
 }
