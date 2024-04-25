@@ -3,13 +3,13 @@ servers = (
   { address = "eu.irc6.net"; chatnet = "IRCnet"; port = "6667"; },
   { address = "open.ircnet.net"; chatnet = "IRCnet"; port = "6667"; },
   { address = "irc.efnet.org"; chatnet = "EFNet"; port = "6667"; },
-  {
+  { 
     address = "irc.undernet.org";
     chatnet = "Undernet";
     port = "6667";
   },
   { address = "irc.dal.net"; chatnet = "DALnet"; port = "6667"; },
-  {
+  { 
     address = "irc.quakenet.org";
     chatnet = "QuakeNet";
     port = "6667";
@@ -31,7 +31,7 @@ servers = (
     # use_ssl = "no";
     # ssl_verify = "no";
     # autoconnect = "yes";
-  }
+  },
   {
     address = "irc.libera.chat";
     chatnet = "LiberaChat";
@@ -39,6 +39,15 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.libera.chat";
+    chatnet = "LiberaChat";
+    port = "6667";
+    use_tls = "no";
+    tls_verify = "no";
+    autoconnect = "yes";
+    starttls = "yes";
   }
 );
 
@@ -50,7 +59,7 @@ chatnets = {
     max_whois = "4";
     max_query_chans = "5";
   };
-  EFNet = {
+  EFNet = { 
     type = "IRC";
     max_kicks = "4";
     max_msgs = "3";
@@ -74,7 +83,7 @@ chatnets = {
     max_msgs = "3";
     max_whois = "30";
   };
-  OFTC = {
+  OFTC = { 
     type = "IRC";
     max_kicks = "1";
     max_msgs = "3";
@@ -92,7 +101,7 @@ chatnets = {
     max_msgs = "3";
     max_whois = "30";
   };
-  Rizon = {
+  Rizon = { 
     type = "IRC";
     max_kicks = "1";
     max_msgs = "3";
@@ -114,7 +123,7 @@ chatnets = {
   LiberaChat = {
     type = "IRC";
     nick = "jco";
-    autosendcmd = "/msg nickserv identify <SECRET> ;wait 2000; /wc;";
+    autosendcmd = "/msg nickserv identify secret ;wait 2000; /wc;";
   };
 };
 
@@ -285,10 +294,6 @@ statusbar = {
   };
 };
 settings = {
-  core = {
-    real_name = "jco";
-    user_name = "jco";
-    nick = "jco";
-  };
+  core = { real_name = "jco"; user_name = "jco"; nick = "jco"; };
   "fe-text" = { actlist_sort = "refnum"; };
 };
