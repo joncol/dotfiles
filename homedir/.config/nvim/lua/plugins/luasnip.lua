@@ -31,11 +31,11 @@ return {
     ls.add_snippets("all", {
       s("envrc", {
         t({
-          "use flake . -j12",
-          "",
           "if [ -e .envrc-local ]; then",
           "  source .envrc-local",
           "fi",
+          "",
+          "use flake . -j12",
         }),
       }),
       s("flake", {
