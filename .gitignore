@@ -52,3 +52,6 @@ xmonad.o
 /homedir/.config/nvim/.luarc.json
 /homedir/.config/fontconfig/conf.d/10-hm-fonts.conf
 homedir/.local/share/openaws-vpn-client/cvpn-endpoint-044fe1e9f935c0a9a-oavc.ovpn
+homedir/.config/qBittorrent/BT_backup/
+homedir/.config/qBittorrent/rss/
+homedir/.config/qBittorrent/lockfile
