@@ -2,6 +2,10 @@ hook global WinSetOption filetype=javascript %{
   set window formatcmd "./frontend/node_modules/prettier/bin-prettier.js --parser babel"
 }
 
+hook global WinSetOption filetype=cabal %{
+  set window formatcmd "cabal-fmt --indent 4"
+}
+
 hook global WinSetOption filetype=haskell %{
   set window autowrap_column 90
 
