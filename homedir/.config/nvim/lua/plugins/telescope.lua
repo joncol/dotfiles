@@ -9,7 +9,7 @@ return {
     },
 
     config = function()
-      local trouble = require("trouble.providers.telescope")
+      local trouble = require("trouble.sources.telescope")
       local builtin = require("telescope.builtin")
       local extensions = require("telescope").extensions
 
@@ -17,14 +17,14 @@ return {
         defaults = {
           mappings = {
             i = {
-              ["<C-t>"] = trouble.open_with_trouble,
+              ["<C-t>"] = trouble.open,
               ["<C-u>"] = false,
               ["<C-a>"] = { "<home>", type = "command" },
               ["<C-e>"] = { "<end>", type = "command" },
               ["<C-b>"] = { "<Left>", type = "command" },
               ["<C-f>"] = { "<Right>", type = "command" },
             },
-            n = { ["<C-t>"] = trouble.open_with_trouble },
+            n = { ["<C-t>"] = trouble.open },
           },
         },
         extensions = {
