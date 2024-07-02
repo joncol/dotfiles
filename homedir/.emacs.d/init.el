@@ -788,6 +788,7 @@ Useful for REPL windows."
              (number-sequence 0 9))))
 
 (use-package eyebrowse
+  :disabled
   :defer 1
   :custom
   (eyebrowse-keymap-prefix "")
@@ -3642,7 +3643,7 @@ repo."
            flatland-theme
            flatui-theme
            github-modern-theme
-           gotham-theme
+           ;; gotham-theme
            gruber-darker-theme
            hemisu-theme
            kaolin-themes
