@@ -14,6 +14,7 @@
 /homedir/.config/tmux/plugins/
 /homedir/.config/zsh/.zcompdump
 /homedir/.emacs.d/.cache/
+/homedir/.emacs.d/.local/
 /homedir/.emacs.d/.lsp-session-v1
 /homedir/.emacs.d/.org-id-locations
 /homedir/.emacs.d/auto-save-list/
