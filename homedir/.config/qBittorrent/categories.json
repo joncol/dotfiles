@@ -1,12 +1,9 @@
 {
-    "audiobooks": {
-        "save_path": ""
-    },
     "movies": {
         "save_path": "/data/torrents/movies"
     },
     "readarr": {
-        "save_path": ""
+        "save_path": "/data/torrents/readarr"
     },
     "shows": {
         "save_path": "/data/torrents/shows"
