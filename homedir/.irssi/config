@@ -33,6 +33,14 @@ servers = (
     # autoconnect = "yes";
   },
   {
+    address = "irc.myanonamouse.net";
+    chatnet = "Myanonamouse";
+    port = "6697";
+    use_tls = "yes";
+    tls_verify = "yes";
+    autoconnect = "yes";
+  },
+  {
     address = "irc.libera.chat";
     chatnet = "LiberaChat";
     port = "6667";
@@ -116,16 +124,17 @@ chatnets = {
   };
   SILC = { type = "SILC"; };
   Ubuntu = { type = "IRC"; };
-  Freenode = {
-    type = "IRC";
-    nick = "joncol";
-    autosendcmd = "/msg nickserv identify secret ;wait 2000; /wc;";
-  };
   LiberaChat = {
     type = "IRC";
     nick = "jco";
     autosendcmd = "/msg nickserv identify secret ;wait 2000; /wc;";
   };
+  Myanonamouse = {
+    type = "IRC";
+    nick = "joncol";
+    autosendcmd = "/msg nickserv identify secret ;wait 2000";
+  };
+  Freenode = { type = "IRC"; };
 };
 
 channels = (
