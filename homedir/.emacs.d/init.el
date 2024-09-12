@@ -788,7 +788,6 @@ Useful for REPL windows."
              (number-sequence 0 9))))
 
 (use-package eyebrowse
-  :disabled
   :defer 1
   :custom
   (eyebrowse-keymap-prefix "")
