@@ -30,15 +30,8 @@ hook global WinSetOption filetype=yaml %{
   set window autowrap_column 80
 
   set -add window snippets 'changelog entry' '^ch' %{
-    snippets-insert %sh{filename=$(basename $kak_buffile .yaml); cat <<- EOF
+    snippets-insert %sh{cat <<- EOF
 			section: esign
-			$(if [[ $filename =~ ^core- ]]; then
-  			echo "jira_issue: $filename"
-      elif [[ $filename =~ ^pr- ]]; then
-				echo "pull_request: ${filename//pr-/}"
-		  else
-  			echo "jira_issue: "
-      fi)
 			title: 
 			description: |
 			  
