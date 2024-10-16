@@ -57,3 +57,5 @@ homedir/.config/qBittorrent/BT_backup/
 homedir/.config/qBittorrent/rss/
 homedir/.config/qBittorrent/lockfile
 homedir/.config/qBittorrent/qBittorrent-data.conf
+homedir/.config/qBittorrent/mam.cookie
+homedir/.config/qBittorrent/mam.ip
