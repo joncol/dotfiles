@@ -59,3 +59,4 @@ homedir/.config/qBittorrent/lockfile
 homedir/.config/qBittorrent/qBittorrent-data.conf
 homedir/.config/qBittorrent/mam.cookie
 homedir/.config/qBittorrent/mam.ip
+homedir/.config/qBittorrent/GeoDB/dbip-country-lite.mmdb
