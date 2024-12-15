@@ -18,6 +18,15 @@ hook global WinSetOption filetype=haskell %{
   }
 }
 
+hook -group lsp-filetype-haskell global BufSetOption filetype=haskell %{
+  set-option buffer lsp_servers %{
+    [haskell-language-server]
+    root_globs = ["hie.yaml", "cabal.project", "Setup.hs", "stack.yaml", "*.cabal"]
+    command = "haskell-language-server"
+    args = ["--lsp"]
+  }
+}
+
 hook global WinSetOption filetype=javascript %{
   set window autowrap_column 120
 }
