@@ -5,6 +5,9 @@
     "ebooks": {
         "save_path": "/data/torrents/ebooks"
     },
+    "graphic_novels": {
+        "save_path": "/data/torrents/graphic_novels"
+    },
     "movies": {
         "save_path": "/data/torrents/movies"
     },
