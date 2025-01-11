@@ -2813,6 +2813,8 @@ Org-mode properties drawer already, keep the headline and don’t insert
       (interactive)
       (evil-textobj-tree-sitter-goto-textobj "function.outer" t t))))
 
+(use-package gnuplot)
+
 (use-package highlight-indent-guides
   :disabled
   :hook ((prog-mode . highlight-indent-guides-mode)
