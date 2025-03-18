@@ -1,0 +1,55 @@
+// If you want to apply these settings in Niri, you can use:
+// `pkill waybar && niri msg action spawn -- waybar`
+[
+  {
+    "height": 32,
+    "position": "top",
+    "layer": "top",
+    "modules-left": [
+      "niri/workspaces"
+    ],
+    "modules-center": [
+      "niri/window"
+    ],
+    "modules-right": [
+      "pulseaudio",
+      "clock",
+    ],
+    "niri/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "scratch": "⚙",
+        "work": "⌨",
+        "browser": "🌐",
+        "chat": "🗪"
+      }
+    },
+    "niri/window": {
+      "icon": true,
+      "icon-size": 20
+    },
+    "clock": {
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format": "{:%Y-%m-%d %H:%M}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "🔇",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    }
+  }
+]
