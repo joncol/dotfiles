@@ -18,7 +18,7 @@
     "niri/workspaces": {
       "format": "{icon}",
       "format-icons": {
-        "scratch": "⚙",
+        "scratch": "🏁︎",
         "work": "⌨",
         "browser": "🌐",
         "chat": "🗪"
