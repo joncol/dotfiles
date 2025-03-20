@@ -590,6 +590,11 @@ window-rule {
     opacity 0.85
 }
 
+window-rule {
+    match is-floating=true
+    opacity 1.0
+}
+
 cursor {
     hide-when-typing
 
