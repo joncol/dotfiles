@@ -566,6 +566,8 @@ binds {
     Ctrl+Mod+Shift+F1 allow-when-locked=true { spawn "ddcutil" "setvcp" "10" "1" "--display" "1"; }
     Mod+Shift+F2 allow-when-locked=true { spawn "ddcutil" "setvcp" "10" "-" "10" "--display" "1"; }
     Mod+Shift+F3 allow-when-locked=true { spawn "ddcutil" "setvcp" "10" "+" "10" "--display" "1"; }
+
+    // Mod+0 { toggle-window-rule-opacity; }
 }
 
 // Named workspaces:
@@ -580,7 +582,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^(org.telegram.desktop|Slack)$"
+    match app-id="^(discord|org.telegram.desktop|Slack)$"
     open-on-workspace "chat"
 }
 
