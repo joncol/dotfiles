@@ -573,13 +573,13 @@ binds {
 // Named workspaces:
 workspace "scratch"
 workspace "work"
-workspace "browser"
+workspace "other"
 workspace "chat"
 
-window-rule {
-    match app-id="firefox"
-    open-on-workspace "browser"
-}
+// window-rule {
+//     match app-id="firefox"
+//     open-on-workspace "browser"
+// }
 
 window-rule {
     match app-id="^(discord|org.telegram.desktop|Slack)$"
