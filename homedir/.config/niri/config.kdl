@@ -550,7 +550,7 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 
-    Mod+Y { spawn "bash" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
+    Mod+Y { spawn "bash" "-c" "cliphist list | fuzzel --dmenu -l32 -w120 | cliphist decode | wl-copy"; }
 
     Mod+F1 allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     Mod+F2 allow-when-locked=true { spawn "pamixer" "-d4"; }
