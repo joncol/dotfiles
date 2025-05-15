@@ -605,7 +605,7 @@ cursor {
     // Currently there is a bug in Niri which causes tooltips to go away
     // when the cursor is hidden. Had to increase this timeout to avoid that
     // happening too often.
-    hide-after-inactive-ms 10000
+    hide-after-inactive-ms 2000
 }
 
 hotkey-overlay {
