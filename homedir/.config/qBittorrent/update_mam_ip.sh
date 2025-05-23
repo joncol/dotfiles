@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Source: https://www.myanonamouse.net/f/t/71551/p/p808187#808187)
+# Source: https://www.myanonamouse.net/f/t/71551/p/p808187#808187.
 
 # Comment out the next line once things are working, this enables logging
 # commands as they are run.
