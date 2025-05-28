@@ -4,7 +4,7 @@
 
 # Comment out the next line once things are working, this enables logging
 # commands as they are run.
-set -x
+# set -x
 
 # The directory to store the two state files - /config is a docker standard
 # MAMID=__LONGSTRING__
