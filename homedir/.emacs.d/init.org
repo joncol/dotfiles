@@ -2760,6 +2760,16 @@ Org-mode properties drawer already, keep the headline and don’t insert
 (use-package vlf
   :defer)
 #+end_src
+* Programming AI
+#+begin_src emacs-lisp
+(use-package gptel
+  :defer 1
+  :config
+  (gptel-make-ollama "ollama"
+                     :host "localhost:11434"
+                     :stream t
+                     :models '(mistral:latest)))
+#+end_src
 * Programming misc
 #+begin_src emacs-lisp
 (use-package diff-hl

@@ -2498,6 +2498,14 @@ Org-mode properties drawer already, keep the headline and don’t insert
 (use-package vlf
   :defer)
 
+(use-package gptel
+  :defer 1
+  :config
+  (gptel-make-ollama "ollama"
+                     :host "localhost:11434"
+                     :stream t
+                     :models '(mistral:latest)))
+
 (use-package diff-hl
   :if (display-graphic-p)
   :hook ((after-init . global-diff-hl-mode)
