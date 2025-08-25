@@ -2502,9 +2502,9 @@ Org-mode properties drawer already, keep the headline and don’t insert
   :defer 1
   :config
   (gptel-make-ollama "ollama"
-                     :host "localhost:11434"
-                     :stream t
-                     :models '(mistral:latest)))
+    :host "localhost:11434"
+    :stream t
+    :models '(gemma3:latest llama3:latest mistral:latest)))
 
 (use-package diff-hl
   :if (display-graphic-p)
