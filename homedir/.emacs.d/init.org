@@ -2334,7 +2334,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
            :empty-lines-before 0)
           ("T" "Scrive task" entry (file+headline "work.org" "Scrive")
-           "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
+           "* TODO %^{Ticket}: %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n[[jira:%\\1][%\\1]]"
            :empty-lines-before 0)
           ("p" "Project TODO" entry
            (function (lambda () (jco/goto-current-project-todo-org "Todos")))
