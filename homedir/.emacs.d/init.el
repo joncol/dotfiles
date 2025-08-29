@@ -456,6 +456,8 @@ Useful for REPL windows."
 
 (setq vc-follow-symlinks nil)
 
+(setq auth-sources '("~/.authinfo.gpg"))
+
 (setq native-comp-async-report-warnings-errors nil)
 (setq ad-redefinition-action 'accept)
 
