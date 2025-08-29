@@ -867,6 +867,8 @@ Useful for REPL windows."
 (use-package forge
   :after magit
   :config
+  (add-to-list 'forge-alist '("git.scrive.com" "git.scrive.com/api"
+                              "git.scrive.com" forge-github-repository))
   (add-hook 'forge-post-mode-hook
             (lambda ()
               (ethan-wspace-mode -1)
