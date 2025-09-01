@@ -2184,7 +2184,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         '(("frame" "lines")
           ("fontsize" "\\normalsize")
           ;; ("fontsize" "\\scriptsize")
-          ("mathescape" "")
+          ("mathescape" "true")
           ("samepage" "")
           ("xrightmargin" "0.5cm")
           ("xleftmargin"  "0.5cm")))
