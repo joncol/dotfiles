@@ -365,6 +365,7 @@ binds {
     Mod+Return { spawn "alacritty" "-e" "tmux"; }
     Mod+P { spawn "fuzzel"; }
     Ctrl+Alt+L { spawn "swaylock"; }
+    Mod+S { spawn "bash" "-c" "cat ~/work/scrive/kcja_changelog_sections.txt | sort | fuzzel --dmenu -l18 -w18 | tr -d '\n' | wl-copy"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
