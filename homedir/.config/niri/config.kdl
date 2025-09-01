@@ -18,7 +18,8 @@ input {
 
             model "pc105"
             layout "us,us"
-            variant "colemak,altgr-intl"
+            // variant "colemak,altgr-intl"
+            variant "altgr-intl,colemak"
             options "grp:sclk_toggle,ctrl:nocaps,terminate:ctrl_alt_bksp"
         }
 
