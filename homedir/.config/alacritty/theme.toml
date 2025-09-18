@@ -1,0 +1,2 @@
+[general]
+import = ["alacritty-theme/themes/challenger_deep.toml"]
