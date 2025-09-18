@@ -3663,7 +3663,7 @@ repo."
            kaolin-themes
            leuven-theme
            material-theme
-           minimal-theme
+           ;; minimal-theme
            molokai-theme
            monokai-theme
            mustang-theme
