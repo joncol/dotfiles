@@ -184,7 +184,7 @@
   (evil-split-window-below t)
   (evil-want-fine-undo t)
   (evil-symbol-word-search t)
-  (evil-want-C-u-scroll t)
+  ;; (evil-want-C-u-scroll t)
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -192,9 +192,9 @@
   (evil-mode)
   (evil-set-undo-system 'undo-tree)
 
-  ;; Rebind universal argument to `C-S-u`.
-  (global-set-key (kbd "C-S-u") 'universal-argument)
-  (define-key universal-argument-map (kbd "C-S-u") 'universal-argument-more)
+  ;; ;; Rebind universal argument to `C-S-u`.
+  ;; (global-set-key (kbd "C-S-u") 'universal-argument)
+  ;; (define-key universal-argument-map (kbd "C-S-u") 'universal-argument-more)
 
   ;; Disable certain evil keys to make useful embark bindings work.
   (unbind-key "C-n" evil-insert-state-map)
