@@ -1547,32 +1547,7 @@ windows easier."
 #+end_src
 * Fonts and ligatures
 #+begin_src emacs-lisp
-(cond
- ((and (eq system-type 'windows-nt) (display-graphic-p))
-  (add-to-list 'default-frame-alist
-               '(font . "Hack-10"))
-  (set-frame-position (selected-frame) 0 0)
-  (set-frame-size (selected-frame) 100 60))
-
- ((and (eq system-type 'gnu/linux) (display-graphic-p))
-  (if (>= (x-display-pixel-height) 2160)
-      (add-to-list 'default-frame-alist
-                   '(font . "FiraCodeNerdFont-32"))
-    (custom-set-faces
-    '(default ((t (:family "JetBrainsMono Nerd Font" :foundry "JB  " :slant normal :weight normal :height 110 :width normal))))
-    '(italic ((t (:underline t))))
-    '(j-adverb-face ((t (:foreground "Green"))))
-    '(j-conjunction-face ((t (:foreground "Blue"))))
-    '(j-other-face ((t (:foreground "Black"))))
-    '(j-verb-face ((t (:foreground "Red")))))))
-
- ((eq system-type 'darwin)
-  (setq mac-right-option-modifier 'none)
-  (when (display-graphic-p)
-    (if (<= (x-display-pixel-height) 900)
-        (set-frame-size (selected-frame) 93 47)
-      (set-frame-size (selected-frame) 93 60))
-    (set-face-attribute 'default nil :height 145))))
+(set-frame-font "FiraCodeNerdFont 11" nil t)
 
 (setq x-underline-at-descent-line t)
 
