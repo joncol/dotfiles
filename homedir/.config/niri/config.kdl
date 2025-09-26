@@ -363,6 +363,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return { spawn "alacritty" "-e" "tmux"; }
+    Mod+Backslash { spawn "select-alacritty-theme.sh" "/home/jco/.config/alacritty/alacritty-theme/themes"; }
     Mod+P { spawn "fuzzel"; }
     Ctrl+Alt+L { spawn "swaylock"; }
     Mod+S { spawn "bash" "-c" "cat ~/work/scrive/kcja_changelog_sections.txt | sort | fuzzel --dmenu -l18 -w18 | tr -d '\n' | wl-copy"; }
