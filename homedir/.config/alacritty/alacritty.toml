@@ -1,77 +1,3 @@
-[[colors.indexed_colors]]
-color = "0x9198a3"
-index = 16
-
-[[colors.indexed_colors]]
-color = "0x977d7c"
-index = 17
-
-[[colors.indexed_colors]]
-color = "0x122339"
-index = 18
-
-[[colors.indexed_colors]]
-color = "0x003552"
-index = 19
-
-[[colors.indexed_colors]]
-color = "0x6b6977"
-index = 20
-
-[[colors.indexed_colors]]
-color = "0x333238"
-index = 21
-
-[colors.bright]
-black = "0x565656"
-blue = "0x49a4f8"
-cyan = "0x99faf2"
-green = "0xc0e17d"
-magenta = "0xa47de9"
-red = "0xec5357"
-white = "0xffffff"
-yellow = "0xf9da6a"
-
-[colors.cursor]
-cursor = "0xeeeeee"
-text = "0x282828"
-
-[colors.dim]
-black = "0x31363b"
-blue = "0x1b668f"
-cyan = "0x186c60"
-green = "0x17a262"
-magenta = "0x614a73"
-red = "0x783228"
-white = "0x63686d"
-yellow = "0xb65619"
-
-[colors.normal]
-black = "0x2e2e2e"
-blue = "0x47a0f3"
-cyan = "0x64dbed"
-green = "0xabe047"
-magenta = "0x7b5cb0"
-red = "0xeb4129"
-white = "0xe5e9f0"
-yellow = "0xf6c744"
-
-[colors.primary]
-background = "0x101421"
-foreground = "0xfffbf6"
-
-[colors.search.focused_match]
-background = "CellForeground"
-foreground = "CellBackground"
-
-[colors.search.matches]
-background = "0xb26818"
-foreground = "0xb2b2b2"
-
-[colors.selection]
-background = "#f2f2f2"
-text = "#403f53"
-
 [env]
 TERM = "xterm-256color"
 
@@ -90,3 +16,6 @@ style = "Medium"
 action = "IncreaseFontSize"
 key = "Plus"
 mods = "Control|Shift"
+
+[general]
+import = ["alacritty-theme/themes/iterm.toml"]
