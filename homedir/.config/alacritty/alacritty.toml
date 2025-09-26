@@ -18,4 +18,4 @@ key = "Plus"
 mods = "Control|Shift"
 
 [general]
-import = ["alacritty-theme/themes/iterm.toml"]
+import = ["alacritty-theme/themes/solarized_light.toml"]

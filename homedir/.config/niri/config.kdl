@@ -366,7 +366,7 @@ binds {
     Mod+Backslash { spawn "select-alacritty-theme.sh" "/home/jco/.config/alacritty/alacritty-theme/themes"; }
     Mod+P { spawn "fuzzel"; }
     Ctrl+Alt+L { spawn "swaylock"; }
-    Mod+S { spawn "bash" "-c" "cat ~/work/scrive/kcja_changelog_sections.txt | sort | fuzzel --dmenu -l18 -w18 | tr -d '\n' | wl-copy"; }
+    Mod+S { spawn "bash" "-c" "cat ~/work/scrive/kcja_changelog_sections.txt | sort | fuzzel --dmenu -l18 -p \"Changelog category> \" | tr -d '\n' | wl-copy"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -567,7 +567,7 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 
-    Mod+Y { spawn "bash" "-c" "cliphist list | fuzzel --dmenu -l32 -w120 | cliphist decode | wl-copy"; }
+    Mod+Y { spawn "bash" "-c" "cliphist list | fuzzel --dmenu -l32 -w120 -p \"Clipboard history> \" | cliphist decode | wl-copy"; }
 
     Mod+F1 allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     Mod+F2 allow-when-locked=true { spawn "pamixer" "-d4"; }
