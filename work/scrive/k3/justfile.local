@@ -1,0 +1,14 @@
+spin:
+  #!/usr/bin/env bash
+  set -x
+  cabal build kontrakcja-server && \
+    truncate -s0 logs/kontrakcja-server.log && \
+    supervisorctl restart programs:
+
+quit:
+  #!/usr/bin/env bash
+  set -x
+  supervisorctl stop all
+  pkill supervisord
+  docker compose --project-directory docker down
+  pgrep -a slack || true
