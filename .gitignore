@@ -5,6 +5,7 @@
 /homedir/.cabal/logs/
 /homedir/.cabal/packages/
 /homedir/.cabal/store/
+/homedir/.config/alacritty/theme.toml
 /homedir/.config/gtk-3.0/*.css
 /homedir/.config/gtk-3.0/gtk.css
 /homedir/.config/gtk-3.0/settings.ini
