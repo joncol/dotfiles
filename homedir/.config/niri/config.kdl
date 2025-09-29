@@ -252,6 +252,8 @@ layout {
         // top 64
         // bottom 64
     }
+
+    background-color "transparent"
 }
 
 // Add lines like this to spawn processes at startup.
@@ -626,4 +628,9 @@ cursor {
 
 hotkey-overlay {
     skip-at-startup
+}
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
 }
