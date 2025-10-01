@@ -1,3 +1,9 @@
+up:
+  #!/usr/bin/env bash
+  set -x
+  docker compose --project-directory docker up -d
+  supervisord
+
 spin:
   #!/usr/bin/env bash
   set -x
@@ -5,7 +11,7 @@ spin:
     truncate -s0 logs/kontrakcja-server.log && \
     supervisorctl restart programs:
 
-quit:
+down:
   #!/usr/bin/env bash
   set -x
   supervisorctl stop all
