@@ -9,19 +9,19 @@ return {
     config = function()
       require("neodev").setup()
 
-      require("lspconfig").bashls.setup({
+      vim.lsp.config.bashls = {
         cmd = { "npx", "bash-language-server", "start" },
-      })
-      require("lspconfig").clangd.setup({})
-      require("lspconfig").elmls.setup({})
-      require("lspconfig").gopls.setup({})
-      require("lspconfig").hls.setup({
+      }
+      vim.lsp.config.clangd = {}
+      vim.lsp.config.elmls = {}
+      vim.lsp.config.gopls = {}
+      vim.lsp.config.hls = {
         cmd = { "haskell-language-server", "--lsp" },
-      })
-      require("lspconfig").jsonls.setup({
+      }
+      vim.lsp.config.jsonls = {
         cmd = { "npx", "vscode-json-language-server", "--stdio" },
-      })
-      require("lspconfig").lua_ls.setup({
+      }
+      vim.lsp.config.lua_ls = {
         single_file_support = true,
         settings = {
           Lua = {
@@ -37,17 +37,17 @@ return {
             },
           },
         },
-      })
-      require("lspconfig").nil_ls.setup({})
-      require("lspconfig").purescriptls.setup({
+      }
+      vim.lsp.config.nil_ls = {}
+      vim.lsp.config.purescriptls = {
         settings = {
           purescript = {
             addSpagoSources = true,
             formatter = "purs-tidy",
           },
         },
-      })
-      require("lspconfig").tsserver.setup({})
+      }
+      vim.lsp.config.tsserver = {}
 
       vim.keymap.set("n", "<A-.>", "")
       vim.keymap.set("n", "<leader>lgr", "")
