@@ -2,6 +2,8 @@ ignore-project: False
 with-compiler: ghc
 executable-dynamic: True
 optimization: False
+-- haddock-hoogle: True
+-- documentation: True
 
 package kontrakcja
   ghc-options: -Wwarn -fdefer-typed-holes
