@@ -10,11 +10,11 @@ hook global WinSetOption filetype=haskell %{
   set window autowrap_column 90
 
   set -add window snippets 'log' '\blg' %{
-    snippets-insert %{logInfo_ "${}"}
+    snippets-insert %{logInfo_ "DBG ${}" -- TODO_JCO: Remove this!}
   }
 
   set -add window snippets 'log value' '\blv' %{
-    snippets-insert %{logInfo_ $ "${}: " <> showt (${})}
+    snippets-insert %{logInfo_ $ "DBG ${}: " <> showt (${}) -- TODO_JCO: Remove this!}
   }
 }
 
