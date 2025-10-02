@@ -40,8 +40,8 @@ hook global WinSetOption filetype=yaml %{
 
   set -add window snippets 'changelog entry' '^ch' %{
     snippets-insert %sh{cat <<- EOF
-			section: esign
-			title: 
+			section: $(cat ~/work/scrive/kcja_changelog_sections.txt | sort | fuzzel --dmenu -l18 -p "Changelog category> ")
+			title: \${}
 			description: |
 			  
 		EOF
