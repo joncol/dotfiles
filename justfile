@@ -97,3 +97,12 @@ skip_worktree:
 # Log in to the Docker registry of Scrive.
 docker-login:
   aws ecr get-login-password --profile scrive | docker login --username AWS --password-stdin 720173602891.dkr.ecr.eu-west-1.amazonaws.com
+
+# Copy some files from work/scrive/kontrakcja to workspace directories: k1, k2, k3.
+duplicate-workspace-files:
+  #!/usr/bin/env bash
+  declare -a dupl_files
+  dupl_files=(.kakrc.local cabal.project.local)
+  for f in ${dupl_files[@]}; do
+    tee work/scrive/k{1,2,3}/$f <work/scrive/kontrakcja/$f >/dev/null
+  done
