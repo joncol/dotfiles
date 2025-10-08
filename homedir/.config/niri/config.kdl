@@ -329,6 +329,15 @@ window-rule {
     default-window-height { fixed 600; }
 }
 
+// Open the `showmethekey` as floating by default.
+window-rule {
+    match app-id="showmethekey-gtk" title="^Floating Window - Show Me The Key$"
+    open-floating true
+    default-floating-position x=860 y=1250
+    default-column-width { fixed 840; }
+    default-window-height { fixed 80; }
+}
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 window-rule {
