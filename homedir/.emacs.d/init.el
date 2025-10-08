@@ -514,13 +514,13 @@ Useful for REPL windows."
                                                    (interactive)
                                                    (dired ".")))
 
-(define-key jco/my-keys-mode-map (kbd "C-c j")
-  (lambda ()
-    (interactive)
-    (require 'calendar)
-    (let* ((year (caddr (calendar-current-date)))
-           (file-name (format "~/ledgers/%s.journal" year)))
-      (find-file (expand-file-name file-name)))))
+;; (define-key jco/my-keys-mode-map (kbd "C-c j")
+;;   (lambda ()
+;;     (interactive)
+;;     (require 'calendar)
+;;     (let* ((year (caddr (calendar-current-date)))
+;;            (file-name (format "~/ledgers/%s.journal" year)))
+;;       (find-file (expand-file-name file-name)))))
 
 (when (eq system-type 'gnu/linux)
   (setq browse-url-browser-function 'browse-url-generic
@@ -1982,6 +1982,32 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 (use-package org-re-reveal
   :after org)
+
+(use-package org-journal
+  :after org
+  :custom
+  (org-journal-file-type 'monthly)
+  (org-journal-dir "~/org/journal")
+  (org-journal-date-format "%F (%A)")
+  (org-journal-encrypt-journal t)
+  :init
+  (setq org-journal-prefix-key "C-c j ")
+  ;; Use `C-u C-c C-j` to open the journal without adding a new entry.
+  :bind (("C-c C-j" . org-journal-new-entry))
+  :config
+  (with-eval-after-load 'org-capture
+    (add-to-list 'org-capture-templates
+                 '("j" "Journal entry" plain (function org-journal-find-location)
+                   "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
+                   :jump-to-captured t :immediate-finish t))))
+
+(defun org-journal-find-location ()
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t)
+  (unless (eq org-journal-file-type 'daily)
+    (org-narrow-to-subtree))
+  (goto-char (point-max)))
 
 (use-package org-transclusion
   :after org)
