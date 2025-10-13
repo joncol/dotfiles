@@ -18,3 +18,9 @@ down:
   pkill supervisord
   docker compose --project-directory docker down
   pgrep -a slack || true
+
+# List local bookmarks that are not pushed remotely.
+local-bookmarks:
+  #!/usr/bin/env bash
+  set -x
+  jj log -r 'bookmarks() & ~(master | remote_bookmarks())'
