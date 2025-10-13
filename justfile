@@ -102,7 +102,7 @@ docker-login:
 duplicate-workspace-files:
   #!/usr/bin/env bash
   declare -a dupl_files
-  dupl_files=(.kakrc.local cabal.project.local)
+  dupl_files=(.kakrc.local cabal.project.local justfile.local)
   for f in ${dupl_files[@]}; do
     tee work/scrive/k{1,2,3}/$f <work/scrive/kontrakcja/$f >/dev/null
   done
