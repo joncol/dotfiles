@@ -1993,13 +1993,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   :init
   (setq org-journal-prefix-key "C-c j ")
   ;; Use `C-u C-c C-j` to open the journal without adding a new entry.
-  :bind (("C-c C-j" . org-journal-new-entry))
-  :config
-  (with-eval-after-load 'org-capture
-    (add-to-list 'org-capture-templates
-                 '("j" "Journal entry" plain (function org-journal-find-location)
-                   "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
-                   :jump-to-captured t :immediate-finish t))))
+  :bind (("C-c C-j" . org-journal-new-entry)))
 
 (defun org-journal-find-location ()
   ;; Open today's journal, but specify a non-nil prefix argument in order to
@@ -2060,6 +2054,14 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     (insert "* " headline "\n")
     (beginning-of-line 0)))
 
+(defun org-journal-find-location ()
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t)
+  (unless (eq org-journal-file-type 'daily)
+    (org-narrow-to-subtree))
+  (goto-char (point-max)))
+
 (use-package org
   :defer
   :ensure org-plus-contrib
@@ -2087,6 +2089,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
            (function (lambda () (jco/goto-current-project-todo-org "Todos")))
            "* TODO %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
            :empty-lines-before 0)
+          ("j" "Journal entry" plain (function org-journal-find-location)
+           "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
+           :jump-to-captured t :immediate-finish t)
           ("n" "Note" entry (file+headline "notes.org" "Notes")
            "* %^{Description}\n:LOGBOOK:\n- Added: %U\n:END:\n%?\n"
            :empty-lines-before 0)
