@@ -106,3 +106,11 @@ duplicate-workspace-files:
   for f in ${dupl_files[@]}; do
     tee work/scrive/k{1,2,3}/$f <work/scrive/kontrakcja/$f >/dev/null
   done
+
+  declare -a dupl_dirs
+  dupl_dirs=(.github/instructions)
+  for d in ${dupl_dirs[@]}; do
+    cp -vr work/scrive/kontrakcja/$d work/scrive/k1
+    cp -vr work/scrive/kontrakcja/$d work/scrive/k2
+    cp -vr work/scrive/kontrakcja/$d work/scrive/k3
+  done
