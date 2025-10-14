@@ -15,4 +15,6 @@ For the `section`, use one of the sections names that can be found in the file
 
 For smaller tickets, `description` is not necessary.
 
-Please limit line length in descriptions at 80 characters.
+Please limit line length in descriptions at 80 characters, but don't wrap lines
+before 80 characters. Use the shell command `prose -c -w80 <filename>` to
+reformat lines.
