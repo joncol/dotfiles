@@ -2907,8 +2907,6 @@ Org-mode properties drawer already, keep the headline and don’t insert
     (rainbow-delimiters-mode)
     (rainbow-mode t))
   (apheleia-mode)
-  (setq require-final-newline nil)
-  (setq mode-require-final-newline nil)
   (with-eval-after-load 'ethan-wspace
     (ethan-wspace-mode))
   (modify-syntax-entry ?_ "w") ; do not treat "_" as a word separator
@@ -4872,8 +4870,6 @@ accordance with ISO 8601)."
 
 (use-package ethan-wspace
   :defer
-  :custom
-  (mode-require-final-newline nil)
   :config
   (global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
   (global-set-key (kbd "M-S-<backspace>") 'delete-trailing-whitespace)
