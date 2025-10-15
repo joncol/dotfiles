@@ -1107,7 +1107,7 @@ Useful for REPL windows."
                               "git.scrive.com" forge-github-repository))
   (add-hook 'forge-post-mode-hook
             (lambda ()
-              (ethan-wspace-mode -1)
+              ;; (ethan-wspace-mode -1)
               (turn-off-auto-fill)
               (setq truncate-lines nil)
               (setq word-wrap t))))
@@ -2111,7 +2111,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 
 (add-hook 'mu4e-compose-mode-hook
           (lambda ()
-            (ethan-wspace-mode -1)
+            ;; (ethan-wspace-mode -1)
             (turn-off-auto-fill)
             (footnote-mode)
             (setq truncate-lines nil)
@@ -2907,8 +2907,8 @@ Org-mode properties drawer already, keep the headline and don’t insert
     (rainbow-delimiters-mode)
     (rainbow-mode t))
   (apheleia-mode)
-  (with-eval-after-load 'ethan-wspace
-    (ethan-wspace-mode))
+  ;; (with-eval-after-load 'ethan-wspace
+  ;;   (ethan-wspace-mode))
   (modify-syntax-entry ?_ "w") ; do not treat "_" as a word separator
   (hs-minor-mode))
 
@@ -3915,7 +3915,8 @@ Taken from: https://gist.github.com/rksm/8c07d9ccc9e15adf752d3dd73dd9a61e.
   (add-hook 'snippet-mode-hook
             (lambda ()
               (modify-syntax-entry ?- "w")
-              (ethan-wspace-mode -1)))
+              ;; (ethan-wspace-mode -1)
+              ))
   (evil-leader/set-key "TAB" 'yas-insert-snippet))
 
 (use-package yasnippet-snippets
@@ -4869,6 +4870,7 @@ accordance with ISO 8601)."
 (global-whitespace-mode)
 
 (use-package ethan-wspace
+  :disabled
   :defer
   :config
   (global-set-key (kbd "M-<backspace>") 'ethan-wspace-clean-all)
