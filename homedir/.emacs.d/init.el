@@ -2627,6 +2627,9 @@ Org-mode properties drawer already, keep the headline and don’t insert
 (use-package tree-sitter-langs
   :after tree-sitter)
 
+(use-package ws-butler
+  :hook (prog-mode . ws-butler-mode))
+
 (defun jco/common-prog ()
   "Common setup for programming modes."
   (when (display-graphic-p)
