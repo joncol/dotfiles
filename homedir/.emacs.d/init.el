@@ -1818,8 +1818,8 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
                       (:subject . nil)))
 
               (setq mu4e-view-fields '(:from :to :cc :bcc :subject :flags
-                                       :date :maildir :mailing-list :tags
-                                       :attachments :signature :decryption))
+                                             :date :maildir :mailing-list :tags
+                                             :attachments :signature :decryption))
 
               (defun jco/smtp-server ()
                 (cond ((or (s-contains? "gmail.com" user-mail-address)
@@ -1848,7 +1848,23 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
               (add-to-list 'mu4e-headers-actions
                            '("org-contact-add" . mu4e-action-add-org-contact) t)
               (add-to-list 'mu4e-view-actions
-                           '("org-contact-add" . mu4e-action-add-org-contact) t))))
+                           '("org-contact-add" . mu4e-action-add-org-contact) t)
+
+              ;; See: https://github.com/djcb/mu/issues/2665#issuecomment-2016826822
+              (defun supersede-or-compose-reply-ask-wide ()
+                "Supersede own messages or ask whether to reply-to-all."
+                (interactive)
+                (message "YO up in here")
+                (if (mu4e-message-contact-field-matches-me (mu4e-message-at-point) :from)
+                    (mu4e-compose-supersede)
+                  (let ((tos (length (mu4e-message-field-at-point :to)))
+                        (ccs (length (mu4e-message-field-at-point :cc))))
+                    (mu4e-compose-reply
+                     (and (> (+ tos ccs) 1)
+                          (yes-or-no-p "Reply to all?"))))))
+
+              (general-def 'normal '(mu4e-view-mode-map mu4e-headers-mode-map)
+                "R" #'supersede-or-compose-reply-ask-wide))))
 
 (add-hook 'mu4e-update-pre-hook
           #'imapfilter)
