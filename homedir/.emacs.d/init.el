@@ -3728,7 +3728,7 @@ repo."
 
 (use-package ef-themes
   :init
-  (setq ef-themes-headings '((1 . (rainbow overline background))))
+  (setq modus-themes-headings '((1 . (rainbow overline background))))
   :config
   (add-hook 'ef-themes-post-load-hook #'configure-ef-themes))
 
@@ -3776,9 +3776,11 @@ repo."
 (progn
   (install-themes)
 
-  (if (s-starts-with? "ef-" (symbol-name jco/theme))
-      (ef-themes-select jco/theme)
-    (load-theme jco/theme t))
+  (load-theme jco/theme t)
+
+  ;; (if (s-starts-with? "ef-" (symbol-name jco/theme))
+  ;;     (ef-themes-select jco/theme)
+  ;;   (load-theme jco/theme t))
 
   (with-eval-after-load 'smartparens
     (set-face-attribute 'sp-show-pair-match-face nil :weight 'normal)))
