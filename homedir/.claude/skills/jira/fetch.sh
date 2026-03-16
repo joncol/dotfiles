@@ -3,10 +3,25 @@ set -euo pipefail
 
 # Fetches a Jira issue by key. Handles token refresh internally.
 # Usage: fetch.sh <ISSUE-KEY>
+#        fetch.sh --from-bookmark   (extracts issue key from jj bookmark)
 # Outputs the JSON response from the Jira REST API.
 
-ISSUE_KEY="${1:?Usage: fetch.sh <ISSUE-KEY>}"
 SKILL_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+if [[ "${1:-}" == "--from-bookmark" ]]; then
+  BOOKMARK=$(jj log -r 'latest(bookmarks() & ancestors(@) & ~ancestors(trunk()))' --no-graph -T 'bookmarks' 2>/dev/null || true)
+  if [[ -z "$BOOKMARK" ]]; then
+    echo "Error: No bookmark found on current line." >&2
+    exit 1
+  fi
+  ISSUE_KEY=$(echo "$BOOKMARK" | sed 's|.*/||' | grep -oiP '^[A-Z]+-\d+' | tr '[:lower:]' '[:upper:]')
+  if [[ -z "$ISSUE_KEY" ]]; then
+    echo "Error: Could not extract issue key from bookmark: $BOOKMARK" >&2
+    exit 1
+  fi
+else
+  ISSUE_KEY="${1:?Usage: fetch.sh <ISSUE-KEY> or fetch.sh --from-bookmark}"
+fi
 
 # Get a valid access token (refresh.sh prints it to stdout, logs to stderr)
 ACCESS_TOKEN=$("$SKILL_DIR/refresh.sh")

@@ -12,28 +12,18 @@ If `~/.claude/jira-tokens.json` does not exist, tell the user to run `~/.claude/
 
 ## Steps
 
-1. Determine the issue key and fetch the issue in parallel:
+1. Fetch the issue JSON using `fetch.sh` (it handles token refresh, cloud ID, and the API call internally):
 
-   - If `$ARGUMENTS` is provided, use it as the issue key (e.g. `CORE-1234`).
-   - Otherwise, extract it from the nearest bookmark by running:
+   - If `$ARGUMENTS` is provided, use it as the issue key:
+     ```bash
+     ~/.claude/skills/jira/fetch.sh CORE-1234
      ```
-     jj log -r 'latest(bookmarks() & ancestors(@) & ~ancestors(trunk()))' --no-graph -T 'bookmarks'
+   - Otherwise, use `--from-bookmark` to auto-detect the issue key from the current jj bookmark:
+     ```bash
+     ~/.claude/skills/jira/fetch.sh --from-bookmark
      ```
-     The bookmark typically has the format `jco/<ISSUE-KEY>-description` (e.g. `jco/CORE-8356-some-description`). Strip the `jco/` prefix and extract the issue key (the `XXXX-1234` part).
-   - If no issue key can be determined, ask the user.
-
-   When extracting from a bookmark, run both the `jj log` command and `~/.claude/skills/jira/fetch.sh <ISSUE-KEY>` in a **single bash command** piped together:
-
-   ```bash
-   ISSUE_KEY=$(jj log -r 'latest(bookmarks() & ancestors(@) & ~ancestors(trunk()))' --no-graph -T 'bookmarks' | sed 's|.*/||' | grep -oiP '^[A-Z]+-\d+' | tr '[:lower:]' '[:upper:]') && ~/.claude/skills/jira/fetch.sh "$ISSUE_KEY"
-   ```
-
-   When the issue key is already known, just run:
-   ```bash
-   ~/.claude/skills/jira/fetch.sh <ISSUE-KEY>
-   ```
-
-   If `fetch.sh` fails with a token error, tell the user to run `~/.claude/skills/jira/auth.sh` to re-authorize.
+   - If `fetch.sh` fails with a bookmark error, ask the user for the issue key.
+   - If it fails with a token error, tell the user to run `~/.claude/skills/jira/auth.sh` to re-authorize.
 
 2. Present the issue in a readable format:
 
