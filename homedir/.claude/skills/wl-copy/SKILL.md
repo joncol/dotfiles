@@ -1,5 +1,5 @@
 ---
-name: copy
+name: wl-copy
 description: Copy the last code snippet or message to the system clipboard
 disable-model-invocation: true
 allowed-tools: Bash
