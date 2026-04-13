@@ -19,3 +19,8 @@ mods = "Control|Shift"
 
 [general]
 import = ["theme.toml"]
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
