@@ -6,6 +6,7 @@ set -euo pipefail
 #   1. Create an OAuth 2.0 app at https://developer.atlassian.com/console/myapps/
 #   2. Set callback URL to http://localhost:21730/callback
 #   3. Add Jira API permission with read:jira-work scope
+#   4. Add Confluence API permissions: read:confluence-content.all, read:confluence-space.summary, search:confluence
 #   4. Set JIRA_OAUTH_CLIENT_ID and JIRA_OAUTH_CLIENT_SECRET env vars
 
 TOKEN_FILE="$HOME/.claude/jira-tokens.json"
@@ -19,7 +20,7 @@ if [[ -z "${JIRA_OAUTH_CLIENT_ID:-}" || -z "${JIRA_OAUTH_CLIENT_SECRET:-}" ]]; t
 fi
 
 # Build authorization URL
-AUTH_URL="https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=${JIRA_OAUTH_CLIENT_ID}&scope=read%3Ajira-work%20offline_access&redirect_uri=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${CALLBACK_URL}', safe=''))")&response_type=code&prompt=consent"
+AUTH_URL="https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=${JIRA_OAUTH_CLIENT_ID}&scope=read%3Ajira-work%20read%3Aconfluence-content.all%20read%3Aconfluence-space.summary%20search%3Aconfluence%20offline_access&redirect_uri=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${CALLBACK_URL}', safe=''))")&response_type=code&prompt=consent"
 
 echo "Opening browser for Atlassian authorization..."
 echo "If the browser doesn't open, visit this URL:"
