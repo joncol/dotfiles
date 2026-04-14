@@ -60,7 +60,7 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
@@ -260,6 +260,7 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "bash" "/home/jco/.config/niri/unhide-cursor-on-new-window.sh"
 spawn-at-startup "xwayland-satellite"
 
 // The following is used by `xwayland-satellite`.
