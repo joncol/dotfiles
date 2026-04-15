@@ -37,13 +37,15 @@ Add a changelog entry for the current work.
    title: <Short title, no trailing dot>
    ```
 
-   Optionally include a `description` field for longer explanations:
+   Optionally include a `description` field for longer explanations. Wrap
+   description lines at 80 characters:
 
    ```yaml
    section: <section>
    title: <Short title, no trailing dot>
    description: |
-     Longer explanation of the change.
+     Longer explanation of the change. Wrap lines at 80 characters so the
+     YAML stays readable in diff tools and narrow terminals.
    ```
 
    Multiple entries for the same issue use YAML multi-document format (separated by `---`):
