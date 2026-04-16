@@ -1,6 +1,6 @@
 # Atlassian Skills Setup (Jira & Confluence)
 
-Claude Code skills for reading Jira issues and searching/reading Confluence pages. Uses OAuth 2.0 (3LO) for authentication.
+Claude Code skills for reading and creating Jira issues and searching/reading Confluence pages. Uses OAuth 2.0 (3LO) for authentication.
 
 ## 1. Create an Atlassian OAuth App
 
@@ -13,6 +13,7 @@ Claude Code skills for reading Jira issues and searching/reading Confluence page
 
    **Jira API:**
    - `read:jira-work`
+   - `write:jira-work`
 
    **Confluence API (classic scopes):**
    - `read:confluence-content.all`
@@ -32,7 +33,9 @@ Copy the skill directories into your Claude Code config:
 │   ├── SKILL.md
 │   ├── auth.sh
 │   ├── refresh.sh
-│   └── fetch.sh
+│   ├── fetch.sh
+│   ├── create.sh
+│   └── fetch_createmeta.sh
 └── confluence/
     ├── SKILL.md
     └── fetch.sh
@@ -44,6 +47,8 @@ Make sure the shell scripts are executable:
 chmod +x ~/.claude/skills/jira/auth.sh
 chmod +x ~/.claude/skills/jira/refresh.sh
 chmod +x ~/.claude/skills/jira/fetch.sh
+chmod +x ~/.claude/skills/jira/create.sh
+chmod +x ~/.claude/skills/jira/fetch_createmeta.sh
 chmod +x ~/.claude/skills/confluence/fetch.sh
 ```
 
@@ -86,6 +91,7 @@ Inside Claude Code, use the slash commands:
 ```
 /jira CORE-1234          # Fetch a specific issue
 /jira                    # Auto-detect issue from current jj bookmark
+/jira create FN          # Create a new issue in the FN project
 ```
 
 ### Confluence
@@ -104,6 +110,9 @@ Tokens auto-refresh, but if the refresh token has expired (~90 days), re-run:
 ```bash
 ~/.claude/skills/jira/auth.sh
 ```
+
+**403 or "scope does not match" on create/write calls:**
+Your OAuth app is missing write permissions. Go to the developer console, add the `write:jira-work` scope under Jira API permissions, then re-authorize with `~/.claude/skills/jira/auth.sh`.
 
 **"scope does not match" on Confluence calls:**
 Your OAuth app is missing Confluence permissions. Go to the developer console, add the Confluence scopes listed in step 1, then re-authorize.
