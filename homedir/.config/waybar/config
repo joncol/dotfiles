@@ -9,7 +9,7 @@
       "niri/workspaces"
     ],
     "modules-center": [
-      "niri/window"
+      "custom/window-title"
     ],
     "modules-right": [
       "tray",
@@ -44,9 +44,10 @@
     		"default": "○"
       }
     },
-    "niri/window": {
-      "icon": true,
-      "icon-size": 20
+    "custom/window-title": {
+      "exec": "~/.config/waybar/window-title.js",
+      "return-type": "json",
+      "escape": true
     },
     "clock": {
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",

@@ -14,7 +14,7 @@ window#waybar.hidden {
   opacity: 0.2;
 }
 
-window#waybar.empty #window {
+window#waybar.empty #custom-window-title {
   background: transparent;
 }
 
@@ -48,7 +48,7 @@ tooltip {
   border-radius: 8px;
 }
 
-#workspaces, #window, #clock {
+#workspaces, #custom-window-title, #clock {
   background: rgba(24, 44, 97, 0.5);
 }
 
@@ -57,9 +57,23 @@ tooltip {
   border-radius: 0 16px 16px 0;
 }
 
-#window, #pulseaudio {
+#custom-window-title, #pulseaudio {
   border-radius: 16px;
 }
+
+#custom-window-title {
+  padding: 4px 12px;
+}
+
+@keyframes window-fade-out-a { from { opacity: 1; } to { opacity: 0; } }
+@keyframes window-fade-out-b { from { opacity: 1; } to { opacity: 0; } }
+@keyframes window-fade-in-a  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes window-fade-in-b  { from { opacity: 0; } to { opacity: 1; } }
+
+#custom-window-title.fade-out-a { animation: window-fade-out-a 150ms ease forwards; }
+#custom-window-title.fade-out-b { animation: window-fade-out-b 150ms ease forwards; }
+#custom-window-title.fade-in-a  { animation: window-fade-in-a  150ms ease forwards; }
+#custom-window-title.fade-in-b  { animation: window-fade-in-b  150ms ease forwards; }
 
 #clock {
   border-radius: 16px 0 0 16px;
@@ -107,10 +121,13 @@ tooltip {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
-#mpd,
-#window
+#mpd
 {
   padding: 4px 12px;
+  color: #ffffff;
+}
+
+#custom-window-title {
   color: #ffffff;
 }
 
@@ -119,7 +136,7 @@ tooltip {
   color: #ffffff;
 }
 
-#window,
+#custom-window-title,
 #workspaces,
 #clock
 {
