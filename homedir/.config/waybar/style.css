@@ -67,7 +67,7 @@ tooltip {
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-  background-color: #a37800;
+  background-color: rgba(24, 44, 97, 0.8);
 }
 
 #workspaces button {
@@ -197,11 +197,15 @@ label:focus {
 }
 
 #memory {
-  background-color: #9b59b6;
+  background: rgba(24, 44, 97, 0.5);
+  border-radius: 16px;
+  margin: 4px 8px 0px;
 }
 
 #disk {
-  background-color: #964B00;
+  background: rgba(24, 44, 97, 0.5);
+  border-radius: 16px;
+  margin: 4px 8px 0px;
 }
 
 #backlight {
@@ -209,16 +213,20 @@ label:focus {
 }
 
 #network {
-  background-color: #2980b9;
+  background: rgba(24, 44, 97, 0.5);
+  border-radius: 16px;
+  margin: 4px 8px 0px;
 }
 
 #network.disconnected {
   background-color: #f53c3c;
+  border-radius: 16px;
+  margin: 4px 8px 0px;
 }
 
 #pulseaudio {
-  background-color: #f1c40f;
-  color: #000000;
+  background: rgba(24, 44, 97, 0.5);
+  color: #ffffff;
   min-width: 92px;
 }
 
@@ -259,7 +267,9 @@ label:focus {
 }
 
 #tray {
-  background-color: #2980b9;
+  background: rgba(24, 44, 97, 0.5);
+  border-radius: 16px;
+  margin: 4px 8px 0px;
 }
 
 #tray > .passive {
@@ -348,4 +358,55 @@ label:focus {
 
 #privacy-item.audio-out {
   background-color: #0069d4;
+}
+
+/* === Consolidated right-side pill === */
+.modules-right {
+  background: rgba(24, 44, 97, 0.5);
+  border-radius: 16px;
+  margin: 4px 8px 0 0;
+}
+
+.modules-right #tray,
+.modules-right #network,
+.modules-right #disk,
+.modules-right #memory,
+.modules-right #pulseaudio,
+.modules-right #clock {
+  background: transparent;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Round only the outermost corners of the pill. */
+.modules-right #tray {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.modules-right #clock {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+/* Subtle section tints on top of the shared navy base. */
+.modules-right #network,
+.modules-right #disk,
+.modules-right #memory {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.modules-right #clock {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.modules-right #pulseaudio:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Divider line at each section boundary. */
+.modules-right #network,
+.modules-right #pulseaudio,
+.modules-right #clock {
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
 }

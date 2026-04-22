@@ -12,9 +12,31 @@
       "niri/window"
     ],
     "modules-right": [
+      "tray",
+      "network",
+      "disk",
+      "memory",
       "pulseaudio",
       "clock",
     ],
+    "tray": {
+      "spacing": 8
+    },
+    "network": {
+      "format-ethernet": "<span color='#ffe58a'></span> {ifname}",
+      "format-wifi": "<span color='#ffe58a'></span> {essid} ({signalStrength}%)",
+      "format-disconnected": "<span color='#ffe58a'></span> disconnected",
+      "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "disk": {
+      "path": "/",
+      "format": "<span color='#ffe58a'></span>  {percentage_used}%",
+      "tooltip-format": "{used} / {total} used on {path}"
+    },
+    "memory": {
+      "format": "<span color='#ffe58a'></span> {percentage}%",
+      "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
+    },
     "niri/workspaces": {
       "format": "{icon}",
       "format-icons": {
@@ -28,13 +50,13 @@
     },
     "clock": {
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-      "format": "{:%Y-%m-%d %H:%M}"
+      "format": "<span color='#ffe58a'></span>  {:%Y-%m-%d %H:%M}"
     },
     "pulseaudio": {
       // "scroll-step": 1, // %, can be a float
-      "format": "{volume}% {icon}",
-      "format-bluetooth": "{volume}% {icon}",
-      "format-bluetooth-muted": " {icon}",
+      "format": "<span color='#ffe58a'>{icon}</span> {volume}%",
+      "format-bluetooth": "<span color='#ffe58a'>{icon}</span> {volume}%",
+      "format-bluetooth-muted": "🔇 {icon}",
       "format-muted": "🔇",
       "format-source": "{volume}% ",
       "format-source-muted": "",
