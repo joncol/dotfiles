@@ -343,6 +343,13 @@ window-rule {
     default-window-height { fixed 80; }
 }
 
+// Open satty (screenshot annotator) as floating; --resize smart sizes the
+// window to the image at 1:1.
+window-rule {
+    match app-id="com.gabm.satty"
+    open-floating true
+}
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 window-rule {
@@ -565,6 +572,11 @@ binds {
     Mod+F5 { screenshot; }
     Mod+Shift+F5 { screenshot-screen; }
     Mod+Ctrl+F5 { screenshot-window; }
+
+    // Annotated screenshot: grim+slurp captures a region, satty edits, output
+    // is copied to clipboard and saved to ~/Pictures/screenshots. --resize smart
+    // sizes the satty window to the image at 1:1 (natural pixel size).
+    Print { spawn "sh" "-c" "grim -g \"$(slurp -d)\" - | satty --filename - --resize smart --floating-hack --copy-command wl-copy --output-filename ~/Pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png"; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
