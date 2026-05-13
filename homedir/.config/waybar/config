@@ -16,6 +16,7 @@
       "network",
       "disk",
       "memory",
+      "battery",
       "pulseaudio",
       "clock",
     ],
@@ -23,9 +24,10 @@
       "spacing": 8
     },
     "network": {
-      "format-ethernet": "<span color='#ffe58a'></span> {ifname}",
-      "format-wifi": "<span color='#ffe58a'></span> {essid} ({signalStrength}%)",
-      "format-disconnected": "<span color='#ffe58a'></span> disconnected",
+      "interval": 5,
+      "format-ethernet": "<span color='#ffe58a'></span>  {ifname}",
+      "format-wifi": "<span color='#ffe58a'></span>  {essid} ({signalStrength}%)",
+      "format-disconnected": "<span color='#ffe58a'></span>  disconnected",
       "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
     },
     "disk": {
@@ -36,6 +38,17 @@
     "memory": {
       "format": "<span color='#ffe58a'></span> {percentage}%",
       "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
+    },
+    "battery": {
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "<span color='#ffe58a'>{icon}</span>  {capacity}%",
+      "format-charging": "<span color='#ffe58a'></span>  {capacity}%",
+      "format-plugged": "<span color='#ffe58a'></span>  {capacity}%",
+      "format-icons": ["", "", "", "", ""],
+      "tooltip-format": "{capacity}% — {time}"
     },
     "niri/workspaces": {
       "format": "{icon}",
@@ -55,8 +68,8 @@
     },
     "pulseaudio": {
       // "scroll-step": 1, // %, can be a float
-      "format": "<span color='#ffe58a'>{icon}</span> {volume}%",
-      "format-bluetooth": "<span color='#ffe58a'>{icon}</span> {volume}%",
+      "format": "<span color='#ffe58a'>{icon}</span>  {volume}%",
+      "format-bluetooth": "<span color='#ffe58a'>{icon}</span>  {volume}%",
       "format-bluetooth-muted": "🔇 {icon}",
       "format-muted": "🔇",
       "format-source": "{volume}% ",

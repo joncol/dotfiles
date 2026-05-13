@@ -114,6 +114,7 @@ tooltip {
 #temperature,
 #backlight,
 #network,
+#pulseaudio,
 #wireplumber,
 #custom-media,
 #tray,
@@ -128,11 +129,6 @@ tooltip {
 }
 
 #custom-window-title {
-  color: #ffffff;
-}
-
-#clock {
-  padding: 4px 16px;
   color: #ffffff;
 }
 
@@ -244,7 +240,7 @@ label:focus {
 #pulseaudio {
   background: rgba(24, 44, 97, 0.5);
   color: #ffffff;
-  min-width: 92px;
+  min-width: 60px;
 }
 
 #pulseaudio.muted {
@@ -388,11 +384,13 @@ label:focus {
 .modules-right #network,
 .modules-right #disk,
 .modules-right #memory,
+.modules-right #battery,
 .modules-right #pulseaudio,
 .modules-right #clock {
   background: transparent;
   border-radius: 0;
   margin: 0;
+  color: #ffffff;
 }
 
 /* Round only the outermost corners of the pill. */
@@ -406,15 +404,20 @@ label:focus {
   border-bottom-right-radius: 16px;
 }
 
-/* Subtle section tints on top of the shared navy base. */
-.modules-right #network,
-.modules-right #disk,
-.modules-right #memory {
-  background: rgba(255, 255, 255, 0.12);
+/* State highlights for battery — preserved inside the pill. */
+.modules-right #battery.charging,
+.modules-right #battery.plugged {
+  background-color: #26A65B;
 }
 
-.modules-right #clock {
-  background: rgba(255, 255, 255, 0.2);
+.modules-right #battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 .modules-right #pulseaudio:hover {
@@ -423,6 +426,8 @@ label:focus {
 
 /* Divider line at each section boundary. */
 .modules-right #network,
+.modules-right #disk,
+.modules-right #battery,
 .modules-right #pulseaudio,
 .modules-right #clock {
   border-left: 1px solid rgba(255, 255, 255, 0.5);
