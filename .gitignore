@@ -56,3 +56,14 @@ xmonad.o
 /homedir/.config/nvim/.luarc.json
 /homedir/.config/fontconfig/conf.d/10-hm-fonts.conf
 homedir/.local/share/openaws-vpn-client/cvpn-endpoint-044fe1e9f935c0a9a-oavc.ovpn
+
+# ~/.claude/ holds a lot of runtime state. Default-deny, whitelist authored config.
+/homedir/.claude/*
+!/homedir/.claude/CLAUDE.md
+!/homedir/.claude/settings.json
+!/homedir/.claude/keybindings.json
+!/homedir/.claude/agents/
+!/homedir/.claude/commands/
+!/homedir/.claude/skills/
+!/homedir/.claude/hooks/
+!/homedir/.claude/memory/
