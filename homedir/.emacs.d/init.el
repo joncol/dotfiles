@@ -2457,7 +2457,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
         (mapconcat #'identity
                    `(,(concat "* TODO " title)
                      ":PROPERTIES:"
-                     ,(concat ":export_file_name: " filename)
+                     ,(concat ":export_hugo_bundle: " filename)
                      ":END:"
                      "%?TODO: summary"
                      "#+hugo: more"
