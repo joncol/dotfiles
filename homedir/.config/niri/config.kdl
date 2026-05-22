@@ -263,6 +263,7 @@ spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "bash" "/home/jco/.config/niri/unhide-cursor-on-new-window.sh"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "niri" "msg" "action" "switch-layout" "1"
+spawn-at-startup "niri-float-sticky"
 
 // The following is used by `xwayland-satellite`.
 environment {
