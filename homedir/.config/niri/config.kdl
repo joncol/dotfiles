@@ -386,7 +386,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return { spawn "alacritty" "-e" "sh" "-c" "tmux attach || tmux"; }
+    Mod+Return { spawn "alacritty" "-e" "alacritty-tmux.sh"; }
     Mod+Backslash { spawn "select-alacritty-theme.sh" "/home/jco/.config/alacritty/alacritty-theme/themes"; }
     Mod+Shift+Backslash { spawn "show-current-alacritty-theme.sh"; }
     Mod+P { spawn "fuzzel"; }
