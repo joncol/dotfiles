@@ -629,7 +629,7 @@ workspace "chat"
 // }
 
 window-rule {
-    match app-id="^(discord|org.telegram.desktop|Slack)$"
+    match app-id="(?i)^(discord|org.telegram.desktop|slack)$"
     open-on-workspace "chat"
 }
 
