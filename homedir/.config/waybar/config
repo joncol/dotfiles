@@ -17,7 +17,7 @@
       "disk",
       "memory",
       "battery",
-      "pulseaudio",
+      "custom/volume",
       "clock",
     ],
     "tray": {
@@ -66,24 +66,24 @@
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "format": "<span color='#ffe58a'></span>  {:%Y-%m-%d %H:%M}"
     },
-    "pulseaudio": {
-      // "scroll-step": 1, // %, can be a float
-      "format": "<span color='#ffe58a'>{icon}</span>  {volume}%",
-      "format-bluetooth": "<span color='#ffe58a'>{icon}</span>  {volume}%",
-      "format-bluetooth-muted": "🔇 {icon}",
-      "format-muted": "🔇",
-      "format-source": "{volume}% ",
-      "format-source-muted": "",
+    // Volume for the sink that the focused window's application is routed
+    // to. Backed by `current-sink-volume.sh status`, which emits a `class`
+    // (muted/low/medium/high) that the {icon} lookup below maps to a glyph.
+    "custom/volume": {
+      "exec": "current-sink-volume.sh status",
+      "return-type": "json",
+      "interval": 1,
+      "format": "<span color='#ffe58a'>{icon}</span>  {text}",
       "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", "", ""]
+        "high": "",
+        "low": "",
+        "medium": "",
+        "muted": "🔇"
       },
-      "on-click": "pavucontrol"
+      "tooltip": true,
+      "on-click": "pavucontrol",
+      "on-scroll-down": "current-sink-volume.sh down",
+      "on-scroll-up": "current-sink-volume.sh up"
     }
   }
 ]

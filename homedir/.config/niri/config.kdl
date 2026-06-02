@@ -599,12 +599,15 @@ binds {
 
     Mod+Y { spawn "bash" "-c" "cliphist list | fuzzel --dmenu -l32 -w120 -p \"Clipboard history> \" | cliphist decode | wl-copy"; }
 
-    Mod+F1 allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    Mod+F2 allow-when-locked=true { spawn "pamixer" "-d4"; }
-    Mod+F3 allow-when-locked=true { spawn "pamixer" "-i4"; }
-    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "pamixer" "-i4"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "pamixer" "-d4"; }
+    // Volume keys target the sink that the focused window's application is
+    // currently routed to (falling back to the default sink). See
+    // `current-sink-volume.sh` in nixos-flake/home-manager/scripts.
+    Mod+F1 allow-when-locked=true { spawn "current-sink-volume.sh" "toggle-mute"; }
+    Mod+F2 allow-when-locked=true { spawn "current-sink-volume.sh" "down"; }
+    Mod+F3 allow-when-locked=true { spawn "current-sink-volume.sh" "up"; }
+    XF86AudioMute        allow-when-locked=true { spawn "current-sink-volume.sh" "toggle-mute"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "current-sink-volume.sh" "up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "current-sink-volume.sh" "down"; }
 
     Mod+Escape       { spawn "makoctl" "dismiss"; }
     Mod+Shift+Escape { spawn "makoctl" "restore"; }

@@ -57,7 +57,7 @@ tooltip {
   border-radius: 0 16px 16px 0;
 }
 
-#custom-window-title, #pulseaudio {
+#custom-window-title, #custom-volume {
   border-radius: 16px;
 }
 
@@ -80,7 +80,7 @@ tooltip {
 }
 
 /* you can set a style on hover for any module like this */
-#pulseaudio:hover {
+#custom-volume:hover {
   background-color: rgba(24, 44, 97, 0.8);
 }
 
@@ -114,7 +114,7 @@ tooltip {
 #temperature,
 #backlight,
 #network,
-#pulseaudio,
+#custom-volume,
 #wireplumber,
 #custom-media,
 #tray,
@@ -139,7 +139,7 @@ tooltip {
   margin: 4px 0px 0px;
 }
 
-#pulseaudio {
+#custom-volume {
   margin: 4px 8px 0px;
 }
 
@@ -237,13 +237,13 @@ label:focus {
   margin: 4px 8px 0px;
 }
 
-#pulseaudio {
+#custom-volume {
   background: rgba(24, 44, 97, 0.5);
   color: #ffffff;
   min-width: 60px;
 }
 
-#pulseaudio.muted {
+#custom-volume.muted {
   background-color: #90b1b1;
   color: #2a5c45;
 }
@@ -385,7 +385,7 @@ label:focus {
 .modules-right #disk,
 .modules-right #memory,
 .modules-right #battery,
-.modules-right #pulseaudio,
+.modules-right #custom-volume,
 .modules-right #clock {
   background: transparent;
   border-radius: 0;
@@ -420,7 +420,7 @@ label:focus {
   animation-direction: alternate;
 }
 
-.modules-right #pulseaudio:hover {
+.modules-right #custom-volume:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -428,7 +428,7 @@ label:focus {
 .modules-right #network,
 .modules-right #disk,
 .modules-right #battery,
-.modules-right #pulseaudio,
+.modules-right #custom-volume,
 .modules-right #clock {
   border-left: 1px solid rgba(255, 255, 255, 0.5);
 }
