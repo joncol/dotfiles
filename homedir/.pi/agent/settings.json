@@ -1,0 +1,9 @@
+{
+  "defaultModel": "gemma4:latest",
+  "defaultProvider": "ollama",
+  "packages": [
+    "npm:@ollama/pi-web-search",
+    "npm:pi-memory"
+  ],
+  "lastChangelogVersion": "0.79.1"
+}
