@@ -25,9 +25,9 @@
     },
     "network": {
       "interval": 5,
-      "format-ethernet": "<span color='#ffe58a'></span>  {ifname}",
+      "format-ethernet": "<span color='#ffe58a'>󰈀</span>  {ifname}",
       "format-wifi": "<span color='#ffe58a'></span>  {essid} ({signalStrength}%)",
-      "format-disconnected": "<span color='#ffe58a'></span>  disconnected",
+      "format-disconnected": "<span color='#ffe58a'>󰘾</span>  disconnected",
       "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
     },
     "disk": {
