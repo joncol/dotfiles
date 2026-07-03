@@ -1,0 +1,41 @@
+# Stow ignore list for the `homedir` package.
+#
+# NOTE: providing this file REPLACES stow's built-in default ignore list
+# entirely (see Stow.pm: a local ignore file short-circuits the defaults).
+# So the block below reproduces stow 2.4.1's built-in defaults verbatim,
+# followed by our own additions.
+
+# --- stow built-in defaults (keep in sync with `stow`'s __DATA__ list) ---
+RCS
+.+,v
+
+CVS
+\.\#.+       # CVS conflict files / emacs lock files
+\.cvsignore
+
+\.svn
+_darcs
+\.hg
+
+\.git
+\.gitignore
+\.gitmodules
+
+.+~          # emacs backup files
+\#.*\#       # emacs autosave files
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+
+# --- our additions ---
+# These are committed as ABSOLUTE symlinks pointing outside the repo.
+# GNU Stow 2.4.x refuses to stow absolute symlinks ("they can't be
+# unstowed") and aborts the whole run, so we skip them here. If you want
+# any of them deployed, create the link directly in $HOME to its real
+# absolute target instead of routing it through this repo.
+secrets\.lua
+bookmarks
+wee_slack\.py
+weemoji\.json
+screenshots
