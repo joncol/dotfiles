@@ -1,8 +1,9 @@
+;;; init.el --- Personal Emacs configuration  -*- lexical-binding: t; -*-
 (setq custom-file (expand-file-name "custom.el" temporary-file-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"ef-deuteranopia-dark"))
+(let ((my-theme '"ef-arbutus"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
@@ -178,16 +179,25 @@
       (browse-url "https://github.com/notifications"))))
 
 (use-package evil
-  :ensure t
   :custom
   (evil-vsplit-window-right t)
   (evil-split-window-below t)
   (evil-want-fine-undo t)
   (evil-symbol-word-search t)
   ;; (evil-want-C-u-scroll t)
+  :bind (("C-x SPC" . evil-ex-nohighlight)
+         ("C-x C-SPC" . evil-ex-nohighlight))
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
+  ;; Use evil's own search module rather than isearch. It keeps matches
+  ;; highlighted after the search ends (`evil-ex-search-persistent-highlight',
+  ;; on by default), which is Vim's `hlsearch' and what
+  ;; evil-search-highlight-persist used to bolt onto isearch. Under the
+  ;; isearch module `evil-flash-search-pattern' force-clears the highlights,
+  ;; so `lazy-highlight-cleanup' alone cannot achieve this. Must be set
+  ;; before evil-search loads: its :set function is what swaps the bindings.
+  (setq evil-search-module 'evil-search)
   :config
   (evil-mode)
   (evil-set-undo-system 'undo-tree)
@@ -262,7 +272,6 @@
 
 (use-package evil-collection
   :after evil
-  :ensure t
   :config
   (setq forge-add-default-bindings nil)
   (delete 'calc evil-collection-mode-list)
@@ -314,14 +323,6 @@
   :after evil
   :config
   (evil-goggles-mode))
-
-(use-package evil-search-highlight-persist
-  :after (evil facemenu)
-  :bind (:map evil-search-highlight-persist-map
-         ("C-x SPC" . evil-search-highlight-persist-remove-all)
-         ("C-x C-SPC" . evil-search-highlight-persist-remove-all))
-  :init
-  (global-evil-search-highlight-persist t))
 
 (add-hook 'edebug-mode-hook 'evil-normalize-keymaps)
 
@@ -931,8 +932,6 @@ Useful for REPL windows."
 (use-package ix
   :defer)
 
-(use-package kurecolor)
-
 (use-package ledger-mode
   :defer
   :mode "\\.journal\\'"
@@ -1409,9 +1408,6 @@ find: _f_un _l_ib _v_ar"
   ("t" (jco/find-org-file "todo.org") "todo")
   ("w" (jco/find-org-file "work.org") "work"))
 
-(defvar jco/global-hl-line-mode-hydra-temp)
-(set (make-local-variable 'jco/global-hl-line-mode-hydra-temp) nil)
-
 (defhydra jco/hydra-hideshow (:color teal :hint nil)
   "hideshow"
   ("h" hs-hide-all "hide-all")
@@ -1476,7 +1472,6 @@ find: _f_un _l_ib _v_ar"
   ("e" ediff-regions-wordwise "ediff-regions-wordwise")
   ("g" yagist-region-or-buffer "gist")
   ("h" hide-mode-line-mode "hide modeline")
-  ("k" jco/hydra-kurecolor/body "kurekolor")
   ("K" keycast-mode "keycast")
   ("m" (lambda ()
          (interactive)
@@ -1485,21 +1480,6 @@ find: _f_un _l_ib _v_ar"
   ("r" rfc-mode-browse "rfc-browse")
   ("s" screenshot "screenshot")
   ("T" modus-themes-toggle "modus-themes-toggle"))
-
-(defhydra jco/hydra-kurecolor
-  (:color pink :hint nil
-   :pre (progn (set 'jco/global-hl-line-mode-hydra-temp (global-hl-line-mode))
-               (global-hl-line-mode -1))
-   :post (global-hl-line-mode jco/global-hl-line-mode-hydra-temp))
-  "
-kurecolor: _H_ue(+) _h_ue(-) _S_aturation(+) _s_aturation(-) _B_rightness(+) _b_rightness(-)"
-  ("H" kurecolor-increase-hue-by-step)
-  ("h" kurecolor-decrease-hue-by-step)
-  ("S" kurecolor-increase-saturation-by-step)
-  ("s" kurecolor-decrease-saturation-by-step)
-  ("B" kurecolor-increase-brightness-by-step)
-  ("b" kurecolor-decrease-brightness-by-step)
-  ("q" nil "quit" :color blue))
 
 (defhydra jco/hydra-writing (:color teal :hint nil)
   "writing"
@@ -1672,11 +1652,13 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 (use-package vc-msg
   :defer)
 
-(use-package rich-minority
-  :defer
-  :config
-  (setq rm-whitelist "ⓜ")
-  (rich-minority-mode))
+;; Emacs 31 replaced `minor-mode-alist' inside `mode-line-modes' with the new
+;; `mode-line-minor-modes' construct. rich-minority (and smart-mode-line's own
+;; filter) look for the old element, fail to find it, and give up, so use the
+;; built-in facility instead: hide every minor-mode lighter except evil-mc's,
+;; which is what `rm-whitelist' used to do.
+(setq mode-line-collapse-minor-modes '(not evil-mc-mode))
+(setq mode-line-collapse-minor-modes-to "")
 
 (use-package smart-mode-line
   ;; :after smart-mode-line-atom-one-dark-theme
@@ -1691,7 +1673,6 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 
 (use-package doom-modeline
   :disabled
-  :ensure t
   :defer
   :hook (after-init . doom-modeline-init))
 
@@ -2080,7 +2061,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 (use-package org
   :defer
-  :ensure org-plus-contrib
   :custom
   (org-footnote-auto-adjust t)
   (org-M-RET-may-split-line nil)
@@ -2701,7 +2681,7 @@ Org-mode properties drawer already, keep the headline and don’t insert
 (defun jco/lisp-comment-dwim ()
   "Comments Lisp sexps smartly."
   (interactive)
-  (if (and (not (hlt-nonempty-region-p))
+  (if (and (not (use-region-p))
            (member (char-after) '(?\( ?{ ?\[)))
       (progn (mark-sexp)
              (comment-dwim nil))
@@ -3290,7 +3270,6 @@ Lisp function does not specify a special indentation."
   (lua-indent-string-contents t))
 
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode))
   :custom
@@ -3657,7 +3636,7 @@ repo."
   :init
   (global-undo-tree-mode))
 
-(require 'kurecolor)
+(require 'color)
 
 (defmacro install-themes ()
   "Install commonly used theme packages using `use-package'."
@@ -3716,7 +3695,7 @@ repo."
       (set-face-attribute 'vertico-current nil
                           :weight 'normal :background "#fda7df")))
 
-  (set-face-background 'evil-search-highlight-persist-highlight-face
+  (set-face-background 'evil-ex-lazy-highlight
                        (cl-case (ef-themes--current-theme)
                          ((ef-bio ef-cherie ef-winter) "#6c1e8e")
                          ((ef-day
@@ -3736,7 +3715,7 @@ repo."
   "Configure modus themes."
   (pcase (modus-themes--current-theme)
     ('modus-operandi
-     (set-face-background 'evil-search-highlight-persist-highlight-face
+     (set-face-background 'evil-ex-lazy-highlight
                           "#f9bf3b")
      (set-face-attribute 'font-lock-comment-face nil :underline nil)
      (set-face-attribute 'font-lock-doc-face nil :underline nil)
@@ -3746,7 +3725,7 @@ repo."
        (set-face-attribute 'vertico-current nil
                            :weight 'normal :background "#fda7df")))
     ('modus-vivendi
-     (set-face-background 'evil-search-highlight-persist-highlight-face
+     (set-face-background 'evil-ex-lazy-highlight
                           "RoyalBlue4")
      (set-face-attribute 'font-lock-comment-face nil :underline nil)
      (set-face-attribute 'font-lock-doc-face nil :underline nil)
@@ -3785,13 +3764,27 @@ repo."
   (with-eval-after-load 'smartparens
     (set-face-attribute 'sp-show-pair-match-face nil :weight 'normal)))
 
+(defun jco/adjust-brightness (hex amount)
+  "Shift hex color HEX's HSV brightness by AMOUNT, in the range `-1.0..1.0'.
+Hue and saturation are scale-invariant in HSV, so shifting the value
+component is just a uniform scaling of the RGB channels."
+  (let* ((rgb (mapcar (lambda (i)
+                        (/ (string-to-number (substring hex i (+ i 2)) 16) 255.0))
+                      '(1 3 5)))
+         (val (apply #'max rgb))
+         (new (color-clamp (+ val amount)))
+         (scaled (if (zerop val)
+                     (list new new new)
+                   (mapcar (lambda (c) (color-clamp (* c (/ new val)))) rgb))))
+    (apply #'color-rgb-to-hex (append scaled '(2)))))
+
 (cl-defun jco/current-fg (&optional (adj 0.0))
   "Get the current foreground color, optionally adjusting brightness by ADJ."
-  (kurecolor-adjust-brightness (face-attribute 'default :foreground) adj))
+  (jco/adjust-brightness (face-attribute 'default :foreground) adj))
 
 (cl-defun jco/current-bg (&optional (adj 0.0))
   "Get the current background color, optionally adjusting brightness by ADJ."
-  (kurecolor-adjust-brightness (face-attribute 'default :background) adj))
+  (jco/adjust-brightness (face-attribute 'default :background) adj))
 
 ;; Custom theme configurations.
 
@@ -3799,7 +3792,7 @@ repo."
   (adwaita
    (setq sml/theme 'light)
    (set-face-background 'hl-line "#dadfe1")
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
+   (set-face-background 'evil-ex-lazy-highlight "#e0dcbe")
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-pair-overlay-face "LightBlue"))
    (setq jco/cursor-color  "#101f24")
@@ -3825,7 +3818,7 @@ repo."
 
   (chocolate
    (set-face-background 'highlight "#a21caf")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "#0e7490")
    (with-eval-after-load 'orderless
      (set-face-foreground 'orderless-match-face-0 "#dff9fb"))
@@ -3834,11 +3827,11 @@ repo."
 
   (chyla
    (setq sml/theme 'light)
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "LightBlue"))
 
   (darkane
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "midnightblue")
    (set-face-background 'hl-line "#041040"))
 
@@ -3894,12 +3887,12 @@ repo."
      (set-face-foreground 'mu4e-highlight-face "black")))
 
   (doom-gruvbox-light
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+   (set-face-background 'evil-ex-lazy-highlight "#f9bf3b")
    (with-eval-after-load 'volatile-highlights
      (set-face-background 'vhl/default-face (jco/current-bg -0.10))))
 
   (doom-henna
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#6ab04c")
+   (set-face-background 'evil-ex-lazy-highlight "#6ab04c")
    (with-eval-after-load 'vertico
      (set-face-foreground 'vertico-group-separator "#808080")
      (set-face-foreground 'vertico-group-title "#c0c0c0")))
@@ -3934,7 +3927,7 @@ repo."
      (set-face-foreground 'mu4e-highlight-face "#101f24")))
 
   (doom-one-light
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#e6ffe6")
+   (set-face-background 'evil-ex-lazy-highlight "#e6ffe6")
    (set-face-background 'highlight "#e6ffe6")
    (with-eval-after-load 'volatile-highlights
      (set-face-background 'vhl/default-face (jco/current-bg -0.10))))
@@ -3947,7 +3940,7 @@ repo."
    (set-face-background 'region "#e0dcbe")
    (with-eval-after-load 'cider
      (set-face-background 'cider-deprecated-face "#e0dcbe"))
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+   (set-face-background 'evil-ex-lazy-highlight "#f9bf3b")
    (set-face-background 'lazy-highlight "#f9bf3b")
    (with-eval-after-load 'mu4e
      (set-face-foreground 'mu4e-highlight-face "#101f24")
@@ -3958,23 +3951,23 @@ repo."
 
   (doom-tomorrow-day
    (set-face-background 'highlight "#e4f1fe")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "#e4f1fe"))
 
   (dracula
    (set-face-background 'region "#582c6b"))
 
   (eink
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "LightBlue"))
 
   (flatui
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b"))
+   (set-face-background 'evil-ex-lazy-highlight "#f9bf3b"))
 
   (github-modern
    (setq sml/theme 'light)
    (set-face-foreground 'avy-lead-face "#00b894")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         (face-attribute 'highlight :background))
    (set-face-background 'header-line "#e4f1fe")
    (set-face-foreground 'header-line "Black")
@@ -4019,13 +4012,13 @@ repo."
 
   (gotham
    (setq jco/cursor-color "LightBlue")
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
-   (set-face-foreground 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight "#e0dcbe")
+   (set-face-foreground 'evil-ex-lazy-highlight
                         "#101f24"))
 
   (hemisu-light
    (setq sml/theme 'light)
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "LightBlue"))
 
   (kaolin-eclipse
@@ -4046,13 +4039,13 @@ repo."
      (set-face-background 'mu4e-highlight-face "#7ceece")))
 
   (light-blue
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "#fcd34d")
    )
 
   (material
    (set-face-background 'hl-line "#37474f")
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#e0dcbe")
+   (set-face-background 'evil-ex-lazy-highlight "#e0dcbe")
    (with-eval-after-load 'org
      (set-face-background 'org-todo nil)))
 
@@ -4072,12 +4065,12 @@ repo."
      (set-face-foreground 'mode-line-emphasis "#95a5a6"))
    (with-eval-after-load 'org
      (set-face-background 'org-todo nil)
-     (set-face-background 'evil-search-highlight-persist-highlight-face
+     (set-face-background 'evil-ex-lazy-highlight
                           "DarkOrange4")))
 
   (minimal-light
    (set-face-background 'region "LightBlue")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "LightBlue")
    (with-eval-after-load 'eyebrowse
      (set-face-foreground 'mode-line-emphasis "#74b9ff")))
@@ -4090,8 +4083,8 @@ repo."
    (with-eval-after-load 'smartparens
      (set-face-background 'sp-pair-overlay-face "#582c6b"))
    (set-face-background 'region "#582c6b")
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
-   (set-face-foreground 'evil-search-highlight-persist-highlight-face "#465457")
+   (set-face-background 'evil-ex-lazy-highlight "#f9bf3b")
+   (set-face-foreground 'evil-ex-lazy-highlight "#465457")
    (set-face-background 'lazy-highlight "#f9bf3b")
    (set-face-background 'ffap "#582c6b")
    (with-eval-after-load 'mu4e
@@ -4103,9 +4096,9 @@ repo."
    (setq jco/cursor-color "#ececec")
    (set-face-background 'region "#582c6b")
    (set-face-background 'lazy-highlight "VioletRed3")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "#e0dcbe")
-   (set-face-foreground 'evil-search-highlight-persist-highlight-face
+   (set-face-foreground 'evil-ex-lazy-highlight
                         "#101f24")
    (set-face-foreground 'font-lock-warning-face "#ff6523")
    (set-face-background 'font-lock-warning-face nil)
@@ -4140,7 +4133,7 @@ repo."
    (set-face-background 'region "#88d6e5")
    (with-eval-after-load 'ffap
      (set-face-background 'ffap "#ffc3ff"))
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#f9bf3b")
+   (set-face-background 'evil-ex-lazy-highlight "#f9bf3b")
    (with-eval-after-load 'ledger-mode
      (set-face-background 'ledger-font-xact-highlight-face "#e0dcbe")
      (set-face-background 'ledger-occur-xact-face "#e0dcbe"))
@@ -4165,29 +4158,29 @@ repo."
   (organic-green
    (setq sml/theme 'light)
    (setq jco/cursor-color "gray25")
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#7ceece")
+   (set-face-background 'evil-ex-lazy-highlight "#7ceece")
    (set-face-background 'show-paren-match "#c0c060"))
 
   (prassee
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "VioletRed4"))
 
   (reykjavik
    (setq jco/cursor-color  "#7ceece")
    (set-face-background 'region "#1a4550")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "#821800"))
 
   ((sanityinc-tomorrow-bright sanityinc-tomorrow-day
                               sanityinc-tomorrow-eighties
                               sanityinc-tomorrow-night)
    (setq jco/cursor-color "snow")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "RoyalBlue4"))
 
   (sanityinc-tomorrow-blue
    (setq jco/cursor-color "snow")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "RoyalBlue"))
 
   (solarized-dark
@@ -4198,7 +4191,7 @@ repo."
    (setq jco/cursor-color "azure4")
    (set-face-background 'hl-line "#e1dcd3")
    (set-face-background 'region "#f1dddc")
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#b8d8e0")
+   (set-face-background 'evil-ex-lazy-highlight "#b8d8e0")
    (with-eval-after-load 'mu4e
      (set-face-background 'mu4e-header-highlight-face "#b8d8e0"))
    (custom-set-faces
@@ -4209,14 +4202,14 @@ repo."
    (set-face-background 'region "#4a3f51")
    (setq jco/cursor-color "#e0dcbe")
    (set-face-background 'hl-line "gray16")
-   (set-face-background 'evil-search-highlight-persist-highlight-face
+   (set-face-background 'evil-ex-lazy-highlight
                         "MidnightBlue")
    (custom-set-faces
     '(sp-show-pair-match-face ((t (:box nil))))
     '(font-lock-function-name-face ((t (:weight bold :box nil))))))
 
   (whiteboard
-   (set-face-background 'evil-search-highlight-persist-highlight-face "#99f6e4")))
+   (set-face-background 'evil-ex-lazy-highlight "#99f6e4")))
 
 (when (not (display-graphic-p))
   ;; Transparent background in console mode.
@@ -4298,7 +4291,7 @@ repo."
   "Yank the filename of the current buffer to the kill ring.
 If ARG is given, only the filename (no path) of the file is yanked."
   (interactive "P")
-  (when-let ((f (buffer-file-name)))
+  (when-let* ((f (buffer-file-name)))
     (kill-new (if arg
                   (file-name-nondirectory f)
                 f))))
@@ -4396,16 +4389,21 @@ accordance with ISO 8601)."
 
 (defun my-consult-find-fd (&optional dir initial)
   (interactive "P")
+  ;; `consult-find-command' must be `defvar'-ed before we bind it, or the
+  ;; binding is lexical and `consult-find' never sees it.
+  (require 'consult)
   (let ((consult-find-command "fd --color=never --hidden --full-path ARG OPTS"))
     (consult-find dir initial)))
 
 (defun my-consult-find-git (&optional dir initial)
   (interactive "P")
+  (require 'consult)
   (let ((consult-find-command "git ls-files --full-name OPTS -- *ARG*"))
     (consult-find dir initial)))
 
 (defun my-consult-locate-mdfind (&optional initial)
   (interactive "P")
+  (require 'consult)
   (let ((consult-locate-command "mdfind -name OPTS ARG"))
     (consult-locate initial)))
 
@@ -4461,7 +4459,7 @@ accordance with ISO 8601)."
   :config
   (setq consult-project-root-function
         (lambda ()
-          (when-let (project (project-current))
+          (when-let* ((project (project-current)))
             (car (project-roots project))))))
 
 (use-package consult-dir
