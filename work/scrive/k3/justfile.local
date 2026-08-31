@@ -15,7 +15,7 @@ down:
   #!/usr/bin/env bash
   set -x
   supervisorctl stop all
-  pkill supervisord
+  supervisorctl shutdown
   docker compose --project-directory docker down
   pgrep -a slack || true
 
@@ -52,3 +52,28 @@ git-hooks:
   EOF
 
   chmod +x .git/hooks/prepare-commit-msg
+
+posting:
+  posting --collection posting
+
+# ECR image tag(s) Cerberus pushed for a commit (default: the current bookmark).
+# Requires the commit to be pushed and, on a PR, the `deploy` label.
+image-tags sha=`jj log -r 'latest(::@ & bookmarks())' --no-graph -T commit_id`:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  repo=scrive/kontrakcja
+  check_ids=$(gh api "repos/${repo}/commits/{{sha}}/check-runs" \
+    --jq '.check_runs[] | select(.name | test("preamble"; "i")) | .id')
+  if [[ -z ${check_ids} ]]; then
+    echo "No Cerberus run for {{sha}}." >&2
+    echo "Push it, then re-apply the PR's 'deploy' label to trigger one." >&2
+    exit 1
+  fi
+  for id in ${check_ids}; do
+    gh api "repos/${repo}/check-runs/${id}/annotations" --jq '.[].message'
+  done | grep -oE '[^ ,]+/kontrakcja:[^ ,]+' | sort -u \
+    || { echo "Cerberus ran but pushed no image; prepare-dist-image was skipped." >&2; exit 1; }
+
+# The `pr-` tag to pin as `newTag` in k8s-deployments (`dist-` names a merge commit).
+deploy-tag *sha:
+  @{{just_executable()}} image-tags {{sha}} | grep -oE 'pr-[0-9]+-[0-9a-f]{40}'
