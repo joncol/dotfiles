@@ -19,6 +19,19 @@ down:
   docker compose --project-directory docker down
   pgrep -a slack || true
 
+# Run the frontend test suite on headless Chromium.
+# `test:fast` runs karma only. `test` adds eslint and coverage.
+test-frontend task="test:fast":
+  #!/usr/bin/env bash
+  set -euo pipefail
+  chrome=$(command -v chromium || command -v google-chrome-stable) || {
+    echo "No chromium on PATH. karma-chrome-launcher needs CHROME_BIN." >&2
+    exit 1
+  }
+  cd frontend
+  CHROME_BIN=${chrome} NODE_OPTIONS=--openssl-legacy-provider \
+    node_modules/.bin/grunt {{task}}
+
 # List local bookmarks that are not pushed remotely.
 local-bookmarks:
   #!/usr/bin/env bash
