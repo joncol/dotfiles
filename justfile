@@ -91,7 +91,7 @@ git-hooks:
   chmod +x .git/hooks/prepare-commit-msg
 
 # Make git ignore certain files where only local changes are applied.
-skip_worktree:
+skip-worktree:
   git update-index --skip-worktree homedir/.emacs.d/custom.el
 
 # Log in to the Docker registry of Scrive.
