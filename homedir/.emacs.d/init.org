@@ -1641,7 +1641,6 @@ find: _f_un _l_ib _v_ar"
   "gtd"
   ("f" (jco/find-org-file nil) "file")
   ("b" (jco/find-org-file "blog.org") "blog")
-  ("h" (jco/find-org-file "health.org") "health")
   ("i" (jco/find-org-file "incoming.org") "incoming")
   ("n" (jco/find-org-file "notes.org") "notes")
   ("p" (jco/find-org-file "todo.org"
