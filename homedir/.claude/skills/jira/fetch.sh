@@ -31,4 +31,4 @@ CLOUD_ID=$(python3 -c "import json; print(json.load(open('$HOME/.claude/jira-tok
 
 # Fetch the issue
 curl -s -H "Authorization: Bearer $ACCESS_TOKEN" \
-  "https://api.atlassian.com/ex/jira/${CLOUD_ID}/rest/api/2/issue/${ISSUE_KEY}?fields=summary,status,assignee,reporter,priority,issuetype,description,comment"
+  "https://api.atlassian.com/ex/jira/${CLOUD_ID}/rest/api/2/issue/${ISSUE_KEY}?fields=summary,status,assignee,reporter,priority,issuetype,description,customfield_10115,comment"

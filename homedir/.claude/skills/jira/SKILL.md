@@ -42,6 +42,7 @@ If `~/.claude/jira-tokens.json` does not exist, tell the user to run `~/.claude/
    - **Assignee**: who it's assigned to
    - **Reporter**: who created it
    - **Description**: the issue description (summarize if very long)
+   - **Notes for QA**: `customfield_10115`, if it is set. Write "(empty)" if it is null.
    - **Recent comments**: show the last 5-6 comments if any exist (author, date, body). Do NOT use blockquotes (`>`) for comment bodies — they render with low-contrast styling. Use plain text under a bold **Author — Date:** header instead.
 
 ---
