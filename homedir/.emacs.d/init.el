@@ -3,7 +3,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((my-theme '"ef-winter"))
+(let ((my-theme '"doom-moonlight"))
 (defvar jco/theme)
 (setq jco/theme (intern my-theme))
 )
