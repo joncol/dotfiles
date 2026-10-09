@@ -65,6 +65,7 @@ homedir/.local/share/openaws-vpn-client/cvpn-endpoint-044fe1e9f935c0a9a-oavc.ovp
 !/homedir/.claude/commands/
 !/homedir/.claude/skills/
 /homedir/.claude/skills/synced/
+/homedir/.claude/skills/.trash
 !/homedir/.claude/hooks/
 !/homedir/.claude/memory/
 /work/**/.envrc.secrets
