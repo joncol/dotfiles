@@ -1799,7 +1799,7 @@ apropos: _a_propos _c_md _d_oc _v_al _l_ib _o_ption _v_ar _i_nfo _x_ref-find"
 
               (setq mu4e-view-fields '(:from :to :cc :bcc :subject :flags
                                              :date :maildir :mailing-list :tags
-                                             :attachments :signature :decryption))
+                                             :labels))
 
               (defun jco/smtp-server ()
                 (cond ((or (s-contains? "gmail.com" user-mail-address)
