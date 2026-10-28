@@ -618,6 +618,8 @@ binds {
     Mod+Shift+F3 allow-when-locked=true { spawn "ddcutil" "setvcp" "10" "+" "10" "--display" "1"; }
 
     // Mod+0 { toggle-window-rule-opacity; }
+
+    Mod+Shift+W { spawn "work-tabs"; }
 }
 
 // Named workspaces:
