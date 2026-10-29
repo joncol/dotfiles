@@ -55,7 +55,7 @@ Create a new Jira issue. Parse `$ARGUMENTS` for the project key (the word after 
    - **Project key** (e.g. `FN`, `CORE`) — required
    - **Issue type** (e.g. `Bug`, `Story`, `Task`, `Sub-task`) — required, default to `Bug` if the context suggests a bug report
    - **Summary** (title) — required
-   - **Description** — optional but recommended; compose one from conversation context if available. Use Jira wiki markup (e.g. `h3.` for headings, `{{code}}` for inline code, `{code}` blocks for multi-line code).
+   - **Description** — optional but recommended; compose one from conversation context if available. Use Jira wiki markup (e.g. `h3.` for headings, `{{code}}` for inline code, `{code}` blocks for multi-line code). Write each reference to another issue as a short link, for example `[CORE-1234|https://scriveab.atlassian.net/browse/CORE-1234]`. Do not use a bare key, a bare URL, or `|smart-link`, because Jira can render these as large cards.
    - **Notes for QA** (`customfield_10115`) — always include this field. Write numbered steps (using `#` for ordered lists in Jira wiki markup) that a QA engineer can follow to verify the fix. This is a separate field, not part of the description.
    - **Do NOT set the assignee** — leave it unassigned.
 
