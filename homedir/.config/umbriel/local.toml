@@ -1,0 +1,55 @@
+# Local Umbriel settings for experiments. Not managed by Nix.
+#
+# The Nix config (config.toml) includes this file. Umbriel reloads it when you
+# save. Settings that config.toml sets win over the same settings here.
+#
+# Check the result before you log out:  umbriel config validate
+# An error here at startup makes Umbriel use its default config.
+
+# Define every bundled preset. Defining a preset does not turn it on.
+# Optional, so a missing path is ignored instead of breaking the config.
+[include.optional]
+files = [
+  "/run/current-system/sw/share/umbriel/effects/animation/reveal/effect.toml",
+  "/run/current-system/sw/share/umbriel/effects/animation/squash/effect.toml",
+  "/run/current-system/sw/share/umbriel/effects/animation/workspace_wipe/effect.toml",
+  "/run/current-system/sw/share/umbriel/effects/border/pulse/effect.toml",
+  "/run/current-system/sw/share/umbriel/effects/cursor/glow/effect.toml",
+  "/run/current-system/sw/share/umbriel/effects/cursor/trail-path/effect.toml",
+  "/run/current-system/sw/share/umbriel/effects/cursor/trail/effect.toml",
+  "/run/current-system/sw/share/umbriel/effects/screen/vignette/effect.toml",
+  "/run/current-system/sw/share/umbriel/effects/window/scanlines/effect.toml",
+]
+
+# Try a preset live, without editing this file:
+#   umbriel msg effect-cursor-set trail      (or glow, trail-path, off)
+#   umbriel msg effect-border-set pulse
+#   umbriel msg effect-screen-set vignette
+#   umbriel msg effect-window-set scanlines
+# To keep a choice after a restart, uncomment it here:
+[effects]
+border = "pulse"
+# cursor = "trail"
+# screen = "vignette"
+# window = "scanlines"
+
+# Window animations from the animation presets.
+# [animation.workspaces]
+# style = "reveal"
+# effect = "workspace_wipe"
+# duration_ms = 300
+# curve = "easeout"
+
+# Appearance.
+# [appearance]
+# border_width = 2
+# corner_radius = 10
+#
+# [appearance.blur]
+# passes = 2
+# radius = 5
+# noise = 0.02
+
+# Blur all windows (rule lists add to the rules in config.toml).
+# [[window_rule]]
+# blur = true
