@@ -56,7 +56,10 @@ Create a new Jira issue. Parse `$ARGUMENTS` for the project key (the word after 
    - **Issue type** (e.g. `Bug`, `Story`, `Task`, `Sub-task`) — required, default to `Bug` if the context suggests a bug report
    - **Summary** (title) — required
    - **Description** — optional but recommended; compose one from conversation context if available. Use Jira wiki markup (e.g. `h3.` for headings, `{{code}}` for inline code, `{code}` blocks for multi-line code). Write each reference to another issue as a short link, for example `[CORE-1234|https://scriveab.atlassian.net/browse/CORE-1234]`. Do not use a bare key, a bare URL, or `|smart-link`, because Jira can render these as large cards.
-   - **Notes for QA** (`customfield_10115`) — always include this field. Write numbered steps (using `#` for ordered lists in Jira wiki markup) that a QA engineer can follow to verify the fix. This is a separate field, not part of the description.
+   - **Notes for QA** (`customfield_10115`) — always include this field. This is a separate field, not part of the description.
+     - QA tests through the product only. QA cannot run tests against the code, so do not write `cabal` commands, test names, or other developer steps.
+     - If the change has an effect in the product, write numbered steps (using `#` for ordered lists in Jira wiki markup) that QA can do in the UI or the API to verify it.
+     - If the change has no effect in the product (for example, a test-only change or a refactor), write "Nothing to test." and give the reason in one sentence.
    - **Do NOT set the assignee** — leave it unassigned.
 
 2. If the issue type is **Bug**, you must include the `customfield_11966` (Bug Classification) field. Choose the most appropriate value:
