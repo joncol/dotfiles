@@ -11,7 +11,7 @@ Create a jj bookmark from a Jira ticket, using the ticket summary to generate a 
 1. **Check trunk status.** Run `jj log -r @ --no-graph -T 'separate(" ", if(immutable, "immutable", "mutable"), if(empty, "empty", "nonempty"))'` to check the current revision. Proceed without warning if:
    - The revision is immutable (directly on trunk), OR
    - The revision is mutable AND empty (a clean working copy on top of trunk — this is the normal jj state)
-   
+
    Only warn the user if the revision is mutable AND nonempty (i.e. they have uncommitted work that isn't on trunk). Ask whether to continue anyway.
 
 2. **Get the ticket key.**
