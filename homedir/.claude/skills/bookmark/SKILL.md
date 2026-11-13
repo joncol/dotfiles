@@ -28,6 +28,8 @@ Create a jj bookmark from a Jira ticket, using the ticket summary to generate a 
    ```
    jco/<ticket-key>-<short-description>
    ```
+   The whole name must be lowercase, including the ticket key (`CORE-9129` -> `core-9129`).
+
    Rules for the short description:
    - Derived from the ticket summary
    - Lowercase, words separated by hyphens
