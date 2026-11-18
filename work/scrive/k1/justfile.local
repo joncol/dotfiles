@@ -89,7 +89,7 @@ image-tags sha=`jj log -r 'latest(::@ & bookmarks())' --no-graph -T commit_id`:
 
 # The `pr-` tag to pin as `newTag` in k8s-deployments (`dist-` names a merge commit).
 deploy-tag *sha:
-  @{{just_executable()}} image-tags {{sha}} | grep -oE 'pr-[0-9]+-[0-9a-f]{40}'
+  @{{just_executable()}} image-tags {{sha}} | grep -oE 'pr-[0-9]+(-[0-9a-f]{40})?'
 
 # The script is local only, see .git/info/exclude.
 # Deploy an image to features-testbed (default: git HEAD).
