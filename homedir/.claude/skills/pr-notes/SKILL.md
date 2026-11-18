@@ -28,18 +28,29 @@ To find the key, look for a pattern like `CORE-1234` in the PR title (`[CORE-123
 
 ## Fetch the comments
 
-The raw output is often more than 100 KB. Always filter it with `jq`, and save it to the scratchpad first:
+The raw output is often more than 100 KB. Always filter it with `jq`, and save it to the scratchpad first. Run `gh` from the repository directory, not from the scratchpad. Outside a git repository, `gh pr view` fails.
 
 ```bash
 gh pr view <PR> --json number,title,headRefName,state,url,reviewDecision,reviews,comments > <scratchpad>/pr.json
+gh api repos/scrive/kontrakcja/pulls/<PR>/comments --paginate > <scratchpad>/inline.json
 ```
 
-1. Merge `.reviews[]` (date in `submittedAt`) and `.comments[]` (date in `createdAt`) into one list. Drop the items with an empty body. Sort by date.
-2. Find the cutoff: the date of the newest item whose author is the user (`gh api user --jq .login`). Skip this step if the argument is `all`.
-3. Keep the items after the cutoff. Drop bot comments.
-4. Print the bodies. Remove `<!-- Sent from Reviewable.io -->` and the `([raw file](...))` links.
+`gh pr view` does not return inline comments (comments on a line of the diff, made on GitHub). A review that has only inline comments has an empty `.body` in `.reviews[]`. The inline comments are only in `inline.json`.
 
-Reviewable bodies contain one block per file comment. Each block starts with `*[\`<path>\` line <N> at r<rev>](...)`. Make one item per block. If a block quotes an earlier comment (`Previously, X wrote…`), it is a reply. Show only the new text, and give one line of context.
+1. Merge these sources into one list, and sort it by date:
+   - `.reviews[]` from `pr.json`. The date is in `submittedAt`. The author is in `.author.login`.
+   - `.comments[]` from `pr.json`. The date is in `createdAt`. The author is in `.author.login`.
+   - The items in `inline.json`. The date is in `created_at`. The author is in `.user.login`. The file is in `path`, and the line is in `line` (or `original_line` if `line` is null). If `in_reply_to_id` is set, the comment is a reply in a thread.
+2. Drop the items with an empty body. Keep the review state of a review with an empty body: use it for the reviewer heading of that reviewer's inline comments.
+3. Find the cutoff: the date of the newest item whose author is the user (`gh api user --jq .login`). Skip this step if the argument is `all`.
+4. Keep the items after the cutoff. Drop bot comments.
+5. Print the bodies. Remove `<!-- Sent from Reviewable.io -->` and the `([raw file](...))` links.
+
+An inline comment can contain a ` ```suggestion ` block. That block is the replacement code that the reviewer proposes. Show the change in the item text. If the reviewer says that they did not test the suggestion, check whether it compiles, and add the result to the item.
+
+Reviewable bodies contain one block per file comment. Each block starts with `*[\`<path>\` line <N> at r<rev>](...)`. Make one item per block. If a block quotes an earlier comment (`Previously, X wrote…`), it is a reply. Show only the new text, and give one line of context. Do the same for an inline comment with `in_reply_to_id`.
+
+If you find no new items, tell the user which sources you checked: reviews, conversation comments, and inline comments.
 
 ## Write the notes file
 
